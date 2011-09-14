@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv", "vc10\scv.vcxproj", "{891D71B4-D675-460D-8A69-4107DF65F07F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Demo", "Demo\vc10\Demo.vcxproj", "{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DebugWindow|Win32 = DebugWindow|Win32
+		Release|Win32 = Release|Win32
+		ReleaseWindow|Win32 = ReleaseWindow|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.Debug|Win32.Build.0 = Debug|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.DebugWindow|Win32.ActiveCfg = Debug|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.DebugWindow|Win32.Build.0 = Debug|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.Release|Win32.ActiveCfg = Release|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.Release|Win32.Build.0 = Release|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
+		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.Build.0 = Release|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.Debug|Win32.Build.0 = Debug|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.DebugWindow|Win32.ActiveCfg = DebugWindow|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.DebugWindow|Win32.Build.0 = DebugWindow|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.Release|Win32.ActiveCfg = Release|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.Release|Win32.Build.0 = Release|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.ReleaseWindow|Win32.ActiveCfg = ReleaseWindow|Win32
+		{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}.ReleaseWindow|Win32.Build.0 = ReleaseWindow|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

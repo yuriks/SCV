@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Button.cpp" />
+    <ClCompile Include="..\src\ButtonGroup.cpp" />
+    <ClCompile Include="..\src\Canvas.cpp" />
+    <ClCompile Include="..\src\CheckBox.cpp" />
+    <ClCompile Include="..\src\CodeGenerator.cpp" />
+    <ClCompile Include="..\src\Color4f.cpp" />
+    <ClCompile Include="..\src\ColorPicker.cpp" />
+    <ClCompile Include="..\src\ColorRGBA.cpp" />
+    <ClCompile Include="..\src\ColorScheme.cpp" />
+    <ClCompile Include="..\src\ComboBox.cpp" />
+    <ClCompile Include="..\src\ComboBoxMenuStyle.cpp" />
+    <ClCompile Include="..\src\ComponentInterface.cpp" />
+    <ClCompile Include="..\src\ComponentTexture.cpp" />
+    <ClCompile Include="..\src\ComponentWithoutTexture.cpp" />
+    <ClCompile Include="..\src\ComponentWithTexture.cpp" />
+    <ClCompile Include="..\src\data\InternalFrameData.cpp" />
+    <ClCompile Include="..\src\data\CheckBoxData.cpp" />
+    <ClCompile Include="..\src\data\ScrollPaneData.cpp" />
+    <ClCompile Include="..\src\data\TreeViewData.cpp" />
+    <ClCompile Include="..\src\FileOpen.cpp" />
+    <ClCompile Include="..\src\GTree.cpp" />
+    <ClCompile Include="..\src\Image.cpp" />
+    <ClCompile Include="..\src\SCVObject.cpp" />
+    <ClCompile Include="..\src\ImgLoader.cpp" />
+    <ClCompile Include="..\src\List.cpp" />
+    <ClCompile Include="..\src\Panel.cpp" />
+    <ClCompile Include="..\src\ContextMenu.cpp" />
+    <ClCompile Include="..\src\Counter.cpp" />
+    <ClCompile Include="..\src\Cursor.cpp" />
+    <ClCompile Include="..\src\Font.cpp" />
+    <ClCompile Include="..\src\FontTahoma.cpp" />
+    <ClCompile Include="..\src\GlslShader.cpp" />
+    <ClCompile Include="..\src\Kernel.cpp" />
+    <ClCompile Include="..\src\Keyboard.cpp" />
+    <ClCompile Include="..\src\KeyEvent.cpp" />
+    <ClCompile Include="..\src\Label.cpp" />
+    <ClCompile Include="..\src\MenuBar.cpp" />
+    <ClCompile Include="..\src\MenuHolder.cpp" />
+    <ClCompile Include="..\src\MouseEvent.cpp" />
+    <ClCompile Include="..\src\Point.cpp" />
+    <ClCompile Include="..\src\ProgressBar.cpp" />
+    <ClCompile Include="..\src\RadioButton.cpp" />
+    <ClCompile Include="..\src\Scissor.cpp" />
+    <ClCompile Include="..\src\ScrollPane.cpp" />
+    <ClCompile Include="..\src\Separator.cpp" />
+    <ClCompile Include="..\src\Slider.cpp" />
+    <ClCompile Include="..\src\SoundLoader.cpp" />
+    <ClCompile Include="..\src\Spinner.cpp" />
+    <ClCompile Include="..\src\StateButton.cpp" />
+    <ClCompile Include="..\src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\TabbedPane.cpp" />
+    <ClCompile Include="..\src\Table.cpp" />
+    <ClCompile Include="..\src\TextBox.cpp" />
+    <ClCompile Include="..\src\TextField.cpp" />
+    <ClCompile Include="..\src\TextFilter.cpp" />
+    <ClCompile Include="..\src\Texture2D.cpp" />
+    <ClCompile Include="..\src\Timer.cpp" />
+    <ClCompile Include="..\src\ToggleButton.cpp" />
+    <ClCompile Include="..\src\InternalFrame.cpp" />
+    <ClCompile Include="..\src\InternalFrameHolder.cpp" />
+    <ClCompile Include="..\src\ToolTip.cpp" />
+    <ClCompile Include="..\src\TreeModel.cpp" />
+    <ClCompile Include="..\src\TreeView.cpp" />
+    <ClCompile Include="..\src\VistaMenuStyle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Mathematic.h" />
+    <ClInclude Include="..\include\SCV\Button.h" />
+    <ClInclude Include="..\include\SCV\ButtonGroup.h" />
+    <ClInclude Include="..\include\SCV\Callbacks.h" />
+    <ClInclude Include="..\include\SCV\Canvas.h" />
+    <ClInclude Include="..\include\SCV\CheckBox.h" />
+    <ClInclude Include="..\include\SCV\CodeGenerator.h" />
+    <ClInclude Include="..\include\SCV\Color4f.h" />
+    <ClInclude Include="..\include\SCV\ColorPicker.h" />
+    <ClInclude Include="..\include\SCV\ColorRGBA.h" />
+    <ClInclude Include="..\include\SCV\ColorScheme.h" />
+    <ClInclude Include="..\include\SCV\ComboBox.h" />
+    <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h" />
+    <ClInclude Include="..\include\SCV\ComponentInterface.h" />
+    <ClInclude Include="..\include\SCV\ComponentTexture.h" />
+    <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h" />
+    <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
+    <ClInclude Include="..\include\SCV\Data.h" />
+    <ClInclude Include="..\include\SCV\DynamicCastIterator.h" />
+    <ClInclude Include="..\include\SCV\FileOpen.h" />
+    <ClInclude Include="..\include\SCV\GTree.h" />
+    <ClInclude Include="..\include\SCV\Image.h" />
+    <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
+    <ClInclude Include="..\include\SCV\SCVObject.h" />
+    <ClInclude Include="..\include\SCV\ImgLoader.h" />
+    <ClInclude Include="..\include\SCV\List.h" />
+    <ClInclude Include="..\include\SCV\Panel.h" />
+    <ClInclude Include="..\include\SCV\ContextMenu.h" />
+    <ClInclude Include="..\include\SCV\Counter.h" />
+    <ClInclude Include="..\include\SCV\Cursor.h" />
+    <ClInclude Include="..\include\SCV\Font.h" />
+    <ClInclude Include="..\include\SCV\FontTahoma.h" />
+    <ClInclude Include="..\include\SCV\GlslShader.h" />
+    <ClInclude Include="..\include\SCV\Kernel.h" />
+    <ClInclude Include="..\include\SCV\Keyboard.h" />
+    <ClInclude Include="..\include\SCV\KeyEvent.h" />
+    <ClInclude Include="..\include\SCV\Label.h" />
+    <ClInclude Include="..\include\SCV\MatrixTemplate.h" />
+    <ClInclude Include="..\include\SCV\MenuBar.h" />
+    <ClInclude Include="..\include\SCV\MenuHolder.h" />
+    <ClInclude Include="..\include\SCV\MouseEvent.h" />
+    <ClInclude Include="..\include\SCV\Point.h" />
+    <ClInclude Include="..\include\SCV\ProgressBar.h" />
+    <ClInclude Include="..\include\SCV\RadioButton.h" />
+    <ClInclude Include="..\include\SCV\Scissor.h" />
+    <ClInclude Include="..\include\SCV\ScrollPane.h" />
+    <ClInclude Include="..\include\SCV\SCV.h" />
+    <ClInclude Include="..\include\SCV\Separator.h" />
+    <ClInclude Include="..\include\SCV\Singleton.h" />
+    <ClInclude Include="..\include\SCV\Slider.h" />
+    <ClInclude Include="..\include\SCV\SoundLoader.h" />
+    <ClInclude Include="..\include\SCV\Spinner.h" />
+    <ClInclude Include="..\include\SCV\StateButton.h" />
+    <ClInclude Include="..\include\SCV\stdafx.h" />
+    <ClInclude Include="..\include\SCV\TabbedPane.h" />
+    <ClInclude Include="..\include\SCV\Table.h" />
+    <ClInclude Include="..\include\SCV\TextBox.h" />
+    <ClInclude Include="..\include\SCV\TextField.h" />
+    <ClInclude Include="..\include\SCV\TextFilter.h" />
+    <ClInclude Include="..\include\SCV\Texture2D.h" />
+    <ClInclude Include="..\include\SCV\TextureInterface.h" />
+    <ClInclude Include="..\include\SCV\Timer.h" />
+    <ClInclude Include="..\include\SCV\ToggleButton.h" />
+    <ClInclude Include="..\include\SCV\ToolTip.h" />
+    <ClInclude Include="..\include\SCV\TreeModel.h" />
+    <ClInclude Include="..\include\SCV\TreeView.h" />
+    <ClInclude Include="..\include\SCV\util.h" />
+    <ClInclude Include="..\include\SCV\InternalFrame.h" />
+    <ClInclude Include="..\include\SCV\InternalFrameHolder.h" />
+    <ClInclude Include="..\include\SCV\VistaMenuStyle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{891D71B4-D675-460D-8A69-4107DF65F07F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>scv</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\lib\win32\scv\</OutDir>
+    <IncludePath>$(SolutionDir)\include\SCV;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)-debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\lib\win32\scv\</OutDir>
+    <IncludePath>$(SolutionDir)\include\SCV;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)-release</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\include\GL;..\include\SCV\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>..\include\SCV\StdAfx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>..\include\SCV\stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\include\GL;..\include\SCV\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>..\include\SCV\StdAfx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>..\include\SCV\stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="0.Resources">
+      <UniqueIdentifier>{e7157daf-a3f0-4eb6-ac6d-81b0a53bcd53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.Pre-Compiled Header">
+      <UniqueIdentifier>{59ea91bd-d87a-42ce-b5da-a5a519142e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.Demo">
+      <UniqueIdentifier>{80a1ead6-9cf7-4740-b3f5-32647e9fc80f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\stdafx.cpp">
+      <Filter>1.Pre-Compiled Header</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>2.Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\InterfaceDesign.cpp">
+      <Filter>2.Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AbstractWindow.cpp">
+      <Filter>2.Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MenuDesign.cpp">
+      <Filter>2.Demo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\stdafx.h">
+      <Filter>1.Pre-Compiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\InterfaceDesign.h">
+      <Filter>2.Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AbstractWindow.h">
+      <Filter>2.Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MenuDesign.h">
+      <Filter>2.Demo</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
