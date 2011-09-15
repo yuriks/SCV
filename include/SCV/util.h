@@ -7,8 +7,6 @@
 #ifndef __SCV_UTIL_H__
 #define __SCV_UTIL_H__
 
-#include <sstream>
-
 namespace scv {
 
 /*! Transform a number value of generic type in a string

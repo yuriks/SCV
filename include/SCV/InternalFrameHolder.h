@@ -11,7 +11,6 @@
 #include "Singleton.h"
 #include "MouseEvent.h"
 #include "KeyEvent.h"
-#include <deque>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

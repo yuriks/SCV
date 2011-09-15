@@ -3,9 +3,6 @@
 
 #include "util.h"
 
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-
 namespace scv {
 
 KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::states state) :

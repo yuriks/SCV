@@ -1,16 +1,8 @@
-#include <string>
 #include "FileOpen.h"
 #include "stdafx.h"
 #include "InternalFrame.h"
 #include "stdafx.h"
 #include "Kernel.h"
-
-#ifdef _WIN32
-   #include <windows.h>
-   #include <shobjidl.h>
-#else
-
-#endif
 
 namespace scv {
 

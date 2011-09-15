@@ -4,9 +4,6 @@
 #include "MenuHolder.h"
 #include "Scissor.h"
 
-#include <algorithm>
-#include <string>
-
 namespace scv {
 
 ComponentInterface::ComponentInterface(const scv::Point &p1, const scv::Point &p2) :

@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Keyboard.h"
 
-#include <algorithm>
-
 namespace scv {
 
 Keyboard::Keyboard(void) {

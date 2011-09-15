@@ -6,8 +6,6 @@
 
 #include "ComboBoxMenuStyle.h"
 
-#include <string>
-
 namespace scv {
 
 ComboBox::ComboBoxMenu::ComboBoxMenu(ComboBox& combo) : ContextMenu(""), combo(combo) {

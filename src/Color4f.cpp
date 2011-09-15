@@ -3,8 +3,6 @@
 
 #include "ColorRGBA.h"
 
-#include <iostream>
-
 namespace scv {
 
 Color4f::Color4f(void) {

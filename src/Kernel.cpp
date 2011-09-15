@@ -11,7 +11,6 @@
 #include "Keyboard.h"
 #include "GlslShader.h"
 
-#include "CodeGenerator.h"
 #include "util.h"
 
 #include "FileOpen.h"
@@ -21,51 +20,44 @@
 
 #include "Mathematic.h"
 
-#include <cstdlib>
-#include <ctime>
-#include <fstream>
-#include <algorithm>
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-
 namespace scv {
 
-const std::string Kernel::s_defaultTitle = "SCV Demo Version 3.0a";
+const std::string Kernel::s_defaultTitle = "SCV - Simple Components for Visual - http://www-usr.inf.ufsm.br/~pozzer/scv/";
 const unsigned int Kernel::s_defaultWidth  = 1280;
 const unsigned int Kernel::s_defaultHeight = 720;
-const unsigned int Kernel::s_defaultFramesPerSecond = 45;
+const unsigned int Kernel::s_defaultFramesPerSecond = 30;
 
-Kernel::Kernel(void) : mainPanel(NULL) {
+Kernel::Kernel(void) {
    std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * s_nOfWidgets);
 
    _filterType = nearest;
 
-   _mouseLocked = false;
+   Mouse.locked = false;
 
-   NeedRefreshReshape = true;
-   isActiveReshape = true;
+   _needRefreshReshape = true;
+   _isActiveReshape = true;
    _windowTitle = s_defaultTitle;
-   _framesPerSecond = s_defaultFramesPerSecond;
-   _currFramesPerSecond = s_defaultFramesPerSecond;
+   FrameRate.fps = s_defaultFramesPerSecond;
+   FrameRate.currFps = s_defaultFramesPerSecond;
 
-   _currScreenSize[0] = s_defaultWidth;
-   _currScreenSize[1] = s_defaultHeight;
+   Display.currSize[0] = s_defaultWidth;
+   Display.currSize[1] = s_defaultHeight;
 
-   memcpy(_userScreenSize, _currScreenSize, sizeof(unsigned int) * 2);
+   memcpy(Display.userSize, Display.currSize, sizeof(unsigned int) * 2);
 
-   isFullScreen = false;
+   Display.isFullScreen = false;
 
    _scissorNeedRefresh = true;
-
-   mouseClicked = false;
-   lastButton = MouseEvent::none;
+   
+   Mouse.clicked = false;
+   Mouse.lastButton = MouseEvent::none;
 
    _focusedComponent = NULL;
    _contextMenu = NULL;
-   lastClickPosition = Point(-1, -1);
+   Mouse.lastClickPosition = Point(-1, -1);
 
    #ifdef _WIN32
-      doubleClickTime = GetDoubleClickTime();
+      Mouse.doubleClickTime = GetDoubleClickTime();
    #else
       doubleClickTime = 500;
    #endif // _WIN32
@@ -77,17 +69,14 @@ Kernel::Kernel(void) : mainPanel(NULL) {
    initOpenGL(0, NULL);
    GlslShader::init();
 
-   _baseTime = _previousTime = _currentTime = glutGet(GLUT_ELAPSED_TIME);
-   _frameCount = 0;
+   FrameRate.baseTime = FrameRate.prevTime = FrameRate.currTime = glutGet(GLUT_ELAPSED_TIME);
+   FrameRate.count = 0;
 
-   anyComponentRequestFocus = false;
-   componentRequestMouseUse = NULL;
+   _componentRequestFocus = false;
+   Mouse.componentRequestUse = NULL;
 
    srand((int)time(NULL));
-   currentPanel = -1;
 }
-
-
 
 std::string Kernel::getClipBoardString(void) const {
    #ifdef _WIN32
@@ -107,7 +96,7 @@ std::string Kernel::getClipBoardString(void) const {
       } else {
          return std::string("null");
       }
-   #else // linux
+   #else // UNIX
       return std::string("null");
    #endif // _WIN32
 }
@@ -123,7 +112,7 @@ void Kernel::setClipBoardString(const std::string strData) {
          SetClipboardData(CF_TEXT, hClipboardData);
          CloseClipboard();
       }
-   #else // linux
+   #else // UNIX
    #endif // _WIN32
 }
 
@@ -156,60 +145,59 @@ void Kernel::initOpenGL(int argc, char* argv[]) {
 }
 
 void Kernel::run(void) {
-   glutInitWindowSize(_currScreenSize[0], _currScreenSize[1]);
+   std::cout << Display.currSize[0] << std::endl;
+   std::cout << Display.currSize[1] << std::endl;
+   glutInitWindowSize(Display.currSize[0], Display.currSize[1]);
    glutMainLoop();
 }
 
 void Kernel::setWindowSize(unsigned int width, unsigned int height) {
-   _userScreenSize[0] = width;
-   _userScreenSize[1] = height;
+   Display.userSize[0] = width;
+   Display.userSize[1] = height;   
    glutReshapeWindow(width, height);
 }
 
 void Kernel::setFullScreen(bool full) {
-   if (full == true && isFullScreen == false) {
-      _userScreenSize[0] = _currScreenSize[0];
-      _userScreenSize[1] = _currScreenSize[1];
+   if (full == true && Display.isFullScreen == false) {
+      Display.userSize[0] = Display.currSize[0];
+      Display.userSize[1] = Display.currSize[1];
       glutFullScreen();
-   } else if (full == false && isFullScreen == true) {
+   } else if (full == false && Display.isFullScreen == true) {
       glutFullScreenToggle();
       glutPositionWindow(0,0);
-      glutReshapeWindow(_userScreenSize[0], _userScreenSize[1]);
+      glutReshapeWindow(Display.userSize[0], Display.userSize[1]);
    }
-   isFullScreen = full;
+   Display.isFullScreen = full;
 }
 
 
 void Kernel::setFramesPerSecond(float fps) {
-   _framesPerSecond = fps;
+   FrameRate.fps = fps;
 }
 
 void Kernel::updateFramesPerSecond(void) {
-   _frameCount++;
-   _currentTime = glutGet(GLUT_ELAPSED_TIME);
+   FrameRate.count++;
+   FrameRate.currTime = glutGet(GLUT_ELAPSED_TIME);
 
    int timeInterval;
-
-   /*
-      frames per half a second, is this right? =D
-   */
-   timeInterval = _currentTime - _previousTime;
+      
+   timeInterval = FrameRate.currTime - FrameRate.prevTime;
    if (timeInterval > 500.f) {
-      _currFramesPerSecond = _frameCount * 1000.f / (timeInterval);
-      _previousTime = _currentTime;
-      _frameCount = 0;
+      FrameRate.currFps = FrameRate.count * 1000.f / (timeInterval);
+      FrameRate.prevTime = FrameRate.currTime;
+      FrameRate.count = 0;
    }
 
-   timeInterval = _currentTime - _baseTime;
-   if (timeInterval < (1000.f / _framesPerSecond)) {
+   timeInterval = FrameRate.currTime - FrameRate.baseTime;
+   if (timeInterval < (1000.f / FrameRate.fps)) {
       #ifdef _WIN32
-         Sleep((DWORD)(1000.f / _framesPerSecond) - timeInterval);
-      #else // linux
-         usleep(((1000.f / _framesPerSecond) - timeInterval) * 1000.f);
+         Sleep((DWORD)(1000.f / FrameRate.fps) - timeInterval);
+      #else // UNIX
+         usleep(((1000.f / fps) - timeInterval) * 1000.f);
       #endif // _WIN32
-      _baseTime = glutGet(GLUT_ELAPSED_TIME);
+      FrameRate.baseTime = glutGet(GLUT_ELAPSED_TIME);
    } else {
-      _baseTime = _currentTime;
+      FrameRate.baseTime = FrameRate.currTime;
    }
 }
 
@@ -219,14 +207,14 @@ void Kernel::cbMouseMotion(int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
-   if (!kernel->_mouseLocked) {
-      kernel->componentRequestMouseUse = NULL;
+   kernel->_componentRequestFocus = false;
+   if (!kernel->Mouse.locked) {
+      kernel->Mouse.componentRequestUse = NULL;
    }
 
    MouseEvent evt;
-   if (kernel->mouseClicked) {
-      evt = MouseEvent(kernel->lastButton, MouseEvent::hold, Point(x, y));
+   if (kernel->Mouse.clicked) {
+      evt = MouseEvent(kernel->Mouse.lastButton, MouseEvent::hold, Point(x, y));
    } else {
       evt = MouseEvent(MouseEvent::none, MouseEvent::motion, Point(x, y));
    }
@@ -239,7 +227,6 @@ void Kernel::cbMouseMotion(int x, int y) {
 
    cursor->setDefaultCursor();
    kernel->_scissorNeedRefresh = false;
-
 }
 
 void Kernel::cbMouseClick(int button, int state, int x, int y) {
@@ -248,32 +235,31 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
-   if (!kernel->_mouseLocked) {
-      kernel->componentRequestMouseUse = NULL;
+   kernel->_componentRequestFocus = false;
+   if (!kernel->Mouse.locked) {
+      kernel->Mouse.componentRequestUse = NULL;
    }
 
    MouseEvent evt;
-   if (kernel->lastClickPosition == Point(x, y) && kernel->lastTimeClicked.isRunning() &&
-         kernel->lastTimeClicked.getMilliseconds() <= kernel->doubleClickTime && kernel->lastButton == button &&
+   if (kernel->Mouse.lastClickPosition == Point(x, y) && kernel->Mouse.lastTimeClicked.isRunning() &&
+         kernel->Mouse.lastTimeClicked.getMilliseconds() <= kernel->Mouse.doubleClickTime && kernel->Mouse.lastButton == button &&
          static_cast<MouseEvent::state>(state) == MouseEvent::click) {
 
-      kernel->lastTimeClicked.stop();
-      kernel->lastButton = static_cast<MouseEvent::button>(button);
-      evt = MouseEvent (kernel->lastButton, MouseEvent::click, Point(x, y), true);
+      kernel->Mouse.lastTimeClicked.stop();
+      kernel->Mouse.lastButton = static_cast<MouseEvent::button>(button);
+      evt = MouseEvent (kernel->Mouse.lastButton, MouseEvent::click, Point(x, y), true);
 
    } else {
       if (static_cast<MouseEvent::state>(state) == MouseEvent::click) {
-         kernel->lastTimeClicked.start();
-         kernel->lastClickPosition = Point(x, y);
+         kernel->Mouse.lastTimeClicked.start();
+         kernel->Mouse.lastClickPosition = Point(x, y);
       }
-      kernel->lastButton = static_cast<MouseEvent::button>(button);
-      evt = MouseEvent(kernel->lastButton, static_cast<MouseEvent::state>(state), Point(x, y));
+      kernel->Mouse.lastButton = static_cast<MouseEvent::button>(button);
+      evt = MouseEvent(kernel->Mouse.lastButton, static_cast<MouseEvent::state>(state), Point(x, y));
    }
 
    if (evt.getState() == MouseEvent::up) {
-
-      kernel->mouseClicked = false;
+      kernel->Mouse.clicked = false;
       if (menu->processMouse(evt) == false) {
          if (window->processMouse(evt) == false) {
             for (std::deque<ComponentInterface*>::reverse_iterator it = kernel->_components.rbegin(); it < kernel->_components.rend(); it++) {
@@ -282,7 +268,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
          }
       }
    } else {
-      kernel->mouseClicked = true;
+      kernel->Mouse.clicked = true;
 
       ComponentInterface *focusedComponent = kernel->getFocusedComponent();
       std::deque<ComponentInterface*>::reverse_iterator itUp = kernel->_components.rbegin();
@@ -298,7 +284,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
                   }
             }
 
-            if (kernel->componentRequestMouseUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::right)
+            if (kernel->Mouse.componentRequestUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::right)
                menu->activeMenu(kernel->_contextMenu, evt.getPosition());
 
             // swap clicked component to top
@@ -311,10 +297,10 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
       }
    }
 
-   if (evt.getState() == MouseEvent::click && kernel->anyComponentRequestFocus == false) {
-      kernel->componentRequestMouseUse = NULL;
-      kernel->_focusedComponent       = NULL;
-      kernel->_mouseLocked            = false;
+   if (evt.getState() == MouseEvent::click && kernel->_componentRequestFocus == false) {
+      kernel->Mouse.componentRequestUse = NULL;
+      kernel->_focusedComponent = NULL;
+      kernel->Mouse.locked = false;
    }
 
    cursor->setDefaultCursor();
@@ -327,9 +313,9 @@ void Kernel::cbMouseWheel(int button, int dir, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
-   if (!kernel->_mouseLocked) {
-      kernel->componentRequestMouseUse = NULL;
+   kernel->_componentRequestFocus = false;
+   if (!kernel->Mouse.locked) {
+      kernel->Mouse.componentRequestUse = NULL;
    }
 
    MouseEvent evt;
@@ -357,7 +343,7 @@ void Kernel::cbKeySpecial(int key, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
+   kernel->_componentRequestFocus = false;
 
    // insert
    if (key == 108) cursor->swapInsertState();
@@ -379,7 +365,7 @@ void Kernel::cbKeySpecialUp(int key, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
+   kernel->_componentRequestFocus = false;
 
    KeyEvent evt(key, glutGetModifiers(), true, KeyEvent::up);
 
@@ -398,7 +384,7 @@ void Kernel::cbKey(unsigned char key, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
+   kernel->_componentRequestFocus = false;
 
    KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::down);
 
@@ -417,7 +403,7 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   kernel->anyComponentRequestFocus = false;
+   kernel->_componentRequestFocus = false;
 
    KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::up);
 
@@ -433,36 +419,18 @@ void Kernel::cbReshape(int w, int h) {
    static Kernel* kernel = Kernel::getInstance();
    static int _w = w;
    static int _h = h;
-   if (!kernel->isActiveReshape && (w != kernel->_currScreenSize[0] || h != kernel->_currScreenSize[1]))
-      kernel->NeedRefreshReshape = true;
+   if (!kernel->_isActiveReshape && (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]))
+      kernel->_needRefreshReshape = true;
 
-   kernel->_currScreenSize[0] = w;
-   kernel->_currScreenSize[1] = h;
-   kernel->_userScreenSize[0] = w;
-   kernel->_userScreenSize[1] = h;
+   kernel->Display.currSize[0] = w;
+   kernel->Display.currSize[1] = h;
+   kernel->Display.userSize[0] = w;
+   kernel->Display.userSize[1] = h;
+
    kernel->_scissorNeedRefresh = true;
-
-   kernel->mainPanel->setWidth(w);
-   kernel->mainPanel->setHeight(h);
-
-   /*
-   kernel->mainPanel->_isResizing = true;
-   if(_h != h)
-      kernel->mainPanel->_resizing[3] = true;
-   if(_w != w)
-      kernel->mainPanel->_resizing[1] = true;
-   MouseEvent evt = MouseEvent(MouseEvent::left, MouseEvent::hold, Point(w, h));
-   kernel->mainPanel->processMouse(evt);
-   kernel->mainPanel->_resizing[3] = false;
-   kernel->mainPanel->_resizing[1] = false;
-   kernel->mainPanel->_isResizing = false;
-   _w = w;
-   _h = h;
-   */
 }
 
 void Kernel::cbDisplay(void) {
-
    static Kernel* kernel = Kernel::getInstance();
    static Cursor* cursor = Cursor::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -470,9 +438,9 @@ void Kernel::cbDisplay(void) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   if (kernel->NeedRefreshReshape) {
-      glutReshapeWindow(kernel->_userScreenSize[0],kernel->_userScreenSize[1]);
-      kernel->NeedRefreshReshape = false;
+   if (kernel->_needRefreshReshape) {
+      glutReshapeWindow(kernel->Display.userSize[0],kernel->Display.userSize[1]);
+      kernel->_needRefreshReshape = false;
    }
 
    kernel->updateFramesPerSecond();
@@ -524,14 +492,14 @@ bool Kernel::requestComponentFocus(ComponentInterface *component) {
 
    static Keyboard *keyboard = Keyboard::getInstance();
 
-   if (anyComponentRequestFocus == false) {
+   if (_componentRequestFocus == false) {
       if (_focusedComponent != NULL && _focusedComponent != component && keyboard->isEmpty() == false) {
          std::deque<Keyboard::KeyboardControl> keys = keyboard->clear();
          for (int i = 0; i < keys.size(); i++)
             _focusedComponent->processKey(KeyEvent(keys[i].key, glutGetModifiers(), keys[i].special, KeyEvent::up));
       }
       _focusedComponent = component;
-      anyComponentRequestFocus = true;
+      _componentRequestFocus = true;
       return true;
    } else {
       return false;
@@ -549,11 +517,11 @@ void Kernel::requestComponentLoad(ComponentWithTexture* component) {
 void Kernel::applyDefaultTransformMatrix(void) {
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
-   gluOrtho2D(0, _currScreenSize[0], _currScreenSize[1], 0);
+   gluOrtho2D(0, Display.currSize[0], Display.currSize[1], 0);
 
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
-   glViewport(0, 0, _currScreenSize[0], _currScreenSize[1]);
+   glViewport(0, 0, Display.currSize[0], Display.currSize[1]);
 }
 
 void Kernel::registerComponentWithoutTexture(ComponentWithoutTexture* component) {
@@ -563,42 +531,6 @@ void Kernel::registerComponentWithoutTexture(ComponentWithoutTexture* component)
 void Kernel::showCopyrights(void) {
    // free image credits
    std::cout << FreeImage_GetCopyrightMessage() << std::endl;
-
-   // scv credits
-   std::cout
-      << std::endl <<
-      " Cicero Augusto de Lara Pahins   Developer    Documentation"  << std::endl <<
-      " Frederico Artur Limberger       Developer    Documentation"  << std::endl <<
-      " Leonardo Quatrin Campagnolo     Contributor  Documentation  Support" << std::endl <<
-      " Yuri Schlesner                  Contributor  Documentation  Support"  << std::endl <<
-      " Bernardo Henz                   Tester                     " << std::endl;
-
-   // scv logo and verison
-   std::cout << std::endl <<
-      " ##############################################################################" << std::endl <<
-      " ############################  ################################################" << std::endl <<
-      " ###########################  ##############  #################################" << std::endl <<
-      " ##############              ##############  ##################################" << std::endl <<
-      " #############    ########  #####           ##################  ###############" << std::endl <<
-      " ##############   #######  ####    ######  ####################  ##############" << std::endl <<
-      " ###############   ##########    #######  ######################  #############" << std::endl <<
-      " ################   ########    #######  ###  ##################   ############" << std::endl <<
-      " #################   #######   ############  ##################     ###########" << std::endl <<
-      " ##################   ######   ###########   #################   ##  ##########" << std::endl <<
-      " ###################   #####   ##########     ###############   ####  #########" << std::endl <<
-      " ####################   ####   #########  ##   #############   ################" << std::endl <<
-      " #####################   ###   ########  ####   ###########   #################" << std::endl <<
-      " ######################   ###   ##############   #########   ##################" << std::endl <<
-      " #######################   ###   #########  ###   #######   ###################" << std::endl <<
-      " #############  #########   ###    ########  ###   #####   ####################" << std::endl <<
-      " ############  ##########    ###              ###   ###   #####################" << std::endl <<
-      " ###########                  #####            ###   #   ######################" << std::endl <<
-      " ##########                  #################  ###     #######################" << std::endl <<
-      " #########  ###################################  ###   #######              ###" << std::endl <<
-      " ########  ################################################### Version 3.0a ###" << std::endl <<
-      " #############################################################              ###" << std::endl <<
-      " ##############################################################################"
-      << std::endl;
 }
 
 void Kernel::setWindowTitle(const std::string &title) {
@@ -615,27 +547,33 @@ bool Kernel::scissorNeedRefresh(void) {
 }
 
 bool Kernel::lockMouseUse(ComponentInterface* component) {
-   if (!_mouseLocked || component == componentRequestMouseUse) {
-      _mouseLocked = true;
-      componentRequestMouseUse = component;
+   if (!Mouse.locked || component == Mouse.componentRequestUse) {
+      Mouse.locked = true;
+      Mouse.componentRequestUse = component;
       return true;
-   } else return false;
+   } else {
+      return false;
+   }
 }
 
 bool Kernel::unlockMouseUse(ComponentInterface* component) {
-   if (component == componentRequestMouseUse) {
-      _mouseLocked = false;
+   if (component == Mouse.componentRequestUse) {
+      Mouse.locked = false;
       return true;
-   } else return false;
+   } else {
+      return false;
+   }
 }
 
 bool Kernel::requestMouseUse(ComponentInterface* component) {
-   if (componentRequestMouseUse == NULL) {
-      componentRequestMouseUse = component;
+   if (Mouse.componentRequestUse == NULL) {
+      Mouse.componentRequestUse = component;
       return true;
-   } else if (componentRequestMouseUse == component) {
+   } else if (Mouse.componentRequestUse == component) {
       return true;
-   } else return false;
+   } else {
+      return false;
+   }
 }
 
 void Kernel::registerContextMenu(ContextMenu *contextMenu) {
@@ -645,111 +583,13 @@ void Kernel::registerContextMenu(ContextMenu *contextMenu) {
 }
 
 
-void Kernel::generateCode() {
-   static CodeGenerator *code = CodeGenerator::getInstance();
-   static Kernel* kernel = Kernel::getInstance();
-   kernel->currentPanel = -1;
-   std::string str = "";
-   std::string mainInstances = "";
-   str += "#include <SCV/SCV.h>\n\n   /* Codes SCV Generator 1.0 \n      SCV Team\n      For more information visit:\n      www.inf.ufsm.br/~pozzer/scv */\n\n";
-
-   for (std::deque<ComponentInterface*>::iterator it = kernel->_components.begin(); it < kernel->_components.end(); it++) {
-      str += getComponentAttrib(*it,false,kernel->currentPanel);
-   }
-
-   str += code->generateMainProgram();
-
-   std::ofstream outputFile("../interface.cpp");
-   outputFile << str;
-   outputFile.close();
-
-}
-
-
-std::string Kernel::getComponentAttrib(ComponentInterface * it, bool isAtPanel, int panelValue) {
-
-   static Kernel* kernel = Kernel::getInstance();
-   std::string str = "";
-
-   static CodeGenerator *code = CodeGenerator::getInstance();
-
-   if ((it)->getType() == ComponentInterface::button) {
-      return code->includeButton(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::canvas) {
-      return code->includeCanvas(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::checkBox) {
-      return code->includeCheckBox(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::colorPicker) {
-      return code->includeColorPicker(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::comboBox) {
-      return code->includeComboBox(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::label) {
-      return code->includeLabel(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::menuBar) {
-      return code->includeMenuBar(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::panel) {
-
-      str += code->includePanel(it,isAtPanel);
-      for (DynamicCastIterator<ComponentInterface, Panel::ObjectList::const_iterator> i (it->getChildren()); i.valid(); ++i) {
-         str += getComponentAttrib(*i, true);
-      }
-      return str;
-
-   } else if (it->getType() == ComponentInterface::progressBar) {
-      return code->includeProgressBar(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::radioButton) {
-      return code->includeRadioButton(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::scrollPane) {
-
-      ScrollPane * scroll = static_cast<ScrollPane*>(it);
-      str += code->includeScrollPane(it,isAtPanel);
-      for (DynamicCastIterator<ComponentInterface, Panel::ObjectList::const_iterator> i (scroll->getPanel()->getChildren()); i.valid(); ++i) {
-         str += getComponentAttrib(*i, true);
-      }
-      return str;
-
-   } else if (it->getType() == ComponentInterface::slider) {
-      return code->includeSlider(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::spinner) {
-      return code->includeSpinner(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::separator) {
-      return code->includeSeparator(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::tabbedPane) {
-      return code->includeTabbedPane(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::textField) {
-      return code->includeTextField(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::textBox) {
-      return code->includeTextBox(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::toggleButton) {
-      return code->includeToggleButton(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::window) {
-      return code->includeInternalFrame(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::table) {
-      return code->includeTable(it,isAtPanel);
-   } else if (it->getType() == ComponentInterface::image) {
-
-      str += code->includeImage(it,isAtPanel);
-      for (DynamicCastIterator<ComponentInterface, Panel::ObjectList::const_iterator> i (it->getChildren()); i.valid(); ++i) {
-         str += getComponentAttrib(*i, true);
-      }
-      return str;
-
-   } else if (it->getType() == ComponentInterface::treeView) {
-      return code->includeTreeView(it,isAtPanel);
-      
-   }
-
-
-   return str;
-
-}
 
 bool Kernel::willAppearOnScreen(ComponentInterface* component) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
    Point absPosition = component->getAbsolutePosition();
    Point invPosition = absPosition.inverse();
-   if ((absPosition.x > _currScreenSize[0]) || absPosition.y > _currScreenSize[1] ||
+   if ((absPosition.x > Display.currSize[0]) || absPosition.y > Display.currSize[1] ||
       (absPosition.x + component->getWidth() < 0) || (absPosition.y + component->getHeight() < 0) ||
       !math::isInside(Point(scissor->currentScissor().mx,scissor->currentScissor().my).inverse() - Point(0,scissor->currentScissor().mheight), Point(scissor->currentScissor().mwidth,scissor->currentScissor().mheight),absPosition,component->getSize())) {
          return false;
@@ -767,34 +607,22 @@ void Kernel::setFilterType(textureFilter tex) {
 }
 
 int Kernel::getWidth(void) const {
-   return _currScreenSize[0];
+   return Display.currSize[0];
 }
 
 int Kernel::getHeight(void) const {
-   return _currScreenSize[1];
+   return Display.currSize[1];
 }
 
 void Kernel::lockWindowSize(bool lock) {
-   isActiveReshape = !lock;
+   _isActiveReshape = !lock;
 }
 
 void Kernel::OpenFile(void) {
    static FileOpen *fileOp = FileOpen::getInstance();
-   static Kernel* kernel = Kernel::getInstance();
    fileOp->getItem();
 }
 
-Panel * Kernel::getPanel() {
-   if (mainPanel == NULL) {
-      mainPanel = new scv::Panel(Point(0, 0), 1050, 860);
 
-      mainPanel->setDraggable(false);
-      mainPanel->setResizable(true);
-
-      addComponent(mainPanel);
-   }
-
-   return mainPanel;
-}
 
 } // namespace scv

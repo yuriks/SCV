@@ -4,7 +4,6 @@
 #ifndef DOXYGEN_SKIP_THIS
 #include "Singleton.h"
 #include "KeyEvent.h"
-#include <deque>
 #endif // DOXYGEN_SKIP_THIS
 
 #define GLUT_KEY_BACK_SPACE	  8

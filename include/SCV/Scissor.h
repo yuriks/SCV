@@ -10,9 +10,6 @@
 #ifndef DOXYGEN_SKIP_THIS
 #include "Singleton.h"
 #include "Point.h"
-#include <GL/glew.h>
-#include <deque>
-#include <iostream>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

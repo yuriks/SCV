@@ -4,8 +4,6 @@
 #include "ColorScheme.h"
 #include "Kernel.h"
 
-#include <cassert>
-
 namespace scv {
 
 void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const {
@@ -65,20 +63,6 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
 
    for (int i = 0; i < menus.size(); i++) {
       Label::display(s_leftBorder + pos.x + s_borderHeight, pos.y + i * s_menuHeight + s_borderHeight, menus[i]->getString(), scheme->getColor(ColorScheme::contextMenuFont));
-
-      /*
-      if (kernel->getWidth() - (pos.x + width - s_borderWidth + 2) < menus[i]->getWidth()) {
-         if (kernel->getHeight() < pos.y + selected_menu * s_menuHeight + menus[i]->getMenus().size() * s_menuHeight + s_borderHeight)
-            menus[i]->setPosition(Point(pos.x - menus[i]->getWidth() + s_borderWidth, kernel->getHeight() - (menus[i]->getMenus().size() * s_menuHeight) - s_borderHeight));
-         else
-            menus[i]->setPosition(Point(pos.x - menus[i]->getWidth() + s_borderWidth, pos.y + i * s_menuHeight));
-      } else {
-         if (kernel->getHeight() < pos.y + selected_menu * s_menuHeight + menus[i]->_menus.size() * s_menuHeight + s_borderHeight)
-            _menus[i]->setPosition(Point(pos.x + width - s_borderWidth + 2, kernel->getHeight()  - (_menus[i]->_menus.size() * s_menuHeight) - s_borderHeight));
-         else
-            _menus[i]->setPosition(Point(pos.x + width - s_borderWidth + 2, pos.y + i * s_menuHeight));
-      }
-      */
    }
 }
 
@@ -130,10 +114,12 @@ VistaMenuStyle::VistaMenuStyle()
 }
 
 void VistaMenuStyle::createTexture() {
-   assert(_cTexture == 0);
+   static Kernel *kernel = Kernel::getInstance();
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::contextMenu)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(16, 8);
+   kernel->setWidgetTexture(Kernel::contextMenu, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

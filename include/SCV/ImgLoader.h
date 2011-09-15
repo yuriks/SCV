@@ -3,7 +3,6 @@
 
 #ifndef DOXYGEN_SKIP_THIS
 #include "Singleton.h"
-#include <string>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

@@ -3,8 +3,6 @@
 
 #include "ColorRGBA.h"
 
-#include <GL/glew.h>
-
 namespace scv {
 
 ColorScheme::ColorScheme(void) : _defaultModulateColor(1.f, 1.f, 1.f, 1.f) {

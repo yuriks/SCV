@@ -9,7 +9,6 @@
 
 #ifndef DOXYGEN_SKIP_THIS
 #include "Point.h"
-#include <vector>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

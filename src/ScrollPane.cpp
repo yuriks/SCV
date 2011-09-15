@@ -153,7 +153,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
       }
    }
 
-   // Handling de arrastar as barras de rolagem
+   // handling of dragging
    if (_draggingBar != BUT_NONE) {
       if (kernel->requestMouseUse(this)) {
          if (evt.getState() == MouseEvent::hold) {
@@ -425,8 +425,5 @@ void ScrollPane::setPanelTranslate(const Point &translate) {
    ComponentInterface::setPanelTranslate(translate);
    refreshContainerPosition();
 }
-
-
-
 
 } // namespace scv

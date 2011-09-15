@@ -8,7 +8,6 @@
 #ifndef __SCV_G_TREE_H__
 #define __SCV_G_TREE_H__
 
-#include <vector>
 
 namespace scv {
 

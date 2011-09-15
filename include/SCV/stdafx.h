@@ -12,6 +12,7 @@
       #pragma warning(disable:4706)
       #pragma warning(disable:4127)
       #pragma warning(disable:4018)
+      #pragma warning(disable:4995)
       #ifndef _CRT_SECURE_NO_WARNINGS
          #define _CRT_SECURE_NO_WARNINGS
       #endif // _CRT_SECURE_NO_WARNINGS
@@ -25,8 +26,14 @@
       #define NOMINMAX
    #endif // NOMINMAX
 
-#else // linux
+   #include <windows.h>
+   #include <tchar.h>
+   #include <strsafe.h>   
+   #include <shobjidl.h>   
+#else // UNIX
    #include <unistd.h>
+   #include <dirent.h>   
+   #include <errno.h>   
 #endif // _WIN32
 
 // A macro to disallow the copy constructor and operator= functions
@@ -60,8 +67,9 @@
 #include <list>
 #include <map>
 
-#include <cstring>
 #include <cstdio>
 #include <cassert>
+#include <ctime>
 
 #endif // __SCV_STDAFX_H__
+

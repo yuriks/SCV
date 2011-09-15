@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Timer.h"
 
-#include <GL/glew.h>
-#include <GL/glut.h>
-
 namespace scv {
 
 Timer::Timer(void) {

@@ -13,9 +13,6 @@
 
 #include "ColorScheme.h"
 #include "ComponentTexture.h"
-
-#include <GL/glew.h>
-#include <GL/glut.h>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

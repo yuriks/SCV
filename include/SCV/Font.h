@@ -7,8 +7,6 @@
 #ifndef __SCV_FONT_H__
 #define __SCV_FONT_H__
 
-#include <string>
-
 namespace scv {
 
 /*! Font Class

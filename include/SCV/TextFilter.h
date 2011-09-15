@@ -7,8 +7,6 @@
 #ifndef __SCV_TEXT_FILTER_H__
 #define __SCV_TEXT_FILTER_H__
 
-#include <string>
-
 namespace scv {
 
 /*! A class that can be associated with a TextBox or a TextField to filter some characters.

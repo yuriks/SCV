@@ -44,7 +44,7 @@ namespace scv {
 class Kernel : public Singleton<Kernel> {
 friend class Singleton<Kernel>;
 public:
-
+   ///////////////////////////////////////////////////////////
    enum widgets {
       panel       , contextMenu,
       colorPicker , progressBar,
@@ -55,49 +55,57 @@ public:
       textBox     , separator  ,
       window      , menuBar    ,
       tabbedPane  , scrollPanel,
-      comboBox    ,    TreeView,
+      comboBox    , TreeView   ,
       s_nOfWidgets
    };
 
-   enum textureFilter {
-      linear,
-      nearest
-   };
+   enum textureFilter { linear, nearest };
+   ///////////////////////////////////////////////////////////
 
    void run(void);
 
    void showCopyrights(void);
-   void generateCode(void);
+
    void OpenFile(void);
 
+   ///////////////////////////////////////////////////////////
    void setFramesPerSecond(float fps);
-   inline float getFramesPerSecond(void) const {
-      return _currFramesPerSecond;
-   }
+   inline float getFramesPerSecond(void) const;
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    void setWindowSize(unsigned int width, unsigned int height);
    void setWindowTitle(const std::string &title);
-
-   textureFilter getFilterType(void);
-   void setFilterType(textureFilter tex);
 
    int getWidth(void) const;
    int getHeight(void) const;
 
    void setFullScreen(bool full);
    void lockWindowSize(bool lock);
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   textureFilter getFilterType(void);
+   void setFilterType(textureFilter tex);
+   ///////////////////////////////////////////////////////////
+      
+   ///////////////////////////////////////////////////////////
    bool lockMouseUse(ComponentInterface* component);
    bool unlockMouseUse(ComponentInterface* component);
 
    bool requestMouseUse(ComponentInterface* component);
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    bool requestComponentFocus(ComponentInterface *component);
    ComponentInterface* getFocusedComponent(void) const;
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    void requestComponentLoad(ComponentWithTexture* component);
    void registerComponentWithoutTexture(ComponentWithoutTexture* component);
    void registerContextMenu(ContextMenu *contextMenu);
+   ///////////////////////////////////////////////////////////
 
    bool scissorNeedRefresh(void);
 
@@ -105,22 +113,21 @@ public:
 
    void applyDefaultTransformMatrix(void);
 
+   ///////////////////////////////////////////////////////////
    std::string getClipBoardString(void) const;
    void setClipBoardString(const std::string str);
+   ///////////////////////////////////////////////////////////
 
-   void addComponent(ComponentInterface *component);
-   void removeComponent(ComponentInterface *component);
+   ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
+   void addComponent(ComponentInterface *component);
+   void removeComponent(ComponentInterface *component);   
+   ///////////////////////////////////////////////////////////
 
-   inline void setWidgetTexture(Kernel::widgets widget, ComponentTexture *texture) {
-      _loadedWidgets[widget] = texture;
-   }
-
-   inline ComponentTexture* getWidgetTexture(Kernel::widgets widget) {
-      return _loadedWidgets[widget];
-   }
-
-   Panel * getPanel();
+   ///////////////////////////////////////////////////////////
+   inline void setWidgetTexture(Kernel::widgets widget, ComponentTexture *texture);
+   inline ComponentTexture* getWidgetTexture(Kernel::widgets widget);
+   ///////////////////////////////////////////////////////////
 
 private:
    Kernel(void);
@@ -130,39 +137,55 @@ private:
 
    void updateFramesPerSecond(void);
 
-   /************************************************************************/
-   /* Mouse Callbacks                                                      */
-   /************************************************************************/
+   /* Mouse Callbacks                                       */   
+   ///////////////////////////////////////////////////////////
    static void cbMouseMotion(int x, int y);
    static void cbMouseClick(int button, int state, int x, int y);
    static void cbMouseWheel(int button, int dir, int x, int y);
+   ///////////////////////////////////////////////////////////
 
-   /************************************************************************/
-   /* Keyboard Callbacks                                                   */
-   /************************************************************************/
+   /* Keyboard Callbacks                                    */
+   ///////////////////////////////////////////////////////////
    static void cbKeySpecial(int key, int x, int y);
    static void cbKeySpecialUp(int key, int x, int y);
    static void cbKey(unsigned char key, int x, int y);
    static void cbKeyUp(unsigned char key, int x, int y);
-
-   /************************************************************************/
-   /* Display                                                              */
-   /************************************************************************/
+   ///////////////////////////////////////////////////////////
+      
+   /* Display                                               */   
+   ///////////////////////////////////////////////////////////
    static void cbReshape(int w, int h);
    static void cbDisplay(void);
-
-   std::string getComponentAttrib(ComponentInterface * it, bool isAtPanel, int panelValue = -1);
-   int currentPanel;
-
-   ComponentTexture *_loadedWidgets[s_nOfWidgets];
+   ///////////////////////////////////////////////////////////
 
    static const std::string s_defaultTitle;
    static const unsigned int s_defaultWidth, s_defaultHeight;
    static const unsigned int s_defaultFramesPerSecond;
 
-   bool isFullScreen;
-   int _currScreenSize[2];
-   int _userScreenSize[2];
+   ///////////////////////////////////////////////////////////
+   struct {
+      bool isFullScreen;
+      int currSize[2], userSize[2];
+   } Display;
+   
+   struct {
+      int count, currTime, prevTime, baseTime;
+      float fps, currFps;
+   } FrameRate;   
+
+   struct {
+      int doubleClickTime;
+
+      Point lastClickPosition;
+      Timer lastTimeClicked;
+      MouseEvent::button lastButton;
+
+      bool clicked, locked;      
+      ComponentInterface *componentRequestUse;
+   } Mouse;
+   ///////////////////////////////////////////////////////////
+   
+   ComponentTexture *_loadedWidgets[s_nOfWidgets];
 
    bool _scissorNeedRefresh;
 
@@ -170,33 +193,29 @@ private:
 
    textureFilter _filterType;
 
-   // frame rate
-   int _frameCount, _currentTime, _previousTime, _baseTime;
-   float _framesPerSecond, _currFramesPerSecond;
-
    std::deque<ComponentInterface*> _components;
    std::deque<ComponentWithTexture*> _componentsToLoad;
    std::deque<ComponentWithoutTexture*> _componentsToCallUpdate;
    ComponentInterface *_focusedComponent;
 
-   // mouse
-   int doubleClickTime;
-   Point lastClickPosition;
-   Timer lastTimeClicked;
-   bool mouseClicked;
-   MouseEvent::button lastButton;
-
-   bool NeedRefreshReshape;
-   bool isActiveReshape;
-
-   bool _mouseLocked;
-   bool anyComponentRequestFocus;
-   ComponentInterface *componentRequestMouseUse;
+   bool _needRefreshReshape;
+   bool _isActiveReshape;
+      
+   bool _componentRequestFocus;   
    ContextMenu *_contextMenu;
-
-   scv::Panel * mainPanel;
-  
 };
+
+inline float Kernel::getFramesPerSecond(void) const {
+   return FrameRate.currFps;
+}
+
+inline void Kernel::setWidgetTexture(Kernel::widgets widget, ComponentTexture *texture) {
+   _loadedWidgets[widget] = texture;
+}
+
+inline ComponentTexture* Kernel::getWidgetTexture(Kernel::widgets widget) {
+   return _loadedWidgets[widget];
+}
 
 } // namespace scv
 

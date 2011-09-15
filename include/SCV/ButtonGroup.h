@@ -1,8 +1,6 @@
 #ifndef __SCV_BUTTON_GROUP_H__
 #define __SCV_BUTTON_GROUP_H__
 
-#include <deque>
-
 namespace scv {
 
 class StateButton;

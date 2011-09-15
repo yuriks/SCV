@@ -5,8 +5,6 @@
 #include "Kernel.h"
 #include "ComboBox.h"
 
-#include <cassert>
-
 namespace scv {
 
 void ComboBoxMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const {

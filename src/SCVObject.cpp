@@ -2,9 +2,6 @@
 
 #include "SCVObject.h"
 
-#include <cassert>
-#include <algorithm>
-
 namespace scv {
 
 SCVObject::SCVObject(SCVObject* parent)

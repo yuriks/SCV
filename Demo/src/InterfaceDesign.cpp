@@ -64,7 +64,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       if (address[1] == "Remove Component") {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
       } else if (address[1] == "Generate Code...") {
-         scv::Kernel::getInstance()->generateCode();
+         //scv::Kernel::getInstance()->generateCode();
       }
 
    } else  if (address.size() == 3) {

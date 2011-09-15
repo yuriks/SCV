@@ -69,26 +69,7 @@ O SCV está implementado sobre a API gráfica OpenGL. Existe uma estrutura hierárq
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <GL/glext.h>
-/*
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <queue>
-#include <cmath>
-#include <list>
-#include <map>
-
-#include <cstring>
-#include <cstdio>
-#include <cassert>
-*/
-//|||||||||||||||||||||||||||||||||||||||||||||||
+#include "stdafx.h"
 
 #include "Kernel.h"
 

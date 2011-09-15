@@ -11,7 +11,6 @@
 #include "Scissor.h"
 #include "Callbacks.h"
 #include "SCVObject.h"
-#include <vector>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

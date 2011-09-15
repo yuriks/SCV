@@ -7,8 +7,6 @@
 #ifndef __SCV_SCVOBJECT_H__
 #define __SCV_SCVOBJECT_H__
 
-#include <list>
-
 namespace scv {
 
 /*! Base Class of SCV Objects

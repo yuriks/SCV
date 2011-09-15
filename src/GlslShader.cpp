@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "GlslShader.h"
 
-#include <iostream>
-#include <string>
-
 namespace scv {
 
 bool GlslShader::_initialized = false;

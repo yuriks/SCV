@@ -8,10 +8,6 @@
 #ifndef __SCV_TREE_MODEL_H__
 #define __SCV_TREE_MODEL_H__
 
-#include <string>
-#include <vector>
-#include <cstdio>
-#include <cstdlib>
 #include "GTree.h"
 
 namespace scv {

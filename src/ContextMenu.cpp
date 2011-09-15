@@ -6,9 +6,6 @@
 
 #include "VistaMenuStyle.h"
 
-#include <algorithm>
-#include <string>
-
 namespace scv {
 
 ContextMenu::ContextMenu(const std::string& name) : _label(name) {

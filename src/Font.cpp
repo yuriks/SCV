@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Font.h"
 
-#include <GL/glew.h>
-#include <GL/glut.h>
-
 namespace scv {
 
 Font::Font(void* glFont) {

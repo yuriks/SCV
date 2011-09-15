@@ -9,8 +9,6 @@
 
 #ifndef DOXYGEN_SKIP_THIS
 #include "Point.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

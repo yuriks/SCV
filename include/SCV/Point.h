@@ -7,8 +7,6 @@
 #ifndef __SCV_POINT_H__
 #define __SCV_POINT_H__
 
-#include <iosfwd>
-
 namespace scv {
 
 /*! A Integer Point to define the component positions and a lot more things.

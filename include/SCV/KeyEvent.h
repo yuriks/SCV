@@ -7,8 +7,6 @@
 #ifndef __SCV_KEY_EVENT_H__
 #define __SCV_KEY_EVENT_H__
 
-#include <string>
-
 /*
 
 GetKeyString() returns:

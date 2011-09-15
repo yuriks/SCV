@@ -7,9 +7,6 @@
 #ifndef __SCV_GLSLSHADER_H__
 #define __SCV_GLSLSHADER_H__
 
-#include <map>
-#include <GL/glew.h>
-
 namespace scv {
 
 /*! This class implements a basic shader functions.

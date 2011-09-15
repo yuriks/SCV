@@ -1,18 +1,9 @@
 #include "GTree.h"
 #include "TreeModel.h"
-#include <sys/types.h>
-#include <errno.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstdio>
-#include <string>
-
 
 #include "Kernel.h"
 #include "Image.h"
 #include "stdafx.h"
-
-
 
 namespace scv{
 
@@ -42,10 +33,6 @@ void TreeModel::getNamesInTree(std::vector<GInfoNode> &m_nodes, GTree* tree)
 }
 
 #ifdef _WIN32
-#include <windows.h>
-#include <tchar.h>
-#include <strsafe.h>
-
 /****Base Codes From: http://msdn.microsoft.com/en-us/library/ **************/
 void DisplayVolumePaths(__in PWCHAR VolumeName,std::vector<std::string> &dirNames)
 {
@@ -385,11 +372,6 @@ void TreeModel::getFolders(const char* dir, std::vector<GInfoNode> &m_nodes, TW_
 }
 /****************************************************************************/
 #else
-#include <dirent.h>
-#include <vector>
-#include <errno.h>
-#include <string.h>
-
 void TreeModel::getNFolders (std::string dir)
 {
    int res = 0;
@@ -429,5 +411,4 @@ void TreeModel::getFolders (std::string dir, std::vector<std::string> &files)
 }
 
 #endif
-
 }

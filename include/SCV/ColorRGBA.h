@@ -7,9 +7,6 @@
 #ifndef __SCV_COLOR_RGBA_H__
 #define __SCV_COLOR_RGBA_H__
 
-#include <cassert>
-#include <iostream>
-
 namespace scv {
 
 /*! Color RGBA class implementation.

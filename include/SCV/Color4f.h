@@ -1,9 +1,6 @@
 #ifndef __SCV_COLOR_4F_H__
 #define __SCV_COLOR_4F_H__
 
-#include <iosfwd>
-#include <cassert>
-
 namespace scv {
 
 class ColorRGBA;

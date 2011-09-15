@@ -10,7 +10,6 @@
 #ifndef DOXYGEN_SKIP_THIS
 #include "Point.h"
 #include "MatrixTemplate.h"
-#include <GL/glew.h>
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {

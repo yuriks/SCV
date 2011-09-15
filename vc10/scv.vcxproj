@@ -15,7 +15,6 @@
     <ClCompile Include="..\src\ButtonGroup.cpp" />
     <ClCompile Include="..\src\Canvas.cpp" />
     <ClCompile Include="..\src\CheckBox.cpp" />
-    <ClCompile Include="..\src\CodeGenerator.cpp" />
     <ClCompile Include="..\src\Color4f.cpp" />
     <ClCompile Include="..\src\ColorPicker.cpp" />
     <ClCompile Include="..\src\ColorRGBA.cpp" />
@@ -86,7 +85,6 @@
     <ClInclude Include="..\include\SCV\Callbacks.h" />
     <ClInclude Include="..\include\SCV\Canvas.h" />
     <ClInclude Include="..\include\SCV\CheckBox.h" />
-    <ClInclude Include="..\include\SCV\CodeGenerator.h" />
     <ClInclude Include="..\include\SCV\Color4f.h" />
     <ClInclude Include="..\include\SCV\ColorPicker.h" />
     <ClInclude Include="..\include\SCV\ColorRGBA.h" />
