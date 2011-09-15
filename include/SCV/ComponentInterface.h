@@ -23,7 +23,7 @@ class ContextMenu;
     \ingroup internal
  */
 
-class ComponentInterface : public Callbacks, public SCVObject {
+class ComponentInterface : public std::enable_shared_from_this<ComponentInterface>, public Callbacks, public SCVObject {
 public:
 
    enum typeComponent {

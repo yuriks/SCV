@@ -43,7 +43,7 @@ ComponentInterface::ComponentInterface(const scv::Point &p1, const scv::Point &p
 
 }
 
-ComponentInterface::~ComponentInterface(void) {/*none*/}
+ComponentInterface::~ComponentInterface(void) {}
 
 Point ComponentInterface::getRelativePosition(void) const {
    return _p1;

@@ -145,8 +145,6 @@ void Kernel::initOpenGL(int argc, char* argv[]) {
 }
 
 void Kernel::run(void) {
-   std::cout << Display.currSize[0] << std::endl;
-   std::cout << Display.currSize[1] << std::endl;
    glutInitWindowSize(Display.currSize[0], Display.currSize[1]);
    glutMainLoop();
 }
@@ -220,8 +218,9 @@ void Kernel::cbMouseMotion(int x, int y) {
    }
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
-      for (std::deque<ComponentInterface*>::reverse_iterator it = kernel->_components.rbegin(); it < kernel->_components.rend(); it++) {
-            (*it)->processMouse(evt);
+      //REVIEW      
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+            (*iter)->processMouse(evt);
       }
    }
 
@@ -262,36 +261,38 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
       kernel->Mouse.clicked = false;
       if (menu->processMouse(evt) == false) {
          if (window->processMouse(evt) == false) {
-            for (std::deque<ComponentInterface*>::reverse_iterator it = kernel->_components.rbegin(); it < kernel->_components.rend(); it++) {
-                  (*it)->processMouse(evt);
-            }
+            //REVIEW            
+            for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+                  (*iter)->processMouse(evt);
+            }            
          }
       }
    } else {
       kernel->Mouse.clicked = true;
 
       ComponentInterface *focusedComponent = kernel->getFocusedComponent();
-      std::deque<ComponentInterface*>::reverse_iterator itUp = kernel->_components.rbegin();
+      ComponentsList::reverse_iterator itUp = kernel->_components.rbegin();
 
       if (menu->processMouse(evt) == false) {
          menu->closeAllMenus();
          if (window->processMouse(evt) == false) {
-            for (std::deque<ComponentInterface*>::reverse_iterator it = kernel->_components.rbegin(); it < kernel->_components.rend(); it++) {
+
+            //REVIEW
+            for (ComponentsList::reverse_iterator it = kernel->_components.rbegin(); it != kernel->_components.rend(); ++it) {
                   (*it)->processMouse(evt);
                   if (focusedComponent != kernel->getFocusedComponent()) {
                      focusedComponent = kernel->getFocusedComponent();
                      itUp = it;
                   }
             }
-
+            
             if (kernel->Mouse.componentRequestUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::right)
                menu->activeMenu(kernel->_contextMenu, evt.getPosition());
 
-            // swap clicked component to top
+            // swap clicked component to end
             if (itUp != kernel->_components.rbegin() && (*itUp)->isDragging()) {
-               ComponentInterface *component = *itUp;
-               kernel->_components.erase(itUp.base() - 1);
-               kernel->_components.push_back(component);
+               //REVIEW
+               kernel->_components.splice(kernel->_components.end(), kernel->_components, (++itUp).base());
             }
          }
       }
@@ -326,9 +327,10 @@ void Kernel::cbMouseWheel(int button, int dir, int x, int y) {
    }
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
-      for (std::deque<ComponentInterface*>::reverse_iterator it = kernel->_components.rbegin(); it < kernel->_components.rend(); it++) {
-            (*it)->processMouse(evt);
-      }
+      //REVIEW
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+            (*iter)->processMouse(evt);
+      }      
    }
    cursor->setDefaultCursor();
    kernel->_scissorNeedRefresh = false;
@@ -352,8 +354,9 @@ void Kernel::cbKeySpecial(int key, int x, int y) {
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->push(key, true);
-      for (int index = kernel->_components.size() - 1;  index >= 0; --index) {
-            kernel->_components[index]->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
+      //REVIEW
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+         (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
       }
    }
 }
@@ -371,9 +374,10 @@ void Kernel::cbKeySpecialUp(int key, int x, int y) {
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->pop(key, true);
-      for (int index = kernel->_components.size() - 1;  index >= 0; --index) {
-            kernel->_components[index]->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
-      }
+      //REVIEW
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+         (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
+      }      
    }
 }
 
@@ -390,9 +394,10 @@ void Kernel::cbKey(unsigned char key, int x, int y) {
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->push(key, false);
-      for (int index = kernel->_components.size() - 1;  index >= 0; --index) {
-            kernel->_components[index]->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::down));
-      }
+      //REVIEW      
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::down));
+      }      
    }
 }
 
@@ -409,9 +414,10 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->pop(key, false);
-      for (int index = kernel->_components.size() - 1;  index >= 0; --index) {
-            kernel->_components[index]->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::up));
-      }
+      //REVIEW      
+      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::up));
+      }      
    }
 }
 
@@ -449,14 +455,12 @@ void Kernel::cbDisplay(void) {
    cursor->refreshMouse();
 
    if (kernel->_componentsToLoad.size()) {
-      for (int i = 0; i < kernel->_componentsToLoad.size(); i++) {
-         kernel->_componentsToLoad[i]->createTexture();
+      //REVIEW
+      for (ComponentsToLoadList::iterator iter = kernel->_componentsToLoad.begin(); iter != kernel->_componentsToLoad.end(); ++iter) {
+         (*iter)->createTexture();
       }
       kernel->_componentsToLoad.clear();
    }
-
-   for (int i = 0; i < kernel->_componentsToCallUpdate.size(); i++)
-      kernel->_componentsToCallUpdate[i]->update();
 
    scheme->applyColor(ColorScheme::background);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -466,10 +470,10 @@ void Kernel::cbDisplay(void) {
    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glEnable(GL_BLEND);
 
-
-   for (int i = 0; i < kernel->_components.size(); i++) {
-      if (kernel->willAppearOnScreen(kernel->_components[i]))
-         kernel->_components[i]->display();
+   //REVIEW
+   for (ComponentsList::iterator iter = kernel->_components.begin(); iter != kernel->_components.end(); ++iter) {
+      if (kernel->willAppearOnScreen(iter->get()))
+         (*iter)->display();
    }
 
    window->display();
@@ -480,11 +484,15 @@ void Kernel::cbDisplay(void) {
 }
 
 void Kernel::addComponent(ComponentInterface *component) {
-   if (component != NULL) _components.push_back(component);
+   // creating shared_ptr. To get it use shared_from_this().
+   if (component != NULL) _components.push_back(std::shared_ptr<ComponentInterface>(component));
 }
 
 void Kernel::removeComponent(ComponentInterface *component) {
    component->setParent(NULL);
+   if (component->getParent() == NULL) {
+      Kernel::getInstance()->_components.remove(component->shared_from_this());
+   }
 }
 
 bool Kernel::requestComponentFocus(ComponentInterface *component) {
@@ -522,10 +530,6 @@ void Kernel::applyDefaultTransformMatrix(void) {
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
    glViewport(0, 0, Display.currSize[0], Display.currSize[1]);
-}
-
-void Kernel::registerComponentWithoutTexture(ComponentWithoutTexture* component) {
-   _componentsToCallUpdate.push_back(component);
 }
 
 void Kernel::showCopyrights(void) {

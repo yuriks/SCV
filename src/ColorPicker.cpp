@@ -41,7 +41,7 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
 }
 
 
-
+//HACK deleta aqui e no SCVObject
 ColorPicker::~ColorPicker() {
    for (int i = 0; i < 4; i++) {
       delete _rgbs[i];

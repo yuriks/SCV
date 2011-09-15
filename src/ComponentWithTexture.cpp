@@ -10,7 +10,7 @@ ComponentWithTexture::ComponentWithTexture(const scv::Point &p1, const scv::Poin
    _cTexture = NULL;
 }
 ComponentWithTexture::~ComponentWithTexture(void) {
-   delete _cTexture;
+   //delete _cTexture;
 }
 
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {

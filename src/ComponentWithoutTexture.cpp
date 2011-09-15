@@ -5,15 +5,15 @@
 namespace scv {
 
 ComponentWithoutTexture::ComponentWithoutTexture(const scv::Point &p1, const scv::Point &p2)
-      : ComponentInterface(p1, p2) {
-   Kernel::getInstance()->registerComponentWithoutTexture(this);
-}
+      : ComponentInterface(p1, p2) {/*none*/}
 
 ComponentWithoutTexture::~ComponentWithoutTexture(void) {/*none*/}
 
 void ComponentWithoutTexture::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
+
+   update();
 
    if (_isVisible == false) return;
 

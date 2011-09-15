@@ -103,7 +103,6 @@ public:
 
    ///////////////////////////////////////////////////////////
    void requestComponentLoad(ComponentWithTexture* component);
-   void registerComponentWithoutTexture(ComponentWithoutTexture* component);
    void registerContextMenu(ContextMenu *contextMenu);
    ///////////////////////////////////////////////////////////
 
@@ -193,9 +192,12 @@ private:
 
    textureFilter _filterType;
 
-   std::deque<ComponentInterface*> _components;
-   std::deque<ComponentWithTexture*> _componentsToLoad;
-   std::deque<ComponentWithoutTexture*> _componentsToCallUpdate;
+   typedef std::list<std::shared_ptr<ComponentInterface>> ComponentsList;
+   ComponentsList _components;
+   
+   typedef std::list<ComponentWithTexture*> ComponentsToLoadList;
+   ComponentsToLoadList _componentsToLoad;
+
    ComponentInterface *_focusedComponent;
 
    bool _needRefreshReshape;
