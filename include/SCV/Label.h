@@ -76,6 +76,8 @@ public:
    virtual void display(void);
 
 protected:
+   virtual void createTexture(void);
+
    /*! Displays the text at a given position. */
    virtual void display(const int translateX, const int translateY);
    /*! Displays the text at a given position. */

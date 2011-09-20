@@ -186,7 +186,7 @@ bool InternalFrame::isOnCloseButton(const Point &p) {
 
 void InternalFrame::addComponent(SCVObject::Ptr& object) {
    //REVIEW
-   _panel->addComponent(object);
+   _panel->addObject(object);
 }
 
 void InternalFrame::setRelativePosition(const Point &position) {

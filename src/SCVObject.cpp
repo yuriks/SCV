@@ -38,6 +38,9 @@ SCVObject::SCVObject(const scv::Point &p1, const scv::Point &p2) :
    _contextMenu = NULL;
 
    _type = NONE;
+
+   _parent = NULL;
+   
 }
 
 SCVObject::~SCVObject(void) {}
@@ -442,6 +445,48 @@ SCVObject::typeComponent SCVObject::getType(void) {
    return _type;
 }
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
+void SCVObject::deleteChildren() {
+   for (SCVObject::PtrList::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
+      (*iter)->deleteChildren();      
+   }
+   _children.clear();
+}
+
+void SCVObject::setParent( SCVObject::Ptr& parent ) {
+   // keep shared_ptr reference(count)
+   SCVObject::Ptr object = this->shared_from_this();
+
+   if (_parent != NULL) _parent->removeChild(object);
+
+   _parent = parent;
+
+   // push_back to parent
+   if (_parent != NULL) _parent->addChild(object);
+}
+
+void SCVObject::addChild( SCVObject::Ptr& object ) {
+   if (object->getParent() != NULL) {
+      // TODO warn about adding an object with an existing parent         
+   } else {
+      object->setParent(this->shared_from_this());
+      _children.push_back(object);
+   }
+}
+
+void SCVObject::removeChild( SCVObject::Ptr& object ) {
+   if (std::find(_children.begin(), _children.end(), object) != _children.end()) {
+      object->_parent = NULL;
+      _children.remove(object);
+   }
+}
+
+void SCVObject::pullChildToTop( const SCVObject::PtrList::const_iterator& child ) {
+   Ptr removed_child = (*child);
+   _children.erase(child);
+   _children.push_back(removed_child);      
+}
 
 } // namespace scv

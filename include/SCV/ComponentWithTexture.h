@@ -58,7 +58,7 @@ protected:
    /*! Called to create the texture of the component.
     * This should only be re-implemented if you're creating a new type of component.
     */
-   virtual void createTexture(void);
+   virtual void createTexture(void) = 0;
    ComponentTexture *_cTexture;
 };
 

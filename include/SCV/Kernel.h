@@ -102,7 +102,6 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   void requestComponentLoad(ComponentWithTexture* component);
    void registerContextMenu(ContextMenu *contextMenu);
    ///////////////////////////////////////////////////////////
 
@@ -119,8 +118,8 @@ public:
 
    ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
-   void addComponent(SCVObject::Ptr &object);
-   void removeComponent(SCVObject *component);   
+   void addObject(SCVObject::Ptr &object);
+   void deleteObject(SCVObject::Ptr &object);   
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -195,9 +194,6 @@ private:
    typedef std::list<std::shared_ptr<SCVObject>> ComponentsList;
    ComponentsList _objects;
    
-   typedef std::list<ComponentWithTexture*> ComponentsToLoadList;
-   ComponentsToLoadList _componentsToLoad;
-
    SCVObject *_focusedComponent;
 
    bool _needRefreshReshape;

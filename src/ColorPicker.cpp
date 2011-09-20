@@ -21,16 +21,16 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _btPicker = new EyeDropper(this, Point(285,106), Point(285+69,126), "EyeDropper");
 
    _saturation = 100;
-   Panel::addComponent(SCVObject::Ptr(_rgbs[0]));
-   Panel::addComponent(SCVObject::Ptr(_rgbs[1]));
-   Panel::addComponent(SCVObject::Ptr(_rgbs[2]));
-   Panel::addComponent(SCVObject::Ptr(_rgbs[3]));
-   Panel::addComponent(SCVObject::Ptr(_btPicker));
+   Panel::addObject(SCVObject::Ptr(_rgbs[0]));
+   Panel::addObject(SCVObject::Ptr(_rgbs[1]));
+   Panel::addObject(SCVObject::Ptr(_rgbs[2]));
+   Panel::addObject(SCVObject::Ptr(_rgbs[3]));
+   Panel::addObject(SCVObject::Ptr(_btPicker));
 
-   Panel::addComponent(SCVObject::Ptr(new Label(Point(8 ,109),"R:")));
-   Panel::addComponent(SCVObject::Ptr(new Label(Point(78 ,109),"G:")));
-   Panel::addComponent(SCVObject::Ptr(new Label(Point(148,109),"B:")));
-   Panel::addComponent(SCVObject::Ptr(new Label(Point(218,109),"S:")));
+   Panel::addObject(SCVObject::Ptr(new Label(Point(8 ,109),"R:")));
+   Panel::addObject(SCVObject::Ptr(new Label(Point(78 ,109),"G:")));
+   Panel::addObject(SCVObject::Ptr(new Label(Point(148,109),"B:")));
+   Panel::addObject(SCVObject::Ptr(new Label(Point(218,109),"S:")));
 
    // initial color
    _currentColorPosition = Point(0, MatrixTemplate<ColorRGBA>::getHeight() - 1);

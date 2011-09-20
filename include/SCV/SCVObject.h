@@ -109,44 +109,19 @@ public:
 
    ///////////////////////////////////////////////////////////
 
-   void removeParent() {
+   void deleteChildren();
 
-   }
+   void setParent(SCVObject::Ptr& parent);
 
-   void setParent (SCVObject::Ptr& parent) {
-      if (_parent != NULL) {
-         _parent->_children.remove(this->shared_from_this());
-         _parent = NULL;
-      }
+   inline const SCVObject::Ptr& getParent() const;
 
-      std::cout << parent << std::endl;
+   inline const SCVObject::PtrList& getChildren() const;
 
-      _parent = parent;
+   void addChild(SCVObject::Ptr& object);
 
-      if (_parent != NULL) _parent->_children.push_back(this->shared_from_this());
-   }
+   void removeChild(SCVObject::Ptr& object);
 
-   const Ptr& getParent () const {
-      return _parent;
-   }
-
-   const PtrList& getChildren() const {
-      return _children;
-   }
-
-   void addChild(SCVObject::Ptr& object) {
-      if (object->getParent() != NULL) {
-         // TODO: Warn about adding an object with an existing parent         
-      } else {
-         object->setParent(this->shared_from_this());
-      }
-   }
-
-   void pullChildToTop(const SCVObject::PtrList::const_iterator& child) {
-      Ptr removed_child = (*child);
-      _children.erase(child);
-      _children.push_back(removed_child);      
-   }
+   void pullChildToTop(const SCVObject::PtrList::const_iterator& child);
 
    ///////////////////////////////////////////////////////////
  protected:  
@@ -173,6 +148,14 @@ public:
 
    ContextMenu *_contextMenu;
 };
+
+const SCVObject::Ptr& SCVObject::getParent() const {
+   return _parent;
+}
+
+const SCVObject::PtrList& SCVObject::getChildren() const {
+   return _children;
+}
 
 } // namespace scv
 

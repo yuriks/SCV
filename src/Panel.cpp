@@ -55,7 +55,7 @@ void Panel::display(void) {
    scissor->popScissor();
 }
 
-void Panel::createTexture(void) {
+void Panel::createTexture(void) {   
    _cTexture = new ComponentTexture(2, 2);
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
@@ -77,7 +77,7 @@ void Panel::onResizing(void) {/**/}
 void Panel::onDragging(void) {/**/}
 
 //REVIEW
-void Panel::addComponent(SCVObject::Ptr& object) {
+void Panel::addObject(SCVObject::Ptr& object) {
    static Kernel *kernel = Kernel::getInstance();
 
    object->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));

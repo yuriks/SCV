@@ -14,7 +14,7 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
    character = 65;
    for (int i = 0 ; i < _nColumns ; i++ ) {
       _buttons.push_back(new TableButton(this, Point(i * (CellWidth - 1),0),CellWidth,toString(char(character)), i));
-      Panel::addComponent(SCVObject::Ptr(_buttons.back()));
+      Panel::addObject(SCVObject::Ptr(_buttons.back()));
       character++;
    }
 
@@ -22,7 +22,7 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
       tmp.clear();
       for (int j = 0 ; j <  _nColumns; j++ ) {
          tmp.push_back(new TextBox(Point(j * (CellWidth - 1),20 +  i * (TextBox::s_lineSpacing * nCellLines + TextBox::s_borderHeight)), CellWidth, nCellLines, ""));
-         Panel::addComponent(SCVObject::Ptr(tmp.back()));
+         Panel::addObject(SCVObject::Ptr(tmp.back()));
       }
       _table.push_back(tmp);
    }
@@ -68,7 +68,7 @@ void Table::addRow(void) {
    int i = _nRows;
    for (int j = 0; j <  _nColumns; j++ ) {
       tmp.push_back(new TextBox(Point(j * (_cellWidth - 1),20 + i * (TextBox::s_lineSpacing * _nCellLines + TextBox::s_borderHeight)), _cellWidth, _nCellLines, ""));
-      Panel::addComponent(SCVObject::Ptr(tmp.back()));
+      Panel::addObject(SCVObject::Ptr(tmp.back()));
    }
    _table.push_back(tmp);
    _nRows++;
@@ -86,9 +86,9 @@ void Table::addColumn(void) {
    int j = _nColumns;
    for (int i = 0; i < _nRows; i++ ) {
       _buttons.push_back(new TableButton(this, Point(j * (_cellWidth - 1),0),_cellWidth,toString(char(character)), j));
-      Panel::addComponent(SCVObject::Ptr(_buttons.back()));
+      Panel::addObject(SCVObject::Ptr(_buttons.back()));
       _table[i].push_back(new TextBox(Point(j * (_cellWidth - 1),20 + i * (TextBox::s_lineSpacing * _nCellLines + TextBox::s_borderHeight)), _cellWidth, _nCellLines, ""));
-      Panel::addComponent(SCVObject::Ptr(_table[i].back()));
+      Panel::addObject(SCVObject::Ptr(_table[i].back()));
    }
    character++;
    _nColumns++;

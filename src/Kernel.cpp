@@ -450,14 +450,6 @@ void Kernel::cbDisplay(void) {
    cursor->requestResetCursor();
    cursor->refreshMouse();
 
-   if (kernel->_componentsToLoad.size()) {
-      //REVIEW
-      for (ComponentsToLoadList::iterator iter = kernel->_componentsToLoad.begin(); iter != kernel->_componentsToLoad.end(); ++iter) {
-         (*iter)->createTexture();
-      }
-      kernel->_componentsToLoad.clear();
-   }
-
    scheme->applyColor(ColorScheme::background);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -479,17 +471,24 @@ void Kernel::cbDisplay(void) {
    glutSwapBuffers();
 }
 
-void Kernel::addComponent(SCVObject::Ptr& object) {
-   //REVIEW
-   _objects.push_back(object);
+void Kernel::addObject(SCVObject::Ptr &object) {
+   if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) == Kernel::getInstance()->_objects.end()
+         && object->getParent() == NULL) {
+      //REVIEW
+      _objects.push_back(object);
+   }
 }
 
-void Kernel::removeComponent(SCVObject* component) {
-   //REVIEW
-   component->setParent(SCVObject::Ptr(NULL));
-   if (component->getParent() == NULL) {
-      Kernel::getInstance()->_objects.remove(component->shared_from_this());
-   }
+void Kernel::deleteObject(SCVObject::Ptr &object) {
+   if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) != Kernel::getInstance()->_objects.end()) {
+      object->deleteChildren();
+      Kernel::getInstance()->_objects.remove(object);      
+   } else if (object->getParent() != NULL) {
+      object->deleteChildren();
+      object->getParent()->removeChild(object);
+   } else {
+      object->deleteChildren();
+   }   
 }
 
 bool Kernel::requestComponentFocus(SCVObject* component) {
@@ -513,10 +512,6 @@ bool Kernel::requestComponentFocus(SCVObject* component) {
 
 SCVObject* Kernel::getFocusedComponent(void) const {
    return _focusedComponent;
-}
-
-void Kernel::requestComponentLoad(ComponentWithTexture* component) {
-   _componentsToLoad.push_back(component);
 }
 
 void Kernel::applyDefaultTransformMatrix(void) {

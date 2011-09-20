@@ -6,11 +6,14 @@ namespace scv {
 
 ComponentWithTexture::ComponentWithTexture(const scv::Point &p1, const scv::Point &p2) :
       SCVObject(p1, p2) {
-   Kernel::getInstance()->requestComponentLoad(this);
    _cTexture = NULL;
+
 }
 ComponentWithTexture::~ComponentWithTexture(void) {
-   //delete _cTexture;
+   /*
+   if (_cTexture != NULL)
+      delete _cTexture;
+   /**/
 }
 
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
@@ -21,7 +24,6 @@ void ComponentWithTexture::processKey(const scv::KeyEvent &evt) {
    SCVObject::processKey(evt);
 }
 
-void ComponentWithTexture::createTexture(void) {/**/}
 
 void ComponentWithTexture::setRelativePosition(const Point &position) {
    SCVObject::setRelativePosition(position);
