@@ -90,15 +90,15 @@ public:
    ///////////////////////////////////////////////////////////
       
    ///////////////////////////////////////////////////////////
-   bool lockMouseUse(ComponentInterface* component);
-   bool unlockMouseUse(ComponentInterface* component);
+   bool lockMouseUse(SCVObject* component);
+   bool unlockMouseUse(SCVObject* component);
 
-   bool requestMouseUse(ComponentInterface* component);
+   bool requestMouseUse(SCVObject* component);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   bool requestComponentFocus(ComponentInterface *component);
-   ComponentInterface* getFocusedComponent(void) const;
+   bool requestComponentFocus(SCVObject *component);
+   SCVObject* getFocusedComponent(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ public:
 
    bool scissorNeedRefresh(void);
 
-   bool willAppearOnScreen(ComponentInterface* component);
+   bool willAppearOnScreen(SCVObject* component);
 
    void applyDefaultTransformMatrix(void);
 
@@ -119,8 +119,8 @@ public:
 
    ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
-   void addComponent(ComponentInterface *component);
-   void removeComponent(ComponentInterface *component);   
+   void addComponent(SCVObject::Ptr &object);
+   void removeComponent(SCVObject *component);   
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@ private:
       MouseEvent::button lastButton;
 
       bool clicked, locked;      
-      ComponentInterface *componentRequestUse;
+      SCVObject *componentRequestUse;
    } Mouse;
    ///////////////////////////////////////////////////////////
    
@@ -192,13 +192,13 @@ private:
 
    textureFilter _filterType;
 
-   typedef std::list<std::shared_ptr<ComponentInterface>> ComponentsList;
-   ComponentsList _components;
+   typedef std::list<std::shared_ptr<SCVObject>> ComponentsList;
+   ComponentsList _objects;
    
    typedef std::list<ComponentWithTexture*> ComponentsToLoadList;
    ComponentsToLoadList _componentsToLoad;
 
-   ComponentInterface *_focusedComponent;
+   SCVObject *_focusedComponent;
 
    bool _needRefreshReshape;
    bool _isActiveReshape;

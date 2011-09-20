@@ -90,11 +90,11 @@ inline const std::string& Label::getString(void) const {
 }
 
 inline void Label::setWidth(const int width) {
-   ComponentInterface::setWidth(width);
+   SCVObject::setWidth(width);
 }
 
 inline void Label::setHeight(const int height) {
-   ComponentInterface::setHeight(height);
+   SCVObject::setHeight(height);
 }
 
 inline void Label::display(const int translateX, const int translateY) {

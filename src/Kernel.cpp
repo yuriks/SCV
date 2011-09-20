@@ -5,7 +5,6 @@
 
 #include "MenuHolder.h"
 #include "InternalFrameHolder.h"
-#include "ComponentInterface.h"
 #include "SCVObject.h"
 
 #include "Keyboard.h"
@@ -14,9 +13,6 @@
 #include "util.h"
 
 #include "FileOpen.h"
-
-#include "DynamicCastIterator.h"
-#include "SCVObject.h"
 
 #include "Mathematic.h"
 
@@ -219,7 +215,7 @@ void Kernel::cbMouseMotion(int x, int y) {
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
       //REVIEW      
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
             (*iter)->processMouse(evt);
       }
    }
@@ -262,7 +258,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
       if (menu->processMouse(evt) == false) {
          if (window->processMouse(evt) == false) {
             //REVIEW            
-            for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+            for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
                   (*iter)->processMouse(evt);
             }            
          }
@@ -270,15 +266,15 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
    } else {
       kernel->Mouse.clicked = true;
 
-      ComponentInterface *focusedComponent = kernel->getFocusedComponent();
-      ComponentsList::reverse_iterator itUp = kernel->_components.rbegin();
+      SCVObject *focusedComponent = kernel->getFocusedComponent();
+      ComponentsList::reverse_iterator itUp = kernel->_objects.rbegin();
 
       if (menu->processMouse(evt) == false) {
          menu->closeAllMenus();
          if (window->processMouse(evt) == false) {
 
             //REVIEW
-            for (ComponentsList::reverse_iterator it = kernel->_components.rbegin(); it != kernel->_components.rend(); ++it) {
+            for (ComponentsList::reverse_iterator it = kernel->_objects.rbegin(); it != kernel->_objects.rend(); ++it) {
                   (*it)->processMouse(evt);
                   if (focusedComponent != kernel->getFocusedComponent()) {
                      focusedComponent = kernel->getFocusedComponent();
@@ -290,9 +286,9 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
                menu->activeMenu(kernel->_contextMenu, evt.getPosition());
 
             // swap clicked component to end
-            if (itUp != kernel->_components.rbegin() && (*itUp)->isDragging()) {
+            if (itUp != kernel->_objects.rbegin() && (*itUp)->isDragging()) {
                //REVIEW
-               kernel->_components.splice(kernel->_components.end(), kernel->_components, (++itUp).base());
+               kernel->_objects.splice(kernel->_objects.end(), kernel->_objects, (++itUp).base());
             }
          }
       }
@@ -328,7 +324,7 @@ void Kernel::cbMouseWheel(int button, int dir, int x, int y) {
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
       //REVIEW
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
             (*iter)->processMouse(evt);
       }      
    }
@@ -355,7 +351,7 @@ void Kernel::cbKeySpecial(int key, int x, int y) {
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->push(key, true);
       //REVIEW
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
       }
    }
@@ -375,7 +371,7 @@ void Kernel::cbKeySpecialUp(int key, int x, int y) {
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->pop(key, true);
       //REVIEW
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
       }      
    }
@@ -395,7 +391,7 @@ void Kernel::cbKey(unsigned char key, int x, int y) {
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->push(key, false);
       //REVIEW      
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
             (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::down));
       }      
    }
@@ -415,7 +411,7 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
       keyboard->pop(key, false);
       //REVIEW      
-      for (ComponentsList::reverse_iterator iter = kernel->_components.rbegin(); iter != kernel->_components.rend(); ++iter) {
+      for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
             (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::up));
       }      
    }
@@ -471,7 +467,7 @@ void Kernel::cbDisplay(void) {
    glEnable(GL_BLEND);
 
    //REVIEW
-   for (ComponentsList::iterator iter = kernel->_components.begin(); iter != kernel->_components.end(); ++iter) {
+   for (ComponentsList::iterator iter = kernel->_objects.begin(); iter != kernel->_objects.end(); ++iter) {
       if (kernel->willAppearOnScreen(iter->get()))
          (*iter)->display();
    }
@@ -483,19 +479,20 @@ void Kernel::cbDisplay(void) {
    glutSwapBuffers();
 }
 
-void Kernel::addComponent(ComponentInterface *component) {
-   // creating shared_ptr. To get it use shared_from_this().
-   if (component != NULL) _components.push_back(std::shared_ptr<ComponentInterface>(component));
+void Kernel::addComponent(SCVObject::Ptr& object) {
+   //REVIEW
+   _objects.push_back(object);
 }
 
-void Kernel::removeComponent(ComponentInterface *component) {
-   component->setParent(NULL);
+void Kernel::removeComponent(SCVObject* component) {
+   //REVIEW
+   component->setParent(SCVObject::Ptr(NULL));
    if (component->getParent() == NULL) {
-      Kernel::getInstance()->_components.remove(component->shared_from_this());
+      Kernel::getInstance()->_objects.remove(component->shared_from_this());
    }
 }
 
-bool Kernel::requestComponentFocus(ComponentInterface *component) {
+bool Kernel::requestComponentFocus(SCVObject* component) {
    if (component == NULL) false;
 
    static Keyboard *keyboard = Keyboard::getInstance();
@@ -514,7 +511,7 @@ bool Kernel::requestComponentFocus(ComponentInterface *component) {
    }
 }
 
-ComponentInterface* Kernel::getFocusedComponent(void) const {
+SCVObject* Kernel::getFocusedComponent(void) const {
    return _focusedComponent;
 }
 
@@ -550,7 +547,7 @@ bool Kernel::scissorNeedRefresh(void) {
    return _scissorNeedRefresh;
 }
 
-bool Kernel::lockMouseUse(ComponentInterface* component) {
+bool Kernel::lockMouseUse(SCVObject* component) {
    if (!Mouse.locked || component == Mouse.componentRequestUse) {
       Mouse.locked = true;
       Mouse.componentRequestUse = component;
@@ -560,7 +557,7 @@ bool Kernel::lockMouseUse(ComponentInterface* component) {
    }
 }
 
-bool Kernel::unlockMouseUse(ComponentInterface* component) {
+bool Kernel::unlockMouseUse(SCVObject* component) {
    if (component == Mouse.componentRequestUse) {
       Mouse.locked = false;
       return true;
@@ -569,7 +566,7 @@ bool Kernel::unlockMouseUse(ComponentInterface* component) {
    }
 }
 
-bool Kernel::requestMouseUse(ComponentInterface* component) {
+bool Kernel::requestMouseUse(SCVObject* component) {
    if (Mouse.componentRequestUse == NULL) {
       Mouse.componentRequestUse = component;
       return true;
@@ -588,7 +585,7 @@ void Kernel::registerContextMenu(ContextMenu *contextMenu) {
 
 
 
-bool Kernel::willAppearOnScreen(ComponentInterface* component) {
+bool Kernel::willAppearOnScreen(SCVObject* component) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
    Point absPosition = component->getAbsolutePosition();

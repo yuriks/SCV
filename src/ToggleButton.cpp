@@ -78,7 +78,7 @@ void ToggleButton::display(void) {
 void ToggleButton::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   ComponentInterface::processMouse(evt);
+   SCVObject::processMouse(evt);
 
    if (!_receivingCallbacks) return;
 

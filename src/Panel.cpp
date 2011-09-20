@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Panel.h"
 #include "Kernel.h"
-#include "DynamicCastIterator.h"
 
 namespace scv {
 
@@ -47,9 +46,10 @@ void Panel::display(void) {
 
    _cTexture->disable();
 
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_iterator> i (getChildren()); i.valid(); ++i) {
-      if (kernel->willAppearOnScreen(*i))
-         i->display();
+   //REVIEW
+   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      if (kernel->willAppearOnScreen(iter->get()))
+         (*iter)->display();
    }
 
    scissor->popScissor();
@@ -76,17 +76,27 @@ void Panel::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void Panel::onResizing(void) {/**/}
 void Panel::onDragging(void) {/**/}
 
-void Panel::addComponent(ComponentInterface *component) {
+//REVIEW
+void Panel::addComponent(SCVObject::Ptr& object) {
    static Kernel *kernel = Kernel::getInstance();
+
+   object->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
+   object->setPanelTranslate(getAbsolutePosition());
+
+   addChild(object);
+
+   /*
    if (component) {
       component->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
       component->setPanelTranslate(getAbsolutePosition());
-      addChild(component);
-   }
+
+      std::cout << component->shared_from_this() << std::endl;
+      addChild(component->shared_from_this());
+   }*/
 }
 
 void Panel::setRelativePosition(const Point &position) {
-   ComponentInterface::setRelativePosition(position);
+   SCVObject::setRelativePosition(position);
    refresh(true, true);
 }
 
@@ -94,63 +104,65 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
    if (isDragging() || isResizing()) {
-      ComponentInterface::processMouse(evt);
+      SCVObject::processMouse(evt);
       refresh(true, true);
    } else {
-      ComponentInterface *focusedComponent = kernel->getFocusedComponent();
-      ObjectList::const_reverse_iterator itUp = getChildren().rbegin();
+      SCVObject *focusedComponent = kernel->getFocusedComponent();
+      PtrList::const_reverse_iterator itUp = getChildren().rbegin();
 
       Scissor::ScissorInfo scissor;
       if (kernel->scissorNeedRefresh())
          scissor = Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
-      for (DynamicCastIterator<ComponentInterface, ObjectList::const_reverse_iterator> i
-            (getChildren().rbegin(), getChildren().rend()); i.valid(); ++i) {
+      //REVIEW
+      for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
          if (kernel->scissorNeedRefresh())
-            i->setPanelScissor(scissor);
+            (*iter)->setPanelScissor(scissor);
 
-         i->processMouse(evt);
+         (*iter)->processMouse(evt);
          if (focusedComponent != kernel->getFocusedComponent()) {
             focusedComponent = kernel->getFocusedComponent();
-            itUp = i.base();
+            itUp = iter;
          }
       }
 
+      //REVIEW
       // swap clicked window to top
-      if (itUp != getChildren().rbegin() && static_cast<ComponentInterface*>(*itUp)->isDragging()) {
-         ObjectList::const_iterator tmp = itUp.base();
-         --tmp;
-         pullChildToTop(tmp);
+      if (itUp != getChildren().rbegin() && (*itUp)->isDragging()) {
+         SCVObject::Ptr removed_child = (*itUp);
+         _children.remove(*itUp);
+         _children.push_back(removed_child);
       } else {
-         ComponentInterface::processMouse(evt);
+         SCVObject::processMouse(evt);
       }
-
    }
 }
 
 void Panel::processKey(const scv::KeyEvent &evt) {
-   ComponentInterface::processKey(evt);
+   SCVObject::processKey(evt);
 
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_reverse_iterator> i
-      (getChildren().rbegin(), getChildren().rend()); i.valid(); ++i) {
-      i->processKey(evt);
+   //REVIEW
+   for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+      (*iter)->processKey(evt);
    }
 }
 
 void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
    static Kernel *kernel = Kernel::getInstance();
+   SCVObject::setPanelScissor(scissor);
 
-   ComponentInterface::setPanelScissor(scissor);
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_iterator> i(getChildren()); i.valid(); ++i) {
-      i->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
+   //REVIEW
+   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      (*iter)->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
    }
 }
 
 void Panel::setPanelTranslate(const Point &translate) {
-   ComponentInterface::setPanelTranslate(translate);
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_iterator> i
-      (getChildren()); i.valid(); ++i) {
-      i->setPanelTranslate(getAbsolutePosition());
+   SCVObject::setPanelTranslate(translate);
+
+   //REVIEW
+   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
 
@@ -158,19 +170,20 @@ void Panel::refresh(bool cScissor, bool cTranslate) {
    static Kernel *kernel = Kernel::getInstance();
 
    Scissor::ScissorInfo scissor(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_reverse_iterator> i
-         (getChildren().rbegin(), getChildren().rend()); i.valid(); ++i) {
-      if (cScissor) i->setPanelScissor(scissor);
-      if (cTranslate) i->setPanelTranslate(getAbsolutePosition());
+
+   //REVIEW
+   for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+      if (cScissor) (*iter)->setPanelScissor(scissor);
+      if (cTranslate) (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
 
 void Panel::setDraggable(bool state) {
-   ComponentInterface::setDraggable(state);
+   SCVObject::setDraggable(state);
 }
 
 void Panel::setResizable(bool state) {
-   ComponentInterface::setResizable(state);
+   SCVObject::setResizable(state);
 }
 
 

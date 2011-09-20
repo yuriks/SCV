@@ -79,8 +79,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          button->setResizable(true);
          button->registerContextMenu(new MenuRename(button));
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(button);
-         else m_panel->addComponent(button);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(button));
+         else m_panel->addComponent(scv::SCVObject::Ptr(button));
 
          AbstractWindow *win = new AbstractWindow(button);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -96,8 +96,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          canvas->setDraggable(true);
          canvas->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(canvas);
-         else m_panel->addComponent(canvas);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(canvas));
+         else m_panel->addComponent(scv::SCVObject::Ptr(canvas));
 
          canvas->registerContextMenu(new RemoveComponent(canvas));
 
@@ -111,8 +111,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          contCheckbox++;
          checkbox->setDraggable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(checkbox);
-         else panel->addComponent(checkbox);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(checkbox));
+         else panel->addComponent(scv::SCVObject::Ptr(checkbox));
 
          AbstractWindow *win = new AbstractWindow(checkbox);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -128,8 +128,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          colorpicker->setDraggable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(colorpicker);
-         else  m_panel->addComponent(colorpicker);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(colorpicker));
+         else  m_panel->addComponent(scv::SCVObject::Ptr(colorpicker));
 
          colorpicker->registerContextMenu(new RemoveComponent(colorpicker));
 
@@ -141,12 +141,12 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          combobox->setDraggable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(combobox);
-         else  m_panel->addComponent(combobox);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(combobox));
+         else  m_panel->addComponent(scv::SCVObject::Ptr(combobox));
 
          combobox->registerContextMenu(new RemoveComponent(combobox));
 
-      } else if (address[2] == "Image") {
+      /*} else if (address[2] == "Image") {
 
          scv::Image *opImage;
 
@@ -166,7 +166,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
                opImage->registerContextMenu(new InterfaceDesign(opImage, true));
             }
          }
-     
+      /**/
       } else if (address[2] == "Label") {
 
          scv::Panel * panel = (scv::Panel*)m_panel;
@@ -177,12 +177,12 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          contLabel++;
          label->setDraggable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(label);
-         else panel->addComponent(label);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(label));
+         else panel->addComponent(scv::SCVObject::Ptr(label));
 
          AbstractWindow *win = new AbstractWindow(label);
-         win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         scv::Kernel::getInstance()->addWindow(win);
+         //win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
+         //scv::Kernel::getInstance()->addWindow(win);
 
          label->registerContextMenu(new RemoveComponent(label));
 
@@ -198,8 +198,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          menubar->setDraggable(true);
          menubar->registerContextMenu(new MenuDesign(menubar)); //here is the add menu, and remove menu.
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(menubar);
-         else m_panel->addComponent(menubar);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(menubar));
+         else m_panel->addComponent(scv::SCVObject::Ptr(menubar));
          contMenubar++;
 
       } else if (address[2] == "Progress Bar") {
@@ -214,8 +214,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          contProgressBar++; contProgressBar = contProgressBar%101;
          progressbar->setDraggable(true);
          
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(progressbar);
-         else panel->addComponent(progressbar);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(progressbar));
+         else panel->addComponent(scv::SCVObject::Ptr(progressbar));
 
          progressbar->registerContextMenu(new RemoveComponent(progressbar));
 
@@ -228,8 +228,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          contRadioButton++;
          radiobutton->setDraggable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(radiobutton);
-         else m_panel->addComponent(radiobutton);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(radiobutton));
+         else m_panel->addComponent(scv::SCVObject::Ptr(radiobutton));
 
          AbstractWindow *win = new AbstractWindow(radiobutton);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -248,8 +248,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          slider->setResizable(true);
          
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(slider);
-         else panel->addComponent(slider);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(slider));
+         else panel->addComponent(scv::SCVObject::Ptr(slider));
 
          slider->registerContextMenu(new RemoveComponent(slider));
 
@@ -264,8 +264,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          
          spinner->registerContextMenu(new RemoveComponent(spinner));
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(spinner);
-         else m_panel->addComponent(spinner);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(spinner));
+         else m_panel->addComponent(scv::SCVObject::Ptr(spinner));
 
          
 
@@ -275,8 +275,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel != NULL) table = new scv::Table(getCurrPosition() - m_panel->getAbsolutePosition(), 4, 4, 1, 50);
          else                 table = new scv::Table(getCurrPosition(), 4, 4, 1, 50);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(table);
-         else m_panel->addComponent(table);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(table));
+         else m_panel->addComponent(scv::SCVObject::Ptr(table));
 
          table->setDraggable(true);
          table->setResizable(true);
@@ -293,8 +293,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          textbox->setDraggable(true);
          textbox->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textbox);
-         else m_panel->addComponent(textbox);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(textbox));
+         else m_panel->addComponent(scv::SCVObject::Ptr(textbox));
 
          AbstractWindow *win = new AbstractWindow(textbox);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -312,8 +312,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          textfield->setDraggable(true);
          textfield->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textfield);
-         else m_panel->addComponent(textfield);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(textfield));
+         else m_panel->addComponent(scv::SCVObject::Ptr(textfield));
 
          AbstractWindow *win = new AbstractWindow(textfield);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -331,8 +331,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          togglebutton->setDraggable(true);
          togglebutton->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(togglebutton);
-         else m_panel->addComponent(togglebutton);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(togglebutton));
+         else m_panel->addComponent(scv::SCVObject::Ptr(togglebutton));
 
          AbstractWindow *win = new AbstractWindow(togglebutton);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
@@ -350,8 +350,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          newpanel->setDraggable(true);
          newpanel->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(newpanel);
-         else m_panel->addComponent(newpanel);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(newpanel));
+         else m_panel->addComponent(scv::SCVObject::Ptr(newpanel));
 
       } else if (address[2] == "Tabbed Pane") {
 
@@ -362,8 +362,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          newtabbedpane->setDraggable(true);
          newtabbedpane->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(newtabbedpane);
-         else m_panel->addComponent(newtabbedpane);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(newtabbedpane));
+         else m_panel->addComponent(scv::SCVObject::Ptr(newtabbedpane));
 
          scv::Panel *panel = new scv::Panel();
          newtabbedpane->addPanel(panel,"Painel 1");
@@ -382,8 +382,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          newscrollpane->setDraggable(true);
          newscrollpane->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(newscrollpane);
-         else m_panel->addComponent(newscrollpane);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(newscrollpane));
+         else m_panel->addComponent(scv::SCVObject::Ptr(newscrollpane));
 
          panel->registerContextMenu(new InterfaceDesign(panel));
 
@@ -412,8 +412,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          tbTV->setDraggable(true);
          tbTV->setResizable(true);
 
-         if (m_panel == NULL)  scv::Kernel::getInstance()->addComponent(tbTV);
-         else m_panel->addComponent(tbTV);
+         if (m_panel == NULL)  scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(tbTV));
+         else m_panel->addComponent(scv::SCVObject::Ptr(tbTV));
 
          tbTV->registerContextMenu(new RemoveComponent(tbTV));
 
@@ -434,8 +434,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          separator->setDraggable(true);
          separator->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(separator);
-         else m_panel->addComponent(separator);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(separator));
+         else m_panel->addComponent(scv::SCVObject::Ptr(separator));
 
       } else if (address[3] == "Vertical") {
 
@@ -445,8 +445,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          separator->setDraggable(true);
          separator->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(separator);
-         else m_panel->addComponent(separator);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(scv::SCVObject::Ptr(separator));
+         else m_panel->addComponent(scv::SCVObject::Ptr(separator));
 
       }
 

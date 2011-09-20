@@ -5,7 +5,7 @@
 namespace scv {
 
 ComponentWithoutTexture::ComponentWithoutTexture(const scv::Point &p1, const scv::Point &p2)
-      : ComponentInterface(p1, p2) {/*none*/}
+      : SCVObject(p1, p2) {/*none*/}
 
 ComponentWithoutTexture::~ComponentWithoutTexture(void) {/*none*/}
 

@@ -21,7 +21,7 @@
     <ClCompile Include="..\src\ColorScheme.cpp" />
     <ClCompile Include="..\src\ComboBox.cpp" />
     <ClCompile Include="..\src\ComboBoxMenuStyle.cpp" />
-    <ClCompile Include="..\src\ComponentInterface.cpp" />
+    <ClCompile Include="..\src\SCVObject.cpp" />
     <ClCompile Include="..\src\ComponentTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithoutTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithTexture.cpp" />
@@ -31,8 +31,9 @@
     <ClCompile Include="..\src\data\TreeViewData.cpp" />
     <ClCompile Include="..\src\FileOpen.cpp" />
     <ClCompile Include="..\src\GTree.cpp" />
-    <ClCompile Include="..\src\Image.cpp" />
-    <ClCompile Include="..\src\SCVObject.cpp" />
+    <ClCompile Include="..\src\Image.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\ImgLoader.cpp" />
     <ClCompile Include="..\src\List.cpp" />
     <ClCompile Include="..\src\Panel.cpp" />
@@ -82,7 +83,6 @@
     <ClInclude Include="..\include\Mathematic.h" />
     <ClInclude Include="..\include\SCV\Button.h" />
     <ClInclude Include="..\include\SCV\ButtonGroup.h" />
-    <ClInclude Include="..\include\SCV\Callbacks.h" />
     <ClInclude Include="..\include\SCV\Canvas.h" />
     <ClInclude Include="..\include\SCV\CheckBox.h" />
     <ClInclude Include="..\include\SCV\Color4f.h" />
@@ -91,17 +91,17 @@
     <ClInclude Include="..\include\SCV\ColorScheme.h" />
     <ClInclude Include="..\include\SCV\ComboBox.h" />
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h" />
-    <ClInclude Include="..\include\SCV\ComponentInterface.h" />
+    <ClInclude Include="..\include\SCV\SCVObject.h" />
     <ClInclude Include="..\include\SCV\ComponentTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
     <ClInclude Include="..\include\SCV\Data.h" />
-    <ClInclude Include="..\include\SCV\DynamicCastIterator.h" />
     <ClInclude Include="..\include\SCV\FileOpen.h" />
     <ClInclude Include="..\include\SCV\GTree.h" />
-    <ClInclude Include="..\include\SCV\Image.h" />
+    <ClInclude Include="..\include\SCV\Image.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
-    <ClInclude Include="..\include\SCV\SCVObject.h" />
     <ClInclude Include="..\include\SCV\ImgLoader.h" />
     <ClInclude Include="..\include\SCV\List.h" />
     <ClInclude Include="..\include\SCV\Panel.h" />

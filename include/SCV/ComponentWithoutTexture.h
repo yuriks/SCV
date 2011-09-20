@@ -8,7 +8,7 @@
 #define __SCV_COMPONENT_WITHOUT_TEXTURE_H__
 
 #ifndef DOXYGEN_SKIP_THIS
-#include "ComponentInterface.h"
+#include "SCVObject.h"
 #endif // DOXYGEN_SKIP_THIS
 
 namespace scv {
@@ -17,7 +17,7 @@ namespace scv {
  \ingroup internal
  */
 
-class ComponentWithoutTexture : public ComponentInterface {
+class ComponentWithoutTexture : public SCVObject {
 public:
 
 

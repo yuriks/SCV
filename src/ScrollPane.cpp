@@ -98,7 +98,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
       _panel->processMouse(evt);
    }
 
-   ComponentInterface::processMouse(evt);
+   SCVObject::processMouse(evt);
 
    if (isDragging())
       refreshContainerPosition();
@@ -408,12 +408,12 @@ void ScrollPane::createTexture(void) {
 }
 
 void ScrollPane::setWidth(const int width) {
-   ComponentInterface::setWidth(width);
+   SCVObject::setWidth(width);
    refreshSCrollPaneSize();
 }
 
 void ScrollPane::setHeight(const int height) {
-   ComponentInterface::setHeight(height);
+   SCVObject::setHeight(height);
    refreshSCrollPaneSize();
 }
 
@@ -422,7 +422,7 @@ Panel * ScrollPane::getPanel(void) {
 }
 
 void ScrollPane::setPanelTranslate(const Point &translate) {
-   ComponentInterface::setPanelTranslate(translate);
+   SCVObject::setPanelTranslate(translate);
    refreshContainerPosition();
 }
 

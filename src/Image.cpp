@@ -73,7 +73,7 @@ void Image::display(void) {
    _cTexture->disable();
 
    // components
-   for (DynamicCastIterator<ComponentInterface, ObjectList::const_iterator> i (getChildren()); i.valid(); ++i) {
+   for (DynamicCastIterator<SCVObject, ObjectList::const_iterator> i (getChildren()); i.valid(); ++i) {
       if (kernel->willAppearOnScreen(*i))
          i->display();
    }

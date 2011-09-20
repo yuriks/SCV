@@ -142,7 +142,7 @@ void ComboBox::select(const std::string& value) {
 void ComboBox::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   ComponentInterface::processMouse(evt);
+   SCVObject::processMouse(evt);
 
    //if (!_receivingCallbacks) return;
 

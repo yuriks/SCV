@@ -104,7 +104,6 @@ private:
       int _column;
    };
    void setAlign(bool state);
-   void addComponent(ComponentInterface *component);
    bool alphabetical(std::string str1, std::string str2);
 
    int _nRows, _nColumns;

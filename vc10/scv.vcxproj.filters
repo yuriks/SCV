@@ -58,9 +58,6 @@
     <ClCompile Include="..\src\List.cpp">
       <Filter>0._!TODO!_</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SCVObject.cpp">
-      <Filter>3.Kernel</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Cursor.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
@@ -69,9 +66,6 @@
     </ClCompile>
     <ClCompile Include="..\src\ComboBox.cpp">
       <Filter>4.Widgets\Menu\ComboBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ComponentInterface.cpp">
-      <Filter>4.Widgets\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentTexture.cpp">
       <Filter>4.Widgets\Component</Filter>
@@ -190,6 +184,9 @@
     <ClCompile Include="..\src\Image.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SCVObject.cpp">
+      <Filter>4.Widgets\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -234,9 +231,6 @@
     <ClInclude Include="..\include\SCV\Kernel.h">
       <Filter>3.Kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\DynamicCastIterator.h">
-      <Filter>3.Kernel</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\SCV\Canvas.h">
       <Filter>4.Widgets</Filter>
     </ClInclude>
@@ -261,12 +255,6 @@
     <ClInclude Include="..\include\SCV\List.h">
       <Filter>0._!TODO!_</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\SCVObject.h">
-      <Filter>3.Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\Callbacks.h">
-      <Filter>4.Widgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\SCV\Cursor.h">
       <Filter>3.Kernel</Filter>
     </ClInclude>
@@ -283,9 +271,6 @@
       <Filter>4.Widgets\Menu\ComboBox</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h">
-      <Filter>4.Widgets\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ComponentInterface.h">
       <Filter>4.Widgets\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentTexture.h">
@@ -398,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\Image.h">
       <Filter>4.Widgets\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\SCVObject.h">
+      <Filter>4.Widgets\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

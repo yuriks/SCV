@@ -60,7 +60,7 @@ public:
    /*! Adds a new component to the internal frame.
    \param component Reference to the instance of the component.
    */
-   void addComponent(ComponentInterface *component);
+   void addComponent(SCVObject::Ptr& object);
    //! Mouse function of the component.
    /*!
    IMPORTANT: This is an internal function and don't must be called!

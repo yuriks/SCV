@@ -8,7 +8,7 @@
 #define __SCV_COMPONENT_WITH_TEXTURE_H__
 
 #ifndef DOXYGEN_SKIP_THIS
-#include "ComponentInterface.h"
+#include "SCVObject.h"
 #include "ComponentTexture.h"
 #endif // DOXYGEN_SKIP_THIS
 
@@ -20,7 +20,7 @@ class Kernel;
  \ingroup internal
  */
 
-class ComponentWithTexture : public ComponentInterface {
+class ComponentWithTexture : public SCVObject {
 friend class Kernel;
 public:
 

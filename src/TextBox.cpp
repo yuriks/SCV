@@ -233,7 +233,7 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
    static Cursor *cursor = Cursor::getInstance();
    static FontTahoma *font = FontTahoma::getInstance();
 
-   ComponentInterface::processMouse(evt);
+   SCVObject::processMouse(evt);
 
    if (_isResizing)
       refreshText();
@@ -348,7 +348,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
 
    if (isFocused()) {
 
-      ComponentInterface::processKey(evt);
+      SCVObject::processKey(evt);
 
       if(!_receivingCallbacks) return;
 
@@ -677,12 +677,12 @@ void TextBox::setCursorPosition(int position) {
 }
 
 void TextBox::setWidth(const int width) {
-   ComponentInterface::setWidth(width);
+   SCVObject::setWidth(width);
    refreshText();
 }
 
 void TextBox::setHeight(const int height) {
-   ComponentInterface::setHeight(height);
+   SCVObject::setHeight(height);
    _nLines = (int)(getHeight()/s_lineSpacing);
    refreshText();
 }

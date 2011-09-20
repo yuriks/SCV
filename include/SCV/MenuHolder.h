@@ -8,7 +8,7 @@
 #define __SCV_MENU_HOLDER_H__
 
 #ifndef DOXYGEN_SKIP_THIS
-#include "ComponentInterface.h"
+#include "SCVObject.h"
 #include "Singleton.h"
 #include "ContextMenu.h"
 #endif // DOXYGEN_SKIP_THIS

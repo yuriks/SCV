@@ -21,16 +21,16 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _btPicker = new EyeDropper(this, Point(285,106), Point(285+69,126), "EyeDropper");
 
    _saturation = 100;
-   Panel::addComponent(_rgbs[0]);
-   Panel::addComponent(_rgbs[1]);
-   Panel::addComponent(_rgbs[2]);
-   Panel::addComponent(_rgbs[3]);
-   Panel::addComponent(_btPicker);
+   Panel::addComponent(SCVObject::Ptr(_rgbs[0]));
+   Panel::addComponent(SCVObject::Ptr(_rgbs[1]));
+   Panel::addComponent(SCVObject::Ptr(_rgbs[2]));
+   Panel::addComponent(SCVObject::Ptr(_rgbs[3]));
+   Panel::addComponent(SCVObject::Ptr(_btPicker));
 
-   Panel::addComponent(new Label(Point(8 ,109),"R:"));
-   Panel::addComponent(new Label(Point(78 ,109),"G:"));
-   Panel::addComponent(new Label(Point(148,109),"B:"));
-   Panel::addComponent(new Label(Point(218,109),"S:"));
+   Panel::addComponent(SCVObject::Ptr(new Label(Point(8 ,109),"R:")));
+   Panel::addComponent(SCVObject::Ptr(new Label(Point(78 ,109),"G:")));
+   Panel::addComponent(SCVObject::Ptr(new Label(Point(148,109),"B:")));
+   Panel::addComponent(SCVObject::Ptr(new Label(Point(218,109),"S:")));
 
    // initial color
    _currentColorPosition = Point(0, MatrixTemplate<ColorRGBA>::getHeight() - 1);
@@ -142,7 +142,7 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
    static Cursor * cursor = Cursor::getInstance();
 
    if (!_receivingCallbacks) {
-      ComponentInterface::processMouse(evt);
+      SCVObject::processMouse(evt);
    } else {
       Panel::processMouse(evt);
    }
@@ -229,13 +229,13 @@ int ColorPicker::getHeight(void) const {
 }
 
 void ColorPicker::setDraggable(bool state) {
-   ComponentInterface::setDraggable(state);
+   SCVObject::setDraggable(state);
    //for (int i = 0; i < 4; i++) _rgbs[i]->setDraggable(state);
    //_btPicker->setDraggable(state);
 }
 
 void ColorPicker::setResizable(bool state) {
-   ComponentInterface::setResizable(state);
+   SCVObject::setResizable(state);
    for (int i = 0; i < 4; i++) _rgbs[i]->setResizable(state);
    _btPicker->setResizable(state);
 }

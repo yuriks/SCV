@@ -118,7 +118,7 @@ void TreeView::processMouse(const scv::MouseEvent &evt)
    static ColorScheme *scheme = ColorScheme::getInstance();
 
    if (!_receivingCallbacks) {
-      ComponentInterface::processMouse(evt);
+      SCVObject::processMouse(evt);
       return;
    } else {
       ComponentWithTexture::processMouse(evt);
