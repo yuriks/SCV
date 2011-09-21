@@ -14,8 +14,7 @@ class Kernel;
 
 class SCVObject : public std::enable_shared_from_this<SCVObject> {
 public:
-   typedef std::shared_ptr<SCVObject> Ptr;
-   typedef std::list<Ptr> PtrList;
+   typedef std::list<SCVObject*> List;
 
    enum objectType {
       NONE        , panel      , colorPicker , progressBar,
@@ -110,22 +109,20 @@ public:
 
    // memory management
    //////////////////////////////////////////////////////////
-   Ptr _parent;
-   PtrList _children;
+   SCVObject *_parent;
+   List _children;
 
-   void deleteChildren(void);
+   void setParent(SCVObject *parent);   
+   inline const SCVObject *getParent(void) const;
+   
+   inline const SCVObject::List &getChildren(void) const;
 
-   void setParent(SCVObject::Ptr &parent);
+   void addChild(SCVObject *object);
+   void removeChild(SCVObject *object);
 
-   inline const SCVObject::Ptr &getParent(void) const;
+   void pullChildToTop(SCVObject *child);
 
-   inline const SCVObject::PtrList &getChildren(void) const;
-
-   void addChild(SCVObject::Ptr &object);
-
-   void removeChild(SCVObject::Ptr &object);
-
-   void pullChildToTop(const SCVObject::PtrList::const_iterator &child);
+   bool hasChild(SCVObject *child) const;
    ///////////////////////////////////////////////////////////
 
  protected:  
@@ -154,11 +151,11 @@ public:
    ContextMenu *_contextMenu;
 };
 
-const SCVObject::Ptr &SCVObject::getParent(void) const {
+const SCVObject *SCVObject::getParent(void) const {
    return _parent;
 }
 
-const SCVObject::PtrList &SCVObject::getChildren(void) const {
+const SCVObject::List &SCVObject::getChildren(void) const {
    return _children;
 }
 

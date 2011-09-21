@@ -44,7 +44,14 @@ SCVObject::SCVObject(const scv::Point &p1, const scv::Point &p2) :
    _parent = NULL;   
 }
 
-SCVObject::~SCVObject(void) {}
+SCVObject::~SCVObject(void) {
+   setParent(NULL);
+
+   for (SCVObject::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
+      delete (*iter);
+   }
+   _children.clear();
+}
 
 Point SCVObject::getRelativePosition(void) const {
    return _p1;
@@ -428,46 +435,43 @@ void SCVObject::setType(objectType type) {
 
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
-
-void SCVObject::deleteChildren(void) {
-   for (SCVObject::PtrList::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
-      (*iter)->deleteChildren();      
+void SCVObject::setParent(SCVObject *parent) {
+   if (_parent != NULL) {
+      _parent->removeChild(this);
    }
-   _children.clear();
-}
-
-void SCVObject::setParent( SCVObject::Ptr &parent ) {
-   // keep shared_ptr reference(count)
-   SCVObject::Ptr object = this->shared_from_this();
-
-   if (_parent != NULL) _parent->removeChild(object);
 
    _parent = parent;
 
-   // push_back to parent
-   if (_parent != NULL) _parent->addChild(object);
+   if (_parent != NULL) {
+      _parent->addChild(this);
+   }
 }
 
-void SCVObject::addChild(SCVObject::Ptr &object) {
+void SCVObject::addChild(SCVObject *object) {
    if (object->getParent() != NULL) {
-      // TODO warn about adding an object with an existing parent         
+      //TODO warn about adding a child with parent
    } else {
-      object->setParent(this->shared_from_this());
+      object->_parent = this;
       _children.push_back(object);
    }
 }
 
-void SCVObject::removeChild(SCVObject::Ptr &object) {
-   if (std::find(_children.begin(), _children.end(), object) != _children.end()) {
+void SCVObject::removeChild(SCVObject *object) {
+   if (hasChild(object)) {
       object->_parent = NULL;
       _children.remove(object);
    }
 }
 
-void SCVObject::pullChildToTop(const SCVObject::PtrList::const_iterator &child) {
-   Ptr removed_child = (*child);
-   _children.erase(child);
-   _children.push_back(removed_child);      
+void SCVObject::pullChildToTop(SCVObject *child) {
+   if (hasChild(child)) {
+      _children.remove(child);
+      _children.push_back(child);
+   }
+}
+
+bool SCVObject::hasChild(SCVObject *child) const {
+   return std::find(_children.begin(), _children.end(), child) != _children.end();
 }
 
 } // namespace scv

@@ -3,6 +3,7 @@
 
 ///////////////////////////////////////////////////////////
 #include "ComponentWithoutTexture.h"
+#include "SCVObjectFactory.h"
 ///////////////////////////////////////////////////////////
 
 namespace scv {
@@ -39,6 +40,7 @@ public:
 
 protected:
 private:
+
 };
 
 } // namespace scv

@@ -47,7 +47,7 @@ void Panel::display(void) {
    _cTexture->disable();
 
    //REVIEW
-   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       if (kernel->willAppearOnScreen(iter->get()))
          (*iter)->display();
    }
@@ -108,14 +108,14 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
       refresh(true, true);
    } else {
       SCVObject *focusedComponent = kernel->getFocusedComponent();
-      PtrList::const_reverse_iterator itUp = getChildren().rbegin();
+      List::const_reverse_iterator itUp = getChildren().rbegin();
 
       Scissor::ScissorInfo scissor;
       if (kernel->scissorNeedRefresh())
          scissor = Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
       //REVIEW
-      for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+      for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
          if (kernel->scissorNeedRefresh())
             (*iter)->setPanelScissor(scissor);
 
@@ -142,7 +142,7 @@ void Panel::processKey(const scv::KeyEvent &evt) {
    SCVObject::processKey(evt);
 
    //REVIEW
-   for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+   for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
    }
 }
@@ -152,7 +152,7 @@ void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
    SCVObject::setPanelScissor(scissor);
 
    //REVIEW
-   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       (*iter)->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
    }
 }
@@ -161,7 +161,7 @@ void Panel::setPanelTranslate(const Point &translate) {
    SCVObject::setPanelTranslate(translate);
 
    //REVIEW
-   for (PtrList::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
@@ -172,7 +172,7 @@ void Panel::refresh(bool cScissor, bool cTranslate) {
    Scissor::ScissorInfo scissor(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
    //REVIEW
-   for (SCVObject::PtrList::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+   for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       if (cScissor) (*iter)->setPanelScissor(scissor);
       if (cTranslate) (*iter)->setPanelTranslate(getAbsolutePosition());
    }
