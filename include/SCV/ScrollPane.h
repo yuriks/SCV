@@ -58,8 +58,8 @@ public:
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
    void refreshSCrollPaneSize(void);
-   void setHeight(const int height);
-   void setWidth(const int width);
+   void setHeight(int height);
+   void setWidth(int width);
    void display(void);
 
 private:

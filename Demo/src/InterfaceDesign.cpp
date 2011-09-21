@@ -90,8 +90,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       } else if (address[2] == "Canvas") {
 
          scv::Canvas * canvas;
-         if (m_panel != NULL) canvas = new scv::Canvas(getCurrPosition() - m_panel->getAbsolutePosition(), 200, 200);
-         else                 canvas = new scv::Canvas(getCurrPosition() , 200, 200);
+         if (m_panel != NULL) canvas = new scv::Canvas(getCurrPosition() - m_panel->getAbsolutePosition(), getCurrPosition() - m_panel->getAbsolutePosition() + 200);
+         else                 canvas = new scv::Canvas(getCurrPosition() , getCurrPosition() + 200);
 
          canvas->setDraggable(true);
          canvas->setResizable(true);

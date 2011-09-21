@@ -290,7 +290,7 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
 
    if (isFocused()) {
       
-      if (isInside(evt) && evt.getState() == MouseEvent::click) {
+      if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::click) {
          _isDragging = false;
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));
          setValue(math::nearestValue(value, getMinValue() + getStep() * (int)((value-getMinValue())/getStep()), getMinValue() + getStep() * (1+(int)((value-getMinValue())/getStep()))));

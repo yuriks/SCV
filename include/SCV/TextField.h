@@ -42,7 +42,7 @@ public:
    /*! Set a new String to the component.*/
    virtual void setString(const std::string& str);
    /*! Has no effect. */
-   virtual void setHeight(const int height);
+   virtual void setHeight(int height);
 
 
    //! Mouse function of the component.

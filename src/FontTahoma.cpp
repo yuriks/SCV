@@ -301,9 +301,7 @@ void FontTahoma::genTexture(void) {
          }
       }
    }
-
-
-
+   
    _cTexture->addTexture(Point(0,0), texture);
 
    _cTexture->addTexture(Point(0,0),MatrixTemplate<ColorRGBA>(1,1, ColorRGBA(255,255,255,255)));

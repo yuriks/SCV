@@ -6,6 +6,8 @@
 
 namespace scv {
 
+Kernel *SCVObject::kernel = Kernel::getInstance();
+
 SCVObject::SCVObject(const scv::Point &p1, const scv::Point &p2) :
       _clicked(0,0), _cTranslate(0,0), _resizing(4, false) {
 
@@ -39,8 +41,7 @@ SCVObject::SCVObject(const scv::Point &p1, const scv::Point &p2) :
 
    _type = NONE;
 
-   _parent = NULL;
-   
+   _parent = NULL;   
 }
 
 SCVObject::~SCVObject(void) {}
@@ -62,7 +63,7 @@ void SCVObject::setPanelTranslate(const Point &translate) {
    onDragging();
 }
 
-Point SCVObject::getPanelTranslate(void) {
+Point SCVObject::getPanelTranslate(void) const {
    return _cTranslate;
 }
 
@@ -79,11 +80,10 @@ int SCVObject::getHeight(void) const {
 }
 
 Point SCVObject::getSize(void) const {
-   return Point(getWidth(),getHeight());
+   return Point(getWidth(), getHeight());
 }
 
 void SCVObject::setWidth(const int width) {
-   static Kernel *kernel = Kernel::getInstance();
    _p2.x = _p1.x + width;
 
    kernel->scissorNeedRefresh();
@@ -91,7 +91,6 @@ void SCVObject::setWidth(const int width) {
 }
 
 void SCVObject::setHeight(const int height) {
-   static Kernel *kernel = Kernel::getInstance();
    _p2.y = _p1.y + height;
 
    kernel->scissorNeedRefresh();
@@ -122,7 +121,6 @@ bool SCVObject::isResizing(void) const {
 }
 
 bool SCVObject::isFocused(void) const {
-   static Kernel *kernel = Kernel::getInstance();
    return (kernel->getFocusedComponent() == this);
 }
 
@@ -138,7 +136,7 @@ void SCVObject::setVisible(bool state) {
    _isVisible = state;
 }
 
-bool SCVObject::isVisible(void) {
+bool SCVObject::isVisible(void) const {
    return _isVisible;
 }
 
@@ -148,10 +146,9 @@ void SCVObject::registerContextMenu(ContextMenu *contextMenu) {
    menu->registerParentMenu(_contextMenu);
 }
 
-bool SCVObject::isInside(const MouseEvent &evt) const {
-   if (_isVisible && _panelScissor.isInside(evt.getInversePosition())) {
+bool SCVObject::isInside(const Point &evtPosition) const {
+   if (_isVisible && _panelScissor.isInside(evtPosition.inverse())) {
       Point currPosition = getAbsolutePosition();
-      Point evtPosition  = evt.getPosition();
       if (evtPosition.x >= currPosition.x && evtPosition.x < currPosition.x + getWidth() &&
             evtPosition.y >= currPosition.y && evtPosition.y < currPosition.y + getHeight()) {
          return true;
@@ -161,7 +158,6 @@ bool SCVObject::isInside(const MouseEvent &evt) const {
 }
 
 void SCVObject::processMouse(const scv::MouseEvent &evt) {
-   static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
 
@@ -214,7 +210,8 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
       if (_isVResizable && _isHResizable && isInsideCorner(evtPosition) == 0 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_TOP_LEFT_CORNER);
          if (evt.getState() == MouseEvent::click) {
-            _resizing[0] = true; _resizing[2] = true;
+            _resizing[0] = true;
+            _resizing[2] = true;
             _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
@@ -222,7 +219,8 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
       } else if (_isVResizable && _isHResizable && isInsideCorner(evtPosition) == 1 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_TOP_RIGHT_CORNER);
          if (evt.getState() == MouseEvent::click) {
-            _resizing[1] = true; _resizing[2] = true;
+            _resizing[1] = true;
+            _resizing[2] = true;
             _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
@@ -230,7 +228,8 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
       } else if (_isVResizable && _isHResizable && isInsideCorner(evtPosition) == 2 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_BOTTOM_LEFT_CORNER);
          if (evt.getState() == MouseEvent::click) {
-            _resizing[0] = true; _resizing[3] = true;
+            _resizing[0] = true;
+            _resizing[3] = true;
             _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
@@ -238,7 +237,8 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
       } else if (_isVResizable && _isHResizable && isInsideCorner(evtPosition) == 3 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_BOTTOM_RIGHT_CORNER);
          if (evt.getState() == MouseEvent::click) {
-            _resizing[1] = true; _resizing[3] = true;
+            _resizing[1] = true;
+            _resizing[3] = true;
             _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
@@ -248,28 +248,32 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
       } else if (_isHResizable && isInsideSide(evtPosition) == 0 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_LEFT_RIGHT);
          if (kernel->requestMouseUse(this) && evt.getState() == MouseEvent::click) {
-            _resizing[0] = true; _isResizing = true;
+            _resizing[0] = true;
+            _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
          // right
       } else if (_isHResizable && isInsideSide(evtPosition) == 1 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_LEFT_RIGHT);
          if (kernel->requestMouseUse(this) && evt.getState() == MouseEvent::click) {
-            _resizing[1] = true; _isResizing = true;
+            _resizing[1] = true;
+            _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
          // top
       } else if (_isVResizable && isInsideSide(evtPosition) == 2 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
          if (kernel->requestMouseUse(this) && evt.getState() == MouseEvent::click) {
-            _resizing[2] = true; _isResizing = true;
+            _resizing[2] = true;
+            _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
          // bottom
       } else if (_isVResizable && isInsideSide(evtPosition) == 3 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
          if (kernel->requestMouseUse(this) && evt.getState() == MouseEvent::click) {
-            _resizing[3] = true; _isResizing = true;
+            _resizing[3] = true;
+            _isResizing = true;
             _clicked = (evtPosition - currPosition) + _cTranslate;
          }
       }
@@ -280,7 +284,7 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
    }
 
    
-   if (isInside(evt) && kernel->requestMouseUse(this)) {
+   if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
       if (evt.getState() == MouseEvent::wheelup || evt.getState() == MouseEvent::wheeldown) {
          if (_receivingCallbacks) onMouseWheel(evt);
       } else if (evt.getState() == MouseEvent::up) {
@@ -349,16 +353,11 @@ void SCVObject::processMouse(const scv::MouseEvent &evt) {
 }
 
 void SCVObject::processKey(const scv::KeyEvent &evt) {
-   static Kernel *kernel = Kernel::getInstance();
-
    if (isFocused()) {
       if (evt.getState() == KeyEvent::down) {
          onKeyPressed(evt);
       } else if (evt.getState() == KeyEvent::up) {
          onKeyUp(evt);
-      }
-      if (_isDraggable) {
-         moveComponent(evt);
       }
    }
 }
@@ -415,47 +414,29 @@ void SCVObject::setCallbacksActive(bool state) {
    _receivingCallbacks = state;
 }
 
-bool SCVObject::isCallbacksActive(void) {
+bool SCVObject::isCallbacksActive(void) const {
    return _receivingCallbacks;
 }
 
-void SCVObject::moveComponent(const scv::KeyEvent &evt) {
-   if (evt.getState() == KeyEvent::down) {
-      if (evt.getKeyString() == "Up") {
-         
-         setRelativePosition(Point(_p1.x, _p1.y - 1));
-         onDragging();
-      }
-      else if (evt.getKeyString() == "Down") {
-         setRelativePosition(Point(_p1.x, _p1.y + 1));
-         onDragging();
-      }
-      else if (evt.getKeyString() == "Left") {
-         setRelativePosition(Point(_p1.x - 1, _p1.y));
-         onDragging();
-      }
-      else if (evt.getKeyString() == "Right") {
-         setRelativePosition(Point(_p1.x + 1, _p1.y));
-         onDragging();
-      }
-   }
-}
-
-SCVObject::typeComponent SCVObject::getType(void) {
+SCVObject::objectType SCVObject::getType(void) const {
    return _type;
 }
 
+void SCVObject::setType(objectType type) {
+   _type = type;
+}
+
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-void SCVObject::deleteChildren() {
+void SCVObject::deleteChildren(void) {
    for (SCVObject::PtrList::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
       (*iter)->deleteChildren();      
    }
    _children.clear();
 }
 
-void SCVObject::setParent( SCVObject::Ptr& parent ) {
+void SCVObject::setParent( SCVObject::Ptr &parent ) {
    // keep shared_ptr reference(count)
    SCVObject::Ptr object = this->shared_from_this();
 
@@ -467,7 +448,7 @@ void SCVObject::setParent( SCVObject::Ptr& parent ) {
    if (_parent != NULL) _parent->addChild(object);
 }
 
-void SCVObject::addChild( SCVObject::Ptr& object ) {
+void SCVObject::addChild(SCVObject::Ptr &object) {
    if (object->getParent() != NULL) {
       // TODO warn about adding an object with an existing parent         
    } else {
@@ -476,14 +457,14 @@ void SCVObject::addChild( SCVObject::Ptr& object ) {
    }
 }
 
-void SCVObject::removeChild( SCVObject::Ptr& object ) {
+void SCVObject::removeChild(SCVObject::Ptr &object) {
    if (std::find(_children.begin(), _children.end(), object) != _children.end()) {
       object->_parent = NULL;
       _children.remove(object);
    }
 }
 
-void SCVObject::pullChildToTop( const SCVObject::PtrList::const_iterator& child ) {
+void SCVObject::pullChildToTop(const SCVObject::PtrList::const_iterator &child) {
    Ptr removed_child = (*child);
    _children.erase(child);
    _children.push_back(removed_child);      

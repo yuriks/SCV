@@ -216,7 +216,9 @@ void Kernel::cbMouseMotion(int x, int y) {
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
       //REVIEW      
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
             (*iter)->processMouse(evt);
+         }
       }
    }
 
@@ -259,6 +261,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
          if (window->processMouse(evt) == false) {
             //REVIEW            
             for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+               if ((*iter)->isVisible() && (*iter)->isCallbacksActive())
                   (*iter)->processMouse(evt);
             }            
          }
@@ -274,12 +277,14 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
          if (window->processMouse(evt) == false) {
 
             //REVIEW
-            for (ComponentsList::reverse_iterator it = kernel->_objects.rbegin(); it != kernel->_objects.rend(); ++it) {
-                  (*it)->processMouse(evt);
+            for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+               if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
+                  (*iter)->processMouse(evt);
                   if (focusedComponent != kernel->getFocusedComponent()) {
                      focusedComponent = kernel->getFocusedComponent();
-                     itUp = it;
+                     itUp = iter;
                   }
+               }
             }
             
             if (kernel->Mouse.componentRequestUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::right)
@@ -325,7 +330,9 @@ void Kernel::cbMouseWheel(int button, int dir, int x, int y) {
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
       //REVIEW
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
             (*iter)->processMouse(evt);
+         }
       }      
    }
    cursor->setDefaultCursor();
@@ -352,7 +359,9 @@ void Kernel::cbKeySpecial(int key, int x, int y) {
       keyboard->push(key, true);
       //REVIEW
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
-         (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
+         }
       }
    }
 }
@@ -372,7 +381,10 @@ void Kernel::cbKeySpecialUp(int key, int x, int y) {
       keyboard->pop(key, true);
       //REVIEW
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
-         (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
+         }
+         
       }      
    }
 }
@@ -392,7 +404,9 @@ void Kernel::cbKey(unsigned char key, int x, int y) {
       keyboard->push(key, false);
       //REVIEW      
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
             (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::down));
+         }
       }      
    }
 }
@@ -412,7 +426,9 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
       keyboard->pop(key, false);
       //REVIEW      
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
+         if ((*iter)->isVisible() && (*iter)->isCallbacksActive()) {
             (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::up));
+         }
       }      
    }
 }
@@ -583,14 +599,19 @@ void Kernel::registerContextMenu(ContextMenu *contextMenu) {
 bool Kernel::willAppearOnScreen(SCVObject* component) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
-   Point absPosition = component->getAbsolutePosition();
-   Point invPosition = absPosition.inverse();
-   if ((absPosition.x > Display.currSize[0]) || absPosition.y > Display.currSize[1] ||
-      (absPosition.x + component->getWidth() < 0) || (absPosition.y + component->getHeight() < 0) ||
-      !math::isInside(Point(scissor->currentScissor().mx,scissor->currentScissor().my).inverse() - Point(0,scissor->currentScissor().mheight), Point(scissor->currentScissor().mwidth,scissor->currentScissor().mheight),absPosition,component->getSize())) {
+
+   if (component->isVisible()) {
+      Point absPosition = component->getAbsolutePosition();
+      Point invPosition = absPosition.inverse();
+      if (absPosition.x > Display.currSize[0] || absPosition.y > Display.currSize[1] ||             
+            (absPosition.x + component->getWidth()) < 0 || (absPosition.y + component->getHeight()) < 0 ||
+            !math::isInside(Point(scissor->currentScissor().mx, scissor->currentScissor().my).inverse() - Point(0, scissor->currentScissor().mheight), Point(scissor->currentScissor().mwidth, scissor->currentScissor().mheight), absPosition, component->getSize())) {
          return false;
+      } else {
+         return true;
+      }
    } else {
-      return true;
+      return false;
    }
 }
 

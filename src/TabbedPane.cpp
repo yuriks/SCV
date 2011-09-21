@@ -79,7 +79,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
       if (evt.getState() == MouseEvent::up) refreshScissor();
 
       // open menu
-      if (isInside(evt)) {
+      if (isInside(evt.getPosition())) {
          _currecOverTab = -1;
          if (kernel->requestMouseUse(this)) {
             // over menu

@@ -7,14 +7,8 @@ namespace scv {
 ComponentWithTexture::ComponentWithTexture(const scv::Point &p1, const scv::Point &p2) :
       SCVObject(p1, p2) {
    _cTexture = NULL;
-
 }
-ComponentWithTexture::~ComponentWithTexture(void) {
-   /*
-   if (_cTexture != NULL)
-      delete _cTexture;
-   /**/
-}
+ComponentWithTexture::~ComponentWithTexture(void) {}
 
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
    SCVObject::processMouse(evt);
@@ -23,7 +17,6 @@ void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
 void ComponentWithTexture::processKey(const scv::KeyEvent &evt) {
    SCVObject::processKey(evt);
 }
-
 
 void ComponentWithTexture::setRelativePosition(const Point &position) {
    SCVObject::setRelativePosition(position);
@@ -55,6 +48,10 @@ void ComponentWithTexture::setResizable(bool state) {
 
 void ComponentWithTexture::setVisible(bool state) {
    SCVObject::setVisible(state);
+}
+
+Point ComponentWithTexture::getSize(void) const {
+   return SCVObject::getSize();
 }
 
 

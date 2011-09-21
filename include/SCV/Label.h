@@ -60,9 +60,9 @@ public:
    /*! Sets the Label's text. */
    virtual void setString(const std::string& str);
    /*! Sets the Label's width. */
-   virtual void setWidth(const int width);
+   virtual void setWidth(int width);
    /*! Sets the Label's height. */
-   virtual void setHeight(const int height);
+   virtual void setHeight(int height);
 
    /*! Displays a string at a certain position. */
    static void display(int x, int y, const std::string &label, const Color4f &color = ColorScheme::getInstance()->getColor(ColorScheme::font));

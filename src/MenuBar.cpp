@@ -35,7 +35,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
    Point relativeMouse = evt.getPosition();
 
    // open menu
-   if (isInside(evt)) {
+   if (isInside(evt.getPosition())) {
       if (kernel->requestMouseUse(this)) {
          if (isFocused()) {
             if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left) {

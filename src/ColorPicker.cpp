@@ -162,7 +162,7 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
          createTexture();
       }
    } else {
-      if (isInside(evt) && kernel->requestMouseUse(this)) {
+      if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
          if (isFocused()) {
             Point relativeMouse = evt.getPosition()-getAbsolutePosition();
             if (relativeMouse.x < MatrixTemplate<ColorRGBA>::getWidth() && relativeMouse.y < MatrixTemplate<ColorRGBA>::getHeight()) {

@@ -72,8 +72,8 @@ public:
    virtual void selectLine(int line);
    /*! Selects all text in the TextBox. */
    virtual void selectAll(void);
-   virtual void setWidth(const int width);
-   virtual void setHeight(const int height);
+   virtual void setWidth(int width);
+   virtual void setHeight(int height);
    /*! Returns true if any text is selected. */
    bool hasSelectedText(void);
 

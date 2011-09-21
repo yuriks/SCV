@@ -4,13 +4,33 @@
 
 namespace scv {
 
-ComponentWithoutTexture::ComponentWithoutTexture(const scv::Point &p1, const scv::Point &p2)
-      : SCVObject(p1, p2) {/*none*/}
+ComponentWithoutTexture::ComponentWithoutTexture(const scv::Point &p1, const scv::Point &p2) : SCVObject(p1, p2) {}
 
-ComponentWithoutTexture::~ComponentWithoutTexture(void) {/*none*/}
+ComponentWithoutTexture::~ComponentWithoutTexture(void) {}
+
+void ComponentWithoutTexture::onMouseClick(const scv::MouseEvent &evt) {}
+
+void ComponentWithoutTexture::onMouseHold(const scv::MouseEvent &evt) {}
+
+void ComponentWithoutTexture::onMouseOver(const scv::MouseEvent &evt) {}
+
+void ComponentWithoutTexture::onMouseUp(const scv::MouseEvent &evt) {}
+
+void ComponentWithoutTexture::onMouseWheel(const scv::MouseEvent &evt) {}
+
+void ComponentWithoutTexture::onKeyPressed(const scv::KeyEvent &evt) {}
+
+void ComponentWithoutTexture::onKeyUp(const scv::KeyEvent &evt) {}
+
+void ComponentWithoutTexture::onResizing(void) {}
+
+void ComponentWithoutTexture::onDragging(void) {}
+
+void ComponentWithoutTexture::render(void) {}
+
+void ComponentWithoutTexture::update(void) {}
 
 void ComponentWithoutTexture::display(void) {
-   static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
 
    update();
@@ -44,8 +64,8 @@ void ComponentWithoutTexture::display(void) {
 
    glDisable(GL_DEPTH_TEST);
    glDisable(GL_LIGHTING);
-   if (glUseProgram)
-      glUseProgram(0);
+
+   if (glUseProgram) glUseProgram(0);
 
    kernel->applyDefaultTransformMatrix();
 }

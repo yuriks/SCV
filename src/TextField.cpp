@@ -103,7 +103,7 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
-   if (isInside(evt) && kernel->requestMouseUse(this)) {
+   if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
       cursor->setGlutCursor(GLUT_CURSOR_TEXT);
    }
    if ((evt.getState() == MouseEvent::click || evt.getState() == MouseEvent::hold) && isFocused()) {

@@ -258,7 +258,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
    }
 
    if (isFocused()) {
-      if (isInside(evt)  && kernel->requestMouseUse(this) && (evt.getPosition() < Point(getAbsolutePosition().x + getWidth(), getAbsolutePosition().y + 18)) &&
+      if (isInside(evt.getPosition())  && kernel->requestMouseUse(this) && (evt.getPosition() < Point(getAbsolutePosition().x + getWidth(), getAbsolutePosition().y + 18)) &&
          evt.getState() == MouseEvent::click) {
             _isDragging = false;
       } else if (evt.getState() == MouseEvent::hold && isDragging() == false) {

@@ -68,13 +68,13 @@
       <Filter>4.Widgets\Menu\ComboBox</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentTexture.cpp">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentWithoutTexture.cpp">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentWithTexture.cpp">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\src\InternalFrame.cpp">
       <Filter>4.Widgets\InternalFrame</Filter>
@@ -185,7 +185,7 @@
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SCVObject.cpp">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,13 +271,13 @@
       <Filter>4.Widgets\Menu\ComboBox</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentTexture.h">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\InternalFrameHolder.h">
       <Filter>4.Widgets\InternalFrame</Filter>
@@ -385,7 +385,7 @@
       <Filter>4.Widgets\Panel</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\SCVObject.h">
-      <Filter>4.Widgets\Component</Filter>
+      <Filter>4.Widgets\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -403,9 +403,6 @@
     </Filter>
     <Filter Include="5.Util">
       <UniqueIdentifier>{464f7893-0962-43fa-a959-71ea8d197981}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\Component">
-      <UniqueIdentifier>{1b3e6407-b1dd-4fe6-ad3c-32fd106b291e}</UniqueIdentifier>
     </Filter>
     <Filter Include="4.Widgets\InternalFrame">
       <UniqueIdentifier>{7314b185-1a35-452a-a454-fa04cac12d87}</UniqueIdentifier>
@@ -439,6 +436,9 @@
     </Filter>
     <Filter Include="3.Kernel\Color">
       <UniqueIdentifier>{8be3c84f-782a-45c6-879e-b3080404d43d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Object">
+      <UniqueIdentifier>{1b3e6407-b1dd-4fe6-ad3c-32fd106b291e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

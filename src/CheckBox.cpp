@@ -101,7 +101,7 @@ void CheckBox::processMouse(const scv::MouseEvent &evt) {
 
    if (!_receivingCallbacks) return;
 
-   if (isInside(evt)) {
+   if (isInside(evt.getPosition())) {
       if (evt.getState() == MouseEvent::click && isFocused())
          setState(!getState());
    }

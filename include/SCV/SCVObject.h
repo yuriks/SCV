@@ -1,5 +1,5 @@
-#ifndef __SCV_COMPONENT_INTERFACE_H__
-#define __SCV_COMPONENT_INTERFACE_H__
+#ifndef __SCV_SCVOBJECT__H__
+#define __SCV_SCVOBJECT__H__
 
 ///////////////////////////////////////////////////////////
 #include "MouseEvent.h"
@@ -10,13 +10,14 @@
 namespace scv {
 
 class ContextMenu;
+class Kernel;
 
 class SCVObject : public std::enable_shared_from_this<SCVObject> {
 public:
    typedef std::shared_ptr<SCVObject> Ptr;
    typedef std::list<Ptr> PtrList;
 
-   enum typeComponent {
+   enum objectType {
       NONE        , panel      , colorPicker , progressBar,
       scrool      , slider     , spinner     , button     ,
       checkBox    , radioButton, toggleButton, textField  ,
@@ -50,25 +51,27 @@ public:
 
    ///////////////////////////////////////////////////////////
    virtual void setRelativePosition(const Point &position);
-   Point getRelativePosition(void) const;
-   Point getAbsolutePosition(void) const;
+   virtual Point getRelativePosition(void) const;
+   virtual Point getAbsolutePosition(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
    virtual int getWidth(void) const;
-   virtual int getHeight(void) const;
+   virtual void setWidth(int width);
+
+   virtual int getHeight(void) const;   
+   virtual void setHeight(int height);
+
    virtual Point getSize(void) const;
-   virtual void setWidth(const int width);
-   virtual void setHeight(const int height);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   bool isOvered(void) const;
-   bool isHolded(void) const;
-   bool isDragging(void) const;
-   bool isResizing(void) const;
-   bool isFocused(void) const;
-   bool isVisible(void);
+   virtual bool isOvered(void) const;
+   virtual bool isHolded(void) const;
+   virtual bool isDragging(void) const;
+   virtual bool isResizing(void) const;
+   virtual bool isFocused(void) const;
+   virtual bool isVisible(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -77,21 +80,22 @@ public:
    virtual void setVisible(bool state);
    ///////////////////////////////////////////////////////////
 
-   void registerContextMenu(ContextMenu *contextMenu);
+   virtual void registerContextMenu(ContextMenu *contextMenu);
 
-   bool isInside(const MouseEvent &evt) const;
-
-   ///////////////////////////////////////////////////////////
-   bool isCallbacksActive(void);
-   void setCallbacksActive(bool state);
-   ///////////////////////////////////////////////////////////
+   virtual bool isInside(const Point &evtPosition) const;
 
    ///////////////////////////////////////////////////////////
+   virtual bool isCallbacksActive(void) const;
+   virtual void setCallbacksActive(bool state);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual Point getPanelTranslate(void) const;
    virtual void setPanelTranslate(const Point &translate);
-   Point getPanelTranslate(void);
+   
 
-   virtual void setPanelScissor(const Scissor::ScissorInfo &scissor);
-   const Scissor::ScissorInfo &getPanelScissor(void);
+   virtual const Scissor::ScissorInfo &getPanelScissor(void);
+   virtual void setPanelScissor(const Scissor::ScissorInfo &scissor);   
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -101,31 +105,33 @@ public:
 
    virtual void display(void) = 0;
 
-   typeComponent getType(void);
+   objectType getType(void) const;
+   void setType(objectType type);
 
-
+   // memory management
+   //////////////////////////////////////////////////////////
    Ptr _parent;
    PtrList _children;
 
+   void deleteChildren(void);
+
+   void setParent(SCVObject::Ptr &parent);
+
+   inline const SCVObject::Ptr &getParent(void) const;
+
+   inline const SCVObject::PtrList &getChildren(void) const;
+
+   void addChild(SCVObject::Ptr &object);
+
+   void removeChild(SCVObject::Ptr &object);
+
+   void pullChildToTop(const SCVObject::PtrList::const_iterator &child);
    ///////////////////////////////////////////////////////////
 
-   void deleteChildren();
-
-   void setParent(SCVObject::Ptr& parent);
-
-   inline const SCVObject::Ptr& getParent() const;
-
-   inline const SCVObject::PtrList& getChildren() const;
-
-   void addChild(SCVObject::Ptr& object);
-
-   void removeChild(SCVObject::Ptr& object);
-
-   void pullChildToTop(const SCVObject::PtrList::const_iterator& child);
-
-   ///////////////////////////////////////////////////////////
  protected:  
-   typeComponent _type;
+   static Kernel *kernel;
+
+   objectType _type;
    static const int s_mouseBacklash = 4;
 
    Scissor::ScissorInfo _panelScissor;
@@ -144,19 +150,18 @@ public:
    int isInsideCorner(const Point &evtPosition);
    // left, right, top, bottom (0,1,2,3)
    int isInsideSide(const Point &evtPosition);
-   void moveComponent(const scv::KeyEvent &evt);
 
    ContextMenu *_contextMenu;
 };
 
-const SCVObject::Ptr& SCVObject::getParent() const {
+const SCVObject::Ptr &SCVObject::getParent(void) const {
    return _parent;
 }
 
-const SCVObject::PtrList& SCVObject::getChildren() const {
+const SCVObject::PtrList &SCVObject::getChildren(void) const {
    return _children;
 }
 
 } // namespace scv
 
-#endif // __SCV_COMPONENT_INTERFACE_H__
+#endif // __SCV_SCVOBJECT__H__

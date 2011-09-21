@@ -4,25 +4,53 @@
 namespace scv {
 
 Canvas::Canvas(const scv::Point &p1, const scv::Point &p2) : ComponentWithoutTexture(p1, p2) {
-   _type = canvas;
-   // none
+   setType(SCVObject::canvas);
 }
 
-Canvas::Canvas(const scv::Point &p1, unsigned int width, unsigned int height) : ComponentWithoutTexture(p1, Point(p1.x+width,p1.y+height)) {
-    _type = canvas;
-   // none
+Canvas::~Canvas(void) {}
+
+void Canvas::onMouseClick(const scv::MouseEvent &evt) {
+   ComponentWithoutTexture::onMouseClick(evt);   
 }
 
-void Canvas::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Canvas::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Canvas::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Canvas::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Canvas::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Canvas::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Canvas::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Canvas::onResizing(void) {/**/}
-void Canvas::onDragging(void) {/**/}
-void Canvas::render(void) {/*none*/}
-void Canvas::update(void) {/*none*/}
+void Canvas::onMouseHold(const scv::MouseEvent &evt) {
+   ComponentWithoutTexture::onMouseHold(evt);
+}
+
+void Canvas::onMouseOver(const scv::MouseEvent &evt) {
+   ComponentWithoutTexture::onMouseOver(evt);
+}
+
+void Canvas::onMouseUp(const scv::MouseEvent &evt) {
+   ComponentWithoutTexture::onMouseUp(evt);
+}
+
+void Canvas::onMouseWheel(const scv::MouseEvent &evt) {
+   ComponentWithoutTexture::onMouseWheel(evt);
+}
+
+void Canvas::onKeyPressed(const scv::KeyEvent &evt) {
+   ComponentWithoutTexture::onKeyPressed(evt);
+}
+
+void Canvas::onKeyUp(const scv::KeyEvent &evt) {
+   ComponentWithoutTexture::onKeyUp(evt);
+}
+
+void Canvas::onResizing(void) {
+   ComponentWithoutTexture::onResizing();
+}
+
+void Canvas::onDragging(void) {
+   ComponentWithoutTexture::onDragging();
+}
+
+void Canvas::render(void) {
+   ComponentWithoutTexture::render();
+}
+
+void Canvas::update(void) {
+   ComponentWithoutTexture::update();
+}
 
 } // namespace scv
