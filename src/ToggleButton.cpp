@@ -69,7 +69,7 @@ void ToggleButton::display(void) {
    _cTexture->disable();
 
 
-   scissor->pushScissor(Scissor::ScissorInfo(getAbsolutePosition().x + 3, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth() - 6, getHeight()));
+   scissor->pushScissor(Scissor::Info(getAbsolutePosition().x + 3, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth() - 6, getHeight()));
    Label::display(getAbsolutePosition().x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , getAbsolutePosition().y + getHeight() / 2 - 6);
    scissor->popScissor();
 }

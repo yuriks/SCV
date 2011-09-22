@@ -77,7 +77,8 @@ void Spinner::display(void) {
    Point relPosition = getRelativePosition();
    Point currPosition = getAbsolutePosition();
 
-   _textField->setPanelTranslate(currPosition - relPosition);
+   //REVIEW
+   //_textField->setPanelTranslate(currPosition - relPosition);
 
    _textField->display();
 

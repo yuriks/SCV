@@ -94,7 +94,8 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
                _overClose = false;
                if (evt.getState() == MouseEvent::click) {
                   _isDragging = true;
-                  _clicked = (evtPosition - currPosition) + _cTranslate;
+                  //HACK
+                  //_clicked = (evtPosition - currPosition) + _cTranslate;
                   kernel->requestComponentFocus(this);
                }
             }
@@ -171,7 +172,7 @@ void InternalFrame::display(void) {
 
    _panel->display();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
+   scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
    Label::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - font->getHeight()) / 2 + 2, _title);
    scissor->popScissor();
 }

@@ -48,7 +48,7 @@ void ComponentWithoutTexture::display(void) {
 
    glViewport(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight()));
+   scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight()));
    glPushAttrib(GL_ALL_ATTRIB_BITS);
 
    glClearColor(1.f, 1.f, 1.f, 1.f);

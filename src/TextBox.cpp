@@ -69,7 +69,7 @@ void TextBox::display(void) {
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y) + 2, getWidth(), getHeight() - 4));
+   scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y) + 2, getWidth(), getHeight() - 4));
    for (int i = _firstLine; i < (_nLines+_firstLine) && i < (_lineIndex.size() - 1); i++)
       Label::display(currPosition.x + s_borderWidth / 2 , currPosition.y + 1 + s_borderHeight + (i - _firstLine) * s_lineSpacing, _str.substr(_lineIndex[i], _lineIndex[i + 1] - _lineIndex[i]), _selectStart - _lineIndex[i], _selectEnd - _lineIndex[i]);
 
@@ -241,7 +241,7 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
    if(!_receivingCallbacks) return;
    _refreshCursor = false;
 
-   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() < (getSize() + getAbsolutePosition()) && _panelScissor.isInside(evt.getInversePosition()) &&
+   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() < (getSize() + getAbsolutePosition()) && getParentScissor().isInside(evt.getInversePosition()) &&
          kernel->requestMouseUse(this)) {
       cursor->setGlutCursor(GLUT_CURSOR_TEXT);
    }
@@ -311,7 +311,7 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
          }
       }
    }
-   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() <= (getSize() + getAbsolutePosition()) && _panelScissor.isInside(evt.getInversePosition())) {
+   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() <= (getSize() + getAbsolutePosition()) && getParentScissor().isInside(evt.getInversePosition())) {
       if (evt.doubleClick()) {
 
          if (_currChar==_str.size()-1 || _str.size()==0 || _currChar==-1)

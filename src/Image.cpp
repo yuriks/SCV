@@ -61,7 +61,7 @@ void Image::display(void) {
 
    Point currPosition = getAbsolutePosition();
 
-   Scissor::ScissorInfo scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
+   Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
    scissor->pushScissor(scissorInfo);
 
    _cTexture->enable();

@@ -6,6 +6,7 @@ namespace scv {
 
 Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
    _type = panel;
+   createTexture();
 }
 
 Panel::~Panel(void) {}
@@ -19,9 +20,7 @@ void Panel::display(void) {
 
    Point currPosition = getAbsolutePosition();
 
-   Scissor::ScissorInfo scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
-
-   scissor->pushScissor(scissorInfo);
+   scissor->pushScissor(getScissor());
 
    _cTexture->enable();
    scheme->applyColor(ColorScheme::panel);
@@ -66,58 +65,32 @@ void Panel::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void Panel::onResizing(void) {/**/}
 void Panel::onDragging(void) {/**/}
 
-//REVIEW
-void Panel::addChild(Component *object) {
-   static Kernel *kernel = Kernel::getInstance();
-
-   object->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
-   object->setPanelTranslate(getAbsolutePosition());
-
-   ComponentWithTexture::addChild(object);
-}
-
-void Panel::setRelativePosition(const Point &position) {
-   Component::setRelativePosition(position);
-   refresh(true, true);
-}
-
 void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
    if (isDragging() || isResizing()) {
       Component::processMouse(evt);
-      refresh(true, true);
    } else {
       Component *focusedComponent = kernel->getFocusedComponent();
-      List::const_reverse_iterator itUp = getChildren().rbegin();
+      Component *child = NULL; 
 
-      Scissor::ScissorInfo scissor;
+      Scissor::Info scissor;
       if (kernel->scissorNeedRefresh())
-         scissor = Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
+         scissor = Scissor::Info(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
-      //REVIEW
       for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
-         if (kernel->scissorNeedRefresh())
-            (*iter)->setPanelScissor(scissor);
-
          (*iter)->processMouse(evt);
          if (focusedComponent != kernel->getFocusedComponent()) {
             focusedComponent = kernel->getFocusedComponent();
-            itUp = iter;
+            child = (*iter);
          }
       }
 
-      //HACK
-      /*
-      // swap clicked window to top
-      if (itUp != getChildren().rbegin() && (*itUp)->isDragging()) {
-         Component::Ptr removed_child = (*itUp);
-         _children.remove(*itUp);
-         _children.push_back(removed_child);
+      if (child != NULL && child->isDragging()) {
+         pullChildToTop(child);
       } else {
          Component::processMouse(evt);
-      }
-      /**/
+      }      
    }
 }
 
@@ -127,35 +100,6 @@ void Panel::processKey(const scv::KeyEvent &evt) {
    //REVIEW
    for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
-   }
-}
-
-void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
-   static Kernel *kernel = Kernel::getInstance();
-   Component::setPanelScissor(scissor);
-
-   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
-      (*iter)->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
-   }
-}
-
-void Panel::setPanelTranslate(const Point &translate) {
-   Component::setPanelTranslate(translate);
-
-   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
-      (*iter)->setPanelTranslate(getAbsolutePosition());
-   }
-}
-
-void Panel::refresh(bool cScissor, bool cTranslate) {
-   static Kernel *kernel = Kernel::getInstance();
-
-   Scissor::ScissorInfo scissor(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
-
-   //REVIEW
-   for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
-      if (cScissor) (*iter)->setPanelScissor(scissor);
-      if (cTranslate) (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
 

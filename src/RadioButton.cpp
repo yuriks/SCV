@@ -46,7 +46,7 @@ void RadioButton::display(void) {
       }
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() + font->getStringLength(Label::getString()) + 3, getHeight()));
+   scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() + font->getStringLength(Label::getString()) + 3, getHeight()));
 
    Label::display(currPosition.x + 12 + 3, currPosition.y - 1);
 

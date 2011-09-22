@@ -14,9 +14,14 @@ int main(int argc, char* argv[]) {
    
    
    scv::Panel *panel = new scv::Panel(scv::Point(10,10), scv::Point(220,220));
+   panel->setDraggable(true);
+   panel->setResizable(true);
    kernel->addComponent(panel);
 
-   panel->addChild(new scv::Panel(scv::Point(10,10), scv::Point(220,220)));
+   scv::Panel *cPanel = new scv::Panel(scv::Point(10,10), scv::Point(220,220));
+   cPanel->setDraggable(true);
+   cPanel->setResizable(true);
+   panel->addChild(cPanel);
 
    //kernel->removeComponent(panel);
    //delete panel;

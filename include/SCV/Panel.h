@@ -27,15 +27,6 @@ public:
    virtual void onDragging(void);
    ///////////////////////////////////////////////////////////
 
-   virtual void addChild(Component *object);
-
-   ///////////////////////////////////////////////////////////
-   virtual void setPanelScissor(const Scissor::ScissorInfo &scissor);
-
-   virtual void setRelativePosition(const Point &position);
-   virtual void setPanelTranslate(const Point &translate);
-   ///////////////////////////////////////////////////////////
-
    ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
@@ -43,7 +34,6 @@ public:
 
    virtual void display(void);
 protected:
-   void refresh(bool cScissor, bool cTranslate);
    virtual void createTexture(void);
 };
 

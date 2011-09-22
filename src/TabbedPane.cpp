@@ -41,7 +41,8 @@ void TabbedPane::addPanel(Panel *panel, const std::string &label) {
 
    Point currPosition = getRelativePosition();
 
-   panel->setPanelTranslate(Point(currPosition.x - panel->getAbsolutePosition().x, currPosition.y - panel->getAbsolutePosition().y + s_barHeight));
+   //REVIEW
+   //panel->setPanelTranslate(Point(currPosition.x - panel->getAbsolutePosition().x, currPosition.y - panel->getAbsolutePosition().y + s_barHeight));
 
    panel->setWidth(getWidth());
    panel->setHeight(getHeight() - s_barHeight);
@@ -157,7 +158,7 @@ void TabbedPane::display(void) {
 
    Point currPosition = getAbsolutePosition();
 
-   Scissor::ScissorInfo scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
+   Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
    scissor->pushScissor(scissorInfo);
 
    _cTexture->enable();
@@ -270,8 +271,9 @@ void TabbedPane::createTexture(void) {
 void TabbedPane::refreshPosition(int tab) {
    if (tab < 0 || tab >= _tabs.size()) return;
    Point currPosition = getAbsolutePosition();
-   _tabs[tab]->setPanelTranslate(Point(0,0));
-   _tabs[tab]->setPanelTranslate(Point(currPosition.x - _tabs[tab]->getAbsolutePosition().x, currPosition.y - _tabs[tab]->getAbsolutePosition().y + s_barHeight));
+   //REVIEW
+   //_tabs[tab]->setPanelTranslate(Point(0,0));
+   //_tabs[tab]->setPanelTranslate(Point(currPosition.x - _tabs[tab]->getAbsolutePosition().x, currPosition.y - _tabs[tab]->getAbsolutePosition().y + s_barHeight));
 }
 
 void TabbedPane::refreshScissor(void) {
@@ -280,7 +282,7 @@ void TabbedPane::refreshScissor(void) {
    Point currPosition = getAbsolutePosition();
    _tabs[_currSelectedTab]->setWidth(getWidth());
    _tabs[_currSelectedTab]->setHeight(getHeight()-s_barHeight);
-   _tabs[_currSelectedTab]->setPanelScissor(Scissor::ScissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight()));
+   //_tabs[_currSelectedTab]->setPanelScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight()));
 }
 
 

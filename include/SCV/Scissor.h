@@ -9,10 +9,10 @@ namespace scv {
 class Scissor : public Singleton<Scissor> {
 friend class Singleton<Scissor>;
 public:
-   class  ScissorInfo {
+   class  Info {
    public:
-      ScissorInfo(void);
-      ScissorInfo(GLint x, GLint y, GLsizei width, GLsizei height);
+      Info(void);
+      Info(GLint x, GLint y, GLsizei width, GLsizei height);
 
       bool isInside(const Point &p) const;
       inline bool isValid(void) const {
@@ -27,7 +27,7 @@ public:
          mx += p.x; my += p.y;
       }
 
-      friend std::ostream& operator<<(std::ostream& stream, const ScissorInfo& rhs) {
+      friend std::ostream& operator<<(std::ostream& stream, const Info& rhs) {
           return (stream << "X: " << rhs.mx << " Y: " << rhs.my << " Width: " << rhs.mwidth << " Height: " << rhs.mheight);
       }
 
@@ -35,15 +35,15 @@ public:
       GLsizei mwidth, mheight;
    };
 
-   void pushScissor(const ScissorInfo &scissor);
+   void pushScissor(const Info &scissor);
    void popScissor(void);
-   const ScissorInfo& currentScissor(void) const;
+   const Info& currentScissor(void) const;
 
 private:
    Scissor(void);
    ~Scissor(void);
 
-   std::deque<ScissorInfo> _scissorStack;
+   std::deque<Info> _scissorStack;
 };
 
 } // namespace scv

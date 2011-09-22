@@ -92,7 +92,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
    }
 
 
-   Scissor::ScissorInfo scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border - 1), getWidth() - s_border - 1, getHeight() - s_border - 1);
+   Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border - 1), getWidth() - s_border - 1, getHeight() - s_border - 1);
    if (/*_receivingCallbacks &&*/ scissorInfo.isInside(evt.getInversePosition()) && _draggingBar == BUT_NONE && _panel != NULL) {
       _panel->setDraggable(false);
       _panel->processMouse(evt);
@@ -329,7 +329,7 @@ void ScrollPane::display(void) {
    /* PANEL                                                                */
    /************************************************************************/
    if(_panel != NULL) {
-      Scissor::ScissorInfo scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border), getWidth() - s_border, getHeight() - s_border);
+      Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border), getWidth() - s_border, getHeight() - s_border);
       scissor->pushScissor(scissorInfo);
       _panel->display();
       scissor->popScissor();
@@ -422,7 +422,6 @@ Panel * ScrollPane::getPanel(void) {
 }
 
 void ScrollPane::setPanelTranslate(const Point &translate) {
-   Component::setPanelTranslate(translate);
    refreshContainerPosition();
 }
 

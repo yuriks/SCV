@@ -106,7 +106,7 @@ void ComboBox::display(void) {
 
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 22, getHeight()));
+   scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 22, getHeight()));
 
    Label::display(currPosition.x + 4, currPosition.y + getHeight() / 2 - 6);
 

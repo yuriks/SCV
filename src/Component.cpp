@@ -9,7 +9,7 @@ namespace scv {
 
 Kernel *Component::kernel = Kernel::getInstance();
 
-Component::Component(const scv::Point &p1, const scv::Point &p2) : _clicked(0,0), _cTranslate(0,0), _resizing(4, false) {
+Component::Component(const scv::Point &p1, const scv::Point &p2) : _clicked(0,0), _resizing(4, false) {
 
    if (p1 > p2) {
       _p1 = p2;
@@ -25,6 +25,7 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _clicked(0,0)
       _p2 = p2;
    }
 
+   
    _receivingCallbacks = true;
 
    _isDraggable = _isDragging = false;
@@ -62,10 +63,10 @@ void Component::setRelativePosition(const Point &position) {
    Point diff = position - _p1;
    _p1 += diff;
    _p2 += diff;
-
    onDragging();
 }
 
+/*
 void Component::setPanelTranslate(const Point &translate) {
    _cTranslate = translate;
    onDragging();
@@ -74,9 +75,14 @@ void Component::setPanelTranslate(const Point &translate) {
 Point Component::getPanelTranslate(void) const {
    return _cTranslate;
 }
+*/
 
 Point Component::getAbsolutePosition(void) const {
-   return _p1 + _cTranslate;
+   if (getParent() == NULL) {
+      return _p1;
+   } else {
+      return _p1 + getParent()->getAbsolutePosition();
+   }
 }
 
 int Component::getWidth(void) const {
@@ -103,14 +109,6 @@ void Component::setHeight(const int height) {
 
    kernel->scissorNeedRefresh();
    onResizing();
-}
-
-void Component::setPanelScissor(const Scissor::ScissorInfo &scissor) {
-   _panelScissor = scissor;
-}
-
-const Scissor::ScissorInfo &Component::getPanelScissor(void) {
-   return _panelScissor;
 }
 
 bool Component::isOvered(void) const {
@@ -156,10 +154,12 @@ void Component::registerContextMenu(ContextMenu *contextMenu) {
 }
 
 bool Component::isInside(const Point &evtPosition) const {
-   if (_isVisible && _panelScissor.isInside(evtPosition.inverse())) {
+   if (_isVisible && getParentScissor().isInside(evtPosition.inverse())) {
       Point currPosition = getAbsolutePosition();
-      if (evtPosition.x >= currPosition.x && evtPosition.x < currPosition.x + getWidth() &&
-            evtPosition.y >= currPosition.y && evtPosition.y < currPosition.y + getHeight()) {
+      if (evtPosition.x >= currPosition.x &&
+            evtPosition.x < (currPosition.x + getWidth()) &&
+            evtPosition.y >= currPosition.y &&
+            evtPosition.y < (currPosition.y + getHeight())) {
          return true;
       }
    }
@@ -178,10 +178,7 @@ void Component::processMouse(const scv::MouseEvent &evt) {
       std::fill(_resizing.begin(), _resizing.end(), false);
       _isResizing = false;
       kernel->unlockMouseUse(this);
-   } else if (_isResizable && _isResizing && evt.getState() == MouseEvent::hold && evt.getButton() == MouseEvent:: left) {
-      /*
-         setWidth and setHeight already call onResizing() callback
-      */
+   } /*else if (_isResizable && _isResizing && evt.getState() == MouseEvent::hold && evt.getButton() == MouseEvent:: left) {
       if (_isHResizable && _resizing[0]) {
          if (evtPosition.x - _clicked.x > _p2.x - _minSize.x) _p1.x = _p2.x - _minSize.x;
          else _p1.x = evtPosition.x - _clicked.x;
@@ -212,9 +209,9 @@ void Component::processMouse(const scv::MouseEvent &evt) {
          else if (_resizing[2]) cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
          else if (_resizing[3]) cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
       }
-   }
-
-   if (_panelScissor.isInside(evtInversePosition) && !isDragging() && _isResizable) {
+   }*/
+   /*
+   if (getParentScissor().isInside(evtInversePosition) && !isDragging() && _isResizable) {
       // top left corner
       if (_isVResizable && _isHResizable && isInsideCorner(evtPosition) == 0 && kernel->requestMouseUse(this)) {
          if (!_isResizing) cursor->setGlutCursor(GLUT_CURSOR_TOP_LEFT_CORNER);
@@ -290,12 +287,13 @@ void Component::processMouse(const scv::MouseEvent &evt) {
          kernel->requestComponentFocus(this);
          return;
       }
-   }
+   }*/
 
-   
+   std::cout << _clicked << std::endl;
    if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
       if (evt.getState() == MouseEvent::wheelup || evt.getState() == MouseEvent::wheeldown) {
          if (_receivingCallbacks) onMouseWheel(evt);
+
       } else if (evt.getState() == MouseEvent::up) {
          kernel->unlockMouseUse(this);
          _isDragging = false;
@@ -304,10 +302,13 @@ void Component::processMouse(const scv::MouseEvent &evt) {
          if (_contextMenu != NULL && evt.getButton() == MouseEvent::right) {
             menu->activeMenu(_contextMenu, evtPosition);
          }
+
       } else if (evt.getState() == MouseEvent::hold && isFocused()) {
          kernel->requestComponentFocus(this);
          if (isFocused()) {
             if (_isDragging) {
+               std::cout << evtPosition - _clicked << std::endl;
+               
                setRelativePosition(evtPosition - _clicked);
                cursor->setGlutCursor(GLUT_CURSOR_CYCLE);
             }
@@ -324,12 +325,13 @@ void Component::processMouse(const scv::MouseEvent &evt) {
             _isOvered = true;
             onMouseOver(evt - currPosition);
          }
+
       } else if (evt.getState() == MouseEvent::click) {
          kernel->requestComponentFocus(this);
          if (evt.getButton() == MouseEvent::left) {
             if (_isDraggable && isFocused()) {
                _isDragging = true;
-               _clicked = (evtPosition - currPosition) + _cTranslate;
+               _clicked = evtPosition;//(evtPosition - currPosition) + _cTranslate;
                kernel->lockMouseUse(this);
             }
             menu->closeAllMenus();
@@ -347,8 +349,8 @@ void Component::processMouse(const scv::MouseEvent &evt) {
       } else if (evt.getState() == MouseEvent::motion) {
          _isOvered = false;
       } else if (evt.getState() == MouseEvent::hold) {
-         if (_isDragging && _panelScissor.isInside(evt.getInversePosition()) && isFocused()) {
-            setRelativePosition(evtPosition - _clicked);
+         if (_isDragging && getParentScissor().isInside(evt.getInversePosition()) && isFocused()) {
+            //setRelativePosition(evtPosition - _clicked);
             if (_receivingCallbacks) _isHolded = true;
             cursor->setGlutCursor(GLUT_CURSOR_CYCLE);
          } else if (_isDragging && _receivingCallbacks) {
@@ -472,6 +474,18 @@ void Component::pullChildToTop(Component *child) {
 
 bool Component::hasChild(Component *child) const {
    return std::find(_children.begin(), _children.end(), child) != _children.end();
+}
+
+Scissor::Info Component::getScissor(void) const {
+   return Scissor::Info(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
+}
+
+Scissor::Info Component::getParentScissor(void) const {
+   if (getParent() == NULL) {
+      return Scissor::Info();
+   } else {
+      return getParent()->getScissor();
+   }
 }
 
 } // namespace scv

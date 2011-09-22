@@ -86,11 +86,15 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
+   /*
    virtual Point getPanelTranslate(void) const;
-   virtual void setPanelTranslate(const Point &translate);   
+   virtual void setPanelTranslate(const Point &translate);
+   */
+   ///////////////////////////////////////////////////////////
 
-   virtual const Scissor::ScissorInfo &getPanelScissor(void);
-   virtual void setPanelScissor(const Scissor::ScissorInfo &scissor);   
+   ///////////////////////////////////////////////////////////
+   virtual Scissor::Info getParentScissor(void) const;
+   virtual Scissor::Info getScissor(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -131,8 +135,9 @@ protected:
    objectType _type;
    static const int s_mouseBacklash = 4;
 
-   Scissor::ScissorInfo _panelScissor;
-   Point _p1, _p2, _cTranslate, _clicked, _minSize;
+   //Scissor::Info _panelScissor;
+   //_cTranslate
+   Point _p1, _p2, _clicked, _minSize;
 
    bool _receivingCallbacks;
    bool _isResizable, _isResizing;

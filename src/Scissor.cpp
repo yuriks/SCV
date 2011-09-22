@@ -9,25 +9,23 @@ Scissor::Scissor(void) {/**/}
 
 Scissor::~Scissor(void) {/**/}
 
-Scissor::ScissorInfo::ScissorInfo(void) {
+Scissor::Info::Info(void) {
    mx = my = 0;
    mwidth = -1;
    mheight = -1;
 }
 
-Scissor::ScissorInfo::ScissorInfo(GLint x, GLint y, GLsizei width, GLsizei height) {
+Scissor::Info::Info(GLint x, GLint y, GLsizei width, GLsizei height) {
    mx = x; my = y;
    mwidth = width; mheight = height;
 }
 
-void Scissor::pushScissor(const ScissorInfo &scissor) {
+void Scissor::pushScissor(const Info &scissor) {
    if (!scissor.isValid()) return;
 
    _scissorStack.push_front(scissor);
 
    if (_scissorStack.size() >=2 ) {
-
-
       Point scissor11 = Point(_scissorStack[0].mx,_scissorStack[0].my);
       Point scissor12 = Point(_scissorStack[0].mx + _scissorStack[0].mwidth,_scissorStack[0].my + _scissorStack[0].mheight);
       Point scissor21 = Point(_scissorStack[1].mx,_scissorStack[1].my);
@@ -39,34 +37,6 @@ void Scissor::pushScissor(const ScissorInfo &scissor) {
       _scissorStack[0].my = scissor11.y;
       _scissorStack[0].mwidth = scissor12.x - scissor11.x;
       _scissorStack[0].mheight = scissor12.y - scissor11.y;
-
-      /*
-
-      int tx1 = _scissorStack[0].mx;
-      int ty1 = _scissorStack[0].my;
-
-      int rx1 = _scissorStack[1].mx;
-      int ry1 = _scissorStack[1].my;
-
-      int tx2 = tx1 + _scissorStack[0].mwidth;
-      int ty2 = ty1 + _scissorStack[0].mheight;
-
-      int rx2 = rx1 + _scissorStack[1].mwidth;
-      int ry2 = ry1 + _scissorStack[1].mheight;
-
-      if (tx1 < rx1) tx1 = rx1;
-      if (ty1 < ry1) ty1 = ry1;
-      if (tx2 > rx2) tx2 = rx2;
-      if (ty2 > ry2) ty2 = ry2;
-      if (tx2 < tx1) tx1 = tx2;
-      if (ty2 < ty1) ty1 = ty2;
-
-      _scissorStack[0].mx = tx1;
-      _scissorStack[0].my = ty1;
-      _scissorStack[0].mheight = ty2 - ty1;
-      _scissorStack[0].mwidth = tx2 - tx1;
-      */
-
    }
 
    glEnable(GL_SCISSOR_TEST);
@@ -83,13 +53,13 @@ void Scissor::popScissor(void) {
    }
 }
 
-const Scissor::ScissorInfo& Scissor::currentScissor(void) const {
-   static const ScissorInfo scissorInf;
+const Scissor::Info& Scissor::currentScissor(void) const {
+   static const Info scissorInf;
    return _scissorStack.size() ? _scissorStack[0] : scissorInf;
 }
 
 
-bool Scissor::ScissorInfo::isInside(const Point &p) const {
+bool Scissor::Info::isInside(const Point &p) const {
    return ((mheight == -1 || mwidth == -1) || (p.x >= mx && p.x <= mx + mwidth && p.y >= my && p.y <= my + mheight))? true : false;
 }
 

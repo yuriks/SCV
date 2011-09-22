@@ -45,7 +45,7 @@ void TextField::display(void) {
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
+   scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
    Label::display(currPosition.x + s_borderWidth / 2 - _deslocString, currPosition.y + 1 + s_borderHeight, _str, _selectStart, _selectEnd);
    scissor->popScissor();
 
@@ -137,7 +137,7 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
    if (isDragging())
       cursor->setGlutCursor(GLUT_CURSOR_CYCLE);
 
-   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() <= (getSize() + getAbsolutePosition()) && _panelScissor.isInside(evt.getInversePosition())) {
+   if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() <= (getSize() + getAbsolutePosition()) && getParentScissor().isInside(evt.getInversePosition())) {
       if (evt.doubleClick()) {
 
          if (_currChar==_str.size()-1 || _str.size()==0 || _currChar==-1)

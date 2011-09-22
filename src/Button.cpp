@@ -70,7 +70,7 @@ void Button::display(void) {
 
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::ScissorInfo(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
+   scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
 
    Label::display(currPosition.x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , currPosition.y + getHeight() / 2 - 6);
 
