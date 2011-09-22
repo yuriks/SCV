@@ -4,7 +4,7 @@
 
 
 int main(int argc, char* argv[]) {
-   /*
+   
    using namespace scv;
    static Kernel *kernel = Kernel::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -14,18 +14,17 @@ int main(int argc, char* argv[]) {
    
    
    scv::Panel *panel = new scv::Panel(scv::Point(10,10), scv::Point(220,220));
-   kernel->addObject(SCVObject::Ptr(panel));
+   kernel->addComponent(panel);
 
-   for (int i = 0; i < 10000; i++) {
-      panel->addObject(SCVObject::Ptr(new scv::Panel(scv::Point(10,10), scv::Point(220,220))));
-   }
+   panel->addChild(new scv::Panel(scv::Point(10,10), scv::Point(220,220)));
 
-   kernel->deleteObject(panel->shared_from_this());
+   //kernel->removeComponent(panel);
+   //delete panel;
 
-   kernel->registerContextMenu(new InterfaceDesign(NULL));
+   //kernel->registerContextMenu(new InterfaceDesign(NULL));
    //////////////////////////
    kernel->run();
-   */  
+   
 
    return 0;
 }

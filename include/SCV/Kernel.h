@@ -1,13 +1,7 @@
-/*!
-\file       Kernel.h
-\brief      Implementation of the SCV Kernel
-\author     SCV Team
-*/
-
 #ifndef __SCV_KERNEL_H__
 #define __SCV_KERNEL_H__
 
-#ifndef DOXYGEN_SKIP_THIS
+///////////////////////////////////////////////////////////
 #include "Singleton.h"
 #include "FontTahoma.h"
 
@@ -28,18 +22,9 @@
 #include "ColorScheme.h"
 
 #include "FreeImage.h"
-#endif // DOXYGEN_SKIP_THIS
+///////////////////////////////////////////////////////////
 
 namespace scv {
-
-/*! \defgroup util Util */
-/*! \defgroup widgets Widgets */
-/*! \defgroup internal Internal Classes */
-
-
-/*! The main class of SCV
- *  This class controls all components, all interactions and all OpenGL interface.
- */
 
 class Kernel : public Singleton<Kernel> {
 friend class Singleton<Kernel>;
@@ -118,8 +103,8 @@ public:
 
    ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
-   void addObject(Component::Ptr &object);
-   void deleteObject(Component::Ptr &object);   
+   void addComponent(Component *object);
+   void removeComponent(Component *object);   
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -191,7 +176,7 @@ private:
 
    textureFilter _filterType;
 
-   typedef std::list<std::shared_ptr<Component>> ComponentsList;
+   typedef std::list<Component*> ComponentsList;
    ComponentsList _objects;
    
    Component *_focusedComponent;

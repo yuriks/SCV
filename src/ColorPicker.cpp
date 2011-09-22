@@ -21,16 +21,16 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _btPicker = new EyeDropper(this, Point(285,106), Point(285+69,126), "EyeDropper");
 
    _saturation = 100;
-   Panel::addObject(Component::Ptr(_rgbs[0]));
-   Panel::addObject(Component::Ptr(_rgbs[1]));
-   Panel::addObject(Component::Ptr(_rgbs[2]));
-   Panel::addObject(Component::Ptr(_rgbs[3]));
-   Panel::addObject(Component::Ptr(_btPicker));
+   Panel::addChild(_rgbs[0]);
+   Panel::addChild(_rgbs[1]);
+   Panel::addChild(_rgbs[2]);
+   Panel::addChild(_rgbs[3]);
+   Panel::addChild(_btPicker);
 
-   Panel::addObject(Component::Ptr(new Label(Point(8 ,109),"R:")));
-   Panel::addObject(Component::Ptr(new Label(Point(78 ,109),"G:")));
-   Panel::addObject(Component::Ptr(new Label(Point(148,109),"B:")));
-   Panel::addObject(Component::Ptr(new Label(Point(218,109),"S:")));
+   Panel::addChild(new Label(Point(  8, 109), "R:"));
+   Panel::addChild(new Label(Point( 78, 109), "G:"));
+   Panel::addChild(new Label(Point(148, 109), "B:"));
+   Panel::addChild(new Label(Point(218, 109), "S:"));
 
    // initial color
    _currentColorPosition = Point(0, MatrixTemplate<ColorRGBA>::getHeight() - 1);

@@ -13,22 +13,19 @@ public:
    ComponentWithTexture(const scv::Point &p1, const scv::Point &p2);
    virtual ~ComponentWithTexture(void);
 
+   //SCVCallbacks
    ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseHold(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseOver(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseUp(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseWheel(const scv::MouseEvent &evt) = 0;
-   ///////////////////////////////////////////////////////////
+   virtual void onMouseClick(const scv::MouseEvent &evt);
+   virtual void onMouseHold (const scv::MouseEvent &evt);
+   virtual void onMouseOver (const scv::MouseEvent &evt);
+   virtual void onMouseUp   (const scv::MouseEvent &evt);
+   virtual void onMouseWheel(const scv::MouseEvent &evt);
 
-   ///////////////////////////////////////////////////////////
-   virtual void onKeyPressed(const scv::KeyEvent &evt) = 0;   
-   virtual void onKeyUp(const scv::KeyEvent &evt) = 0;
-   ///////////////////////////////////////////////////////////
+   virtual void onKeyPressed(const scv::KeyEvent &evt);
+   virtual void onKeyUp     (const scv::KeyEvent &evt);
 
-   ///////////////////////////////////////////////////////////
-   virtual void onResizing(void) = 0;
-   virtual void onDragging(void) = 0;
+   virtual void onResizing(void);
+   virtual void onDragging(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -55,6 +52,13 @@ public:
    ///////////////////////////////////////////////////////////
 
    virtual void setRelativePosition(const Point &position);
+
+
+   //Memory Management
+   ///////////////////////////////////////////////////////////
+   virtual void addChild(Component *object);
+   virtual void removeChild(Component *object);
+   ///////////////////////////////////////////////////////////
 
 protected:
    virtual void createTexture(void) = 0;

@@ -474,9 +474,8 @@ void Kernel::cbDisplay(void) {
    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glEnable(GL_BLEND);
 
-   //REVIEW
    for (ComponentsList::iterator iter = kernel->_objects.begin(); iter != kernel->_objects.end(); ++iter) {
-      if (kernel->willAppearOnScreen(iter->get()))
+      if (kernel->willAppearOnScreen(*iter))
          (*iter)->display();
    }
 
@@ -487,24 +486,19 @@ void Kernel::cbDisplay(void) {
    glutSwapBuffers();
 }
 
-void Kernel::addObject(Component::Ptr &object) {
+void Kernel::addComponent(Component *object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) == Kernel::getInstance()->_objects.end()
          && object->getParent() == NULL) {
-      //REVIEW
       _objects.push_back(object);
    }
 }
 
-void Kernel::deleteObject(Component::Ptr &object) {
+void Kernel::removeComponent(Component *object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) != Kernel::getInstance()->_objects.end()) {
-      object->deleteChildren();
       Kernel::getInstance()->_objects.remove(object);      
    } else if (object->getParent() != NULL) {
-      object->deleteChildren();
       object->getParent()->removeChild(object);
-   } else {
-      object->deleteChildren();
-   }   
+   }
 }
 
 bool Kernel::requestComponentFocus(Component* component) {

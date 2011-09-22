@@ -1,21 +1,9 @@
-/*!
-\file       MouseEvent.h
-\brief      Implementation of the Mouse Event.
-\author     SCV Team
-*/
-
 #ifndef __SCV_MOUSE_EVENT_H__
 #define __SCV_MOUSE_EVENT_H__
 
-#ifndef DOXYGEN_SKIP_THIS
 #include "Point.h"
-#endif // DOXYGEN_SKIP_THIS
 
 namespace scv {
-
-/*! A class that store all interaction with the mouse in a object.
- \ingroup internal
-*/
 
 class MouseEvent {
 public:

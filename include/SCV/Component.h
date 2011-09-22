@@ -1,9 +1,9 @@
-#ifndef __SCV_SCVOBJECT__H__
-#define __SCV_SCVOBJECT__H__
+#ifndef __SCV_COMPONENT__H__
+#define __SCV_COMPONENT__H__
 
 ///////////////////////////////////////////////////////////
-#include "MouseEvent.h"
-#include "KeyEvent.h"
+#include "SCVCallbacks.h"
+#include "Point.h"
 #include "Scissor.h"
 ///////////////////////////////////////////////////////////
 
@@ -12,9 +12,7 @@ namespace scv {
 class ContextMenu;
 class Kernel;
 
-
-
-class Component {
+class Component : public SCVCallbacks {
 public:
    typedef std::list<Component*> List;
 
@@ -32,20 +30,17 @@ public:
    virtual ~Component(void);
    ///////////////////////////////////////////////////////////
 
+   //SCVCallbacks
    ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseHold(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseOver(const scv::MouseEvent &evt) = 0;   
-   virtual void onMouseUp(const scv::MouseEvent &evt) = 0;   
+   virtual void onMouseClick(const scv::MouseEvent &evt) = 0;
+   virtual void onMouseHold (const scv::MouseEvent &evt) = 0;
+   virtual void onMouseOver (const scv::MouseEvent &evt) = 0;
+   virtual void onMouseUp   (const scv::MouseEvent &evt) = 0;
    virtual void onMouseWheel(const scv::MouseEvent &evt) = 0;
-   ///////////////////////////////////////////////////////////
+      
+   virtual void onKeyPressed(const scv::KeyEvent &evt) = 0;
+   virtual void onKeyUp     (const scv::KeyEvent &evt) = 0;
    
-   ///////////////////////////////////////////////////////////
-   virtual void onKeyPressed(const scv::KeyEvent &evt) = 0;   
-   virtual void onKeyUp(const scv::KeyEvent &evt) = 0;
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
    virtual void onResizing(void) = 0;
    virtual void onDragging(void) = 0;
    ///////////////////////////////////////////////////////////
@@ -92,8 +87,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    virtual Point getPanelTranslate(void) const;
-   virtual void setPanelTranslate(const Point &translate);
-   
+   virtual void setPanelTranslate(const Point &translate);   
 
    virtual const Scissor::ScissorInfo &getPanelScissor(void);
    virtual void setPanelScissor(const Scissor::ScissorInfo &scissor);   
@@ -106,28 +100,32 @@ public:
 
    virtual void display(void) = 0;
 
+   ///////////////////////////////////////////////////////////
    objectType getType(void) const;
    void setType(objectType type);
+   ///////////////////////////////////////////////////////////
 
-   // memory management
-   //////////////////////////////////////////////////////////
-   Component *_parent;
-   List _children;
-
+   //Memory Management
+   ///////////////////////////////////////////////////////////
    void setParent(Component *parent);   
-   inline const Component *getParent(void) const;
-   
+   inline Component *getParent(void) const;
+
    inline const Component::List &getChildren(void) const;
 
-   void addChild(Component *object);
-   void removeChild(Component *object);
+   virtual void addChild(Component *object);
+   virtual void removeChild(Component *object);
 
    void pullChildToTop(Component *child);
 
    bool hasChild(Component *child) const;
    ///////////////////////////////////////////////////////////
 
- protected:  
+protected:  
+   ///////////////////////////////////////////////////////////
+   Component *_parent;
+   Component::List _children;
+   ///////////////////////////////////////////////////////////
+
    static Kernel *kernel;
 
    objectType _type;
@@ -153,7 +151,7 @@ public:
    ContextMenu *_contextMenu;
 };
 
-const Component *Component::getParent(void) const {
+Component *Component::getParent(void) const {
    return _parent;
 }
 
@@ -163,4 +161,4 @@ const Component::List &Component::getChildren(void) const {
 
 } // namespace scv
 
-#endif // __SCV_SCVOBJECT__H__
+#endif // __SCV_COMPONENT__H__

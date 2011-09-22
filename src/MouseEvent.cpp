@@ -6,14 +6,10 @@
 
 namespace scv {
 
-MouseEvent::MouseEvent(void): _button(MouseEvent::none), _state(MouseEvent::motion), _position(Point(-1,-1)), _doubleClick(false) {
-   // none
-}
+MouseEvent::MouseEvent(void): _button(MouseEvent::none), _state(MouseEvent::motion), _position(Point(-1,-1)), _doubleClick(false) {}
 
 MouseEvent::MouseEvent(MouseEvent::button button, MouseEvent::state state, const Point &position, bool doubleClick) :
-      _button(button), _state(state), _position(position), _doubleClick(doubleClick) {
-   // none
-}
+      _button(button), _state(state), _position(position), _doubleClick(doubleClick) {}
 
 MouseEvent& MouseEvent::operator=(const MouseEvent&rhs) {
    _button      = rhs._button;

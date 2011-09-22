@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Component.h"
+
 #include "Kernel.h"
 #include "MenuHolder.h"
 #include "Scissor.h"
@@ -8,8 +9,7 @@ namespace scv {
 
 Kernel *Component::kernel = Kernel::getInstance();
 
-Component::Component(const scv::Point &p1, const scv::Point &p2) :
-      _clicked(0,0), _cTranslate(0,0), _resizing(4, false) {
+Component::Component(const scv::Point &p1, const scv::Point &p2) : _clicked(0,0), _cTranslate(0,0), _resizing(4, false) {
 
    if (p1 > p2) {
       _p1 = p2;
@@ -33,7 +33,7 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) :
    _isResizable  = _isResizing   = false;
    _isHResizable = _isVResizable = true;
 
-   _minSize = Point(15,15);
+   _minSize = scv::Point(15,15);
 
    _isVisible   = true;
 
@@ -46,11 +46,12 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) :
 
 Component::~Component(void) {
    setParent(NULL);
-
-   for (Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
-      delete (*iter);
-   }
-   _children.clear();
+   
+   for (Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
+      Component *pItem = (*iter);
+      iter = _children.erase(iter);
+      delete pItem;
+   }   
 }
 
 Point Component::getRelativePosition(void) const {
@@ -107,6 +108,7 @@ void Component::setHeight(const int height) {
 void Component::setPanelScissor(const Scissor::ScissorInfo &scissor) {
    _panelScissor = scissor;
 }
+
 const Scissor::ScissorInfo &Component::getPanelScissor(void) {
    return _panelScissor;
 }
@@ -433,8 +435,6 @@ void Component::setType(objectType type) {
    _type = type;
 }
 
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
 void Component::setParent(Component *parent) {
    if (_parent != NULL) {
       _parent->removeChild(this);

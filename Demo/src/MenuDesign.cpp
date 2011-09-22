@@ -22,7 +22,7 @@ void MenuDesign::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
          scv::Kernel::getInstance()->addWindow(win);*/
       }
 	  else if (address[1] == "Remove Component") {
-		  scv::Kernel::getInstance()->deleteObject(m_menu->shared_from_this());
+		  scv::Kernel::getInstance()->removeComponent(m_menu->shared_from_this());
 	  }
    }
 }
@@ -37,7 +37,7 @@ void MenuRename::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
          scv::Kernel::getInstance()->addWindow(win);
       }
       if (address[1] == "Remove Component") {
-         scv::Kernel::getInstance()->deleteObject(m_component->shared_from_this());
+         scv::Kernel::getInstance()->removeComponent(m_component->shared_from_this());
       }
    }
 }
@@ -45,7 +45,7 @@ void MenuRename::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
 void RemoveComponent::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {
    if (address.size() == 2) {
       if (address[1] == "Remove Component") {
-         scv::Kernel::getInstance()->deleteObject(m_component->shared_from_this());
+         scv::Kernel::getInstance()->removeComponent(m_component->shared_from_this());
       }
    }
 }

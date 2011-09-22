@@ -22,7 +22,6 @@
     <ClCompile Include="..\src\ComboBox.cpp" />
     <ClCompile Include="..\src\ComboBoxMenuStyle.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
-    <ClCompile Include="..\src\ComponentRelationship.cpp" />
     <ClCompile Include="..\src\ComponentTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithoutTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithTexture.cpp" />
@@ -93,7 +92,6 @@
     <ClInclude Include="..\include\SCV\ComboBox.h" />
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h" />
     <ClInclude Include="..\include\SCV\Component.h" />
-    <ClInclude Include="..\include\SCV\ComponentRelationship.h" />
     <ClInclude Include="..\include\SCV\ComponentTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
@@ -127,6 +125,7 @@
     <ClInclude Include="..\include\SCV\Scissor.h" />
     <ClInclude Include="..\include\SCV\ScrollPane.h" />
     <ClInclude Include="..\include\SCV\SCV.h" />
+    <ClInclude Include="..\include\SCV\SCVCallbacks.h" />
     <ClInclude Include="..\include\SCV\Separator.h" />
     <ClInclude Include="..\include\SCV\Singleton.h" />
     <ClInclude Include="..\include\SCV\Slider.h" />

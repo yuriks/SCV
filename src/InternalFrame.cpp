@@ -36,7 +36,9 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    _type = window;
 }
 
-InternalFrame::~InternalFrame(void) {/**/}
+InternalFrame::~InternalFrame(void) {
+   delete _panel;
+}
 
 void InternalFrame::onMouseClick(const scv::MouseEvent &evt) {/**/}
 void InternalFrame::onMouseHold(const scv::MouseEvent &evt) {/**/}
@@ -184,9 +186,8 @@ bool InternalFrame::isOnCloseButton(const Point &p) {
       p.x >= getAbsolutePosition().x + getWidth() - s_closeWidth - 5 && p.x <= getAbsolutePosition().x + getWidth() - 5)? true : false;
 }
 
-void InternalFrame::addComponent(Component::Ptr& object) {
-   //REVIEW
-   _panel->addObject(object);
+void InternalFrame::addChild(Component *object) {
+   _panel->addChild(object);
 }
 
 void InternalFrame::setRelativePosition(const Point &position) {

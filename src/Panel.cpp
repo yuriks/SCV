@@ -6,18 +6,9 @@ namespace scv {
 
 Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
    _type = panel;
-   // none
 }
 
-Panel::Panel(const scv::Point &p1, unsigned int width, unsigned int height) : ComponentWithTexture(p1, Point(p1.x+width,p1.y+height)) {
-   _type = panel;
-   // none
-}
-
-Panel::Panel() : ComponentWithTexture(Point(10,10), Point(100,100)) {
-   _type = panel;
-   // none
-}
+Panel::~Panel(void) {}
 
 void Panel::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -46,9 +37,8 @@ void Panel::display(void) {
 
    _cTexture->disable();
 
-   //REVIEW
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
-      if (kernel->willAppearOnScreen(iter->get()))
+      if (kernel->willAppearOnScreen(*iter))
          (*iter)->display();
    }
 
@@ -77,22 +67,13 @@ void Panel::onResizing(void) {/**/}
 void Panel::onDragging(void) {/**/}
 
 //REVIEW
-void Panel::addObject(Component::Ptr& object) {
+void Panel::addChild(Component *object) {
    static Kernel *kernel = Kernel::getInstance();
 
    object->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
    object->setPanelTranslate(getAbsolutePosition());
 
-   addChild(object);
-
-   /*
-   if (component) {
-      component->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
-      component->setPanelTranslate(getAbsolutePosition());
-
-      std::cout << component->shared_from_this() << std::endl;
-      addChild(component->shared_from_this());
-   }*/
+   ComponentWithTexture::addChild(object);
 }
 
 void Panel::setRelativePosition(const Point &position) {
@@ -126,7 +107,8 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
          }
       }
 
-      //REVIEW
+      //HACK
+      /*
       // swap clicked window to top
       if (itUp != getChildren().rbegin() && (*itUp)->isDragging()) {
          Component::Ptr removed_child = (*itUp);
@@ -135,6 +117,7 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
       } else {
          Component::processMouse(evt);
       }
+      /**/
    }
 }
 
@@ -151,7 +134,6 @@ void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
    static Kernel *kernel = Kernel::getInstance();
    Component::setPanelScissor(scissor);
 
-   //REVIEW
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       (*iter)->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
    }
@@ -160,7 +142,6 @@ void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
 void Panel::setPanelTranslate(const Point &translate) {
    Component::setPanelTranslate(translate);
 
-   //REVIEW
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       (*iter)->setPanelTranslate(getAbsolutePosition());
    }
@@ -177,14 +158,5 @@ void Panel::refresh(bool cScissor, bool cTranslate) {
       if (cTranslate) (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
-
-void Panel::setDraggable(bool state) {
-   Component::setDraggable(state);
-}
-
-void Panel::setResizable(bool state) {
-   Component::setResizable(state);
-}
-
 
 } // namespace scv

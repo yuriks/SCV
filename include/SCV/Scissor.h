@@ -1,31 +1,14 @@
-/*!
-\file       Scissor.h
-\brief      Implementation of the SCV Scissor.
-\author     SCV Team
-*/
-
 #ifndef __SCV_SCISSOR_H__
 #define __SCV_SCISSOR_H__
 
-#ifndef DOXYGEN_SKIP_THIS
 #include "Singleton.h"
 #include "Point.h"
-#endif // DOXYGEN_SKIP_THIS
 
 namespace scv {
-
-/*! This class cuts the components so they are only seen within their containers.
-* \ingroup internal
-*/
 
 class Scissor : public Singleton<Scissor> {
 friend class Singleton<Scissor>;
 public:
-
-   /*! This class stores the Scissor Information of a Scissor.
-   * \ingroup internal
-   */
-
    class  ScissorInfo {
    public:
       ScissorInfo(void);

@@ -187,9 +187,6 @@
     <ClCompile Include="..\src\Component.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComponentRelationship.cpp">
-      <Filter>4.Widgets\Object</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -390,7 +387,7 @@
     <ClInclude Include="..\include\SCV\Component.h">
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\ComponentRelationship.h">
+    <ClInclude Include="..\include\SCV\SCVCallbacks.h">
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
   </ItemGroup>
