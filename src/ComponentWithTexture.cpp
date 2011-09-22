@@ -5,53 +5,53 @@
 namespace scv {
 
 ComponentWithTexture::ComponentWithTexture(const scv::Point &p1, const scv::Point &p2) :
-      SCVObject(p1, p2) {
+      SCVComponent(p1, p2) {
    _cTexture = NULL;
 }
 ComponentWithTexture::~ComponentWithTexture(void) {}
 
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
-   SCVObject::processMouse(evt);
+   SCVComponent::processMouse(evt);
 }
 
 void ComponentWithTexture::processKey(const scv::KeyEvent &evt) {
-   SCVObject::processKey(evt);
+   SCVComponent::processKey(evt);
 }
 
 void ComponentWithTexture::setRelativePosition(const Point &position) {
-   SCVObject::setRelativePosition(position);
+   SCVComponent::setRelativePosition(position);
 }
 
 int ComponentWithTexture::getWidth(void) const {
-   return SCVObject::getWidth();
+   return SCVComponent::getWidth();
 }
 
 int ComponentWithTexture::getHeight(void) const {
-   return SCVObject::getHeight();
+   return SCVComponent::getHeight();
 }
 
 void ComponentWithTexture::setWidth(const int width) {
-   SCVObject::setWidth(width);
+   SCVComponent::setWidth(width);
 }
 
 void ComponentWithTexture::setHeight(const int height) {
-   SCVObject::setHeight(height);
+   SCVComponent::setHeight(height);
 }
 
 void ComponentWithTexture::setDraggable(bool state) {
-   SCVObject::setDraggable(state);
+   SCVComponent::setDraggable(state);
 }
 
 void ComponentWithTexture::setResizable(bool state) {
-   SCVObject::setResizable(state);
+   SCVComponent::setResizable(state);
 }
 
 void ComponentWithTexture::setVisible(bool state) {
-   SCVObject::setVisible(state);
+   SCVComponent::setVisible(state);
 }
 
 Point ComponentWithTexture::getSize(void) const {
-   return SCVObject::getSize();
+   return SCVComponent::getSize();
 }
 
 
