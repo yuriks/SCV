@@ -6,7 +6,7 @@
 
 namespace scv {
 
-class SCVObject;
+class Component;
 
 void InternalFrameHolder::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -27,7 +27,7 @@ bool InternalFrameHolder::processMouse(const scv::MouseEvent &evt) {
    bool status = false;
 
    std::deque<InternalFrame*>::reverse_iterator itUp = _framesDeque.rbegin();
-   SCVObject *focusedComponent = kernel->getFocusedComponent();
+   Component *focusedComponent = kernel->getFocusedComponent();
 
    for (std::deque<InternalFrame*>::reverse_iterator rIt = _framesDeque.rbegin(); rIt < _framesDeque.rend(); rIt++) {
       (*rIt)->processMouse(evt);

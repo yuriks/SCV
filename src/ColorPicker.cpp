@@ -21,16 +21,16 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _btPicker = new EyeDropper(this, Point(285,106), Point(285+69,126), "EyeDropper");
 
    _saturation = 100;
-   Panel::addObject(SCVObject::Ptr(_rgbs[0]));
-   Panel::addObject(SCVObject::Ptr(_rgbs[1]));
-   Panel::addObject(SCVObject::Ptr(_rgbs[2]));
-   Panel::addObject(SCVObject::Ptr(_rgbs[3]));
-   Panel::addObject(SCVObject::Ptr(_btPicker));
+   Panel::addObject(Component::Ptr(_rgbs[0]));
+   Panel::addObject(Component::Ptr(_rgbs[1]));
+   Panel::addObject(Component::Ptr(_rgbs[2]));
+   Panel::addObject(Component::Ptr(_rgbs[3]));
+   Panel::addObject(Component::Ptr(_btPicker));
 
-   Panel::addObject(SCVObject::Ptr(new Label(Point(8 ,109),"R:")));
-   Panel::addObject(SCVObject::Ptr(new Label(Point(78 ,109),"G:")));
-   Panel::addObject(SCVObject::Ptr(new Label(Point(148,109),"B:")));
-   Panel::addObject(SCVObject::Ptr(new Label(Point(218,109),"S:")));
+   Panel::addObject(Component::Ptr(new Label(Point(8 ,109),"R:")));
+   Panel::addObject(Component::Ptr(new Label(Point(78 ,109),"G:")));
+   Panel::addObject(Component::Ptr(new Label(Point(148,109),"B:")));
+   Panel::addObject(Component::Ptr(new Label(Point(218,109),"S:")));
 
    // initial color
    _currentColorPosition = Point(0, MatrixTemplate<ColorRGBA>::getHeight() - 1);
@@ -41,7 +41,7 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
 }
 
 
-//HACK deleta aqui e no SCVObject
+//HACK deleta aqui e no Component
 ColorPicker::~ColorPicker() {
    for (int i = 0; i < 4; i++) {
       delete _rgbs[i];
@@ -142,7 +142,7 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
    static Cursor * cursor = Cursor::getInstance();
 
    if (!_receivingCallbacks) {
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
    } else {
       Panel::processMouse(evt);
    }
@@ -229,13 +229,13 @@ int ColorPicker::getHeight(void) const {
 }
 
 void ColorPicker::setDraggable(bool state) {
-   SCVObject::setDraggable(state);
+   Component::setDraggable(state);
    //for (int i = 0; i < 4; i++) _rgbs[i]->setDraggable(state);
    //_btPicker->setDraggable(state);
 }
 
 void ColorPicker::setResizable(bool state) {
-   SCVObject::setResizable(state);
+   Component::setResizable(state);
    for (int i = 0; i < 4; i++) _rgbs[i]->setResizable(state);
    _btPicker->setResizable(state);
 }

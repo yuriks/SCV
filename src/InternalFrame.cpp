@@ -65,7 +65,7 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
    Point evtPosition  = evt.getPosition();
    _overClose = false;
 
-   SCVObject::processMouse(evt);
+   Component::processMouse(evt);
 
    if (_panel->isFocused() == false) {
       if (isOnCloseButton(evtPosition)) _isDragging = false;
@@ -114,7 +114,7 @@ void InternalFrame::processKey(const scv::KeyEvent &evt) {
    if (_isVisible == false) return;
 
    _panel->processKey(evt);
-   SCVObject::processKey(evt);
+   Component::processKey(evt);
 }
 
 void InternalFrame::display(void) {
@@ -184,7 +184,7 @@ bool InternalFrame::isOnCloseButton(const Point &p) {
       p.x >= getAbsolutePosition().x + getWidth() - s_closeWidth - 5 && p.x <= getAbsolutePosition().x + getWidth() - 5)? true : false;
 }
 
-void InternalFrame::addComponent(SCVObject::Ptr& object) {
+void InternalFrame::addComponent(Component::Ptr& object) {
    //REVIEW
    _panel->addObject(object);
 }

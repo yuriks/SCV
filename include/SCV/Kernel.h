@@ -90,15 +90,15 @@ public:
    ///////////////////////////////////////////////////////////
       
    ///////////////////////////////////////////////////////////
-   bool lockMouseUse(SCVObject* component);
-   bool unlockMouseUse(SCVObject* component);
+   bool lockMouseUse(Component* component);
+   bool unlockMouseUse(Component* component);
 
-   bool requestMouseUse(SCVObject* component);
+   bool requestMouseUse(Component* component);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   bool requestComponentFocus(SCVObject *component);
-   SCVObject* getFocusedComponent(void) const;
+   bool requestComponentFocus(Component *component);
+   Component* getFocusedComponent(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ public:
 
    bool scissorNeedRefresh(void);
 
-   bool willAppearOnScreen(SCVObject* component);
+   bool willAppearOnScreen(Component* component);
 
    void applyDefaultTransformMatrix(void);
 
@@ -118,8 +118,8 @@ public:
 
    ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
-   void addObject(SCVObject::Ptr &object);
-   void deleteObject(SCVObject::Ptr &object);   
+   void addObject(Component::Ptr &object);
+   void deleteObject(Component::Ptr &object);   
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@ private:
       MouseEvent::button lastButton;
 
       bool clicked, locked;      
-      SCVObject *componentRequestUse;
+      Component *componentRequestUse;
    } Mouse;
    ///////////////////////////////////////////////////////////
    
@@ -191,10 +191,10 @@ private:
 
    textureFilter _filterType;
 
-   typedef std::list<std::shared_ptr<SCVObject>> ComponentsList;
+   typedef std::list<std::shared_ptr<Component>> ComponentsList;
    ComponentsList _objects;
    
-   SCVObject *_focusedComponent;
+   Component *_focusedComponent;
 
    bool _needRefreshReshape;
    bool _isActiveReshape;

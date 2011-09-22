@@ -2,12 +2,12 @@
 #define __SCV_COMPONENT_WITHOUT_TEXTURE_H__
 
 ///////////////////////////////////////////////////////////
-#include "SCVComponent.h"
+#include "Component.h"
 ///////////////////////////////////////////////////////////
 
 namespace scv {
 
-class ComponentWithoutTexture : public SCVComponent {
+class ComponentWithoutTexture : public Component {
 public:
    ///////////////////////////////////////////////////////////
    ComponentWithoutTexture(const scv::Point &p1, const scv::Point &p2);

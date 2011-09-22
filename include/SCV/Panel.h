@@ -48,7 +48,7 @@ public:
    /*! Adds a new component to the panel.
    \param component Reference to the instance of the component.
    */
-   virtual void addObject(SCVObject::Ptr& object);
+   virtual void addObject(Component::Ptr& object);
    /*! Sets a new position to the component relative to your father.
    \param position The new position of the component.
    */

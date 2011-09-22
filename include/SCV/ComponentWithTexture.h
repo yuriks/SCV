@@ -2,13 +2,13 @@
 #define __SCV_COMPONENT_WITH_TEXTURE_H__
 
 ///////////////////////////////////////////////////////////
-#include "SCVComponent.h"
+#include "Component.h"
 #include "ComponentTexture.h"
 ///////////////////////////////////////////////////////////
 
 namespace scv {
 
-class ComponentWithTexture : public SCVComponent {
+class ComponentWithTexture : public Component {
 public:
    ComponentWithTexture(const scv::Point &p1, const scv::Point &p2);
    virtual ~ComponentWithTexture(void);

@@ -24,7 +24,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
 
    if (!_receivingCallbacks) {
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
    } else {
       Panel::processMouse(evt);
    }

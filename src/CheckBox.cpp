@@ -97,7 +97,7 @@ void CheckBox::createTexture(void) {
 void CheckBox::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   SCVObject::processMouse(evt);
+   Component::processMouse(evt);
 
    if (!_receivingCallbacks) return;
 

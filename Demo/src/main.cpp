@@ -1,39 +1,7 @@
 #include "stdafx.h"
 
-#include "InterfaceDesign.h"
+//#include "InterfaceDesign.h"
 
-
-class Dummy : public std::enable_shared_from_this<Dummy> {
-public:
-   Dummy() {
-      string = "print";
-   }
-   void print() {
-      std::cout << string << std::endl;
-   }
-
-   virtual ~Dummy() {
-      std::cout << "~Dummy" << std::endl;
-   }
-protected:
-   
-private:
-   std::string string;
-};
-
-class AnotherDummy : public Dummy {
-public:
-   AnotherDummy() : Dummy() {
-
-   }
-
-   ~AnotherDummy() {
-      std::cout << "~AnotherDummy" << std::endl;
-   }
-protected:
-   
-private:
-};
 
 int main(int argc, char* argv[]) {
    /*
@@ -57,9 +25,7 @@ int main(int argc, char* argv[]) {
    kernel->registerContextMenu(new InterfaceDesign(NULL));
    //////////////////////////
    kernel->run();
-   */
-   Dummy *a = new AnotherDummy();
-   delete a;
+   */  
 
    return 0;
 }

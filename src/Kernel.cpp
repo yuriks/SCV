@@ -5,7 +5,7 @@
 
 #include "MenuHolder.h"
 #include "InternalFrameHolder.h"
-#include "SCVObject.h"
+#include "Component.h"
 
 #include "Keyboard.h"
 #include "GlslShader.h"
@@ -269,7 +269,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
    } else {
       kernel->Mouse.clicked = true;
 
-      SCVObject *focusedComponent = kernel->getFocusedComponent();
+      Component *focusedComponent = kernel->getFocusedComponent();
       ComponentsList::reverse_iterator itUp = kernel->_objects.rbegin();
 
       if (menu->processMouse(evt) == false) {
@@ -487,7 +487,7 @@ void Kernel::cbDisplay(void) {
    glutSwapBuffers();
 }
 
-void Kernel::addObject(SCVObject::Ptr &object) {
+void Kernel::addObject(Component::Ptr &object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) == Kernel::getInstance()->_objects.end()
          && object->getParent() == NULL) {
       //REVIEW
@@ -495,7 +495,7 @@ void Kernel::addObject(SCVObject::Ptr &object) {
    }
 }
 
-void Kernel::deleteObject(SCVObject::Ptr &object) {
+void Kernel::deleteObject(Component::Ptr &object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) != Kernel::getInstance()->_objects.end()) {
       object->deleteChildren();
       Kernel::getInstance()->_objects.remove(object);      
@@ -507,7 +507,7 @@ void Kernel::deleteObject(SCVObject::Ptr &object) {
    }   
 }
 
-bool Kernel::requestComponentFocus(SCVObject* component) {
+bool Kernel::requestComponentFocus(Component* component) {
    if (component == NULL) false;
 
    static Keyboard *keyboard = Keyboard::getInstance();
@@ -526,7 +526,7 @@ bool Kernel::requestComponentFocus(SCVObject* component) {
    }
 }
 
-SCVObject* Kernel::getFocusedComponent(void) const {
+Component* Kernel::getFocusedComponent(void) const {
    return _focusedComponent;
 }
 
@@ -558,7 +558,7 @@ bool Kernel::scissorNeedRefresh(void) {
    return _scissorNeedRefresh;
 }
 
-bool Kernel::lockMouseUse(SCVObject* component) {
+bool Kernel::lockMouseUse(Component* component) {
    if (!Mouse.locked || component == Mouse.componentRequestUse) {
       Mouse.locked = true;
       Mouse.componentRequestUse = component;
@@ -568,7 +568,7 @@ bool Kernel::lockMouseUse(SCVObject* component) {
    }
 }
 
-bool Kernel::unlockMouseUse(SCVObject* component) {
+bool Kernel::unlockMouseUse(Component* component) {
    if (component == Mouse.componentRequestUse) {
       Mouse.locked = false;
       return true;
@@ -577,7 +577,7 @@ bool Kernel::unlockMouseUse(SCVObject* component) {
    }
 }
 
-bool Kernel::requestMouseUse(SCVObject* component) {
+bool Kernel::requestMouseUse(Component* component) {
    if (Mouse.componentRequestUse == NULL) {
       Mouse.componentRequestUse = component;
       return true;
@@ -596,7 +596,7 @@ void Kernel::registerContextMenu(ContextMenu *contextMenu) {
 
 
 
-bool Kernel::willAppearOnScreen(SCVObject* component) {
+bool Kernel::willAppearOnScreen(Component* component) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
 

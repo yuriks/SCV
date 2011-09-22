@@ -204,7 +204,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
    static Cursor *cursor = Cursor::getInstance();
 
    if(!_receivingCallbacks) {
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
       return;
    } else {
       _textField->processMouse(evt);
@@ -270,7 +270,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
 void Spinner::processKey(const scv::KeyEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   SCVObject::processKey(evt);
+   Component::processKey(evt);
 
    if(!_receivingCallbacks || evt.getState() == KeyEvent::up) return;
 
@@ -305,16 +305,16 @@ int Spinner::getWidth(void) const {
 }
 
 int Spinner::getHeight(void) const {
-   return SCVObject::getHeight();
+   return Component::getHeight();
 }
 
 void Spinner::setDraggable(bool state) {
-   SCVObject::setDraggable(state);
+   Component::setDraggable(state);
    _textField->setDraggable(state);
 }
 
 void Spinner::setResizable(bool state) {
-   SCVObject::setResizable(state);
+   Component::setResizable(state);
    _textField->setResizable(state);
 }
 

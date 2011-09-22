@@ -284,7 +284,7 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
 
-   SCVObject::processMouse(evt);
+   Component::processMouse(evt);
 
    if(!_receivingCallbacks) return;
 
@@ -307,7 +307,7 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
 void Slider::processKey(const scv::KeyEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   SCVObject::processKey(evt);
+   Component::processKey(evt);
 
    if(!_receivingCallbacks) return;
 

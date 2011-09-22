@@ -99,7 +99,7 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
    static FontTahoma *font = FontTahoma::getInstance();
    static Cursor *cursor = Cursor::getInstance();
 
-   SCVObject::processMouse(evt);
+   Component::processMouse(evt);
 
    if(!_receivingCallbacks) return;
 
@@ -169,7 +169,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
 
    if (isFocused()) {
 
-      SCVObject::processKey(evt);
+      Component::processKey(evt);
 
       if(!_receivingCallbacks) return;
 

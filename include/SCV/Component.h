@@ -12,9 +12,11 @@ namespace scv {
 class ContextMenu;
 class Kernel;
 
-class SCVComponent {
+
+
+class Component {
 public:
-   typedef std::list<SCVComponent*> List;
+   typedef std::list<Component*> List;
 
    enum objectType {
       NONE        , panel      , colorPicker , progressBar,
@@ -26,8 +28,8 @@ public:
    };
 
    ///////////////////////////////////////////////////////////
-   SCVComponent(const scv::Point &p1, const scv::Point &p2);
-   virtual ~SCVComponent(void);
+   Component(const scv::Point &p1, const scv::Point &p2);
+   virtual ~Component(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -109,20 +111,20 @@ public:
 
    // memory management
    //////////////////////////////////////////////////////////
-   SCVComponent *_parent;
+   Component *_parent;
    List _children;
 
-   void setParent(SCVComponent *parent);   
-   inline const SCVComponent *getParent(void) const;
+   void setParent(Component *parent);   
+   inline const Component *getParent(void) const;
    
-   inline const SCVComponent::List &getChildren(void) const;
+   inline const Component::List &getChildren(void) const;
 
-   void addChild(SCVComponent *object);
-   void removeChild(SCVComponent *object);
+   void addChild(Component *object);
+   void removeChild(Component *object);
 
-   void pullChildToTop(SCVComponent *child);
+   void pullChildToTop(Component *child);
 
-   bool hasChild(SCVComponent *child) const;
+   bool hasChild(Component *child) const;
    ///////////////////////////////////////////////////////////
 
  protected:  
@@ -151,11 +153,11 @@ public:
    ContextMenu *_contextMenu;
 };
 
-const SCVComponent *SCVComponent::getParent(void) const {
+const Component *Component::getParent(void) const {
    return _parent;
 }
 
-const SCVComponent::List &SCVComponent::getChildren(void) const {
+const Component::List &Component::getChildren(void) const {
    return _children;
 }
 

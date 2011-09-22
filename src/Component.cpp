@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "SCVComponent.h"
+#include "Component.h"
 #include "Kernel.h"
 #include "MenuHolder.h"
 #include "Scissor.h"
 
 namespace scv {
 
-Kernel *SCVComponent::kernel = Kernel::getInstance();
+Kernel *Component::kernel = Kernel::getInstance();
 
-SCVComponent::SCVComponent(const scv::Point &p1, const scv::Point &p2) :
+Component::Component(const scv::Point &p1, const scv::Point &p2) :
       _clicked(0,0), _cTranslate(0,0), _resizing(4, false) {
 
    if (p1 > p2) {
@@ -44,20 +44,20 @@ SCVComponent::SCVComponent(const scv::Point &p1, const scv::Point &p2) :
    _parent = NULL;   
 }
 
-SCVComponent::~SCVComponent(void) {
+Component::~Component(void) {
    setParent(NULL);
 
-   for (SCVComponent::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
+   for (Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {      
       delete (*iter);
    }
    _children.clear();
 }
 
-Point SCVComponent::getRelativePosition(void) const {
+Point Component::getRelativePosition(void) const {
    return _p1;
 }
 
-void SCVComponent::setRelativePosition(const Point &position) {
+void Component::setRelativePosition(const Point &position) {
    Point diff = position - _p1;
    _p1 += diff;
    _p2 += diff;
@@ -65,95 +65,95 @@ void SCVComponent::setRelativePosition(const Point &position) {
    onDragging();
 }
 
-void SCVComponent::setPanelTranslate(const Point &translate) {
+void Component::setPanelTranslate(const Point &translate) {
    _cTranslate = translate;
    onDragging();
 }
 
-Point SCVComponent::getPanelTranslate(void) const {
+Point Component::getPanelTranslate(void) const {
    return _cTranslate;
 }
 
-Point SCVComponent::getAbsolutePosition(void) const {
+Point Component::getAbsolutePosition(void) const {
    return _p1 + _cTranslate;
 }
 
-int SCVComponent::getWidth(void) const {
+int Component::getWidth(void) const {
    return _p2.x - _p1.x;
 }
 
-int SCVComponent::getHeight(void) const {
+int Component::getHeight(void) const {
    return _p2.y - _p1.y;
 }
 
-Point SCVComponent::getSize(void) const {
+Point Component::getSize(void) const {
    return Point(getWidth(), getHeight());
 }
 
-void SCVComponent::setWidth(const int width) {
+void Component::setWidth(const int width) {
    _p2.x = _p1.x + width;
 
    kernel->scissorNeedRefresh();
    onResizing();
 }
 
-void SCVComponent::setHeight(const int height) {
+void Component::setHeight(const int height) {
    _p2.y = _p1.y + height;
 
    kernel->scissorNeedRefresh();
    onResizing();
 }
 
-void SCVComponent::setPanelScissor(const Scissor::ScissorInfo &scissor) {
+void Component::setPanelScissor(const Scissor::ScissorInfo &scissor) {
    _panelScissor = scissor;
 }
-const Scissor::ScissorInfo &SCVComponent::getPanelScissor(void) {
+const Scissor::ScissorInfo &Component::getPanelScissor(void) {
    return _panelScissor;
 }
 
-bool SCVComponent::isOvered(void) const {
+bool Component::isOvered(void) const {
    return _isOvered;
 }
 
-bool SCVComponent::isHolded(void) const {
+bool Component::isHolded(void) const {
    return _isHolded;
 }
 
-bool SCVComponent::isDragging(void) const {
+bool Component::isDragging(void) const {
    return _isDragging;
 }
 
-bool SCVComponent::isResizing(void) const {
+bool Component::isResizing(void) const {
    return _isResizing;
 }
 
-bool SCVComponent::isFocused(void) const {
+bool Component::isFocused(void) const {
    return (kernel->getFocusedComponent() == this);
 }
 
-void SCVComponent::setDraggable(bool state) {
+void Component::setDraggable(bool state) {
    _isDraggable = state;
 }
 
-void SCVComponent::setResizable(bool state) {
+void Component::setResizable(bool state) {
    _isResizable = state;
 }
 
-void SCVComponent::setVisible(bool state) {
+void Component::setVisible(bool state) {
    _isVisible = state;
 }
 
-bool SCVComponent::isVisible(void) const {
+bool Component::isVisible(void) const {
    return _isVisible;
 }
 
-void SCVComponent::registerContextMenu(ContextMenu *contextMenu) {
+void Component::registerContextMenu(ContextMenu *contextMenu) {
    static MenuHolder *menu = MenuHolder::getInstance();
    _contextMenu = contextMenu;
    menu->registerParentMenu(_contextMenu);
 }
 
-bool SCVComponent::isInside(const Point &evtPosition) const {
+bool Component::isInside(const Point &evtPosition) const {
    if (_isVisible && _panelScissor.isInside(evtPosition.inverse())) {
       Point currPosition = getAbsolutePosition();
       if (evtPosition.x >= currPosition.x && evtPosition.x < currPosition.x + getWidth() &&
@@ -164,7 +164,7 @@ bool SCVComponent::isInside(const Point &evtPosition) const {
    return false;
 }
 
-void SCVComponent::processMouse(const scv::MouseEvent &evt) {
+void Component::processMouse(const scv::MouseEvent &evt) {
    static Cursor *cursor = Cursor::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
 
@@ -359,7 +359,7 @@ void SCVComponent::processMouse(const scv::MouseEvent &evt) {
    }
 }
 
-void SCVComponent::processKey(const scv::KeyEvent &evt) {
+void Component::processKey(const scv::KeyEvent &evt) {
    if (isFocused()) {
       if (evt.getState() == KeyEvent::down) {
          onKeyPressed(evt);
@@ -369,7 +369,7 @@ void SCVComponent::processKey(const scv::KeyEvent &evt) {
    }
 }
 
-int SCVComponent::isInsideCorner(const Point &evtPosition) {
+int Component::isInsideCorner(const Point &evtPosition) {
    Point currPosition = getAbsolutePosition();
 
    // top left corner
@@ -393,7 +393,7 @@ int SCVComponent::isInsideCorner(const Point &evtPosition) {
    }
 }
 
-int SCVComponent::isInsideSide(const Point &evtPosition) {
+int Component::isInsideSide(const Point &evtPosition) {
    Point currPosition = getAbsolutePosition();
 
    // left
@@ -417,25 +417,25 @@ int SCVComponent::isInsideSide(const Point &evtPosition) {
    }
 }
 
-void SCVComponent::setCallbacksActive(bool state) {
+void Component::setCallbacksActive(bool state) {
    _receivingCallbacks = state;
 }
 
-bool SCVComponent::isCallbacksActive(void) const {
+bool Component::isCallbacksActive(void) const {
    return _receivingCallbacks;
 }
 
-SCVComponent::objectType SCVComponent::getType(void) const {
+Component::objectType Component::getType(void) const {
    return _type;
 }
 
-void SCVComponent::setType(objectType type) {
+void Component::setType(objectType type) {
    _type = type;
 }
 
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
-void SCVComponent::setParent(SCVComponent *parent) {
+void Component::setParent(Component *parent) {
    if (_parent != NULL) {
       _parent->removeChild(this);
    }
@@ -447,7 +447,7 @@ void SCVComponent::setParent(SCVComponent *parent) {
    }
 }
 
-void SCVComponent::addChild(SCVComponent *object) {
+void Component::addChild(Component *object) {
    if (object->getParent() != NULL) {
       //TODO warn about adding a child with parent
    } else {
@@ -456,21 +456,21 @@ void SCVComponent::addChild(SCVComponent *object) {
    }
 }
 
-void SCVComponent::removeChild(SCVComponent *object) {
+void Component::removeChild(Component *object) {
    if (hasChild(object)) {
       object->_parent = NULL;
       _children.remove(object);
    }
 }
 
-void SCVComponent::pullChildToTop(SCVComponent *child) {
+void Component::pullChildToTop(Component *child) {
    if (hasChild(child)) {
       _children.remove(child);
       _children.push_back(child);
    }
 }
 
-bool SCVComponent::hasChild(SCVComponent *child) const {
+bool Component::hasChild(Component *child) const {
    return std::find(_children.begin(), _children.end(), child) != _children.end();
 }
 

@@ -184,7 +184,10 @@
     <ClCompile Include="..\src\Image.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SCVObject.cpp">
+    <ClCompile Include="..\src\Component.cpp">
+      <Filter>4.Widgets\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ComponentRelationship.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -384,7 +387,10 @@
     <ClInclude Include="..\include\SCV\Image.h">
       <Filter>4.Widgets\Panel</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\SCVObject.h">
+    <ClInclude Include="..\include\SCV\Component.h">
+      <Filter>4.Widgets\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ComponentRelationship.h">
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
   </ItemGroup>

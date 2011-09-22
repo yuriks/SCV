@@ -33,7 +33,7 @@ private:
 
 class  RemoveComponent : public scv::ContextMenu {
 public:
-   RemoveComponent(scv::SCVObject * component) : ContextMenu("Remove Component") {
+   RemoveComponent(scv::Component * component) : ContextMenu("Remove Component") {
       m_component = component;
 
       addMenu(new ContextMenu("Remove Component"));
@@ -43,7 +43,7 @@ public:
    void onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address);
 
 private:
-   scv::SCVObject * m_component;
+   scv::Component * m_component;
 };
 
 #endif // __SCV_MENU_DESIGN_H__

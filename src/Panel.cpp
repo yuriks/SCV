@@ -77,7 +77,7 @@ void Panel::onResizing(void) {/**/}
 void Panel::onDragging(void) {/**/}
 
 //REVIEW
-void Panel::addObject(SCVObject::Ptr& object) {
+void Panel::addObject(Component::Ptr& object) {
    static Kernel *kernel = Kernel::getInstance();
 
    object->setPanelScissor(Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight()));
@@ -96,7 +96,7 @@ void Panel::addObject(SCVObject::Ptr& object) {
 }
 
 void Panel::setRelativePosition(const Point &position) {
-   SCVObject::setRelativePosition(position);
+   Component::setRelativePosition(position);
    refresh(true, true);
 }
 
@@ -104,10 +104,10 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
    if (isDragging() || isResizing()) {
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
       refresh(true, true);
    } else {
-      SCVObject *focusedComponent = kernel->getFocusedComponent();
+      Component *focusedComponent = kernel->getFocusedComponent();
       List::const_reverse_iterator itUp = getChildren().rbegin();
 
       Scissor::ScissorInfo scissor;
@@ -115,7 +115,7 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
          scissor = Scissor::ScissorInfo(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
       //REVIEW
-      for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+      for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
          if (kernel->scissorNeedRefresh())
             (*iter)->setPanelScissor(scissor);
 
@@ -129,27 +129,27 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
       //REVIEW
       // swap clicked window to top
       if (itUp != getChildren().rbegin() && (*itUp)->isDragging()) {
-         SCVObject::Ptr removed_child = (*itUp);
+         Component::Ptr removed_child = (*itUp);
          _children.remove(*itUp);
          _children.push_back(removed_child);
       } else {
-         SCVObject::processMouse(evt);
+         Component::processMouse(evt);
       }
    }
 }
 
 void Panel::processKey(const scv::KeyEvent &evt) {
-   SCVObject::processKey(evt);
+   Component::processKey(evt);
 
    //REVIEW
-   for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+   for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
    }
 }
 
 void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
    static Kernel *kernel = Kernel::getInstance();
-   SCVObject::setPanelScissor(scissor);
+   Component::setPanelScissor(scissor);
 
    //REVIEW
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
@@ -158,7 +158,7 @@ void Panel::setPanelScissor(const Scissor::ScissorInfo &scissor)  {
 }
 
 void Panel::setPanelTranslate(const Point &translate) {
-   SCVObject::setPanelTranslate(translate);
+   Component::setPanelTranslate(translate);
 
    //REVIEW
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
@@ -172,18 +172,18 @@ void Panel::refresh(bool cScissor, bool cTranslate) {
    Scissor::ScissorInfo scissor(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 
    //REVIEW
-   for (SCVObject::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
+   for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       if (cScissor) (*iter)->setPanelScissor(scissor);
       if (cTranslate) (*iter)->setPanelTranslate(getAbsolutePosition());
    }
 }
 
 void Panel::setDraggable(bool state) {
-   SCVObject::setDraggable(state);
+   Component::setDraggable(state);
 }
 
 void Panel::setResizable(bool state) {
-   SCVObject::setResizable(state);
+   Component::setResizable(state);
 }
 
 

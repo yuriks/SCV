@@ -57,21 +57,21 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
    if (isDragging() || isResizing()) {
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
       if (_currSelectedTab != -1 && isResizing()) {
          refreshScissor();
       }
    } else {
 
       if (_currSelectedTab == -1 || !_receivingCallbacks) {
-         SCVObject::processMouse(evt);
+         Component::processMouse(evt);
          return;
       } else if(_currSelectedTab != -1) {
          _tabs[_currSelectedTab]->setDraggable(false);
          _tabs[_currSelectedTab]->processMouse(evt);
       }
 
-      SCVObject::processMouse(evt);
+      Component::processMouse(evt);
 
       Point currPosition = getAbsolutePosition();
       Point relativeMouse = evt.getPosition();
