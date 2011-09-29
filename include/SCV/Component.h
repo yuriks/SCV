@@ -46,8 +46,10 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   virtual void setRelativePosition(const Point &position);
    virtual Point getRelativePosition(void) const;
+   virtual void setRelativePosition(const Point &position);
+   
+   virtual void setAbsolutePosition(const Point &position);
    virtual Point getAbsolutePosition(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -81,15 +83,8 @@ public:
    virtual bool isInside(const Point &evtPosition) const;
 
    ///////////////////////////////////////////////////////////
-   virtual bool isCallbacksActive(void) const;
-   virtual void setCallbacksActive(bool state);
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
-   /*
-   virtual Point getPanelTranslate(void) const;
-   virtual void setPanelTranslate(const Point &translate);
-   */
+   virtual bool getCallbacksStatus(void) const;
+   virtual void setCallbacksStatus(bool state);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -135,9 +130,7 @@ protected:
    objectType _type;
    static const int s_mouseBacklash = 4;
 
-   //Scissor::Info _panelScissor;
-   //_cTranslate
-   Point _p1, _p2, _clicked, _minSize;
+   Point _p1, _p2, _clicked, _clickDiff, _minSize;
 
    bool _receivingCallbacks;
    bool _isResizable, _isResizing;

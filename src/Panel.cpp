@@ -74,10 +74,6 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
       Component *focusedComponent = kernel->getFocusedComponent();
       Component *child = NULL; 
 
-      Scissor::Info scissor;
-      if (kernel->scissorNeedRefresh())
-         scissor = Scissor::Info(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
-
       for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
          (*iter)->processMouse(evt);
          if (focusedComponent != kernel->getFocusedComponent()) {
@@ -97,7 +93,6 @@ void Panel::processMouse(const scv::MouseEvent &evt) {
 void Panel::processKey(const scv::KeyEvent &evt) {
    Component::processKey(evt);
 
-   //REVIEW
    for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
    }

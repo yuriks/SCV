@@ -86,12 +86,6 @@ public:
    Component* getFocusedComponent(void) const;
    ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
-   void registerContextMenu(ContextMenu *contextMenu);
-   ///////////////////////////////////////////////////////////
-
-   bool scissorNeedRefresh(void);
-
    bool willAppearOnScreen(Component* component);
 
    void applyDefaultTransformMatrix(void);
@@ -170,8 +164,6 @@ private:
    
    ComponentTexture *_loadedWidgets[s_nOfWidgets];
 
-   bool _scissorNeedRefresh;
-
    std::string _windowTitle;
 
    textureFilter _filterType;
@@ -181,7 +173,7 @@ private:
    
    Component *_focusedComponent;
 
-   bool _needRefreshReshape;
+   bool _needReshapeWindow;
    bool _isActiveReshape;
       
    bool _componentRequestFocus;   
