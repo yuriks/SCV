@@ -17,6 +17,8 @@ ScrollPane::ScrollPane(const scv::Point &p1, const scv::Point &p2, scv::Panel * 
 
    if (panel)
       registerPanel(panel);
+
+   createTexture();
 }
 
 ScrollPane::ScrollPane(const scv::Point &p1, unsigned int width, unsigned int height, scv::Panel * panel)
@@ -31,6 +33,8 @@ ScrollPane::ScrollPane(const scv::Point &p1, unsigned int width, unsigned int he
 
    if (panel)
       registerPanel(panel);
+
+   createTexture();
 }
 
 
@@ -379,7 +383,6 @@ float ScrollPane::barPixelToFloat(int pix, bool horz) {
 }
 
 void ScrollPane::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::scrollPanel)) != NULL) return;
 
    // create texture object

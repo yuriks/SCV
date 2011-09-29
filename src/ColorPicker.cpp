@@ -38,17 +38,13 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _type = colorPicker;
 
    refreshColor();
+
+   createTexture();
 }
 
-
-//HACK deleta aqui e no Component
 ColorPicker::~ColorPicker() {
-   for (int i = 0; i < 4; i++) {
-      delete _rgbs[i];
-   }
    delete _btPicker;
 }
-
 
 void ColorPicker::onMouseClick(const scv::MouseEvent &evt) {/**/}
 void ColorPicker::onMouseHold(const scv::MouseEvent &evt) {/**/}
@@ -85,23 +81,20 @@ void ColorPicker::display(void) {
    _cpTexture->disable();
 }
 
-void ColorPicker::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
-   if (_cpTexture != NULL) {
-      delete _cpTexture;
-   } else {
-      Panel::createTexture();
-   }
+void ColorPicker::createTexture(void) {   
+   Panel::createTexture();
+
    createColors();
 
-   _cpTexture = new ComponentTexture(MatrixTemplate<ColorRGBA>::getWidth(), MatrixTemplate<ColorRGBA>::getHeight()+1);
+   if ((_cpTexture = kernel->getWidgetTexture(Kernel::colorPicker)) != NULL) return;
+
+   _cpTexture = new ComponentTexture(MatrixTemplate<ColorRGBA>::getWidth(), MatrixTemplate<ColorRGBA>::getHeight() + 1);
    kernel->setWidgetTexture(Kernel::colorPicker, _cpTexture);
 
    _cpTexture->setTextureEnvMode(GL_MODULATE);
    _cpTexture->addTexture(Point(0,0), *this);
 
-   MatrixTemplate<ColorRGBA> lcolor(1, 1, ColorRGBA(255,255,255,255));
-   _cpTexture->addTexture(Point(0,MatrixTemplate<ColorRGBA>::getHeight()), lcolor);
+   _cpTexture->addTexture(Point(0,MatrixTemplate<ColorRGBA>::getHeight()), MatrixTemplate<ColorRGBA>(1, 1, ColorRGBA(255,255,255,255)));
 
    _cpTexture->createTexture();
 }
@@ -230,14 +223,18 @@ int ColorPicker::getHeight(void) const {
 
 void ColorPicker::setDraggable(bool state) {
    Component::setDraggable(state);
-   //for (int i = 0; i < 4; i++) _rgbs[i]->setDraggable(state);
-   //_btPicker->setDraggable(state);
+   /*
+   for (int i = 0; i < 4; i++) _rgbs[i]->setDraggable(state);
+   _btPicker->setDraggable(state);
+   */
 }
 
 void ColorPicker::setResizable(bool state) {
    Component::setResizable(state);
+   /*
    for (int i = 0; i < 4; i++) _rgbs[i]->setResizable(state);
    _btPicker->setResizable(state);
+   */
 }
 
 } // namespace scv

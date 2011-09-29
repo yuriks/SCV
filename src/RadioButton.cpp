@@ -54,7 +54,6 @@ void RadioButton::display(void) {
 }
 
 void RadioButton::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::radioBox)) != NULL) return;
 
    ColorRGBA colorOver(170,220,255,60);

@@ -16,6 +16,7 @@ TextField::TextField(const scv::Point &p1, unsigned int width, const std::string
 
    _type = textField;
 
+   createTexture();
 }
 
 
@@ -56,10 +57,6 @@ void TextField::display(void) {
       _selectStart  =  0;
       _selectEnd    =  0;
    }
-}
-
-void TextField::createTexture(void) {
-   TextBox::createTexture();
 }
 
 void TextField::refreshText(void) {

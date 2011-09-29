@@ -310,24 +310,18 @@ void Component::setType(ObjectType type) {
 }
 
 void Component::setParent(Component *parent) {
-   if (_parent != NULL) {
-      _parent->removeChild(this);
-   }
+   if (_parent != NULL) _parent->removeChild(this);
 
    _parent = parent;
 
-   if (_parent != NULL) {
-      _parent->addChild(this);
-   }
+   if (_parent != NULL) _parent->addChild(this);
 }
 
 void Component::addChild(Component *object) {
-   if (object->getParent() != NULL) {
-      //TODO warn about adding a child with parent
-   } else {
-      object->_parent = this;
-      _children.push_back(object);
-   }
+   object->setParent(NULL);
+
+   object->_parent = this;
+   _children.push_back(object);
 }
 
 void Component::removeChild(Component *object) {

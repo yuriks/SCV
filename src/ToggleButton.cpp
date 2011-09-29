@@ -7,14 +7,20 @@ namespace scv {
 
 ToggleButton::ToggleButton( const scv::Point &p1, const scv::Point &p2, bool state, const std::string &str ) : StateButton(state), Button(p1,p2,str) {
    _type = toggleButton;
+
+   createTexture();
 }
 
 ToggleButton::ToggleButton( const scv::Point &p1, unsigned int width , bool state, const std::string &str ) : StateButton(state), Button(p1,width,str) {
    _type = toggleButton;
+
+   createTexture();
 }
 
 ToggleButton::ToggleButton( const scv::Point &p1 , bool state, const std::string &str ) : StateButton(state), Button(p1,str) {
    _type = toggleButton;
+
+   createTexture();
 }
 
 void ToggleButton::onMouseClick(const scv::MouseEvent &evt) {/**/}

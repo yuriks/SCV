@@ -57,9 +57,6 @@ public:
    void processKey(const scv::KeyEvent &evt);
    virtual void display(void);
 
-protected:
-
-   virtual void createTexture(void);
 private:
 
    static const int s_lineSpacing = 18;

@@ -29,6 +29,8 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
 
    _type = table;
 
+   createTexture();
+
 }
 
 void Table::setString(int row, int column, std::string str) {

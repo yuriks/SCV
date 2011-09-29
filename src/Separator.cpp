@@ -14,6 +14,8 @@ Separator::Separator(const scv::Point &p1, Separator::orientation align, unsigne
       _isHResizable = false;
    }
    _type = separator;
+
+   createTexture();
 }
 
 void Separator::onMouseClick(const scv::MouseEvent &evt) {/**/}
@@ -44,7 +46,6 @@ void Separator::display(void) {
 }
 
 void Separator::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::separator)) != NULL) return;
 
    // create texture object

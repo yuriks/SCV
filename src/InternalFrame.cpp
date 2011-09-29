@@ -34,6 +34,8 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    _minSize = Point(60,45);
 
    _type = window;
+
+   createTexture();
 }
 
 InternalFrame::~InternalFrame(void) {
@@ -198,8 +200,6 @@ void InternalFrame::setRelativePosition(const Point &position) {
 }
 
 void InternalFrame::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
-
    if ((_cTexture = kernel->getWidgetTexture(Kernel::window)) != NULL) return;
 
    _cTexture = new ComponentTexture(46 * 3 + 10, 19);

@@ -31,9 +31,7 @@
     <ClCompile Include="..\src\data\TreeViewData.cpp" />
     <ClCompile Include="..\src\FileOpen.cpp" />
     <ClCompile Include="..\src\GTree.cpp" />
-    <ClCompile Include="..\src\Image.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\src\Image.cpp" />
     <ClCompile Include="..\src\ImgLoader.cpp" />
     <ClCompile Include="..\src\List.cpp" />
     <ClCompile Include="..\src\Panel.cpp" />
@@ -98,9 +96,7 @@
     <ClInclude Include="..\include\SCV\Data.h" />
     <ClInclude Include="..\include\SCV\FileOpen.h" />
     <ClInclude Include="..\include\SCV\GTree.h" />
-    <ClInclude Include="..\include\SCV\Image.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\include\SCV\Image.h" />
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
     <ClInclude Include="..\include\SCV\ImgLoader.h" />
     <ClInclude Include="..\include\SCV\List.h" />

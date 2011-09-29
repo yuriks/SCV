@@ -81,9 +81,7 @@ void TreeView::addInFolder()
    vx.clear();
 }
 
-void TreeView::createTexture(void)
-{
-   static Kernel *kernel = Kernel::getInstance();
+void TreeView::createTexture(void) {
    if ((_cTexture = kernel->getWidgetTexture(Kernel::TreeView)) != NULL) return;
 
    // create texture object

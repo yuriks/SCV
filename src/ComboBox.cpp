@@ -161,8 +161,6 @@ void ComboBox::processMouse(const scv::MouseEvent &evt) {
 }
 
 void ComboBox::createTexture(void) {
-
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::comboBox)) != NULL) return;
 
    // create texture object

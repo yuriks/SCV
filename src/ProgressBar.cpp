@@ -9,18 +9,24 @@ ProgressBar::ProgressBar(const scv::Point &p, unsigned int width , double startV
       Label(p,Point(p.x+width,p.y+24), toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
    _type = progressBar;
+
+   createTexture();
 }
 
 ProgressBar::ProgressBar(const scv::Point &p1, const scv::Point &p2, double startValue) :
       Label(p1,p2,toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
    _type = progressBar;
+
+   createTexture();
 }
 
 ProgressBar::ProgressBar(const scv::Point &p, double startValue) :
       Label(p,Point(p.x+100,p.y+24),toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
    _type = progressBar;
+
+   createTexture();
 }
 
 void ProgressBar::onMouseClick(const scv::MouseEvent &evt) {/**/}
@@ -71,7 +77,6 @@ void ProgressBar::display(void) {
 }
 
 void ProgressBar::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::progressBar)) != NULL) return;
 
    ColorRGBA colorBotao1(250, 250, 250, 255);

@@ -14,9 +14,10 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
    _filter.allowNumbers();
    _filter.allowThese(std::string(".-"));
 
-   _textField = new TextFieldSpinner(this, p, ((width < s_minSize) ? s_minSize : width) - s_spinnerSizeX - 1, toString(startValue));
+   _textField = new TextFieldSpinner(this, ((width < s_minSize) ? s_minSize : width) - s_spinnerSizeX - 1, toString(startValue));
    _textField ->setFilter(_filter);
-
+   addChild(_textField);
+   
    _UpPress   = false;
    _DownPress = false;
    _UpOver      = false;
@@ -30,42 +31,22 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
 
    _lastTime = _incrementTime = 0;
    _type = spinner;
+
+   createTexture();
 }
+     
+Spinner::~Spinner(void) {}
 
-
-Spinner::Spinner(const scv::Point &p , double minValue, double maxValue, double startValue, double stepValue) :
-      ComponentWithTexture(p, Point(p.x + s_spinnerSizeX, p.y + s_spinnerSizeY)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
-   _isHResizable = _isVResizable = false;
-
-   _filter.denyAll();
-   _filter.allowNumbers();
-   _filter.allowThese(std::string(".-"));
-
-   _textField = new TextFieldSpinner(this, p, 100 - s_spinnerSizeX - 1, toString(startValue));
-   _textField ->setFilter(_filter);
-
-   _UpPress   = false;
-   _DownPress = false;
-   _UpOver      = false;
-   _DownOver    = false;
-
-   _whileUp   = new Timer();
-   _whileDown = new Timer();
-
-   _lastTime = _incrementTime = 0;
-   _type = spinner;
-}
-
-void Spinner::onMouseClick(const scv::MouseEvent &evt) {/*none*/}
-void Spinner::onMouseHold(const scv::MouseEvent &evt) {/*none*/}
-void Spinner::onMouseOver(const scv::MouseEvent &evt) {/*none*/}
-void Spinner::onMouseUp(const scv::MouseEvent &evt) {/*none*/}
-void Spinner::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Spinner::onKeyPressed(const scv::KeyEvent &evt) {/*none*/}
-void Spinner::onKeyUp(const scv::KeyEvent &evt) {/*none*/}
-void Spinner::onValueChange(void) {/**/}
-void Spinner::onResizing(void) {/**/}
-void Spinner::onDragging(void) {/**/}
+void Spinner::onMouseClick(const scv::MouseEvent &evt) {}
+void Spinner::onMouseHold(const scv::MouseEvent &evt) {}
+void Spinner::onMouseOver(const scv::MouseEvent &evt) {}
+void Spinner::onMouseUp(const scv::MouseEvent &evt) {}
+void Spinner::onMouseWheel(const scv::MouseEvent &evt) {}
+void Spinner::onKeyPressed(const scv::KeyEvent &evt) {}
+void Spinner::onKeyUp(const scv::KeyEvent &evt) {}
+void Spinner::onValueChange(void) {}
+void Spinner::onResizing(void) {}
+void Spinner::onDragging(void) {}
 
 
 void Spinner::display(void) {
@@ -148,7 +129,6 @@ void Spinner::display(void) {
 
 
 void Spinner::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::spinner)) != NULL) return;
 
    // create texture object
@@ -174,9 +154,6 @@ void Spinner::createTexture(void) {
    Texture2D::line(tPin, Point(2, 0), Point(2,0), ColorRGBA(140,140,140));
    Texture2D::line(tPin, Point(1, 1), Point(3,1), ColorRGBA(150,150,150));
    Texture2D::line(tPin, Point(0, 2), Point(4,2), ColorRGBA(170,170,170));
-//    Texture2D::line(tPin, Point(2, 0), Point(2,0), ColorRGBA( 77,86,120));
-//    Texture2D::line(tPin, Point(1, 1), Point(3,1), ColorRGBA( 95,110,165));
-//    Texture2D::line(tPin, Point(0, 2), Point(4,2), ColorRGBA(112,133,209));
    _cTexture->addTexture(Point(2,0), tPin);
 
    // bot pin
@@ -185,9 +162,6 @@ void Spinner::createTexture(void) {
    Texture2D::line(bPin, Point(2, 2), Point(2,2), ColorRGBA(140,140,140));
    Texture2D::line(bPin, Point(1, 1), Point(3,1), ColorRGBA(150,150,150));
    Texture2D::line(bPin, Point(0, 0), Point(4,0), ColorRGBA(170,170,170));
-//    Texture2D::line(bPin, Point(2, 2), Point(2,2), ColorRGBA( 77,86,120));
-//    Texture2D::line(bPin, Point(1, 1), Point(3,1), ColorRGBA( 95,110,165));
-//    Texture2D::line(bPin, Point(0, 0), Point(4,0), ColorRGBA(112,133,209));
    _cTexture->addTexture(Point(7,0), bPin);
 
    MatrixTemplate<ColorRGBA> over(1, 1, ColorRGBA(240,240,240,240));
@@ -320,8 +294,8 @@ void Spinner::setResizable(bool state) {
 }
 
 
-Spinner::TextFieldSpinner::TextFieldSpinner(Spinner *spinner, const scv::Point &p, unsigned int width, const std::string &str) :
-      TextField(p, width, str) {
+Spinner::TextFieldSpinner::TextFieldSpinner(Spinner *spinner, unsigned int width, const std::string &str) :
+      TextField(scv::Point(), width, str) {
    _spinner = spinner;
    setResizable(false);
 }
@@ -354,4 +328,13 @@ void Spinner::TextFieldSpinner::onStringChange(void) {
       }
    }
 }
+
+void Spinner::TextFieldSpinner::onResizing(void) {
+   _spinner->setRelativePosition(getRelativePosition());
+}
+
+void Spinner::TextFieldSpinner::onDragging(void) {
+   _spinner->setRelativePosition(getRelativePosition());
+}
+
 } // namespace scv

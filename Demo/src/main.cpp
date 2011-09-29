@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
    kernel->setWindowSize(1280, 720);
    
    
-   scv::Panel *panel = new scv::Panel(scv::Point(10,10), scv::Point(220,220));
+   scv::Panel *panel = new scv::Panel(scv::Point(100,100), scv::Point(220,220));
    panel->setDraggable(true);
    panel->setResizable(true);
    kernel->addComponent(panel);
@@ -22,6 +22,11 @@ int main(int argc, char* argv[]) {
    cPanel->setDraggable(true);
    cPanel->setResizable(true);
    panel->addChild(cPanel);
+   /**/
+
+   kernel->addComponent(new scv::ColorPicker(scv::Point(400,100)));
+   kernel->addComponent(new scv::ColorPicker(scv::Point(0,0)));
+   
 
    //kernel->removeComponent(panel);
    //delete panel;

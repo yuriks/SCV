@@ -44,8 +44,12 @@ void Panel::display(void) {
    scissor->popScissor();
 }
 
-void Panel::createTexture(void) {   
+void Panel::createTexture(void) {
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::panel)) != NULL) return;
+
    _cTexture = new ComponentTexture(2, 2);
+   kernel->setWidgetTexture(Kernel::panel, _cTexture);
+
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
    // middle

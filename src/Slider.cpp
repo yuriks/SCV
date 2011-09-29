@@ -9,6 +9,8 @@ Slider::Slider( const scv::Point &p, unsigned int width, double minValue, double
       ComponentWithTexture(p,Point(p.x+width,p.y+24)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
    _isVResizable = false;
    _type = slider;
+
+   createTexture();
 }
 
 
@@ -16,6 +18,8 @@ Slider::Slider( const scv::Point &p , double minValue, double maxValue, double s
       ComponentWithTexture(p,Point(p.x+100,p.y+24)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
    _isVResizable = false;
    _type = slider;
+
+   createTexture();
 }
 
 void Slider::onMouseClick(const scv::MouseEvent &evt) {/**/}
@@ -57,7 +61,6 @@ void Slider::display(void) {
 
 
 void Slider::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::slider)) != NULL) return;
 
    // create texture object

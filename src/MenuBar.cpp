@@ -17,6 +17,8 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0),Point(width, s_menuHeight)) {
    _currSelectedMenu = -1;
    _currecOverMenu = -1;
    _type = menuBar;
+
+   createTexture();
 }
 
 void MenuBar::processMouse(const scv::MouseEvent &evt) {
@@ -194,8 +196,6 @@ void MenuBar::display(void) {
 
 
 void MenuBar::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
-
    if ((_cTexture = kernel->getWidgetTexture(Kernel::menuBar)) != NULL) return;
 
    _cTexture = new ComponentTexture(5, 2);

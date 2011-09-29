@@ -583,11 +583,11 @@ bool Kernel::willAppearOnScreen(Component* component) {
    }
 }
 
-Kernel::textureFilter Kernel::getFilterType(void) {
+Kernel::TextureFilter Kernel::getFilterType(void) {
    return _filterType;
 }
 
-void Kernel::setFilterType(textureFilter tex) {
+void Kernel::setFilterType(TextureFilter tex) {
    _filterType = tex;
 }
 

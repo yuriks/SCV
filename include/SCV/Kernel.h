@@ -30,7 +30,7 @@ class Kernel : public Singleton<Kernel> {
 friend class Singleton<Kernel>;
 public:
    ///////////////////////////////////////////////////////////
-   enum widgets {
+   enum Widgets {
       panel       , contextMenu,
       colorPicker , progressBar,
       scrool      , slider     ,
@@ -44,7 +44,7 @@ public:
       s_nOfWidgets
    };
 
-   enum textureFilter { linear, nearest };
+   enum TextureFilter { linear, nearest };
    ///////////////////////////////////////////////////////////
 
    void run(void);
@@ -70,8 +70,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   textureFilter getFilterType(void);
-   void setFilterType(textureFilter tex);
+   TextureFilter getFilterType(void);
+   void setFilterType(TextureFilter tex);
    ///////////////////////////////////////////////////////////
       
    ///////////////////////////////////////////////////////////
@@ -102,8 +102,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   inline void setWidgetTexture(Kernel::widgets widget, ComponentTexture *texture);
-   inline ComponentTexture* getWidgetTexture(Kernel::widgets widget);
+   inline void setWidgetTexture(Kernel::Widgets widget, ComponentTexture *texture);
+   inline ComponentTexture* getWidgetTexture(Kernel::Widgets widget);
    ///////////////////////////////////////////////////////////
 
 private:
@@ -114,14 +114,14 @@ private:
 
    void updateFramesPerSecond(void);
 
-   /* Mouse Callbacks                                       */   
+   //Mouse Callbacks
    ///////////////////////////////////////////////////////////
    static void cbMouseMotion(int x, int y);
    static void cbMouseClick(int button, int state, int x, int y);
    static void cbMouseWheel(int button, int dir, int x, int y);
    ///////////////////////////////////////////////////////////
 
-   /* Keyboard Callbacks                                    */
+   //Keyboard Callbacks
    ///////////////////////////////////////////////////////////
    static void cbKeySpecial(int key, int x, int y);
    static void cbKeySpecialUp(int key, int x, int y);
@@ -129,7 +129,7 @@ private:
    static void cbKeyUp(unsigned char key, int x, int y);
    ///////////////////////////////////////////////////////////
       
-   /* Display                                               */   
+   //Display
    ///////////////////////////////////////////////////////////
    static void cbReshape(int w, int h);
    static void cbDisplay(void);
@@ -166,7 +166,7 @@ private:
 
    std::string _windowTitle;
 
-   textureFilter _filterType;
+   TextureFilter _filterType;
 
    typedef std::list<Component*> ComponentsList;
    ComponentsList _objects;
@@ -184,11 +184,11 @@ inline float Kernel::getFramesPerSecond(void) const {
    return FrameRate.currFps;
 }
 
-inline void Kernel::setWidgetTexture(Kernel::widgets widget, ComponentTexture *texture) {
+inline void Kernel::setWidgetTexture(Kernel::Widgets widget, ComponentTexture *texture) {
    _loadedWidgets[widget] = texture;
 }
 
-inline ComponentTexture* Kernel::getWidgetTexture(Kernel::widgets widget) {
+inline ComponentTexture* Kernel::getWidgetTexture(Kernel::Widgets widget) {
    return _loadedWidgets[widget];
 }
 

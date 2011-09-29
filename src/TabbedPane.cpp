@@ -12,12 +12,16 @@ TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWi
    _currecOverTab = _currSelectedTab = -1;
    _index.push_back(s_tabSpacing);
    _type = tabbedPane;
+
+   createTexture();
 }
 
 TabbedPane::TabbedPane(const scv::Point &p1, unsigned int width, unsigned int height) : ComponentWithTexture(p1, Point(p1.x+width,p1.y+height)) {
    _currecOverTab = _currSelectedTab = -1;
    _index.push_back(s_tabSpacing);
    _type = tabbedPane;
+
+   createTexture();
 }
 
 
@@ -236,8 +240,6 @@ void TabbedPane::display(void) {
 }
 
 void TabbedPane::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
-
    if ((_cTexture = kernel->getWidgetTexture(Kernel::tabbedPane)) != NULL) return;
 
    // create texture object

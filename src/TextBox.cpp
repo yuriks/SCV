@@ -16,6 +16,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, co
    _nLines = lines;
    refreshText();
    _type = textBox;
+
+   createTexture();
 }
 
 TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str) :
@@ -28,6 +30,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str
    _nLines = 1;
    refreshText();
    _type = textBox;
+
+   createTexture();
 }
 
 TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &str) :
@@ -41,6 +45,8 @@ TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &
    setHeight(p2.y - p1.y);
    setWidth(p2.x - p1.x);
    _type = textBox;
+
+   createTexture();
 }
 
 void TextBox::onMouseClick(const scv::MouseEvent &evt) {/**/}
@@ -87,7 +93,6 @@ void TextBox::display(void) {
 }
 
 void TextBox::createTexture(void) {
-   static Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::textBox)) != NULL) return;
 
    // create texture object

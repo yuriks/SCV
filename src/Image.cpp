@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "Image.h"
 #include "Kernel.h"
-#include "DynamicCastIterator.h"
 #include "ImgLoader.h"
 
 namespace scv {
 
-Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Point(p1.x+10,p1.y+10)) {
+Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Point(p1.x + 10, p1.y + 10)) {
    data = NULL;
    int width, height;
    location = fileName;
@@ -25,6 +24,8 @@ Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Poin
 
 }
 
+Image::~Image() {}
+
 Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &fileName) : Panel(p1, p2) {
    data = NULL;
    int width, height;
@@ -40,20 +41,17 @@ Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &file
    _type = image;
 }
 
-
-void Image::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Image::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Image::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Image::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Image::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Image::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Image::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Image::onResizing(void) {/**/}
-void Image::onDragging(void) {/**/}
-
+void Image::onMouseClick(const scv::MouseEvent &evt) {}
+void Image::onMouseHold(const scv::MouseEvent &evt) {}
+void Image::onMouseOver(const scv::MouseEvent &evt) {}
+void Image::onMouseUp(const scv::MouseEvent &evt) {}
+void Image::onKeyPressed(const scv::KeyEvent &evt) {}
+void Image::onKeyUp(const scv::KeyEvent &evt) {}
+void Image::onMouseWheel(const scv::MouseEvent &evt) {}
+void Image::onResizing(void) {}
+void Image::onDragging(void) {}
 
 void Image::display(void) {
-   static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
 
@@ -73,9 +71,9 @@ void Image::display(void) {
    _cTexture->disable();
 
    // components
-   for (DynamicCastIterator<Component, ObjectList::const_iterator> i (getChildren()); i.valid(); ++i) {
-      if (kernel->willAppearOnScreen(*i))
-         i->display();
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      if (kernel->willAppearOnScreen(*iter))
+         (*iter)->display();
    }
    scissor->popScissor();
 }
@@ -87,14 +85,5 @@ void Image::createTexture(void) {
    _cTexture->addTexture(Point(0,0), _realSize.x, _realSize.y, data);
    _cTexture->createTexture();
 }
-
-unsigned char * Image::getData(void) {
-   return data;
-}
-
-const std::string & Image::getPath(void) {
-   return location;
-}
-
 
 } // namespace scv
