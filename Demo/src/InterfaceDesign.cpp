@@ -52,7 +52,6 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
    component->addMenu(new ContextMenu("TextField"));
    component->addMenu(new ContextMenu("Toggle Button"));
    component->addMenu(new ContextMenu("Tree View"));
-
 }
 
 
@@ -65,6 +64,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
    } else  if (address.size() == 2) {
       if (address[1] == "Remove Component") {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
+        delete m_panel;
       } else if (address[1] == "Generate Code...") {
          //scv::Kernel::getInstance()->generateCode();
       }

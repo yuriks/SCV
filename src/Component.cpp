@@ -46,11 +46,12 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, 
 Component::~Component(void) {
    setParent(NULL);
    
-   for (Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
+   Component::List::iterator iter = _children.begin();
+   while (iter != _children.end()) {
       Component *pItem = (*iter);
       iter = _children.erase(iter);
       delete pItem;
-   }   
+   }
 }
 
 Point Component::getRelativePosition(void) const {
@@ -109,9 +110,13 @@ bool Component::isFocused(void) const {
 }
 
 void Component::registerContextMenu(ContextMenu *contextMenu) {
-   static MenuHolder *menu = MenuHolder::getInstance();
    _contextMenu = contextMenu;
-   menu->registerParentMenu(_contextMenu);
+   MenuHolder::getInstance()->registerMenu(_contextMenu);
+}
+
+
+void Component::unregisterContextMenu(void) {   
+   _contextMenu = NULL;
 }
 
 bool Component::isInside(const Point &evtPosition) const {

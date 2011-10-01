@@ -87,6 +87,7 @@ public:
    ///////////////////////////////////////////////////////////
 
    virtual void registerContextMenu(ContextMenu *contextMenu);
+   virtual void unregisterContextMenu(void);
 
    virtual bool isInside(const Point &evtPosition) const;
 

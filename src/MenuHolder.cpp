@@ -33,30 +33,37 @@ bool MenuHolder::processKey(const scv::KeyEvent &evt) {
    return status;
 }
 
-void MenuHolder::registerParentMenu(ContextMenu *menu) {
+void MenuHolder::registerMenu(ContextMenu *menu) {
    if (std::find(_list.begin(), _list.end(), menu) == _list.end()) {
       _list.push_back(menu);
    }
 }
 
-void MenuHolder::activeMenu(ContextMenu *menu, const Point &p) {
-   for (ContextMenuList::iterator iter = _list.begin(); iter != _list.end(); ++iter) {
-      (*iter)->setMenuStatus(false);
+
+void MenuHolder::unregisterMenu(ContextMenu *menu) {
+   if (std::find(_list.begin(), _list.end(), menu) != _list.end()) {
+      _list.remove(menu);
    }
-   menu->setMenuStatus(true);
-   menu->setPosition(p);
+}
+
+void MenuHolder::activeMenu(ContextMenu *menu, const Point &position) {
+   for (ContextMenuList::iterator iter = _list.begin(); iter != _list.end(); ++iter) {
+      (*iter)->setStatus(false);
+   }
+   menu->setStatus(true);
+   menu->setPosition(position);
 }
 
 void MenuHolder::closeAllMenus(void) {
    for (ContextMenuList::iterator iter = _list.begin(); iter != _list.end(); ++iter) {
-      (*iter)->setMenuStatus(false);
+      (*iter)->setStatus(false);
       (*iter)->setSubMenusStatus(false);
    }
 }
 
 bool MenuHolder::hasActiveMenu(void) const {
    for (ContextMenuList::const_iterator iter = _list.begin(); iter != _list.end(); ++iter) {
-      if ((*iter)->isActive()) return true;
+      if ((*iter)->getStatus()) return true;
    }
    return false;
 }

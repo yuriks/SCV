@@ -46,7 +46,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
                         && relativeMouse.y > s_borderHeight/2-1 + currPosition.y && relativeMouse.y < currPosition.y + getHeight() - 2) {
                      menu->closeAllMenus();
                      _active = !_active;
-                     _menus[i]->_active = !_menus[i]->_active;
+                     _menus[i]->_status = !_menus[i]->_status;
                      if (_active) {
                         _currSelectedMenu = i;
                         return;
@@ -68,7 +68,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
                      && relativeMouse.y > s_borderHeight/2-1 + currPosition.y && relativeMouse.y < currPosition.y + getHeight() - 2) {
                   menu->closeAllMenus();
                   _currSelectedMenu = i;
-                  _menus[i]->_active = true;
+                  _menus[i]->_status = true;
                   break;
                }
             }
@@ -89,7 +89,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
    }
 
    for (int i = 0; i < _menus.size() ; i++) {
-   	if (_menus[i]->isActive()) return;
+   	if (_menus[i]->getStatus()) return;
    }
    _active = false;
    _currSelectedMenu = -1;
@@ -104,19 +104,19 @@ void MenuBar::processKey(const scv::KeyEvent &evt) {
    ContextMenu * cMenu = _menus[_currSelectedMenu];
 
    while (cMenu->hasSubMenuActive())
-      cMenu = cMenu->_menus[cMenu->_currSelectedMenu];
+      cMenu = cMenu->_list[cMenu->_currSelectedMenu];
 
    if (evt.getKeyString() == "Left" && !cMenu->_recentlyChange) {
       if (_currSelectedMenu == 0) _currSelectedMenu = _menus.size() - 1;
       else _currSelectedMenu--;
       menu->closeAllMenus();
-      _menus[_currSelectedMenu]->_active = true;
+      _menus[_currSelectedMenu]->_status = true;
       _menus[_currSelectedMenu]->_currSelectedMenu = 0;
-   } else if (evt.getKeyString() == "Right" && ((cMenu->_currSelectedMenu != -1 && !cMenu->_menus[cMenu->_currSelectedMenu]->hasSubMenus() && !cMenu->_recentlyChange) ||
+   } else if (evt.getKeyString() == "Right" && ((cMenu->_currSelectedMenu != -1 && !cMenu->_list[cMenu->_currSelectedMenu]->hasSubMenus() && !cMenu->_recentlyChange) ||
          cMenu->_currSelectedMenu == -1)) {
       _currSelectedMenu = (_currSelectedMenu + 1) % _menus.size();
       menu->closeAllMenus();
-      _menus[_currSelectedMenu]->_active = true;
+      _menus[_currSelectedMenu]->_status = true;
       _menus[_currSelectedMenu]->_currSelectedMenu = 0;
    }
 }
@@ -240,7 +240,7 @@ void MenuBar::onDragging(void) {/**/}
 void MenuBar::addMenu(ContextMenu *menu) {
    static FontTahoma *font = FontTahoma::getInstance();
    static MenuHolder *menuH = MenuHolder::getInstance();
-   menuH->registerParentMenu(menu);
+   menuH->registerMenu(menu);
 
    int position = (_index.back() + (s_borderWidth * 2) + font->getStringLength(menu->getString()));
    _index.push_back(position);

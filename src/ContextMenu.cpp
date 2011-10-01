@@ -12,76 +12,81 @@ ContextMenu::ContextMenu(const std::string& name) : _label(name) {
    _height = _witdh = 0;
    _currSelectedMenu = -1;
    _parentMenu = NULL;
-   _active = false;
+   _status = false;
    _recentlyChange = false;
    _style = VistaMenuStyle::getInstance();
 }
 
 ContextMenu::~ContextMenu() {
    removeAllMenus();
-}
-
-void ContextMenu::addMenu(ContextMenu *menu) {
-   static FontTahoma *font = FontTahoma::getInstance();
-   if (menu == NULL) return;
-
-   menu->registerParentMenu(this);
-   _menus.push_back(menu);
-
-   _height = _style->calcHeight(*this);
-   _witdh = _style->calcWidth(*this);
+   if (_parentMenu == NULL) {
+      MenuHolder::getInstance()->unregisterMenu(this);
+   } else {
+      _parentMenu->removeMenu(this);
+   }
 }
 
 void ContextMenu::removeMenu(ContextMenu *menu) {
    if (menu == NULL) return;
 
-   MenuList::iterator i = std::find(_menus.begin(), _menus.end(), menu);
+   MenuList::iterator iter = std::find(_list.begin(), _list.end(), menu);
+   if (iter == _list.end()) return;
 
-   if (i == _menus.end())
-      return;
-
-   _menus.erase(i);
+   _list.erase(iter);
 
    _height = _style->calcHeight(*this);
    _witdh = _style->calcWidth(*this);
 }
 
 void ContextMenu::removeAllMenus() {
-   for (MenuList::iterator i = _menus.begin(); i != _menus.end(); ++i) {
-      delete *i;
+   MenuList::iterator iter = _list.begin();
+   while (iter != _list.end()) {
+      ContextMenu *pItem = (*iter);
+      iter = _list.erase(iter);
+      delete pItem;
    }
+   
+   _height = _style->calcHeight(*this);
+   _witdh = _style->calcWidth(*this);
+}
 
-   _menus.clear();
+void ContextMenu::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {}
+
+void ContextMenu::onMouseOver(const scv::MouseEvent &evt, const std::deque<std::string> &address) {}
+
+void ContextMenu::onMenuAccessed(const std::deque<std::string> &address) {}
+
+void ContextMenu::addMenu(ContextMenu *menu) {
+   static FontTahoma *font = FontTahoma::getInstance();
+   if (menu == NULL) return;
+
+   menu->registerParentMenu(this);
+   _list.push_back(menu);
 
    _height = _style->calcHeight(*this);
    _witdh = _style->calcWidth(*this);
 }
 
-void ContextMenu::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {/*none*/}
-void ContextMenu::onMouseOver(const scv::MouseEvent &evt, const std::deque<std::string> &address) {/*none*/}
-
-void ContextMenu::onMenuAccessed(const std::deque<std::string> &address) {/*none*/}
-
 bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
 
-   if (isActive() == false || hasSubMenus() == false) return false;
+   if (getStatus() == false || hasSubMenus() == false) return false;
 
-   if (_currSelectedMenu != -1 && _menus[_currSelectedMenu]->processMouse(evt) == true) {
+   if (_currSelectedMenu != -1 && _list[_currSelectedMenu]->processMouse(evt) == true) {
       return true;
    } else {
       if (isInside(evt.getPosition())) {
-         for (int i = 0; i < _menus.size(); i++) {
+         for (int i = 0; i < _list.size(); i++) {
             if (isInsideThisMenu(evt.getPosition(), i)) {
                   _currSelectedMenu = i;
-                  _menus[_currSelectedMenu]->setMenuStatus(true);
+                  _list[_currSelectedMenu]->setStatus(true);
 
-                  if (_menus[_currSelectedMenu]->hasSubMenus() == false)
-                     processMouseCallback(evt, std::deque<std::string>(1, _menus[i]->_label));
+                  if (_list[_currSelectedMenu]->hasSubMenus() == false)
+                     processMouseCallback(evt, std::deque<std::string>(1, _list[i]->_label));
 
-            } else if (i != _currSelectedMenu || ((_currSelectedMenu != -1)? !_menus[_currSelectedMenu]->isInside(evt.getPosition()) : true)) {
-               _menus[i]->setMenuStatus(false);
+            } else if (i != _currSelectedMenu || ((_currSelectedMenu != -1)? !_list[_currSelectedMenu]->isInside(evt.getPosition()) : true)) {
+               _list[i]->setStatus(false);
             }
          }
          return true;
@@ -97,46 +102,46 @@ bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
 bool ContextMenu::processKey(const scv::KeyEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
 
-   if (isActive() == false || !hasSubMenus()) return false;
+   if (getStatus() == false || !hasSubMenus()) return false;
    else if (evt.getState() == KeyEvent::up) return true;
 
    _recentlyChange = false;
 
-   for (int i = 0; i < _menus.size() ; i++) {
-      if (_menus[i]->isActive() && _menus[i]->hasSubMenus()) {
-         _menus[i]->processKey(evt);
+   for (int i = 0; i < _list.size() ; i++) {
+      if (_list[i]->getStatus() && _list[i]->hasSubMenus()) {
+         _list[i]->processKey(evt);
          return true;
       }
    }
-   if (isActive() == true) {
+   if (getStatus() == true) {
       if (evt.getKeyString() == "Down") {
          if (_currSelectedMenu == -1) {
             _currSelectedMenu = 0;
          } else {
-            _menus[_currSelectedMenu]->setMenuStatus(false);
-            _currSelectedMenu = ((_currSelectedMenu + 1) % _menus.size());
+            _list[_currSelectedMenu]->setStatus(false);
+            _currSelectedMenu = ((_currSelectedMenu + 1) % _list.size());
          }
       } else if (evt.getKeyString() == "Up") {
          if (_currSelectedMenu == -1 || (_currSelectedMenu - 1) == -1) {
-            _currSelectedMenu = _menus.size() - 1;
+            _currSelectedMenu = _list.size() - 1;
          } else {
-            _menus[_currSelectedMenu]->setMenuStatus(false);
+            _list[_currSelectedMenu]->setStatus(false);
             _currSelectedMenu--;
          }
       } else if (evt.getKeyString() == "Right" && _currSelectedMenu != -1) {
-         _menus[_currSelectedMenu]->setMenuStatus(true);
-         _menus[_currSelectedMenu]->_recentlyChange = true;
-         _menus[_currSelectedMenu]->_currSelectedMenu = 0;
+         _list[_currSelectedMenu]->setStatus(true);
+         _list[_currSelectedMenu]->_recentlyChange = true;
+         _list[_currSelectedMenu]->_currSelectedMenu = 0;
       } else if (evt.getKeyString() == "Left" && _parentMenu != NULL) {
-         setMenuStatus(false);
+         setStatus(false);
          if (_parentMenu!=NULL) {
             _parentMenu->_recentlyChange = true;
          }
       } else if (evt.getKeyString() == "Esc") {
-         setMenuStatus(false);
+         setStatus(false);
       } else if (evt.getKeyString() == "Enter") {
          if (_currSelectedMenu != -1)
-            processKeyboardCallback(evt, std::deque<std::string>(1, _menus[_currSelectedMenu]->_label));
+            processKeyboardCallback(evt, std::deque<std::string>(1, _list[_currSelectedMenu]->_label));
          menu->closeAllMenus();
       }
    }
@@ -146,7 +151,7 @@ bool ContextMenu::processKey(const scv::KeyEvent &evt) {
 void ContextMenu::display(void) {
    static Kernel *kernel = Kernel::getInstance();
 
-   if (isActive() == false || !hasSubMenus()) return;
+   if (getStatus() == false || !hasSubMenus()) return;
 
    if (_currPosition.x + _witdh > kernel->getWidth()) {
       _currPosition.x = kernel->getWidth() - _witdh;
@@ -158,9 +163,9 @@ void ContextMenu::display(void) {
    _style->drawMenu(*this, _currSelectedMenu);
 
    // sub-menus
-   for (int i = 0; i < _menus.size(); i++) {
-      _menus[i]->display();
-      _menus[i]->setPosition(_style->getSubmenuPos(*this, i));
+   for (int i = 0; i < _list.size(); i++) {
+      _list[i]->display();
+      _list[i]->setPosition(_style->getSubmenuPos(*this, i));
    }
 }
 
@@ -173,19 +178,19 @@ bool ContextMenu::isInside(const Point &p) {
 }
 
 
-void ContextMenu::setMenuStatus(bool status) {
-   _active = status;
+void ContextMenu::setStatus(bool status) {
+   _status = status;
    _currSelectedMenu = -1;
 
-   for (int i = 0; i < _menus.size(); i++) {
-      _menus[i]->setMenuStatus(false);
+   for (int i = 0; i < _list.size(); i++) {
+      _list[i]->setStatus(false);
    }
 }
 
 void ContextMenu::setSubMenusStatus(bool status) {
-   for (int i = 0; i < _menus.size(); i++) {
-      _menus[i]->setMenuStatus(status);
-      _menus[i]->setSubMenusStatus(status);
+   for (int i = 0; i < _list.size(); i++) {
+      _list[i]->setStatus(status);
+      _list[i]->setSubMenusStatus(status);
    }
 }
 
@@ -217,8 +222,8 @@ void ContextMenu::processKeyboardCallback(const KeyEvent &evt, std::deque<std::s
 
 bool ContextMenu::hasSubMenuActive(void) const {
    if (_currSelectedMenu == -1) return false;
-   else if (_menus[_currSelectedMenu]->hasSubMenus()) {
-      if (_menus[_currSelectedMenu]->isActive()) {
+   else if (_list[_currSelectedMenu]->hasSubMenus()) {
+      if (_list[_currSelectedMenu]->getStatus()) {
          return true;
       }
    }
