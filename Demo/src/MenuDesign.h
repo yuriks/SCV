@@ -10,8 +10,7 @@ public:
 
 private:
    scv::MenuBar *m_menu;
-   int contMenu;
-   //int contCheckbox, contLabel, contMenubar, contProgressBar, contRadioButton, contTextBox, contTextField, contTeggleButton, contWindow, contButton;
+   int contMenu;   
 };
 
 

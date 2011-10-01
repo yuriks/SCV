@@ -87,8 +87,8 @@ void Component::setAbsolutePosition(const Point &position) {
 }
 
 void Component::setWidth(const int width) {
-   if (width < _minSize.x) {
-      _p2.x = _p1.x + _minSize.x;
+   if (width < getMinSize().x) {
+      _p2.x = _p1.x + getMinSize().x;
    } else {
       _p2.x = _p1.x + width;
    }
@@ -96,8 +96,8 @@ void Component::setWidth(const int width) {
 }
 
 void Component::setHeight(const int height) {
-   if (height < _minSize.y) {
-      _p2.y = _p1.y + _minSize.y;
+   if (height < getMinSize().y) {
+      _p2.y = _p1.y + getMinSize().y;
    } else {
       _p2.y = _p1.y + height;
    }
@@ -145,43 +145,46 @@ void Component::processMouse(const scv::MouseEvent &evt) {
    } else if (_isResizable && _isResizing && evt.getState() == MouseEvent::hold && evt.getButton() == MouseEvent::left) {
       if (_isHResizable) {
          if (_resizing[left]) {
-            setWidth(getWidth() + getAbsolutePosition().x - evtPosition.x);
-            setAbsolutePosition(Point(evtPosition.x, getAbsolutePosition().y));
+            int width = getWidth();
+            setWidth(getWidth() + getAbsolutePosition().x - evtPosition.x);            
+            setAbsolutePosition(Point(getAbsolutePosition().x + width - getWidth(), getAbsolutePosition().y));
+         } else if (_resizing[right]) {            
+            setWidth(evtPosition.x - currPosition.x);
          }
-         if (_resizing[right]) setWidth(evtPosition.x - currPosition.x);
       }
       if (_isVResizable) {
          if (_resizing[top]) {
+            int height = getHeight();
             setHeight(getHeight() + getAbsolutePosition().y - evtPosition.y);
-            setAbsolutePosition(Point(getAbsolutePosition().x, evtPosition.y));         
+            setAbsolutePosition(Point(getAbsolutePosition().x, getAbsolutePosition().y + height - getHeight()));         
+         } else if (_resizing[bottom]) {
+            setHeight(evtPosition.y - currPosition.y);
          }
-         if (_resizing[bottom]) setHeight(evtPosition.y - currPosition.y);
       }
       if (kernel->lockMouseUse(this)) setResizingCursor();
    }
    
    if (getParentScissor().isInside(evtInversePosition) && !isDragging() && _isResizable) {
-      if (_isHResizable && isInsideSide(left, evtPosition) && kernel->requestMouseUse(this)) {
-         _resizing[0] = true;
-         if (evt.getState() == MouseEvent::click) _isResizing = true;
+      if (_isHResizable && !_resizing[left] && !_resizing[right]) {
+         if (isInsideSide(left, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[left] = true;
+         } else if (isInsideSide(right, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[right] = true;
+         }
+      }      
 
-      }  
-      if (_isHResizable && isInsideSide(right, evtPosition) && kernel->requestMouseUse(this)) {
-         _resizing[1] = true;
-         if (evt.getState() == MouseEvent::click) _isResizing = true;
-      }  
-      if (_isVResizable && isInsideSide(top, evtPosition) && kernel->requestMouseUse(this)) {
-         _resizing[2] = true;
-         if (evt.getState() == MouseEvent::click) _isResizing = true;
-      }  
-      if (_isVResizable && isInsideSide(bottom, evtPosition) && kernel->requestMouseUse(this)) {
-         _resizing[3] = true;
-         if (evt.getState() == MouseEvent::click) _isResizing = true;
-      }
+      if (_isVResizable && !_resizing[top] && !_resizing[bottom]) {
+         if (isInsideSide(top, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[top] = true;
+         } else if (isInsideSide(bottom, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[bottom] = true;            
+         }
+      }      
 
       setResizingCursor();
       if (std::find(_resizing.begin(), _resizing.end(), true) != _resizing.end()) {
-         kernel->requestComponentFocus(this);         
+         if (evt.getState() == MouseEvent::click) _isResizing = true;
+         kernel->requestComponentFocus(this);  
          return;
       }
    }

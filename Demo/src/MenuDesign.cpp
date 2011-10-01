@@ -17,13 +17,9 @@ void MenuDesign::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
          ContextMenu * cmenu = new scv::ContextMenu("menu " + scv::toString(contMenu));
          m_menu->addMenu(cmenu);
          contMenu++;
-         /*AbstractWindow *win = new AbstractWindow(m_menu);
-         win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         scv::Kernel::getInstance()->addWindow(win);*/
-      }
-	  else if (address[1] == "Remove Component") {
-		  scv::Kernel::getInstance()->removeComponent(m_menu->shared_from_this());
-	  }
+      } else if (address[1] == "Remove Component") {
+		   scv::Kernel::getInstance()->removeComponent(m_menu);
+	   }
    }
 }
 
@@ -35,9 +31,9 @@ void MenuRename::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
          AbstractWindow *win = new AbstractWindow(m_component);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
          scv::Kernel::getInstance()->addWindow(win);
-      }
+      } 
       if (address[1] == "Remove Component") {
-         scv::Kernel::getInstance()->removeComponent(m_component->shared_from_this());
+         scv::Kernel::getInstance()->removeComponent(m_component);
       }
    }
 }
@@ -45,7 +41,7 @@ void MenuRename::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::
 void RemoveComponent::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {
    if (address.size() == 2) {
       if (address[1] == "Remove Component") {
-         scv::Kernel::getInstance()->removeComponent(m_component->shared_from_this());
+         scv::Kernel::getInstance()->removeComponent(m_component);
       }
    }
 }

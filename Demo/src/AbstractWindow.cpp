@@ -4,11 +4,11 @@
 AbstractWindow::AbstractWindow(scv::Label *component) : InternalFrame(300, 100,"Component Name") {
    m_component = component;
    m_input = new InputText(this);
-   addComponent(scv::Component::Ptr(m_input));
+   addChild(m_input);
    m_ok = new AcceptButton(this);
-   addComponent(scv::Component::Ptr(m_ok));
+   addChild(m_ok);
    m_cancel = new CancelButton(this);
-   addComponent(scv::Component::Ptr(m_cancel));
+   addChild(m_cancel);
    scv::Kernel::getInstance()->requestComponentFocus(m_input);
 }
 
