@@ -88,8 +88,8 @@ void Component::setAbsolutePosition(const Point &position) {
 }
 
 void Component::setWidth(const int width) {
-   if (width < getMinSize().x) {
-      _p2.x = _p1.x + getMinSize().x;
+   if (width < getMinimumSize().x) {
+      _p2.x = _p1.x + getMinimumSize().x;
    } else {
       _p2.x = _p1.x + width;
    }
@@ -97,8 +97,8 @@ void Component::setWidth(const int width) {
 }
 
 void Component::setHeight(const int height) {
-   if (height < getMinSize().y) {
-      _p2.y = _p1.y + getMinSize().y;
+   if (height < getMinimumSize().y) {
+      _p2.y = _p1.y + getMinimumSize().y;
    } else {
       _p2.y = _p1.y + height;
    }

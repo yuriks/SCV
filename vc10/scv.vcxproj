@@ -22,6 +22,7 @@
     <ClCompile Include="..\src\ComboBox.cpp" />
     <ClCompile Include="..\src\ComboBoxMenuStyle.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
+    <ClCompile Include="..\src\ComponentSpring.cpp" />
     <ClCompile Include="..\src\ComponentTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithoutTexture.cpp" />
     <ClCompile Include="..\src\ComponentWithTexture.cpp" />
@@ -61,6 +62,7 @@
     <ClCompile Include="..\src\Slider.cpp" />
     <ClCompile Include="..\src\SoundLoader.cpp" />
     <ClCompile Include="..\src\Spinner.cpp" />
+    <ClCompile Include="..\src\Spring.cpp" />
     <ClCompile Include="..\src\StateButton.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -94,6 +96,7 @@
     <ClInclude Include="..\include\SCV\ComboBox.h" />
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h" />
     <ClInclude Include="..\include\SCV\Component.h" />
+    <ClInclude Include="..\include\SCV\ComponentSpring.h" />
     <ClInclude Include="..\include\SCV\ComponentTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
@@ -135,6 +138,7 @@
     <ClInclude Include="..\include\SCV\Slider.h" />
     <ClInclude Include="..\include\SCV\SoundLoader.h" />
     <ClInclude Include="..\include\SCV\Spinner.h" />
+    <ClInclude Include="..\include\SCV\Spring.h" />
     <ClInclude Include="..\include\SCV\StateButton.h" />
     <ClInclude Include="..\include\SCV\stdafx.h" />
     <ClInclude Include="..\include\SCV\TabbedPane.h" />

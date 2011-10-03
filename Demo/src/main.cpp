@@ -30,6 +30,10 @@ int main(int argc, char* argv[]) {
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
+   layout->setAutoCreateGaps(true);
+
+   layout->setAutoCreateContainerGaps(true);
+
    scv::SequentialGroup *hGroup = layout->createSequentialGroup();
 
    hGroup->addGroup(layout->createParallelGroup()->

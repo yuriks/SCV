@@ -67,7 +67,10 @@ public:
    virtual void setHeight(int height);
 
    virtual inline Point getSize(void) const;
-   virtual inline Point getMinSize(void) const;
+
+   virtual inline Point getMinimumSize(void) const;
+   virtual inline Point getPreferredSize(void) const;
+   virtual inline Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -171,7 +174,15 @@ Point Component::getSize(void) const {
    return Point(getWidth(), getHeight());
 }
 
-Point Component::getMinSize(void) const {
+Point Component::getMinimumSize(void) const {
+   return _minSize;
+}
+
+Point Component::getPreferredSize(void) const {
+   return _minSize;
+}
+
+Point Component::getMaximumSize(void) const {
    return _minSize;
 }
 

@@ -4,7 +4,13 @@
 namespace scv {
 
 GroupLayout::GroupLayout(Panel *host) {
+   _host = NULL;
 
+   _autoCreatePadding = false;
+   _autoCreateContainerPadding = false;
+
+   _horizontalGroup = NULL;
+   _verticalGroup = NULL;
 }
 
 GroupLayout::~GroupLayout(void) {
@@ -12,7 +18,7 @@ GroupLayout::~GroupLayout(void) {
 }
 
 ParallelGroup *GroupLayout::createParallelGroup(void) {
-   return new ParallelGroup();
+   return createParallelGroup(Alignment::LEADING);
 }
 
 ParallelGroup * GroupLayout::createParallelGroup(Alignment alignment) {

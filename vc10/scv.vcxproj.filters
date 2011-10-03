@@ -191,13 +191,19 @@
       <Filter>GroupLayout</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Group.cpp">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ParallelGroup.cpp">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SequentialGroup.cpp">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Spring.cpp">
+      <Filter>GroupLayout\Spring</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ComponentSpring.cpp">
+      <Filter>GroupLayout\Spring</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,13 +412,19 @@
       <Filter>GroupLayout</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\Group.h">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\SequentialGroup.h">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ParallelGroup.h">
-      <Filter>GroupLayout\Group</Filter>
+      <Filter>GroupLayout\Spring\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\Spring.h">
+      <Filter>GroupLayout\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ComponentSpring.h">
+      <Filter>GroupLayout\Spring</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,7 +482,10 @@
     <Filter Include="GroupLayout">
       <UniqueIdentifier>{cb729ae5-8eb7-4850-9d94-3b558dee9db2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GroupLayout\Group">
+    <Filter Include="GroupLayout\Spring">
+      <UniqueIdentifier>{d219aa48-c849-4e2f-8c76-5dd7e577f431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GroupLayout\Spring\Group">
       <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

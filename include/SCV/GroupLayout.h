@@ -24,6 +24,14 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
+   inline void setAutoCreateGaps(boolean autoCreatePadding);
+   inline bool getAutoCreateGaps(void) const;
+
+   inline void setAutoCreateContainerGaps(boolean autoCreateContainerPadding);
+   inline bool getAutoCreateContainerGaps(void) const;
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    ParallelGroup *createParallelGroup(void);
    ParallelGroup *createParallelGroup(Alignment alignment);
 
@@ -36,9 +44,33 @@ public:
    ///////////////////////////////////////////////////////////
 
 protected:
-   
+   Panel *_host;
+
+   bool _autoCreatePadding;
+   bool _autoCreateContainerPadding;
+
+   Group *_horizontalGroup;
+   Group *_verticalGroup;
 private:
 };
+
+///////////////////////////////////////////////////////////
+void GroupLayout::setAutoCreateGaps(boolean autoCreatePadding) {
+   _autoCreatePadding = autoCreatePadding;
+}
+
+bool GroupLayout::getAutoCreateGaps(void) const {
+   return _autoCreatePadding;
+}
+
+void GroupLayout::setAutoCreateContainerGaps(boolean autoCreateContainerPadding) {
+   _autoCreateContainerPadding = autoCreateContainerPadding;
+}
+
+bool GroupLayout::getAutoCreateContainerGaps(void) const {
+   return _autoCreateContainerPadding;
+}
+///////////////////////////////////////////////////////////
 
 } //namespace scv
 
