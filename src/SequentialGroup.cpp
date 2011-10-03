@@ -3,7 +3,7 @@
 
 namespace scv {
 
-SequentialGroup::SequentialGroup(void) {
+SequentialGroup::SequentialGroup(void) : Group() {
 
 }
 

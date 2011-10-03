@@ -1,7 +1,7 @@
 #ifndef __SCV_GROUP_H__
 #define __SCV_GROUP_H__
 
-//http://download.oracle.com/javase/6/docs/api/javax/swing/GroupLayout.Group.html
+//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.Group.html
 
 #include "Spring.h"
 
@@ -27,10 +27,19 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   virtual Group *addComponent(Component *component);
-   virtual Group *addGap(int size);
    virtual Group *addGroup(Group *group);
+
+   virtual Group *addComponent(Component *component);
+   virtual Group *addComponent(Component *component, int min, int pref, int max);
+
+   virtual Group *addGap(int size);
+   virtual Group *addGap(int min, int pref, int max);
    ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual Group *addSpring(Spring *spring);
+   ///////////////////////////////////////////////////////////
+
 
    ///////////////////////////////////////////////////////////
    virtual int calculateMinimumSize(Spring::Axis axis);
@@ -42,7 +51,7 @@ public:
 
    int getSpringSize(Spring *spring, Spring::Axis axis, SizeType type);
 
-   virtual int combined(int a, int b) = 0;;
+   virtual int combined(int a, int b) = 0;
 
 protected:
    inline Spring *getSpring(int index);

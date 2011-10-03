@@ -23,7 +23,7 @@ public:
    virtual int getSizeAlongAxis(Axis axis, Point size);
 
    inline void setComponent(Component *component);
-   inline void getComponent(Component *component) const;
+   inline Component *getComponent(void) const;
 
 protected:
    inline bool isVisible(void) const;
@@ -41,7 +41,7 @@ void ComponentSpring::setComponent(Component *component) {
    _component = component;
 }
 
-void ComponentSpring::getComponent(Component *component) const {
+Component *ComponentSpring::getComponent(void) const {
    return _component;
 }
 

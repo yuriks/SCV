@@ -1,7 +1,7 @@
 #ifndef __SCV_GROUP_LAYOUT_H__
 #define __SCV_GROUP_LAYOUT_H__
 
-//http://download.oracle.com/javase/6/docs/api/javax/swing/GroupLayout.html
+//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.html
 
 #include "Panel.h"
 
@@ -24,10 +24,10 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   inline void setAutoCreateGaps(boolean autoCreatePadding);
+   inline void setAutoCreateGaps(bool autoCreatePadding);
    inline bool getAutoCreateGaps(void) const;
 
-   inline void setAutoCreateContainerGaps(boolean autoCreateContainerPadding);
+   inline void setAutoCreateContainerGaps(bool autoCreateContainerPadding);
    inline bool getAutoCreateContainerGaps(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -55,7 +55,7 @@ private:
 };
 
 ///////////////////////////////////////////////////////////
-void GroupLayout::setAutoCreateGaps(boolean autoCreatePadding) {
+void GroupLayout::setAutoCreateGaps(bool autoCreatePadding) {
    _autoCreatePadding = autoCreatePadding;
 }
 
@@ -63,7 +63,7 @@ bool GroupLayout::getAutoCreateGaps(void) const {
    return _autoCreatePadding;
 }
 
-void GroupLayout::setAutoCreateContainerGaps(boolean autoCreateContainerPadding) {
+void GroupLayout::setAutoCreateContainerGaps(bool autoCreateContainerPadding) {
    _autoCreateContainerPadding = autoCreateContainerPadding;
 }
 

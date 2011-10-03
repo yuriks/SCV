@@ -3,7 +3,7 @@
 
 namespace scv {
 
-ComponentSpring::ComponentSpring(Component *component, int min, int pref, int max) {
+ComponentSpring::ComponentSpring(Component *component, int min, int pref, int max) : Spring() {
    _component = component;
 
    _min = min;
@@ -23,10 +23,10 @@ int ComponentSpring::calculateMinimumSize(Axis axis) {
    if (_min >= 0) {
       return _min;
    }
-   if (_min == Size::PREFERRED_SIZE) {
+   if (_min == PREFERRED_SIZE) {
       return calculatePreferredSize(axis);
    }
-   assert (_min == Size::DEFAULT_SIZE);
+   assert (_min == DEFAULT_SIZE);
    return getSizeAlongAxis(axis, _component->getMinimumSize());
 }
 
@@ -37,7 +37,7 @@ int ComponentSpring::calculatePreferredSize(Axis axis) {
    if (_pref >= 0) {
       return _pref;
    }
-   assert (_pref == Size::DEFAULT_SIZE || _pref == Size::PREFERRED_SIZE);
+   assert (_pref == DEFAULT_SIZE || _pref == PREFERRED_SIZE);
    return getSizeAlongAxis(axis, _component->getPreferredSize());
 }
 
@@ -48,15 +48,15 @@ int ComponentSpring::calculateMaximumSize(Axis axis) {
    if (_max >= 0) {
       return _max;
    }
-   if (_max == Size::PREFERRED_SIZE) {
+   if (_max == PREFERRED_SIZE) {
       return calculatePreferredSize(axis);
    }
-   assert (_max == Size::DEFAULT_SIZE);
+   assert (_max == DEFAULT_SIZE);
    return getSizeAlongAxis(axis, _component->getMaximumSize());
 }
 
 int ComponentSpring::getSizeAlongAxis(Axis axis, Point size) {
-   return (axis == Axis::HORIZONTAL)? size.x : size.y;
+   return (axis == HORIZONTAL)? size.x : size.y;
 }
 
 } //namespace scv

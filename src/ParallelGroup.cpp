@@ -3,7 +3,7 @@
 
 namespace scv {
 
-scv::ParallelGroup::ParallelGroup(void) {
+scv::ParallelGroup::ParallelGroup(void) : Group() {
 
 }
 

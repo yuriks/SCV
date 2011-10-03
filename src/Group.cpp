@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Group.h"
 
+#include "GapSpring.h"
+#include "ComponentSpring.h"
+
 namespace scv {
 
 Group::Group(void) {
@@ -11,17 +14,31 @@ Group::~Group(void) {
 
 }
 
+Group *Group::addGroup(Group *group) {
+   return addSpring(group);
+}
+
 Group *Group::addComponent(Component *component) {
-   return this;
+   return addComponent(component, 0,0,0);
+}
+
+Group * Group::addComponent(Component *component, int min, int pref, int max) {
+   return addSpring(new ComponentSpring(component, min, pref, max));
 }
 
 Group *Group::addGap(int size) {
+   return addGap(size, size, size);
+}
+
+Group * Group::addGap(int min, int pref, int max) {
+   return addSpring(new GapSpring(min, pref, max));
+}
+
+Group * Group::addSpring(Spring *spring) {
+   _springs.push_back(spring);
    return this;
 }
 
-Group *Group::addGroup(Group *group) {
-   return this;
-}
 
 int Group::calculateMinimumSize(Axis axis) {
    return calculateSize(axis, MIN_SIZE);
@@ -52,6 +69,7 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
    for (int i = 2; i < count; ++i) {
       size = constrain(combined(size, getSpringSize(getSpring(i), axis, type)));
    }
+   return size;
 }
 
 int Group::getSpringSize(Spring *spring, Spring::Axis axis, SizeType type) {

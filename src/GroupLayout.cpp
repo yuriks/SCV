@@ -18,7 +18,7 @@ GroupLayout::~GroupLayout(void) {
 }
 
 ParallelGroup *GroupLayout::createParallelGroup(void) {
-   return createParallelGroup(Alignment::LEADING);
+   return createParallelGroup(LEADING);
 }
 
 ParallelGroup * GroupLayout::createParallelGroup(Alignment alignment) {

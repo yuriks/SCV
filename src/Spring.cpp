@@ -4,7 +4,7 @@
 namespace scv {
 
 Spring::Spring(void) {
-   _min = _pref = _max = Size::UNSET;
+   _min = _pref = _max = UNSET;
 }
 
 Spring::~Spring(void) {
@@ -12,21 +12,21 @@ Spring::~Spring(void) {
 }
 
 int Spring::getMinimumSize(Axis axis) {
-   if (_min == Size::UNSET) {
+   if (_min == UNSET) {
       _min = constrain(calculateMinimumSize(axis));
    }
    return _min;
 }
 
 int Spring::getPreferredSize(Axis axis) {
-   if (_pref == Size::UNSET) {
+   if (_pref == UNSET) {
       _pref = constrain(calculatePreferredSize(axis));
    }
    return _pref;
 }
 
 int Spring::getMaximumSize(Axis axis) {
-   if (_max == Size::UNSET) {
+   if (_max == UNSET) {
       _max = constrain(calculateMaximumSize(axis));
    }
    return _max;
