@@ -59,15 +59,15 @@ void Panel::createTexture(void) {
    _cTexture->createTexture();
 }
 
-void Panel::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Panel::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Panel::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Panel::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Panel::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Panel::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Panel::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Panel::onResizing(void) {/**/}
-void Panel::onDragging(void) {/**/}
+void Panel::onMouseClick(const scv::MouseEvent &evt) {}
+void Panel::onMouseHold(const scv::MouseEvent &evt) {}
+void Panel::onMouseOver(const scv::MouseEvent &evt) {}
+void Panel::onMouseUp(const scv::MouseEvent &evt) {}
+void Panel::onKeyPressed(const scv::KeyEvent &evt) {}
+void Panel::onKeyUp(const scv::KeyEvent &evt) {}
+void Panel::onMouseWheel(const scv::MouseEvent &evt) {}
+void Panel::onResizing(void) {}
+void Panel::onDragging(void) {}
 
 void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
@@ -100,6 +100,12 @@ void Panel::processKey(const scv::KeyEvent &evt) {
    for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
    }
+}
+
+///////////////////////////////////////////////////////////
+
+void Panel::setLayout(GroupLayout *layout) {
+
 }
 
 } // namespace scv

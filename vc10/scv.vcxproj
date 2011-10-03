@@ -30,6 +30,8 @@
     <ClCompile Include="..\src\data\ScrollPaneData.cpp" />
     <ClCompile Include="..\src\data\TreeViewData.cpp" />
     <ClCompile Include="..\src\FileOpen.cpp" />
+    <ClCompile Include="..\src\Group.cpp" />
+    <ClCompile Include="..\src\GroupLayout.cpp" />
     <ClCompile Include="..\src\GTree.cpp" />
     <ClCompile Include="..\src\Image.cpp" />
     <ClCompile Include="..\src\ImgLoader.cpp" />
@@ -48,12 +50,14 @@
     <ClCompile Include="..\src\MenuBar.cpp" />
     <ClCompile Include="..\src\MenuHolder.cpp" />
     <ClCompile Include="..\src\MouseEvent.cpp" />
+    <ClCompile Include="..\src\ParallelGroup.cpp" />
     <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\ProgressBar.cpp" />
     <ClCompile Include="..\src\RadioButton.cpp" />
     <ClCompile Include="..\src\Scissor.cpp" />
     <ClCompile Include="..\src\ScrollPane.cpp" />
     <ClCompile Include="..\src\Separator.cpp" />
+    <ClCompile Include="..\src\SequentialGroup.cpp" />
     <ClCompile Include="..\src\Slider.cpp" />
     <ClCompile Include="..\src\SoundLoader.cpp" />
     <ClCompile Include="..\src\Spinner.cpp" />
@@ -95,8 +99,11 @@
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
     <ClInclude Include="..\include\SCV\Data.h" />
     <ClInclude Include="..\include\SCV\FileOpen.h" />
+    <ClInclude Include="..\include\SCV\Group.h" />
+    <ClInclude Include="..\include\SCV\GroupLayout.h" />
     <ClInclude Include="..\include\SCV\GTree.h" />
     <ClInclude Include="..\include\SCV\Image.h" />
+    <ClInclude Include="..\include\SCV\ParallelGroup.h" />
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
     <ClInclude Include="..\include\SCV\ImgLoader.h" />
     <ClInclude Include="..\include\SCV\List.h" />
@@ -123,6 +130,7 @@
     <ClInclude Include="..\include\SCV\SCV.h" />
     <ClInclude Include="..\include\SCV\SCVCallbacks.h" />
     <ClInclude Include="..\include\SCV\Separator.h" />
+    <ClInclude Include="..\include\SCV\SequentialGroup.h" />
     <ClInclude Include="..\include\SCV\Singleton.h" />
     <ClInclude Include="..\include\SCV\Slider.h" />
     <ClInclude Include="..\include\SCV\SoundLoader.h" />

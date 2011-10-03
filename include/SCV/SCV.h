@@ -98,6 +98,10 @@ O SCV está implementado sobre a API gráfica OpenGL. Existe uma estrutura hierárq
 #include "util.h"
 #include "TreeView.h"
 
+#include "GroupLayout.h"
+#include "SequentialGroup.h"
+#include "ParallelGroup.h"
+
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 #endif // __SCV_H__

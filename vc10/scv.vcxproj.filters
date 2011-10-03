@@ -187,6 +187,18 @@
     <ClCompile Include="..\src\Component.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GroupLayout.cpp">
+      <Filter>GroupLayout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Group.cpp">
+      <Filter>GroupLayout\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ParallelGroup.cpp">
+      <Filter>GroupLayout\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SequentialGroup.cpp">
+      <Filter>GroupLayout\Group</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -390,6 +402,18 @@
     <ClInclude Include="..\include\SCV\SCVCallbacks.h">
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\GroupLayout.h">
+      <Filter>GroupLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\Group.h">
+      <Filter>GroupLayout\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\SequentialGroup.h">
+      <Filter>GroupLayout\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ParallelGroup.h">
+      <Filter>GroupLayout\Group</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="0._!TODO!_">
@@ -442,6 +466,12 @@
     </Filter>
     <Filter Include="4.Widgets\Object">
       <UniqueIdentifier>{1b3e6407-b1dd-4fe6-ad3c-32fd106b291e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GroupLayout">
+      <UniqueIdentifier>{cb729ae5-8eb7-4850-9d94-3b558dee9db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GroupLayout\Group">
+      <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
