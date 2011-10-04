@@ -21,11 +21,11 @@ int main(int argc, char* argv[]) {
    scv::TextField *tf1 = new scv::TextField(scv::Point(), 100, "");
    scv::TextField *tf2 = new scv::TextField(scv::Point(), 100, "");
 
-   panel->addChild(label1);
-   panel->addChild(label2);
+   //panel->addChild(label1);
+   //panel->addChild(label2);
 
-   //panel->addChild(tf1);
-   //panel->addChild(tf2);
+   panel->addChild(tf1);
+   panel->addChild(tf2);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -37,15 +37,9 @@ int main(int argc, char* argv[]) {
    layout->setAutoCreateContainerGaps(true);
 
    /**/
-   scv::ParallelGroup *hGroup = layout->createParallelGroup();
+   layout->setHorizontalGroup(layout->createParallelGroup(scv::Spring::CENTER)->addComponent(tf1, 30, 30, 30)->addComponent(tf2, 50, 50, 50));
 
-   hGroup->addComponent(label1, 15, 50, 100)->addComponent(label2, 15, 50, 100);
-   layout->setHorizontalGroup(hGroup);
-
-   scv::ParallelGroup *vGroup = layout->createParallelGroup();
-
-   vGroup->addComponent(label1, 15, 50, 100)->addComponent(label2, 15, 50, 100);
-   layout->setVerticalGroup(vGroup);
+   layout->setVerticalGroup(layout->createSequentialGroup()->addComponent(tf1, 15, 15, 15)->addComponent(tf2, 15, 15, 15));
    /**/
 
 

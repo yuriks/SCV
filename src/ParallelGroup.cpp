@@ -64,8 +64,10 @@ void ParallelGroup::setChildSize(Spring *spring, Spring::Axis axis, int origin, 
    
    switch (alignment) {
    case Spring::TRAILING:
+      spring->setSize(axis, origin + size - springSize, springSize);
       break;
    case Spring::CENTER:
+      spring->setSize(axis, origin + (size - springSize) / 2, springSize);
       break;
    default: //Spring::LEADING or Spring::BASELINE
       spring->setSize(axis, origin, springSize);
