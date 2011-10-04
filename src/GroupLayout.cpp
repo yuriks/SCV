@@ -52,13 +52,13 @@ void GroupLayout::layoutContainer(void) {
 
    //HorizontalGroup
    ///////////////////////////////////////////////////////////   
-   width = _host->getWidth() - 20;
+   width = _host->getWidth();
    
    minSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
    preferredSize = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
    maxSize = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
 
-   int x = 10;
+   int x = 0;
    if (width > preferredSize) {
       _horizontalGroup->setSize(Spring::HORIZONTAL, x, width); 
    } else if (preferredSize > width) {
@@ -72,13 +72,13 @@ void GroupLayout::layoutContainer(void) {
    
    //VerticalGroup
    ///////////////////////////////////////////////////////////
-   height = _host->getHeight() - 20;
+   height = _host->getHeight();
 
    minSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
    preferredSize = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
    maxSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
    
-   int y = 10;
+   int y = 0;
    if (height > preferredSize) {
       _verticalGroup->setSize(Spring::VERTICAL, x, height); 
    } else if (preferredSize > height) {
