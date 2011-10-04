@@ -37,12 +37,26 @@ public:
    virtual void display(void);
 
    ///////////////////////////////////////////////////////////
-   virtual void setLayout(GroupLayout *layout);
+   virtual inline void setLayout(GroupLayout *layout);
+   virtual inline bool isLeftToRight(void);
    ///////////////////////////////////////////////////////////
 
 protected:
+   GroupLayout *_layout;
+   bool _leftToRight;
+
    virtual void createTexture(void);
 };
+
+///////////////////////////////////////////////////////////
+void Panel::setLayout(GroupLayout *layout) {
+   _layout = layout;
+}
+
+bool Panel::isLeftToRight(void) {
+   return _leftToRight;
+}
+///////////////////////////////////////////////////////////
 
 } // namespace scv
 

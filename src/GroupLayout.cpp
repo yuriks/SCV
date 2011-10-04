@@ -4,13 +4,13 @@
 namespace scv {
 
 GroupLayout::GroupLayout(Panel *host) {
-   _host = NULL;
+   _host = host;
 
    _autoCreatePadding = false;
    _autoCreateContainerPadding = false;
 
-   _horizontalGroup = NULL;
-   _verticalGroup = NULL;
+   setHorizontalGroup(createParallelGroup(Spring::LEADING, true));
+   setVerticalGroup(createParallelGroup(Spring::LEADING, true));
 }
 
 GroupLayout::~GroupLayout(void) {
@@ -18,11 +18,20 @@ GroupLayout::~GroupLayout(void) {
 }
 
 ParallelGroup *GroupLayout::createParallelGroup(void) {
-   return createParallelGroup(LEADING);
+   return createParallelGroup(Spring::LEADING);
 }
 
-ParallelGroup * GroupLayout::createParallelGroup(Alignment alignment) {
-   return new ParallelGroup();
+ParallelGroup *GroupLayout::createParallelGroup(Spring::Alignment alignment) {
+   return createParallelGroup(alignment, true);
+}
+
+ParallelGroup *GroupLayout::createParallelGroup(Spring::Alignment alignment, bool resizable) {
+   /*
+   if (alignment == Spring::Alignment.BASELINE) {
+      return new BaselineGroup(resizable);
+   }
+   /**/
+   return new ParallelGroup(alignment, resizable);
 }
 
 SequentialGroup *GroupLayout::createSequentialGroup(void) {
@@ -30,11 +39,15 @@ SequentialGroup *GroupLayout::createSequentialGroup(void) {
 }
 
 void GroupLayout::setHorizontalGroup(Group *group) {
-
+   _horizontalGroup = group;
 }
 
 void GroupLayout::setVerticalGroup(Group *group) {
+   _verticalGroup = group;
+}
 
+void GroupLayout::layoutContainer(void) {
+   std::cout << _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL) << std::endl;
 }
 
 } //namespace scv

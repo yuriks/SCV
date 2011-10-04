@@ -5,6 +5,7 @@ namespace scv {
 
 Spring::Spring(void) {
    _min = _pref = _max = UNSET;
+   _alignment = NONE;
 }
 
 Spring::~Spring(void) {
@@ -30,6 +31,12 @@ int Spring::getMaximumSize(Axis axis) {
       _max = constrain(calculateMaximumSize(axis));
    }
    return _max;
+}
+
+bool Spring::isResizable(Axis axis) {
+   int min = getMinimumSize(axis);
+   int pref = getPreferredSize(axis);
+   return (min != pref || pref != getMaximumSize(axis));
 }
 
 } //namespace scv

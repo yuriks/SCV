@@ -2,10 +2,16 @@
 #include "Panel.h"
 #include "Kernel.h"
 
+#include "GroupLayout.h"
+
 namespace scv {
 
 Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
    _type = panel;
+
+   _layout = NULL;
+   _leftToRight = true;
+
    createTexture();
 }
 
@@ -35,6 +41,11 @@ void Panel::display(void) {
    _cTexture->display(currPosition.x + 1, currPosition.y + getHeight() - 1, 0, getWidth() - 2, 1);
 
    _cTexture->disable();
+
+   //REVIEW
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+   }
 
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       if (kernel->willAppearOnScreen(*iter))
@@ -100,12 +111,6 @@ void Panel::processKey(const scv::KeyEvent &evt) {
    for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
    }
-}
-
-///////////////////////////////////////////////////////////
-
-void Panel::setLayout(GroupLayout *layout) {
-
 }
 
 } // namespace scv

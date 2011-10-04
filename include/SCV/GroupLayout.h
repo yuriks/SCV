@@ -14,10 +14,6 @@ class Group;
 
 class GroupLayout {
 public:
-   enum Alignment {
-      BASELINE, CENTER, LEADING, TRAILING
-   };
-
    ///////////////////////////////////////////////////////////
    GroupLayout(Panel *host);
    virtual ~GroupLayout(void);
@@ -33,7 +29,8 @@ public:
 
    ///////////////////////////////////////////////////////////
    ParallelGroup *createParallelGroup(void);
-   ParallelGroup *createParallelGroup(Alignment alignment);
+   ParallelGroup *createParallelGroup(Spring::Alignment alignment);
+   ParallelGroup *createParallelGroup(Spring::Alignment alignment, bool resizable);
 
    SequentialGroup *createSequentialGroup(void);
    ///////////////////////////////////////////////////////////
@@ -42,6 +39,8 @@ public:
    void setHorizontalGroup(Group *group);
    void setVerticalGroup(Group *group);
    ///////////////////////////////////////////////////////////
+
+   void layoutContainer(void);
 
 protected:
    Panel *_host;

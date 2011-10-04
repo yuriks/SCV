@@ -19,10 +19,11 @@ Group *Group::addGroup(Group *group) {
 }
 
 Group *Group::addComponent(Component *component) {
-   return addComponent(component, 0,0,0);
+   return addComponent(component, Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE);
 }
 
 Group * Group::addComponent(Component *component, int min, int pref, int max) {
+   std::cout << "addComponent" << std::endl;
    return addSpring(new ComponentSpring(component, min, pref, max));
 }
 
@@ -59,7 +60,7 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
       return 0;
    }
 
-   if (count == 1) {
+   if (count == 1) {      
       return getSpringSize(getSpring(0), axis, type);
    }
 
