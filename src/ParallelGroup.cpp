@@ -48,7 +48,7 @@ int ParallelGroup::calculateMaximumSize(Spring::Axis axis) {
 }
 
 void ParallelGroup::setValidSize(Spring::Axis axis, int origin, int size) {
-   for (SpringsList::iterator iter = _springs.begin(); iter != _springs.end(); ++iter) {
+   for (SpringsList::iterator iter = _springs.begin(); iter != _springs.end(); ++iter) {      
       setChildSize((*iter), axis, origin, size);
       
    }
@@ -58,7 +58,6 @@ void ParallelGroup::setChildSize(Spring *spring, Spring::Axis axis, int origin, 
    Spring::Alignment alignment = spring->getAlignment();
    int springSize = std::min(std::max(spring->getMinimumSize(axis), size), spring->getMaximumSize(axis));
 
-   
    if (alignment == NONE) {
       alignment = _childAlignment;
    }

@@ -61,7 +61,7 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
    }
 
    if (count == 1) {      
-      return getSpringSize(getSpring(0), axis, type);
+      return getSpringSize(getSpring(0), axis, type);      
    }
 
    int size = constrain(combined(getSpringSize(getSpring(0), axis, type), 
@@ -87,6 +87,17 @@ int Group::getSpringSize(Spring *spring, Spring::Axis axis, SizeType type) {
    default:
       return 0;
       break;
+   }
+}
+
+void Group::setSize(Spring::Axis axis, int origin, int size) {
+   Spring::setSize(axis, origin, size);
+   if (size == Spring::UNSET) {
+      for (int counter = _springs.size() - 1; counter >= 0; --counter) {
+         getSpring(counter)->setSize(axis, origin, size);
+      }
+   } else {
+      setValidSize(axis, origin, size);
    }
 }
 

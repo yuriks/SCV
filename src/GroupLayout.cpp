@@ -47,7 +47,40 @@ void GroupLayout::setVerticalGroup(Group *group) {
 }
 
 void GroupLayout::layoutContainer(void) {
-   std::cout << _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL) << std::endl;
+   int width, height;
+   int minSize, preferredSize, maxSize;
+
+   //HorizontalGroup
+   ///////////////////////////////////////////////////////////   
+   width = _host->getWidth();
+
+   minSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
+   preferredSize = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
+   maxSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
+
+   if (preferredSize > width) {
+      
+   } else {
+      int x = 10;
+      _horizontalGroup->setSize(Spring::HORIZONTAL, x, preferredSize);            
+   }
+   ///////////////////////////////////////////////////////////
+
+   //VerticalGroup
+   ///////////////////////////////////////////////////////////
+   height = _host->getHeight();
+
+   minSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+   preferredSize = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
+   maxSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+   
+   if (preferredSize > height) {
+
+   } else {
+      int y = 10;
+      _verticalGroup->setSize(Spring::VERTICAL, y, preferredSize);            
+   }
+   ///////////////////////////////////////////////////////////
 }
 
 } //namespace scv

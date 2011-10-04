@@ -46,15 +46,21 @@ public:
    virtual int calculateMaximumSize(Spring::Axis axis);
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   virtual void setSize(Spring::Axis axis, int origin, int size);
+   virtual void setValidSize(Spring::Axis axis, int origin, int size) = 0;
+   ///////////////////////////////////////////////////////////
+
+
    int calculateSize(Spring::Axis axis, SizeType type);
 
    int getSpringSize(Spring *spring, Spring::Axis axis, SizeType type);
 
    virtual int combined(int a, int b) = 0;
 
-protected:
    inline Spring *getSpring(int index);
 
+protected:
    SpringsList _springs;
 private:
 };

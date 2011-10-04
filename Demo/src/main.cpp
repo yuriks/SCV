@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
 
    ///////////////////////////////////////////////////////////
    scv::Panel *panel = new scv::Panel(scv::Point(40,40), scv::Point(1280 - 40, 720 - 40));
+   panel->setResizable(true);
 
    scv::Label *label1 = new scv::Label(scv::Point(  0,   0), "First Row");
    scv::Label *label2 = new scv::Label(scv::Point(100, 100), "Second Row");
@@ -40,6 +41,11 @@ int main(int argc, char* argv[]) {
 
    hGroup->addComponent(label1, 15, 50, 100)->addComponent(label2, 15, 50, 100);
    layout->setHorizontalGroup(hGroup);
+
+   scv::ParallelGroup *vGroup = layout->createParallelGroup();
+
+   vGroup->addComponent(label1, 15, 50, 100)->addComponent(label2, 15, 50, 100);
+   layout->setVerticalGroup(vGroup);
    /**/
 
 

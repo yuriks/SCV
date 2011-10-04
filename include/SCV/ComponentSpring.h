@@ -20,6 +20,10 @@ public:
    virtual int calculateMaximumSize(Axis axis);
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   virtual void setSize(Axis axis, int origin, int size);   
+   ///////////////////////////////////////////////////////////
+
    virtual int getSizeAlongAxis(Axis axis, Point size);
 
    inline void setComponent(Component *component);

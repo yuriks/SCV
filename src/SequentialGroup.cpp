@@ -11,4 +11,8 @@ SequentialGroup::~SequentialGroup(void) {
 
 }
 
+void SequentialGroup::setValidSize(Spring::Axis axis, int origin, int size) {
+
+}
+
 } //namespace scv
