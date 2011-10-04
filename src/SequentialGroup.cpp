@@ -33,17 +33,17 @@ SequentialGroup *SequentialGroup::addGap(int min, int pref, int max) {
 
 void SequentialGroup::setValidSize(Spring::Axis axis, int origin, int size) {
    int pref = getPreferredSize(axis);
-   if (size == pref) {
+   if (size == pref) {      
       //layout at preferred size
       for (SpringsList::iterator iter = _springs.begin(); iter != _springs.end(); ++iter) {
          int springPref = (*iter)->getPreferredSize(axis);
          (*iter)->setSize(axis, origin, springPref);
          origin += springPref;
       }
-   } else if (_springs.size() == 1) {
+   } else if (_springs.size() == 1) {      
       Spring *spring = getSpring(0);
       spring->setSize(axis, origin, std::min(std::max(size, spring->getMinimumSize(axis)), spring->getMaximumSize(axis)));
-   } else if (_springs.size() > 1) {
+   } else if (_springs.size() > 1) {      
       setValidSizeNotPreferred(axis, origin, size);
    }
 }
@@ -64,8 +64,8 @@ void SequentialGroup::setValidSizeNotPreferred(Spring::Axis axis, int origin, in
 
    if (resizableCount > 0) {
       int sDelta = delta / resizableCount;
-
       int slop = delta - sDelta * resizableCount;
+      
       std::vector<int> sizes(springCount);
       int sign = useMin ? -1 : 1;
 
@@ -90,7 +90,7 @@ void SequentialGroup::setValidSizeNotPreferred(Spring::Axis axis, int origin, in
          origin += sSize;
       }
 
-   } else {
+   } else {      
       for (int counter = 0; counter < size; ++counter) {
          Spring *spring = getSpring(counter);
          int sSize;

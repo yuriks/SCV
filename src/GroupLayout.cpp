@@ -52,35 +52,42 @@ void GroupLayout::layoutContainer(void) {
 
    //HorizontalGroup
    ///////////////////////////////////////////////////////////   
-   width = _host->getWidth();
-
+   width = _host->getWidth() - 20;
+   
    minSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
    preferredSize = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
-   maxSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
+   maxSize = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
 
-   if (preferredSize > width) {
-      
-   } else {
-      int x = 10;
-      _horizontalGroup->setSize(Spring::HORIZONTAL, x, preferredSize);            
+   int x = 10;
+   if (width > preferredSize) {
+      _horizontalGroup->setSize(Spring::HORIZONTAL, x, width); 
+   } else if (preferredSize > width) {
+      _horizontalGroup->setSize(Spring::HORIZONTAL, x, preferredSize - (preferredSize - width)); 
+   } else {      
+      _horizontalGroup->setSize(Spring::HORIZONTAL, x, preferredSize);
    }
+   
    ///////////////////////////////////////////////////////////
 
+   
    //VerticalGroup
    ///////////////////////////////////////////////////////////
-   height = _host->getHeight();
+   height = _host->getHeight() - 20;
 
    minSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
    preferredSize = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
    maxSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
    
-   if (preferredSize > height) {
-
-   } else {
-      int y = 10;
-      _verticalGroup->setSize(Spring::VERTICAL, y, preferredSize);            
+   int y = 10;
+   if (height > preferredSize) {
+      _verticalGroup->setSize(Spring::VERTICAL, x, height); 
+   } else if (preferredSize > height) {
+      _verticalGroup->setSize(Spring::VERTICAL, x, preferredSize - (preferredSize - height)); 
+   } else {      
+      _verticalGroup->setSize(Spring::VERTICAL, x, preferredSize);
    }
    ///////////////////////////////////////////////////////////
+   /**/
 }
 
 } //namespace scv

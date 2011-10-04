@@ -46,7 +46,7 @@ void Panel::display(void) {
    if (_layout != NULL) {
       _layout->layoutContainer();
    }
-   _layout = NULL;
+   //_layout = NULL;
 
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       if (kernel->willAppearOnScreen(*iter))

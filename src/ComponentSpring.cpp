@@ -59,7 +59,6 @@ void ComponentSpring::setSize(Axis axis, int origin, int size) {
    Spring::setSize(axis, origin, size);
    switch (axis) {
    case Spring::HORIZONTAL:
-      std::cout << "here2" << std::endl;
       _component->setRelativePosition(scv::Point(origin, _component->getRelativePosition().y));
       _component->setWidth(size);
       break;

@@ -179,11 +179,11 @@ Point Component::getMinimumSize(void) const {
 }
 
 Point Component::getPreferredSize(void) const {
-   return _minSize;
+   return getSize();
 }
 
 Point Component::getMaximumSize(void) const {
-   return _minSize;
+   return scv::Point(200, 200);
 }
 
 ///////////////////////////////////////////////////////////

@@ -23,7 +23,6 @@ Group *Group::addComponent(Component *component) {
 }
 
 Group * Group::addComponent(Component *component, int min, int pref, int max) {
-   std::cout << "addComponent" << std::endl;
    return addSpring(new ComponentSpring(component, min, pref, max));
 }
 
@@ -45,7 +44,7 @@ int Group::calculateMinimumSize(Axis axis) {
    return calculateSize(axis, MIN_SIZE);
 }
 
-int Group::calculatePreferredSize(Axis axis) {
+int Group::calculatePreferredSize(Axis axis) {   
    return calculateSize(axis, PREF_SIZE);
 }
 
@@ -56,12 +55,12 @@ int Group::calculateMaximumSize(Axis axis) {
 int Group::calculateSize(Spring::Axis axis, SizeType type) {
    int count = _springs.size();
 
-   if (count == 0) {
+   if (count == 0) {      
       return 0;
    }
 
-   if (count == 1) {      
-      return getSpringSize(getSpring(0), axis, type);      
+   if (count == 1) {
+      return getSpringSize(getSpring(0), axis, type);
    }
 
    int size = constrain(combined(getSpringSize(getSpring(0), axis, type), 
@@ -70,6 +69,7 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
    for (int i = 2; i < count; ++i) {
       size = constrain(combined(size, getSpringSize(getSpring(i), axis, type)));
    }
+   
    return size;
 }
 
