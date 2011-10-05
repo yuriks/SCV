@@ -1,8 +1,6 @@
 #ifndef __SCV_PARALLEL_GROUP_H__
 #define __SCV_PARALLEL_GROUP_H__
 
-//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.ParallelGroup.html
-
 #include "Group.h"
 
 namespace scv {

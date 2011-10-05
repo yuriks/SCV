@@ -7,7 +7,7 @@ class Spring {
 public:
    ///////////////////////////////////////////////////////////
    enum Alignment {
-      BASELINE, CENTER, LEADING, TRAILING, NONE
+      CENTER, LEADING, TRAILING, NALIGNMENT = -1
    };
 
    enum Size {

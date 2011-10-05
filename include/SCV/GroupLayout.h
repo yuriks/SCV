@@ -1,8 +1,6 @@
 #ifndef __SCV_GROUP_LAYOUT_H__
 #define __SCV_GROUP_LAYOUT_H__
 
-//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.html
-
 #include "Panel.h"
 
 #include "ParallelGroup.h"
@@ -17,14 +15,6 @@ public:
    ///////////////////////////////////////////////////////////
    GroupLayout(Panel *host);
    virtual ~GroupLayout(void);
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
-   inline void setAutoCreateGaps(bool autoCreatePadding);
-   inline bool getAutoCreateGaps(void) const;
-
-   inline void setAutoCreateContainerGaps(bool autoCreateContainerPadding);
-   inline bool getAutoCreateContainerGaps(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -53,23 +43,6 @@ protected:
 private:
 };
 
-///////////////////////////////////////////////////////////
-void GroupLayout::setAutoCreateGaps(bool autoCreatePadding) {
-   _autoCreatePadding = autoCreatePadding;
-}
-
-bool GroupLayout::getAutoCreateGaps(void) const {
-   return _autoCreatePadding;
-}
-
-void GroupLayout::setAutoCreateContainerGaps(bool autoCreateContainerPadding) {
-   _autoCreateContainerPadding = autoCreateContainerPadding;
-}
-
-bool GroupLayout::getAutoCreateContainerGaps(void) const {
-   return _autoCreateContainerPadding;
-}
-///////////////////////////////////////////////////////////
 
 } //namespace scv
 

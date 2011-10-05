@@ -58,7 +58,7 @@ void ParallelGroup::setChildSize(Spring *spring, Spring::Axis axis, int origin, 
    Spring::Alignment alignment = spring->getAlignment();
    int springSize = std::min(std::max(spring->getMinimumSize(axis), size), spring->getMaximumSize(axis));
 
-   if (alignment == NONE) {
+   if (alignment == NALIGNMENT) {
       alignment = _childAlignment;
    }
    

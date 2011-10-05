@@ -91,7 +91,7 @@ void SequentialGroup::setValidSizeNotPreferred(Spring::Axis axis, int origin, in
       }
 
    } else {      
-      for (int counter = 0; counter < size; ++counter) {
+      for (int counter = 0; counter < springCount; ++counter) {
          Spring *spring = getSpring(counter);
          int sSize;
          if (useMin) {

@@ -5,7 +5,7 @@ namespace scv {
 
 Spring::Spring(void) {
    _min = _pref = _max = UNSET;
-   _alignment = NONE;
+   _alignment = NALIGNMENT;
 }
 
 Spring::~Spring(void) {

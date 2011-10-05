@@ -1,8 +1,6 @@
 #ifndef __SCV_SEQUENTIAL_GROUP_H__
 #define __SCV_SEQUENTIAL_GROUP_H__
 
-//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.SequentialGroup.html
-
 #include "Group.h"
 
 namespace scv {
@@ -38,11 +36,7 @@ protected:
          _index = index;
          _delta = delta;
       }
-      inline int compareTo(SpringDelta o) {
-         return _delta - o._delta;
-      }
-      bool operator<(const SpringDelta &rhs) const { return _delta < rhs._delta; }
-   
+      bool operator<(const SpringDelta &rhs) const { return _delta < rhs._delta; }   
    };
    ///////////////////////////////////////////////////////////
 

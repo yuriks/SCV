@@ -1,8 +1,6 @@
 #ifndef __SCV_GROUP_H__
 #define __SCV_GROUP_H__
 
-//http://javasourcecode.org/html/open-source/jdk/jdk-6u23/javax/swing/GroupLayout.Group.html
-
 #include "Spring.h"
 
 #include "Component.h"

@@ -18,9 +18,6 @@ int main(int argc, char* argv[]) {
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
-   layout->setAutoCreateGaps(true);
-   layout->setAutoCreateContainerGaps(true);
-
    /*
    scv::Label *label1 = new scv::Label(scv::Point(  0,   0), "First Row");
    scv::Label *label2 = new scv::Label(scv::Point(100, 100), "Second Row");
@@ -84,16 +81,16 @@ int main(int argc, char* argv[]) {
       );
 
    layout->setVerticalGroup(layout->createSequentialGroup()
-      ->addGroup(layout->createParallelGroup(scv::Spring::BASELINE)
+      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
       ->addComponent(label)
       ->addComponent(textField)
       ->addComponent(findButton))
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
+      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
       ->addGroup(layout->createSequentialGroup()
-      ->addGroup(layout->createParallelGroup(scv::Spring::BASELINE)
+      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
       ->addComponent(caseCheckBox)
       ->addComponent(wrapCheckBox))
-      ->addGroup(layout->createParallelGroup(scv::Spring::BASELINE)
+      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
       ->addComponent(wholeCheckBox)
       ->addComponent(backCheckBox)))
       ->addComponent(cancelButton))
