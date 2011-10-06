@@ -33,8 +33,8 @@ void Button::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void Button::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void Button::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void Button::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Button::onResizing(void) {/**/}
-void Button::onDragging(void) {/**/}
+void Button::onSizeChange(void) {/**/}
+void Button::onPositionChange(void) {/**/}
 
 void Button::display(void) {
    static Kernel *kernel = Kernel::getInstance();

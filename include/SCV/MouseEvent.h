@@ -7,30 +7,28 @@ namespace scv {
 
 class MouseEvent {
 public:
-   enum button {
-      left   = GLUT_LEFT_BUTTON,
-      middle = GLUT_MIDDLE_BUTTON,
-      right  = GLUT_RIGHT_BUTTON,
-      none
+   enum Button {
+      LEFT   = GLUT_LEFT_BUTTON,
+      MIDDLE = GLUT_MIDDLE_BUTTON,
+      RIGHT  = GLUT_RIGHT_BUTTON,
+      NBUTTON
    };
-   enum state {
-      click = GLUT_DOWN,
-      up = GLUT_UP,
-      hold,
-      motion,
-      wheelup,
-      wheeldown
+   enum State {
+      CLICK = GLUT_DOWN,
+      UP = GLUT_UP,
+      HOLD, MOTION,
+      WHELLUP, WHEELDOWN
    };
 
    MouseEvent(void);
-   MouseEvent(MouseEvent::button button, MouseEvent::state state, const Point &location, bool doubleClick = false);
+   MouseEvent(MouseEvent::Button button, MouseEvent::State state, const Point &location, bool doubleClick = false);
 
    MouseEvent& operator=(const MouseEvent&rhs);
 
    Point getPosition(void) const;
    Point getInversePosition(void) const;
-   MouseEvent::button getButton(void) const;
-   MouseEvent::state getState(void) const;
+   MouseEvent::Button getButton(void) const;
+   MouseEvent::State getState(void) const;
 
    inline bool doubleClick(void) const {
       return _doubleClick;
@@ -41,8 +39,8 @@ public:
    }
 
 private:
-   MouseEvent::button _button;
-   MouseEvent::state _state;
+   MouseEvent::Button _button;
+   MouseEvent::State _state;
    Point _position;
    bool _doubleClick;
 };

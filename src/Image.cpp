@@ -48,8 +48,8 @@ void Image::onMouseUp(const scv::MouseEvent &evt) {}
 void Image::onKeyPressed(const scv::KeyEvent &evt) {}
 void Image::onKeyUp(const scv::KeyEvent &evt) {}
 void Image::onMouseWheel(const scv::MouseEvent &evt) {}
-void Image::onResizing(void) {}
-void Image::onDragging(void) {}
+void Image::onSizeChange(void) {}
+void Image::onPositionChange(void) {}
 
 void Image::display(void) {
    static Scissor *scissor = Scissor::getInstance();

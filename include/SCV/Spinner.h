@@ -26,8 +26,8 @@ public:
    virtual void onKeyPressed(const scv::KeyEvent &evt);
    virtual void onKeyUp     (const scv::KeyEvent &evt);
 
-   virtual void onResizing(void);
-   virtual void onDragging(void);
+   virtual void onSizeChange(void);
+   virtual void onPositionChange(void);
    ///////////////////////////////////////////////////////////
 
    virtual void onValueChange(void);
@@ -54,8 +54,8 @@ private:
    public:
       TextFieldSpinner(Spinner *spinner, unsigned int width, const std::string &str);
       void onStringChange(void);
-      void onResizing(void);
-      void onDragging(void);
+      void onSizeChange(void);
+      void onPositionChange(void);
    private:
       Spinner *_spinner;
    };

@@ -170,8 +170,8 @@ void Table::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void Table::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void Table::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void Table::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Table::onResizing(void) {/**/}
-void Table::onDragging(void) {/**/}
+void Table::onSizeChange(void) {/**/}
+void Table::onPositionChange(void) {/**/}
 
 // void Table::removeRow(int begin, int end) {
 //    for (int i = 0; i < (end - begin + 1) ; i++) {
@@ -219,7 +219,7 @@ void Table::processKey(const scv::KeyEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
-   if (evt.getKeyString() == "Tab" && evt.getState() == KeyEvent::down) {
+   if (evt.getKeyString() == "Tab" && evt.getState() == KeyEvent::DOWN) {
       for (int i = 0; i < _nRows ; i++ ) {
          for (int j = 0; j <  _nColumns; j++ ) {
             if (kernel->getFocusedComponent() == _table[i][j]) {

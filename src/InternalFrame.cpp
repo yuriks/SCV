@@ -49,8 +49,8 @@ void InternalFrame::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void InternalFrame::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void InternalFrame::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void InternalFrame::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onResizing(void) {/**/}
-void InternalFrame::onDragging(void) {/**/}
+void InternalFrame::onSizeChange(void) {/**/}
+void InternalFrame::onPositionChange(void) {/**/}
 void InternalFrame::onClose(void) {/**/}
 
 
@@ -89,12 +89,12 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
          if (isOnTopBar(evtPosition) && kernel->requestMouseUse(this)) {
             if (isOnCloseButton(evtPosition)) {
                _overClose = true;
-               if (evt.getState() == MouseEvent::click) {
+               if (evt.getState() == MouseEvent::CLICK) {
                   _clickClose = true;
                }
             } else {
                _overClose = false;
-               if (evt.getState() == MouseEvent::click) {
+               if (evt.getState() == MouseEvent::CLICK) {
                   _isDragging = true;
                   //HACK
                   //_clicked = (evtPosition - currPosition) + _cTranslate;
@@ -105,7 +105,7 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
       }
    }
 
-   if (evt.getState() == MouseEvent::up) {
+   if (evt.getState() == MouseEvent::UP) {
       if (_clickClose && _overClose) {
          onClose();
          _isVisible = false;

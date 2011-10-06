@@ -124,7 +124,7 @@ void TreeView::processMouse(const scv::MouseEvent &evt)
 
 
    scv::Point p = getAbsolutePosition();
-   if(evt.getState() == MouseEvent::up && isFocused())
+   if(evt.getState() == MouseEvent::UP && isFocused())
    {
       int y = (int)(((evt.getPosition().y - (p.y +  1))/s_lineSpacing) + m_firstLine);
 
@@ -152,11 +152,11 @@ void TreeView::processMouse(const scv::MouseEvent &evt)
    }
 
    if (isFocused()) {
-      if (evt.getState() == MouseEvent::wheeldown) {
+      if (evt.getState() == MouseEvent::WHEELDOWN) {
          if(spaceBack < 0) { m_firstLine++;}
          return;
       }
-      if (evt.getState() == MouseEvent::wheelup) {
+      if (evt.getState() == MouseEvent::WHELLUP) {
          if(m_firstLine > 0) { m_firstLine--; }
          return;
       }
@@ -280,8 +280,8 @@ void TreeView::itemSelect(void) {/**/}
 void TreeView::onKeyPressed(const scv::KeyEvent &evt){/**/}
 void TreeView::onKeyUp(const scv::KeyEvent &evt){/**/}
 
-void TreeView::onResizing(void){/**/}
-void TreeView::onDragging(void){/**/}
+void TreeView::onSizeChange(void){/**/}
+void TreeView::onPositionChange(void){/**/}
 
 
 

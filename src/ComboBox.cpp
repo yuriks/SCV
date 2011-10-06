@@ -74,8 +74,8 @@ void ComboBox::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void ComboBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void ComboBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void ComboBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onResizing(void) {/**/}
-void ComboBox::onDragging(void) {/**/}
+void ComboBox::onSizeChange(void) {/**/}
+void ComboBox::onPositionChange(void) {/**/}
 void ComboBox::onSelectionChanged(std::string address, int id) {/**/}
 
 
@@ -147,7 +147,7 @@ void ComboBox::processMouse(const scv::MouseEvent &evt) {
    //if (!_receivingCallbacks) return;
 
    if (isInside(evt.getPosition())) {
-      if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left && isFocused()) {
+      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT && isFocused()) {
          if (_active) {
             _active = false;
          } else {
@@ -155,7 +155,7 @@ void ComboBox::processMouse(const scv::MouseEvent &evt) {
             _active = true;
          }
       }
-      if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::right)
+      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::RIGHT)
          _active = false;
    }
 }

@@ -27,8 +27,8 @@ void TextField::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void TextField::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void TextField::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void TextField::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void TextField::onResizing(void) {/**/}
-void TextField::onDragging(void) {/**/}
+void TextField::onSizeChange(void) {/**/}
+void TextField::onPositionChange(void) {/**/}
 
 void TextField::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -103,7 +103,7 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
    if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
       cursor->setGlutCursor(GLUT_CURSOR_TEXT);
    }
-   if ((evt.getState() == MouseEvent::click || evt.getState() == MouseEvent::hold) && isFocused()) {
+   if ((evt.getState() == MouseEvent::CLICK || evt.getState() == MouseEvent::HOLD) && isFocused()) {
       cursor->cursorInMovement();
       int size = 0, menor = getWidth(), menorDesloc = 0, index = 0;
       index = (evt.getPosition().x-getAbsolutePosition().x);
@@ -116,13 +116,13 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
       }
       _currChar = menorDesloc - 1;
 
-      if (evt.getState() == MouseEvent::click) {
+      if (evt.getState() == MouseEvent::CLICK) {
          _selectStart = _currChar;
          _selectEnd = _currChar;
       }
 
       if (isFocused()) {
-         if (evt.getState() == MouseEvent::hold) {
+         if (evt.getState() == MouseEvent::HOLD) {
             _selectEnd = _currChar;
          }
       }
@@ -173,7 +173,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
       if (!_filter.checkFilter(evt.getKeyCode()) && !evt.isSpecial())
          return;
 
-      if (evt.getState() == KeyEvent::up) {
+      if (evt.getState() == KeyEvent::UP) {
          onKeyUp(evt);
          return;
       }

@@ -98,8 +98,8 @@ void Label::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void Label::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void Label::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void Label::onStringChange(void) {/**/}
-void Label::onResizing(void) {/**/}
-void Label::onDragging(void) {/**/}
+void Label::onSizeChange(void) {/**/}
+void Label::onPositionChange(void) {/**/}
 
 void Label::createTexture( void ) {
 

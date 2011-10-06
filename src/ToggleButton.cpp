@@ -31,8 +31,8 @@ void ToggleButton::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void ToggleButton::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void ToggleButton::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void ToggleButton::onValueChange(void) {/**/}
-void ToggleButton::onResizing(void) {/**/}
-void ToggleButton::onDragging(void) {/**/}
+void ToggleButton::onSizeChange(void) {/**/}
+void ToggleButton::onPositionChange(void) {/**/}
 
 void ToggleButton::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -89,7 +89,7 @@ void ToggleButton::processMouse(const scv::MouseEvent &evt) {
    if (!_receivingCallbacks) return;
 
    if (isInside(evt.getPosition())) {
-      if (evt.getState() == MouseEvent::up && isFocused())
+      if (evt.getState() == MouseEvent::UP && isFocused())
          setState(!getState());
    }
 }

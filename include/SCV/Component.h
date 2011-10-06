@@ -45,8 +45,8 @@ public:
    virtual void onKeyPressed(const scv::KeyEvent &evt) = 0;
    virtual void onKeyUp     (const scv::KeyEvent &evt) = 0;
    
-   virtual void onResizing(void) = 0;
-   virtual void onDragging(void) = 0;
+   virtual void onSizeChange(void) = 0;
+   virtual void onPositionChange(void) = 0;
    ///////////////////////////////////////////////////////////
 
    //position
@@ -68,9 +68,9 @@ public:
 
    virtual inline Point getSize(void) const;
 
-   virtual inline Point getMinimumSize(void) const;
-   virtual inline Point getPreferredSize(void) const;
-   virtual inline Point getMaximumSize(void) const;
+   virtual Point getMinimumSize(void) const;
+   virtual Point getPreferredSize(void) const;
+   virtual Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -172,18 +172,6 @@ int Component::getHeight(void) const {
 
 Point Component::getSize(void) const {
    return Point(getWidth(), getHeight());
-}
-
-Point Component::getMinimumSize(void) const {
-   return _minSize;
-}
-
-Point Component::getPreferredSize(void) const {
-   return getSize();
-}
-
-Point Component::getMaximumSize(void) const {
-   return scv::Point(200, 200);
 }
 
 ///////////////////////////////////////////////////////////

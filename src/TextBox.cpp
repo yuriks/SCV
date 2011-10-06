@@ -56,8 +56,8 @@ void TextBox::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void TextBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void TextBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void TextBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void TextBox::onResizing(void) {/**/}
-void TextBox::onDragging(void) {/**/}
+void TextBox::onSizeChange(void) {/**/}
+void TextBox::onPositionChange(void) {/**/}
 
 void TextBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -252,27 +252,27 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
    }
 
       if (isFocused()) {
-         if (evt.getState() == MouseEvent::wheeldown) {
+         if (evt.getState() == MouseEvent::WHEELDOWN) {
             if (_str.size()>_lineIndex[_firstLine+1]) {
                _firstLine++;
                return;
             }
          }
-         if (evt.getState() == MouseEvent::wheelup) {
+         if (evt.getState() == MouseEvent::WHELLUP) {
             if (_firstLine>0) {
                _firstLine--;
                return;
             }
          }
       }
-      if ((evt.getState() == MouseEvent::click || evt.getState() == MouseEvent::hold) && isFocused()) {
+      if ((evt.getState() == MouseEvent::CLICK || evt.getState() == MouseEvent::HOLD) && isFocused()) {
          cursor->cursorInMovement();
          int size = 0, menor = getWidth(), menorDesloc = 0;
          Point index(0,0);
          index.y = _firstLine + ((evt.getPosition().y-(getAbsolutePosition().y+s_borderHeight))/s_lineSpacing);
          if (index.y >= _lineIndex.size()-1) {
             _currChar = _str.size()-1;
-            if (evt.getState() == MouseEvent::click) {
+            if (evt.getState() == MouseEvent::CLICK) {
                _selectStart = _currChar;
             }
             _selectEnd = _currChar;
@@ -290,12 +290,12 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
          _currChar = _lineIndex[index.y] + menorDesloc - 1;
 
 
-         if (evt.getState() == MouseEvent::click) {
+         if (evt.getState() == MouseEvent::CLICK) {
             _selectStart = _currChar;
             _selectEnd = _currChar;
          }
          if (isFocused()) {
-            if (evt.getState() == MouseEvent::hold) {
+            if (evt.getState() == MouseEvent::HOLD) {
                _selectEnd = _currChar;
             }
          }
@@ -306,7 +306,7 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
       if (isDragging())
          cursor->setGlutCursor(GLUT_CURSOR_CYCLE);
 
-   if (isFocused() && evt.getState() == MouseEvent::hold) {
+   if (isFocused() && evt.getState() == MouseEvent::HOLD) {
       if (evt.getPosition().y < getAbsolutePosition().y)
          if (_firstLine>0)
             _firstLine--;
@@ -360,7 +360,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
       if (!_filter.checkFilter(evt.getKeyCode()) && !evt.isSpecial())
          return;
 
-      if (evt.getState() == KeyEvent::up) {
+      if (evt.getState() == KeyEvent::UP) {
          onKeyUp(evt);
          return;
       }

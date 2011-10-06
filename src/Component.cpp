@@ -63,7 +63,7 @@ void Component::setRelativePosition(const Point &position) {
    _p1 = position;
    _p2 = _p1 + diff;
 
-   onDragging();
+   onPositionChange();
 }
 
 Point Component::getAbsolutePosition(void) const {
@@ -81,7 +81,7 @@ void Component::setAbsolutePosition(const Point &position) {
       _p1 = position - getParent()->getAbsolutePosition();
       _p2 = _p1 + diff;
 
-      onDragging();
+      onPositionChange();
    } else {
       setRelativePosition(position);
    }   
@@ -93,7 +93,7 @@ void Component::setWidth(const int width) {
    } else {
       _p2.x = _p1.x + width;
    }
-   onResizing();
+   onSizeChange();
 }
 
 void Component::setHeight(const int height) {
@@ -102,7 +102,7 @@ void Component::setHeight(const int height) {
    } else {
       _p2.y = _p1.y + height;
    }
-   onResizing();
+   onSizeChange();
 }
 
 bool Component::isFocused(void) const {
@@ -142,12 +142,12 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
    if (!_isResizing) std::fill(_resizing.begin(), _resizing.end(), false);
 
-   if (evt.getState() == MouseEvent::up) {
+   if (evt.getState() == MouseEvent::UP) {
       std::fill(_resizing.begin(), _resizing.end(), false);
       _isResizing = false;
       kernel->unlockMouseUse(this);
 
-   } else if (_isResizable && _isResizing && evt.getState() == MouseEvent::hold && evt.getButton() == MouseEvent::left) {
+   } else if (_isResizable && _isResizing && evt.getState() == MouseEvent::HOLD && evt.getButton() == MouseEvent::LEFT) {
       if (_isHResizable) {
          if (_resizing[left]) {
             int width = getWidth();
@@ -188,7 +188,7 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
       setResizingCursor();
       if (std::find(_resizing.begin(), _resizing.end(), true) != _resizing.end()) {
-         if (evt.getState() == MouseEvent::click) _isResizing = true;
+         if (evt.getState() == MouseEvent::CLICK) _isResizing = true;
          kernel->requestComponentFocus(this);  
          return;
       }
@@ -196,19 +196,19 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
    //inside
    if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
-      if (evt.getState() == MouseEvent::wheelup || evt.getState() == MouseEvent::wheeldown) {
+      if (evt.getState() == MouseEvent::WHELLUP || evt.getState() == MouseEvent::WHEELDOWN) {
          onMouseWheel(evt);
 
-      } else if (evt.getState() == MouseEvent::up) {
+      } else if (evt.getState() == MouseEvent::UP) {
          kernel->unlockMouseUse(this);
          _isDragging = false;
          _isHolded = false;
          onMouseUp(evt - currPosition);
-         if (_contextMenu != NULL && evt.getButton() == MouseEvent::right) {
+         if (_contextMenu != NULL && evt.getButton() == MouseEvent::RIGHT) {
             menu->activeMenu(_contextMenu, evtPosition);
          }
 
-      } else if (evt.getState() == MouseEvent::hold && isFocused()) {
+      } else if (evt.getState() == MouseEvent::HOLD && isFocused()) {
          kernel->requestComponentFocus(this);
          if (isFocused()) {
             if (_isDragging) {
@@ -221,13 +221,13 @@ void Component::processMouse(const scv::MouseEvent &evt) {
             _isHolded = false;
          }
 
-      } else if (evt.getState() == MouseEvent::motion) {
+      } else if (evt.getState() == MouseEvent::MOTION) {
          _isOvered = true;
          onMouseOver(evt - currPosition);
 
-      } else if (evt.getState() == MouseEvent::click) {
+      } else if (evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
-         if (evt.getButton() == MouseEvent::left) {
+         if (evt.getButton() == MouseEvent::LEFT) {
             if (_isDraggable && isFocused()) {
                _isDragging = true;
                _clickDiff = getAbsolutePosition() - evtPosition;
@@ -239,13 +239,13 @@ void Component::processMouse(const scv::MouseEvent &evt) {
          onMouseClick(evt - currPosition);
       }
    } else { // outside
-      if (evt.getState() == MouseEvent::up || evt.getState() == MouseEvent::click) {
+      if (evt.getState() == MouseEvent::UP || evt.getState() == MouseEvent::CLICK) {
          _isHolded = false;
          _isDragging = false;
          kernel->unlockMouseUse(this);
-      } else if (evt.getState() == MouseEvent::motion) {
+      } else if (evt.getState() == MouseEvent::MOTION) {
          _isOvered = false;
-      } else if (evt.getState() == MouseEvent::hold) {
+      } else if (evt.getState() == MouseEvent::HOLD) {
          if (_isDragging && getParentScissor().isInside(evt.getInversePosition()) && isFocused()) {
             setAbsolutePosition(evtPosition + _clickDiff);
             _isHolded = true;
@@ -262,9 +262,9 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
 void Component::processKey(const scv::KeyEvent &evt) {
    if (isFocused()) {
-      if (evt.getState() == KeyEvent::down) {
+      if (evt.getState() == KeyEvent::DOWN) {
          onKeyPressed(evt);
-      } else if (evt.getState() == KeyEvent::up) {
+      } else if (evt.getState() == KeyEvent::UP) {
          onKeyUp(evt);
       }
    }
@@ -383,6 +383,18 @@ void Component::setResizingCursor(void) {
    } else if (_resizing[top] || _resizing[bottom]) {
       cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
    }
+}
+
+Point Component::getMinimumSize(void) const {
+   return _minSize;
+}
+
+Point Component::getPreferredSize(void) const {
+   return getSize();
+}
+
+Point Component::getMaximumSize(void) const {
+   return scv::Point(kernel->getWidth(), kernel->getHeight());
 }
 
 } // namespace scv

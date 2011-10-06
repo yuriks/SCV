@@ -25,8 +25,8 @@ void Separator::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void Separator::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void Separator::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void Separator::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Separator::onResizing(void) {/**/}
-void Separator::onDragging(void) {/**/}
+void Separator::onSizeChange(void) {/**/}
+void Separator::onPositionChange(void) {/**/}
 
 void Separator::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();

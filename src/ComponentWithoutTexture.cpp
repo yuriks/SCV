@@ -22,9 +22,9 @@ void ComponentWithoutTexture::onKeyPressed(const scv::KeyEvent &evt) {}
 
 void ComponentWithoutTexture::onKeyUp(const scv::KeyEvent &evt) {}
 
-void ComponentWithoutTexture::onResizing(void) {}
+void ComponentWithoutTexture::onSizeChange(void) {}
 
-void ComponentWithoutTexture::onDragging(void) {}
+void ComponentWithoutTexture::onPositionChange(void) {}
 
 void ComponentWithoutTexture::render(void) {}
 

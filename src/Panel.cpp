@@ -78,8 +78,8 @@ void Panel::onMouseUp(const scv::MouseEvent &evt) {}
 void Panel::onKeyPressed(const scv::KeyEvent &evt) {}
 void Panel::onKeyUp(const scv::KeyEvent &evt) {}
 void Panel::onMouseWheel(const scv::MouseEvent &evt) {}
-void Panel::onResizing(void) {}
-void Panel::onDragging(void) {}
+void Panel::onSizeChange(void) {}
+void Panel::onPositionChange(void) {}
 
 void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();

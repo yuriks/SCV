@@ -32,8 +32,8 @@ void TabbedPane::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void TabbedPane::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void TabbedPane::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void TabbedPane::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void TabbedPane::onResizing(void) {/**/}
-void TabbedPane::onDragging(void) {/**/}
+void TabbedPane::onSizeChange(void) {/**/}
+void TabbedPane::onPositionChange(void) {/**/}
 
 void TabbedPane::addPanel(Panel *panel, const std::string &label) {
    static FontTahoma *font = FontTahoma::getInstance();
@@ -81,7 +81,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
       Point currPosition = getAbsolutePosition();
       Point relativeMouse = evt.getPosition();
 
-      if (evt.getState() == MouseEvent::up) refreshScissor();
+      if (evt.getState() == MouseEvent::UP) refreshScissor();
 
       // open menu
       if (isInside(evt.getPosition())) {
@@ -96,7 +96,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
                }
             }
             if (isFocused()) {
-               if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left) {
+               if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT) {
                   for (int i = 0; i < _tabs.size(); i++) {
                      if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i + 1] + currPosition.x - 1
                         && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
@@ -122,7 +122,7 @@ void TabbedPane::processKey(const scv::KeyEvent &evt) {
    if (_currSelectedTab == -1) return;
    if(!_receivingCallbacks) return;
 
-   if (isFocused() && evt.getState() == KeyEvent::down) {
+   if (isFocused() && evt.getState() == KeyEvent::DOWN) {
       Point currPosition = getAbsolutePosition();
 
       if (evt.getKeyString() == "Left") {

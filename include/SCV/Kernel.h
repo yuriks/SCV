@@ -26,7 +26,7 @@
 
 namespace scv {
 
-class Kernel : public Singleton<Kernel> {
+class Kernel : public Singleton<Kernel>, public SCVCallbacks {
 friend class Singleton<Kernel>;
 public:
    ///////////////////////////////////////////////////////////
@@ -47,6 +47,21 @@ public:
    enum TextureFilter { linear, nearest };
    ///////////////////////////////////////////////////////////
 
+   //SCVCallbacks
+   ///////////////////////////////////////////////////////////
+   virtual void onMouseClick(const scv::MouseEvent &evt);
+   virtual void onMouseHold (const scv::MouseEvent &evt);
+   virtual void onMouseOver (const scv::MouseEvent &evt);
+   virtual void onMouseUp   (const scv::MouseEvent &evt);
+   virtual void onMouseWheel(const scv::MouseEvent &evt);
+
+   virtual void onKeyPressed(const scv::KeyEvent &evt);
+   virtual void onKeyUp     (const scv::KeyEvent &evt);
+
+   virtual void onSizeChange(void);
+   virtual void onPositionChange(void);
+   ///////////////////////////////////////////////////////////
+   
    void run(void);
 
    void showCopyrights(void);
@@ -54,7 +69,7 @@ public:
    void OpenFile(void);
 
    ///////////////////////////////////////////////////////////
-   void setFramesPerSecond(float fps);
+   inline void setFramesPerSecond(float fps);
    inline float getFramesPerSecond(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -62,16 +77,16 @@ public:
    void setWindowSize(unsigned int width, unsigned int height);
    void setWindowTitle(const std::string &title);
 
-   int getWidth(void) const;
-   int getHeight(void) const;
+   inline int getWidth(void) const;
+   inline int getHeight(void) const;
 
    void setFullScreen(bool full);
    void lockWindowSize(bool lock);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   TextureFilter getFilterType(void);
-   void setFilterType(TextureFilter tex);
+   inline TextureFilter getFilterType(void);
+   inline void setFilterType(TextureFilter tex);
    ///////////////////////////////////////////////////////////
       
    ///////////////////////////////////////////////////////////
@@ -83,7 +98,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    bool requestComponentFocus(Component *component);
-   Component* getFocusedComponent(void) const;
+   inline Component *getFocusedComponent(void) const;
    ///////////////////////////////////////////////////////////
 
    bool willAppearOnScreen(Component* component);
@@ -106,9 +121,9 @@ public:
    inline ComponentTexture* getWidgetTexture(Kernel::Widgets widget);
    ///////////////////////////////////////////////////////////
 
-private:
+protected:
    Kernel(void);
-   ~Kernel(void) {/**/}
+   ~Kernel(void);
 
    void initOpenGL(int argc, char* argv[]);
 
@@ -155,7 +170,7 @@ private:
 
       Point lastClickPosition;
       Timer lastTimeClicked;
-      MouseEvent::button lastButton;
+      MouseEvent::Button lastButton;
 
       bool clicked, locked;      
       Component *componentRequestUse;
@@ -180,6 +195,11 @@ private:
    ContextMenu *_contextMenu;
 };
 
+///////////////////////////////////////////////////////////
+void Kernel::setFramesPerSecond(float fps) {
+   FrameRate.fps = fps;
+}
+
 inline float Kernel::getFramesPerSecond(void) const {
    return FrameRate.currFps;
 }
@@ -191,6 +211,27 @@ inline void Kernel::setWidgetTexture(Kernel::Widgets widget, ComponentTexture *t
 inline ComponentTexture* Kernel::getWidgetTexture(Kernel::Widgets widget) {
    return _loadedWidgets[widget];
 }
+
+Kernel::TextureFilter Kernel::getFilterType(void) {
+   return _filterType;
+}
+
+void Kernel::setFilterType(TextureFilter tex) {
+   _filterType = tex;
+}
+
+int Kernel::getWidth(void) const {
+   return Display.currSize[0];
+}
+
+int Kernel::getHeight(void) const {
+   return Display.currSize[1];
+}
+
+Component* Kernel::getFocusedComponent(void) const {
+   return _focusedComponent;
+}
+///////////////////////////////////////////////////////////
 
 } // namespace scv
 

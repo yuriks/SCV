@@ -17,8 +17,8 @@ void RadioButton::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void RadioButton::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void RadioButton::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void RadioButton::onValueChange(void) {/**/}
-void RadioButton::onResizing(void) {/**/}
-void RadioButton::onDragging(void) {/**/}
+void RadioButton::onSizeChange(void) {/**/}
+void RadioButton::onPositionChange(void) {/**/}
 
 void RadioButton::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -395,7 +395,7 @@ void RadioButton::processMouse(const scv::MouseEvent &evt) {
    if(!_receivingCallbacks) return;
 
    if (isInside(evt.getPosition())) {
-      if (evt.getState() == MouseEvent::click && isFocused())
+      if (evt.getState() == MouseEvent::CLICK && isFocused())
          setState(!getState());
    }
 }

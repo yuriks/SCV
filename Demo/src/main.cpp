@@ -1,52 +1,51 @@
 #include "stdafx.h"
 
-#include "InterfaceDesign.h"
-
-
 int main(int argc, char* argv[]) {
    static scv::Kernel *kernel = scv::Kernel::getInstance();
    static scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
    scheme->loadScheme(scv::ColorScheme::osx);
    scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));
-   kernel->setWindowSize(1280, 720);
 
+   static const int s_defaultWindowWidht = 1280;
+   static const int s_defaultWindowHeight = 720;
    
+   kernel->setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
+
+   static const int s_defaultBorderGap = 10;
+   static const int s_defaultRightBarSize = 300;
+
+
+   scv::Panel *panelRightBar = new scv::Panel(scv::Point(s_defaultWindowWidht - s_defaultRightBarSize + s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultBorderGap, s_defaultWindowHeight - s_defaultBorderGap));
+   kernel->addComponent(panelRightBar);
+      
+   //Palette
+   ///////////////////////////////////////////////////////////
+   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 26, 600));
+   scv::ScrollPane *scrollPanePalette = new scv::ScrollPane(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 10, 300), panelPalette);
+   panelRightBar->addChild(scrollPanePalette);
+   
+   scv::Label *labelContainers = new scv::Label(scv::Point(10,10), "SCV Containers");
+   panelPalette->addChild(labelContainers);
+   panelPalette->addChild(new scv::Separator(scv::Point(0, labelContainers->getRelativePosition().y + labelContainers->getHeight() + 5), scv::Separator::horizontal, panelPalette->getWidth()));
+   ///////////////////////////////////////////////////////////
+
+   //Design
+   ///////////////////////////////////////////////////////////
+   scv::Panel *panelDesign = new scv::Panel(scv::Point(0, 0), scv::Point(800, 600));
+   panelDesign->setResizable(true);
+   scv::ScrollPane *scrollPaneDesign = new scv::ScrollPane(scv::Point(s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultRightBarSize, s_defaultWindowHeight - s_defaultBorderGap), panelDesign);
+   scrollPaneDesign->setPanel(panelDesign);
+   kernel->addComponent(scrollPaneDesign);
+   ///////////////////////////////////////////////////////////
+
+   /*   
    scv::Panel *panel = new scv::Panel(scv::Point(40,40), scv::Point(1280 - 920, 720 - 40));
    panel->setResizable(true);
 
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
-   /*
-   scv::Label *label1 = new scv::Label(scv::Point(  0,   0), "First Row");
-   scv::Label *label2 = new scv::Label(scv::Point(100, 100), "Second Row");
-
-   scv::TextField *tf1 = new scv::TextField(scv::Point(), 100, "");
-   scv::TextField *tf2 = new scv::TextField(scv::Point(), 100, "");
-
-   panel->addChild(label1);
-   panel->addChild(label2);
-
-   panel->addChild(tf1);
-   panel->addChild(tf2);
-     
-   scv::SequentialGroup *hGroup = layout->createSequentialGroup();
-   hGroup->addGroup(layout->createParallelGroup()->
-      addComponent(label1)->addComponent(label2));
-   hGroup->addGroup(layout->createParallelGroup()->
-      addComponent(tf1)->addComponent(tf2));
-   layout->setHorizontalGroup(hGroup);
-
-   
-   scv::SequentialGroup *vGroup = layout->createSequentialGroup();
-   vGroup->addGroup(layout->createParallelGroup(scv::Spring::BASELINE)->
-      addComponent(label1)->addComponent(tf1));
-   vGroup->addGroup(layout->createParallelGroup(scv::Spring::BASELINE)->
-      addComponent(label2)->addComponent(tf2));
-   layout->setVerticalGroup(vGroup);
-   /**/
-   
    scv::Label *label = new scv::Label(scv::Point(), "Find What:");
    panel->addChild(label);
    scv::TextField *textField = new scv::TextField(scv::Point(), 200, "");
@@ -67,38 +66,38 @@ int main(int argc, char* argv[]) {
    layout->setHorizontalGroup(layout->createSequentialGroup()
       ->addComponent(label)
       ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
-      ->addComponent(textField)
-      ->addGroup(layout->createSequentialGroup()
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
-      ->addComponent(caseCheckBox)
-      ->addComponent(wholeCheckBox))
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
-      ->addComponent(wrapCheckBox)
-      ->addComponent(backCheckBox))))
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
-      ->addComponent(findButton)
-      ->addComponent(cancelButton))
+         ->addComponent(textField)
+         ->addGroup(layout->createSequentialGroup()
+            ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
+               ->addComponent(caseCheckBox)
+               ->addComponent(wholeCheckBox))
+            ->addGroup(layout->createParallelGroup(scv::Spring::LEADING)
+                  ->addComponent(wrapCheckBox)
+                  ->addComponent(backCheckBox))))
+         ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
+            ->addComponent(findButton)
+            ->addComponent(cancelButton))
       );
 
    layout->setVerticalGroup(layout->createSequentialGroup()
       ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
-      ->addComponent(label)
-      ->addComponent(textField)
-      ->addComponent(findButton))
+         ->addComponent(label)
+         ->addComponent(textField)
+         ->addComponent(findButton))
       ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
-      ->addGroup(layout->createSequentialGroup()
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
-      ->addComponent(caseCheckBox)
-      ->addComponent(wrapCheckBox))
-      ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
-      ->addComponent(wholeCheckBox)
-      ->addComponent(backCheckBox)))
-      ->addComponent(cancelButton))
+         ->addGroup(layout->createSequentialGroup()
+            ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
+               ->addComponent(caseCheckBox)
+               ->addComponent(wrapCheckBox))
+            ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
+               ->addComponent(wholeCheckBox)
+               ->addComponent(backCheckBox)))
+         ->addComponent(cancelButton))
       );
    
 
    kernel->addComponent(panel);
-   ///////////////////////////////////////////////////////////
+   /**/
 
    kernel->run();
    return 0;

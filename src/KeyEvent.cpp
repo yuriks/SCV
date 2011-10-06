@@ -5,7 +5,7 @@
 
 namespace scv {
 
-KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::states state) :
+KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::State state) :
       _key(key), _modifiers(mod), _special(special), _state(state) {
    // none
 }
@@ -59,7 +59,7 @@ int KeyEvent::getModifier(void) const {
    return _modifiers;
 }
 
-KeyEvent::states KeyEvent::getState(void) const {
+KeyEvent::State KeyEvent::getState(void) const {
    return _state;
 }
 

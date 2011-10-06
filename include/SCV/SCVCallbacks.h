@@ -23,8 +23,8 @@ public:
    virtual void onKeyPressed(const scv::KeyEvent &evt) = 0;
    virtual void onKeyUp     (const scv::KeyEvent &evt) = 0;
 
-   virtual void onResizing(void) = 0;
-   virtual void onDragging(void) = 0;
+   virtual void onSizeChange(void) = 0;
+   virtual void onPositionChange(void) = 0;
    ///////////////////////////////////////////////////////////
 };
 

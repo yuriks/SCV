@@ -37,8 +37,8 @@ void ProgressBar::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void ProgressBar::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void ProgressBar::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void ProgressBar::onValueChange(void) {/**/}
-void ProgressBar::onResizing(void) {/**/}
-void ProgressBar::onDragging(void) {/**/}
+void ProgressBar::onSizeChange(void) {/**/}
+void ProgressBar::onPositionChange(void) {/**/}
 
 void ProgressBar::display(void) {
    static FontTahoma *font = FontTahoma::getInstance();

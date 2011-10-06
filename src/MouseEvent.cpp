@@ -6,9 +6,9 @@
 
 namespace scv {
 
-MouseEvent::MouseEvent(void): _button(MouseEvent::none), _state(MouseEvent::motion), _position(Point(-1,-1)), _doubleClick(false) {}
+MouseEvent::MouseEvent(void): _button(MouseEvent::NBUTTON), _state(MouseEvent::MOTION), _position(Point(-1,-1)), _doubleClick(false) {}
 
-MouseEvent::MouseEvent(MouseEvent::button button, MouseEvent::state state, const Point &position, bool doubleClick) :
+MouseEvent::MouseEvent(MouseEvent::Button button, MouseEvent::State state, const Point &position, bool doubleClick) :
       _button(button), _state(state), _position(position), _doubleClick(doubleClick) {}
 
 MouseEvent& MouseEvent::operator=(const MouseEvent&rhs) {
@@ -28,11 +28,11 @@ Point MouseEvent::getInversePosition(void) const {
    return Point(_position.x, kernel->getHeight() - _position.y);
 }
 
-MouseEvent::button MouseEvent::getButton(void) const {
+MouseEvent::Button MouseEvent::getButton(void) const {
    return _button;
 }
 
-MouseEvent::state MouseEvent::getState(void) const {
+MouseEvent::State MouseEvent::getState(void) const {
    return _state;
 }
 

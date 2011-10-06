@@ -49,8 +49,8 @@ public:
    virtual void onMouseWheel(const scv::MouseEvent &evt);
    virtual void onKeyPressed(const scv::KeyEvent &evt);
    virtual void onKeyUp(const scv::KeyEvent &evt);
-   virtual void onResizing(void);
-   virtual void onDragging(void);
+   virtual void onSizeChange(void);
+   virtual void onPositionChange(void);
 
    /*! Callback. Called when the Label's text is changed. */
    virtual void onStringChange(void);

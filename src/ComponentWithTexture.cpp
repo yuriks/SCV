@@ -24,9 +24,9 @@ void ComponentWithTexture::onKeyPressed(const scv::KeyEvent &evt) {}
 
 void ComponentWithTexture::onKeyUp(const scv::KeyEvent &evt) {}
 
-void ComponentWithTexture::onResizing(void) {}
+void ComponentWithTexture::onSizeChange(void) {}
 
-void ComponentWithTexture::onDragging(void) {}
+void ComponentWithTexture::onPositionChange(void) {}
 
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
    Component::processMouse(evt);

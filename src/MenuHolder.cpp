@@ -19,7 +19,7 @@ bool MenuHolder::processMouse(const scv::MouseEvent &evt) {
       if ((*iter)->processMouse(evt)) status = true;
    }
 
-   if (status == false && evt.getState() == MouseEvent::click) {
+   if (status == false && evt.getState() == MouseEvent::CLICK) {
       closeAllMenus();
    }
    return status;

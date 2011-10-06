@@ -44,7 +44,7 @@ Kernel::Kernel(void) {
    Display.isFullScreen = false;
 
    Mouse.clicked = false;
-   Mouse.lastButton = MouseEvent::none;
+   Mouse.lastButton = MouseEvent::NBUTTON;
 
    _focusedComponent = NULL;
    _contextMenu = NULL;
@@ -71,6 +71,22 @@ Kernel::Kernel(void) {
 
    srand((int)time(NULL));
 }
+
+Kernel::~Kernel(void) {
+
+}
+
+void Kernel::onMouseClick(const scv::MouseEvent &evt) {}
+void Kernel::onMouseHold(const scv::MouseEvent &evt) {}
+void Kernel::onMouseOver(const scv::MouseEvent &evt) {}
+void Kernel::onMouseUp(const scv::MouseEvent &evt) {}
+void Kernel::onMouseWheel(const scv::MouseEvent &evt) {}
+
+void Kernel::onKeyPressed(const scv::KeyEvent &evt) {}
+void Kernel::onKeyUp(const scv::KeyEvent &evt) {}
+
+void Kernel::onSizeChange(void) {}
+void Kernel::onPositionChange(void) {}
 
 std::string Kernel::getClipBoardString(void) const {
    #ifdef _WIN32
@@ -163,10 +179,6 @@ void Kernel::setFullScreen(bool full) {
 }
 
 
-void Kernel::setFramesPerSecond(float fps) {
-   FrameRate.fps = fps;
-}
-
 void Kernel::updateFramesPerSecond(void) {
    FrameRate.count++;
    FrameRate.currTime = glutGet(GLUT_ELAPSED_TIME);
@@ -206,12 +218,18 @@ void Kernel::cbMouseMotion(int x, int y) {
 
    MouseEvent evt;
    if (kernel->Mouse.clicked) {
-      evt = MouseEvent(kernel->Mouse.lastButton, MouseEvent::hold, Point(x, y));
+      evt = MouseEvent(kernel->Mouse.lastButton, MouseEvent::HOLD, Point(x, y));
    } else {
-      evt = MouseEvent(MouseEvent::none, MouseEvent::motion, Point(x, y));
+      evt = MouseEvent(MouseEvent::NBUTTON, MouseEvent::MOTION, Point(x, y));
    }
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
+      //kernel callback
+      if (evt.getState() == MouseEvent::HOLD) {
+         kernel->onMouseHold(evt);
+      } else if (evt.getState() == MouseEvent::MOTION) {
+         kernel->onMouseOver(evt);
+      }
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
             (*iter)->processMouse(evt);
@@ -236,25 +254,27 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
    MouseEvent evt;
    if (kernel->Mouse.lastClickPosition == Point(x, y) && kernel->Mouse.lastTimeClicked.isRunning() &&
          kernel->Mouse.lastTimeClicked.getMilliseconds() <= kernel->Mouse.doubleClickTime && kernel->Mouse.lastButton == button &&
-         static_cast<MouseEvent::state>(state) == MouseEvent::click) {
+         static_cast<MouseEvent::State>(state) == MouseEvent::CLICK) {
 
       kernel->Mouse.lastTimeClicked.stop();
-      kernel->Mouse.lastButton = static_cast<MouseEvent::button>(button);
-      evt = MouseEvent (kernel->Mouse.lastButton, MouseEvent::click, Point(x, y), true);
+      kernel->Mouse.lastButton = static_cast<MouseEvent::Button>(button);
+      evt = MouseEvent (kernel->Mouse.lastButton, MouseEvent::CLICK, Point(x, y), true);
 
    } else {
-      if (static_cast<MouseEvent::state>(state) == MouseEvent::click) {
+      if (static_cast<MouseEvent::State>(state) == MouseEvent::CLICK) {
          kernel->Mouse.lastTimeClicked.start();
          kernel->Mouse.lastClickPosition = Point(x, y);
       }
-      kernel->Mouse.lastButton = static_cast<MouseEvent::button>(button);
-      evt = MouseEvent(kernel->Mouse.lastButton, static_cast<MouseEvent::state>(state), Point(x, y));
+      kernel->Mouse.lastButton = static_cast<MouseEvent::Button>(button);
+      evt = MouseEvent(kernel->Mouse.lastButton, static_cast<MouseEvent::State>(state), Point(x, y));
    }
 
-   if (evt.getState() == MouseEvent::up) {
+   if (evt.getState() == MouseEvent::UP) {
       kernel->Mouse.clicked = false;
       if (menu->processMouse(evt) == false) {
          if (window->processMouse(evt) == false) {
+            //kernel callback
+            kernel->onMouseUp(evt);
             for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
                if ((*iter)->isVisible() && (*iter)->getCallbacksStatus())
                   (*iter)->processMouse(evt);
@@ -270,6 +290,8 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
       if (menu->processMouse(evt) == false) {
          menu->closeAllMenus();
          if (window->processMouse(evt) == false) {
+            //kernel callback
+            kernel->onMouseClick(evt);
             for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
                if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
                   (*iter)->processMouse(evt);
@@ -280,7 +302,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
                }
             }
             
-            if (kernel->Mouse.componentRequestUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::right)
+            if (kernel->Mouse.componentRequestUse == NULL && kernel->_contextMenu != NULL && kernel->requestMouseUse(NULL) && evt.getButton() == MouseEvent::RIGHT)
                menu->activeMenu(kernel->_contextMenu, evt.getPosition());
 
             // swap clicked component to end
@@ -291,7 +313,7 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
       }
    }
 
-   if (evt.getState() == MouseEvent::click && kernel->_componentRequestFocus == false) {
+   if (evt.getState() == MouseEvent::CLICK && kernel->_componentRequestFocus == false) {
       kernel->Mouse.componentRequestUse = NULL;
       kernel->_focusedComponent = NULL;
       kernel->Mouse.locked = false;
@@ -313,13 +335,14 @@ void Kernel::cbMouseWheel(int button, int dir, int x, int y) {
 
    MouseEvent evt;
    if (dir == 1) {
-      evt = MouseEvent(MouseEvent::none, MouseEvent::wheelup, Point(x, y));
+      evt = MouseEvent(MouseEvent::NBUTTON, MouseEvent::WHELLUP, Point(x, y));
    } else {
-      evt = MouseEvent(MouseEvent::none, MouseEvent::wheeldown, Point(x, y));
+      evt = MouseEvent(MouseEvent::NBUTTON, MouseEvent::WHEELDOWN, Point(x, y));
    }
 
    if (menu->processMouse(evt) == false && window->processMouse(evt) == false) {
-      //
+      //kernel callback
+      kernel->onMouseWheel(evt);
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
             (*iter)->processMouse(evt);
@@ -343,13 +366,15 @@ void Kernel::cbKeySpecial(int key, int x, int y) {
    // insert
    if (key == 108) cursor->swapInsertState();
 
-   KeyEvent evt(key, glutGetModifiers(), true, KeyEvent::down);
+   KeyEvent evt(key, glutGetModifiers(), true, KeyEvent::DOWN);
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
+      //kernel callback
+      kernel->onKeyPressed(evt);
       keyboard->push(key, true);
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
-            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::down));
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::DOWN));
          }
       }
    }
@@ -364,13 +389,15 @@ void Kernel::cbKeySpecialUp(int key, int x, int y) {
 
    kernel->_componentRequestFocus = false;
 
-   KeyEvent evt(key, glutGetModifiers(), true, KeyEvent::up);
+   KeyEvent evt(key, glutGetModifiers(), true, KeyEvent::UP);
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
+      //kernel callback
+      kernel->onKeyUp(evt);
       keyboard->pop(key, true);
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
-            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::up));
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), true, KeyEvent::UP));
          }
          
       }      
@@ -386,13 +413,15 @@ void Kernel::cbKey(unsigned char key, int x, int y) {
 
    kernel->_componentRequestFocus = false;
 
-   KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::down);
+   KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::DOWN);
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
+      //kernel callback
+      kernel->onKeyPressed(evt);
       keyboard->push(key, false);
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
-            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::down));
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::DOWN));
          }
       }      
    }
@@ -407,13 +436,15 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
 
    kernel->_componentRequestFocus = false;
 
-   KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::up);
+   KeyEvent evt(key, glutGetModifiers(), false, KeyEvent::UP);
 
    if (menu->processKey(evt) == false && window->processKey(evt) == false) {
+      //kernel callback
+      kernel->onKeyUp(evt);
       keyboard->pop(key, false);
       for (ComponentsList::reverse_iterator iter = kernel->_objects.rbegin(); iter != kernel->_objects.rend(); ++iter) {
          if ((*iter)->isVisible() && (*iter)->getCallbacksStatus()) {
-            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::up));
+            (*iter)->processKey(KeyEvent(key, glutGetModifiers(), false, KeyEvent::UP));
          }
       }      
    }
@@ -421,6 +452,7 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
 
 void Kernel::cbReshape(int w, int h) {
    static Kernel* kernel = Kernel::getInstance();
+
    static int _w = w;
    static int _h = h;
    if (!kernel->_isActiveReshape && (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]))
@@ -431,6 +463,7 @@ void Kernel::cbReshape(int w, int h) {
    kernel->Display.userSize[0] = w;
    kernel->Display.userSize[1] = h;
 
+   kernel->onSizeChange();
 }
 
 void Kernel::cbDisplay(void) {
@@ -495,7 +528,7 @@ bool Kernel::requestComponentFocus(Component* component) {
       if (_focusedComponent != NULL && _focusedComponent != component && keyboard->isEmpty() == false) {
          std::deque<Keyboard::KeyboardControl> keys = keyboard->clear();
          for (int i = 0; i < keys.size(); i++)
-            _focusedComponent->processKey(KeyEvent(keys[i].key, glutGetModifiers(), keys[i].special, KeyEvent::up));
+            _focusedComponent->processKey(KeyEvent(keys[i].key, glutGetModifiers(), keys[i].special, KeyEvent::UP));
       }
       _focusedComponent = component;
       _componentRequestFocus = true;
@@ -503,10 +536,6 @@ bool Kernel::requestComponentFocus(Component* component) {
    } else {
       return false;
    }
-}
-
-Component* Kernel::getFocusedComponent(void) const {
-   return _focusedComponent;
 }
 
 void Kernel::applyDefaultTransformMatrix(void) {
@@ -583,22 +612,6 @@ bool Kernel::willAppearOnScreen(Component* component) {
    }
 }
 
-Kernel::TextureFilter Kernel::getFilterType(void) {
-   return _filterType;
-}
-
-void Kernel::setFilterType(TextureFilter tex) {
-   _filterType = tex;
-}
-
-int Kernel::getWidth(void) const {
-   return Display.currSize[0];
-}
-
-int Kernel::getHeight(void) const {
-   return Display.currSize[1];
-}
-
 void Kernel::lockWindowSize(bool lock) {
    _isActiveReshape = !lock;
 }
@@ -607,7 +620,5 @@ void Kernel::OpenFile(void) {
    static FileOpen *fileOp = FileOpen::getInstance();
    fileOp->getItem();
 }
-
-
 
 } // namespace scv

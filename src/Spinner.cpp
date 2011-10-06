@@ -45,8 +45,8 @@ void Spinner::onMouseWheel(const scv::MouseEvent &evt) {}
 void Spinner::onKeyPressed(const scv::KeyEvent &evt) {}
 void Spinner::onKeyUp(const scv::KeyEvent &evt) {}
 void Spinner::onValueChange(void) {}
-void Spinner::onResizing(void) {}
-void Spinner::onDragging(void) {}
+void Spinner::onSizeChange(void) {}
+void Spinner::onPositionChange(void) {}
 
 
 void Spinner::display(void) {
@@ -187,7 +187,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
 
    if (isOnUpButton(evt.getPosition()) && kernel->requestMouseUse(this)) {
       _UpOver = true;
-      if (evt.getButton() == MouseEvent::left && evt.getState() == MouseEvent::click) {
+      if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
          _UpPress = true;
          if (getValue() == getMaxValue()) return;
@@ -195,7 +195,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
          IncrementStep();
          onMouseClick(evt);
       }
-      if (evt.getButton() == MouseEvent::right && evt.getState() == MouseEvent::click) {
+      if (evt.getButton() == MouseEvent::RIGHT && evt.getState() == MouseEvent::CLICK) {
          Point evtPosition         = evt.getPosition();
          MenuHolder *menu = MenuHolder::getInstance();
          menu->activeMenu(_contextMenu, evtPosition);
@@ -206,7 +206,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
 
    if (isOnDownButton(evt.getPosition()) && kernel->requestMouseUse(this)) {
       _DownOver = true;
-      if (evt.getButton() == MouseEvent::left && evt.getState() == MouseEvent::click) {
+      if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
          _DownPress = true;
          if (getValue() == getMinValue()) return;
@@ -214,7 +214,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
          DecrementStep();
          onMouseClick(evt);
       }
-      if (evt.getButton() == MouseEvent::right && evt.getState() == MouseEvent::click) {
+      if (evt.getButton() == MouseEvent::RIGHT && evt.getState() == MouseEvent::CLICK) {
          Point evtPosition         = evt.getPosition();
          MenuHolder *menu = MenuHolder::getInstance();
          menu->activeMenu(_contextMenu, evtPosition);
@@ -223,7 +223,7 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
       _DownOver = false;
    }
 
-   if (evt.getState() == MouseEvent::up && evt.getButton() == MouseEvent::left) {
+   if (evt.getState() == MouseEvent::UP && evt.getButton() == MouseEvent::LEFT) {
       _UpPress = false;
       _DownPress = false;
       _DownOver = _UpOver = false;
@@ -234,9 +234,9 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
 
    if (isFocused()) {
       if (isInside(evt.getPosition())  && kernel->requestMouseUse(this) && (evt.getPosition() < Point(getAbsolutePosition().x + getWidth(), getAbsolutePosition().y + 18)) &&
-         evt.getState() == MouseEvent::click) {
+         evt.getState() == MouseEvent::CLICK) {
             _isDragging = false;
-      } else if (evt.getState() == MouseEvent::hold && isDragging() == false) {
+      } else if (evt.getState() == MouseEvent::HOLD && isDragging() == false) {
          onMouseHold(evt);
       }
    }
@@ -247,12 +247,12 @@ void Spinner::processKey(const scv::KeyEvent &evt) {
 
    Component::processKey(evt);
 
-   if(!_receivingCallbacks || evt.getState() == KeyEvent::up) return;
+   if(!_receivingCallbacks || evt.getState() == KeyEvent::UP) return;
 
    if (evt.getKeyString() == "Up" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
-      if (evt.getState() == KeyEvent::down) IncrementStep();
+      if (evt.getState() == KeyEvent::DOWN) IncrementStep();
    } else if (evt.getKeyString() == "Down" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
-      if (evt.getState() == KeyEvent::down) DecrementStep();
+      if (evt.getState() == KeyEvent::DOWN) DecrementStep();
    } 
    if (isFocused() || kernel->getFocusedComponent() == _textField) {
       kernel->requestComponentFocus(_textField);
@@ -329,11 +329,11 @@ void Spinner::TextFieldSpinner::onStringChange(void) {
    }
 }
 
-void Spinner::TextFieldSpinner::onResizing(void) {
+void Spinner::TextFieldSpinner::onSizeChange(void) {
    _spinner->setRelativePosition(getRelativePosition());
 }
 
-void Spinner::TextFieldSpinner::onDragging(void) {
+void Spinner::TextFieldSpinner::onPositionChange(void) {
    _spinner->setRelativePosition(getRelativePosition());
 }
 

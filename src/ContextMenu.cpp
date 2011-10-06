@@ -103,7 +103,7 @@ bool ContextMenu::processKey(const scv::KeyEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
 
    if (getStatus() == false || !hasSubMenus()) return false;
-   else if (evt.getState() == KeyEvent::up) return true;
+   else if (evt.getState() == KeyEvent::UP) return true;
 
    _recentlyChange = false;
 
@@ -203,11 +203,11 @@ void ContextMenu::processMouseCallback(const MouseEvent &evt, std::deque<std::st
 
    address.push_front(_label);
    if (_parentMenu == NULL) {
-      if (evt.getState() == MouseEvent::up) {
+      if (evt.getState() == MouseEvent::UP) {
          holder->closeAllMenus();
          onMouseClick(evt, address);
          onMenuAccessed(address);
-      } else if (evt.getState() == MouseEvent::motion) {
+      } else if (evt.getState() == MouseEvent::MOTION) {
          onMouseOver(evt, address);
       }
    } else _parentMenu->processMouseCallback(evt, address);

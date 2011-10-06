@@ -37,12 +37,12 @@ void Canvas::onKeyUp(const scv::KeyEvent &evt) {
    ComponentWithoutTexture::onKeyUp(evt);
 }
 
-void Canvas::onResizing(void) {
-   ComponentWithoutTexture::onResizing();
+void Canvas::onSizeChange(void) {
+   ComponentWithoutTexture::onSizeChange();
 }
 
-void Canvas::onDragging(void) {
-   ComponentWithoutTexture::onDragging();
+void Canvas::onPositionChange(void) {
+   ComponentWithoutTexture::onPositionChange();
 }
 
 void Canvas::render(void) {

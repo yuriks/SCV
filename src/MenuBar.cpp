@@ -40,7 +40,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
    if (isInside(evt.getPosition())) {
       if (kernel->requestMouseUse(this)) {
          if (isFocused()) {
-            if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left) {
+            if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT) {
                for (int i = 0; i < _menus.size(); i++) {
                   if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i+1] + currPosition.x
                         && relativeMouse.y > s_borderHeight/2-1 + currPosition.y && relativeMouse.y < currPosition.y + getHeight() - 2) {
@@ -98,7 +98,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
 void MenuBar::processKey(const scv::KeyEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
 
-   if (evt.getState() == KeyEvent::up || _currSelectedMenu == -1) return;
+   if (evt.getState() == KeyEvent::UP || _currSelectedMenu == -1) return;
    if(!_receivingCallbacks) return;
 
    ContextMenu * cMenu = _menus[_currSelectedMenu];
@@ -233,8 +233,8 @@ void MenuBar::onMouseUp(const scv::MouseEvent &evt) {/**/}
 void MenuBar::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void MenuBar::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void MenuBar::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void MenuBar::onResizing(void) {/**/}
-void MenuBar::onDragging(void) {/**/}
+void MenuBar::onSizeChange(void) {/**/}
+void MenuBar::onPositionChange(void) {/**/}
 
 
 void MenuBar::addMenu(ContextMenu *menu) {

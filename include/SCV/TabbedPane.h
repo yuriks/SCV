@@ -45,8 +45,8 @@ public:
    virtual void onMouseWheel(const scv::MouseEvent &evt);
    virtual void onKeyPressed(const scv::KeyEvent &evt);
    virtual void onKeyUp(const scv::KeyEvent &evt);
-   virtual void onResizing(void);
-   virtual void onDragging(void);
+   virtual void onSizeChange(void);
+   virtual void onPositionChange(void);
 
 
    //! Adds a new panel to the component.

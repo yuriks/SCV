@@ -54,8 +54,8 @@ void ColorPicker::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void ColorPicker::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void ColorPicker::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void ColorPicker::onColorChange(void) {/**/}
-void ColorPicker::onResizing(void) {/**/}
-void ColorPicker::onDragging(void) {/**/}
+void ColorPicker::onSizeChange(void) {/**/}
+void ColorPicker::onPositionChange(void) {/**/}
 
 void ColorPicker::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -148,7 +148,7 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
       glReadPixels(evt.getPosition().x, evt.getInversePosition().y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &_currentColor);
       setSpinsColor();
       onColorChange();
-      if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left) {
+      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT) {
          _btPicker->setState(false);
          _pickerWaitingColor = false;
          _currentColorPosition = foundHSL();
@@ -160,14 +160,14 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
             Point relativeMouse = evt.getPosition()-getAbsolutePosition();
             if (relativeMouse.x < MatrixTemplate<ColorRGBA>::getWidth() && relativeMouse.y < MatrixTemplate<ColorRGBA>::getHeight()) {
                cursor->setGlutCursor(GLUT_CURSOR_FULL_CROSSHAIR);
-               if (evt.getState() == MouseEvent::click && evt.getButton() == MouseEvent::left) {
+               if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT) {
                   _isDragging = false;
                   _currentColorPosition = relativeMouse;
                   _currentColor =  ColorRGBA(MatrixTemplate<ColorRGBA>::get(_currentColorPosition.y,_currentColorPosition.x));
                   setSpinsColor();
                   onColorChange();
                   onMouseClick(evt);
-               } else if (evt.getState() == MouseEvent::hold && evt.getButton() == MouseEvent::left) {
+               } else if (evt.getState() == MouseEvent::HOLD && evt.getButton() == MouseEvent::LEFT) {
                   kernel->lockMouseUse(this);
                   _isDragging = false;
                   _currentColorPosition = relativeMouse;
@@ -175,12 +175,12 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
                   setSpinsColor();
                   onColorChange();
                   onMouseHold(evt);
-               } else if (evt.getState() == MouseEvent::up) {
+               } else if (evt.getState() == MouseEvent::UP) {
                   kernel->unlockMouseUse(this);
                }
             }
          }
-      } else if (evt.getState() == MouseEvent::up) {
+      } else if (evt.getState() == MouseEvent::UP) {
          kernel->unlockMouseUse(this);
       }
    }

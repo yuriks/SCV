@@ -20,8 +20,8 @@ void CheckBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void CheckBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void CheckBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void CheckBox::onValueChange(void) {/**/}
-void CheckBox::onResizing(void) {/**/}
-void CheckBox::onDragging(void) {/**/}
+void CheckBox::onSizeChange(void) {/**/}
+void CheckBox::onPositionChange(void) {/**/}
 
 void CheckBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -103,7 +103,7 @@ void CheckBox::processMouse(const scv::MouseEvent &evt) {
    if (!_receivingCallbacks) return;
 
    if (isInside(evt.getPosition())) {
-      if (evt.getState() == MouseEvent::click && isFocused())
+      if (evt.getState() == MouseEvent::CLICK && isFocused())
          setState(!getState());
    }
 }

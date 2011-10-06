@@ -30,8 +30,8 @@ void Slider::onKeyPressed(const scv::KeyEvent &evt) {/**/}
 void Slider::onKeyUp(const scv::KeyEvent &evt) {/**/}
 void Slider::onMouseWheel(const scv::MouseEvent &evt) {/**/}
 void Slider::onValueChange(void) {/**/}
-void Slider::onResizing(void) {/**/}
-void Slider::onDragging(void) {/**/}
+void Slider::onSizeChange(void) {/**/}
+void Slider::onPositionChange(void) {/**/}
 
 void Slider::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -293,11 +293,11 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
 
    if (isFocused()) {
       
-      if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::click) {
+      if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::CLICK) {
          _isDragging = false;
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));
          setValue(math::nearestValue(value, getMinValue() + getStep() * (int)((value-getMinValue())/getStep()), getMinValue() + getStep() * (1+(int)((value-getMinValue())/getStep()))));
-      } else if (evt.getState() == MouseEvent::hold && isDragging() == false) {
+      } else if (evt.getState() == MouseEvent::HOLD && isDragging() == false) {
          onMouseHold(evt);
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));
          setValue(math::nearestValue(value, getMinValue() + getStep() * (int)((value-getMinValue())/getStep()), std::min(getMaxValue(), getMinValue() + getStep() * (1+(int)((value-getMinValue())/getStep())))));
@@ -314,7 +314,7 @@ void Slider::processKey(const scv::KeyEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
-   if (isFocused() && evt.getState() == KeyEvent::down) {
+   if (isFocused() && evt.getState() == KeyEvent::DOWN) {
       if (evt.getKeyString() == "Left") DecrementStep();
       else if (evt.getKeyString() == "Right") IncrementStep();
    }
