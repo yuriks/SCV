@@ -34,15 +34,17 @@ void ScrollPane::onSizeChange(void) {}
 void ScrollPane::onPositionChange(void) {}
 
 void ScrollPane::setPanel(Panel *panel) {
-   if (panel != NULL) {
-      _registeredPanel = panel;
-      
-      refreshSCrollPaneSize();
-      refreshContainerPosition();
-   }   
+   if (panel == NULL) return;
+
+   _registeredPanel = panel;
+
+   refreshSCrollPaneSize();
+   refreshContainerPosition();
 }
 
 void ScrollPane::refreshSCrollPaneSize(void) {
+   if (getPanel() == NULL) return;
+   
    _containerHeight = getPanel()->getHeight();
    _containerWidth = getPanel()->getWidth();
    
@@ -62,6 +64,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = scv::Kernel::getInstance();
    const Point currPosition = getAbsolutePosition();
 
+   
    if ((isFocused() || (getPanel() && getPanel()->isFocused())) && _receivingCallbacks) {
       if (evt.getState() == MouseEvent::WHEELDOWN && kernel->requestMouseUse(this)) {
          _translateHeight = std::min(_translateHeight + pixelToFloat(10, false), 1.f);
@@ -72,6 +75,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
       }
    }
 
+   
    if (getPanel() != NULL) {
       Scissor::Info scissor(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border - 1), getWidth() - s_border - 1, getHeight() - s_border - 1);
       if ((scissor.isInside(evt.getInversePosition()) && _draggingBar == BUT_NONE) || getPanel()->isResizing()) {
@@ -80,7 +84,7 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
          refreshSCrollPaneSize();
       }
    }
-
+   
    Component::processMouse(evt);
 
    
@@ -193,12 +197,12 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
 }
 
 void ScrollPane::refreshContainerPosition(void) {
+   if (getPanel() == NULL) return;
+
    _minContainerPos.x = getAbsolutePosition().x + getWidth() - s_border - _containerWidth;
    _minContainerPos.y = getAbsolutePosition().y + getHeight() - s_border - _containerHeight;
 
-   if (getPanel() != NULL) {
-       getPanel()->setAbsolutePosition(Point(getAbsolutePosition().x - (int)(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x)), getAbsolutePosition().y - (int)(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y))));
-   }   
+   getPanel()->setAbsolutePosition(Point(getAbsolutePosition().x - (int)(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x)), getAbsolutePosition().y - (int)(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y))));
 }
 
 void ScrollPane::processKey(const scv::KeyEvent &evt) {
@@ -212,6 +216,9 @@ void ScrollPane::display(void) {
    static Kernel *kernel = Kernel::getInstance();
 
    if (_cTexture == NULL) return;
+
+   refreshContainerPosition();
+   refreshSCrollPaneSize();
 
    Point currPositionV = getAbsolutePosition() + Point(getWidth() - 15, 0);
    Point currPositionH = getAbsolutePosition() + Point(0, getHeight() - 15);

@@ -29,3 +29,7 @@ void Application::onSizeChange(void) {
 }
 void Application::onPositionChange(void) {
 }
+
+void Application::addComponentFromPalette(std::string component) {
+   std::cout << component << std::endl;
+}

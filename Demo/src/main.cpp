@@ -11,6 +11,8 @@ public:
    }
 
    void onMouseClick(const scv::MouseEvent &evt) {
+      Application *app = static_cast<Application*>(scv::Kernel::getInstance());
+      app->addComponentFromPalette(getString());
    }
 protected:
    
@@ -39,7 +41,7 @@ public:
          _widthSet = true;
          adjustButtons();         
          for (scv::Component::List::iterator iter = ++_children.begin(); iter != _children.end(); ++iter) {
-            (*iter)->setWidth(getWidth() / _componentsPerLine - s_defaultGap);
+            (*iter)->setWidth(getWidth() / _componentsPerLine - s_defaultGap + 2);
          }
       }
    }
@@ -125,18 +127,21 @@ int main(int argc, char* argv[]) {
       
    //Palette
    ///////////////////////////////////////////////////////////
-   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 26, 600));
-   scv::ScrollPane *scrollPanePalette = new scv::ScrollPane(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 10, 300), panelPalette);
+   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 25, 0));
+   scv::ScrollPane *scrollPanePalette = new scv::ScrollPane(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 10, 345), panelPalette);
    panelRightBar->addChild(scrollPanePalette);
    
+   int y = 0;
    PanelPalleteComponents *containers = new PanelPalleteComponents("SCV Containers", scv::Point(0,0), scv::Point(panelPalette->getWidth(), 0));   
-   //panelPalette->addChild(containers);
+   panelPalette->addChild(containers);
    containers->addComponent("Image");
    containers->addComponent("Panel");
    containers->addComponent("ScroolPane");
    containers->addComponent("TabbedPane");
+   containers->closeWidthButtons();
 
-   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(0,0), scv::Point(panelPalette->getWidth(), 0));
+   y = containers->getRelativePosition().y + containers->getHeight() + 15;
+   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
    panelPalette->addChild(controls);
    controls->addComponent("Button");
    controls->addComponent("ToggleButton");
@@ -156,9 +161,14 @@ int main(int argc, char* argv[]) {
    controls->addComponent("Table");
    controls->closeWidthButtons();
 
-   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(0,0), scv::Point(panelPalette->getWidth(), 0));
-   //panelPalette->addChild(windows);
+   y = controls->getRelativePosition().y + controls->getHeight() + 15;
+   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
+   panelPalette->addChild(windows);
    windows->addComponent("InternalFrame");
+   windows->closeWidthButtons();
+
+   y = windows->getRelativePosition().y + windows->getHeight();
+   panelPalette->setHeight(y);
 
    ///////////////////////////////////////////////////////////
 

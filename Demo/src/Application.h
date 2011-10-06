@@ -3,8 +3,10 @@
 
 class Application : public scv::Kernel {
 public:
+   ///////////////////////////////////////////////////////////
    Application(void);
    virtual ~Application(void);
+   ///////////////////////////////////////////////////////////
 
    //SCVCallbacks
    ///////////////////////////////////////////////////////////
@@ -20,6 +22,8 @@ public:
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
    ///////////////////////////////////////////////////////////
+
+   void addComponentFromPalette(std::string component);
 protected:
    
 private:
