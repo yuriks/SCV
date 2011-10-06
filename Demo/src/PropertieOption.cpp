@@ -7,7 +7,11 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
    _host = host;
    _type = type;
 
-   addChild(new scv::Label(scv::Point(0,0), title));
+   _layout = new scv::GroupLayout(this);
+   setLayout(_layout);
+
+   scv::Label *label = new scv::Label(scv::Point(0,0), title);
+   addChild(label);
 
    switch (_type) {
    case EDITABLE_TEXTFIELD:
@@ -21,9 +25,32 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
       break;
    }
 
+   _layout->setHorizontalGroup(_layout->createSequentialGroup()
+      ->addComponent(label)
+      ->addComponent(*++_children.begin())
+   );
+   _layout->setVerticalGroup(_layout->createParallelGroup()
+      ->addComponent(label)
+      ->addComponent(*++_children.begin())
+   );
 }
 
 PropertieOption::~PropertieOption(void) {
+   delete _layout;
+}
+
+const std::string & PropertieOption::getOption(void) const {
+   return static_cast<scv::Label*>(*_children.begin())->getString();
+}
+
+void PropertieOption::setValue(const std::string &str) {
+   scv::TextField *textField = static_cast<scv::TextField*>(*((_children.begin()++)++));
+   textField->setString(str);
+}
+
+void PropertieOption::setValue(bool state) {
+   scv::CheckBox *checkBox = static_cast<scv::CheckBox*>(*((_children.begin()++)++));
+   checkBox->setState(state);
 }
 
 void PropertieOption::onValueChange(const std::string &str) {
@@ -33,6 +60,9 @@ void PropertieOption::onValueChange(const std::string &str) {
 void PropertieOption::onValueChange(bool state) {
    _host->onValueChange(static_cast<scv::Label*>(*_children.begin())->getString(), state);
 }
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 PropertieOption::PropertieCheckBox::PropertieCheckBox(PropertieOption *host) : scv::CheckBox(scv::Point(0, 0), true, "") {
    _host = host;
@@ -44,6 +74,9 @@ PropertieOption::PropertieCheckBox::~PropertieCheckBox(void) {
 void PropertieOption::PropertieCheckBox::onValueChange(void) {
    _host->onValueChange(getState());
 }
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host) : scv::TextField(scv::Point(0,0), 100, "") {
    _host = host;

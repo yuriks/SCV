@@ -111,9 +111,6 @@ int main(int argc, char* argv[]) {
    scv::Kernel *kernel = scv::Kernel::getInstance();
    scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
-   PanelProperties::getInstance()->setComponent(NULL);
-   
-
    scheme->loadScheme(scv::ColorScheme::osx);
    scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));
 
@@ -184,6 +181,9 @@ int main(int argc, char* argv[]) {
    scrollPaneDesign->setPanel(panelDesign);
    kernel->addComponent(scrollPaneDesign);
    ///////////////////////////////////////////////////////////
+
+   Properties *p = new Properties(200);
+   panelDesign->addChild(p);
 
    /*   
    scv::Panel *panel = new scv::Panel(scv::Point(40,40), scv::Point(1280 - 920, 720 - 40));

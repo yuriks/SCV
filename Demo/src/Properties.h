@@ -8,15 +8,25 @@ public:
    ///////////////////////////////////////////////////////////
    Properties(int width);
    virtual ~Properties(void);
-   ///////////////////////////////////////////////////////////   
-   virtual void setComponent(scv::Component *component) = 0;
+   ///////////////////////////////////////////////////////////
 
    void addChild(std::string title, PropertieOption::Type type);
 
-   void onValueChange(const std::string &title, const std::string &str);
-   void onValueChange(const std::string &title, bool state);
+   ///////////////////////////////////////////////////////////
+   virtual void setComponent(scv::Component *component);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void setValue(const std::string &title, const std::string &str);
+   virtual void setValue(const std::string &title, bool state);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void onValueChange(const std::string &title, const std::string &str);
+   virtual void onValueChange(const std::string &title, bool state);
+   ///////////////////////////////////////////////////////////
 protected:
-   
+   scv::Group *_hGroup, *_vGroup;
    scv::Component *_currComponent;
 };
 
@@ -26,11 +36,25 @@ protected:
 class PanelProperties : public Singleton<PanelProperties>, public Properties {
 friend class Singleton<PanelProperties>;
 public:   
-   void setComponent(scv::Component *component);
+   ///////////////////////////////////////////////////////////
+   virtual void setComponent(scv::Component *component);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void setValue(const std::string &title, const std::string &str);
+   virtual void setValue(const std::string &title, bool state);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void onValueChange(const std::string &title, const std::string &str);
+   virtual void onValueChange(const std::string &title, bool state);
+   ///////////////////////////////////////////////////////////
 
 protected:
+   ///////////////////////////////////////////////////////////
    PanelProperties(void);
    virtual ~PanelProperties(void);
+   ///////////////////////////////////////////////////////////
 
 private:
 };
