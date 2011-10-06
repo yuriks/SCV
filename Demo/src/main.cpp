@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Application.h"
+#include "Properties.h"
 
 class ButtonPallete :public scv::Button {
 public:
@@ -36,7 +37,7 @@ public:
       }
    }
 
-   void closeWidthButtons(void) {
+   void adjustButtonsWidth(void) {
       if (!_widthSet) {
          _widthSet = true;
          adjustButtons();         
@@ -110,6 +111,9 @@ int main(int argc, char* argv[]) {
    scv::Kernel *kernel = scv::Kernel::getInstance();
    scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
+   PanelProperties::getInstance()->setComponent(NULL);
+   
+
    scheme->loadScheme(scv::ColorScheme::osx);
    scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));
 
@@ -138,7 +142,7 @@ int main(int argc, char* argv[]) {
    containers->addComponent("Panel");
    containers->addComponent("ScroolPane");
    containers->addComponent("TabbedPane");
-   containers->closeWidthButtons();
+   containers->adjustButtonsWidth();
 
    y = containers->getRelativePosition().y + containers->getHeight() + 15;
    PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
@@ -159,13 +163,13 @@ int main(int argc, char* argv[]) {
    controls->addComponent("ColorPicker");
    controls->addComponent("Separator");
    controls->addComponent("Table");
-   controls->closeWidthButtons();
+   controls->adjustButtonsWidth();
 
    y = controls->getRelativePosition().y + controls->getHeight() + 15;
    PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
    panelPalette->addChild(windows);
    windows->addComponent("InternalFrame");
-   windows->closeWidthButtons();
+   windows->adjustButtonsWidth();
 
    y = windows->getRelativePosition().y + windows->getHeight();
    panelPalette->setHeight(y);

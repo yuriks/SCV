@@ -10,6 +10,9 @@
     <Filter Include="2.App">
       <UniqueIdentifier>{80a1ead6-9cf7-4740-b3f5-32647e9fc80f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PanelProperties">
+      <UniqueIdentifier>{b82f00ed-fd23-4e91-a82b-9a38bcf21991}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\stdafx.cpp">
@@ -21,6 +24,12 @@
     <ClCompile Include="..\src\Application.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Properties.cpp">
+      <Filter>PanelProperties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PropertieOption.cpp">
+      <Filter>PanelProperties</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -28,6 +37,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Application.h">
       <Filter>2.App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Properties.h">
+      <Filter>PanelProperties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PropertieOption.h">
+      <Filter>PanelProperties</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

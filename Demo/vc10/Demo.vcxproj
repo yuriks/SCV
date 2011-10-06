@@ -199,6 +199,8 @@
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\PropertieOption.cpp" />
+    <ClCompile Include="..\src\Properties.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -208,6 +210,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\PropertieOption.h" />
+    <ClInclude Include="..\src\Properties.h" />
     <ClInclude Include="..\src\stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

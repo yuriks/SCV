@@ -55,7 +55,7 @@ public:
    virtual void setRelativePosition(const Point &position);
    
    virtual Point getAbsolutePosition(void) const;
-   virtual void setAbsolutePosition(const Point &position);   
+   virtual void setAbsolutePosition(const Point &position);
    ///////////////////////////////////////////////////////////
 
    //size
@@ -67,6 +67,7 @@ public:
    virtual void setHeight(int height);
 
    virtual inline Point getSize(void) const;
+   virtual inline void setSize(int width, int height);
 
    virtual Point getMinimumSize(void) const;
    virtual Point getPreferredSize(void) const;
@@ -168,10 +169,14 @@ int Component::getHeight(void) const {
    return _p2.y - _p1.y;
 }
 
+void Component::setSize(int width, int height) {
+   setWidth(width);
+   setHeight(height);
+}
+
 Point Component::getSize(void) const {
    return Point(getWidth(), getHeight());
 }
-
 ///////////////////////////////////////////////////////////
 
 bool Component::isOvered(void) const {
