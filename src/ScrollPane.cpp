@@ -364,6 +364,7 @@ float ScrollPane::barPixelToFloat(int pix, bool horz) {
 }
 
 void ScrollPane::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::scrollPanel)) != NULL) return;
 
    // create texture object
@@ -379,9 +380,10 @@ void ScrollPane::createTexture(void) {
    //background
    _cTexture->addTexture(Point(0, 19), ColorRGBA(150,150,150,255)); // 3
 
-   // over
+   //over
    _cTexture->addTexture(Point(1, 19), ColorRGBA(120,120,120,120)); // 4
-   // clic
+
+   //click
    _cTexture->addTexture(Point(2, 19), ColorRGBA(80,80,80,120)); // 5
 
    _cTexture->addTexture(Point(0, 20), 16, 15, data::ScrollPaneHorizontalButton); // 6

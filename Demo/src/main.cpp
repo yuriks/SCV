@@ -1,8 +1,11 @@
 #include "stdafx.h"
 
+#include "Application.h"
+
 int main(int argc, char* argv[]) {
-   static scv::Kernel *kernel = scv::Kernel::getInstance();
-   static scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
+   scv::Kernel::setInstance(new Application());
+   scv::Kernel *kernel = scv::Kernel::getInstance();
+   scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
    scheme->loadScheme(scv::ColorScheme::osx);
    scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));

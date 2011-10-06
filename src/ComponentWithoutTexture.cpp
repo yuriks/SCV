@@ -31,6 +31,7 @@ void ComponentWithoutTexture::render(void) {}
 void ComponentWithoutTexture::update(void) {}
 
 void ComponentWithoutTexture::display(void) {
+   static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
 
    update();

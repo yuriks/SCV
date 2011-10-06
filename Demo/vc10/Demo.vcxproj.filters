@@ -18,10 +18,16 @@
     <ClCompile Include="..\src\main.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Application.cpp">
+      <Filter>2.App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
       <Filter>1.Pre-Compiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Application.h">
+      <Filter>2.App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

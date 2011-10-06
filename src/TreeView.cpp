@@ -82,6 +82,7 @@ void TreeView::addInFolder()
 }
 
 void TreeView::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::TreeView)) != NULL) return;
 
    // create texture object

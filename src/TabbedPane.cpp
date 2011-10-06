@@ -240,6 +240,7 @@ void TabbedPane::display(void) {
 }
 
 void TabbedPane::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::tabbedPane)) != NULL) return;
 
    // create texture object

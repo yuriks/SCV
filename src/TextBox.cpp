@@ -93,6 +93,7 @@ void TextBox::display(void) {
 }
 
 void TextBox::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::textBox)) != NULL) return;
 
    // create texture object

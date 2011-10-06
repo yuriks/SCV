@@ -84,6 +84,8 @@ void Button::display(void) {
 }
 
 void Button::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
+
    if ((_cTexture = kernel->getWidgetTexture(Kernel::button)) != NULL) return;
 
    ColorRGBA colorBotao1(250, 250, 250, 255);

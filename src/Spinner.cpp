@@ -129,6 +129,7 @@ void Spinner::display(void) {
 
 
 void Spinner::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::spinner)) != NULL) return;
 
    // create texture object

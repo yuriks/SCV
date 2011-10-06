@@ -61,6 +61,7 @@ void Slider::display(void) {
 
 
 void Slider::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::slider)) != NULL) return;
 
    // create texture object

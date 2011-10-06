@@ -46,6 +46,7 @@ void Separator::display(void) {
 }
 
 void Separator::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::separator)) != NULL) return;
 
    // create texture object

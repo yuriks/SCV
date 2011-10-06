@@ -57,6 +57,7 @@ void Panel::display(void) {
 }
 
 void Panel::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::panel)) != NULL) return;
 
    _cTexture = new ComponentTexture(2, 2);

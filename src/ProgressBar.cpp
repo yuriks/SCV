@@ -77,6 +77,7 @@ void ProgressBar::display(void) {
 }
 
 void ProgressBar::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::progressBar)) != NULL) return;
 
    ColorRGBA colorBotao1(250, 250, 250, 255);

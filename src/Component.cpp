@@ -7,8 +7,6 @@
 
 namespace scv {
 
-Kernel *Component::kernel = Kernel::getInstance();
-
 Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, false) {
    if (p1 > p2) {
       _p1 = p2;
@@ -106,7 +104,7 @@ void Component::setHeight(const int height) {
 }
 
 bool Component::isFocused(void) const {
-   return (kernel->getFocusedComponent() == this);
+   return (Kernel::getInstance()->getFocusedComponent() == this);
 }
 
 void Component::registerContextMenu(ContextMenu *contextMenu) {
@@ -133,6 +131,8 @@ bool Component::isInside(const Point &evtPosition) const {
 }
 
 void Component::processMouse(const scv::MouseEvent &evt) {
+   static Kernel *kernel = Kernel::getInstance();
+
    static Cursor *cursor = Cursor::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
 
@@ -351,7 +351,7 @@ bool Component::hasChild(Component *child) const {
 }
 
 Scissor::Info Component::getScissor(void) const {
-   return Scissor::Info(getAbsolutePosition().x, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
+   return Scissor::Info(getAbsolutePosition().x, Kernel::getInstance()->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight());
 }
 
 Scissor::Info Component::getParentScissor(void) const {
@@ -394,7 +394,7 @@ Point Component::getPreferredSize(void) const {
 }
 
 Point Component::getMaximumSize(void) const {
-   return scv::Point(kernel->getWidth(), kernel->getHeight());
+   return scv::Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight());
 }
 
 } // namespace scv

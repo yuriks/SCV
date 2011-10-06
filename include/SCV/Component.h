@@ -137,8 +137,6 @@ protected:
    Component::List _children;
    ///////////////////////////////////////////////////////////
 
-   static Kernel *kernel;
-
    ObjectType _type;
    static const int s_mouseBacklash = 4;
 

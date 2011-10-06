@@ -52,6 +52,7 @@ void Image::onSizeChange(void) {}
 void Image::onPositionChange(void) {}
 
 void Image::display(void) {
+   static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
 

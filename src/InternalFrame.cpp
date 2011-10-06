@@ -200,6 +200,7 @@ void InternalFrame::setRelativePosition(const Point &position) {
 }
 
 void InternalFrame::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::window)) != NULL) return;
 
    _cTexture = new ComponentTexture(46 * 3 + 10, 19);

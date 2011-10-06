@@ -58,6 +58,8 @@ void CheckBox::display(void) {
 }
 
 void CheckBox::createTexture(void) {
+   Kernel *kernel = Kernel::getInstance();
+
    if ((_cTexture = kernel->getWidgetTexture(Kernel::checkBox)) != NULL) return;
 
    ColorRGBA  pColor1(183,191,213,255);

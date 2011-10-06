@@ -82,6 +82,8 @@ void ColorPicker::display(void) {
 }
 
 void ColorPicker::createTexture(void) {   
+   Kernel *kernel = Kernel::getInstance();
+
    Panel::createTexture();
 
    createColors();
