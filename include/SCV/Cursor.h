@@ -70,7 +70,7 @@ public:
       static ColorScheme *scheme = ColorScheme::getInstance();
       if (_isShowingCursor) {
          _cursorTexture->enable();
-         scheme->applyColor(ColorScheme::cursor);
+         scheme->applyColor(ColorScheme::CURSOR);
          _cursorTexture->display(Point(p.x,p.y+2), 0, Point(1, 14));
          _cursorTexture->disable();
       }

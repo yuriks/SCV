@@ -6,32 +6,34 @@
 PropertieOption::PropertieOption(Properties *host, std::string title, Type type) : scv::Panel(scv::Point(0,0), scv::Point(100, 50)) {
    _host = host;
    _type = type;
+   _target = NULL;
 
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
 
-   scv::Label *label = new scv::Label(scv::Point(0,0), title);
-   addChild(label);
+   _label = new scv::Label(scv::Point(0,0), title);
+   addChild(_label);
 
    switch (_type) {
    case EDITABLE_TEXTFIELD:
-      addChild(new PropertieTextField(this, true));
+      _target = new PropertieTextField(this, true);
       break;
    case TEXTFIELD:
-      addChild(new PropertieTextField(this, false));
-      break;
+      _target = new PropertieTextField(this, false);
+      break;      
    case EDITABLE_CHECKBOX:
-      addChild(new PropertieCheckBox(this));
+      _target = new PropertieCheckBox(this);
       break;
    }
+   addChild(_target);
 
    _layout->setHorizontalGroup(_layout->createSequentialGroup()
-      ->addComponent(label)
-      ->addComponent(*++_children.begin())
+      ->addComponent(_label)
+      ->addComponent(_target)
    );
    _layout->setVerticalGroup(_layout->createParallelGroup()
-      ->addComponent(label)
-      ->addComponent(*++_children.begin())
+      ->addComponent(_label)
+      ->addComponent(_target)
    );
 }
 
@@ -40,25 +42,27 @@ PropertieOption::~PropertieOption(void) {
 }
 
 const std::string & PropertieOption::getOption(void) const {
-   return static_cast<scv::Label*>(*_children.begin())->getString();
+   return _label->getString();
 }
 
 void PropertieOption::setValue(const std::string &str) {
-   scv::TextField *textField = static_cast<scv::TextField*>(*((_children.begin()++)++));
-   textField->setString(str);
+   if (_type == EDITABLE_TEXTFIELD || _type == TEXTFIELD) {
+      static_cast<scv::TextField*>(_target)->setString(str);
+   }
 }
 
 void PropertieOption::setValue(bool state) {
-   scv::CheckBox *checkBox = static_cast<scv::CheckBox*>(*((_children.begin()++)++));
-   checkBox->setState(state);
+   if (_type == EDITABLE_CHECKBOX) {
+      static_cast<scv::CheckBox*>(_target)->setState(state);
+   }
 }
 
 void PropertieOption::onValueChange(const std::string &str) {
-   _host->onValueChange(static_cast<scv::Label*>(*_children.begin())->getString(), str);
+   _host->onValueChange(_label->getString(), str);
 }
 
 void PropertieOption::onValueChange(bool state) {
-   _host->onValueChange(static_cast<scv::Label*>(*_children.begin())->getString(), state);
+   _host->onValueChange(_label->getString(), state);
 }
 
 ///////////////////////////////////////////////////////////

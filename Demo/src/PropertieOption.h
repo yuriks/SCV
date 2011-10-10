@@ -50,6 +50,8 @@ protected:
    Type _type;
 private:
    Properties *_host;
+   scv::Label *_label;
+   scv::Component *_target;
 };
 
 #endif //__PROPERTIE_OPTION_H__

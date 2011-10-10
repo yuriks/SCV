@@ -1,5 +1,7 @@
 #include "ComboBoxMenuStyle.h"
 
+#include "StaticLabel.h"
+
 #include "ContextMenu.h"
 #include "ColorScheme.h"
 #include "Kernel.h"
@@ -25,14 +27,14 @@ void ComboBoxMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) con
       // border
       _cTexture->display(pos.x, pos.y, 1, width, height);
 
-      scheme->applyColor(ColorScheme::contextMenu);
+      scheme->applyColor(ColorScheme::CONTEXTMENU);
       // center
       _cTexture->display(pos.x + 1, pos.y + 1, 0, width - 2, height - 2);
 
       scheme->applyDefaultModulate();
 
       if (selected_menu != -1) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          //vertical
          _cTexture->display(pos.x + 2,         pos.y + selected_menu * s_menuHeight + 2 + 1, 4, 1, s_menuHeight-2);
          _cTexture->display(pos.x + width - 3, pos.y + selected_menu * s_menuHeight + 2 + 1, 4, 1, s_menuHeight-2);
@@ -48,7 +50,7 @@ void ComboBoxMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) con
    _cTexture->disable();
 
    for (int i = 0; i < menus.size(); i++) {
-      Label::display(pos.x + s_horzMargin + 1, pos.y + i * s_menuHeight + 1, menus[i]->getString(), scheme->getColor(ColorScheme::contextMenuFont));
+      StaticLabel::display(pos.x + s_horzMargin + 1, pos.y + i * s_menuHeight + 1, menus[i]->getString(), scheme->getColor(ColorScheme::CONTEXTMENUFONT));
    }
 }
 

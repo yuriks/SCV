@@ -208,6 +208,9 @@
     <ClCompile Include="..\src\GapSpring.cpp">
       <Filter>GroupLayout\Spring</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\StaticLabel.cpp">
+      <Filter>4.Widgets\Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -431,6 +434,9 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\GapSpring.h">
       <Filter>GroupLayout\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\StaticLabel.h">
+      <Filter>4.Widgets\Text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

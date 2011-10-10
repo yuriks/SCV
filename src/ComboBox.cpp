@@ -3,6 +3,7 @@
 #include "Kernel.h"
 #include "MenuHolder.h"
 #include "data.h"
+#include "StaticLabel.h"
 
 #include "ComboBoxMenuStyle.h"
 
@@ -94,7 +95,7 @@ void ComboBox::display(void) {
 
    _cTexture->enable();
 
-      scheme->applyColor(ColorScheme::textField);
+      scheme->applyColor(ColorScheme::TEXTFIELD);
       _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
       _cTexture->display(currPosition.x + getWidth() - 17, currPosition.y + getHeight() - 2, 2, 15, - 16);
@@ -108,7 +109,7 @@ void ComboBox::display(void) {
 
    scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 22, getHeight()));
 
-   Label::display(currPosition.x + 4, currPosition.y + getHeight() / 2 - 6);
+   StaticLabel::display(currPosition.x + 4, currPosition.y + getHeight() / 2 - 6, Label::getString());
 
    scissor->popScissor();
 }

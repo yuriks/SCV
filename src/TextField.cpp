@@ -2,6 +2,7 @@
 #include "TextField.h"
 #include "Kernel.h"
 #include "Keyboard.h"
+#include "StaticLabel.h"
 
 namespace scv {
 
@@ -52,13 +53,14 @@ void TextField::display(void) {
    Point currPosition = getAbsolutePosition();
    
    _cTexture->enable();
-   scheme->applyColor(ColorScheme::textField);
+   scheme->applyColor(ColorScheme::TEXTFIELD);
       _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
    _cTexture->disable();
 
    scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
-   Label::display(currPosition.x + s_borderWidth / 2 - _deslocString, currPosition.y + 1 + s_borderHeight, _str, _selectStart, _selectEnd);
+   StaticLabel::display(currPosition.x + s_borderWidth / 2 - _deslocString, currPosition.y + 1 + s_borderHeight, 
+      _str, _selectStart, _selectEnd, scheme->getColor(ColorScheme::TEXT));
    scissor->popScissor();
 
    if (isFocused() && _receivingCallbacks) {
@@ -210,7 +212,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          }
          _currChar++;
          refreshText();
-         onStringChange();
+         //onStringChange();
          return;
       }
 
@@ -221,7 +223,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
             removeSelectedText();
          _str.insert(_currChar + 1,kernel->getClipBoardString());
          _currChar += kernel->getClipBoardString().size();
-         onStringChange();
+         //onStringChange();
          break;
 
       case 3:
@@ -238,7 +240,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                std::swap(_selectStart,_selectEnd);
             kernel->setClipBoardString(_str.substr(_selectStart+1,_selectEnd-_selectStart));
             removeSelectedText();
-            onStringChange();
+            //onStringChange();
          }
          break;
 
@@ -350,11 +352,11 @@ void TextField::processKey(const scv::KeyEvent &evt) {
       case GLUT_KEY_BACK_SPACE:
          if (hasSelectedText()) {
             removeSelectedText();
-            onStringChange();
+            //onStringChange();
          } else if (_currChar > -1) {
             _str.erase(_currChar,1);
             _currChar--;
-            onStringChange();
+            //onStringChange();
          }
          break;
 
@@ -364,16 +366,16 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          }
          _str.insert(_currChar+1," ");
          _currChar++;
-         onStringChange();
+         //onStringChange();
          break;
 
       case GLUT_KEY_DEL:
          if (hasSelectedText()) {
             removeSelectedText();
-            onStringChange();
+            //onStringChange();
          } else if (_currChar < static_cast<int> (_str.size()-1)) {
             _str.erase(_currChar + 1,1);
-            onStringChange();
+            //onStringChange();
          }
          break;
       }
@@ -389,7 +391,7 @@ void TextField::setString(const std::string& str) {
    if (_currChar > str.size() - 1)
       _currChar = str.size() - 1;
    _selectStart = _selectEnd = 0;
-   Label::setString(str);
+   TextBox::setString(str);
    refreshText();
 }
 

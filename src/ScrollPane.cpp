@@ -232,7 +232,7 @@ void ScrollPane::display(void) {
    _cTexture->display(currPositionV.x, currPositionV.y,   3, 15, getHeight() - 1);
    if (_containerHeight + s_initDesloc > getHeight()) {
 
-      scheme->applyColor(ColorScheme::scrollPanel);
+      scheme->applyColor(ColorScheme::SCROLLPANEL);
 
       // up button arrow
       _cTexture->display(currPositionV.x, currPositionV.y,  0, 15, 16);
@@ -255,7 +255,7 @@ void ScrollPane::display(void) {
       }
 
       // scroll
-      scheme->applyColor(ColorScheme::scrollPanel);
+      scheme->applyColor(ColorScheme::SCROLLPANEL);
       currPositionV.y += s_initDesloc - 1;
       _cTexture->display(currPositionV.x, currPositionV.y + (int)(_translateHeight * (float)_maxDeslocHeight), 1, 15, 2);
       _cTexture->display(currPositionV.x, currPositionV.y + 2 + (int)(_translateHeight * (float)_maxDeslocHeight), 2, 15, _scrollSizeVertical);
@@ -279,7 +279,7 @@ void ScrollPane::display(void) {
    if (_containerWidth + s_initDesloc > getWidth() ) {
 
       // left button arrow
-      scheme->applyColor(ColorScheme::scrollPanel);
+      scheme->applyColor(ColorScheme::SCROLLPANEL);
       _cTexture->display(currPositionH.x, currPositionH.y,  6, 16, 15);
 
       if (_overButton == BUT_LEFT) {
@@ -290,7 +290,7 @@ void ScrollPane::display(void) {
       }
 
       // right button arrow
-      scheme->applyColor(ColorScheme::scrollPanel);
+      scheme->applyColor(ColorScheme::SCROLLPANEL);
       _cTexture->display(currPositionH.x + getWidth() - s_initDesloc, currPositionH.y,  6, -16, 15);
 
       if (_overButton == BUT_RIGHT) {
@@ -301,7 +301,7 @@ void ScrollPane::display(void) {
       }
 
       //scroll
-      scheme->applyColor(ColorScheme::scrollPanel);
+      scheme->applyColor(ColorScheme::SCROLLPANEL);
       currPositionH.x += s_initDesloc - 1;
       _cTexture->display(currPositionH.x + (int)(_translateWidth * (float)_maxDeslocWidth), currPositionH.y, 7, 2, 15);
       _cTexture->display(currPositionH.x + 2 + + (int)(_translateWidth * (float)_maxDeslocWidth), currPositionH.y, 8, _scrollSizeHorizontal, 15);

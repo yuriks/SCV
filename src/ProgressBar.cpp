@@ -2,6 +2,7 @@
 #include "ProgressBar.h"
 #include "Kernel.h"
 #include "util.h"
+#include "StaticLabel.h"
 
 namespace scv {
 
@@ -53,7 +54,7 @@ void ProgressBar::display(void) {
       // middle
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 4, getWidth() - 3, getHeight() - 2);
 
-      scheme->applyColor(ColorScheme::progressBar);
+      scheme->applyColor(ColorScheme::PROGRESSBAR);
       //selection
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 9, static_cast<int>((getValue() / 100.f) * (getWidth() - 4)) + 1, getHeight() - 2);
 
@@ -73,7 +74,7 @@ void ProgressBar::display(void) {
       _cTexture->display(currPosition.x + getWidth() - 3, currPosition.y + getHeight() - 3, 3);
    _cTexture->disable();
 
-   Label::display(currPosition.x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , currPosition.y + getHeight() / 2 - 6);
+   StaticLabel::display(currPosition.x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , currPosition.y + getHeight() / 2 - 6, Label::getString());
 }
 
 void ProgressBar::createTexture(void) {

@@ -1,5 +1,7 @@
 #include "VistaMenuStyle.h"
 
+#include "StaticLabel.h"
+
 #include "ContextMenu.h"
 #include "ColorScheme.h"
 #include "Kernel.h"
@@ -24,7 +26,7 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
       // border
       _cTexture->display(pos.x - 1, pos.y - 1, 1, width + 2, height + 2);
 
-      scheme->applyColor(ColorScheme::contextMenu);
+      scheme->applyColor(ColorScheme::CONTEXTMENU);
       // center
       _cTexture->display(pos.x, pos.y, 0, width, height);
 
@@ -33,7 +35,7 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
       _cTexture->display(pos.x + s_leftBorder, pos.y + 4, 1, 1, height - 8);
 
       if (selected_menu != -1) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          //vertical
          _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
          _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth - 1, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
@@ -62,7 +64,7 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
    _cTexture->disable();
 
    for (int i = 0; i < menus.size(); i++) {
-      Label::display(s_leftBorder + pos.x + s_borderHeight, pos.y + i * s_menuHeight + s_borderHeight, menus[i]->getString(), scheme->getColor(ColorScheme::contextMenuFont));
+      StaticLabel::display(s_leftBorder + pos.x + s_borderHeight, pos.y + i * s_menuHeight + s_borderHeight, menus[i]->getString(), scheme->getColor(ColorScheme::CONTEXTMENUFONT));
    }
 }
 

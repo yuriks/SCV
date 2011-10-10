@@ -13,9 +13,9 @@ void InternalFrameHolder::display(void) {
 
    for (int i = 0; i < _framesDeque.size(); i++) {
       if (i == _framesDeque.size() - 1) {
-         scheme->applyColor(ColorScheme::mainComponents);
+         scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       } else {
-         scheme->applyColor(ColorScheme::mainComponents, + 0.3f);
+         scheme->applyColor(ColorScheme::MAINCOMPONENTS, + 0.3f);
       }
       _framesDeque[i]->display();
    }

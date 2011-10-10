@@ -52,7 +52,7 @@ void Slider::display(void) {
       _cTexture->display(currPosition.x + 5, currPosition.y + getHeight() - 1, 2, 1, 4);
       _cTexture->display(currPosition.x + getWidth() -  5, currPosition.y + getHeight() - 1, 2, 1, 4);
 
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // pine
       _cTexture->display(currPosition.x + static_cast<int>(((getValue() - getMinValue()) / (getMaxValue() - getMinValue())) * (getWidth() - 9)), currPosition.y, 0);
    _cTexture->disable();

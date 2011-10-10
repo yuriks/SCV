@@ -7,6 +7,7 @@
 #include "Image.h"
 #include "ContextMenu.h"
 #include "Kernel.h"
+#include "StaticLabel.h"
 
 namespace scv{
 
@@ -201,7 +202,7 @@ void TreeView::display(void)
    Point currPosition = getAbsolutePosition();
 
    _cTexture->enable();
-   scheme->applyColor(ColorScheme::textField);
+   scheme->applyColor(ColorScheme::TEXTFIELD);
    _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
    _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
    _cTexture->disable();
@@ -221,9 +222,9 @@ void TreeView::display(void)
    for (i = 0; (i+m_firstLine) < m_nodes.size() && breakPrint > -2; i++)
    {
       if(m_nodes[i+m_firstLine].getType() == T_FOLDER){
-         Label::display(scv::Point((currPosition.x  + s_borderWidth / 2)+s_imageSpace, currPosition.y + ((i) * s_lineSpacing)), m_nodes[i+m_firstLine].getName());
+         StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2)+s_imageSpace, currPosition.y + ((i) * s_lineSpacing)), m_nodes[i+m_firstLine].getName());
       }else{
-         Label::display(scv::Point((currPosition.x  + s_borderWidth / 2)+10, currPosition.y + ((i) * s_lineSpacing)), m_nodes[i+m_firstLine].getName());
+         StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2)+10, currPosition.y + ((i) * s_lineSpacing)), m_nodes[i+m_firstLine].getName());
       }
       int nspaces = getSpaces(m_nodes[i+m_firstLine].getName());
       nspaces*=15;

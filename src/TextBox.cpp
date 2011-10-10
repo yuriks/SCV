@@ -3,11 +3,13 @@
 #include "Kernel.h"
 #include "Keyboard.h"
 #include "util.h"
+#include "StaticLabel.h"
 
 namespace scv {
 
 TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, const std::string &str) :
-      Label(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borderHeight + 1), str) {
+      ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borderHeight + 1)) {
+   _str = str;
    _isHResizable = _isVResizable = true;
    _firstLine = 0;
    _currChar = -1;
@@ -23,7 +25,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, co
 }
 
 TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str) :
-      Label(p, Point(p.x + width, p.y + s_lineSpacing + s_borderHeight + 1), str) {
+      ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing + s_borderHeight + 1)) {
+   _str = str;
    _isHResizable = _isVResizable = true;
    _firstLine = 0;
    _currChar = -1;
@@ -39,7 +42,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str
 }
 
 TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &str) :
-      Label(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1), str) {
+      ComponentWithTexture(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1)) {
+   _str = str;
    _isHResizable = _isVResizable = true;
    _firstLine = 0;
    _currChar = -1;
@@ -88,14 +92,15 @@ void TextBox::display(void) {
    Point currPosition = getAbsolutePosition();
 
    _cTexture->enable();
-   scheme->applyColor(ColorScheme::textField);
+   scheme->applyColor(ColorScheme::TEXTFIELD);
       _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
    _cTexture->disable();
 
    scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y) + 2, getWidth(), getHeight() - 4));
    for (int i = _firstLine; i < (_nLines+_firstLine) && i < (_lineIndex.size() - 1); i++)
-      Label::display(currPosition.x + s_borderWidth / 2 , currPosition.y + 1 + s_borderHeight + (i - _firstLine) * s_lineSpacing, _str.substr(_lineIndex[i], _lineIndex[i + 1] - _lineIndex[i]), _selectStart - _lineIndex[i], _selectEnd - _lineIndex[i]);
+      StaticLabel::display(currPosition.x + s_borderWidth / 2 , currPosition.y + 1 + s_borderHeight + (i - _firstLine) * s_lineSpacing, 
+      _str.substr(_lineIndex[i], _lineIndex[i + 1] - _lineIndex[i]), _selectStart - _lineIndex[i], _selectEnd - _lineIndex[i], scheme->getColor(ColorScheme::TEXT));
 
 
    if (isFocused() && _receivingCallbacks) {
@@ -399,7 +404,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
          }
          _currChar++;
          refreshText();
-         onStringChange();
+         //onStringChange();
          return;
       }
 
@@ -646,7 +651,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
       }
       if (_refreshText) {
          refreshText();
-         onStringChange();
+         //onStringChange();
       } else if (_refreshCursor) {
          refreshCursor();
       }
@@ -656,7 +661,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
 void TextBox::setString(const std::string& str) {
    _currChar = _str.size() - 1;
    _selectStart = _selectEnd = 0;
-   Label::setString(str);
+   _str = str;
    refreshText();
 }
 
@@ -691,7 +696,7 @@ void TextBox::setFilter(TextFilter filter) {
 }
 
 void TextBox::setCursorPosition(int position) {
-   if (position < Label::getString().size()) {
+   if (position < getString().size()) {
       _currChar = position;
       refreshText();
    }

@@ -3,6 +3,7 @@
 #include "ColorRGBA.h"
 #include "MatrixTemplate.h"
 #include "Kernel.h"
+#include "StaticLabel.h"
 
 #include "FontTahoma.h"
 #include "data.h"
@@ -175,7 +176,7 @@ void InternalFrame::display(void) {
    _panel->display();
 
    scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
-   Label::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - font->getHeight()) / 2 + 2, _title);
+   StaticLabel::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - font->getHeight()) / 2 + 2, _title);
    scissor->popScissor();
 }
 

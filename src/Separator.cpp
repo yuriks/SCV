@@ -36,7 +36,7 @@ void Separator::display(void) {
    Point currPosition = getAbsolutePosition();
 
    _cTexture->enable();
-   scheme->applyColor(ColorScheme::separator);
+   scheme->applyColor(ColorScheme::SEPARATOR);
       if (_align == Separator::horizontal) {
          _cTexture->display(currPosition.x, currPosition.y, 0, getWidth(), 2);
       } else /*Separator::vertical*/ {

@@ -68,14 +68,14 @@ void Spinner::display(void) {
       // border
       _cTexture->display(currPosition.x + _textField->getWidth() + 1, currPosition.y + 1, 0, s_spinnerSizeX, getHeight() - 2);
 
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // middle
       _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + 2, 2, s_spinnerSizeX - 2, getHeight() / 2 - 3);
       _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + getHeight() / 2 + 1, 2, s_spinnerSizeX - 2, getHeight() / 2 - 3);
 
       // middle 2
       if (_UpPress) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + 3, 6, s_spinnerSizeX - 4, getHeight() / 2 - 5);
 
          // spin control
@@ -88,15 +88,15 @@ void Spinner::display(void) {
             }
          }
       } else if (_UpOver) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + 2, 5, s_spinnerSizeX - 2, getHeight() / 2 - 3);
       } else {
-         scheme->applyColor(ColorScheme::mainComponents);
+         scheme->applyColor(ColorScheme::MAINCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + 3, 1, s_spinnerSizeX - 4, getHeight() / 2 - 5);
       }
 
       if (_DownPress) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + getHeight() / 2 + 2, 6, s_spinnerSizeX - 4, getHeight() / 2 - 5);
 
          // spin control
@@ -109,14 +109,14 @@ void Spinner::display(void) {
             }
          }
       } else if (_DownOver) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + getHeight() / 2 + 1, 5, s_spinnerSizeX - 2, getHeight() / 2 - 3);
       } else {
-         scheme->applyColor(ColorScheme::mainComponents);
+         scheme->applyColor(ColorScheme::MAINCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + getHeight() / 2 + 2, 1, s_spinnerSizeX - 4, getHeight() / 2 - 5);
       }
 
-      scheme->applyColor(ColorScheme::font);
+      scheme->applyColor(ColorScheme::FONT);
       // top pin
       _cTexture->display(currPosition.x + _textField->getWidth() + 6, currPosition.y + 4 , 3);
 

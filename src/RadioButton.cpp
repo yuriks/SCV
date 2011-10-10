@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RadioButton.h"
 #include "Kernel.h"
+#include "StaticLabel.h"
 
 namespace scv {
 
@@ -38,17 +39,17 @@ void RadioButton::display(void) {
          _cTexture->display(currPosition, 1);
       }
       if (isHolded()) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition, 2);
       } else if (isOvered()) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition, 3);
       }
    _cTexture->disable();
 
    scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() + font->getStringLength(Label::getString()) + 3, getHeight()));
 
-   Label::display(currPosition.x + 12 + 3, currPosition.y - 1);
+   StaticLabel::display(currPosition.x + 12 + 3, currPosition.y - 1, Label::getString());
 
    scissor->popScissor();
 }

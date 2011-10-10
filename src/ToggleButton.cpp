@@ -45,20 +45,20 @@ void ToggleButton::display(void) {
    Point currPosition = getAbsolutePosition();
 
    _cTexture->enable();
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // middle
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 4, getWidth() - 2, getHeight() - 2);
 
       if (getState() || isHolded()) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 6, getWidth() - 2, getHeight() - 2);
       }
       if (isOvered() && !isHolded()) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 5, getWidth() - 2, getHeight() - 2);
       }
 
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // horizontal lines
       _cTexture->display(currPosition.x + 2, currPosition.y, 7, getWidth() - 4, 2);
       _cTexture->display(currPosition.x + 2, currPosition.y + getHeight() - 2, 8, getWidth() - 4, 2);
@@ -76,7 +76,7 @@ void ToggleButton::display(void) {
 
 
    scissor->pushScissor(Scissor::Info(getAbsolutePosition().x + 3, kernel->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth() - 6, getHeight()));
-   Label::display(getAbsolutePosition().x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , getAbsolutePosition().y + getHeight() / 2 - 6);
+   StaticLabel::display(getAbsolutePosition().x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , getAbsolutePosition().y + getHeight() / 2 - 6, Label::getString());
    scissor->popScissor();
 }
 

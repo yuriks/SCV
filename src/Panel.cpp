@@ -29,7 +29,7 @@ void Panel::display(void) {
    scissor->pushScissor(getScissor());
 
    _cTexture->enable();
-   scheme->applyColor(ColorScheme::panel);
+   scheme->applyColor(ColorScheme::PANEL);
 
    // middle
    _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);

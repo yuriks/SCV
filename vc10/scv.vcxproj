@@ -65,6 +65,7 @@
     <ClCompile Include="..\src\Spinner.cpp" />
     <ClCompile Include="..\src\Spring.cpp" />
     <ClCompile Include="..\src\StateButton.cpp" />
+    <ClCompile Include="..\src\StaticLabel.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -142,6 +143,7 @@
     <ClInclude Include="..\include\SCV\Spinner.h" />
     <ClInclude Include="..\include\SCV\Spring.h" />
     <ClInclude Include="..\include\SCV\StateButton.h" />
+    <ClInclude Include="..\include\SCV\StaticLabel.h" />
     <ClInclude Include="..\include\SCV\stdafx.h" />
     <ClInclude Include="..\include\SCV\TabbedPane.h" />
     <ClInclude Include="..\include\SCV\Table.h" />

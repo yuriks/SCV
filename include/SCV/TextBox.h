@@ -1,12 +1,12 @@
 #ifndef __SCV_TEXTBOX_H__
 #define __SCV_TEXTBOX_H__
 
-#include "Label.h"
+#include "ComponentWithTexture.h"
 #include "TextFilter.h"
 
 namespace scv {
 
-class TextBox : public Label {
+class TextBox : public ComponentWithTexture {
 friend class Table;
 public:
    ///////////////////////////////////////////////////////////
@@ -77,12 +77,13 @@ protected:
    virtual void refreshText(void);
    virtual void refreshCursor(void);
 
-   int  _currChar;
-   int  _selectStart, _selectEnd;
-   bool _refreshText, _refreshCursor;
    bool _editable;
 
+   int  _currChar;
+   int  _selectStart, _selectEnd;
+
    TextFilter _filter;
+   std::string _str;
 
 private:
    static const int s_lineSpacing  = 16;
@@ -91,9 +92,11 @@ private:
 
    void upLine(void);
    void downLine(void);
+   
+   bool _refreshText, _refreshCursor;
+
    Point _desloc;
-   int _firstLine;
-   int _nLines;
+   int _firstLine, _nLines;
    std::vector <int> _lineIndex;
 };
 
@@ -103,7 +106,7 @@ bool TextBox::isEditable(void) const {
 }
 
 const std::string& TextBox::getString(void) {
-   return Label::getString();
+   return _str;
 }
 ///////////////////////////////////////////////////////////
 

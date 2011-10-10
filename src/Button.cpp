@@ -5,25 +5,28 @@
 
 namespace scv {
 
-Button::Button(const scv::Point &p1, const scv::Point &p2, const std::string &str) : Label(p1,p2,str) {
+Button::Button(const scv::Point &p1, const scv::Point &p2, const std::string &str) : Label(p1, p2, str) {
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
 
    createTexture();
 }
 
-Button::Button(const scv::Point &p1, unsigned int width, const std::string &str) : Label(p1,Point(p1.x+width,p1.y+24),str) {
+Button::Button(const scv::Point &p1, unsigned int width, const std::string &str) : Label(p1, Point(p1.x + width, p1.y + 24), str) {
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
 
    createTexture();
 }
 
-Button::Button(const scv::Point &p1, const std::string &str) : Label(p1,Point(p1.x+FontTahoma::getInstance()->getStringLength(str)+10,p1.y+24),str) {
+Button::Button(const scv::Point &p1, const std::string &str) : Label(p1, Point(p1.x + FontTahoma::getInstance()->getStringLength(str) + 10, p1.y + 24), str) {
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
 
    createTexture();
+}
+
+Button::~Button(void) {
 }
 
 void Button::onMouseClick(const scv::MouseEvent &evt) {/**/}
@@ -47,19 +50,19 @@ void Button::display(void) {
    Point currPosition = getAbsolutePosition();
 
    _cTexture->enable();
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // middle
       _cTexture->display(currPosition.x + 1, currPosition.y + 1, 4, getWidth() - 2, getHeight() - 2);
 
       if (isHolded()) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 6, getWidth() - 2, getHeight() - 2);
       } else if (isOvered()) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 5, getWidth() - 2, getHeight() - 2);
       }
 
-      scheme->applyColor(ColorScheme::mainComponents);
+      scheme->applyColor(ColorScheme::MAINCOMPONENTS);
       // horizontal lines
       _cTexture->display(currPosition.x + 2, currPosition.y, 7, getWidth() - 4, 2);
       _cTexture->display(currPosition.x + 2, currPosition.y + getHeight() - 2, 8, getWidth() - 4, 2);
@@ -78,7 +81,7 @@ void Button::display(void) {
 
    scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 6, getHeight()));
 
-   Label::display(currPosition.x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , currPosition.y + getHeight() / 2 - 6);
+   StaticLabel::display(currPosition.x + getWidth() / 2 - font->getStringLength(Label::getString()) / 2 , currPosition.y + getHeight() / 2 - 6, Label::getString());
 
    scissor->popScissor();
 }

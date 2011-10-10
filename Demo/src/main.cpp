@@ -9,8 +9,8 @@ int main(int argc, char* argv[]) {
    
    scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
-   scheme->loadScheme(scv::ColorScheme::osx);
-   scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));
+   scheme->loadScheme(scv::ColorScheme::OSX);
+   scheme->setColor(scv::ColorScheme::FONT, scv::Color4f(1,1,1));
    
    /*   
    scv::Panel *panel = new scv::Panel(scv::Point(40,40), scv::Point(1280 - 920, 720 - 40));

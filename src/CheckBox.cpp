@@ -3,6 +3,8 @@
 #include "Kernel.h"
 #include "GlslShader.h"
 #include "data.h"
+#include "StaticLabel.h"
+
 namespace scv {
 
 CheckBox::CheckBox(const scv::Point &p1, bool state, const std::string &str) : StateButton(state), Label(p1, Point( p1.x + 13 + FontTahoma::getInstance()->getStringLength(str) + 3,p1.y + 13), str) {
@@ -42,17 +44,17 @@ void CheckBox::display(void) {
       }
 
       if (isHolded()) {
-         scheme->applyColor(ColorScheme::holdComponents);
+         scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 2, 13 - 2, 13 - 2);
       } else if (isOvered()) {
-         scheme->applyColor(ColorScheme::overComponents);
+         scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + 1, currPosition.y + 1, 3, 13 - 2, 13 - 2);
       }
    _cTexture->disable();
 
    scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() + font->getStringLength(Label::getString()) + 3, getHeight()));
 
-   Label::display(currPosition.x + 13 + 3, currPosition.y);
+   StaticLabel::display(currPosition.x + 13 + 3, currPosition.y, Label::getString());
 
    scissor->popScissor();
 }

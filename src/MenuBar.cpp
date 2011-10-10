@@ -2,6 +2,7 @@
 #include "MenuBar.h"
 #include "Kernel.h"
 #include "MenuHolder.h"
+#include "StaticLabel.h"
 
 namespace scv {
 
@@ -137,7 +138,7 @@ void MenuBar::display(void) {
    _cTexture->enable();
 
    // background
-   scheme->applyColor(ColorScheme::menuBar);
+   scheme->applyColor(ColorScheme::MENUBAR);
    _cTexture->display(currPosition.x, currPosition.y , 0, getWidth(), getHeight());
 
    // line bottom
@@ -148,7 +149,7 @@ void MenuBar::display(void) {
 
       int size = _index[_currecOverMenu+1]-_index[_currecOverMenu];
 
-      scheme->applyColor(ColorScheme::overComponents);
+      scheme->applyColor(ColorScheme::OVERCOMPONENTS);
 
       //vertical
       _cTexture->display(currPosition.x + _index[_currecOverMenu] + size - 1, currPosition.y + s_borderHeight/2 + 2, 2, 1, s_menuSpacing - 4);
@@ -169,7 +170,7 @@ void MenuBar::display(void) {
    } else if (_currSelectedMenu != -1) {
       int size = _index[_currSelectedMenu + 1] - _index[_currSelectedMenu];
 
-      scheme->applyColor(ColorScheme::contextMenu);
+      scheme->applyColor(ColorScheme::CONTEXTMENU);
 
       _cTexture->display(currPosition.x + _index[_currSelectedMenu] + 2, currPosition.y + s_borderHeight/2, 4, size - 4, 1);
       _cTexture->display(currPosition.x + _index[_currSelectedMenu] + 1, currPosition.y + s_borderHeight/2 + 1, 4, size - 2, 1);
@@ -182,9 +183,9 @@ void MenuBar::display(void) {
 
    for (int i = 0; i < _menus.size(); i++) {
       if (i == _currSelectedMenu) {
-         Label::display(currPosition.x + s_borderWidth + _index[i], currPosition.y + s_borderHeight, _menus[i]->_label, scheme->getColor(ColorScheme::contextMenuFont));
+         StaticLabel::display(currPosition.x + s_borderWidth + _index[i], currPosition.y + s_borderHeight, _menus[i]->_label, scheme->getColor(ColorScheme::CONTEXTMENUFONT));
       } else {
-         Label::display(currPosition.x + s_borderWidth + _index[i], currPosition.y + s_borderHeight, _menus[i]->_label);
+         StaticLabel::display(currPosition.x + s_borderWidth + _index[i], currPosition.y + s_borderHeight, _menus[i]->_label);
       }
       _menus[i]->setPosition(Point(currPosition.x + _index[i], currPosition.y + getHeight() + 1));
       _menus[i]->display();

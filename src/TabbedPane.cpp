@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TabbedPane.h"
+#include "StaticLabel.h"
 
 #include "Kernel.h"
 
@@ -168,7 +169,7 @@ void TabbedPane::display(void) {
    _cTexture->enable();
 
    // background
-   scheme->applyColor(ColorScheme::menuBar);
+   scheme->applyColor(ColorScheme::MENUBAR);
    _cTexture->display(currPosition.x, currPosition.y, 0, getWidth(), s_barHeight);
 
    glColor3f(0.f,0.f,0.f);
@@ -185,7 +186,7 @@ void TabbedPane::display(void) {
    if (_currSelectedTab != -1) {
       int size = _index[_currSelectedTab + 1] - _index[_currSelectedTab];
 
-      scheme->applyColor(ColorScheme::panel);
+      scheme->applyColor(ColorScheme::PANEL);
       _cTexture->display(currPosition.x + _index[_currSelectedTab] + 1, currPosition.y + 2, 4, size - 2, 1);
       _cTexture->display(currPosition.x + _index[_currSelectedTab] + 0, currPosition.y + 3, 4, size, s_barHeight - 2);
 
@@ -205,7 +206,7 @@ void TabbedPane::display(void) {
 
       int size = _index[_currecOverTab + 1] - _index[_currecOverTab];
 
-      scheme->applyColor(ColorScheme::overComponents);
+      scheme->applyColor(ColorScheme::OVERCOMPONENTS);
 
       //vertical
       _cTexture->display(currPosition.x + _index[_currecOverTab] + size - 2, currPosition.y + 3, 2, 1, s_barHeight - 6);
@@ -229,9 +230,9 @@ void TabbedPane::display(void) {
 
    for (int i = 0; i < _labels.size(); i++) {
       if (i == _currSelectedTab) {
-         Label::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i], scheme->getColor(ColorScheme::contextMenuFont));
+         StaticLabel::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i], scheme->getColor(ColorScheme::CONTEXTMENUFONT));
       } else {
-         Label::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i]);
+         StaticLabel::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i]);
       }
    }
 
