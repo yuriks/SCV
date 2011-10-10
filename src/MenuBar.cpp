@@ -198,10 +198,10 @@ void MenuBar::display(void) {
 
 void MenuBar::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::menuBar)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::MENUBAR)) != NULL) return;
 
    _cTexture = new ComponentTexture(5, 2);
-   kernel->setWidgetTexture(Kernel::menuBar, _cTexture);
+   kernel->setWidgetTexture(Kernel::MENUBAR, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

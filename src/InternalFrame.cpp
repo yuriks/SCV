@@ -202,10 +202,10 @@ void InternalFrame::setRelativePosition(const Point &position) {
 
 void InternalFrame::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::window)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::WINDOW)) != NULL) return;
 
    _cTexture = new ComponentTexture(46 * 3 + 10, 19);
-   kernel->setWidgetTexture(Kernel::window, _cTexture);
+   kernel->setWidgetTexture(Kernel::WINDOW, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

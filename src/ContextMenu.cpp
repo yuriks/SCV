@@ -2,8 +2,8 @@
 #include "ContextMenu.h"
 #include "Kernel.h"
 #include "Label.h"
-#include "MenuHolder.h"
 
+#include "MenuHolder.h"
 #include "VistaMenuStyle.h"
 
 namespace scv {
@@ -34,8 +34,8 @@ void ContextMenu::removeMenu(ContextMenu *menu) {
 
    _list.erase(iter);
 
-   _height = _style->calcHeight(*this);
-   _witdh = _style->calcWidth(*this);
+   _height = _style->calculateHeight(*this);
+   _witdh = _style->calculateWidth(*this);
 }
 
 void ContextMenu::removeAllMenus() {
@@ -46,8 +46,8 @@ void ContextMenu::removeAllMenus() {
       delete pItem;
    }
    
-   _height = _style->calcHeight(*this);
-   _witdh = _style->calcWidth(*this);
+   _height = _style->calculateHeight(*this);
+   _witdh = _style->calculateWidth(*this);
 }
 
 void ContextMenu::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {}
@@ -63,8 +63,8 @@ void ContextMenu::addMenu(ContextMenu *menu) {
    menu->registerParentMenu(this);
    _list.push_back(menu);
 
-   _height = _style->calcHeight(*this);
-   _witdh = _style->calcWidth(*this);
+   _height = _style->calculateHeight(*this);
+   _witdh = _style->calculateWidth(*this);
 }
 
 bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
@@ -160,12 +160,12 @@ void ContextMenu::display(void) {
       _currPosition.y = _currPosition.y - _height;
    }
 
-   _style->drawMenu(*this, _currSelectedMenu);
+   _style->drawItem(*this, _currSelectedMenu);
 
    // sub-menus
    for (int i = 0; i < _list.size(); i++) {
       _list[i]->display();
-      _list[i]->setPosition(_style->getSubmenuPos(*this, i));
+      _list[i]->setPosition(_style->getSubItemPosition(*this, i));
    }
 }
 
@@ -230,7 +230,7 @@ bool ContextMenu::hasSubMenuActive(void) const {
    return false;
 }
 
-void ContextMenu::setMenuStyle(const PopupMenuStyle* style) {
+void ContextMenu::setMenuStyle(const PopupItemStyle* style) {
    _style = style;
 }
 

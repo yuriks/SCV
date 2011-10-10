@@ -242,11 +242,11 @@ void TabbedPane::display(void) {
 
 void TabbedPane::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::tabbedPane)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::TABBEDPANE)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(8, 16);
-   kernel->setWidgetTexture(Kernel::tabbedPane, _cTexture);
+   kernel->setWidgetTexture(Kernel::TABBEDPANE, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

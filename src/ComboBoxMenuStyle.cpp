@@ -9,7 +9,7 @@
 
 namespace scv {
 
-void ComboBoxMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const {
+void ComboBoxMenuStyle::drawItem(const ContextMenu& menu, int selected_menu) const {
    const ContextMenu::MenuList& menus = menu.getMenus();
    const Point& pos = menu.getCurrPosition();
    const int width = menu.getWidth();
@@ -55,7 +55,7 @@ void ComboBoxMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) con
 }
 
 
-bool ComboBoxMenuStyle::isInsideMenuItem(const ContextMenu& menu, const Point& pos, int item) const {
+bool ComboBoxMenuStyle::isInsideItem(const ContextMenu& menu, const Point& pos, int item) const {
    return (
       pos.x >= menu.getCurrPosition().x + 2 &&
       pos.x <  menu.getCurrPosition().x + menu.getWidth() - 2 &&
@@ -63,7 +63,7 @@ bool ComboBoxMenuStyle::isInsideMenuItem(const ContextMenu& menu, const Point& p
       pos.y <  menu.getCurrPosition().y + item * s_menuHeight + s_menuHeight + s_borderHeight/2.f + 2);
 }
 
-Point ComboBoxMenuStyle::getSubmenuPos(const ContextMenu& menu, int menu_index) const {
+Point ComboBoxMenuStyle::getSubItemPosition(const ContextMenu& menu, int menu_index) const {
    static Kernel *kernel = Kernel::getInstance();
 
    if (kernel->getWidth() - (menu.getCurrPosition().x + menu.getWidth() - s_borderWidth + 2) < menu.getMenus()[menu_index]->getWidth()) {
@@ -80,11 +80,11 @@ Point ComboBoxMenuStyle::getSubmenuPos(const ContextMenu& menu, int menu_index) 
 }
 
 
-int ComboBoxMenuStyle::calcWidth(const ContextMenu& menu) const {
+int ComboBoxMenuStyle::calculateWidth(const ContextMenu& menu) const {
    return static_cast<const ComboBox::ComboBoxMenu&>(menu).combo.getWidth();
 }
 
-int ComboBoxMenuStyle::calcHeight(const ContextMenu& menu) const {
+int ComboBoxMenuStyle::calculateHeight(const ContextMenu& menu) const {
    return menu.getMenus().size() * s_menuHeight + s_borderHeight + 4;
 }
 

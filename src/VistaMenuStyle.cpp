@@ -8,11 +8,11 @@
 
 namespace scv {
 
-void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const {
-   const ContextMenu::MenuList& menus = menu.getMenus();
-   const Point& pos = menu.getCurrPosition();
-   const int width = menu.getWidth();
-   const int height = menu.getHeight();
+void VistaMenuStyle::drawItem(const ContextMenu &item, int selectedItem) const {
+   const ContextMenu::MenuList& menus = item.getMenus();
+   const Point& pos = item.getCurrPosition();
+   const int width = item.getWidth();
+   const int height = item.getHeight();
 
    static Kernel *kernel = Kernel::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -34,23 +34,23 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
       // center line
       _cTexture->display(pos.x + s_leftBorder, pos.y + 4, 1, 1, height - 8);
 
-      if (selected_menu != -1) {
+      if (selectedItem != -1) {
          scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          //vertical
-         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
-         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth - 1, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
+         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
+         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth - 1, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + 2, 4, 1, s_menuHeight-4);
          //horizontal
-         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2, 4, width - s_borderWidth-4, 1);
-         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + s_menuHeight - 1, 4, width - s_borderWidth-4, 1);
+         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2, 4, width - s_borderWidth-4, 1);
+         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + s_menuHeight - 1, 4, width - s_borderWidth-4, 1);
 
          // pixel border
-         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2, 5, 2, 2);
-         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + s_menuHeight, 5, 2, -2);
-         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2, 5, -2, 2);
-         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + s_menuHeight, 5, -2, -2);
+         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2, 5, 2, 2);
+         _cTexture->display(pos.x + s_borderWidth / 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + s_menuHeight, 5, 2, -2);
+         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2, 5, -2, 2);
+         _cTexture->display(pos.x + s_borderWidth / 2 + width - s_borderWidth, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + s_menuHeight, 5, -2, -2);
 
          // center select
-         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selected_menu * s_menuHeight + s_borderHeight / 2 + 2, 3, width - s_borderWidth - 4, s_menuHeight - 4);
+         _cTexture->display(pos.x + s_borderWidth / 2 + 2, pos.y + selectedItem * s_menuHeight + s_borderHeight / 2 + 2, 3, width - s_borderWidth - 4, s_menuHeight - 4);
          scheme->applyDefaultModulate();
       }
 
@@ -69,12 +69,12 @@ void VistaMenuStyle::drawMenu(const ContextMenu& menu, int selected_menu) const 
 }
 
 
-bool VistaMenuStyle::isInsideMenuItem(const ContextMenu& menu, const Point& pos, int item) const {
+bool VistaMenuStyle::isInsideItem(const ContextMenu &menu, const Point& pos, int item) const {
    return (pos.x >= menu.getCurrPosition().x + 2 && pos.x <= menu.getCurrPosition().x + menu.getWidth() - 2 &&
       pos.y >= menu.getCurrPosition().y + item * s_menuHeight + s_borderHeight/2.f && pos.y <= menu.getCurrPosition().y + item * s_menuHeight + s_menuHeight + s_borderHeight/2.f - 1);
 }
 
-Point VistaMenuStyle::getSubmenuPos(const ContextMenu& menu, int menu_index) const {
+Point VistaMenuStyle::getSubItemPosition(const ContextMenu &menu, int menu_index) const {
    static Kernel *kernel = Kernel::getInstance();
 
    if (kernel->getWidth() - (menu.getCurrPosition().x + menu.getWidth() - s_borderWidth + 2) < menu.getMenus()[menu_index]->getWidth()) {
@@ -91,7 +91,7 @@ Point VistaMenuStyle::getSubmenuPos(const ContextMenu& menu, int menu_index) con
 }
 
 
-int VistaMenuStyle::calcWidth(const ContextMenu& menu) const {
+int VistaMenuStyle::calculateWidth(const ContextMenu &menu) const {
    static const FontTahoma *font = FontTahoma::getInstance();
 
    int width = 0;
@@ -105,7 +105,7 @@ int VistaMenuStyle::calcWidth(const ContextMenu& menu) const {
    return width + s_borderWidth * 5 + s_leftBorder;
 }
 
-int VistaMenuStyle::calcHeight(const ContextMenu& menu) const {
+int VistaMenuStyle::calculateHeight(const ContextMenu &menu) const {
    return menu.getMenus().size() * s_menuHeight + s_borderHeight;
 }
 
@@ -117,11 +117,11 @@ VistaMenuStyle::VistaMenuStyle()
 
 void VistaMenuStyle::createTexture() {
    static Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::contextMenu)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::CONTEXTMENU)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(16, 8);
-   kernel->setWidgetTexture(Kernel::contextMenu, _cTexture);
+   kernel->setWidgetTexture(Kernel::CONTEXTMENU, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

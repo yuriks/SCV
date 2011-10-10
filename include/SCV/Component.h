@@ -136,6 +136,8 @@ public:
    virtual void addChild(Component *object);
    virtual void removeChild(Component *object);
 
+   virtual Component *getChild(int index);
+
    void pullChildToTop(Component *child);
 
    bool hasChild(Component *child) const;

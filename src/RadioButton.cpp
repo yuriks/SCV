@@ -56,7 +56,7 @@ void RadioButton::display(void) {
 
 void RadioButton::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::radioBox)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::RADIOBOX)) != NULL) return;
 
    ColorRGBA colorOver(170,220,255,60);
    ColorRGBA colorClick(colorOver[0] - 100, colorOver[1] - 80, colorOver[2] - 40, colorOver[3]);
@@ -65,7 +65,7 @@ void RadioButton::createTexture(void) {
 
    // create texture object
    _cTexture = new ComponentTexture(64, 16);
-   kernel->setWidgetTexture(Kernel::radioBox, _cTexture);
+   kernel->setWidgetTexture(Kernel::RADIOBOX, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

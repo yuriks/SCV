@@ -62,7 +62,7 @@ void CheckBox::display(void) {
 void CheckBox::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
 
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::checkBox)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::CHECKBOX)) != NULL) return;
 
    ColorRGBA  pColor1(183,191,213,255);
    ColorRGBA  pColor2( 71, 92,148,255);
@@ -76,7 +76,7 @@ void CheckBox::createTexture(void) {
 
    // create texture object
    _cTexture = new ComponentTexture(32, 16);
-   kernel->setWidgetTexture(Kernel::checkBox, _cTexture);
+   kernel->setWidgetTexture(Kernel::CHECKBOX, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

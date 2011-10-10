@@ -31,20 +31,15 @@ friend class Singleton<Kernel>;
 public:
    ///////////////////////////////////////////////////////////
    enum Widgets {
-      panel       , contextMenu,
-      colorPicker , progressBar,
-      scrool      , slider     ,
-      spinner     , button     ,
-      checkBox    , radioBox   ,
-      toggleButton, textField  ,
-      textBox     , separator  ,
-      window      , menuBar    ,
-      tabbedPane  , scrollPanel,
-      comboBox    , TreeView   ,
-      s_nOfWidgets
+      PANEL       , CONTEXTMENU, COLORPICKER , PROGRESSBAR,
+      SCROLL      , SLIDER     , SPINNER     , BUTTON     ,
+      CHECKBOX    , RADIOBOX   , TOGGLEBUTTON, TEXTFIELD  ,
+      TEXTBOX     , SEPARATOR  , WINDOW      , MENUBAR    ,
+      TABBEDPANE  , SCROLLPANE , COMBOBOX    , TREEVIEW   ,
+      NOFWIDGETS
    };
 
-   enum TextureFilter { linear, nearest };
+   enum TextureFilter { LINEAR, NEAREST };
    ///////////////////////////////////////////////////////////
 
    //SCVCallbacks
@@ -177,7 +172,7 @@ protected:
    } Mouse;
    ///////////////////////////////////////////////////////////
    
-   ComponentTexture *_loadedWidgets[s_nOfWidgets];
+   ComponentTexture *_loadedWidgets[NOFWIDGETS];
 
    std::string _windowTitle;
 

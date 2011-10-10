@@ -4,7 +4,7 @@
 #include "Label.h"
 #include "Texture2D.h"
 
-#include "PopupMenuStyle.h"
+#include "PopupItemStyle.h"
 
 namespace scv {
 class MenuHolder;
@@ -57,7 +57,7 @@ public:
 
    bool hasSubMenus(void) const;
 
-   void setMenuStyle(const PopupMenuStyle* style);
+   void setMenuStyle(const PopupItemStyle* style);
 
    const MenuList& getMenus() const;
 
@@ -88,7 +88,7 @@ private:
    ContextMenu *_parentMenu;
    Point _currPosition;
    std::string _label;
-   const PopupMenuStyle* _style;
+   const PopupItemStyle* _style;
 };
 
 inline const ContextMenu::MenuList& ContextMenu::getMenus() const {
@@ -128,7 +128,7 @@ inline int ContextMenu::getHeight(void) const {
 }
 
 inline bool ContextMenu::isInsideThisMenu(const Point &p, int i) const {
-   return _style->isInsideMenuItem(*this, p, i);
+   return _style->isInsideItem(*this, p, i);
 }
 
 } // namespace scv

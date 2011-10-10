@@ -62,11 +62,11 @@ void Slider::display(void) {
 
 void Slider::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::slider)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::SLIDER)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(16, 32);
-   kernel->setWidgetTexture(Kernel::slider, _cTexture);
+   kernel->setWidgetTexture(Kernel::SLIDER, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

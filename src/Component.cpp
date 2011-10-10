@@ -343,6 +343,19 @@ void Component::removeChild(Component *object) {
    }
 }
 
+Component *Component::getChild(int index) {
+   if (index < _children.size()) {
+      Component::List::iterator iter = _children.begin();
+      while(index != 0) {
+         ++iter;
+         --index;
+      }
+      return (*iter);
+   } else {
+      return NULL;
+   }
+}
+
 void Component::pullChildToTop(Component *child) {
    if (hasChild(child)) {
       _children.remove(child);

@@ -62,10 +62,7 @@
       <Filter>3.Kernel</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComboBoxMenuStyle.cpp">
-      <Filter>4.Widgets\Menu\ComboBox</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ComboBox.cpp">
-      <Filter>4.Widgets\Menu\ComboBox</Filter>
+      <Filter>4.Widgets\Tree\PopupItemStyle\ComboBox</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
@@ -81,18 +78,6 @@
     </ClCompile>
     <ClCompile Include="..\src\InternalFrameHolder.cpp">
       <Filter>4.Widgets\InternalFrame</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\MenuBar.cpp">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\MenuHolder.cpp">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ContextMenu.cpp">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\VistaMenuStyle.cpp">
-      <Filter>4.Widgets\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\src\CheckBox.cpp">
       <Filter>4.Widgets\StateButton</Filter>
@@ -167,13 +152,10 @@
       <Filter>5.Util</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GTree.cpp">
-      <Filter>4.Widgets\Tree</Filter>
+      <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
     <ClCompile Include="..\src\TreeModel.cpp">
-      <Filter>4.Widgets\Tree</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\TreeView.cpp">
-      <Filter>4.Widgets\Tree</Filter>
+      <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
     <ClCompile Include="..\src\TabbedPane.cpp">
       <Filter>4.Widgets\Panel</Filter>
@@ -213,6 +195,27 @@
     </ClCompile>
     <ClCompile Include="..\src\util.cpp">
       <Filter>5.Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SystemTreeView.cpp">
+      <Filter>4.Widgets\SystemTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ComboBox.cpp">
+      <Filter>4.Widgets\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ContextMenu.cpp">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MenuBar.cpp">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MenuHolder.cpp">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\VistaMenuStyle.cpp">
+      <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TreeItem.cpp">
+      <Filter>4.Widgets\Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -292,10 +295,7 @@
       <Filter>2.Data</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h">
-      <Filter>4.Widgets\Menu\ComboBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ComboBox.h">
-      <Filter>4.Widgets\Menu\ComboBox</Filter>
+      <Filter>4.Widgets\Tree\PopupItemStyle\ComboBox</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h">
       <Filter>4.Widgets\Object</Filter>
@@ -311,21 +311,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\InternalFrame.h">
       <Filter>4.Widgets\InternalFrame</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\MenuHolder.h">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\MenuBar.h">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ContextMenu.h">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\PopupMenuStyle.h">
-      <Filter>4.Widgets\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\VistaMenuStyle.h">
-      <Filter>4.Widgets\Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\CheckBox.h">
       <Filter>4.Widgets\StateButton</Filter>
@@ -394,13 +379,10 @@
       <Filter>5.Util</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\GTree.h">
-      <Filter>4.Widgets\Tree</Filter>
+      <Filter>4.Widgets\SystemTree</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\TreeModel.h">
-      <Filter>4.Widgets\Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\TreeView.h">
-      <Filter>4.Widgets\Tree</Filter>
+      <Filter>4.Widgets\SystemTree</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\TabbedPane.h">
       <Filter>4.Widgets\Panel</Filter>
@@ -441,6 +423,30 @@
     <ClInclude Include="..\include\SCV\StaticLabel.h">
       <Filter>4.Widgets\Text</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\SystemTreeView.h">
+      <Filter>4.Widgets\SystemTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ComboBox.h">
+      <Filter>4.Widgets\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ContextMenu.h">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\MenuBar.h">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\MenuHolder.h">
+      <Filter>4.Widgets\Tree\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\VistaMenuStyle.h">
+      <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\PopupItemStyle.h">
+      <Filter>4.Widgets\Tree\PopupItemStyle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\TreeItem.h">
+      <Filter>4.Widgets\Tree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="0._!TODO!_">
@@ -461,12 +467,6 @@
     <Filter Include="4.Widgets\InternalFrame">
       <UniqueIdentifier>{7314b185-1a35-452a-a454-fa04cac12d87}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.Widgets\Menu">
-      <UniqueIdentifier>{fbe24b43-7f12-4491-a92b-ff26bd9bb37b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\Menu\ComboBox">
-      <UniqueIdentifier>{ab162e12-e0d4-4bdd-9a0c-4b0043cf158b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.Widgets\StateButton">
       <UniqueIdentifier>{129ffa5b-196b-4c98-8be8-337d503df802}</UniqueIdentifier>
     </Filter>
@@ -478,9 +478,6 @@
     </Filter>
     <Filter Include="4.Widgets\Counter">
       <UniqueIdentifier>{78fb6769-4574-4307-bbec-780d60bd4b06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\Tree">
-      <UniqueIdentifier>{4b8072ef-4cb3-4ec6-98e9-a5867b66fb78}</UniqueIdentifier>
     </Filter>
     <Filter Include="4.Widgets\Panel">
       <UniqueIdentifier>{3440cc55-7f87-4061-bbe9-9de51e719147}</UniqueIdentifier>
@@ -502,6 +499,24 @@
     </Filter>
     <Filter Include="GroupLayout\Spring\Group">
       <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\SystemTree">
+      <UniqueIdentifier>{4b8072ef-4cb3-4ec6-98e9-a5867b66fb78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree">
+      <UniqueIdentifier>{fbe24b43-7f12-4491-a92b-ff26bd9bb37b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\Menu">
+      <UniqueIdentifier>{1a35f4aa-e0b2-4304-a940-844d687085b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupItemStyle">
+      <UniqueIdentifier>{30b069a1-e53c-4ddb-ae33-1130417202a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupItemStyle\ComboBox">
+      <UniqueIdentifier>{ab162e12-e0d4-4bdd-9a0c-4b0043cf158b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupItemStyle\ContextMenu">
+      <UniqueIdentifier>{da161707-b850-4dce-aeaa-d1d666cc15c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

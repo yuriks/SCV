@@ -4,20 +4,19 @@
 #include "Properties.h"
 #include "Pallete.h"
 
-Application::Application(void) : Kernel() {  
+Application::Application(void) : Kernel() {
+   setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
+   lockWindowSize(true);
 }
 
 Application::~Application(void) {
 }
 
 void Application::init(void) {
-   setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
-   lockWindowSize(true);
-
    static const int s_defaultBorderGap = 10;
    static const int s_defaultRightBarSize = 300;
 
-
+   /*
    scv::Panel *panelRightBar = new scv::Panel(scv::Point(s_defaultWindowWidht - s_defaultRightBarSize + s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultBorderGap, s_defaultWindowHeight - s_defaultBorderGap));
    addComponent(panelRightBar);
 
@@ -82,6 +81,13 @@ void Application::init(void) {
 
    _managedComponents.push_back(panelDesign);
    /**/
+
+   scv::TreeItem *tItem  = new scv::TreeItem("First");
+   tItem->addChild(new scv::TreeItem("Second"));
+   tItem->addChild(new scv::TreeItem("Third"));
+   tItem->addChild(new scv::TreeItem("Fourth"));
+   tItem->addChild(new scv::TreeItem("FIFTH"));
+   addComponent(tItem);
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   

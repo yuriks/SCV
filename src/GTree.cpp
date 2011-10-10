@@ -263,21 +263,18 @@ std::string GTree::getPathOfSelected(std::string name, std::string path)
    }
 }
 
-void GTree::findSelected(int *h)
-{
+void GTree::findSelected(int *h) {
    GNode* aux = NULL;
 
-   for(GNode* p = init->first; p != NULL; p = p->next)
-   {
-      if( *h == 0 )
-      {
+   for(GNode* p = init->first; p != NULL; p = p->next) {
+      if( *h == 0 ) {
          selected = p;
          return;
       }
+
       *h = *h - 1;
       aux = p->findSelected(h);
-      if(aux != NULL)
-      {
+      if(aux != NULL) {
          selected = aux;
          return;
       }
@@ -285,8 +282,7 @@ void GTree::findSelected(int *h)
    selected = NULL;
 }
 
-std::string GNode::getname()
-{
+std::string GNode::getname() {
    return name;
 }
 

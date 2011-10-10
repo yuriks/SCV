@@ -58,10 +58,10 @@ void Panel::display(void) {
 
 void Panel::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::panel)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::PANEL)) != NULL) return;
 
    _cTexture = new ComponentTexture(2, 2);
-   kernel->setWidgetTexture(Kernel::panel, _cTexture);
+   kernel->setWidgetTexture(Kernel::PANEL, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
@@ -72,15 +72,26 @@ void Panel::createTexture(void) {
    _cTexture->createTexture();
 }
 
-void Panel::onMouseClick(const scv::MouseEvent &evt) {}
-void Panel::onMouseHold(const scv::MouseEvent &evt) {}
-void Panel::onMouseOver(const scv::MouseEvent &evt) {}
-void Panel::onMouseUp(const scv::MouseEvent &evt) {}
-void Panel::onKeyPressed(const scv::KeyEvent &evt) {}
-void Panel::onKeyUp(const scv::KeyEvent &evt) {}
-void Panel::onMouseWheel(const scv::MouseEvent &evt) {}
-void Panel::onSizeChange(void) {}
-void Panel::onPositionChange(void) {}
+void Panel::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Panel::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Panel::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Panel::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Panel::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void Panel::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Panel::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void Panel::onSizeChange(void) {
+}
+void Panel::onPositionChange(void) {
+}
 
 void Panel::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();

@@ -89,7 +89,7 @@ void Button::display(void) {
 void Button::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
 
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::button)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::BUTTON)) != NULL) return;
 
    ColorRGBA colorBotao1(250, 250, 250, 255);
    ColorRGBA colorBotao2(210, 210, 210, 255);
@@ -99,7 +99,7 @@ void Button::createTexture(void) {
 
    // create texture object
    _cTexture = new ComponentTexture(8, 16);
-   kernel->setWidgetTexture(Kernel::button, _cTexture);
+   kernel->setWidgetTexture(Kernel::BUTTON, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

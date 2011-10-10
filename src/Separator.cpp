@@ -47,11 +47,11 @@ void Separator::display(void) {
 
 void Separator::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::separator)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::SEPARATOR)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(4, 4);
-   kernel->setWidgetTexture(Kernel::separator, _cTexture);
+   kernel->setWidgetTexture(Kernel::SEPARATOR, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

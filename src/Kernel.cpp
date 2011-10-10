@@ -24,9 +24,9 @@ const unsigned int Kernel::s_defaultHeight = 720;
 const unsigned int Kernel::s_defaultFramesPerSecond = 30;
 
 Kernel::Kernel(void) {
-   std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * s_nOfWidgets);
+   std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * NOFWIDGETS);
 
-   _filterType = nearest;
+   _filterType = NEAREST;
 
    Mouse.locked = false;
 

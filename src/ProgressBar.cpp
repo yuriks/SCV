@@ -79,7 +79,7 @@ void ProgressBar::display(void) {
 
 void ProgressBar::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::progressBar)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::PROGRESSBAR)) != NULL) return;
 
    ColorRGBA colorBotao1(250, 250, 250, 255);
    ColorRGBA colorBotao2(210, 210, 210, 255);
@@ -89,7 +89,7 @@ void ProgressBar::createTexture(void) {
 
    // create texture object
    _cTexture = new ComponentTexture(8, 16);
-   kernel->setWidgetTexture(Kernel::progressBar, _cTexture);
+   kernel->setWidgetTexture(Kernel::PROGRESSBAR, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

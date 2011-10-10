@@ -7,12 +7,10 @@
 
 namespace scv{
 
-TreeModel::TreeModel()
-{
+TreeModel::TreeModel(void) {
 }
 
-TreeModel::~TreeModel()
-{
+TreeModel::~TreeModel(void) {
 }
 
 void TreeModel::getNamesInTree(std::vector<GInfoNode> &m_nodes, GTree* tree)
@@ -34,7 +32,7 @@ void TreeModel::getNamesInTree(std::vector<GInfoNode> &m_nodes, GTree* tree)
 
 #ifdef _WIN32
 /****Base Codes From: http://msdn.microsoft.com/en-us/library/ **************/
-void DisplayVolumePaths(__in PWCHAR VolumeName,std::vector<std::string> &dirNames)
+void DisplayVolumePaths(__in PWCHAR VolumeName, std::vector<std::string> &dirNames)
 {
    DWORD  CharCount = MAX_PATH + 1;
    PWCHAR Names     = NULL;

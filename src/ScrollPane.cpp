@@ -372,11 +372,11 @@ float ScrollPane::barPixelToFloat(int pix, bool horz) {
 
 void ScrollPane::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::scrollPanel)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Kernel::SCROLLPANE)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(19, 39);
-   kernel->setWidgetTexture(Kernel::scrollPanel, _cTexture);
+   kernel->setWidgetTexture(Kernel::SCROLLPANE, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
