@@ -42,6 +42,8 @@ protected:
    scv::ScrollPane *scrollPaneDesign;
 
    Properties *_properties;
+
+   std::list<scv::Component*> _managedComponents;   
 private:
 };
 

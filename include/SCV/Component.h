@@ -69,8 +69,13 @@ public:
    virtual inline Point getSize(void) const;
    virtual inline void setSize(int width, int height);
 
+   virtual void setMinimumSize(const scv::Point &size);
    virtual Point getMinimumSize(void) const;
+
+   virtual void setPreferredSize(const scv::Point &size);
    virtual Point getPreferredSize(void) const;
+
+   virtual void setMaximumSize(const scv::Point &size);
    virtual Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -79,15 +84,19 @@ public:
    virtual inline bool isHolded(void) const;
    virtual inline bool isDragging(void) const;
    virtual inline bool isResizing(void) const;   
-   virtual inline bool isVisible(void) const;
    ///////////////////////////////////////////////////////////
 
    virtual bool isFocused(void) const;
 
    ///////////////////////////////////////////////////////////
    virtual inline void setDraggable(bool state);
+   virtual inline bool isDraggable(void) const;
+
    virtual inline void setResizable(bool state);
+   virtual inline bool isResizable(void) const;
+
    virtual inline void setVisible(bool state);
+   virtual inline bool isVisible(void) const;
    ///////////////////////////////////////////////////////////
 
    virtual void registerContextMenu(ContextMenu *contextMenu);
@@ -141,7 +150,8 @@ protected:
    ObjectType _type;
    static const int s_mouseBacklash = 4;
 
-   Point _p1, _p2, _clickDiff, _minSize;
+   Point _p1, _p2, _clickDiff;
+   Point _minimumSize, _preferredSize, _maximumSize;
 
    bool _receivingCallbacks;
    bool _isResizable, _isResizing;
@@ -195,22 +205,30 @@ bool Component::isResizing(void) const {
    return _isResizing;
 }
 
-bool Component::isVisible(void) const {
-   return _isVisible;
-}
-
 ///////////////////////////////////////////////////////////
 
 void Component::setDraggable(bool state) {
    _isDraggable = state;
 }
 
+bool Component::isDraggable(void) const {
+   return _isDraggable;
+}
+
 void Component::setResizable(bool state) {
    _isResizable = state;
 }
 
+bool Component::isResizable(void) const {
+   return _isResizable;
+}
+
 void Component::setVisible(bool state) {
    _isVisible = state;
+}
+
+bool Component::isVisible(void) const {
+   return _isVisible;
 }
 
 ///////////////////////////////////////////////////////////

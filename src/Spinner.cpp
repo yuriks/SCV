@@ -26,8 +26,8 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
    _whileUp   = new Timer();
    _whileDown = new Timer();
 
-   _minSize.x = 200;
-   _minSize.y = getHeight();
+   _minimumSize.x = 200;
+   _minimumSize.y = getHeight();
 
    _lastTime = _incrementTime = 0;
    _type = SPINNER;

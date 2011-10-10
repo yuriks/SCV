@@ -12,6 +12,7 @@ Application::~Application(void) {
 
 void Application::init(void) {
    setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
+   lockWindowSize(true);
 
    static const int s_defaultBorderGap = 10;
    static const int s_defaultRightBarSize = 300;
@@ -78,6 +79,8 @@ void Application::init(void) {
 
    _properties = new Properties(200);
    panelDesign->addChild(_properties);
+
+   _managedComponents.push_back(panelDesign);
    /**/
 }
 
@@ -88,7 +91,7 @@ void Application::onMouseHold(const scv::MouseEvent &evt) {
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
 void Application::onMouseUp(const scv::MouseEvent &evt) {
-   //std::cout << getFocusedComponent() << std::endl;
+   if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
    _properties->setComponent(getFocusedComponent());
 }
 void Application::onMouseWheel(const scv::MouseEvent &evt) {

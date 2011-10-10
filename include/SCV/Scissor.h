@@ -11,28 +11,32 @@ friend class Singleton<Scissor>;
 public:
    class  Info {
    public:
+      ///////////////////////////////////////////////////////////
       Info(void);
       Info(GLint x, GLint y, GLsizei width, GLsizei height);
+      //[<number>,<number>,<number>,<number>]
+      Info(const std::string &str);
+      ///////////////////////////////////////////////////////////
 
       bool isInside(const Point &p) const;
       inline bool isValid(void) const {
-         return (mheight == -1 || mheight == -1) ? false : true;
+         return (height == -1 || height == -1) ? false : true;
       }
 
       inline Point getPosition(void) {
-         return Point(mx, my);
+         return Point(x, y);
       }
 
       inline void operator+=(const Point &p) {
-         mx += p.x; my += p.y;
+         x += p.x; y += p.y;
       }
 
       friend std::ostream& operator<<(std::ostream& stream, const Info& rhs) {
-          return (stream << "X: " << rhs.mx << " Y: " << rhs.my << " Width: " << rhs.mwidth << " Height: " << rhs.mheight);
+          return (stream << rhs.x << "," << rhs.y << "," << rhs.width << "," << rhs.height);
       }
 
-      GLint mx, my;
-      GLsizei mwidth, mheight;
+      GLint x, y;
+      GLsizei width, height;
    };
 
    void pushScissor(const Info &scissor);

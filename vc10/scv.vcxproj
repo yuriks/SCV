@@ -83,6 +83,7 @@
     <ClCompile Include="..\src\ToolTip.cpp" />
     <ClCompile Include="..\src\TreeModel.cpp" />
     <ClCompile Include="..\src\TreeView.cpp" />
+    <ClCompile Include="..\src\util.cpp" />
     <ClCompile Include="..\src\VistaMenuStyle.cpp" />
   </ItemGroup>
   <ItemGroup>

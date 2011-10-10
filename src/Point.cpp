@@ -13,9 +13,13 @@ Point::Point(int x, int y) : x(x), y(y) {
 }
 
 Point::Point(const std::string &str) {
-   size_t found = str.find(",");
-   x = fromString<int>(str.substr(0, found));
-   y = fromString<int>(str.substr(found + 1, str.size() - 1));
+   std::istringstream iss(str);
+   std::string word;
+
+   getline( iss, word, ',' );
+   x = fromString<int>(trim(word));   
+   getline( iss, word, ',' );
+   y = fromString<int>(trim(word));
 }
 
 Point::~Point(void) {

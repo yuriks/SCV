@@ -18,7 +18,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    virtual void setValue(const std::string &title, const std::string &str);
-   //virtual void setValue(const std::string &title, bool state);
+   virtual void setValue(const std::string &title, bool state);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -26,6 +26,20 @@ public:
    virtual void onValueChange(const std::string &title, bool state);
    ///////////////////////////////////////////////////////////
 protected:
+   static const std::string s_RelativePosition;
+   static const std::string s_AbsolutePosition;
+   static const std::string s_Width;
+   static const std::string s_Height;
+   static const std::string s_MinimumSize;
+   static const std::string s_PreferredSize;
+   static const std::string s_MaximumSize;
+   static const std::string s_Draggable;
+   static const std::string s_Resizable;
+   static const std::string s_Visible;
+   static const std::string s_CallbacksStatus;
+   static const std::string s_ParentScissor;
+   static const std::string s_Scissor;
+
    scv::Group *_hGroup, *_vGroup;
    scv::Component *_currComponent;
 };

@@ -30,8 +30,6 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, 
    _isResizable  = _isResizing   = false;
    _isHResizable = _isVResizable = true;
 
-   _minSize = scv::Point(15,15);
-
    _isVisible   = true;
 
    _contextMenu = NULL;
@@ -39,6 +37,10 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, 
    _type = NONE;
 
    _parent = NULL;   
+
+   setMaximumSize(Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()));
+   setPreferredSize(Point(getWidth(), getHeight()));
+   setMinimumSize(Point(15,15));
 }
 
 Component::~Component(void) {
@@ -91,6 +93,7 @@ void Component::setWidth(const int width) {
    } else {
       _p2.x = _p1.x + width;
    }
+   //setPreferredSize(Point(getWidth(), getHeight()));
    onSizeChange();
 }
 
@@ -100,6 +103,7 @@ void Component::setHeight(const int height) {
    } else {
       _p2.y = _p1.y + height;
    }
+   //setPreferredSize(Point(getWidth(), getHeight()));
    onSizeChange();
 }
 
@@ -386,15 +390,33 @@ void Component::setResizingCursor(void) {
 }
 
 Point Component::getMinimumSize(void) const {
-   return _minSize;
+   return _minimumSize;
 }
 
 Point Component::getPreferredSize(void) const {
-   return getSize();
+   return _preferredSize;
 }
 
 Point Component::getMaximumSize(void) const {
-   return scv::Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight());
+   return _maximumSize;
+}
+
+void Component::setMinimumSize(const scv::Point &size) {
+   if (size <= getPreferredSize() && size <= getMaximumSize()) {
+      _minimumSize = size;
+   }
+}
+
+void Component::setPreferredSize(const scv::Point &size) {
+   if (size >= getMinimumSize() && size <= getMaximumSize()) {
+      _preferredSize = size;
+   }
+}
+
+void Component::setMaximumSize(const scv::Point &size) {
+   if (size >= getMinimumSize() && size >= getPreferredSize()) {      
+      _maximumSize = size;
+   }
 }
 
 } // namespace scv

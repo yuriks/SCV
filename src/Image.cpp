@@ -20,7 +20,7 @@ Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Poin
 
    _type = IMAGE;
 
-   _minSize = Point(1,1);
+   _minimumSize = Point(1,1);
 
 }
 
@@ -36,7 +36,7 @@ Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &file
    _realSize.x = width;
    _realSize.y = height;
 
-   _minSize = Point(1,1);
+   _minimumSize = Point(1,1);
 
    _type = IMAGE;
 }

@@ -10,7 +10,7 @@ ScrollPane::ScrollPane(const scv::Point &p1, const scv::Point &p2, scv::Panel * 
    _isHResizable = _isVResizable = true;   
    _translateWidth = 0.0f;
    _translateHeight = 0.0f;
-   _minSize = Point(60,60);
+   _minimumSize = Point(60,60);
    _type = SCROLLPANE;
 
    setPanel(panel);

@@ -211,6 +211,9 @@
     <ClCompile Include="..\src\StaticLabel.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\util.cpp">
+      <Filter>5.Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">

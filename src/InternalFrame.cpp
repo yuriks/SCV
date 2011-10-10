@@ -32,7 +32,7 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    _panel->setDraggable(false);
    _panel->setResizable(false);
 
-   _minSize = Point(60,45);
+   _minimumSize = Point(60,45);
 
    _type = WINDOW;
 

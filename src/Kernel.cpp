@@ -602,7 +602,7 @@ bool Kernel::willAppearOnScreen(Component* component) {
       Point invPosition = absPosition.inverse();
       if (absPosition.x > Display.currSize[0] || absPosition.y > Display.currSize[1] ||             
             (absPosition.x + component->getWidth()) < 0 || (absPosition.y + component->getHeight()) < 0 ||
-            !math::isInside(Point(scissor->currentScissor().mx, scissor->currentScissor().my).inverse() - Point(0, scissor->currentScissor().mheight), Point(scissor->currentScissor().mwidth, scissor->currentScissor().mheight), absPosition, component->getSize())) {
+            !math::isInside(Point(scissor->currentScissor().x, scissor->currentScissor().y).inverse() - Point(0, scissor->currentScissor().height), Point(scissor->currentScissor().width, scissor->currentScissor().height), absPosition, component->getSize())) {
          return false;
       } else {
          return true;
