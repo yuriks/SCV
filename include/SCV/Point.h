@@ -5,122 +5,136 @@ namespace scv {
 
 class Point {
 public:
+   ///////////////////////////////////////////////////////////
    Point(void);
    Point(int x, int y);
+   //[<number>,<number>]
+   Point(const std::string &str);
 
-   Point operator*(int w) const;
-   Point operator/(int w) const;
-   Point operator+(int w) const;
-   Point operator-(int w) const;
+   virtual ~Point(void);
+   ///////////////////////////////////////////////////////////
 
-   Point operator+(const Point& rhs) const;
-   Point operator-(const Point& rhs) const;
+   ///////////////////////////////////////////////////////////
+   inline Point operator*(int w) const;
+   inline Point operator/(int w) const;
+   inline Point operator+(int w) const;
+   inline Point operator-(int w) const;
+   ///////////////////////////////////////////////////////////
 
-   void operator+=(int w);
-   void operator-=(int w);
+   ///////////////////////////////////////////////////////////
+   inline Point operator+(const Point& rhs) const;
+   inline Point operator-(const Point& rhs) const;
+   ///////////////////////////////////////////////////////////
 
-   void operator+=(const Point& rhs);
-   void operator-=(const Point& rhs);
-   bool operator!=(const Point& rhs) const;
-   bool operator==(const Point& rhs) const;
-   bool operator>=(const Point& rhs) const;
-   bool operator<=(const Point& rhs) const;
-   bool operator>(const Point& rhs) const;
-   bool operator<(const Point& rhs) const;
+   ///////////////////////////////////////////////////////////
+   inline void operator+=(int w);
+   inline void operator-=(int w);
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   inline void operator+=(const Point& rhs);
+   inline void operator-=(const Point& rhs);
+   inline bool operator!=(const Point& rhs) const;
+   inline bool operator==(const Point& rhs) const;
+   inline bool operator>=(const Point& rhs) const;
+   inline bool operator<=(const Point& rhs) const;
+   inline bool operator>(const Point& rhs) const;
+   inline bool operator<(const Point& rhs) const;
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    friend std::ostream& operator<<(std::ostream& lhs, const Point& rhs);
+   ///////////////////////////////////////////////////////////
    
-   Point & translateX(int w);
-   Point & translateY(int w);
+   ///////////////////////////////////////////////////////////
+   inline Point & translateX(int w);
+   inline Point & translateY(int w);
+   ///////////////////////////////////////////////////////////
    
    const Point inverse(void) const;
 
+   ///////////////////////////////////////////////////////////
    int x, y;
+   ///////////////////////////////////////////////////////////
 };
 
-inline Point::Point(void)
-   : x(0), y(0) {
-}
 
-inline Point::Point(int x, int y)
-   : x(x), y(y) {
-}
 
-inline Point Point::operator*(int w) const {
+Point Point::operator*(int w) const {
    return Point(x * w, y * w);
 }
 
-inline Point Point::operator/(int w) const {
+Point Point::operator/(int w) const {
    return Point(x / w, y / w);
 }
 
-inline Point Point::operator+(int w) const {
+Point Point::operator+(int w) const {
    return Point(x + w, y + w);
 }
 
-inline Point Point::operator+(const Point& rhs) const {
+Point Point::operator+(const Point& rhs) const {
    return Point(x + rhs.x, y + rhs.y);
 }
 
-inline Point Point::operator-(int w) const {
+Point Point::operator-(int w) const {
    return Point(x - w, y - w);
 }
 
 
-inline Point Point::operator-(const Point& rhs) const {
+Point Point::operator-(const Point &rhs) const {
    return Point(x - rhs.x, y - rhs.y);
 }
 
-inline void Point::operator+=(int w) {
+void Point::operator+=(int w) {
    x += w;
    y += w;
 }
 
-inline void Point::operator+=(const Point& rhs) {
+void Point::operator+=(const Point &rhs) {
    x += rhs.x;
    y += rhs.y;
 }
 
-inline void Point::operator-=(int w) {
+void Point::operator-=(int w) {
    x -= w;
    y -= w;
 }
 
-inline void Point::operator-=(const Point& rhs) {
+void Point::operator-=(const Point &rhs) {
    x -= rhs.x;
    y -= rhs.y;
 }
 
-inline bool Point::operator!=(const Point& rhs) const {
+bool Point::operator!=(const Point &rhs) const {
    return (x != rhs.x || y != rhs.y);
 }
 
-inline bool Point::operator==(const Point& rhs) const {
+bool Point::operator==(const Point &rhs) const {
    return (x == rhs.x && y == rhs.y);
 }
 
-inline bool Point::operator>=(const Point& rhs) const {
+bool Point::operator>=(const Point &rhs) const {
    return (x >= rhs.x && y >= rhs.y);
 }
 
-inline bool Point::operator<=(const Point& rhs) const {
+bool Point::operator<=(const Point &rhs) const {
    return (x <= rhs.x && y <= rhs.y);
 }
 
-inline bool Point::operator>(const Point& rhs) const {
+bool Point::operator>(const Point &rhs) const {
    return (x > rhs.x && y > rhs.y);
 }
 
-inline bool Point::operator<(const Point& rhs) const {
+bool Point::operator<(const Point &rhs) const {
    return (x < rhs.x && y < rhs.y);
 }
 
-inline Point & Point::translateX(int w)  {
+Point &Point::translateX(int w)  {
    x += w;
    return *this;
 }
 
-inline Point & Point::translateY(int w)  {
+Point &Point::translateY(int w)  {
    y += w;
    return *this;
 }

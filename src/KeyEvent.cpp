@@ -7,9 +7,11 @@ namespace scv {
 
 KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::State state) :
       _key(key), _modifiers(mod), _special(special), _state(state) {
-   // none
 }
 
+
+KeyEvent::~KeyEvent(void) {
+}
 
 std::string KeyEvent::getKeyString(void) const {
    if (isSpecial()) {

@@ -5,7 +5,7 @@
 
 namespace scv {
 
-TextField::TextField(const scv::Point &p1, unsigned int width, const std::string &str) : TextBox(p1,width,str) {
+TextField::TextField(const scv::Point &p1, unsigned int width, const std::string &str) : TextBox(p1, width, str) {
    _isVResizable = false;
    _filter.allowAll();
    _currChar    = -1;
@@ -19,16 +19,27 @@ TextField::TextField(const scv::Point &p1, unsigned int width, const std::string
    createTexture();
 }
 
+TextField::~TextField(void) {
+}
 
-void TextField::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void TextField::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void TextField::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void TextField::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void TextField::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void TextField::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void TextField::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void TextField::onSizeChange(void) {/**/}
-void TextField::onPositionChange(void) {/**/}
+void TextField::onMouseClick(const scv::MouseEvent &evt) {
+}
+void TextField::onMouseHold(const scv::MouseEvent &evt) {
+}
+void TextField::onMouseOver(const scv::MouseEvent &evt) {
+}
+void TextField::onMouseUp(const scv::MouseEvent &evt) {
+}
+void TextField::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void TextField::onKeyUp(const scv::KeyEvent &evt) {
+}
+void TextField::onMouseWheel(const scv::MouseEvent &evt) {
+}
+void TextField::onSizeChange(void) {
+}
+void TextField::onPositionChange(void) {
+}
 
 void TextField::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -100,6 +111,8 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
+   if (!isEditable()) return;
+
    if (isInside(evt.getPosition()) && kernel->requestMouseUse(this)) {
       cursor->setGlutCursor(GLUT_CURSOR_TEXT);
    }
@@ -163,6 +176,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
    static FontTahoma *font = FontTahoma::getInstance();
    static Cursor *cursor = Cursor::getInstance();
 
+   if (!isEditable()) return;
 
    if (isFocused()) {
 

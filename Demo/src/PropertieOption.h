@@ -37,10 +37,10 @@ protected:
    ///////////////////////////////////////////////////////////
    class PropertieTextField : public scv::TextField {
    public:
-      PropertieTextField(PropertieOption *host);
+      PropertieTextField(PropertieOption *host, bool editable);
       virtual ~PropertieTextField(void);
 
-      void onKeyUp(const scv::KeyEvent &evt);
+      void onKeyPressed(const scv::KeyEvent &evt);
 
    protected:
       PropertieOption *_host;

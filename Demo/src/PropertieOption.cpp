@@ -15,10 +15,10 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
 
    switch (_type) {
    case EDITABLE_TEXTFIELD:
-      addChild(new PropertieTextField(this));
+      addChild(new PropertieTextField(this, true));
       break;
    case TEXTFIELD:
-      addChild(new PropertieTextField(this));
+      addChild(new PropertieTextField(this, false));
       break;
    case EDITABLE_CHECKBOX:
       addChild(new PropertieCheckBox(this));
@@ -78,13 +78,24 @@ void PropertieOption::PropertieCheckBox::onValueChange(void) {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host) : scv::TextField(scv::Point(0,0), 100, "") {
+PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host, bool editable) : scv::TextField(scv::Point(0,0), 100, "") {
    _host = host;
+
+   scv::TextFilter filter;
+   filter.denyAll();
+   filter.allowNumbers();
+   filter.allowThese(",");
+
+   setFilter(filter);
+
+   setEditable(editable);
 }
 
 PropertieOption::PropertieTextField::~PropertieTextField(void) {
 }
 
-void PropertieOption::PropertieTextField::onKeyUp(const scv::KeyEvent &evt) {
-   _host->onValueChange(getString());
+void PropertieOption::PropertieTextField::onKeyPressed(const scv::KeyEvent &evt) {
+   if (evt.getKeyString() == "Enter") {
+      _host->onValueChange(getString());
+   }
 }

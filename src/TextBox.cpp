@@ -17,6 +17,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, co
    refreshText();
    _type = textBox;
 
+   _editable = true;
+
    createTexture();
 }
 
@@ -30,6 +32,8 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str
    _nLines = 1;
    refreshText();
    _type = textBox;
+
+   _editable = true;
 
    createTexture();
 }
@@ -46,18 +50,32 @@ TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &
    setWidth(p2.x - p1.x);
    _type = textBox;
 
+   _editable = true;
+
    createTexture();
 }
 
-void TextBox::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void TextBox::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void TextBox::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void TextBox::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void TextBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void TextBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void TextBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void TextBox::onSizeChange(void) {/**/}
-void TextBox::onPositionChange(void) {/**/}
+TextBox::~TextBox(void) {
+}
+
+void TextBox::onMouseClick(const scv::MouseEvent &evt) {
+}
+void TextBox::onMouseHold(const scv::MouseEvent &evt) {
+}
+void TextBox::onMouseOver(const scv::MouseEvent &evt) {
+}
+void TextBox::onMouseUp(const scv::MouseEvent &evt) {
+}
+void TextBox::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void TextBox::onKeyUp(const scv::KeyEvent &evt) {
+}
+void TextBox::onMouseWheel(const scv::MouseEvent &evt) {
+}
+void TextBox::onSizeChange(void) {
+}
+void TextBox::onPositionChange(void) {
+}
 
 void TextBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -188,8 +206,6 @@ void TextBox::removeSelection(void) {
    }
 }
 
-
-
 void TextBox::upLine(void) {
    static FontTahoma *font = FontTahoma::getInstance();
    int desloc = 0;
@@ -209,8 +225,6 @@ void TextBox::upLine(void) {
       _currChar++;
    }
 }
-
-
 
 void TextBox::downLine(void) {
    static FontTahoma *font = FontTahoma::getInstance();
@@ -246,6 +260,8 @@ void TextBox::processMouse(const scv::MouseEvent &evt) {
 
    if(!_receivingCallbacks) return;
    _refreshCursor = false;
+
+   if (!isEditable()) return;
 
    if (evt.getPosition() >= getAbsolutePosition() && evt.getPosition() < (getSize() + getAbsolutePosition()) && getParentScissor().isInside(evt.getInversePosition()) &&
          kernel->requestMouseUse(this)) {
@@ -349,11 +365,10 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
 
    _refreshCursor = false;
    _refreshText = true;
-
-
+   
+   if (!isEditable()) return;
 
    if (isFocused()) {
-
       Component::processKey(evt);
 
       if(!_receivingCallbacks) return;
@@ -693,7 +708,12 @@ void TextBox::setHeight(const int height) {
    refreshText();
 }
 
+void TextBox::setEditable(bool editable) {
+   _currChar = -1;
+   _selectStart = 0;
+   _selectEnd = 0;
 
-
+   _editable = editable;
+}
 
 } // namespace scv
