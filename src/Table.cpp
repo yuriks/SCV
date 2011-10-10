@@ -27,7 +27,7 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
       _table.push_back(tmp);
    }
 
-   _type = table;
+   _type = TABLE;
 
    createTexture();
 

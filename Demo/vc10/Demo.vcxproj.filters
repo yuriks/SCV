@@ -10,8 +10,11 @@
     <Filter Include="2.App">
       <UniqueIdentifier>{80a1ead6-9cf7-4740-b3f5-32647e9fc80f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PanelProperties">
+    <Filter Include="3.PanelProperties">
       <UniqueIdentifier>{b82f00ed-fd23-4e91-a82b-9a38bcf21991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Pallete">
+      <UniqueIdentifier>{8165ae81-d56e-4ccc-8613-8ae921222da0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25,10 +28,13 @@
       <Filter>2.App</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Properties.cpp">
-      <Filter>PanelProperties</Filter>
+      <Filter>3.PanelProperties</Filter>
     </ClCompile>
     <ClCompile Include="..\src\PropertieOption.cpp">
-      <Filter>PanelProperties</Filter>
+      <Filter>3.PanelProperties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pallete.cpp">
+      <Filter>4.Pallete</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,10 +45,13 @@
       <Filter>2.App</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Properties.h">
-      <Filter>PanelProperties</Filter>
+      <Filter>3.PanelProperties</Filter>
     </ClInclude>
     <ClInclude Include="..\src\PropertieOption.h">
-      <Filter>PanelProperties</Filter>
+      <Filter>3.PanelProperties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pallete.h">
+      <Filter>4.Pallete</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

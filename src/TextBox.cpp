@@ -15,7 +15,7 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, co
    _selectEnd = 0;
    _nLines = lines;
    refreshText();
-   _type = textBox;
+   _type = TEXTBOX;
 
    _editable = true;
 
@@ -31,7 +31,7 @@ TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str
    _selectEnd = 0;
    _nLines = 1;
    refreshText();
-   _type = textBox;
+   _type = TEXTBOX;
 
    _editable = true;
 
@@ -48,7 +48,7 @@ TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &
 
    setHeight(p2.y - p1.y);
    setWidth(p2.x - p1.x);
-   _type = textBox;
+   _type = TEXTBOX;
 
    _editable = true;
 

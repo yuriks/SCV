@@ -35,7 +35,7 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    // initial color
    _currentColorPosition = Point(0, MatrixTemplate<ColorRGBA>::getHeight() - 1);
 
-   _type = colorPicker;
+   _type = COLORPICKER;
 
    refreshColor();
 

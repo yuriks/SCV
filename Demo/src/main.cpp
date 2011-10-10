@@ -3,188 +3,15 @@
 #include "Application.h"
 #include "Properties.h"
 
-class ButtonPallete :public scv::Button {
-public:
-   ButtonPallete(const scv::Point &p, const std::string &str) : Button(p, str) {
-
-   }
-   virtual ~ButtonPallete(void) {
-   }
-
-   void onMouseClick(const scv::MouseEvent &evt) {
-      Application *app = static_cast<Application*>(scv::Kernel::getInstance());
-      app->addComponentFromPalette(getString());
-   }
-protected:
-   
-private:
-};
-
-class PanelPalleteComponents : public scv::Panel {
-public:
-   PanelPalleteComponents(std::string title, const scv::Point &p1, const scv::Point &p2) : Panel(p1, p2) {
-      _componentsPerLine = 0;
-      _widthSet = false;
-
-      addChild(new scv::Label(scv::Point(s_defaultGap, s_defaultGap), title));
-   }
-   virtual ~PanelPalleteComponents(void) {
-   }
-
-   virtual void addComponent(std::string name) {
-      if (!_widthSet) {
-         addChild(new ButtonPallete(scv::Point(), name));
-      }
-   }
-
-   void adjustButtonsWidth(void) {
-      if (!_widthSet) {
-         _widthSet = true;
-         adjustButtons();         
-         for (scv::Component::List::iterator iter = ++_children.begin(); iter != _children.end(); ++iter) {
-            (*iter)->setWidth(getWidth() / _componentsPerLine - s_defaultGap + 2);
-         }
-      }
-   }
-
-protected:
-   void adjustButtons(void) {
-      _componentsPerLine = _children.size();
-      
-      while (!valid(_componentsPerLine)) {
-         _componentsPerLine--;
-      }
-      if (_componentsPerLine <= 0) _componentsPerLine = 1;
-
-      int currLine = 0, componets = _componentsPerLine, lastEnd = 0;
-      scv::Component::List::iterator iter = _children.begin();
-      int x, y;
-      for (scv::Component::List::iterator iter = ++_children.begin(); iter != _children.end(); ++iter) {
-         y = (*_children.begin())->getHeight() + s_defaultGap;
-         if (currLine == 0) {
-            y += s_defaultGap;
-         } else {
-            y += currLine * (*++_children.begin())->getHeight() + s_defaultGap + (s_defaultGap * currLine - 1);
-         }            
-         if (_componentsPerLine - componets == 0) {
-            x = s_defaultGap / 2;
-         } else {
-            x = s_defaultGap / 2 + (getWidth() / _componentsPerLine) * (_componentsPerLine - componets);
-         }
-         (*iter)->setRelativePosition(scv::Point(x, y));         
-         lastEnd = x + (*iter)->getWidth();
-         componets--;
-         if (componets == 0) {
-            componets = _componentsPerLine;
-            currLine++;
-         }
-      }
-      setHeight(y + (*++_children.begin())->getHeight() + s_defaultGap);
-   }
-
-   bool valid(int componentsPerLine) {
-      int width = 0, line = componentsPerLine;
-      for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-          width += (*iter)->getWidth() + s_defaultGap * 2;
-          line--;
-         if (line == 0) {
-            if (width > getWidth()) {
-               return false;
-            } else {
-               width = 0;
-               line = componentsPerLine;
-            }
-         }         
-      }
-      return true;
-   }
-
-   static const int s_defaultGap = 5;
-   int _componentsPerLine;
-   bool _widthSet;
-   
-private:
-};
-
 int main(int argc, char* argv[]) {
    scv::Kernel::setInstance(new Application());
-   scv::Kernel *kernel = scv::Kernel::getInstance();
+   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
+   
    scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
    scheme->loadScheme(scv::ColorScheme::osx);
    scheme->setColor(scv::ColorScheme::font, scv::Color4f(1,1,1));
-
-   static const int s_defaultWindowWidht = 1280;
-   static const int s_defaultWindowHeight = 720;
    
-   kernel->setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
-
-   static const int s_defaultBorderGap = 10;
-   static const int s_defaultRightBarSize = 300;
-
-
-   scv::Panel *panelRightBar = new scv::Panel(scv::Point(s_defaultWindowWidht - s_defaultRightBarSize + s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultBorderGap, s_defaultWindowHeight - s_defaultBorderGap));
-   kernel->addComponent(panelRightBar);
-      
-   //Palette
-   ///////////////////////////////////////////////////////////
-   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 25, 0));
-   scv::ScrollPane *scrollPanePalette = new scv::ScrollPane(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 10, 345), panelPalette);
-   panelRightBar->addChild(scrollPanePalette);
-   
-   int y = 0;
-   PanelPalleteComponents *containers = new PanelPalleteComponents("SCV Containers", scv::Point(0,0), scv::Point(panelPalette->getWidth(), 0));   
-   panelPalette->addChild(containers);
-   containers->addComponent("Image");
-   containers->addComponent("Panel");
-   containers->addComponent("ScroolPane");
-   containers->addComponent("TabbedPane");
-   containers->adjustButtonsWidth();
-
-   y = containers->getRelativePosition().y + containers->getHeight() + 15;
-   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
-   panelPalette->addChild(controls);
-   controls->addComponent("Button");
-   controls->addComponent("ToggleButton");
-   controls->addComponent("ProgressBar");
-   controls->addComponent("Slider");
-   controls->addComponent("Spinner");
-   controls->addComponent("ComboBox");
-   controls->addComponent("MenuBar");
-   controls->addComponent("CheckBox");
-   controls->addComponent("RadioButton");
-   controls->addComponent("Label");
-   controls->addComponent("TextBox");
-   controls->addComponent("TextField");
-   controls->addComponent("Canvas");
-   controls->addComponent("ColorPicker");
-   controls->addComponent("Separator");
-   controls->addComponent("Table");
-   controls->adjustButtonsWidth();
-
-   y = controls->getRelativePosition().y + controls->getHeight() + 15;
-   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
-   panelPalette->addChild(windows);
-   windows->addComponent("InternalFrame");
-   windows->adjustButtonsWidth();
-
-   y = windows->getRelativePosition().y + windows->getHeight();
-   panelPalette->setHeight(y);
-
-   ///////////////////////////////////////////////////////////
-
-   //Design
-   ///////////////////////////////////////////////////////////
-   scv::Panel *panelDesign = new scv::Panel(scv::Point(0, 0), scv::Point(800, 600));
-   panelDesign->setResizable(true);
-   scv::ScrollPane *scrollPaneDesign = new scv::ScrollPane(scv::Point(s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultRightBarSize, s_defaultWindowHeight - s_defaultBorderGap), panelDesign);
-   scrollPaneDesign->setPanel(panelDesign);
-   kernel->addComponent(scrollPaneDesign);
-   ///////////////////////////////////////////////////////////
-
-   Properties *p = new Properties(200);
-   panelDesign->addChild(p);
-
    /*   
    scv::Panel *panel = new scv::Panel(scv::Point(40,40), scv::Point(1280 - 920, 720 - 40));
    panel->setResizable(true);
@@ -245,6 +72,7 @@ int main(int argc, char* argv[]) {
    kernel->addComponent(panel);
    /**/
 
+   kernel->init();
    kernel->run();
    return 0;
 }

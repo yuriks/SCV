@@ -34,7 +34,7 @@ ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1,p2,""
    MenuHolder::getInstance()->registerMenu(menu);
    _isHResizable = true;
    _isVResizable = false;
-   _type = comboBox;
+   _type = COMBOBOX;
 
    _active = false;
 }
@@ -44,7 +44,7 @@ ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1,Point(p
    MenuHolder::getInstance()->registerMenu(menu);
    _isHResizable = true;
    _isVResizable = false;
-   _type = comboBox;
+   _type = COMBOBOX;
 
    _active = false;
 }
@@ -57,7 +57,7 @@ ComboBox::ComboBox(const scv::Point &p, unsigned int width, std::vector <std::st
 
    _isHResizable = true;
    _isVResizable = false;
-   _type = comboBox;
+   _type = COMBOBOX;
    setItems(items);
    if (defaultIndex >= 0 && defaultIndex < items.size())
       select(items[defaultIndex]);

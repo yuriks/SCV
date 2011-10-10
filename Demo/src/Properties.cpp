@@ -32,7 +32,7 @@ Properties::Properties(int width) : scv::Panel(scv::Point(0, 0), scv::Point(widt
    addChild("Callbacks Status", PropertieOption::EDITABLE_CHECKBOX);
 
    addChild("Parent Scissor", PropertieOption::EDITABLE_TEXTFIELD);
-   addChild("Scissor", PropertieOption::EDITABLE_TEXTFIELD);   
+   addChild("Scissor", PropertieOption::EDITABLE_TEXTFIELD);
 }
 
 Properties::~Properties(void) {
@@ -40,8 +40,9 @@ Properties::~Properties(void) {
 }
 
 
-void Properties::setComponent(scv::Component *component) {
-   setValue("Relative Position", "Relative Position");
+void Properties::setComponent(scv::Component *component) {   
+   std::cout << component->getRelativePosition() << std::endl;
+   setValue("Relative Position", scv::toString(component->getRelativePosition()));
 }
 
 void Properties::addChild(std::string title, PropertieOption::Type type) {
@@ -62,12 +63,14 @@ void Properties::setValue(const std::string &title, const std::string &str) {
    }
 }
 
-void Properties::setValue(const std::string &title, bool state) {
+/*
+void Properties::setValue(const std::string &title, bool state) {   
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       PropertieOption *option = static_cast<PropertieOption*>(*iter);
       if (option->getOption() == title) option->setValue(state);
    }
 }
+/**/
 
 void Properties::onValueChange(const std::string &title, const std::string &str) {
 }
@@ -93,7 +96,7 @@ void PanelProperties::setValue(const std::string &title, const std::string &str)
 }
 
 void PanelProperties::setValue(const std::string &title, bool state) {
-   Properties::setValue(title, state);
+   //Properties::setValue(title, state);
 }
 
 void PanelProperties::onValueChange(const std::string &title, const std::string &str) {

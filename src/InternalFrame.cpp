@@ -33,7 +33,7 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
 
    _minSize = Point(60,45);
 
-   _type = window;
+   _type = WINDOW;
 
    createTexture();
 }

@@ -11,7 +11,7 @@ ScrollPane::ScrollPane(const scv::Point &p1, const scv::Point &p2, scv::Panel * 
    _translateWidth = 0.0f;
    _translateHeight = 0.0f;
    _minSize = Point(60,60);
-   _type = scrollPane;
+   _type = SCROLLPANE;
 
    setPanel(panel);
    createTexture();

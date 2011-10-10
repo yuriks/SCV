@@ -20,12 +20,12 @@ public:
 
    ///////////////////////////////////////////////////////////
    enum ObjectType {
-      NONE        , panel      , colorPicker , progressBar,
-      scrool      , slider     , spinner     , button     ,
-      checkBox    , radioButton, toggleButton, textField  ,
-      textBox     , separator  , window      , menuBar    ,
-      tabbedPane  , scrollPane , image       , table      ,
-      comboBox    , canvas     , treeView    , label
+      NONE        , PANEL      , COLORPICKER , PROGRESSBAR,
+      SCROLL      , SLIDER     , SPINNER     , BUTTON     ,
+      CHECKBOX    , RADIOBUTTON, TOGGLEBUTTON, TEXTFIELD  ,
+      TEXTBOX     , SEPARATOR  , WINDOW      , MENUBAR    ,
+      TABBEDPANE  , SCROLLPANE , IMAGE       , TABLE      ,
+      COMBOBOX    , CANVAS     , TREEVIEW    , LABEL
    };
    ///////////////////////////////////////////////////////////
 

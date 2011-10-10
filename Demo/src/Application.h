@@ -1,12 +1,16 @@
 #ifndef __APPLICATION_H__
 #define __APPLICATION_H__
 
+#include "Properties.h"
+
 class Application : public scv::Kernel {
 public:
    ///////////////////////////////////////////////////////////
    Application(void);
    virtual ~Application(void);
    ///////////////////////////////////////////////////////////
+
+   void init(void);
 
    //SCVCallbacks
    ///////////////////////////////////////////////////////////
@@ -25,7 +29,19 @@ public:
 
    void addComponentFromPalette(std::string component);
 protected:
-   
+   static const int s_defaultWindowWidht = 1280;
+   static const int s_defaultWindowHeight = 720;
+
+   scv::Panel *_panelRightBar;
+   ///////////////////////////////////////////////////////////
+   scv::Panel *panelPalette;
+   scv::ScrollPane *scrollPanePalette;
+   ///////////////////////////////////////////////////////////
+
+   scv::Panel *panelDesign;
+   scv::ScrollPane *scrollPaneDesign;
+
+   Properties *_properties;
 private:
 };
 

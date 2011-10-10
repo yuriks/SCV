@@ -12,7 +12,7 @@ namespace scv{
 
 TreeView::TreeView(scv::Point p1,scv::Point p2 ,TW_types view) : ComponentWithTexture(p1,p2)
 {
-   _type = treeView;
+   _type = TREEVIEW;
    tree = new GTree();
    tree->init = new GNode("INIT");
 #ifdef _WIN32

@@ -7,7 +7,7 @@
 namespace scv {
 
 Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
-   _type = panel;
+   _type = PANEL;
 
    _layout = NULL;
    _leftToRight = true;

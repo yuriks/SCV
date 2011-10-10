@@ -11,7 +11,7 @@ const int TabbedPane::s_barHeight   = 22;
 TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
    _currecOverTab = _currSelectedTab = -1;
    _index.push_back(s_tabSpacing);
-   _type = tabbedPane;
+   _type = TABBEDPANE;
 
    createTexture();
 }
@@ -19,7 +19,7 @@ TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWi
 TabbedPane::TabbedPane(const scv::Point &p1, unsigned int width, unsigned int height) : ComponentWithTexture(p1, Point(p1.x+width,p1.y+height)) {
    _currecOverTab = _currSelectedTab = -1;
    _index.push_back(s_tabSpacing);
-   _type = tabbedPane;
+   _type = TABBEDPANE;
 
    createTexture();
 }

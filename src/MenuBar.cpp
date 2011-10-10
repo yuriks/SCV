@@ -16,7 +16,7 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0),Point(width, s_menuHeight)) {
    _index.push_back(s_borderWidth);
    _currSelectedMenu = -1;
    _currecOverMenu = -1;
-   _type = menuBar;
+   _type = MENUBAR;
 
    createTexture();
 }

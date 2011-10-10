@@ -13,7 +13,7 @@ Separator::Separator(const scv::Point &p1, Separator::orientation align, unsigne
    } else {
       _isHResizable = false;
    }
-   _type = separator;
+   _type = SEPARATOR;
 
    createTexture();
 }

@@ -8,7 +8,7 @@ namespace scv {
 ProgressBar::ProgressBar(const scv::Point &p, unsigned int width , double startValue) :
       Label(p,Point(p.x+width,p.y+24), toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
-   _type = progressBar;
+   _type = PROGRESSBAR;
 
    createTexture();
 }
@@ -16,7 +16,7 @@ ProgressBar::ProgressBar(const scv::Point &p, unsigned int width , double startV
 ProgressBar::ProgressBar(const scv::Point &p1, const scv::Point &p2, double startValue) :
       Label(p1,p2,toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
-   _type = progressBar;
+   _type = PROGRESSBAR;
 
    createTexture();
 }
@@ -24,7 +24,7 @@ ProgressBar::ProgressBar(const scv::Point &p1, const scv::Point &p2, double star
 ProgressBar::ProgressBar(const scv::Point &p, double startValue) :
       Label(p,Point(p.x+100,p.y+24),toString(startValue) + "%"), Counter(0,100,startValue<0?0:startValue>100?100:startValue,1) {
    _isHResizable = _isVResizable = true;
-   _type = progressBar;
+   _type = PROGRESSBAR;
 
    createTexture();
 }

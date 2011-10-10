@@ -30,7 +30,7 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
    _minSize.y = getHeight();
 
    _lastTime = _incrementTime = 0;
-   _type = spinner;
+   _type = SPINNER;
 
    createTexture();
 }

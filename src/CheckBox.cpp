@@ -7,7 +7,7 @@ namespace scv {
 
 CheckBox::CheckBox(const scv::Point &p1, bool state, const std::string &str) : StateButton(state), Label(p1, Point( p1.x + 13 + FontTahoma::getInstance()->getStringLength(str) + 3,p1.y + 13), str) {
    _isHResizable = _isVResizable = false;
-   _type = checkBox;
+   _type = CHECKBOX;
 
    createTexture();
 }

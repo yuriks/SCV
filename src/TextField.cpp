@@ -14,7 +14,7 @@ TextField::TextField(const scv::Point &p1, unsigned int width, const std::string
 
    refreshText();
 
-   _type = textField;
+   _type = TEXTFIELD;
 
    createTexture();
 }
