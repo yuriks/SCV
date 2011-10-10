@@ -60,6 +60,9 @@ void TreeItem::addChild(Component *object) {
    
    setHeight(_style->calculateHeight(*this));
    setWidth(_style->calculateWidth(*this));
+
+   setPreferredSize(getSize());
+   setMinimumSize(getSize());
 }
 
 void TreeItem::removeChild(Component *object) {
@@ -70,6 +73,9 @@ void TreeItem::removeChild(Component *object) {
 
    setHeight(_style->calculateHeight(*this));
    setWidth(_style->calculateWidth(*this));
+
+   setPreferredSize(getSize());
+   setMinimumSize(getSize());   
 }
 
 std::string TreeItem::getString(void) {
@@ -97,11 +103,11 @@ void TreeItem::setItemStyle(const scv::PopupItemStyle *style) {
 }
 
 void TreeItem::processMouse(const scv::MouseEvent &evt) {
-
+   Component::processMouse(evt);
 }
 
 void TreeItem::processKey(const scv::KeyEvent &evt) {
-
+   Component::processKey(evt);
 }
 
 void TreeItem::display(void) {

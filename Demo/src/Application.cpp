@@ -82,12 +82,17 @@ void Application::init(void) {
    _managedComponents.push_back(panelDesign);
    /**/
 
-   scv::TreeItem *tItem  = new scv::TreeItem("First");
+   scv::TreeItem *tItem  = new scv::TreeItem("Tree");
+   scv::TreeItem *dItem = new scv::TreeItem("First");
+      dItem->addChild(new scv::TreeItem("First"));
+   tItem->addChild(dItem);
    tItem->addChild(new scv::TreeItem("Second"));
    tItem->addChild(new scv::TreeItem("Third"));
    tItem->addChild(new scv::TreeItem("Fourth"));
-   tItem->addChild(new scv::TreeItem("FIFTH"));
    addComponent(tItem);
+
+   tItem->setDraggable(true);
+   tItem->setResizable(true);
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   

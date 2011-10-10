@@ -166,7 +166,6 @@ public:
       TreeItem *pItem;
       for (Component::List::const_iterator iter = item.getChildren().begin(); iter != item.getChildren().end(); ++iter, ++i) {
          pItem = static_cast<TreeItem*>(*iter);
-         std::cout << pItem->getString() << std::endl;
          StaticLabel::display(s_leftBorder + pos.x + s_borderHeight, pos.y + i * s_menuHeight + s_borderHeight, pItem->getString(), scheme->getColor(ColorScheme::CONTEXTMENUFONT));
       }
    }
@@ -178,7 +177,7 @@ public:
          pos.y >= item.getAbsolutePosition().y + index * s_menuHeight + s_borderHeight/2.f && pos.y <= item.getAbsolutePosition().y + index * s_menuHeight + s_menuHeight + s_borderHeight/2.f - 1);
    }
    virtual Point getSubItemPosition(TreeItem &item, int index) const {
-      return Point(item.getAbsolutePosition().x - item.getChild(index)->getWidth() + s_borderWidth, item.getAbsolutePosition().y + index * s_menuHeight);
+      return Point(item.getWidth(), index * s_menuHeight);
    }
    ///////////////////////////////////////////////////////////
 
