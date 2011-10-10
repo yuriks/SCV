@@ -87,6 +87,8 @@ void Application::init(void) {
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
 }
 void Application::onMouseHold(const scv::MouseEvent &evt) {
+   if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
+   _properties->setComponent(getFocusedComponent());
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
