@@ -81,7 +81,6 @@
     <ClCompile Include="..\src\InternalFrame.cpp" />
     <ClCompile Include="..\src\InternalFrameHolder.cpp" />
     <ClCompile Include="..\src\ToolTip.cpp" />
-    <ClCompile Include="..\src\TreeItem.cpp" />
     <ClCompile Include="..\src\TreeModel.cpp" />
     <ClCompile Include="..\src\SystemTreeView.cpp" />
     <ClCompile Include="..\src\util.cpp" />
@@ -157,7 +156,6 @@
     <ClInclude Include="..\include\SCV\Timer.h" />
     <ClInclude Include="..\include\SCV\ToggleButton.h" />
     <ClInclude Include="..\include\SCV\ToolTip.h" />
-    <ClInclude Include="..\include\SCV\TreeItem.h" />
     <ClInclude Include="..\include\SCV\TreeModel.h" />
     <ClInclude Include="..\include\SCV\SystemTreeView.h" />
     <ClInclude Include="..\include\SCV\util.h" />

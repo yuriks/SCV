@@ -214,9 +214,6 @@
     <ClCompile Include="..\src\VistaMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TreeItem.cpp">
-      <Filter>4.Widgets\Tree</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -443,9 +440,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\PopupItemStyle.h">
       <Filter>4.Widgets\Tree\PopupItemStyle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\TreeItem.h">
-      <Filter>4.Widgets\Tree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

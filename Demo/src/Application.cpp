@@ -16,7 +16,6 @@ void Application::init(void) {
    static const int s_defaultBorderGap = 10;
    static const int s_defaultRightBarSize = 300;
 
-   /*
    scv::Panel *panelRightBar = new scv::Panel(scv::Point(s_defaultWindowWidht - s_defaultRightBarSize + s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultBorderGap, s_defaultWindowHeight - s_defaultBorderGap));
    addComponent(panelRightBar);
 
@@ -81,18 +80,6 @@ void Application::init(void) {
 
    _managedComponents.push_back(panelDesign);
    /**/
-
-   scv::TreeItem *tItem  = new scv::TreeItem("Tree");
-   scv::TreeItem *dItem = new scv::TreeItem("First");
-      dItem->addChild(new scv::TreeItem("First"));
-   tItem->addChild(dItem);
-   tItem->addChild(new scv::TreeItem("Second"));
-   tItem->addChild(new scv::TreeItem("Third"));
-   tItem->addChild(new scv::TreeItem("Fourth"));
-   addComponent(tItem);
-
-   tItem->setDraggable(true);
-   tItem->setResizable(true);
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
