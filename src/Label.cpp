@@ -9,6 +9,8 @@ Label::Label(const scv::Point &p1, const scv::Point &p2, const std::string& str)
    _str = str;
    _type = LABEL;
 
+   setMaximumSize(getPreferredSize());
+
    createTexture();
 }
 
@@ -17,6 +19,8 @@ Label::Label(const scv::Point &p, const std::string& str) : ComponentWithTexture
    _str = str;
    _type = LABEL;
 
+   setMaximumSize(getPreferredSize());
+
    createTexture();
 }
 
@@ -24,6 +28,8 @@ Label::Label(const scv::Point &p, unsigned int width, const std::string& str) : 
    _isHResizable = _isVResizable = false;
    _str = str;
    _type = LABEL;
+
+   setMaximumSize(getPreferredSize());
 
    createTexture();
 }

@@ -38,9 +38,9 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, 
 
    _parent = NULL;   
 
-   setMaximumSize(Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()));
+   setMaximumSize(Point(-1, -1));
    setPreferredSize(Point(getWidth(), getHeight()));
-   setMinimumSize(Point(15,15));
+   setMinimumSize(getPreferredSize());
 }
 
 Component::~Component(void) {
@@ -411,11 +411,11 @@ Point Component::getPreferredSize(void) const {
 }
 
 Point Component::getMaximumSize(void) const {
-   return _maximumSize;
+   return (_maximumSize <= Point(0, 0)) ? Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()) : _maximumSize;
 }
 
 void Component::setMinimumSize(const scv::Point &size) {
-   if (size <= getPreferredSize() && size <= getMaximumSize()) {
+   if (size <= getPreferredSize() && size <= getMaximumSize() && size > Point(0, 0)) {
       _minimumSize = size;
    }
 }
@@ -427,7 +427,7 @@ void Component::setPreferredSize(const scv::Point &size) {
 }
 
 void Component::setMaximumSize(const scv::Point &size) {
-   if (size >= getMinimumSize() && size >= getPreferredSize()) {      
+   if (size >= getMinimumSize() && size >= getPreferredSize() || size <= Point(0, 0)) {      
       _maximumSize = size;
    }
 }

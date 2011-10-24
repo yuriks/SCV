@@ -9,6 +9,8 @@ Button::Button(const scv::Point &p1, const scv::Point &p2, const std::string &st
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
 
+   setMaximumSize(Point(-1, -1));
+
    createTexture();
 }
 
@@ -16,12 +18,16 @@ Button::Button(const scv::Point &p1, unsigned int width, const std::string &str)
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
 
+   setMaximumSize(Point(-1, -1));
+
    createTexture();
 }
 
 Button::Button(const scv::Point &p1, const std::string &str) : Label(p1, Point(p1.x + FontTahoma::getInstance()->getStringLength(str) + 10, p1.y + 24), str) {
    _isHResizable = _isVResizable = true;
    _type = BUTTON;
+
+   setMaximumSize(Point(-1, -1));
 
    createTexture();
 }

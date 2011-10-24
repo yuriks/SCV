@@ -12,6 +12,8 @@ Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(
    _layout = NULL;
    _leftToRight = true;
 
+   setMinimumSize(Point(15, 15));
+
    createTexture();
 }
 
