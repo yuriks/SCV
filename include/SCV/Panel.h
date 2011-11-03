@@ -47,6 +47,12 @@ public:
    virtual inline bool isLeftToRight(void);
    ///////////////////////////////////////////////////////////
 
+   //Memory Management
+   ///////////////////////////////////////////////////////////
+   virtual void addChild(Component *object);
+   virtual void removeChild(Component *object);
+   ///////////////////////////////////////////////////////////
+
 protected:
    GroupLayout *_layout;
    bool _leftToRight;

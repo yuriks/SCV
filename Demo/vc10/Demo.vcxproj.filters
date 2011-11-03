@@ -39,6 +39,7 @@
     <ClCompile Include="..\src\MenuBar.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GroupPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -59,5 +60,6 @@
     <ClInclude Include="..\src\MenuBar.h">
       <Filter>2.App</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\GroupPanel.h" />
   </ItemGroup>
 </Project>

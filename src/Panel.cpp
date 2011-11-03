@@ -153,4 +153,12 @@ Point Panel::getMaximumSize(void) const {
    }
 }
 
+void Panel::addChild(Component *object) {
+   ComponentWithTexture::addChild(object);
+}
+
+void Panel::removeChild(Component *object) {
+   ComponentWithTexture::removeChild(object);
+}
+
 } // namespace scv
