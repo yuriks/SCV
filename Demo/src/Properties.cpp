@@ -21,9 +21,13 @@ Properties::Properties(int width) : scv::Panel(scv::Point(0, 0), scv::Point(widt
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
 
-   _hGroup = _layout->createParallelGroup(scv::Group::CENTER);
-   _vGroup = _layout->createSequentialGroup();
-   _vGroup->addGap(5,5,5);
+   _hLeftGroup = _layout->createParallelGroup();
+   _hRightGroup = _layout->createParallelGroup();
+   _hGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)
+      ->addGroup(_hLeftGroup)
+      ->addGroup(_hRightGroup)
+   ;
+   _vGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)->setAutoGapsSize(5);
    
    _layout->setHorizontalGroup(_hGroup);
    _layout->setVerticalGroup(_vGroup);
@@ -81,26 +85,30 @@ void Properties::setComponent(scv::Component *component) {
 
 void Properties::addChild(std::string title, PropertieOption::Type type) {
    PropertieOption *option = new PropertieOption(this, title, type);
-   scv::Component::addChild(option);
+   _propertieList.push_back(option);
 
-   _hGroup->addComponent(option);
-   _vGroup->addComponent(option, 20, 20, 20);
-   _vGroup->addGap(5,5,5);
+   _hLeftGroup->addComponent(option->getLabel());
+   _hRightGroup->addComponent(option->getTarget());
 
-   setHeight(_children.size() * 20 + (_children.size() + 1) * 5);
+   
+   _vGroup->addGroup(_layout->createParallelGroup(scv::Spring::LEADING, false)->addComponent(option->getLabel())->addComponent(option->getTarget()));
 }
 
 void Properties::setValue(const std::string &title, const std::string &str) {
-   for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      PropertieOption *option = static_cast<PropertieOption*>(*iter);
-      if (option->getOption() == title) option->setValue(str);
+   for (PropertieList::iterator iter = _propertieList.begin(); iter != _propertieList.end(); ++iter) {
+      if ((*iter)->getOption() == title) {
+         (*iter)->setValue(str);
+         break;
+      }
    }
 }
 
 void Properties::setValue(const std::string &title, bool state) {   
-   for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      PropertieOption *option = static_cast<PropertieOption*>(*iter);
-      if (option->getOption() == title) option->setValue(state);
+   for (PropertieList::iterator iter = _propertieList.begin(); iter != _propertieList.end(); ++iter) {
+      if ((*iter)->getOption() == title) {
+         (*iter)->setValue(state);
+         break;
+      }
    }
 }
 

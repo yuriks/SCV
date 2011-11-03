@@ -35,9 +35,14 @@ void PanelPalleteComponents::addComponent(std::string name) {
 void PanelPalleteComponents::adjustButtonsWidth(void) {
    if (!_widthSet) {
       _widthSet = true;
-      adjustButtons();         
-      for (scv::Component::List::iterator iter = ++_children.begin(); iter != _children.end(); ++iter) {
-         (*iter)->setWidth(getWidth() / _componentsPerLine - s_defaultGap + 2);
+      adjustButtons();
+      if (_children.size() == 2) {
+         scv::Component::List::iterator iter = ++_children.begin();
+         (*iter)->setWidth(getWidth() - s_defaultGap + 1);
+      } else {         
+         for (scv::Component::List::iterator iter = ++_children.begin(); iter != _children.end(); ++iter) {
+            (*iter)->setWidth(getWidth() / _componentsPerLine - s_defaultGap + 2);
+         }
       }
    }
 }

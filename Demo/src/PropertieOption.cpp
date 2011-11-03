@@ -3,16 +3,13 @@
 
 #include "Properties.h"
 
-PropertieOption::PropertieOption(Properties *host, std::string title, Type type) : scv::Panel(scv::Point(0,0), scv::Point(100, 50)) {
+PropertieOption::PropertieOption(Properties *host, std::string title, Type type) {
    _host = host;
    _type = type;
    _target = NULL;
 
-   _layout = new scv::GroupLayout(this);
-   setLayout(_layout);
-
    _label = new scv::Label(scv::Point(0,0), title);
-   addChild(_label);
+   static_cast<scv::Panel*>(host)->addChild(_label);   
 
    switch (_type) {
    case EDITABLE_TEXTFIELD:
@@ -24,21 +21,12 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
    case EDITABLE_CHECKBOX:
       _target = new PropertieCheckBox(this);
       break;
-   }
-   addChild(_target);
-
-   _layout->setHorizontalGroup(_layout->createSequentialGroup()
-      ->addComponent(_label)
-      ->addComponent(_target)
-   );
-   _layout->setVerticalGroup(_layout->createParallelGroup()
-      ->addComponent(_label)
-      ->addComponent(_target)
-   );
+   }   
+   static_cast<scv::Panel*>(host)->addChild(_target);
 }
 
 PropertieOption::~PropertieOption(void) {
-   delete _layout;
+
 }
 
 const std::string & PropertieOption::getOption(void) const {

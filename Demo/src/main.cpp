@@ -4,6 +4,7 @@
 #include "Properties.h"
 #include "GapSpring.h"
 
+/*
 void example1() {
    scv::Kernel *kernel = scv::Kernel::getInstance();
    kernel->setWindowSize(1280, 720);
@@ -204,28 +205,19 @@ void example3() {
    kernel->addComponent(panel);
    panel->setRelativePosition(scv::Point(10, 180));
 }
+/**/
 
 int main(int argc, char* argv[]) {
-   /*
    scv::Kernel::setInstance(new Application());
    Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
-   /**/
-   scv::Kernel *kernel = scv::Kernel::getInstance();
 
    scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
    
    scheme->loadScheme(scv::ColorScheme::OSX);
    scheme->setColor(scv::ColorScheme::FONT, scv::Color4f(1,1,1));
    
-   /**/
-   example1();
-   example2();
-   example3();
-   /**/
-
-   /*
    kernel->init();
-   /**/
+   
    kernel->run();
    return 0;
 }

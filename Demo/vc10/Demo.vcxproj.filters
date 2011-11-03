@@ -36,6 +36,9 @@
     <ClCompile Include="..\src\Pallete.cpp">
       <Filter>4.Pallete</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\MenuBar.cpp">
+      <Filter>2.App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Pallete.h">
       <Filter>4.Pallete</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MenuBar.h">
+      <Filter>2.App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

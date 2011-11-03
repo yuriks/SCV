@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "Application.h"
 
+#include "MenuBar.h"
 #include "Properties.h"
 #include "Pallete.h"
 
 Application::Application(void) : Kernel() {
-   setWindowSize(s_defaultWindowWidht, s_defaultWindowHeight);
+   setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
 }
 
@@ -13,20 +14,29 @@ Application::~Application(void) {
 }
 
 void Application::init(void) {
-   static const int s_defaultBorderGap = 10;
-   static const int s_defaultRightBarSize = 300;
+   static const int s_defaultGap = 10;
+   static const int s_defaultRightPanelWidth = 250;
 
-   scv::Panel *panelRightBar = new scv::Panel(scv::Point(s_defaultWindowWidht - s_defaultRightBarSize + s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultBorderGap, s_defaultWindowHeight - s_defaultBorderGap));
-   addComponent(panelRightBar);
+   scv::Panel *mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
+   addComponent(mainPanel);
+
+   //Menu
+   ///////////////////////////////////////////////////////////
+   MenuBar *menuBar = new MenuBar(s_defaultWindowWidth);
+   mainPanel->addChild(menuBar);
+
+   ///////////////////////////////////////////////////////////
+   
 
    //Palette
    ///////////////////////////////////////////////////////////
-   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 25, 0));
-   scv::ScrollPane *scrollPanePalette = new scv::ScrollPane(scv::Point(0, 0), scv::Point(s_defaultRightBarSize - s_defaultBorderGap - 10, 345), panelPalette);
-   panelRightBar->addChild(scrollPanePalette);
+   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightPanelWidth, 0)); //26
+   mainPanel->addChild(panelPalette);
 
-   int y = 0;
-   PanelPalleteComponents *containers = new PanelPalleteComponents("SCV Containers", scv::Point(0,0), scv::Point(panelPalette->getWidth(), 0));   
+   scv::GroupLayout *paletteLayout = new scv::GroupLayout(panelPalette);
+   panelPalette->setLayout(paletteLayout);
+
+   PanelPalleteComponents *containers = new PanelPalleteComponents("SCV Containers", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));   
    panelPalette->addChild(containers);
    containers->addComponent("Image");
    containers->addComponent("Panel");
@@ -34,8 +44,7 @@ void Application::init(void) {
    containers->addComponent("TabbedPane");
    containers->adjustButtonsWidth();
 
-   y = containers->getRelativePosition().y + containers->getHeight() + 15;
-   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
+   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));
    panelPalette->addChild(controls);
    controls->addComponent("Button");
    controls->addComponent("ToggleButton");
@@ -55,44 +64,81 @@ void Application::init(void) {
    controls->addComponent("Table");
    controls->adjustButtonsWidth();
 
-   y = controls->getRelativePosition().y + controls->getHeight() + 15;
-   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(0, y), scv::Point(panelPalette->getWidth(), y));
+   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));
    panelPalette->addChild(windows);
    windows->addComponent("InternalFrame");
    windows->adjustButtonsWidth();
 
-   y = windows->getRelativePosition().y + windows->getHeight();
-   panelPalette->setHeight(y);
-
+   paletteLayout->setVerticalGroup(
+      paletteLayout->createSequentialGroup()->setAutoCreateGaps(true)
+         ->addComponent(containers, containers->getHeight(), containers->getHeight(), containers->getHeight())
+         ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())
+         ->addComponent(windows, windows->getHeight(), windows->getHeight(), windows->getHeight())
+   );
    ///////////////////////////////////////////////////////////
 
    //Design
    ///////////////////////////////////////////////////////////
    scv::Panel *panelDesign = new scv::Panel(scv::Point(0, 0), scv::Point(800, 600));
    panelDesign->setResizable(true);
-   scv::ScrollPane *scrollPaneDesign = new scv::ScrollPane(scv::Point(s_defaultBorderGap, s_defaultBorderGap), scv::Point(s_defaultWindowWidht - s_defaultRightBarSize, s_defaultWindowHeight - s_defaultBorderGap), panelDesign);
+   scv::ScrollPane *scrollPaneDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), panelDesign);
    scrollPaneDesign->setPanel(panelDesign);
-   addComponent(scrollPaneDesign);
+   mainPanel->addChild(scrollPaneDesign);
    ///////////////////////////////////////////////////////////
 
-   _properties = new Properties(200);
-   panelDesign->addChild(_properties);
+   //Properties
+   ///////////////////////////////////////////////////////////
+   _panelProperties = new Properties(s_defaultRightPanelWidth);
+   mainPanel->addChild(_panelProperties);
+   ///////////////////////////////////////////////////////////
+
 
    _managedComponents.push_back(panelDesign);
    /**/
+
+
+   //GroupLayout
+   ///////////////////////////////////////////////////////////
+   scv::GroupLayout *layout = new scv::GroupLayout(mainPanel);
+
+   layout->setHorizontalGroup(
+      layout->createSequentialGroup()->setAutoCreateGaps(true)
+         ->addComponent(scrollPaneDesign)
+         ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
+            ->addComponent(panelPalette)
+            ->addComponent(_panelProperties)
+         )
+   );
+
+   layout->setVerticalGroup(
+      layout->createSequentialGroup()->setAutoCreateGaps(true)->setAutoGapsSize(5)
+      ->addComponent(menuBar)
+      ->addGroup(
+         layout->createParallelGroup()
+            ->addComponent(scrollPaneDesign)
+            ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
+               ->addComponent(panelPalette)
+               ->addComponent(_panelProperties)
+            )
+      )
+   );
+   ///////////////////////////////////////////////////////////
+
+   mainPanel->setLayout(layout);
+   mainPanel->setResizable(true);
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
 }
 void Application::onMouseHold(const scv::MouseEvent &evt) {
    if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
-   _properties->setComponent(getFocusedComponent());
+   _panelProperties->setComponent(getFocusedComponent());
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
 void Application::onMouseUp(const scv::MouseEvent &evt) {
    if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
-   _properties->setComponent(getFocusedComponent());
+   _panelProperties->setComponent(getFocusedComponent());
 }
 void Application::onMouseWheel(const scv::MouseEvent &evt) {
 }

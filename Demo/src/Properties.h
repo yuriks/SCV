@@ -40,7 +40,10 @@ protected:
    static const std::string s_ParentScissor;
    static const std::string s_Scissor;
 
-   scv::Group *_hGroup, *_vGroup;
+   typedef std::list<PropertieOption*> PropertieList;
+   PropertieList _propertieList;
+
+   scv::Group *_hGroup, *_hLeftGroup, *_hRightGroup, *_vGroup;
    scv::Component *_currComponent;
 };
 

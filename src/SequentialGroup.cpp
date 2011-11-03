@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include "SequentialGroup.h"
+#include "GapSpring.h"
 
 namespace scv {
 
 SequentialGroup::SequentialGroup(void) : Group() {
-
+   _autoCreatePadding = false;
+   _autoGapSize = s_defaultGap;
 }
 
 SequentialGroup::~SequentialGroup(void) {
@@ -12,6 +14,7 @@ SequentialGroup::~SequentialGroup(void) {
 }
 
 SequentialGroup *SequentialGroup::addGroup(Group *group) {
+   autoCreatePadding();
    return (SequentialGroup*)Group::addGroup(group);
 }
 
@@ -20,6 +23,7 @@ SequentialGroup *SequentialGroup::addComponent(Component *component) {
 }
 
 SequentialGroup *SequentialGroup::addComponent(Component *component, int min, int pref, int max) {
+   autoCreatePadding();
    return (SequentialGroup*)Group::addComponent(component, min, pref, max);
 }
 
@@ -28,6 +32,7 @@ SequentialGroup *SequentialGroup::addGap(int size) {
 }
 
 SequentialGroup *SequentialGroup::addGap(int min, int pref, int max) {
+   autoCreatePadding();
    return (SequentialGroup*)Group::addGap(min, pref, max);
 }
 
@@ -45,6 +50,22 @@ void SequentialGroup::setValidSize(Spring::Axis axis, int origin, int size) {
       spring->setSize(axis, origin, std::min(std::max(size, spring->getMinimumSize(axis)), spring->getMaximumSize(axis)));
    } else if (_springs.size() > 1) {      
       setValidSizeNotPreferred(axis, origin, size);
+   }
+}
+
+SequentialGroup *SequentialGroup::setAutoCreateGaps(bool autoCreatePadding) {
+   _autoCreatePadding = autoCreatePadding;
+   return this;
+}
+
+bool SequentialGroup::getAutoCreateGap(void) const {
+   return _autoCreatePadding;
+}
+
+void SequentialGroup::autoCreatePadding(void) {
+   //autoCreatePadding
+   if (_autoCreatePadding && _springs.size() > 0) {
+      Group::addSpring(new GapSpring(getAutoGapsSize(), getAutoGapsSize(), getAutoGapsSize()));
    }
 }
 

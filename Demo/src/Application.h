@@ -29,7 +29,7 @@ public:
 
    void addComponentFromPalette(std::string component);
 protected:
-   static const int s_defaultWindowWidht = 1280;
+   static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
 
    scv::Panel *_panelRightBar;
@@ -41,7 +41,7 @@ protected:
    scv::Panel *panelDesign;
    scv::ScrollPane *scrollPaneDesign;
 
-   Properties *_properties;
+   Properties *_panelProperties;
 
    std::list<scv::Component*> _managedComponents;   
 private:

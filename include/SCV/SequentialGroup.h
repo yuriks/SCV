@@ -27,6 +27,15 @@ public:
    ///////////////////////////////////////////////////////////
 
    virtual inline int combined(int a, int b);
+
+   ///////////////////////////////////////////////////////////
+   SequentialGroup *setAutoCreateGaps(bool autoCreatePadding);
+   bool getAutoCreateGap(void) const;
+
+   inline SequentialGroup *setAutoGapsSize(int autoGapSize);
+   inline int getAutoGapsSize(void) const;
+   ///////////////////////////////////////////////////////////
+
 protected:
    ///////////////////////////////////////////////////////////
    class SpringDelta {
@@ -46,12 +55,29 @@ protected:
 
    virtual void setValidSizeNotPreferred(Spring::Axis axis, int origin, int size);
    virtual SpringDeltaDeque buildResizableList(Spring::Axis axis, bool useMin);
-private:
+
+   ///////////////////////////////////////////////////////////
+   void autoCreatePadding(void);
+
+   bool _autoCreatePadding;
+
+   int _autoGapSize;
+   const static int s_defaultGap = 10;
+   ///////////////////////////////////////////////////////////
 };
 
 ///////////////////////////////////////////////////////////
 int SequentialGroup::combined(int a, int b) {
    return constrain(a) + constrain(b);
+}
+
+SequentialGroup * SequentialGroup::setAutoGapsSize(int autoGapSize) {
+   _autoGapSize = autoGapSize;
+   return this;
+}
+
+int SequentialGroup::getAutoGapsSize(void) const {
+   return _autoGapSize;
 }
 ///////////////////////////////////////////////////////////
 

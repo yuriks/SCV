@@ -199,6 +199,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\MenuBar.cpp" />
     <ClCompile Include="..\src\Pallete.cpp" />
     <ClCompile Include="..\src\PropertieOption.cpp" />
     <ClCompile Include="..\src\Properties.cpp" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\MenuBar.h" />
     <ClInclude Include="..\src\Pallete.h" />
     <ClInclude Include="..\src\PropertieOption.h" />
     <ClInclude Include="..\src\Properties.h" />

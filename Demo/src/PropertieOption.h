@@ -3,7 +3,7 @@
 
 class Properties;
 
-class PropertieOption : public scv::Panel {
+class PropertieOption {
 public:
    enum Type {
       EDITABLE_TEXTFIELD, TEXTFIELD, EDITABLE_CHECKBOX
@@ -11,6 +11,14 @@ public:
 
    PropertieOption(Properties *host, std::string title, Type type);
    virtual ~PropertieOption(void);
+
+   scv::Label *getLabel(void) {
+      return _label;
+   }
+
+   scv::Component *getTarget(void) {
+      return _target;
+   }
 
    const std::string &getOption(void) const;
 

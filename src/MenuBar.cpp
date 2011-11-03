@@ -19,6 +19,9 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0),Point(width, s_menuHeight)) {
    _currecOverMenu = -1;
    _type = MENUBAR;
 
+   setMinimumSize(getPreferredSize());
+   setMaximumSize(getPreferredSize());
+ 
    createTexture();
 }
 
