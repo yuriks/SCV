@@ -453,8 +453,6 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
 void Kernel::cbReshape(int w, int h) {
    static Kernel* kernel = Kernel::getInstance();
 
-   static int _w = w;
-   static int _h = h;
    if (!kernel->_isActiveReshape && (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]))
       kernel->_needReshapeWindow = true;
 

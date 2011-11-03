@@ -44,11 +44,10 @@ void Panel::display(void) {
 
    _cTexture->disable();
 
-   //REVIEW
    if (_layout != NULL) {
       _layout->layoutContainer();
    }
-
+   
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       if (kernel->willAppearOnScreen(*iter))
          (*iter)->display();
@@ -124,6 +123,33 @@ void Panel::processKey(const scv::KeyEvent &evt) {
 
    for (Component::List::const_reverse_iterator iter = getChildren().rbegin(); iter != getChildren().rend(); ++iter) {
       (*iter)->processKey(evt);
+   }
+}
+
+Point Panel::getMinimumSize(void) const {
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+      return scv::Point(_layout->getMinimumSize(Spring::HORIZONTAL), _layout->getMinimumSize(Spring::VERTICAL));
+   } else {
+      return Component::getMinimumSize();
+   }
+}
+
+Point Panel::getPreferredSize(void) const {
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+      return scv::Point(_layout->getPreferredSize(Spring::HORIZONTAL), _layout->getPreferredSize(Spring::VERTICAL));
+   } else {
+      return Component::getPreferredSize();
+   }
+}
+
+Point Panel::getMaximumSize(void) const {
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+      return scv::Point(_layout->getMaximumSize(Spring::HORIZONTAL), _layout->getMaximumSize(Spring::VERTICAL));
+   } else {
+      return Component::getMaximumSize();
    }
 }
 

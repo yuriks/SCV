@@ -3,14 +3,13 @@
 
 namespace scv {
 
-GroupLayout::GroupLayout(Panel *host) {
+GroupLayout::GroupLayout(Panel *host) : minSize(-1, -1), preferredSize(-1, -1), maxSize(-1, -1) {
    _horizontalGroup = NULL;
    _verticalGroup   = NULL;
 
    _host = host;
 
-   _autoCreatePadding = false;
-   _autoCreateContainerPadding = false;
+   //_autoCreateContainerPadding = false;
 }
 
 GroupLayout::~GroupLayout(void) {
@@ -43,39 +42,50 @@ void GroupLayout::setVerticalGroup(Group *group) {
 
 void GroupLayout::layoutContainer(void) {
    int width, height;
-   int minSize, preferredSize, maxSize;
 
    if (_horizontalGroup != NULL) {
       width = _host->getWidth();
 
-      minSize = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
-      preferredSize = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
-      maxSize = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
+      minSize.x = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
+      preferredSize.x = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
+      maxSize.x = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
 
-      if (width > preferredSize) {
+      if (width > preferredSize.x) {
          _horizontalGroup->setSize(Spring::HORIZONTAL, 0, width); 
-      } else if (preferredSize > width) {
-         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize - (preferredSize - width)); 
+      } else if (preferredSize.x > width) {
+         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x - (preferredSize.x - width)); 
       } else {      
-         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize);
+         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x);
       }   
    }
    
    if (_verticalGroup != NULL) {
       height = _host->getHeight();
 
-      minSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
-      preferredSize = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
-      maxSize = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+      minSize.y = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+      preferredSize.y = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
+      maxSize.y = _verticalGroup->calculateMaximumSize(Spring::VERTICAL);
 
-      if (height > preferredSize) {
+      if (height > preferredSize.y) {
          _verticalGroup->setSize(Spring::VERTICAL, 0, height); 
-      } else if (preferredSize > height) {
-         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize - (preferredSize - height)); 
+      } else if (preferredSize.y > height) {
+         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize.y - (preferredSize.y - height));
       } else {      
-         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize);
+         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize.y);
       }
    }
+}
+
+int GroupLayout::getMinimumSize(Spring::Axis axis) {
+   return (axis == Spring::HORIZONTAL) ? minSize.x : minSize.y;
+}
+
+int GroupLayout::getPreferredSize(Spring::Axis axis) {
+   return (axis == Spring::HORIZONTAL) ? preferredSize.x : preferredSize.y;
+}
+
+int GroupLayout::getMaximumSize(Spring::Axis axis) {
+   return (axis == Spring::HORIZONTAL) ? maxSize.x : maxSize.y;
 }
 
 } //namespace scv

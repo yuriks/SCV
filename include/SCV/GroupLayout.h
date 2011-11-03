@@ -32,11 +32,15 @@ public:
 
    void layoutContainer(void);
 
+   int getMinimumSize(Spring::Axis axis);
+   int getPreferredSize(Spring::Axis axis);
+   int getMaximumSize(Spring::Axis axis);
+
 protected:
    Panel *_host;
+   scv::Point minSize, preferredSize, maxSize;
 
-   bool _autoCreatePadding;
-   bool _autoCreateContainerPadding;
+   //bool _autoCreateContainerPadding;
 
    Group *_horizontalGroup;
    Group *_verticalGroup;

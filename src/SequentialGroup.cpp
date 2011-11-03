@@ -48,7 +48,7 @@ void SequentialGroup::setValidSize(Spring::Axis axis, int origin, int size) {
    } else if (_springs.size() == 1) {      
       Spring *spring = getSpring(0);
       spring->setSize(axis, origin, std::min(std::max(size, spring->getMinimumSize(axis)), spring->getMaximumSize(axis)));
-   } else if (_springs.size() > 1) {      
+   } else if (_springs.size() > 1) {
       setValidSizeNotPreferred(axis, origin, size);
    }
 }
@@ -142,7 +142,6 @@ SequentialGroup::SpringDeltaDeque SequentialGroup::buildResizableList(Spring::Ax
       if (sDelta > 0) {
          sorted.push_back(SpringDelta(counter, sDelta));
       }
-      //REVIEW
       std::sort(sorted.begin(), sorted.end());
    }
    return sorted;

@@ -37,7 +37,7 @@ Component::Component(const scv::Point &p1, const scv::Point &p2) : _resizing(4, 
    _type = NONE;
 
    _parent = NULL;   
-
+   
    setMaximumSize(Point(-1, -1));
    setPreferredSize(Point(getWidth(), getHeight()));
    setMinimumSize(getPreferredSize());

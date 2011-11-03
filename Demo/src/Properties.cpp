@@ -95,6 +95,8 @@ void Properties::addChild(std::string title, PropertieOption::Type type) {
 }
 
 void Properties::setValue(const std::string &title, const std::string &str) {
+   if (_currComponent == NULL) return;
+
    for (PropertieList::iterator iter = _propertieList.begin(); iter != _propertieList.end(); ++iter) {
       if ((*iter)->getOption() == title) {
          (*iter)->setValue(str);
@@ -104,6 +106,8 @@ void Properties::setValue(const std::string &title, const std::string &str) {
 }
 
 void Properties::setValue(const std::string &title, bool state) {   
+   if (_currComponent == NULL) return;
+
    for (PropertieList::iterator iter = _propertieList.begin(); iter != _propertieList.end(); ++iter) {
       if ((*iter)->getOption() == title) {
          (*iter)->setValue(state);
@@ -113,6 +117,8 @@ void Properties::setValue(const std::string &title, bool state) {
 }
 
 void Properties::onValueChange(const std::string &title, const std::string &str) {
+   if (_currComponent == NULL) return;
+
    if (title == s_RelativePosition) {
       _currComponent->setRelativePosition(scv::Point(str));
    } else if (title == s_AbsolutePosition) {
@@ -135,6 +141,8 @@ void Properties::onValueChange(const std::string &title, const std::string &str)
 }
 
 void Properties::onValueChange(const std::string &title, bool state) {
+   if (_currComponent == NULL) return;
+
    if (title == s_Draggable) {
       _currComponent->setDraggable(state);
    } else if (title == s_Resizable) {

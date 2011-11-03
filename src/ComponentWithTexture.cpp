@@ -72,6 +72,18 @@ Point ComponentWithTexture::getSize(void) const {
    return Component::getSize();
 }
 
+Point ComponentWithTexture::getMinimumSize(void) const {
+   return Component::getMinimumSize();
+}
+
+Point ComponentWithTexture::getPreferredSize(void) const {
+   return Component::getPreferredSize();
+}
+
+Point ComponentWithTexture::getMaximumSize(void) const {
+   return Component::getMaximumSize();
+}
+
 void ComponentWithTexture::addChild(Component *object) {
    Component::addChild(object);
 }
@@ -79,7 +91,5 @@ void ComponentWithTexture::addChild(Component *object) {
 void ComponentWithTexture::removeChild(Component *object) {
    Component::removeChild(object);
 }
-
-
 
 } // namespace scv

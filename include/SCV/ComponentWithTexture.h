@@ -49,6 +49,10 @@ public:
    virtual void setHeight(int height);
 
    virtual Point getSize(void) const;
+
+   virtual Point getMinimumSize(void) const;
+   virtual Point getPreferredSize(void) const;
+   virtual Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
 
    virtual void setRelativePosition(const Point &position);
