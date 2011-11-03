@@ -8,6 +8,7 @@
 Application::Application(void) : Kernel() {
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
+   setFramesPerSecond(30);
 }
 
 Application::~Application(void) {
