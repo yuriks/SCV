@@ -36,12 +36,9 @@ int main(int argc, char* argv[]) {
    scv::Component *object3 = new scv::Button(scv::Point(), "Button 3");
    scv::Component *object4 = new scv::Button(scv::Point(), "Button 4");
 
-   scv::Panel *mainPanel = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
-   kernel->addComponent(mainPanel);
-
    GroupPanel *group;
 
-   /**/
+   /*
    GroupPanel *hGroup = GroupPanelWrapper::createHorizontalSequentialGroupPanel();
    hGroup->addChild(object1);
 
@@ -50,9 +47,13 @@ int main(int argc, char* argv[]) {
    group->addChild(object3);
 
    hGroup->addChild(group);
+
+   GroupPanelWrapper *p = new GroupPanelWrapper();
+   p->setResizable(true);
+   hGroup->addChild(p);
    /**/
 
-   /**/
+   /*
    GroupPanel *vGroup = GroupPanelWrapper::createVerticalSequentialGroupPanel();
    vGroup->addChild(object1);
 
@@ -64,18 +65,15 @@ int main(int argc, char* argv[]) {
    vGroup->addChild(object4);
    /**/
 
-   GroupPanelWrapper *wrapper = new GroupPanelWrapper(mainPanel);
-   wrapper->setVerticalGroup(vGroup);
-   wrapper->setHorizontalGroup(hGroup);
+   
+   GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
+   //wrapper->setVerticalGroup(vGroup);
+   //wrapper->setHorizontalGroup(hGroup);
+   kernel->addComponent(wrapper);
 
    std::cout << wrapper->getHorizontalGroupCode() << std::endl;
    std::cout << wrapper->getVerticalGroupCode() << std::endl;
    
-   mainPanel->addChild(vGroup);
-   mainPanel->addChild(hGroup);
-
-   hGroup->setVisible(false);
-
    kernel->run();
    return 0;
 }

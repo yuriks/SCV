@@ -3,6 +3,23 @@
 
 #include "Group.h"
 
+class GroupPanel;
+class GroupPanelMenu : public scv::ContextMenu {
+public:
+   ///////////////////////////////////////////////////////////
+   GroupPanelMenu(GroupPanel *host);
+   virtual ~GroupPanelMenu(void);
+   ///////////////////////////////////////////////////////////
+
+   virtual void onMenuAccessed(const std::deque<std::string> &address);
+protected:
+   GroupPanel *_host;
+private:
+};
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
 class GroupPanel : public scv::Panel {
 public:
    enum GroupType {HORIZONTAL, VERTICAL};

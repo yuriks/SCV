@@ -5,14 +5,29 @@
 #include "ParallelGroupPanel.h"
 #include "SequentialGroupPanel.h"
 
-class GroupPanelWrapper {
+class GroupPanelWrapper;
+class GroupPanelWrapperMenu : public scv::ContextMenu {
 public:
    ///////////////////////////////////////////////////////////
-   GroupPanelWrapper(scv::Panel *host);
-   virtual ~GroupPanelWrapper(void);
+   GroupPanelWrapperMenu(GroupPanelWrapper *host);
+   virtual ~GroupPanelWrapperMenu(void);
    ///////////////////////////////////////////////////////////
 
-   inline scv::Panel *getHost(void) const;
+   virtual void onMenuAccessed(const std::deque<std::string> &address);
+protected:
+   GroupPanelWrapper *_host;
+private:
+};
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+class GroupPanelWrapper : public scv::Panel {
+public:
+   ///////////////////////////////////////////////////////////
+   GroupPanelWrapper(void);
+   virtual ~GroupPanelWrapper(void);
+   ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
    static ParallelGroupPanel *createHorizontalParallelGroupPanel(void);
@@ -34,16 +49,10 @@ public:
    ///////////////////////////////////////////////////////////
 
 protected:
-   scv::Panel *_host;
    GroupPanel *_verticalGroup, *_horizontalGroup;
 
 };
 
 ///////////////////////////////////////////////////////////
-
-scv::Panel * GroupPanelWrapper::getHost(void) const {
-   return _host;
-}
-
 
 #endif //__GROUP_PANEL_WRAPPER_H__

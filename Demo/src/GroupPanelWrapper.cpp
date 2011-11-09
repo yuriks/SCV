@@ -1,10 +1,41 @@
 #include "stdafx.h"
 #include "GroupPanelWrapper.h"
 
-GroupPanelWrapper::GroupPanelWrapper(scv::Panel *host) {
+GroupPanelWrapperMenu::GroupPanelWrapperMenu(GroupPanelWrapper *host) : scv::ContextMenu("Group Panel") {
    _host = host;
+
+   addMenu(new scv::ContextMenu("Parallel Group"));
+   addMenu(new scv::ContextMenu("Sequential Group"));
+}
+
+GroupPanelWrapperMenu::~GroupPanelWrapperMenu(void) {
+
+}
+
+void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {
+   if (address[1] == "Parallel Group") {
+      _host->setHorizontalGroup(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+   } else if (address[1] == "Sequential Group") {
+      _host->setHorizontalGroup(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+   }
+}
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+GroupPanelWrapper::GroupPanelWrapper(void) : scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10)) {
+   setResizable(true);
+
    _verticalGroup   = NULL;
    _horizontalGroup = NULL;
+
+   _layout = new scv::GroupLayout(this);
+   setLayout(_layout);
+
+   _layout->setHorizontalGroup(_layout->createParallelGroup());
+   _layout->setVerticalGroup(_layout->createParallelGroup());
+
+   registerContextMenu(new GroupPanelWrapperMenu(this));
 }
 
 GroupPanelWrapper::~GroupPanelWrapper(void) {
@@ -30,12 +61,18 @@ SequetialGroupPanel *GroupPanelWrapper::createVerticalSequentialGroupPanel(void)
 void GroupPanelWrapper::setHorizontalGroup(GroupPanel *group) {
    if (_horizontalGroup == NULL) {
       _horizontalGroup = group;
+      addChild(group);
+      _layout->getHorizontalGroup()->addComponent(group);
+      _layout->getVerticalGroup()->addComponent(group);
    }
 }
 
 void GroupPanelWrapper::setVerticalGroup(GroupPanel *group) {
    if (_verticalGroup == NULL) {
       _verticalGroup = group;
+      addChild(group);
+      _layout->getHorizontalGroup()->addComponent(group);
+      _layout->getVerticalGroup()->addComponent(group);
    }
 }
 
@@ -66,3 +103,5 @@ std::string GroupPanelWrapper::getVerticalGroupCode(void) const {
       return std::string("");
    }
 }
+
+

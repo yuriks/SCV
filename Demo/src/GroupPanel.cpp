@@ -1,13 +1,44 @@
 #include "stdafx.h"
 #include "GroupPanel.h"
 
+#include "GroupPanelWrapper.h"
+
 #include "GroupObjectWrapper.h"
 #include "ParallelGroup.h"
 #include "SequentialGroup.h"
 
+GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("class Group Panel") {
+   _host = host;
+
+   scv::ContextMenu *level1 = new scv::ContextMenu("Add Group Panel");
+   level1->addMenu(new scv::ContextMenu("Parallel Group"));
+   level1->addMenu(new scv::ContextMenu("Sequential Group"));
+   addMenu(level1);
+
+
+   addMenu(new scv::ContextMenu("Add SCV Object"));
+}
+
+GroupPanelMenu::~GroupPanelMenu(void) {
+
+}
+
+void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
+   if (address[2] == "Parallel Group") {
+      _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+   } else if (address[2] == "Sequential Group") {
+      _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+   }
+}
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
 GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(0,0), scv::Point(200,200)) {
    _layout = new scv::GroupLayout(this);
-   setLayout(_layout);   
+   setLayout(_layout);
+
+   registerContextMenu(new GroupPanelMenu(this));
 }
 
 GroupPanel::~GroupPanel(void) {
@@ -104,3 +135,4 @@ void GroupContextMenu::onMenuAccessed(const std::deque<std::string> &address) {
    _panel->getGroup()->addGroup(group->getGroup());
    */
 }
+

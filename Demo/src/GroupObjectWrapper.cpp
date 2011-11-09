@@ -5,6 +5,8 @@ GroupObjectWrapper::GroupObjectWrapper(scv::Component *objet) : scv::Panel(scv::
    setMinimumSize(objet->getMinimumSize());
    setPreferredSize(objet->getPreferredSize());
    setMaximumSize(objet->getMaximumSize());
+
+   std::cout << getMinimumSize() << std::endl;
 }
 
 GroupObjectWrapper::~GroupObjectWrapper(void) {
@@ -22,7 +24,7 @@ void GroupObjectWrapper::display(void) {
    scissor->pushScissor(getScissor());
 
    _cTexture->enable();
-   scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.5f, 0.3f, 0.3f, 1.0f));
+   scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.4f, 0.4f, 0.3f, 1.0f));
 
    // middle
    _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
