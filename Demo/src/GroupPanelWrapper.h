@@ -14,10 +14,10 @@ public:
 
    ///////////////////////////////////////////////////////////
    static ParallelGroupPanel *createHorizontalParallelGroupPanel(void);
-   static ParallelGroupPanel *createHorizontalSequentialGroupPanel(void);
+   static SequetialGroupPanel *createHorizontalSequentialGroupPanel(void);
 
    static ParallelGroupPanel *createVerticalParallelGroupPanel(void);
-   static ParallelGroupPanel *createVerticalSequentialGroupPanel(void);
+   static SequetialGroupPanel *createVerticalSequentialGroupPanel(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////

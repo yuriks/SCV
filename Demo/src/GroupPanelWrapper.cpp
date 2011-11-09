@@ -12,19 +12,19 @@ GroupPanelWrapper::~GroupPanelWrapper(void) {
 }
 
 ParallelGroupPanel *GroupPanelWrapper::createHorizontalParallelGroupPanel(void) {
-
+   return new ParallelGroupPanel(GroupPanel::HORIZONTAL);
 }
 
-ParallelGroupPanel *GroupPanelWrapper::createHorizontalSequentialGroupPanel(void) {
-
+SequetialGroupPanel *GroupPanelWrapper::createHorizontalSequentialGroupPanel(void) {
+   return new SequetialGroupPanel(GroupPanel::HORIZONTAL);
 }
 
 ParallelGroupPanel *GroupPanelWrapper::createVerticalParallelGroupPanel(void) {
-
+   return new ParallelGroupPanel(GroupPanel::VERTICAL);
 }
 
-ParallelGroupPanel *GroupPanelWrapper::createVerticalSequentialGroupPanel(void) {
-
+SequetialGroupPanel *GroupPanelWrapper::createVerticalSequentialGroupPanel(void) {
+   return new SequetialGroupPanel(GroupPanel::VERTICAL);
 }
 
 void GroupPanelWrapper::setHorizontalGroup(GroupPanel *group) {
