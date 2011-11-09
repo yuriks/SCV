@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GroupPanel.h"
 
+#include "GroupObjectWrapper.h"
 #include "ParallelGroup.h"
 #include "SequentialGroup.h"
 
@@ -16,9 +17,16 @@ GroupPanel::~GroupPanel(void) {
 }
 
 void GroupPanel::addChild(scv::Component *object) {
-   Panel::addChild(object);
-   _verticalGroup->addComponent(object);
-   _horizontalGroup->addComponent(object);
+   scv::Component *wrappedObject;
+   if (dynamic_cast<GroupPanel*>(object)) {
+      wrappedObject = object;
+   } else {
+      wrappedObject = new GroupObjectWrapper(object);
+   }
+
+   Panel::addChild(wrappedObject);
+   _verticalGroup->addComponent(wrappedObject);
+   _horizontalGroup->addComponent(wrappedObject);
 }
 
 void GroupPanel::removeChild(scv::Component *object) {

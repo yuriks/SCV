@@ -12,6 +12,8 @@ public:
    virtual ~GroupPanelWrapper(void);
    ///////////////////////////////////////////////////////////
 
+   inline scv::Panel *getHost(void) const;
+
    ///////////////////////////////////////////////////////////
    static ParallelGroupPanel *createHorizontalParallelGroupPanel(void);
    static SequetialGroupPanel *createHorizontalSequentialGroupPanel(void);
@@ -19,6 +21,12 @@ public:
    static ParallelGroupPanel *createVerticalParallelGroupPanel(void);
    static SequetialGroupPanel *createVerticalSequentialGroupPanel(void);
    ///////////////////////////////////////////////////////////
+
+   void setHorizontalGroupVisible(bool vibility);
+   void setVerticalGroupVisible(bool vibility);
+
+   std::string getHorizontalGroupCode(void) const;
+   std::string getVerticalGroupCode(void) const;
 
    ///////////////////////////////////////////////////////////
    void setHorizontalGroup(GroupPanel *group);
@@ -30,5 +38,12 @@ protected:
    GroupPanel *_verticalGroup, *_horizontalGroup;
 
 };
+
+///////////////////////////////////////////////////////////
+
+scv::Panel * GroupPanelWrapper::getHost(void) const {
+   return _host;
+}
+
 
 #endif //__GROUP_PANEL_WRAPPER_H__

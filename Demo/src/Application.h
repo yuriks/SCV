@@ -28,6 +28,7 @@ public:
    ///////////////////////////////////////////////////////////
 
    void addComponentFromPalette(std::string component);
+
 protected:
 
    static const int s_defaultWindowWidth = 1280;

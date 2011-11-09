@@ -24,6 +24,8 @@ public:
    virtual scv::Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
    
+   virtual std::string getCode(void) = 0;
+
    virtual void display(void);
 
    virtual void applyColor(void) = 0;

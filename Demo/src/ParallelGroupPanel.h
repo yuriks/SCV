@@ -12,6 +12,8 @@ public:
 
    void applyColor(void);
 
+   std::string getCode(void);
+
 protected:
    
 private:

@@ -57,6 +57,9 @@
     <ClCompile Include="..\src\GroupPanelWrapper.cpp">
       <Filter>GroupLayout</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GroupObjectWrapper.cpp">
+      <Filter>GroupLayout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -87,6 +90,9 @@
       <Filter>GroupLayout\GroupPanel</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GroupPanelWrapper.h">
+      <Filter>GroupLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GroupObjectWrapper.h">
       <Filter>GroupLayout</Filter>
     </ClInclude>
   </ItemGroup>
