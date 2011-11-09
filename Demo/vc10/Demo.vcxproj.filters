@@ -16,6 +16,12 @@
     <Filter Include="4.Pallete">
       <UniqueIdentifier>{8165ae81-d56e-4ccc-8613-8ae921222da0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GroupLayout">
+      <UniqueIdentifier>{8769f91d-1f30-4cee-84c5-dc1326b7bf8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GroupLayout\GroupPanel">
+      <UniqueIdentifier>{957c731b-924d-4b4e-9255-3f0490cf6a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\stdafx.cpp">
@@ -39,7 +45,18 @@
     <ClCompile Include="..\src\MenuBar.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GroupPanel.cpp" />
+    <ClCompile Include="..\src\GroupPanel.cpp">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ParallelGroupPanel.cpp">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SequentialGroupPanel.cpp">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GroupPanelWrapper.cpp">
+      <Filter>GroupLayout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -60,6 +77,17 @@
     <ClInclude Include="..\src\MenuBar.h">
       <Filter>2.App</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\GroupPanel.h" />
+    <ClInclude Include="..\src\GroupPanel.h">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ParallelGroupPanel.h">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SequentialGroupPanel.h">
+      <Filter>GroupLayout\GroupPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GroupPanelWrapper.h">
+      <Filter>GroupLayout</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

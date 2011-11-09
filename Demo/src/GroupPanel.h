@@ -5,23 +5,31 @@
 
 class GroupPanel : public scv::Panel {
 public:
-   ///////////////////////////////////////////////////////////
-   GroupPanel(scv::Group *group);
-   virtual ~GroupPanel(void);
-   ///////////////////////////////////////////////////////////
+   enum GroupType {HORIZONTAL, VERTICAL};
 
    ///////////////////////////////////////////////////////////
-   scv::Group *getGroup(void) const;
+   GroupPanel(GroupType type);
+   virtual ~GroupPanel(void);
    ///////////////////////////////////////////////////////////
 
    //Memory Management
    ///////////////////////////////////////////////////////////
-   virtual void addChild(Component *object);
-   virtual void removeChild(Component *object);
+   virtual void addChild(scv::Component *object);
+   virtual void removeChild(scv::Component *object);
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   virtual scv::Point getMinimumSize(void) const;
+   virtual scv::Point getPreferredSize(void) const;
+   virtual scv::Point getMaximumSize(void) const;
+   ///////////////////////////////////////////////////////////
+   
+   virtual void display(void);
+
+   virtual void applyColor(void) = 0;
+
 protected:
-   scv::Group *_group;
+   scv::Group *_verticalGroup, *_horizontalGroup;
 private:
 };
 
