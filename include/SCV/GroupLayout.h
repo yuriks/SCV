@@ -27,7 +27,10 @@ public:
 
    ///////////////////////////////////////////////////////////
    void setHorizontalGroup(Group *group);
+   Group *getHorizontalGroup(void) const;
+
    void setVerticalGroup(Group *group);
+   Group *getVerticalGroup(void) const;
    ///////////////////////////////////////////////////////////
 
    void layoutContainer(void);

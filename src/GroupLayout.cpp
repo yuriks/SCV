@@ -88,4 +88,12 @@ int GroupLayout::getMaximumSize(Spring::Axis axis) {
    return (axis == Spring::HORIZONTAL) ? maxSize.x : maxSize.y;
 }
 
+Group * GroupLayout::getHorizontalGroup(void) const {
+   return _horizontalGroup;
+}
+
+Group * GroupLayout::getVerticalGroup(void) const {
+   return _verticalGroup;
+}
+
 } //namespace scv
