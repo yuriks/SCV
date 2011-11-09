@@ -40,7 +40,7 @@ void GroupObjectWrapper::display(void) {
    if (_layout != NULL) {
       _layout->layoutContainer();
    }
-
+   
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
       if (kernel->willAppearOnScreen(*iter))
          (*iter)->display();

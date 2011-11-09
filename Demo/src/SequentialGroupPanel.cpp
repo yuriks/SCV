@@ -13,12 +13,19 @@ SequetialGroupPanel::SequetialGroupPanel(GroupType type) : GroupPanel(type) {
       break;
    }  
 
-   _layout->setVerticalGroup(_verticalGroup);
-   _layout->setHorizontalGroup(_horizontalGroup);
+   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_verticalGroup));
+   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_horizontalGroup));
 }
 
 SequetialGroupPanel::~SequetialGroupPanel(void) {
 
+}
+
+void SequetialGroupPanel::display(void) {
+   GroupPanel::display();
+   scv::Scissor::getInstance()->pushScissor(getScissor());
+   scv::StaticLabel::display(getAbsolutePosition(), "SequetialGroupPanel");
+   scv::Scissor::getInstance()->popScissor();
 }
 
 void SequetialGroupPanel::applyColor(void) {

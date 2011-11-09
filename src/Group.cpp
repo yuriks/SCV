@@ -7,7 +7,7 @@
 namespace scv {
 
 Group::Group(void) {
-
+   //_autoCreateContainerPadding = false;
 }
 
 Group::~Group(void) {
@@ -100,5 +100,14 @@ void Group::setSize(Spring::Axis axis, int origin, int size) {
       setValidSize(axis, origin, size);
    }
 }
+
+/*
+Group *Group::enableAutoCreateContainerGaps(void) {
+   _autoCreateContainerPadding = true;
+}
+
+bool Group::getAutoCreateContainerGaps(void) const {
+   return _autoCreateContainerPadding;
+}*/
 
 } //namespace scv

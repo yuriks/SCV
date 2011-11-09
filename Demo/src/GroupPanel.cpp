@@ -24,10 +24,12 @@ GroupPanelMenu::~GroupPanelMenu(void) {
 }
 
 void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
-   if (address[2] == "Parallel Group") {
-      _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
-   } else if (address[2] == "Sequential Group") {
-      _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+   if (address.size() > 2) {   
+      if (address[2] == "Parallel Group") {
+         _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+      } else if (address[2] == "Sequential Group") {
+         _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+      }
    }
 }
 

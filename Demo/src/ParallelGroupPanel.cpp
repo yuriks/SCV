@@ -13,12 +13,19 @@ ParallelGroupPanel::ParallelGroupPanel(GroupType type) : GroupPanel(type) {
       break;
    }
 
-   _layout->setVerticalGroup(_verticalGroup);
-   _layout->setHorizontalGroup(_horizontalGroup);
+   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_verticalGroup));
+   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_horizontalGroup));
 }
 
 ParallelGroupPanel::~ParallelGroupPanel(void) {
 
+}
+
+void ParallelGroupPanel::display(void) {
+   GroupPanel::display();
+   scv::Scissor::getInstance()->pushScissor(getScissor());
+   scv::StaticLabel::display(getAbsolutePosition(), "ParallelGroupPanel");
+   scv::Scissor::getInstance()->popScissor();
 }
 
 void ParallelGroupPanel::applyColor(void) {

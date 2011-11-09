@@ -49,6 +49,11 @@ public:
    virtual void setValidSize(Spring::Axis axis, int origin, int size) = 0;
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
+   Group *enableAutoCreateContainerGaps(void);
+   bool getAutoCreateContainerGaps(void) const;
+   ///////////////////////////////////////////////////////////
+
    int calculateSize(Spring::Axis axis, SizeType type);
 
    int getSpringSize(Spring *spring, Spring::Axis axis, SizeType type);
@@ -58,7 +63,8 @@ public:
    inline Spring *getSpring(int index);
 
 protected:
-   SpringsList _springs;   
+   SpringsList _springs;
+   //bool _autoCreateContainerPadding;
 private:
 };
 

@@ -29,6 +29,8 @@ public:
    virtual ~GroupPanelWrapper(void);
    ///////////////////////////////////////////////////////////
 
+   void display(void);
+
    ///////////////////////////////////////////////////////////
    static ParallelGroupPanel *createHorizontalParallelGroupPanel(void);
    static SequetialGroupPanel *createHorizontalSequentialGroupPanel(void);

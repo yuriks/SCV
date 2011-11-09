@@ -10,6 +10,8 @@ public:
    virtual ~SequetialGroupPanel(void);
    ///////////////////////////////////////////////////////////
 
+   void display(void);
+
    void applyColor(void);
 
    std::string getCode(void);
