@@ -35,11 +35,13 @@ public:
    virtual void removeChild(scv::Component *object);
    ///////////////////////////////////////////////////////////
 
+   /*
    ///////////////////////////////////////////////////////////
    virtual scv::Point getMinimumSize(void) const;
    virtual scv::Point getPreferredSize(void) const;
    virtual scv::Point getMaximumSize(void) const;
    ///////////////////////////////////////////////////////////
+   /**/
    
    virtual std::string getCode(void) = 0;
 

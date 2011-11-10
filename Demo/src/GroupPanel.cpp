@@ -103,7 +103,7 @@ void GroupPanel::display(void) {
 
    scissor->popScissor();
 }
-
+/*
 scv::Point GroupPanel::getMinimumSize(void) const {
    return Component::getMinimumSize();
 }
@@ -115,6 +115,7 @@ scv::Point GroupPanel::getPreferredSize(void) const {
 scv::Point GroupPanel::getMaximumSize(void) const {
    return Component::getMaximumSize();
 }
+/**/
 
 GroupContextMenu::GroupContextMenu(GroupPanel *panel) : scv::ContextMenu("Group") {
    _panel = panel;

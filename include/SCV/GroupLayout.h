@@ -44,11 +44,8 @@ public:
 protected:
    Panel *_host;
    scv::Point minSize, preferredSize, maxSize;
+   Group *_horizontalGroup, *_verticalGroup;
 
-   //bool _autoCreateContainerPadding;
-
-   Group *_horizontalGroup;
-   Group *_verticalGroup;
 private:
 };
 

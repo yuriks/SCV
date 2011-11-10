@@ -32,8 +32,8 @@ GroupPanelWrapper::GroupPanelWrapper(void) : scv::Panel(scv::Point(10, 10), scv:
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
 
-   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15));
-   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15));
+   _layout->setHorizontalGroup(_layout->createParallelGroup()/*->addGap(15)*/);
+   _layout->setVerticalGroup(_layout->createParallelGroup()/*->addGap(15)*/);
 
    registerContextMenu(new GroupPanelWrapperMenu(this));
 }

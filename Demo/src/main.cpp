@@ -66,27 +66,42 @@ int main(int argc, char* argv[]) {
    /**/
 
    
-   GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
+   //GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
    //wrapper->setVerticalGroup(vGroup);
    //wrapper->setHorizontalGroup(hGroup);
    //kernel->addComponent(wrapper);
 
-   std::cout << wrapper->getHorizontalGroupCode() << std::endl;
-   std::cout << wrapper->getVerticalGroupCode() << std::endl;
+   //std::cout << wrapper->getHorizontalGroupCode() << std::endl;
+   //std::cout << wrapper->getVerticalGroupCode() << std::endl;
+   
    
    scv::Panel *panel = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
    kernel->addComponent(panel);
 
-   scv::Panel *panel2 = GroupPanelWrapper::createVerticalSequentialGroupPanel();
+   scv::Panel *panel2 = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
    panel->addChild(panel2);
-   scv::Panel *panel3 = GroupPanelWrapper::createVerticalSequentialGroupPanel();
+   scv::Panel *panel3 = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
    panel->addChild(panel3);
 
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
-   layout->setHorizontalGroup(layout->createSequentialGroup()->addComponent(panel2)->addComponent(panel3));
-   layout->setVerticalGroup(layout->createParallelGroup()->addComponent(panel2)->addComponent(panel3));
+   
+   layout = new scv::GroupLayout(panel2);
+   panel2->setLayout(layout);
+   layout->setHorizontalGroup(layout->createParallelGroup());
+   layout->setVerticalGroup(layout->createParallelGroup());
+   /**/
+
+   /*
+   layout = new scv::GroupLayout(panel3);
+   panel3->setLayout(layout);
+   /**/
+
+   layout->setHorizontalGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
+      ->addComponent(panel2)->addComponent(panel3));
+   layout->setVerticalGroup(layout->createSequentialGroup()->addComponent(panel2)->addComponent(panel3));
+   /**/
 
    kernel->run();
    return 0;
