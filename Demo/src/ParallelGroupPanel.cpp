@@ -4,7 +4,7 @@
 ParallelGroupPanel::ParallelGroupPanel(GroupType type) : GroupPanel(type) {
    switch (type) {
    case HORIZONTAL:
-      _verticalGroup = _layout->createSequentialGroup()->addGap(15);
+      _verticalGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)->addGap(15);
       _horizontalGroup = _layout->createParallelGroup();
       break;
    case VERTICAL:

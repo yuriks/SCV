@@ -70,13 +70,7 @@ int main(int argc, char* argv[]) {
    kernel->addComponent(wrapper);
    /**/
 
-   //wrapper->setVerticalGroup(vGroup);
-   //wrapper->setHorizontalGroup(hGroup);
    
-
-   //std::cout << wrapper->getHorizontalGroupCode() << std::endl;
-   //std::cout << wrapper->getVerticalGroupCode() << std::endl;
-      
    scv::Panel *panel1 = new scv::Panel(scv::Point(10,10), scv::Point(1280 - 10, 720 - 10));
    kernel->addComponent(panel1);
 
