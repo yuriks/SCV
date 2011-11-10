@@ -35,14 +35,6 @@ public:
    virtual void removeChild(scv::Component *object);
    ///////////////////////////////////////////////////////////
 
-   /*
-   ///////////////////////////////////////////////////////////
-   virtual scv::Point getMinimumSize(void) const;
-   virtual scv::Point getPreferredSize(void) const;
-   virtual scv::Point getMaximumSize(void) const;
-   ///////////////////////////////////////////////////////////
-   /**/
-   
    virtual std::string getCode(void) = 0;
 
    virtual void display(void);
@@ -51,19 +43,6 @@ public:
 
 protected:
    scv::Group *_verticalGroup, *_horizontalGroup;
-private:
-};
-
-class GroupContextMenu : public scv::ContextMenu {
-public:
-   ///////////////////////////////////////////////////////////
-   GroupContextMenu(GroupPanel *panel);
-   virtual ~GroupContextMenu(void);
-   ///////////////////////////////////////////////////////////
-
-   virtual void onMenuAccessed(const std::deque<std::string> &address);
-protected:
-   GroupPanel *_panel;
 private:
 };
 

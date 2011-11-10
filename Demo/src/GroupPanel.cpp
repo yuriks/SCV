@@ -39,7 +39,7 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
 GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(0,0), scv::Point(200,200)) {
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
-
+   
    registerContextMenu(new GroupPanelMenu(this));
 }
 
@@ -63,9 +63,7 @@ void GroupPanel::addChild(scv::Component *object) {
 }
 
 void GroupPanel::removeChild(scv::Component *object) {
-   if (dynamic_cast<GroupPanel*>(object)) {
-      std::cout << "HERE" << std::endl;
-   }
+   std::cout << "GroupPanel::removeChild" << std::endl;
 }
 
 void GroupPanel::display(void) {
@@ -103,39 +101,3 @@ void GroupPanel::display(void) {
 
    scissor->popScissor();
 }
-/*
-scv::Point GroupPanel::getMinimumSize(void) const {
-   return Component::getMinimumSize();
-}
-
-scv::Point GroupPanel::getPreferredSize(void) const {
-   return Component::getPreferredSize();
-}
-
-scv::Point GroupPanel::getMaximumSize(void) const {
-   return Component::getMaximumSize();
-}
-/**/
-
-GroupContextMenu::GroupContextMenu(GroupPanel *panel) : scv::ContextMenu("Group") {
-   _panel = panel;
-}
-
-GroupContextMenu::~GroupContextMenu(void) {
-
-}
-
-void GroupContextMenu::onMenuAccessed(const std::deque<std::string> &address) {
-   /*
-   GroupPanel *group = NULL;
-   if (address[1] == "Parallel Group") {
-      group = new GroupPanel(new scv::ParallelGroup(scv::Spring::LEADING, true));
-   } else if (address[1] == "Sequential Group") {
-      group = new GroupPanel(new scv::SequentialGroup());
-   }
-
-   _panel->addChild(group);
-   _panel->getGroup()->addGroup(group->getGroup());
-   */
-}
-

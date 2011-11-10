@@ -1,25 +1,21 @@
 #include "stdafx.h"
 #include "ParallelGroupPanel.h"
 
-ParallelGroupPanel::ParallelGroupPanel(GroupType type) : GroupPanel(type) {   
-   /*
+ParallelGroupPanel::ParallelGroupPanel(GroupType type) : GroupPanel(type) {
    switch (type) {
    case HORIZONTAL:
-      _verticalGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true);
+      _verticalGroup = _layout->createSequentialGroup()->addGap(15);
       _horizontalGroup = _layout->createParallelGroup();
       break;
    case VERTICAL:
       _verticalGroup = _layout->createParallelGroup();
-      _horizontalGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true);
+      _horizontalGroup = _layout->createSequentialGroup()->addGap(15);
       break;
    }
 
    _layout->setVerticalGroup(_verticalGroup);
-   _layout->setHorizontalGroup(_horizontalGroup);
-   */
-
-   //_layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_verticalGroup));
-   //_layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_horizontalGroup));  
+   _layout->setHorizontalGroup(_horizontalGroup);  
+   
 }
 
 ParallelGroupPanel::~ParallelGroupPanel(void) {

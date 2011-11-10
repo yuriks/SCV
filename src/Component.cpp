@@ -412,7 +412,7 @@ Point Component::getPreferredSize(void) const {
 
 Point Component::getMaximumSize(void) const {
    //REVIEW MAX INT OVERFLOW
-   return (_maximumSize <= Point(0, 0)) ? Point(std::numeric_limits<int>::max(), std::numeric_limits<int>::max()) : _maximumSize;
+   return (_maximumSize <= Point(0, 0)) ? Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()) : _maximumSize;
 }
 
 void Component::setMinimumSize(const scv::Point &size) {

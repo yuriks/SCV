@@ -3,10 +3,7 @@
 
 namespace scv {
 
-GroupLayout::GroupLayout(Panel *host) : 
-      minSize(Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE), 
-      preferredSize(Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE), 
-      maxSize(Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE) {
+GroupLayout::GroupLayout(Panel *host) {
    _horizontalGroup = NULL;
    _verticalGroup   = NULL;
 
@@ -44,58 +41,94 @@ void GroupLayout::setVerticalGroup(Group *group) {
 void GroupLayout::layoutContainer(void) {
    if (_horizontalGroup != NULL) {
       int width = _host->getWidth();
-
-      minSize.x = _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
-      preferredSize.x = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
-      maxSize.x = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
-
-      if (width > preferredSize.x) {
+      int preferredSize = _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
+      
+      if (width > preferredSize) {
          _horizontalGroup->setSize(Spring::HORIZONTAL, 0, width); 
-      } else if (preferredSize.x > width) {         
-         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x - (preferredSize.x - width)); 
+      } else if (preferredSize > width) {         
+         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize - (preferredSize - width)); 
       } else {
-         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x);
+         _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize);
       }   
    }
    
    if (_verticalGroup != NULL) {
       int height = _host->getHeight();
+      int preferredSize = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
 
-      minSize.y = _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
-      preferredSize.y = _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
-      maxSize.y = _verticalGroup->calculateMaximumSize(Spring::VERTICAL);
-
-      if (height > preferredSize.y) {
+      if (height > preferredSize) {
          _verticalGroup->setSize(Spring::VERTICAL, 0, height); 
-      } else if (preferredSize.y > height) {
-         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize.y - (preferredSize.y - height));
+      } else if (preferredSize > height) {
+         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize - (preferredSize - height));
       } else {      
-         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize.y);
+         _verticalGroup->setSize(Spring::VERTICAL, 0, preferredSize);
       }
    }
 }
 
 int GroupLayout::getMinimumSize(Spring::Axis axis) {
-   if (axis == Spring::HORIZONTAL) {
-      return _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
-   } else {
-      return _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+   switch (axis) {
+   case Spring::HORIZONTAL:
+      if (_horizontalGroup != NULL) {
+         return _horizontalGroup->calculateMinimumSize(Spring::HORIZONTAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   case Spring::VERTICAL:
+      if (_verticalGroup != NULL) {
+         return _verticalGroup->calculateMinimumSize(Spring::VERTICAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   default:
+      return Spring::DEFAULT_SIZE;
+      break;
    }
 }
 
 int GroupLayout::getPreferredSize(Spring::Axis axis) {
-   if (axis == Spring::HORIZONTAL) {
-      return _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
-   } else {
-      return _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
+   switch (axis) {
+   case Spring::HORIZONTAL:
+      if (_horizontalGroup != NULL) {
+         return _horizontalGroup->calculatePreferredSize(Spring::HORIZONTAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   case Spring::VERTICAL:
+      if (_verticalGroup != NULL) {
+         return _verticalGroup->calculatePreferredSize(Spring::VERTICAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   default:
+      return Spring::DEFAULT_SIZE;
+      break;
    }
 }
 
 int GroupLayout::getMaximumSize(Spring::Axis axis) {
-   if (axis == Spring::HORIZONTAL) {
-      return _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
-   } else {
-      return _verticalGroup->calculateMaximumSize(Spring::VERTICAL);
+   switch (axis) {
+   case Spring::HORIZONTAL:
+      if (_horizontalGroup != NULL) {
+         return _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   case Spring::VERTICAL:
+      if (_verticalGroup != NULL) {
+         return _verticalGroup->calculateMaximumSize(Spring::VERTICAL);
+      } else {
+         return Spring::DEFAULT_SIZE;
+      }
+      break;
+   default:
+      return Spring::DEFAULT_SIZE;
+      break;
    }
 }
 

@@ -80,14 +80,14 @@ void SequentialGroup::setValidSizeNotPreferred(Spring::Axis axis, int origin, in
       delta *= -1;
    }
 
-   SpringDeltaDeque resizable = buildResizableList(axis, useMin);
+   SpringDeltaDeque resizable = buildResizableList(axis, useMin);   
    int resizableCount = resizable.size();
-
+   
    if (resizableCount > 0) {
       int sDelta = delta / resizableCount;
       int slop = delta - sDelta * resizableCount;
       
-      std::vector<int> sizes(springCount);
+      std::vector<int> sizes(springCount, 0);
       int sign = useMin ? -1 : 1;
 
       for (int counter = 0; counter < resizableCount; ++counter) {
@@ -106,9 +106,9 @@ void SequentialGroup::setValidSizeNotPreferred(Spring::Axis axis, int origin, in
 
       for (int counter = 0; counter < springCount; ++counter) {
          Spring *spring = getSpring(counter);
-         int sSize = spring->getPreferredSize(axis) + sizes[counter];
+         int sSize = sizes[counter] + spring->getPreferredSize(axis);
          spring->setSize(axis, origin, sSize);
-         origin += sSize;
+         origin += sSize;         
       }
 
    } else {      

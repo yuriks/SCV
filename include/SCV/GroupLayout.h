@@ -43,7 +43,6 @@ public:
 
 protected:
    Panel *_host;
-   scv::Point minSize, preferredSize, maxSize;
    Group *_horizontalGroup, *_verticalGroup;
 
 private:

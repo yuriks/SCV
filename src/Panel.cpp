@@ -28,7 +28,7 @@ void Panel::display(void) {
 
    Point currPosition = getAbsolutePosition();
 
-   scissor->pushScissor(getScissor());
+   //scissor->pushScissor(getScissor());
 
    _cTexture->enable();
    scheme->applyColor(ColorScheme::PANEL);
@@ -53,7 +53,7 @@ void Panel::display(void) {
          (*iter)->display();
    }
 
-   scissor->popScissor();
+   //scissor->popScissor();
 }
 
 void Panel::createTexture(void) {
@@ -149,6 +149,8 @@ Point Panel::getPreferredSize(void) const {
 }
 
 Point Panel::getMaximumSize(void) const {
+   return Component::getMaximumSize();
+   /*
    if (_layout != NULL) {
       scv::Point size(_layout->getMaximumSize(Spring::HORIZONTAL), _layout->getMaximumSize(Spring::VERTICAL));
       if (size.x == Spring::DEFAULT_SIZE) size.x = Component::getMaximumSize().x;
@@ -157,6 +159,7 @@ Point Panel::getMaximumSize(void) const {
    } else {
       return Component::getMaximumSize();
    }
+   /**/
 }
 
 void Panel::addChild(Component *object) {

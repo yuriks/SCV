@@ -65,42 +65,42 @@ int main(int argc, char* argv[]) {
    vGroup->addChild(object4);
    /**/
 
-   
-   //GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
+   /*
+   GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
+   kernel->addComponent(wrapper);
+   /**/
+
    //wrapper->setVerticalGroup(vGroup);
    //wrapper->setHorizontalGroup(hGroup);
-   //kernel->addComponent(wrapper);
+   
 
    //std::cout << wrapper->getHorizontalGroupCode() << std::endl;
    //std::cout << wrapper->getVerticalGroupCode() << std::endl;
-   
-   
-   scv::Panel *panel = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
-   kernel->addComponent(panel);
+      
+   scv::Panel *panel1 = new scv::Panel(scv::Point(10,10), scv::Point(1280 - 10, 720 - 10));
+   kernel->addComponent(panel1);
 
-   scv::Panel *panel2 = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
-   panel->addChild(panel2);
-   scv::Panel *panel3 = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
-   panel->addChild(panel3);
-
-   scv::GroupLayout *layout = new scv::GroupLayout(panel);
-   panel->setLayout(layout);
+   scv::GroupLayout *layout = new scv::GroupLayout(panel1);
+   panel1->setLayout(layout);
 
    
-   layout = new scv::GroupLayout(panel2);
-   panel2->setLayout(layout);
-   layout->setHorizontalGroup(layout->createParallelGroup());
-   layout->setVerticalGroup(layout->createParallelGroup());
-   /**/
 
-   /*
-   layout = new scv::GroupLayout(panel3);
-   panel3->setLayout(layout);
-   /**/
+   scv::Panel *panel2 = new scv::Panel(scv::Point(), scv::Point(200,200));
+   scv::Panel *panel3 = new scv::Panel(scv::Point(), scv::Point(200,200));
+   scv::Panel *panel4 = new scv::Panel(scv::Point(), scv::Point(200,200));
+   scv::Panel *panel5 = new scv::Panel(scv::Point(), scv::Point(200,200));
+   panel1->addChild(panel2);
+   panel1->addChild(panel3);
+   panel1->addChild(panel4);
+   panel1->addChild(panel5);
 
-   layout->setHorizontalGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
-      ->addComponent(panel2)->addComponent(panel3));
-   layout->setVerticalGroup(layout->createSequentialGroup()->addComponent(panel2)->addComponent(panel3));
+   layout->setHorizontalGroup(layout->createSequentialGroup()->addGap(15)->addGroup(layout->createParallelGroup()->addComponent(panel2)->addComponent(panel3)));
+   layout->setVerticalGroup(layout->createSequentialGroup()->addGap(15)->addGroup(
+      layout->createSequentialGroup()->setAutoCreateGaps(true)->addComponent(panel2)->addComponent(panel3)->addComponent(panel4)->addComponent(panel5))
+      
+      );
+
+   //layout->setVerticalGroup(layout->createSequentialGroup()->addGap(15)->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)->addComponent(panel2)->addComponent(panel3)));
    /**/
 
    kernel->run();

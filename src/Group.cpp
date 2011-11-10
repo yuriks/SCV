@@ -65,11 +65,10 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
 
    int size = constrain(combined(getSpringSize(getSpring(0), axis, type), 
       getSpringSize(getSpring(1), axis, type)));
-
+   
    for (int i = 2; i < count; ++i) {
       size = constrain(combined(size, getSpringSize(getSpring(i), axis, type)));
-   }
-   
+   }   
    return size;
 }
 
