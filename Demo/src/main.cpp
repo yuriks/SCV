@@ -69,11 +69,25 @@ int main(int argc, char* argv[]) {
    GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
    //wrapper->setVerticalGroup(vGroup);
    //wrapper->setHorizontalGroup(hGroup);
-   kernel->addComponent(wrapper);
+   //kernel->addComponent(wrapper);
 
    std::cout << wrapper->getHorizontalGroupCode() << std::endl;
    std::cout << wrapper->getVerticalGroupCode() << std::endl;
    
+   scv::Panel *panel = new scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10));
+   kernel->addComponent(panel);
+
+   scv::Panel *panel2 = GroupPanelWrapper::createVerticalSequentialGroupPanel();
+   panel->addChild(panel2);
+   scv::Panel *panel3 = GroupPanelWrapper::createVerticalSequentialGroupPanel();
+   panel->addChild(panel3);
+
+   scv::GroupLayout *layout = new scv::GroupLayout(panel);
+   panel->setLayout(layout);
+
+   layout->setHorizontalGroup(layout->createSequentialGroup()->addComponent(panel2)->addComponent(panel3));
+   layout->setVerticalGroup(layout->createParallelGroup()->addComponent(panel2)->addComponent(panel3));
+
    kernel->run();
    return 0;
 }

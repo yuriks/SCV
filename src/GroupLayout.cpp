@@ -51,10 +51,12 @@ void GroupLayout::layoutContainer(void) {
       maxSize.x = _horizontalGroup->calculateMaximumSize(Spring::HORIZONTAL);
 
       if (width > preferredSize.x) {
+         std::cout << width << std::endl;
+         std::cout << preferredSize.x << std::endl;
          _horizontalGroup->setSize(Spring::HORIZONTAL, 0, width); 
-      } else if (preferredSize.x > width) {
+      } else if (preferredSize.x > width) {         
          _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x - (preferredSize.x - width)); 
-      } else {      
+      } else {
          _horizontalGroup->setSize(Spring::HORIZONTAL, 0, preferredSize.x);
       }   
    }
