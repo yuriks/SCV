@@ -7,7 +7,7 @@
 namespace scv {
 
 Group::Group(void) {
-   //_autoCreateContainerPadding = false;
+
 }
 
 Group::~Group(void) {
@@ -68,7 +68,7 @@ int Group::calculateSize(Spring::Axis axis, SizeType type) {
    
    for (int i = 2; i < count; ++i) {
       size = constrain(combined(size, getSpringSize(getSpring(i), axis, type)));
-   }   
+   }
    return size;
 }
 
