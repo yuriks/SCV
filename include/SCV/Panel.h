@@ -54,10 +54,10 @@ public:
    ///////////////////////////////////////////////////////////
 
 protected:
-   GroupLayout *_layout;
-   bool _leftToRight;
-
    virtual void createTexture(void);
+
+   GroupLayout *_layout;
+   bool _leftToRight;   
 };
 
 ///////////////////////////////////////////////////////////

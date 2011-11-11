@@ -14,9 +14,9 @@ GroupPanelWrapperMenu::~GroupPanelWrapperMenu(void) {
 
 void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {
    if (address[1] == "Set Parallel Group") {
-      _host->setHorizontalGroup(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+      _host->setVerticalGroup(GroupPanelWrapper::createVerticalParallelGroupPanel());
    } else if (address[1] == "Set Sequential Group") {
-      _host->setHorizontalGroup(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+      _host->setVerticalGroup(GroupPanelWrapper::createVerticalSequentialGroupPanel());
    }
 }
 
@@ -69,8 +69,8 @@ void GroupPanelWrapper::setHorizontalGroup(GroupPanel *group) {
    if (_horizontalGroup == NULL) {
       _horizontalGroup = group;
       addChild(group);
-      _layout->getHorizontalGroup()->addComponent(group);
-      _layout->getVerticalGroup()->addComponent(group);
+      _layout->getHorizontalGroup()->addComponent(group)->addGap(15);
+      _layout->getVerticalGroup()->addComponent(group)->addGap(15);
    }
 }
 
@@ -78,8 +78,8 @@ void GroupPanelWrapper::setVerticalGroup(GroupPanel *group) {
    if (_verticalGroup == NULL) {
       _verticalGroup = group;
       addChild(group);
-      _layout->getHorizontalGroup()->addComponent(group);
-      _layout->getVerticalGroup()->addComponent(group);
+      _layout->getHorizontalGroup()->addComponent(group)->addGap(15);
+      _layout->getVerticalGroup()->addComponent(group)->addGap(15);
    }
 }
 

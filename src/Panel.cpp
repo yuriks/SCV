@@ -28,7 +28,7 @@ void Panel::display(void) {
 
    Point currPosition = getAbsolutePosition();
 
-   //scissor->pushScissor(getScissor());
+   scissor->pushScissor(getScissor());
 
    _cTexture->enable();
    scheme->applyColor(ColorScheme::PANEL);
@@ -53,11 +53,12 @@ void Panel::display(void) {
          (*iter)->display();
    }
 
-   //scissor->popScissor();
+   scissor->popScissor();
 }
 
 void Panel::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
+   
    if ((_cTexture = kernel->getWidgetTexture(Kernel::PANEL)) != NULL) return;
 
    _cTexture = new ComponentTexture(2, 2);

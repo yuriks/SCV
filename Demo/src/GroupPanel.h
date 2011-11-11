@@ -35,15 +35,20 @@ public:
    virtual void removeChild(scv::Component *object);
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    virtual std::string getCode(void) = 0;
+   ///////////////////////////////////////////////////////////
 
-   virtual void display(void);
-
-   virtual void applyColor(void) = 0;
+   ///////////////////////////////////////////////////////////
+   virtual void display(void);   
+   ///////////////////////////////////////////////////////////
 
 protected:
    scv::Group *_verticalGroup, *_horizontalGroup;
+   virtual void createTexture(void);
 private:
+   
+   static scv::ComponentTexture *s_customTexture;
 };
 
 #endif //__GROUP_PANEL_H__

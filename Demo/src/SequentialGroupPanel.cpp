@@ -13,8 +13,8 @@ SequetialGroupPanel::SequetialGroupPanel(GroupType type) : GroupPanel(type) {
       break;
    }  
 
-   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_verticalGroup));
-   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_horizontalGroup));
+   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_verticalGroup)->addGap(15));
+   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_horizontalGroup)->addGap(15));
 }
 
 SequetialGroupPanel::~SequetialGroupPanel(void) {
@@ -22,14 +22,11 @@ SequetialGroupPanel::~SequetialGroupPanel(void) {
 }
 
 void SequetialGroupPanel::display(void) {
+   scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.7f, 1.0f, 0.7f, 1.0f));
    GroupPanel::display();
    scv::Scissor::getInstance()->pushScissor(getScissor());
    scv::StaticLabel::display(getAbsolutePosition(), "SequetialGroupPanel");
    scv::Scissor::getInstance()->popScissor();
-}
-
-void SequetialGroupPanel::applyColor(void) {
-   scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.7f, 0.7f, 0.3f, 0.3f));
 }
 
 std::string SequetialGroupPanel::getCode(void) {
