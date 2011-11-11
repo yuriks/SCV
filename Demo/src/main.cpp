@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
    scheme->setColor(scv::ColorScheme::FONT, scv::Color4f(1,1,1));
    
    /**/
-
+   /*
    GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
    kernel->addComponent(wrapper);
 
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
    /**/
 
-   /*
+   
    GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
    kernel->addComponent(wrapper);
    /**/
