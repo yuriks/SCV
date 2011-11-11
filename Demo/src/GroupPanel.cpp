@@ -51,13 +51,11 @@ GroupPanel::~GroupPanel(void) {
 
 void GroupPanel::addChild(scv::Component *object) {
    scv::Component *wrappedObject;
-   /*
    if (dynamic_cast<GroupPanel*>(object)) {
       wrappedObject = object;
    } else {
       wrappedObject = new GroupObjectWrapper(object);
    }
-   */
 
    Panel::addChild(wrappedObject);
    _verticalGroup->addComponent(object);

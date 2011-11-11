@@ -127,7 +127,6 @@ void Panel::processKey(const scv::KeyEvent &evt) {
 }
 
 Point Panel::getMinimumSize(void) const {
-   return Component::getMinimumSize();
    if (_layout != NULL) {
       scv::Point size(_layout->getMinimumSize(Spring::HORIZONTAL), _layout->getMinimumSize(Spring::VERTICAL));
       if (size.x == Spring::DEFAULT_SIZE) size.x = Component::getMinimumSize().x;
@@ -139,7 +138,6 @@ Point Panel::getMinimumSize(void) const {
 }
 
 Point Panel::getPreferredSize(void) const {
-   return Component::getPreferredSize();
    if (_layout != NULL) {
       scv::Point size(_layout->getPreferredSize(Spring::HORIZONTAL), _layout->getPreferredSize(Spring::VERTICAL));
       if (size.x == Spring::DEFAULT_SIZE) size.x = Component::getPreferredSize().x;
