@@ -10,7 +10,7 @@
 #include "ComponentWithoutTexture.h"
 
 #include "Panel.h"
-#include "ScrollPane.h"
+#include "ScrollComponent.h"
 #include "Scissor.h"
 
 #include "ContextMenu.h"

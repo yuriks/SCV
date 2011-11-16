@@ -17,15 +17,6 @@ TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWi
    createTexture();
 }
 
-TabbedPane::TabbedPane(const scv::Point &p1, unsigned int width, unsigned int height) : ComponentWithTexture(p1, Point(p1.x+width,p1.y+height)) {
-   _currecOverTab = _currSelectedTab = -1;
-   _index.push_back(s_tabSpacing);
-   _type = TABBEDPANE;
-
-   createTexture();
-}
-
-
 void TabbedPane::onMouseClick(const scv::MouseEvent &evt) {
 }
 void TabbedPane::onMouseHold(const scv::MouseEvent &evt) {
@@ -47,26 +38,39 @@ void TabbedPane::onSizeChange(void) {
 void TabbedPane::onPositionChange(void) {
 }
 
-void TabbedPane::addPanel(Panel *panel, const std::string &label) {
-   static FontTahoma *font = FontTahoma::getInstance();
+void TabbedPane::addChild(Component *object) {
+   addChild(object, "none", false);
+}
+
+void TabbedPane::addChild(Component *object, const std::string &label, bool resize) {
+   ComponentWithTexture::addChild(object);
 
    if (_currSelectedTab == -1) _currSelectedTab = 0;
 
-   int position = (_index.back() + (s_tabSpacing * 2) + font->getStringLength(label));
-   _index.push_back(position);
+   if (resize) {
+      object->setWidth(getWidth());
+      object->setHeight(getHeight() - s_barHeight);
+   }   
+   object->setRelativePosition(Point(0, s_barHeight));
 
-   Point currPosition = getRelativePosition();
-
-   //REVIEW
-   //panel->setPanelTranslate(Point(currPosition.x - panel->getAbsolutePosition().x, currPosition.y - panel->getAbsolutePosition().y + s_barHeight));
-
-   panel->setWidth(getWidth());
-   panel->setHeight(getHeight() - s_barHeight);
-
-   _tabs.push_back(panel);
+   _index.push_back(_index.back() + (s_tabSpacing * 2) + FontTahoma::getInstance()->getStringLength(label));
    _labels.push_back(label);
+   _resize.push_back(resize);
+}
 
-   refreshPosition(_tabs.size()-1);
+void TabbedPane::removeChild(Component *object) {
+   if (hasChild(object)) {
+      int index = 0;
+      Component::List::iterator iter = _children.begin();
+      while((*iter) != object) {
+         ++iter;
+         ++index;
+      }
+      _index.erase(_index.begin() + index);
+      _labels.erase(_labels.begin() + index);
+      _resize.erase(_resize.begin() + index);
+   }
+   ComponentWithTexture::removeChild(object);
 }
 
 void TabbedPane::processMouse(const scv::MouseEvent &evt) {
@@ -75,7 +79,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
    if (isDragging() || isResizing()) {
       Component::processMouse(evt);
       if (_currSelectedTab != -1 && isResizing()) {
-         refreshScissor();
+         setCurrPanel();
       }
    } else {
 
@@ -83,8 +87,8 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
          Component::processMouse(evt);
          return;
       } else if(_currSelectedTab != -1) {
-         _tabs[_currSelectedTab]->setDraggable(false);
-         _tabs[_currSelectedTab]->processMouse(evt);
+         getChild(_currSelectedTab)->setDraggable(false);
+         getChild(_currSelectedTab)->processMouse(evt);
       }
 
       Component::processMouse(evt);
@@ -92,14 +96,14 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
       Point currPosition = getAbsolutePosition();
       Point relativeMouse = evt.getPosition();
 
-      if (evt.getState() == MouseEvent::UP) refreshScissor();
+      if (evt.getState() == MouseEvent::UP) setCurrPanel();
 
       // open menu
       if (isInside(evt.getPosition())) {
          _currecOverTab = -1;
          if (kernel->requestMouseUse(this)) {
             // over menu
-            for (int i = 0; i < _tabs.size(); i++) {
+            for (int i = 0; i < _children.size(); i++) {
                if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i + 1] + currPosition.x - 1
                   && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
                      if (_currSelectedTab != i) _currecOverTab = i;
@@ -108,13 +112,12 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
             }
             if (isFocused()) {
                if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::LEFT) {
-                  for (int i = 0; i < _tabs.size(); i++) {
+                  for (int i = 0; i < _children.size(); i++) {
                      if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i + 1] + currPosition.x - 1
                         && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
                            _currSelectedTab = i;
                            _currecOverTab   = -1;
-                           refreshPosition(_currSelectedTab);
-                           refreshScissor();
+                           setCurrPanel();
                            break;
                      }
                   }
@@ -139,23 +142,22 @@ void TabbedPane::processKey(const scv::KeyEvent &evt) {
       if (evt.getKeyString() == "Left") {
          _currecOverTab = -1;
          if (_currSelectedTab == 0) {
-            _currSelectedTab = _tabs.size() - 1;
-            refreshPosition(_currSelectedTab);
-            refreshScissor();
+            _currSelectedTab = _children.size() - 1;
+            setCurrPanel();
          } else {
             _currSelectedTab--;
-            refreshPosition(_currSelectedTab);
-            refreshScissor();
+            setCurrPanel();
          }
 
       } else if (evt.getKeyString() == "Right") {
          _currecOverTab = -1;
-         _currSelectedTab = (_currSelectedTab + 1) % _tabs.size();
-         refreshPosition(_currSelectedTab);
-         refreshScissor();
+         _currSelectedTab = (_currSelectedTab + 1) % _children.size();
+         setCurrPanel();
       }
 
-   } else if (_currSelectedTab != -1) _tabs[_currSelectedTab]->processKey(evt);
+   } else if (_currSelectedTab != -1) {
+      getChild(_currSelectedTab)->processKey(evt);
+   }
 }
 
 void TabbedPane::display(void) {
@@ -167,14 +169,13 @@ void TabbedPane::display(void) {
    if (_cTexture == NULL || _isVisible == false) return;
 
    if (_currSelectedTab != -1) {
-      refreshPosition(_currSelectedTab);
-      _tabs[_currSelectedTab]->display();
+      setCurrPanel();
+      getChild(_currSelectedTab)->display();
    }
 
    Point currPosition = getAbsolutePosition();
-
-   Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
-   scissor->pushScissor(scissorInfo);
+ 
+   scissor->pushScissor(getScissor());
 
    _cTexture->enable();
 
@@ -282,22 +283,13 @@ void TabbedPane::createTexture(void) {
    _cTexture->createTexture();
 }
 
-void TabbedPane::refreshPosition(int tab) {
-   if (tab < 0 || tab >= _tabs.size()) return;
-   Point currPosition = getAbsolutePosition();
-   //REVIEW
-   //_tabs[tab]->setPanelTranslate(Point(0,0));
-   //_tabs[tab]->setPanelTranslate(Point(currPosition.x - _tabs[tab]->getAbsolutePosition().x, currPosition.y - _tabs[tab]->getAbsolutePosition().y + s_barHeight));
-}
-
-void TabbedPane::refreshScissor(void) {
-   static Kernel *kernel = Kernel::getInstance();
+void TabbedPane::setCurrPanel(void) {
    if (_currSelectedTab == -1) return;
-   Point currPosition = getAbsolutePosition();
-   _tabs[_currSelectedTab]->setWidth(getWidth());
-   _tabs[_currSelectedTab]->setHeight(getHeight()-s_barHeight);
-   //_tabs[_currSelectedTab]->setPanelScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight()));
+   if (_resize[_currSelectedTab]) {
+      getChild(_currSelectedTab)->setWidth(getWidth());
+      getChild(_currSelectedTab)->setHeight(getHeight() - s_barHeight);
+   }
+   getChild(_currSelectedTab)->setRelativePosition(Point(0, s_barHeight));
 }
-
 
 } // namespace scv

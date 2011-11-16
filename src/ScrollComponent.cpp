@@ -1,52 +1,63 @@
 #include "stdafx.h"
 #include "Kernel.h"
-#include "ScrollPane.h"
+#include "ScrollComponent.h"
 #include "data.h"
 
 namespace scv {
 
-ScrollPane::ScrollPane(const scv::Point &p1, const scv::Point &p2, scv::Panel * panel) : ComponentWithTexture(p1, p2), _holdButton(BUT_NONE),
-      _translateHeight(0.f), _translateWidth(0.f), _draggingBar(BUT_NONE) {
-   _isHResizable = _isVResizable = true;   
+ScrollComponent::ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv::Component *object) : ComponentWithTexture(p1, p2),
+      _holdButton(BUT_NONE), _draggingBar(BUT_NONE) {
+
+   _isHResizable = _isVResizable = true;
    _translateWidth = 0.0f;
    _translateHeight = 0.0f;
    _minimumSize = Point(60,60);
    _type = SCROLLPANE;
 
-   setPanel(panel);
+   setComponent(object);
+
    createTexture();
 }
 
-ScrollPane::~ScrollPane(void) {
+ScrollComponent::~ScrollComponent(void) {
 
 }
 
-void ScrollPane::onMouseClick(const scv::MouseEvent &evt) {}
-void ScrollPane::onMouseHold(const scv::MouseEvent &evt) {}
-void ScrollPane::onMouseOver(const scv::MouseEvent &evt) {}
-void ScrollPane::onMouseUp(const scv::MouseEvent &evt) {}
-void ScrollPane::onMouseWheel(const scv::MouseEvent &evt) {}
+void ScrollComponent::onMouseClick(const scv::MouseEvent &evt) {
+}
+void ScrollComponent::onMouseHold(const scv::MouseEvent &evt) {
+}
+void ScrollComponent::onMouseOver(const scv::MouseEvent &evt) {
+}
+void ScrollComponent::onMouseUp(const scv::MouseEvent &evt) {
+}
+void ScrollComponent::onMouseWheel(const scv::MouseEvent &evt) {
+}
 
-void ScrollPane::onKeyPressed(const scv::KeyEvent &evt) {}
-void ScrollPane::onKeyUp(const scv::KeyEvent &evt) {}
+void ScrollComponent::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void ScrollComponent::onKeyUp(const scv::KeyEvent &evt) {
+}
 
-void ScrollPane::onSizeChange(void) {}
-void ScrollPane::onPositionChange(void) {}
+void ScrollComponent::onSizeChange(void) {
+}
+void ScrollComponent::onPositionChange(void) {
+}
 
-void ScrollPane::setPanel(Panel *panel) {
-   if (panel == NULL) return;
+void ScrollComponent::setComponent(scv::Component *object) {
+   if (object == NULL || object == this) return;
 
-   _registeredPanel = panel;
+   _registeredComponent = object;
 
    refreshSCrollPaneSize();
    refreshContainerPosition();
 }
 
-void ScrollPane::refreshSCrollPaneSize(void) {
-   if (getPanel() == NULL) return;
+void ScrollComponent::refreshSCrollPaneSize(void) {
+   if (getComponent() == NULL) return;
    
-   _containerHeight = getPanel()->getHeight();
-   _containerWidth = getPanel()->getWidth();
+   _containerHeight = getComponent()->getHeight();
+   _containerWidth = getComponent()->getWidth();
    
    if (_containerWidth + s_initDesloc > getWidth()) {
       _scrollSizeHorizontal = (getWidth() - s_unnecessaryBorder) * (getWidth()-s_initDesloc)/_containerWidth;
@@ -60,12 +71,11 @@ void ScrollPane::refreshSCrollPaneSize(void) {
 }
 
 
-void ScrollPane::processMouse(const scv::MouseEvent &evt) {
+void ScrollComponent::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = scv::Kernel::getInstance();
    const Point currPosition = getAbsolutePosition();
-
-   
-   if ((isFocused() || (getPanel() && getPanel()->isFocused())) && _receivingCallbacks) {
+      
+   if ((isFocused() || (getComponent() && getComponent()->isFocused())) && _receivingCallbacks) {
       if (evt.getState() == MouseEvent::WHEELDOWN && kernel->requestMouseUse(this)) {
          _translateHeight = std::min(_translateHeight + pixelToFloat(10, false), 1.f);
          refreshContainerPosition();
@@ -74,20 +84,18 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
          refreshContainerPosition();
       }
    }
-
-   
-   if (getPanel() != NULL) {
+      
+   if (getComponent() != NULL) {
       Scissor::Info scissor(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border - 1), getWidth() - s_border - 1, getHeight() - s_border - 1);
-      if ((scissor.isInside(evt.getInversePosition()) && _draggingBar == BUT_NONE) || getPanel()->isResizing()) {
-         getPanel()->setDraggable(false);
-         getPanel()->processMouse(evt);
+      if ((scissor.isInside(evt.getInversePosition()) && _draggingBar == BUT_NONE) || getComponent()->isResizing()) {
+         getComponent()->setDraggable(false);
+         getComponent()->processMouse(evt);
          refreshSCrollPaneSize();
       }
    }
    
    Component::processMouse(evt);
-
-   
+      
    if (isDragging())
       refreshContainerPosition();
 
@@ -196,21 +204,21 @@ void ScrollPane::processMouse(const scv::MouseEvent &evt) {
    }
 }
 
-void ScrollPane::refreshContainerPosition(void) {
-   if (getPanel() == NULL) return;
+void ScrollComponent::refreshContainerPosition(void) {
+   if (getComponent() == NULL) return;
 
    _minContainerPos.x = getAbsolutePosition().x + getWidth() - s_border - _containerWidth;
    _minContainerPos.y = getAbsolutePosition().y + getHeight() - s_border - _containerHeight;
 
-   getPanel()->setAbsolutePosition(Point(getAbsolutePosition().x - (int)(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x)), getAbsolutePosition().y - (int)(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y))));
+   getComponent()->setAbsolutePosition(Point(getAbsolutePosition().x - (int)(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x)), getAbsolutePosition().y - (int)(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y))));
 }
 
-void ScrollPane::processKey(const scv::KeyEvent &evt) {
-   if(getPanel() != NULL)
-      getPanel()->processKey(evt);
+void ScrollComponent::processKey(const scv::KeyEvent &evt) {
+   if(getComponent() != NULL)
+      getComponent()->processKey(evt);
 }
 
-void ScrollPane::display(void) {
+void ScrollComponent::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
    static Scissor *scissor = Scissor::getInstance();
    static Kernel *kernel = Kernel::getInstance();
@@ -320,57 +328,57 @@ void ScrollPane::display(void) {
    /************************************************************************/
    /* PANEL                                                                */
    /************************************************************************/
-   if(getPanel() != NULL) {
+   if(getComponent() != NULL) {
       Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border), getWidth() - s_border, getHeight() - s_border);
       scissor->pushScissor(scissorInfo);
-      getPanel()->display();
+      getComponent()->display();
       scissor->popScissor();
    }
 }
 
-bool ScrollPane::isOnLeftButton(Point p) {
+bool ScrollComponent::isOnLeftButton(Point p) {
    return (p > getAbsolutePosition() + Point(0, getHeight() - 17) && p < getAbsolutePosition() + Point(s_initDesloc - 1, getHeight()));
 }
 
-bool ScrollPane::isOnRightButton(Point p) {
+bool ScrollComponent::isOnRightButton(Point p) {
    return (p > getAbsolutePosition() + Point(getWidth() - s_initDesloc * 2, getHeight() - 17) && p < getAbsolutePosition() + Point(getWidth() - s_initDesloc, getHeight()));
 }
 
-bool ScrollPane::isOnUpButton(Point p) {
+bool ScrollComponent::isOnUpButton(Point p) {
    return (p > getAbsolutePosition() + Point(getWidth() - s_initDesloc, -1) && p < getAbsolutePosition() + Point(getWidth()-1, s_initDesloc-1));
 }
 
-bool ScrollPane::isOnBottomButton(Point p) {
+bool ScrollComponent::isOnBottomButton(Point p) {
    return (p > getAbsolutePosition() + Point(getWidth() - s_initDesloc, getHeight() - s_initDesloc * 2) && p < getAbsolutePosition() + Point(getWidth()-1, getHeight() - s_initDesloc));
 }
 
-bool ScrollPane::isOnVertButton(Point p) {
+bool ScrollComponent::isOnVertButton(Point p) {
    return (p > getAbsolutePosition() + Point(getWidth() - s_initDesloc, s_initDesloc - 1 + (int)(_translateHeight * (float)_maxDeslocHeight)) && p < getAbsolutePosition() + Point(getWidth() - 1, s_initDesloc - 1 + (int)(_translateHeight * (float)_maxDeslocHeight) + _scrollSizeVertical + 2));
 }
 
-bool ScrollPane::isOnHorzButton(Point p) {
+bool ScrollComponent::isOnHorzButton(Point p) {
    return (p > getAbsolutePosition() + Point(s_initDesloc - 1 + (int)(_translateWidth * (float)_maxDeslocWidth), getHeight() - (s_initDesloc - 1)) && p < getAbsolutePosition() + Point(s_initDesloc + (int)(_translateWidth * (float)_maxDeslocWidth) + _scrollSizeHorizontal + 1, getHeight()));
 }
 
-bool ScrollPane::isOnVertBar(Point p) {
+bool ScrollComponent::isOnVertBar(Point p) {
    return (p > getAbsolutePosition() + Point(getWidth() - s_initDesloc, s_initDesloc - 1) && p < getAbsolutePosition() + Point(getWidth() - 1, getHeight() - (2*s_initDesloc) - 2));
 }
 
-bool ScrollPane::isOnHorzBar(Point p) {
+bool ScrollComponent::isOnHorzBar(Point p) {
    return (p > getAbsolutePosition() + Point(s_initDesloc, getHeight() - (s_initDesloc - 1)) && p < getAbsolutePosition() + Point(getWidth() - (2*s_initDesloc), getHeight()));
 }
 
-float ScrollPane::pixelToFloat(int pix, bool horz) {
+float ScrollComponent::pixelToFloat(int pix, bool horz) {
    unsigned int tam = (horz ? (_containerWidth - (getWidth() - s_border)) : (_containerHeight - (getHeight() - s_border)));
    return (float)pix / (float)tam;
 }
 
-float ScrollPane::barPixelToFloat(int pix, bool horz) {
+float ScrollComponent::barPixelToFloat(int pix, bool horz) {
    unsigned int tam = (horz ? getWidth() - _scrollSizeHorizontal : getHeight() - _scrollSizeVertical) - (s_initDesloc * 3);
    return (float)pix / (float)tam;
 }
 
-void ScrollPane::createTexture(void) {
+void ScrollComponent::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
    if ((_cTexture = kernel->getWidgetTexture(Kernel::SCROLLPANE)) != NULL) return;
 
@@ -401,12 +409,12 @@ void ScrollPane::createTexture(void) {
 
 }
 
-void ScrollPane::setWidth(const int width) {
+void ScrollComponent::setWidth(const int width) {
    Component::setWidth(width);
    refreshSCrollPaneSize();
 }
 
-void ScrollPane::setHeight(const int height) {
+void ScrollComponent::setHeight(const int height) {
    Component::setHeight(height);
    refreshSCrollPaneSize();
 }

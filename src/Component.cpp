@@ -93,7 +93,6 @@ void Component::setWidth(const int width) {
    } else {
       _p2.x = _p1.x + width;
    }
-   //setPreferredSize(Point(getWidth(), getHeight()));
    onSizeChange();
 }
 
@@ -103,7 +102,6 @@ void Component::setHeight(const int height) {
    } else {
       _p2.y = _p1.y + height;
    }
-   //setPreferredSize(Point(getWidth(), getHeight()));
    onSizeChange();
 }
 
@@ -411,7 +409,6 @@ Point Component::getPreferredSize(void) const {
 }
 
 Point Component::getMaximumSize(void) const {
-   //REVIEW MAX INT OVERFLOW
    return (_maximumSize <= Point(0, 0)) ? Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()) : _maximumSize;
 }
 

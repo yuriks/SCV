@@ -26,7 +26,7 @@
 #include "MenuBar.h"
 #include "ProgressBar.h"
 #include "RadioButton.h"
-#include "ScrollPane.h"
+#include "ScrollComponent.h"
 #include "Separator.h"
 #include "Singleton.h"
 #include "Slider.h"

@@ -34,7 +34,7 @@ void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &addres
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-GroupPanelWrapper::GroupPanelWrapper(GroupPanel::GroupType type) : scv::Panel(scv::Point(0, 0), scv::Point(1280, 720)), _type(type) {
+GroupPanelWrapper::GroupPanelWrapper(GroupPanel::GroupType type) : scv::Panel(scv::Point(0, 0), scv::Point(800, 600)), _type(type) {
    setResizable(true);
 
    _group = NULL;

@@ -10,7 +10,6 @@ class TabbedPane : public ComponentWithTexture {
 public:
    ///////////////////////////////////////////////////////////
    TabbedPane(const scv::Point &p1, const scv::Point &p2);
-   TabbedPane(const scv::Point &p1, unsigned int width, unsigned int height);
    ///////////////////////////////////////////////////////////
    
    //SCVCallbacks
@@ -28,8 +27,12 @@ public:
    virtual void onPositionChange(void);
    ///////////////////////////////////////////////////////////
    
+   //Memory Management
    ///////////////////////////////////////////////////////////
-   void addPanel(Panel *panel, const std::string &label);
+   virtual void addChild(Component *object);
+   virtual void addChild(Component *object, const std::string &label, bool resize = true);
+
+   virtual void removeChild(Component *object);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -41,9 +44,7 @@ public:
 
 private:
    void createTexture(void);
-
-   void refreshPosition(int tab);
-   void refreshScissor(void);
+   void setCurrPanel(void);
 
    static const int s_tabSpacing, s_barHeight;
 
@@ -51,7 +52,7 @@ private:
 
    std::vector<int> _index;
    std::vector<std::string> _labels;
-   std::vector<Panel*> _tabs;
+   std::vector<bool> _resize;
 };
 
 } // namespace scv

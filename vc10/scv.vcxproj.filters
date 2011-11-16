@@ -121,9 +121,6 @@
     <ClCompile Include="..\src\Panel.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ScrollPane.cpp">
-      <Filter>4.Widgets\Panel</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Spinner.cpp">
       <Filter>4.Widgets\Counter</Filter>
     </ClCompile>
@@ -213,6 +210,9 @@
     </ClCompile>
     <ClCompile Include="..\src\VistaMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ScrollComponent.cpp">
+      <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -351,9 +351,6 @@
     <ClInclude Include="..\include\SCV\Panel.h">
       <Filter>4.Widgets\Panel</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\ScrollPane.h">
-      <Filter>4.Widgets\Panel</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\SCV\Spinner.h">
       <Filter>4.Widgets\Counter</Filter>
     </ClInclude>
@@ -440,6 +437,9 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\PopupItemStyle.h">
       <Filter>4.Widgets\Tree\PopupItemStyle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\ScrollComponent.h">
+      <Filter>4.Widgets\Panel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

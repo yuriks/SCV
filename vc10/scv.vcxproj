@@ -57,7 +57,7 @@
     <ClCompile Include="..\src\ProgressBar.cpp" />
     <ClCompile Include="..\src\RadioButton.cpp" />
     <ClCompile Include="..\src\Scissor.cpp" />
-    <ClCompile Include="..\src\ScrollPane.cpp" />
+    <ClCompile Include="..\src\ScrollComponent.cpp" />
     <ClCompile Include="..\src\Separator.cpp" />
     <ClCompile Include="..\src\SequentialGroup.cpp" />
     <ClCompile Include="..\src\Slider.cpp" />
@@ -133,7 +133,7 @@
     <ClInclude Include="..\include\SCV\ProgressBar.h" />
     <ClInclude Include="..\include\SCV\RadioButton.h" />
     <ClInclude Include="..\include\SCV\Scissor.h" />
-    <ClInclude Include="..\include\SCV\ScrollPane.h" />
+    <ClInclude Include="..\include\SCV\ScrollComponent.h" />
     <ClInclude Include="..\include\SCV\SCV.h" />
     <ClInclude Include="..\include\SCV\SCVCallbacks.h" />
     <ClInclude Include="..\include\SCV\Separator.h" />

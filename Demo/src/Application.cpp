@@ -19,23 +19,22 @@ Application::~Application(void) {
 void Application::init(void) {
    static const int s_defaultGap = 10;
    static const int s_defaultRightPanelWidth = 250;
-
-
-   scv::Panel *mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
-   addComponent(mainPanel);
+   
+   _mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
+   addComponent(_mainPanel);
 
    //Menu
    ///////////////////////////////////////////////////////////
    MenuBar *menuBar = new MenuBar(s_defaultWindowWidth);
-   mainPanel->addChild(menuBar);
+   _mainPanel->addChild(menuBar);
 
    ///////////////////////////////////////////////////////////
    
 
    //Palette
    ///////////////////////////////////////////////////////////
-   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightPanelWidth, 0)); //26
-   mainPanel->addChild(panelPalette);
+   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightPanelWidth, 0));
+   _mainPanel->addChild(panelPalette);
    
    scv::GroupLayout *paletteLayout = new scv::GroupLayout(panelPalette);
    panelPalette->setLayout(paletteLayout);
@@ -93,25 +92,25 @@ void Application::init(void) {
    GroupPanelWrapper *hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
    GroupPanelWrapper *vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
 
-   scv::ScrollPane *hScrollDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), hPanelWrapper);
-   scv::ScrollPane *vScrollDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), vPanelWrapper);
+   scv::ScrollComponent *hScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), hPanelWrapper);
+   scv::ScrollComponent *vScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), vPanelWrapper);
 
    scv::TabbedPane *tabbedDesign = new scv::TabbedPane(scv::Point(), scv::Point());
-   tabbedDesign->addPanel(hPanelWrapper, "Horizontal");
-   tabbedDesign->addPanel(vPanelWrapper, "Vertical");
+   tabbedDesign->addChild(hScrollDesign, "Group Layout: Horizontal");
+   tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
-   mainPanel->addChild(tabbedDesign);
+   _mainPanel->addChild(tabbedDesign);
    ///////////////////////////////////////////////////////////
 
    //Properties
    ///////////////////////////////////////////////////////////
    _properties = new Properties(s_defaultRightPanelWidth);
-   mainPanel->addChild(_properties);
+   _mainPanel->addChild(_properties);
    ///////////////////////////////////////////////////////////
 
    //GroupLayout
    ///////////////////////////////////////////////////////////
-   scv::GroupLayout *layout = new scv::GroupLayout(mainPanel);
+   scv::GroupLayout *layout = new scv::GroupLayout(_mainPanel);
 
    layout->setHorizontalGroup(
       layout->createSequentialGroup()->setAutoCreateGaps(true)
@@ -136,7 +135,7 @@ void Application::init(void) {
    );
    ///////////////////////////////////////////////////////////
 
-   mainPanel->setLayout(layout);
+   _mainPanel->setLayout(layout);
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
@@ -160,6 +159,7 @@ void Application::onKeyUp(const scv::KeyEvent &evt) {
 }
 
 void Application::onSizeChange(void) {
+   _mainPanel->setSize(getWidth() - 20, getHeight() - 20);
 }
 void Application::onPositionChange(void) {
 }

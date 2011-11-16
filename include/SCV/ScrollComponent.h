@@ -1,16 +1,16 @@
-#ifndef __SCV_SCROLL_PANE_H__
-#define __SCV_SCROLL_PANE_H__
+#ifndef __SCV_SCROLL_COMPONENT_H__
+#define __SCV_SCROLL_COMPONENT_H__
 
 #include "Panel.h"
 #include "ComponentWithTexture.h"
 
 namespace scv {
 
-class ScrollPane : public ComponentWithTexture {
+class ScrollComponent : public ComponentWithTexture {
 public:
    ///////////////////////////////////////////////////////////
-   ScrollPane(const scv::Point &p1, const scv::Point &p2, scv::Panel * panel = NULL);
-   virtual ~ScrollPane(void);
+   ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv::Component *object = NULL);
+   virtual ~ScrollComponent(void);
    ///////////////////////////////////////////////////////////
 
    //SCVCallbacks
@@ -29,8 +29,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   void setPanel(Panel *panel);
-   inline Panel *getPanel(void) const;
+   void setComponent(scv::Component *object);
+   inline scv::Component *getComponent(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -92,15 +92,15 @@ private:
 
    bool _holdButton;
 
-   Panel *_registeredPanel;
+   Component *_registeredComponent;
 };
 
 ///////////////////////////////////////////////////////////
-Panel *ScrollPane::getPanel(void) const {
-   return _registeredPanel;
+scv::Component *ScrollComponent::getComponent(void) const {
+   return _registeredComponent;
 }
 ///////////////////////////////////////////////////////////
 
 } // namespace scv
 
-#endif // __SCV_SCROLL_PANE_H__
+#endif // __SCV_SCROLL_COMPONENT_H__
