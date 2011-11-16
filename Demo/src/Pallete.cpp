@@ -3,9 +3,11 @@
 #include "Application.h"
 
 ButtonPallete::ButtonPallete(const scv::Point &p, const std::string &str) : Button(p, str) {
+
 }
 
 ButtonPallete::~ButtonPallete(void) {
+
 }
 
 void ButtonPallete::onMouseClick(const scv::MouseEvent &evt) {

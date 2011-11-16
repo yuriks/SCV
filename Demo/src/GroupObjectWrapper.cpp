@@ -5,8 +5,6 @@ GroupObjectWrapper::GroupObjectWrapper(scv::Component *objet) : scv::Panel(scv::
    setMinimumSize(objet->getMinimumSize());
    setPreferredSize(objet->getPreferredSize());
    setMaximumSize(objet->getMaximumSize());
-
-   std::cout << getMinimumSize() << std::endl;
 }
 
 GroupObjectWrapper::~GroupObjectWrapper(void) {

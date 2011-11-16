@@ -18,11 +18,11 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   ParallelGroup *createParallelGroup(void);
-   ParallelGroup *createParallelGroup(Spring::Alignment alignment);
-   ParallelGroup *createParallelGroup(Spring::Alignment alignment, bool resizable);
+   static ParallelGroup *createParallelGroup(void);
+   static ParallelGroup *createParallelGroup(Spring::Alignment alignment);
+   static ParallelGroup *createParallelGroup(Spring::Alignment alignment, bool resizable);
 
-   SequentialGroup *createSequentialGroup(void);
+   static SequentialGroup *createSequentialGroup(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////

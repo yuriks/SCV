@@ -24,16 +24,13 @@ Properties::Properties(int width) : scv::Panel(scv::Point(0, 0), scv::Point(widt
    _hLeftGroup = _layout->createParallelGroup();
    _hRightGroup = _layout->createParallelGroup();
    _hGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)
-      ->addGroup(_hLeftGroup)
-      ->addGroup(_hRightGroup)
-   ;
-   _vGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)->setAutoGapsSize(5);
+      ->addGap(0)->addGroup(_hLeftGroup)->addGroup(_hRightGroup)->addGap(0);
+   _vGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)->addGap(0)->setAutoGapsSize(5);
    
    _layout->setHorizontalGroup(_hGroup);
    _layout->setVerticalGroup(_vGroup);
 
-   addChild(s_RelativePosition, PropertieOption::EDITABLE_TEXTFIELD);
-   
+   addChild(s_RelativePosition, PropertieOption::EDITABLE_TEXTFIELD);   
    addChild(s_AbsolutePosition, PropertieOption::EDITABLE_TEXTFIELD);
 
    addChild(s_Width, PropertieOption::EDITABLE_TEXTFIELD);
@@ -123,12 +120,10 @@ void Properties::onValueChange(const std::string &title, const std::string &str)
       _currComponent->setRelativePosition(scv::Point(str));
    } else if (title == s_AbsolutePosition) {
       _currComponent->setAbsolutePosition(scv::Point(str));
-
    } else if (title == s_Width) {
       _currComponent->setWidth(scv::fromString<int>(str));
    } else if (title == s_Height) {
       _currComponent->setHeight(scv::fromString<int>(str));
-
    } else if (title == s_MinimumSize) {
       _currComponent->setMinimumSize(scv::Point(str));
    } else if (title == s_PreferredSize) {

@@ -4,8 +4,8 @@
 GroupPanelWrapperMenu::GroupPanelWrapperMenu(GroupPanelWrapper *host) : scv::ContextMenu("Group Panel") {
    _host = host;
 
-   addMenu(new scv::ContextMenu("Set Parallel Group"));
-   addMenu(new scv::ContextMenu("Set Sequential Group"));
+   addMenu(new scv::ContextMenu("Add Parallel Group"));
+   addMenu(new scv::ContextMenu("Add Sequential Group"));
 }
 
 GroupPanelWrapperMenu::~GroupPanelWrapperMenu(void) {
@@ -13,9 +13,9 @@ GroupPanelWrapperMenu::~GroupPanelWrapperMenu(void) {
 }
 
 void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {
-   if (address[1] == "Set Parallel Group") {
+   if (address[1] == "Add Parallel Group") {
       _host->setVerticalGroup(GroupPanelWrapper::createVerticalParallelGroupPanel());
-   } else if (address[1] == "Set Sequential Group") {
+   } else if (address[1] == "Add Sequential Group") {
       _host->setVerticalGroup(GroupPanelWrapper::createVerticalSequentialGroupPanel());
    }
 }
@@ -23,7 +23,7 @@ void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &addres
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-GroupPanelWrapper::GroupPanelWrapper(void) : scv::Panel(scv::Point(10, 10), scv::Point(1280 - 10, 720 - 10)) {
+GroupPanelWrapper::GroupPanelWrapper(void) : scv::Panel(scv::Point(0, 0), scv::Point(1280, 720)) {
    setResizable(true);
 
    _verticalGroup   = NULL;
@@ -45,7 +45,7 @@ GroupPanelWrapper::~GroupPanelWrapper(void) {
 void GroupPanelWrapper::display(void) {
    scv::Panel::display();
    scv::Scissor::getInstance()->pushScissor(getScissor());
-   scv::StaticLabel::display(getAbsolutePosition(), "GroupPanelWrapper");
+   scv::StaticLabel::display(getAbsolutePosition() + 2, "GroupPanelWrapper");
    scv::Scissor::getInstance()->popScissor();
 }
 
@@ -97,7 +97,7 @@ void GroupPanelWrapper::setVerticalGroupVisible(bool visible) {
 
 std::string GroupPanelWrapper::getHorizontalGroupCode(void) const {
    if (_horizontalGroup != NULL) {
-      return _horizontalGroup->getCode();
+      return "scv::GroupLayout::createParallelGroup()" + _horizontalGroup->getCode();
    } else {
       return std::string("");
    }
@@ -105,7 +105,7 @@ std::string GroupPanelWrapper::getHorizontalGroupCode(void) const {
 
 std::string GroupPanelWrapper::getVerticalGroupCode(void) const {
    if (_verticalGroup != NULL) {
-      return _verticalGroup->getCode();
+      return "scv::GroupLayout::createParallelGroup()" + _verticalGroup->getCode();
    } else {
       return std::string("");
    }

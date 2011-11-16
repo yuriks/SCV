@@ -25,12 +25,12 @@ void SequetialGroupPanel::display(void) {
    scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.7f, 1.0f, 0.7f, 1.0f));
    GroupPanel::display();
    scv::Scissor::getInstance()->pushScissor(getScissor());
-   scv::StaticLabel::display(getAbsolutePosition(), "SequetialGroupPanel");
+   scv::StaticLabel::display(getAbsolutePosition() + 2, "SequetialGroupPanel");
    scv::Scissor::getInstance()->popScissor();
 }
 
 std::string SequetialGroupPanel::getCode(void) {
-   std::string code = "->addGroup(createSequentialGroup()\n";
+   std::string code = "->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)\n";
 
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {

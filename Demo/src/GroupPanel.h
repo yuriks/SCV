@@ -37,6 +37,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    virtual std::string getCode(void) = 0;
+   inline GroupType getType(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -44,11 +45,19 @@ public:
    ///////////////////////////////////////////////////////////
 
 protected:
+   GroupType _type;
    scv::Group *_verticalGroup, *_horizontalGroup;
    virtual void createTexture(void);
-private:
-   
+
+private:   
    static scv::ComponentTexture *s_customTexture;
 };
+
+///////////////////////////////////////////////////////////
+
+GroupPanel::GroupType GroupPanel::getType(void) const {
+   return _type;
+}
+
 
 #endif //__GROUP_PANEL_H__

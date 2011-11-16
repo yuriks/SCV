@@ -7,7 +7,7 @@
 #include "ParallelGroup.h"
 #include "SequentialGroup.h"
 
-GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("class Group Panel") {
+GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("Group Panel Menu") {
    _host = host;
 
    scv::ContextMenu *level1 = new scv::ContextMenu("Add Group Panel");
@@ -26,11 +26,22 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
    if (address.size() == 2) {
       /*Add SCV Object*/
    } else if (address.size() == 3) {
-      if (address[2] == "Parallel Group") {
-         _host->addChild(GroupPanelWrapper::createVerticalParallelGroupPanel());
-      } else if (address[2] == "Sequential Group") {
-         _host->addChild(GroupPanelWrapper::createVerticalSequentialGroupPanel());
-      }
+      switch (_host->getType()) {
+      case GroupPanel::HORIZONTAL:
+         if (address[2] == "Parallel Group") {
+            _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+         } else if (address[2] == "Sequential Group") {
+            _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+         }
+         break;
+      case GroupPanel::VERTICAL:
+         if (address[2] == "Parallel Group") {
+            _host->addChild(GroupPanelWrapper::createVerticalParallelGroupPanel());
+         } else if (address[2] == "Sequential Group") {
+            _host->addChild(GroupPanelWrapper::createVerticalSequentialGroupPanel());
+         }
+         break;
+      }      
    }
 }
 
@@ -39,7 +50,7 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
 
 scv::ComponentTexture * GroupPanel::s_customTexture = NULL;
 
-GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(0,0), scv::Point(200,200)) {
+GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(), scv::Point()), _type(type) {
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
    
