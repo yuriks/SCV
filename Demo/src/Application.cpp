@@ -11,6 +11,8 @@ Application::Application(void) : Kernel() {
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
    setFramesPerSecond(30);
+
+   setWindowTitle("SCV Designer - Laboratório de Computação Aplicada (LaCA)");
 }
 
 Application::~Application(void) {
