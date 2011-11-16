@@ -25,7 +25,7 @@ private:
 class GroupPanelWrapper : public scv::Panel {
 public:
    ///////////////////////////////////////////////////////////
-   GroupPanelWrapper(void);
+   GroupPanelWrapper(GroupPanel::GroupType type);
    virtual ~GroupPanelWrapper(void);
    ///////////////////////////////////////////////////////////
 
@@ -39,21 +39,30 @@ public:
    static SequetialGroupPanel *createVerticalSequentialGroupPanel(void);
    ///////////////////////////////////////////////////////////
 
-   void setHorizontalGroupVisible(bool vibility);
-   void setVerticalGroupVisible(bool vibility);
-
-   std::string getHorizontalGroupCode(void) const;
-   std::string getVerticalGroupCode(void) const;
-
    ///////////////////////////////////////////////////////////
-   void setHorizontalGroup(GroupPanel *group);
-   void setVerticalGroup(GroupPanel *group);
+   void setGroup(GroupPanel *group);
+   inline GroupPanel *getGroup(void) const;
+
+   std::string getGroupCode(void) const;
    ///////////////////////////////////////////////////////////
+
+   inline GroupPanel::GroupType getType(void) const;
 
 protected:
-   GroupPanel *_verticalGroup, *_horizontalGroup;
+   GroupPanel::GroupType _type;
+   GroupPanel *_group;
 
 };
+
+///////////////////////////////////////////////////////////
+
+GroupPanel *GroupPanelWrapper::getGroup(void) const {
+   return _group;
+}
+
+GroupPanel::GroupType GroupPanelWrapper::getType(void) const {
+   return _type;
+}
 
 ///////////////////////////////////////////////////////////
 

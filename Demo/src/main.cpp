@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
    scv::Kernel *kernel = scv::Kernel::getInstance();
    kernel->setWindowSize(1280, 720);
 
-   GroupPanelWrapper *wrapper = new GroupPanelWrapper();   
+   GroupPanelWrapper *wrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
    kernel->addComponent(wrapper);
    /**/
 

@@ -26,15 +26,26 @@ TabbedPane::TabbedPane(const scv::Point &p1, unsigned int width, unsigned int he
 }
 
 
-void TabbedPane::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void TabbedPane::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void TabbedPane::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void TabbedPane::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void TabbedPane::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void TabbedPane::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void TabbedPane::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void TabbedPane::onSizeChange(void) {/**/}
-void TabbedPane::onPositionChange(void) {/**/}
+void TabbedPane::onMouseClick(const scv::MouseEvent &evt) {
+}
+void TabbedPane::onMouseHold(const scv::MouseEvent &evt) {
+}
+void TabbedPane::onMouseOver(const scv::MouseEvent &evt) {
+}
+void TabbedPane::onMouseUp(const scv::MouseEvent &evt) {
+}
+void TabbedPane::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void TabbedPane::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void TabbedPane::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void TabbedPane::onSizeChange(void) {
+}
+void TabbedPane::onPositionChange(void) {
+}
 
 void TabbedPane::addPanel(Panel *panel, const std::string &label) {
    static FontTahoma *font = FontTahoma::getInstance();
@@ -56,7 +67,6 @@ void TabbedPane::addPanel(Panel *panel, const std::string &label) {
    _labels.push_back(label);
 
    refreshPosition(_tabs.size()-1);
-
 }
 
 void TabbedPane::processMouse(const scv::MouseEvent &evt) {

@@ -5,6 +5,8 @@
 #include "Properties.h"
 #include "Pallete.h"
 
+#include "GroupPanelWrapper.h"
+
 Application::Application(void) : Kernel() {
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
@@ -88,11 +90,17 @@ void Application::init(void) {
 
    //Design
    ///////////////////////////////////////////////////////////
-   scv::Panel *panelDesign = new scv::Panel(scv::Point(0, 0), scv::Point(800, 600));
-   panelDesign->setResizable(true);
-   scv::ScrollPane *scrollPaneDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), panelDesign);
-   scrollPaneDesign->setPanel(panelDesign);
-   mainPanel->addChild(scrollPaneDesign);
+   GroupPanelWrapper *hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
+   GroupPanelWrapper *vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
+
+   scv::ScrollPane *hScrollDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), hPanelWrapper);
+   scv::ScrollPane *vScrollDesign = new scv::ScrollPane(scv::Point(0, 0), scv::Point(0, 0), vPanelWrapper);
+
+   scv::TabbedPane *tabbedDesign = new scv::TabbedPane(scv::Point(), scv::Point());
+   tabbedDesign->addPanel(hPanelWrapper, "Horizontal");
+   tabbedDesign->addPanel(vPanelWrapper, "Vertical");
+
+   mainPanel->addChild(tabbedDesign);
    ///////////////////////////////////////////////////////////
 
    //Properties
@@ -101,18 +109,13 @@ void Application::init(void) {
    mainPanel->addChild(_properties);
    ///////////////////////////////////////////////////////////
 
-
-   _managedComponents.push_back(panelDesign);
-   /**/
-
-
    //GroupLayout
    ///////////////////////////////////////////////////////////
    scv::GroupLayout *layout = new scv::GroupLayout(mainPanel);
 
    layout->setHorizontalGroup(
       layout->createSequentialGroup()->setAutoCreateGaps(true)
-         ->addComponent(scrollPaneDesign)
+         ->addComponent(tabbedDesign)
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(_properties)
@@ -124,7 +127,7 @@ void Application::init(void) {
       ->addComponent(menuBar)
       ->addGroup(
          layout->createParallelGroup()
-            ->addComponent(scrollPaneDesign)
+            ->addComponent(tabbedDesign)
             ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
                ->addComponent(panelPalette)
                ->addComponent(_properties)
