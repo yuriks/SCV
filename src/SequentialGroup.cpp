@@ -22,6 +22,10 @@ SequentialGroup *SequentialGroup::addComponent(Component *component) {
    return (SequentialGroup*)Group::addComponent(component);
 }
 
+SequentialGroup * SequentialGroup::addComponent(Component *component, int size) {
+   return (SequentialGroup*)Group::addComponent(component, size);
+}
+
 SequentialGroup *SequentialGroup::addComponent(Component *component, int min, int pref, int max) {
    autoCreatePadding();
    return (SequentialGroup*)Group::addComponent(component, min, pref, max);

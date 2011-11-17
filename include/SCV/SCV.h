@@ -21,6 +21,7 @@
 #include "GlslShader.h"
 #include "Image.h"
 #include "InternalFrame.h"
+#include "InternalFrameHolder.h"
 #include "Label.h"
 #include "Mathematic.h"
 #include "MenuBar.h"

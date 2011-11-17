@@ -68,11 +68,6 @@ void InternalFrame::onPositionChange(void) {
 void InternalFrame::onClose(void) {
 }
 
-
-void InternalFrame::setTitle(const std::string &title) {
-   _title = title;
-}
-
 void InternalFrame::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
@@ -94,13 +89,8 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
          if (_rolluped == true && !isOnTopBar(evtPosition)) {
             _isDragging = false;
          }
-         _panel->setRelativePosition(Point(currPosition.x + s_borderWidth, currPosition.y + s_borderTop));
-
-      } else if (isResizing()) {
-         _panel->setRelativePosition(Point(currPosition.x + s_borderWidth, currPosition.y + s_borderTop));
-         _panel->setWidth(getWidth() - 2 * s_borderWidth);
-         _panel->setHeight(getHeight() - s_borderWidth - s_borderTop);
-      } else {
+         _panel->setRelativePosition(Point(s_borderWidth, s_borderTop));
+      } else if (!isResizing()) {
          if (isOnTopBar(evtPosition) && kernel->requestMouseUse(this)) {
             if (isOnCloseButton(evtPosition)) {
                _overClose = true;
@@ -111,8 +101,6 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
                _overClose = false;
                if (evt.getState() == MouseEvent::CLICK) {
                   _isDragging = true;
-                  //HACK
-                  //_clicked = (evtPosition - currPosition) + _cTranslate;
                   kernel->requestComponentFocus(this);
                }
             }
@@ -146,6 +134,9 @@ void InternalFrame::display(void) {
    if (_isVisible == false || _cTexture == NULL) return;
 
    Point currPosition = getAbsolutePosition();
+   configPanel();
+
+   scissor->pushScissor(getScissor());
 
    _cTexture->enable();
    _cTexture->display(currPosition.x + 2,currPosition.y + 2, 7, getWidth() - 4, getHeight() - 4);
@@ -192,6 +183,7 @@ void InternalFrame::display(void) {
    scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
    StaticLabel::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - font->getHeight()) / 2 + 2, _title);
    scissor->popScissor();
+   scissor->popScissor();
 }
 
 bool InternalFrame::isOnTopBar(const Point &p) {
@@ -202,12 +194,6 @@ bool InternalFrame::isOnTopBar(const Point &p) {
 bool InternalFrame::isOnCloseButton(const Point &p) {
    return (p.y >= getAbsolutePosition().y && p.y <= getAbsolutePosition().y + s_closeHeight &&
       p.x >= getAbsolutePosition().x + getWidth() - s_closeWidth - 5 && p.x <= getAbsolutePosition().x + getWidth() - 5)? true : false;
-}
-
-void InternalFrame::setRelativePosition(const Point &position) {
-   ComponentWithTexture::setRelativePosition(position);
-   Point currPosition = getAbsolutePosition();
-   _panel->setRelativePosition(Point(currPosition.x + s_borderWidth, currPosition.y + s_borderTop));
 }
 
 void InternalFrame::createTexture(void) {
@@ -236,12 +222,10 @@ void InternalFrame::createTexture(void) {
    _cTexture->createTexture();
 }
 
-std::string InternalFrame::getTitle(void) {
-   return _title;
-}
-
-Panel * InternalFrame::getPanel(void) {
-   return _panel;
+void InternalFrame::configPanel(void) {
+   _panel->setRelativePosition(Point(s_borderWidth, s_borderTop));
+   _panel->setWidth(getWidth() - 2 * s_borderWidth);
+   _panel->setHeight(getHeight() - s_borderWidth - s_borderTop);
 }
 
 } // namespace scv

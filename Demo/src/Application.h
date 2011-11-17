@@ -3,6 +3,7 @@
 
 #include "Properties.h"
 #include "GroupPanelWrapper.h"
+#include "ComponentSelector.h"
 
 class Application : public scv::Kernel {
 public:
@@ -40,6 +41,8 @@ protected:
 
    scv::Panel *_mainPanel, *_designPreview, *_objectEdit;
    Properties *_properties;
+
+   ComponentSelector *_componentSelector;
 
    GroupPanel *currGroup;
 

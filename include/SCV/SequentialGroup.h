@@ -16,6 +16,7 @@ public:
    virtual SequentialGroup *addGroup(Group *group);
 
    virtual SequentialGroup *addComponent(Component *component);
+   virtual SequentialGroup *addComponent(Component *component, int size);
    virtual SequentialGroup *addComponent(Component *component, int min, int pref, int max);
 
    virtual SequentialGroup *addGap(int size);

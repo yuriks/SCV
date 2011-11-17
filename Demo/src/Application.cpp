@@ -10,7 +10,7 @@ Application::Application(void) : Kernel() {
 
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
-   setFramesPerSecond(30);
+   setFramesPerSecond(60);
 
    setWindowTitle("SCV Designer - Laboratório de Computação Aplicada (LaCA)");
 }
@@ -22,6 +22,9 @@ void Application::init(void) {
    static const int s_defaultGap = 10;
    static const int s_defaultRightPanelWidth = 250;
    
+   _componentSelector = new ComponentSelector();
+   scv::InternalFrameHolder::getInstance()->registerFrame(_componentSelector);
+
    _mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
    addComponent(_mainPanel);
 
@@ -187,6 +190,6 @@ void Application::getCode(void) const {
 }
 
 void Application::openComponentSelector(GroupPanel *group) {
-   
+   _componentSelector->setVisible(true);
 }
 

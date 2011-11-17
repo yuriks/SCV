@@ -1,8 +1,6 @@
 #ifndef __COMPONENT_SELECTOR_H__
 #define __COMPONENT_SELECTOR_H__
 
-#include "Application.h"
-
 class ComponentSelector;
 class ComponentSelectorAccepted : public scv::Button {
 public:
@@ -19,23 +17,35 @@ protected:
    ComponentSelector *_selector;
 };
 
+class ComponentSelectorRefused : public scv::Button {
+public:
+   ///////////////////////////////////////////////////////////
+   ComponentSelectorRefused(ComponentSelector *selector);
+   virtual ~ComponentSelectorRefused(void);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void onMouseClick(const scv::MouseEvent &evt);
+   ///////////////////////////////////////////////////////////
+
+protected:
+   ComponentSelector *_selector;
+};
+
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
 class ComponentSelector : public scv::InternalFrame {
 public:
    ///////////////////////////////////////////////////////////
-   ComponentSelector(Application *app);
+   ComponentSelector(void);
    virtual ~ComponentSelector(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   void accepted( void );
+   void accepted(void);
+   void refused(void);
    ///////////////////////////////////////////////////////////
-
-protected:
-   Application *_app;
-private:
 };
 
 #endif //__COMPONENT_SELECTOR_H__

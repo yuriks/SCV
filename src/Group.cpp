@@ -22,7 +22,11 @@ Group *Group::addComponent(Component *component) {
    return addComponent(component, Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE, Spring::DEFAULT_SIZE);
 }
 
-Group * Group::addComponent(Component *component, int min, int pref, int max) {
+Group *Group::addComponent(Component *component, int size) {
+   return addComponent(component, size, size, size);
+}
+
+Group *Group::addComponent(Component *component, int min, int pref, int max) {
    return addSpring(new ComponentSpring(component, min, pref, max));
 }
 

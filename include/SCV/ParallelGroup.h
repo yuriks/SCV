@@ -16,6 +16,7 @@ public:
    virtual ParallelGroup *addGroup(Group *group);
 
    virtual ParallelGroup *addComponent(Component *component);
+   virtual ParallelGroup *addComponent(Component *component, int size);
    virtual ParallelGroup *addComponent(Component *component, int min, int pref, int max);
 
    virtual ParallelGroup *addGap(int size);

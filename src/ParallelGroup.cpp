@@ -21,6 +21,10 @@ ParallelGroup * ParallelGroup::addComponent(Component *component) {
    return (ParallelGroup*)Group::addComponent(component);
 }
 
+ParallelGroup * ParallelGroup::addComponent(Component *component, int size) {
+   return (ParallelGroup*)Group::addComponent(component, size);
+}
+
 ParallelGroup * ParallelGroup::addComponent(Component *component, int min, int pref, int max) {
    return (ParallelGroup*)Group::addComponent(component, min, pref, max);
 }

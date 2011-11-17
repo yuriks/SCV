@@ -28,6 +28,7 @@ public:
    virtual Group *addGroup(Group *group);
 
    virtual Group *addComponent(Component *component);
+   virtual Group *addComponent(Component *component, int size);
    virtual Group *addComponent(Component *component, int min, int pref, int max);
    void removeComponent(scv::Component * object);
 
