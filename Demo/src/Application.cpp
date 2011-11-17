@@ -23,6 +23,7 @@ void Application::init(void) {
    static const int s_defaultRightPanelWidth = 250;
    
    _componentSelector = new ComponentSelector();
+   _componentSelector->setVisible(false);
    scv::InternalFrameHolder::getInstance()->registerFrame(_componentSelector);
 
    _mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
@@ -35,7 +36,6 @@ void Application::init(void) {
 
    ///////////////////////////////////////////////////////////
    
-
    //Palette
    ///////////////////////////////////////////////////////////
    scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightPanelWidth, 0));
@@ -107,12 +107,12 @@ void Application::init(void) {
    _designPreview = new scv::Panel(scv::Point(), scv::Point());
    _objectEdit = new scv::Panel(scv::Point(), scv::Point());
 
-   scv::TabbedPane *tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
-   tabbedPreview->addChild(_designPreview, "Design Preview");
-   tabbedPreview->addChild(tabbedDesign, "Group Layout");
-   tabbedPreview->addChild(_objectEdit, "Object Editor");
+   _tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
+   _tabbedPreview->addChild(_designPreview, "Design Preview");
+   _tabbedPreview->addChild(tabbedDesign, "Group Layout");
+   _tabbedPreview->addChild(_objectEdit, "Object Editor");
 
-   _mainPanel->addChild(tabbedPreview);
+   _mainPanel->addChild(_tabbedPreview);
    ///////////////////////////////////////////////////////////
 
    //Properties
@@ -128,7 +128,7 @@ void Application::init(void) {
    layout->setHorizontalGroup(layout->createParallelGroup()
       ->addComponent(menuBar)
       ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
-         ->addComponent(tabbedPreview)
+         ->addComponent(_tabbedPreview)
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(_properties)
@@ -141,7 +141,7 @@ void Application::init(void) {
       ->addComponent(menuBar)
       ->addGroup(
          layout->createParallelGroup()
-            ->addComponent(tabbedPreview)
+            ->addComponent(_tabbedPreview)
             ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
                ->addComponent(panelPalette)
                ->addComponent(_properties)
@@ -180,8 +180,7 @@ void Application::onPositionChange(void) {
 }
 
 void Application::addComponentFromPalette(std::string component) {
-   std::cout << component << std::endl;
-
+   _tabbedPreview->setCurrTab(2);
 }
 
 void Application::getCode(void) const {

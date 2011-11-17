@@ -341,9 +341,9 @@ void Component::removeChild(Component *object) {
    }
 }
 
-Component *Component::getChild(int index) {
+Component *Component::getChild(int index) const {
    if (index < _children.size()) {
-      Component::List::iterator iter = _children.begin();
+      Component::List::const_iterator iter = _children.begin();
       while(index != 0) {
          ++iter;
          --index;

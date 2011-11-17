@@ -42,6 +42,7 @@ protected:
    scv::Panel *_mainPanel, *_designPreview, *_objectEdit;
    Properties *_properties;
 
+   scv::TabbedPane *_tabbedPreview;
    ComponentSelector *_componentSelector;
 
    GroupPanel *currGroup;

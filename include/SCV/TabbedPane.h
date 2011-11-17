@@ -40,11 +40,17 @@ public:
    void processKey(const scv::KeyEvent &evt);
    ///////////////////////////////////////////////////////////
    
+   ///////////////////////////////////////////////////////////
+   void setCurrTab(int index);
+   inline int getCurrTabIndex(void) const;
+   inline scv::Component *getCurrComponent(void) const;
+   ///////////////////////////////////////////////////////////
+
    void display(void);
 
 private:
    void createTexture(void);
-   void setCurrPanel(void);
+   void configPanel(void);
 
    static const int s_tabSpacing, s_barHeight;
 
@@ -54,6 +60,22 @@ private:
    std::vector<std::string> _labels;
    std::vector<bool> _resize;
 };
+
+///////////////////////////////////////////////////////////
+
+int TabbedPane::getCurrTabIndex(void) const {
+   return _currSelectedTab;
+}
+
+scv::Component *TabbedPane::getCurrComponent(void) const {
+   if (_currSelectedTab != -1) {
+      return getChild(_currSelectedTab);
+   } else {
+      return NULL;
+   }
+}
+
+///////////////////////////////////////////////////////////
 
 } // namespace scv
 

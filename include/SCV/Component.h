@@ -137,7 +137,7 @@ public:
    virtual void addChild(Component *object);
    virtual void removeChild(Component *object);
 
-   virtual Component *getChild(int index);
+   virtual Component *getChild(int index) const;
 
    void pullChildToTop(Component *child);
 

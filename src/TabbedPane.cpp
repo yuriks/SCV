@@ -79,7 +79,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
    if (isDragging() || isResizing()) {
       Component::processMouse(evt);
       if (_currSelectedTab != -1 && isResizing()) {
-         setCurrPanel();
+         configPanel();
       }
    } else {
 
@@ -96,7 +96,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
       Point currPosition = getAbsolutePosition();
       Point relativeMouse = evt.getPosition();
 
-      if (evt.getState() == MouseEvent::UP) setCurrPanel();
+      if (evt.getState() == MouseEvent::UP) configPanel();
 
       // open menu
       if (isInside(evt.getPosition())) {
@@ -117,7 +117,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
                         && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
                            _currSelectedTab = i;
                            _currecOverTab   = -1;
-                           setCurrPanel();
+                           configPanel();
                            break;
                      }
                   }
@@ -143,20 +143,26 @@ void TabbedPane::processKey(const scv::KeyEvent &evt) {
          _currecOverTab = -1;
          if (_currSelectedTab == 0) {
             _currSelectedTab = _children.size() - 1;
-            setCurrPanel();
+            configPanel();
          } else {
             _currSelectedTab--;
-            setCurrPanel();
+            configPanel();
          }
 
       } else if (evt.getKeyString() == "Right") {
          _currecOverTab = -1;
          _currSelectedTab = (_currSelectedTab + 1) % _children.size();
-         setCurrPanel();
+         configPanel();
       }
 
    } else if (_currSelectedTab != -1) {
       getChild(_currSelectedTab)->processKey(evt);
+   }
+}
+
+void TabbedPane::setCurrTab(int index) {
+   if (index >= 0 && index < _children.size()) {
+      _currSelectedTab = index;
    }
 }
 
@@ -169,7 +175,7 @@ void TabbedPane::display(void) {
    if (_cTexture == NULL || _isVisible == false) return;
 
    if (_currSelectedTab != -1) {
-      setCurrPanel();
+      configPanel();
       getChild(_currSelectedTab)->display();
    }
 
@@ -283,7 +289,7 @@ void TabbedPane::createTexture(void) {
    _cTexture->createTexture();
 }
 
-void TabbedPane::setCurrPanel(void) {
+void TabbedPane::configPanel(void) {
    if (_currSelectedTab == -1) return;
    if (_resize[_currSelectedTab]) {
       getChild(_currSelectedTab)->setWidth(getWidth());
