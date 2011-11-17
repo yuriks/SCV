@@ -60,6 +60,9 @@
     <ClCompile Include="..\src\GroupObjectWrapper.cpp">
       <Filter>4.GroupLayout</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ComponentSelector.cpp">
+      <Filter>2.App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="..\src\GroupObjectWrapper.h">
       <Filter>4.GroupLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ComponentSelector.h">
+      <Filter>2.App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

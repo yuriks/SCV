@@ -6,6 +6,8 @@
 #include "Pallete.h"
 
 Application::Application(void) : Kernel() {
+   currGroup = NULL;
+
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
    setFramesPerSecond(30);
@@ -182,5 +184,9 @@ void Application::addComponentFromPalette(std::string component) {
 void Application::getCode(void) const {
    std::cout << _hPanelWrapper->getGroupCode() << std::endl;
    std::cout << _vPanelWrapper->getGroupCode() << std::endl;
+}
+
+void Application::openComponentSelector(GroupPanel *group) {
+   
 }
 

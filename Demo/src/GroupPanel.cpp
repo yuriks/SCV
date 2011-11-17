@@ -7,6 +7,8 @@
 #include "ParallelGroup.h"
 #include "SequentialGroup.h"
 
+#include "Application.h"
+
 GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("Group Panel Menu") {
    _host = host;
 
@@ -24,9 +26,11 @@ GroupPanelMenu::~GroupPanelMenu(void) {
 }
 
 void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
+   static Application *app = static_cast<Application*>(scv::Kernel::getInstance());
+
    if (address.size() == 2) {
       if (address[1] == "Add SCV Object") {
-         _host->addChild(new scv::Button(scv::Point(), "Button"));
+         app->openComponentSelector(_host);         
       } else if (address[1] == "Remove") {
          _host->getParent()->removeChild(_host);
       }
@@ -77,7 +81,6 @@ void GroupPanel::addChild(scv::Component *object) {
    if (dynamic_cast<GroupPanel*>(object)) {
       wrappedObject = object;
    } else {
-      //wrappedObject = new GroupObjectWrapper(object);
       wrappedObject = new GroupObjectWrapper(object);
    }
 

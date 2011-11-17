@@ -32,12 +32,16 @@ public:
 
    void getCode(void) const;
 
+   void openComponentSelector(GroupPanel *group);
+
 protected:
    static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
 
    scv::Panel *_mainPanel, *_designPreview, *_objectEdit;
    Properties *_properties;
+
+   GroupPanel *currGroup;
 
    std::list<scv::Component*> _managedComponents;
 

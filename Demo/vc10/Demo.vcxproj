@@ -198,6 +198,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp" />
+    <ClCompile Include="..\src\ComponentSelector.cpp" />
     <ClCompile Include="..\src\GroupObjectWrapper.cpp" />
     <ClCompile Include="..\src\GroupPanel.cpp" />
     <ClCompile Include="..\src\GroupPanelWrapper.cpp" />
@@ -217,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\ComponentSelector.h" />
     <ClInclude Include="..\src\GroupObjectWrapper.h" />
     <ClInclude Include="..\src\GroupPanel.h" />
     <ClInclude Include="..\src\GroupPanelWrapper.h" />

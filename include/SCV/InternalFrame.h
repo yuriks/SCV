@@ -46,8 +46,6 @@ public:
 
    void setRelativePosition(const Point &position);
 
-   void addChild(Component *object);
-
    ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);

@@ -28,7 +28,8 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    _overClose = _clickClose = false;
 
    _panel = new Panel(Point(s_borderWidth, s_borderTop), Point(s_borderWidth + width, s_borderTop + height));
-
+   addChild(_panel);
+   
    _panel->setDraggable(false);
    _panel->setResizable(false);
 
@@ -39,20 +40,33 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    createTexture();
 }
 
-InternalFrame::~InternalFrame(void) {
-   delete _panel;
+InternalFrame::~InternalFrame(void) {   
 }
 
-void InternalFrame::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void InternalFrame::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void InternalFrame::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void InternalFrame::onSizeChange(void) {/**/}
-void InternalFrame::onPositionChange(void) {/**/}
-void InternalFrame::onClose(void) {/**/}
+
+void InternalFrame::onMouseClick(const scv::MouseEvent &evt) {
+}
+void InternalFrame::onMouseHold(const scv::MouseEvent &evt) {
+}
+void InternalFrame::onMouseOver(const scv::MouseEvent &evt) {
+}
+void InternalFrame::onMouseUp(const scv::MouseEvent &evt) {
+}
+void InternalFrame::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void InternalFrame::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void InternalFrame::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void InternalFrame::onSizeChange(void) {
+}
+void InternalFrame::onPositionChange(void) {
+}
+
+void InternalFrame::onClose(void) {
+}
 
 
 void InternalFrame::setTitle(const std::string &title) {
@@ -190,10 +204,6 @@ bool InternalFrame::isOnCloseButton(const Point &p) {
       p.x >= getAbsolutePosition().x + getWidth() - s_closeWidth - 5 && p.x <= getAbsolutePosition().x + getWidth() - 5)? true : false;
 }
 
-void InternalFrame::addChild(Component *object) {
-   _panel->addChild(object);
-}
-
 void InternalFrame::setRelativePosition(const Point &position) {
    ComponentWithTexture::setRelativePosition(position);
    Point currPosition = getAbsolutePosition();
@@ -209,8 +219,8 @@ void InternalFrame::createTexture(void) {
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
-   _cTexture->addTexture(Point(0,      0), 46, 19, data::InternalFrameCloseButton);       // 0
-   _cTexture->addTexture(Point(46*1,   0), 46, 19, data::InternalFrameCloseButtonHover); // 1
+   _cTexture->addTexture(Point(0,      0), 46, 19, data::InternalFrameCloseButton);        // 0
+   _cTexture->addTexture(Point(46*1,   0), 46, 19, data::InternalFrameCloseButtonHover);   // 1
    _cTexture->addTexture(Point(46*2,   0), 46, 19, data::InternalFrameCloseButtonPressed); // 2
    _cTexture->addTexture(Point(46*3,   0), 5,  5,  data::InternalFrameBorderRightUp);      // 3
    _cTexture->addTexture(Point(46*3,   5), 5,  5,  data::InternalFrameBorderLeftUp);       // 4
