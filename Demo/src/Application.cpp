@@ -5,8 +5,6 @@
 #include "Properties.h"
 #include "Pallete.h"
 
-#include "GroupPanelWrapper.h"
-
 Application::Application(void) : Kernel() {
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
    lockWindowSize(true);
@@ -91,11 +89,11 @@ void Application::init(void) {
 
    //Design
    ///////////////////////////////////////////////////////////
-   GroupPanelWrapper *hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
-   GroupPanelWrapper *vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
+   _hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
+   _vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
 
-   scv::ScrollComponent *hScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), hPanelWrapper);
-   scv::ScrollComponent *vScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), vPanelWrapper);
+   scv::ScrollComponent *hScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), _hPanelWrapper);
+   scv::ScrollComponent *vScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), _vPanelWrapper);
 
    scv::TabbedPane *tabbedDesign = new scv::TabbedPane(scv::Point(), scv::Point());
    tabbedDesign->addChild(hScrollDesign, "Group Layout: Horizontal");
@@ -169,5 +167,10 @@ void Application::onPositionChange(void) {
 void Application::addComponentFromPalette(std::string component) {
    std::cout << component << std::endl;
 
+}
+
+void Application::getCode(void) const {
+   std::cout << _hPanelWrapper->getGroupCode() << std::endl;
+   std::cout << _vPanelWrapper->getGroupCode() << std::endl;
 }
 

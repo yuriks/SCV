@@ -9,23 +9,23 @@ GroupPanelWrapperMenu::GroupPanelWrapperMenu(GroupPanelWrapper *host) : scv::Con
 }
 
 GroupPanelWrapperMenu::~GroupPanelWrapperMenu(void) {
-
+   std::cout << "GroupPanelWrapperMenu::~GroupPanelWrapperMenu" << std::endl;
 }
 
 void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {
    switch (_host->getType()) {
    case GroupPanel::HORIZONTAL:
       if (address[1] == "Add Parallel Group") {
-         _host->setGroup(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+         _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
       } else if (address[1] == "Add Sequential Group") {
-         _host->setGroup(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+         _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
       }
       break;
    case GroupPanel::VERTICAL:
       if (address[1] == "Add Parallel Group") {
-         _host->setGroup(GroupPanelWrapper::createVerticalParallelGroupPanel());
+         _host->addChild(GroupPanelWrapper::createVerticalParallelGroupPanel());
       } else if (address[1] == "Add Sequential Group") {
-         _host->setGroup(GroupPanelWrapper::createVerticalSequentialGroupPanel());
+         _host->addChild(GroupPanelWrapper::createVerticalSequentialGroupPanel());
       }
       break;
    }   
@@ -42,14 +42,18 @@ GroupPanelWrapper::GroupPanelWrapper(GroupPanel::GroupType type) : scv::Panel(sc
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
 
-   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15));
-   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15));
+   _hGroup = scv::GroupLayout::createParallelGroup();
+   _vGroup = scv::GroupLayout::createParallelGroup();   
 
-   registerContextMenu(new GroupPanelWrapperMenu(this));
+   _layout->setHorizontalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_hGroup)->addGap(15));
+   _layout->setVerticalGroup(_layout->createSequentialGroup()->addGap(15)->addGroup(_vGroup)->addGap(15));
+
+   _contextMenu = new GroupPanelWrapperMenu(this);
+   registerContextMenu(_contextMenu);
 }
 
 GroupPanelWrapper::~GroupPanelWrapper(void) {
-
+   std::cout << "GroupPanelWrapper::~GroupPanelWrapper" << std::endl;
 }
 
 void GroupPanelWrapper::display(void) {
@@ -77,21 +81,30 @@ SequetialGroupPanel *GroupPanelWrapper::createVerticalSequentialGroupPanel(void)
 }
 ///////////////////////////////////////////////////////////
 
-void GroupPanelWrapper::setGroup(GroupPanel *group) {
-   if (_group == NULL) {
+void GroupPanelWrapper::addChild(Component *object) {
+   GroupPanel *group = dynamic_cast<GroupPanel *>(object);
+   if (group != NULL && _group == NULL) {
       _group = group;
-      addChild(group);
-      _layout->getHorizontalGroup()->addComponent(group)->addGap(15);
-      _layout->getVerticalGroup()->addComponent(group)->addGap(15);
+      Panel::addChild(group);
+      _hGroup->addComponent(group);
+      _vGroup->addComponent(group);
 
       unregisterContextMenu();
    }
 }
 
+void GroupPanelWrapper::removeChild(Component *object) {
+   GroupPanel *group = dynamic_cast<GroupPanel *>(object);
+   if (group != NULL && _group != NULL) {
+      Panel::removeChild(group);
+      registerContextMenu(_contextMenu);
+      _group = NULL;
+   }
+}
 
 std::string GroupPanelWrapper::getGroupCode(void) const {
    if (_group != NULL) {
-      return "scv::GroupLayout::createParallelGroup()" + _group->getCode();
+      return "scv::GroupLayout::createParallelGroup()\n" + _group->getCode();
    } else {
       return std::string("");
    }

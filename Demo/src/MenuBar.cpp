@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MenuBar.h"
 
+#include "Application.h"
+
 MenuBar::MenuBar(int width) : scv::MenuBar(width) {
    addMenu(new CodeContextMenu());
 }
@@ -20,8 +22,10 @@ CodeContextMenu::~CodeContextMenu(void) {
 
 }
 
-void CodeContextMenu::onMenuAccessed(const std::deque<std::string> &address) {   
+void CodeContextMenu::onMenuAccessed(const std::deque<std::string> &address) {
+   static Application *app = static_cast<Application*>(scv::Kernel::getInstance());
+
    if (address[1] == "Generate") {
-      std::cout << "Call Generate Code" << std::endl;
+      app->getCode();
    }
 }

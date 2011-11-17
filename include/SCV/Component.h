@@ -99,6 +99,7 @@ public:
    virtual inline bool isVisible(void) const;
    ///////////////////////////////////////////////////////////
 
+   inline ContextMenu *getContextMenu(void) const;
    virtual void registerContextMenu(ContextMenu *contextMenu);
    virtual void unregisterContextMenu(void);
 
@@ -231,6 +232,12 @@ void Component::setVisible(bool state) {
 
 bool Component::isVisible(void) const {
    return _isVisible;
+}
+
+///////////////////////////////////////////////////////////
+
+ContextMenu *Component::getContextMenu(void) const {
+   return _contextMenu;
 }
 
 ///////////////////////////////////////////////////////////

@@ -39,8 +39,14 @@ public:
    static SequetialGroupPanel *createVerticalSequentialGroupPanel(void);
    ///////////////////////////////////////////////////////////
 
+   //Memory Management
    ///////////////////////////////////////////////////////////
-   void setGroup(GroupPanel *group);
+   virtual void addChild(Component *object);
+   virtual void removeChild(Component *object);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   //void setGroup(GroupPanel *group);
    inline GroupPanel *getGroup(void) const;
 
    std::string getGroupCode(void) const;
@@ -49,8 +55,10 @@ public:
    inline GroupPanel::GroupType getType(void) const;
 
 protected:
+   GroupPanelWrapperMenu *_contextMenu;
    GroupPanel::GroupType _type;
    GroupPanel *_group;
+   scv::Group *_hGroup, *_vGroup;
 
 };
 

@@ -8,7 +8,7 @@ GroupObjectWrapper::GroupObjectWrapper(scv::Component *objet) : scv::Panel(scv::
 }
 
 GroupObjectWrapper::~GroupObjectWrapper(void) {
-
+   std::cout << "GroupObjectWrapper::~GroupObjectWrapper" << std::endl;
 }
 
 void GroupObjectWrapper::display(void) {

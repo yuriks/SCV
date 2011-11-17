@@ -167,25 +167,25 @@
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GroupLayout.cpp">
-      <Filter>GroupLayout</Filter>
+      <Filter>6.GroupLayout</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Group.cpp">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ParallelGroup.cpp">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SequentialGroup.cpp">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Spring.cpp">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentSpring.cpp">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
     <ClCompile Include="..\src\GapSpring.cpp">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
     <ClCompile Include="..\src\StaticLabel.cpp">
       <Filter>4.Widgets\Text</Filter>
@@ -394,25 +394,25 @@
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\GroupLayout.h">
-      <Filter>GroupLayout</Filter>
+      <Filter>6.GroupLayout</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\Group.h">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\SequentialGroup.h">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ParallelGroup.h">
-      <Filter>GroupLayout\Spring\Group</Filter>
+      <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\Spring.h">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentSpring.h">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\GapSpring.h">
-      <Filter>GroupLayout\Spring</Filter>
+      <Filter>6.GroupLayout\Spring</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\StaticLabel.h">
       <Filter>4.Widgets\Text</Filter>
@@ -485,15 +485,6 @@
     <Filter Include="4.Widgets\Object">
       <UniqueIdentifier>{1b3e6407-b1dd-4fe6-ad3c-32fd106b291e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GroupLayout">
-      <UniqueIdentifier>{cb729ae5-8eb7-4850-9d94-3b558dee9db2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GroupLayout\Spring">
-      <UniqueIdentifier>{d219aa48-c849-4e2f-8c76-5dd7e577f431}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GroupLayout\Spring\Group">
-      <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.Widgets\SystemTree">
       <UniqueIdentifier>{4b8072ef-4cb3-4ec6-98e9-a5867b66fb78}</UniqueIdentifier>
     </Filter>
@@ -511,6 +502,15 @@
     </Filter>
     <Filter Include="4.Widgets\Tree\PopupItemStyle\ContextMenu">
       <UniqueIdentifier>{da161707-b850-4dce-aeaa-d1d666cc15c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6.GroupLayout">
+      <UniqueIdentifier>{cb729ae5-8eb7-4850-9d94-3b558dee9db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6.GroupLayout\Spring">
+      <UniqueIdentifier>{d219aa48-c849-4e2f-8c76-5dd7e577f431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6.GroupLayout\Spring\Group">
+      <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

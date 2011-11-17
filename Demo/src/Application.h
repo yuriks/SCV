@@ -2,6 +2,7 @@
 #define __APPLICATION_H__
 
 #include "Properties.h"
+#include "GroupPanelWrapper.h"
 
 class Application : public scv::Kernel {
 public:
@@ -29,6 +30,8 @@ public:
 
    void addComponentFromPalette(std::string component);
 
+   void getCode(void) const;
+
 protected:
    static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
@@ -36,7 +39,9 @@ protected:
    scv::Panel *_mainPanel;
    Properties *_properties;
 
-   std::list<scv::Component*> _managedComponents;   
+   std::list<scv::Component*> _managedComponents;
+
+   GroupPanelWrapper *_hPanelWrapper, *_vPanelWrapper;
 private:
 };
 

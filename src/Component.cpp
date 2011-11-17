@@ -115,8 +115,8 @@ void Component::registerContextMenu(ContextMenu *contextMenu) {
 }
 
 
-void Component::unregisterContextMenu(void) {   
-   _contextMenu = NULL;
+void Component::unregisterContextMenu(void) {
+   _contextMenu = NULL;   
 }
 
 bool Component::isInside(const Point &evtPosition) const {

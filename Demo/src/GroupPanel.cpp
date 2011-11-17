@@ -16,15 +16,20 @@ GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("Group Panel
    addMenu(level1);
    
    addMenu(new scv::ContextMenu("Add SCV Object"));
+   addMenu(new scv::ContextMenu("Remove"));
 }
 
 GroupPanelMenu::~GroupPanelMenu(void) {
-
+   std::cout << "GroupPanelMenu::~GroupPanelMenu" << std::endl;
 }
 
 void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
    if (address.size() == 2) {
-      /*Add SCV Object*/
+      if (address[1] == "Add SCV Object") {
+         /**/
+      } else if (address[1] == "Remove") {
+         _host->getParent()->removeChild(_host);
+      }
    } else if (address.size() == 3) {
       switch (_host->getType()) {
       case GroupPanel::HORIZONTAL:
@@ -60,9 +65,11 @@ GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(), scv::Point()),
 }
 
 GroupPanel::~GroupPanel(void) {
+   std::cout << "GroupPanel::~GroupPanel" << std::endl;
    if (_layout != NULL) {
       delete _layout;
    }
+   unregisterContextMenu();
 }
 
 void GroupPanel::addChild(scv::Component *object) {
@@ -76,10 +83,6 @@ void GroupPanel::addChild(scv::Component *object) {
    Panel::addChild(wrappedObject);
    _verticalGroup->addComponent(object);
    _horizontalGroup->addComponent(object);
-}
-
-void GroupPanel::removeChild(scv::Component *object) {
-   std::cout << "GroupPanel::removeChild" << std::endl;
 }
 
 void GroupPanel::display(void) {

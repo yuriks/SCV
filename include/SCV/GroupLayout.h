@@ -25,6 +25,8 @@ public:
    static SequentialGroup *createSequentialGroup(void);
    ///////////////////////////////////////////////////////////
 
+   void removeComponent(scv::Component *object);
+
    ///////////////////////////////////////////////////////////
    void setHorizontalGroup(Group *group);
    Group *getHorizontalGroup(void) const;

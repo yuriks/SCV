@@ -169,6 +169,9 @@ void Panel::addChild(Component *object) {
 
 void Panel::removeChild(Component *object) {
    ComponentWithTexture::removeChild(object);
+   if (_layout) {
+      _layout->removeComponent(object);
+   }
 }
 
 } // namespace scv
