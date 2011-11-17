@@ -37,6 +37,7 @@ protected:
    static const int s_defaultWindowHeight = 720;
 
    scv::Panel *_mainPanel;
+   scv::Panel *_designPreview;
    Properties *_properties;
 
    std::list<scv::Component*> _managedComponents;

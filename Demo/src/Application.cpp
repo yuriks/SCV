@@ -99,7 +99,13 @@ void Application::init(void) {
    tabbedDesign->addChild(hScrollDesign, "Group Layout: Horizontal");
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
-   _mainPanel->addChild(tabbedDesign);
+   _designPreview = new scv::Panel(scv::Point(), scv::Point());
+
+   scv::TabbedPane *tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
+   tabbedPreview->addChild(_designPreview, "Design Preview");
+   tabbedPreview->addChild(tabbedDesign, "Group Layout");
+
+   _mainPanel->addChild(tabbedPreview);
    ///////////////////////////////////////////////////////////
 
    //Properties
@@ -114,7 +120,7 @@ void Application::init(void) {
 
    layout->setHorizontalGroup(
       layout->createSequentialGroup()->setAutoCreateGaps(true)
-         ->addComponent(tabbedDesign)
+         ->addComponent(tabbedPreview)
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(_properties)
@@ -126,7 +132,7 @@ void Application::init(void) {
       ->addComponent(menuBar)
       ->addGroup(
          layout->createParallelGroup()
-            ->addComponent(tabbedDesign)
+            ->addComponent(tabbedPreview)
             ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
                ->addComponent(panelPalette)
                ->addComponent(_properties)
