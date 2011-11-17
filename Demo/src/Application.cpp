@@ -100,10 +100,12 @@ void Application::init(void) {
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
    _designPreview = new scv::Panel(scv::Point(), scv::Point());
+   _objectEdit = new scv::Panel(scv::Point(), scv::Point());
 
    scv::TabbedPane *tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
    tabbedPreview->addChild(_designPreview, "Design Preview");
    tabbedPreview->addChild(tabbedDesign, "Group Layout");
+   tabbedPreview->addChild(_objectEdit, "Object Editor");
 
    _mainPanel->addChild(tabbedPreview);
    ///////////////////////////////////////////////////////////

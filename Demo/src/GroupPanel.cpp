@@ -26,7 +26,7 @@ GroupPanelMenu::~GroupPanelMenu(void) {
 void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
    if (address.size() == 2) {
       if (address[1] == "Add SCV Object") {
-         /**/
+         _host->addChild(new scv::Button(scv::Point(), "Button"));
       } else if (address[1] == "Remove") {
          _host->getParent()->removeChild(_host);
       }
@@ -77,12 +77,13 @@ void GroupPanel::addChild(scv::Component *object) {
    if (dynamic_cast<GroupPanel*>(object)) {
       wrappedObject = object;
    } else {
+      //wrappedObject = new GroupObjectWrapper(object);
       wrappedObject = new GroupObjectWrapper(object);
    }
 
    Panel::addChild(wrappedObject);
-   _verticalGroup->addComponent(object);
-   _horizontalGroup->addComponent(object);
+   _verticalGroup->addComponent(wrappedObject);
+   _horizontalGroup->addComponent(wrappedObject);
 }
 
 void GroupPanel::display(void) {
