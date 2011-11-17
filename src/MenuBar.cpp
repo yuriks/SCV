@@ -11,7 +11,7 @@ const int MenuBar::s_menuSpacing  = 18;
 const int MenuBar::s_borderWidth  = 8;
 const int MenuBar::s_borderHeight = 5;
 
-MenuBar::MenuBar(int width) : Panel(Point(0, 0),Point(width, s_menuHeight)) {
+MenuBar::MenuBar(int width) : Panel(Point(0, 0), Point(width, s_menuHeight)) {
    _isVResizable = false;
    _active = false;
    _index.push_back(s_borderWidth);
@@ -19,8 +19,8 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0),Point(width, s_menuHeight)) {
    _currecOverMenu = -1;
    _type = MENUBAR;
 
-   setMinimumSize(getPreferredSize());
-   setMaximumSize(getPreferredSize());
+   setMinimumSize(Point(15, s_menuHeight));
+   setMaximumSize(Point(-1, s_menuHeight));
  
    createTexture();
 }

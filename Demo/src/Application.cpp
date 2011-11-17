@@ -118,13 +118,15 @@ void Application::init(void) {
    ///////////////////////////////////////////////////////////
    scv::GroupLayout *layout = new scv::GroupLayout(_mainPanel);
 
-   layout->setHorizontalGroup(
-      layout->createSequentialGroup()->setAutoCreateGaps(true)
+   layout->setHorizontalGroup(layout->createParallelGroup()
+      ->addComponent(menuBar)
+      ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
          ->addComponent(tabbedPreview)
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(_properties)
          )
+      )
    );
 
    layout->setVerticalGroup(

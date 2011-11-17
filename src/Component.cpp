@@ -409,7 +409,22 @@ Point Component::getPreferredSize(void) const {
 }
 
 Point Component::getMaximumSize(void) const {
-   return (_maximumSize <= Point(0, 0)) ? Point(Kernel::getInstance()->getWidth(), Kernel::getInstance()->getHeight()) : _maximumSize;
+   if (_maximumSize.x <= 0 || _maximumSize.y <= 0) {
+      scv::Point size;
+      if (_maximumSize.x <= 0) {
+         size.x = Kernel::getInstance()->getWidth();
+      } else {
+         size.x = _maximumSize.x;
+      }
+      if (_maximumSize.y <= 0) {
+         size.y = Kernel::getInstance()->getHeight();
+      } else {
+         size.y = _maximumSize.y;
+      }
+      return size;
+   } else {
+      return _maximumSize;
+   }
 }
 
 void Component::setMinimumSize(const scv::Point &size) {
@@ -425,7 +440,7 @@ void Component::setPreferredSize(const scv::Point &size) {
 }
 
 void Component::setMaximumSize(const scv::Point &size) {
-   if (size >= getMinimumSize() && size >= getPreferredSize() || size <= Point(0, 0)) {      
+   if (size >= getMinimumSize() && size >= getPreferredSize() || size.x <= 0 ||  size.y <= 0) {      
       _maximumSize = size;
    }
 }
