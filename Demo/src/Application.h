@@ -30,6 +30,14 @@ public:
    ///////////////////////////////////////////////////////////
 
    void addComponentFromPalette(std::string component);
+   std::vector<std::string> getManagedComponents(void) const {
+      std::vector<std::string> list;
+      list.push_back("object 1");
+      list.push_back("object 2");
+      list.push_back("object 3");
+      list.push_back("object 4");
+      return list;
+   }
 
    void getCode(void) const;
 

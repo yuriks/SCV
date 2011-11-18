@@ -34,7 +34,12 @@ public:
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
 
+   virtual void onOpen(void);
    virtual void onClose(void);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   virtual void setVisible(bool state);
    ///////////////////////////////////////////////////////////
 
    inline Panel *getPanel(void) const;

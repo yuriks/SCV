@@ -65,14 +65,27 @@ void InternalFrame::onSizeChange(void) {
 void InternalFrame::onPositionChange(void) {
 }
 
+void InternalFrame::onOpen(void) {
+}
+
 void InternalFrame::onClose(void) {
+}
+
+void InternalFrame::setVisible(bool state) {
+   if (state && !isVisible()) {
+      onOpen();
+   } else if (!state && isVisible()) {
+      onClose();
+   }
+   std::cout << "InternalFrame::setVisible" << std::endl;
+   ComponentWithTexture::setVisible(state);
 }
 
 void InternalFrame::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
 
-   if (_isVisible == false) return;
+   if (isVisible() == false) return;
 
    _panel->processMouse(evt);
 
@@ -110,8 +123,7 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
 
    if (evt.getState() == MouseEvent::UP) {
       if (_clickClose && _overClose) {
-         onClose();
-         _isVisible = false;
+         setVisible(false);
       } else {
          _clickClose = false;
       }
@@ -119,7 +131,7 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
 }
 
 void InternalFrame::processKey(const scv::KeyEvent &evt) {
-   if (_isVisible == false) return;
+   if (isVisible() == false) return;
 
    _panel->processKey(evt);
    Component::processKey(evt);
@@ -131,7 +143,7 @@ void InternalFrame::display(void) {
    static Scissor *scissor = Scissor::getInstance();
    static FontTahoma *font = FontTahoma::getInstance();
 
-   if (_isVisible == false || _cTexture == NULL) return;
+   if (isVisible() == false || _cTexture == NULL) return;
 
    Point currPosition = getAbsolutePosition();
    configPanel();
