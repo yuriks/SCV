@@ -10,7 +10,7 @@ public:
    ///////////////////////////////////////////////////////////
    Image(const scv::Point &p1, const std::string &fileName);
    Image(const scv::Point &p1, const scv::Point &p2, const std::string &fileName);
-   virtual ~Image();
+   virtual ~Image(void);
    ///////////////////////////////////////////////////////////
 
    //SCVCallbacks

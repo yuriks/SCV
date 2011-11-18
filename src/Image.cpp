@@ -22,9 +22,8 @@ Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Poin
 
    _minimumSize = Point(1,1);
 
+   createTexture();
 }
-
-Image::~Image() {}
 
 Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &fileName) : Panel(p1, p2) {
    data = NULL;
@@ -39,6 +38,11 @@ Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &file
    _minimumSize = Point(1,1);
 
    _type = IMAGE;
+
+   createTexture();
+}
+
+Image::~Image(void) {
 }
 
 void Image::onMouseClick(const scv::MouseEvent &evt) {

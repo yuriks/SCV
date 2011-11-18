@@ -29,6 +29,8 @@ void ComboBox::ComboBoxMenu::addItem(const std::string item) {
    addMenu(new ContextMenu(item));
 }
 
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1,p2,""), menu(0) {
    menu = new ComboBoxMenu(*this);
@@ -38,6 +40,8 @@ ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1,p2,""
    _type = COMBOBOX;
 
    _active = false;
+
+   createTexture();
 }
 
 ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1,Point(p1.x+width,p1.y+20),""), menu(0) {
@@ -48,6 +52,8 @@ ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1,Point(p
    _type = COMBOBOX;
 
    _active = false;
+
+   createTexture();
 }
 
 ComboBox::ComboBox(const scv::Point &p, unsigned int width, std::vector <std::string> items, unsigned int defaultIndex)
@@ -65,20 +71,34 @@ ComboBox::ComboBox(const scv::Point &p, unsigned int width, std::vector <std::st
    _currentValue = defaultIndex;
 
    _active = false;
+
+   createTexture();
 }
 
 
-void ComboBox::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void ComboBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void ComboBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void ComboBox::onSizeChange(void) {/**/}
-void ComboBox::onPositionChange(void) {/**/}
-void ComboBox::onSelectionChanged(std::string address, int id) {/**/}
+void ComboBox::onMouseClick(const scv::MouseEvent &evt) {
+}
+void ComboBox::onMouseHold(const scv::MouseEvent &evt) {
+}
+void ComboBox::onMouseOver(const scv::MouseEvent &evt) {
+}
+void ComboBox::onMouseUp(const scv::MouseEvent &evt) {
+}
+void ComboBox::onMouseWheel(const scv::MouseEvent &evt) {
+}
 
+void ComboBox::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void ComboBox::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void ComboBox::onSizeChange(void) {
+}
+void ComboBox::onPositionChange(void) {
+}
+
+void ComboBox::onSelectionChanged(std::string address, int id) {
+}
 
 void ComboBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
