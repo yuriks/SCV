@@ -77,7 +77,6 @@ void InternalFrame::setVisible(bool state) {
    } else if (!state && isVisible()) {
       onClose();
    }
-   std::cout << "InternalFrame::setVisible" << std::endl;
    ComponentWithTexture::setVisible(state);
 }
 

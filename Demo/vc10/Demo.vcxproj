@@ -203,6 +203,7 @@
     <ClCompile Include="..\src\GroupPanel.cpp" />
     <ClCompile Include="..\src\GroupPanelWrapper.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\ManagedComponent.cpp" />
     <ClCompile Include="..\src\MenuBar.cpp" />
     <ClCompile Include="..\src\Pallete.cpp" />
     <ClCompile Include="..\src\ParallelGroupPanel.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="..\src\GroupObjectWrapper.h" />
     <ClInclude Include="..\src\GroupPanel.h" />
     <ClInclude Include="..\src\GroupPanelWrapper.h" />
+    <ClInclude Include="..\src\ManagedComponent.h" />
     <ClInclude Include="..\src\MenuBar.h" />
     <ClInclude Include="..\src\Pallete.h" />
     <ClInclude Include="..\src\ParallelGroupPanel.h" />
