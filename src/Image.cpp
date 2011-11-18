@@ -6,7 +6,7 @@
 namespace scv {
 
 Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Point(p1.x + 10, p1.y + 10)) {
-   data = NULL;
+   _data = NULL;
    loadImage(fileName);
    
    setWidth(_realSize.x);
@@ -17,7 +17,7 @@ Image::Image(const scv::Point &p1, const std::string &fileName) : Panel(p1, Poin
 }
 
 Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &fileName) : Panel(p1, p2) {
-   data = NULL;
+   _data = NULL;
    loadImage(fileName);
    
    _minimumSize = Point(1,1);
@@ -50,13 +50,13 @@ void Image::onPositionChange(void) {
 }
 
 void Image::loadImage(const std::string &fileName) {
-   if (data != NULL) {
+   if (_data != NULL) {
       delete _cTexture;
       _cTexture = NULL;
    }
 
-   location = fileName;
-   data = ImgLoader::getInstance()->loadImageToArray(fileName, &_realSize.x, &_realSize.y);
+   _path = fileName;
+   _data = ImgLoader::getInstance()->loadImageToArray(fileName, &_realSize.x, &_realSize.y);
    
    createTexture();
 }
@@ -66,7 +66,7 @@ void Image::display(void) {
    static Scissor *scissor = Scissor::getInstance();
    static ColorScheme *scheme = ColorScheme::getInstance();
 
-   if (_cTexture == NULL || _isVisible == false || data == NULL) return;
+   if (_cTexture == NULL || _isVisible == false || _data == NULL) return;
 
    Point currPosition = getAbsolutePosition();
 
@@ -90,11 +90,11 @@ void Image::display(void) {
 }
 
 void Image::createTexture(void) {
-   if (data == NULL) return;
+   if (_data == NULL) return;
 
    _cTexture = new ComponentTexture(_realSize.x, _realSize.y);
    _cTexture->setTextureEnvMode(GL_MODULATE);
-   _cTexture->addTexture(Point(0,0), _realSize.x, _realSize.y, data);
+   _cTexture->addTexture(Point(0,0), _realSize.x, _realSize.y, _data);
    _cTexture->createTexture();
 }
 

@@ -35,6 +35,7 @@ public:
    
    ///////////////////////////////////////////////////////////
    void loadImage(const std::string &fileName);
+   inline scv::Point getImageSize(void) const;
    ///////////////////////////////////////////////////////////
 
    virtual void display(void);
@@ -43,20 +44,25 @@ protected:
    virtual void createTexture(void);
 
 private:
-   unsigned char * data;
+   unsigned char * _data;
 
-   std::string location;
+   std::string _path;
    scv::Point _realSize;
 };
 
 ///////////////////////////////////////////////////////////
 const unsigned char *Image::getData(void) const {
-   return data;
+   return _data;
 }
 
 const std::string &Image::getPath(void) const {
-   return location;
+   return _path;
 }
+
+scv::Point Image::getImageSize(void) const {
+   return _realSize;
+}
+
 ///////////////////////////////////////////////////////////
 
 } // namespace scv
