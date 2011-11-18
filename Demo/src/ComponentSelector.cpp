@@ -43,13 +43,13 @@ ComponentSelector::ComponentSelector(void) : scv::InternalFrame(400, 200, "Compo
    panel->setLayout(layout);
 
    layout->setHorizontalGroup(scv::GroupLayout::createParallelGroup()
-      ->addGroup(scv::GroupLayout::createSequentialGroup()
+      ->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)
          ->addComponent(acceptButton)
          ->addComponent(refuseButton)
       )
    );
 
-   layout->setVerticalGroup(scv::GroupLayout::createSequentialGroup()
+   layout->setVerticalGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)
       ->addGroup(scv::GroupLayout::createParallelGroup()
          ->addComponent(acceptButton, acceptButton->getHeight())
          ->addComponent(refuseButton, refuseButton->getHeight())
