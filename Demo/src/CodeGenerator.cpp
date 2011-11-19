@@ -67,6 +67,7 @@ void CodeGenerator::generateCode(void) {
    protected:\n\
       static const int s_defaultWindowWidth = 1280;\n\
       static const int s_defaultWindowHeight = 720;\n\
+      scv::Panel *_mainPanel;\n\
    private:\n\
    };\n\
    \n\
@@ -90,6 +91,7 @@ void CodeGenerator::generateCode(void) {
    }\n\
    \n\
    void Application::init(void) {\n\
+      _mainPanel = new scv::Panel(scv::Point(10, 10), scv::Point(0, 0));\n\
    \n"
    + static_cast<Application *>(Application::getInstance())->getLayoutCode() +   
    "\
@@ -112,6 +114,7 @@ void CodeGenerator::generateCode(void) {
    }\n\
    \n\
    void Application::onSizeChange(void) {\n\
+      _mainPanel->setSize(getWidth() - 20, getHeight() - 20);\n\
    }\n\
    void Application::onPositionChange(void) {\n\
    }\n\

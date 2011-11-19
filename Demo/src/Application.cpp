@@ -193,16 +193,17 @@ std::string Application::getLayoutCode(void) const {
 
    output += 
    "\
-   scv::GroupLayout *layout = new scv::GroupLayout(NULL);\n\
+      scv::GroupLayout *layout = new scv::GroupLayout(_mainPanel);\n\
+      _mainPanel->setLayout(layout);\n\
    \n\
-   layout->setHorizontalGroup(\n"
+      layout->setHorizontalGroup(\n"
    + _hPanelWrapper->getGroupCode() +
    "\
-   );\n\
-   layout->setVerticalGroup(\n"
+      );\n\
+      layout->setVerticalGroup(\n"
    + _vPanelWrapper->getGroupCode() +
    "\
-   );\n";
+      );\n";
    return output;
 }
 
