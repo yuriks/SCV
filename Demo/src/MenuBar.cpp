@@ -26,6 +26,6 @@ void CodeContextMenu::onMenuAccessed(const std::deque<std::string> &address) {
    static Application *app = static_cast<Application*>(scv::Kernel::getInstance());
 
    if (address[1] == "Generate") {
-      app->getCode();
+      app->getLayoutCode();
    }
 }

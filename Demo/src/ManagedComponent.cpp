@@ -1,18 +1,13 @@
 #include "stdafx.h"
 #include "ManagedComponent.h"
 
-ManagedComponent::ManagedComponent(void) {
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
+ManagedComponent::ManagedComponent(scv::Component *object, const std::string &name) {
+   _object = object;
+   _name = name;
 }
 
 ManagedComponent::~ManagedComponent(void) {
-
-}
-
-std::string ManagedComponent::getName(void) const {
-
-}
-
-scv::Component * ManagedComponent::getComponent(void) const {
-
 }

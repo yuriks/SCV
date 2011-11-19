@@ -59,7 +59,6 @@ public:
 protected:
    void createTexture(void);
 
-private:
    ///////////////////////////////////////////////////////////
    bool isOnTopBar(const scv::Point &p);
    bool isOnCloseButton(const scv::Point &p);

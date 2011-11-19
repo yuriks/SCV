@@ -150,20 +150,22 @@ void Application::init(void) {
    );
    ///////////////////////////////////////////////////////////
 
-   _mainPanel->setLayout(layout);
+   _mainPanel->setLayout(layout);   
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
 }
 void Application::onMouseHold(const scv::MouseEvent &evt) {
-   if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
-   _properties->setComponent(getFocusedComponent());
+   if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
+      _properties->setComponent(getFocusedComponent());
+   }
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
 void Application::onMouseUp(const scv::MouseEvent &evt) {
-   if (std::find(_managedComponents.begin(), _managedComponents.end(), getFocusedComponent()) ==  _managedComponents.end()) return;
-   _properties->setComponent(getFocusedComponent());
+   if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
+      _properties->setComponent(getFocusedComponent());
+   }
 }
 void Application::onMouseWheel(const scv::MouseEvent &evt) {
 }
@@ -181,9 +183,11 @@ void Application::onPositionChange(void) {
 
 void Application::addComponentFromPalette(std::string component) {
    _tabbedPreview->setCurrTab(2);
+
+   CodeGenerator::getInstance()->addComponent(new scv::Button(scv::Point(), "none"));
 }
 
-void Application::getCode(void) const {
+void Application::getLayoutCode(void) const {
    std::cout << _hPanelWrapper->getGroupCode() << std::endl;
    std::cout << _vPanelWrapper->getGroupCode() << std::endl;
 }

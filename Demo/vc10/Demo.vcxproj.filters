@@ -69,6 +69,9 @@
     <ClCompile Include="..\src\ManagedComponent.cpp">
       <Filter>6.Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\CodeGenerator.cpp">
+      <Filter>6.Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -108,6 +111,9 @@
       <Filter>2.App</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ManagedComponent.h">
+      <Filter>6.Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CodeGenerator.h">
       <Filter>6.Code</Filter>
     </ClInclude>
   </ItemGroup>
