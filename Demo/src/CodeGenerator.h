@@ -3,17 +3,6 @@
 
 #include "ManagedComponent.h"
 
-class ComponentCounter {
-public:
-   static std::string getName(scv::Component::ObjectType type);
-   
-protected:
-   static std::map<scv::Component::ObjectType, int> counter;
-};
-
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
 class CodeGenerator : public Singleton<CodeGenerator> {
 friend class Singleton<CodeGenerator>;
 public:
@@ -23,15 +12,23 @@ public:
 
    bool hasComponent(scv::Component *object);
 
+   ManagedComponent *getManagedComponent(scv::Component *object);
+
+   void generateCode(void);
+
 protected:
    ///////////////////////////////////////////////////////////
    CodeGenerator(void);
    virtual ~CodeGenerator(void);
    ///////////////////////////////////////////////////////////
 
+   int getComponentCount(scv::Component::ObjectType type);
+
    typedef std::list<ManagedComponent *> ManagedList;
    ManagedList _managed;
 
+
+   std::map<scv::Component::ObjectType, int> counter;
 };
 
 #endif //__CODE_GENERATOR_H__

@@ -150,7 +150,8 @@ void Application::init(void) {
    );
    ///////////////////////////////////////////////////////////
 
-   _mainPanel->setLayout(layout);   
+   _mainPanel->setLayout(layout);
+   CodeGenerator::getInstance()->generateCode();
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
