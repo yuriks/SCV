@@ -188,9 +188,22 @@ void Application::addComponentFromPalette(std::string component) {
    CodeGenerator::getInstance()->addComponent(new scv::Button(scv::Point(), "none"));
 }
 
-void Application::getLayoutCode(void) const {
-   std::cout << _hPanelWrapper->getGroupCode() << std::endl;
-   std::cout << _vPanelWrapper->getGroupCode() << std::endl;
+std::string Application::getLayoutCode(void) const {
+   std::string output;
+
+   output += 
+   "\
+   scv::GroupLayout *layout = new scv::GroupLayout(NULL);\n\
+   \n\
+   layout->setHorizontalGroup(\n"
+   + _hPanelWrapper->getGroupCode() +
+   "\
+   );\n\
+   layout->setVerticalGroup(\n"
+   + _vPanelWrapper->getGroupCode() +
+   "\
+   );\n";
+   return output;
 }
 
 void Application::openComponentSelector(GroupPanel *group) {

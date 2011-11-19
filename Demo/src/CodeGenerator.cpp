@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CodeGenerator.h"
 
+#include "Application.h"
+
 CodeGenerator::CodeGenerator(void) {
 }
 
@@ -88,7 +90,9 @@ void CodeGenerator::generateCode(void) {
    }\n\
    \n\
    void Application::init(void) {\n\
-   \n\
+   \n"
+   + static_cast<Application *>(Application::getInstance())->getLayoutCode() +   
+   "\
    }\n\
    \n\
    void Application::onMouseClick(const scv::MouseEvent &evt) {\n\

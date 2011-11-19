@@ -33,7 +33,7 @@ public:
 
    void addComponentFromPalette(std::string component);
    
-   void getLayoutCode(void) const;
+   std::string getLayoutCode(void) const;
 
    void openComponentSelector(GroupPanel *group);
 
