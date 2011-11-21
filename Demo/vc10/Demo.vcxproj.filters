@@ -72,6 +72,9 @@
     <ClCompile Include="..\src\CodeGenerator.cpp">
       <Filter>6.Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ObjectEditor.cpp">
+      <Filter>2.App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="..\src\CodeGenerator.h">
       <Filter>6.Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ObjectEditor.h">
+      <Filter>2.App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

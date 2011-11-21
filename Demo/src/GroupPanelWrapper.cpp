@@ -104,8 +104,8 @@ void GroupPanelWrapper::removeChild(Component *object) {
 
 std::string GroupPanelWrapper::getGroupCode(void) const {
    if (_group != NULL) {
-      return "scv::GroupLayout::createParallelGroup()\n" + _group->getCode();
+      return "scv::GroupLayout::createParallelGroup()\n" + _group->getCode() + "\n";
    } else {
-      return std::string("");
+      return "NULL";
    }
 }

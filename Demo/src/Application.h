@@ -33,7 +33,7 @@ public:
 
    void addComponentFromPalette(std::string component);
    
-   std::string getLayoutCode(void) const;
+   std::string getLayoutCode(const std::string &panelName) const;
 
    void openComponentSelector(GroupPanel *group);
 
@@ -41,7 +41,7 @@ protected:
    static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
 
-   scv::Panel *_mainPanel, *_designPreview, *_objectEdit;
+   scv::Panel *_mainPanel, *_designPreview, *_objectEditor;
    Properties *_properties;
 
    scv::TabbedPane *_tabbedPreview;

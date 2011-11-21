@@ -105,12 +105,12 @@ void Application::init(void) {
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
    _designPreview = new scv::Panel(scv::Point(), scv::Point());
-   _objectEdit = new scv::Panel(scv::Point(), scv::Point());
+   _objectEditor = new scv::Panel(scv::Point(), scv::Point());
 
    _tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
    _tabbedPreview->addChild(_designPreview, "Design Preview");
    _tabbedPreview->addChild(tabbedDesign, "Group Layout");
-   _tabbedPreview->addChild(_objectEdit, "Object Editor");
+   _tabbedPreview->addChild(_objectEditor, "Object Editor");
 
    _mainPanel->addChild(_tabbedPreview);
    ///////////////////////////////////////////////////////////
@@ -151,7 +151,6 @@ void Application::init(void) {
    ///////////////////////////////////////////////////////////
 
    _mainPanel->setLayout(layout);
-   CodeGenerator::getInstance()->generateCode();
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
@@ -188,22 +187,19 @@ void Application::addComponentFromPalette(std::string component) {
    CodeGenerator::getInstance()->addComponent(new scv::Button(scv::Point(), "none"));
 }
 
-std::string Application::getLayoutCode(void) const {
+std::string Application::getLayoutCode(const std::string &panelName) const {
    std::string output;
 
-   output += 
-   "\
-      scv::GroupLayout *layout = new scv::GroupLayout(_mainPanel);\n\
-      _mainPanel->setLayout(layout);\n\
-   \n\
-      layout->setHorizontalGroup(\n"
-   + _hPanelWrapper->getGroupCode() +
-   "\
-      );\n\
-      layout->setVerticalGroup(\n"
-   + _vPanelWrapper->getGroupCode() +
-   "\
-      );\n";
+   output += "   scv::GroupLayout *layout = new scv::GroupLayout(" + panelName + ");\n";
+   output += "   " + panelName + "->setLayout(layout);\n";
+   output += "\n";
+   output += "   layout->setHorizontalGroup(\n";
+   output += "   " + _hPanelWrapper->getGroupCode();
+   output += "   );\n";
+   output += "   layout->setVerticalGroup(\n";
+   output += "   " + _vPanelWrapper->getGroupCode();
+   output += "   );\n";
+
    return output;
 }
 

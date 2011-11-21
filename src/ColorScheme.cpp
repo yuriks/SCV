@@ -23,7 +23,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
       _pColors[TEXTSELECTION]   = new Color4f(ColorRGBA( 96, 176, 255, 200));
       _pColors[TEXTSELECTED]    = new Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[BACKGROUND]      = new Color4f(ColorRGBA( 50,  50,  50, 255));
-      _pColors[MENUBAR    ]     = new Color4f(ColorRGBA(189, 199, 216, 255));
+      _pColors[MENUBAR    ]     = new Color4f(ColorRGBA(214, 214, 214, 255));
       _pColors[PROGRESSBAR]     = new Color4f(ColorRGBA(  0,   0, 255, 200));
       _pColors[SEPARATOR]       = new Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[TEXTFIELD]       = new Color4f(ColorRGBA( 90,  90,  90, 255));
