@@ -25,6 +25,8 @@ public:
 
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
+
+   virtual void onTabChange(void);
    ///////////////////////////////////////////////////////////
    
    //Memory Management
@@ -42,7 +44,8 @@ public:
    
    ///////////////////////////////////////////////////////////
    void setCurrTab(int index);
-   inline int getCurrTabIndex(void) const;
+   inline int getCurrTab(void) const;
+
    inline scv::Component *getCurrComponent(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -63,7 +66,7 @@ private:
 
 ///////////////////////////////////////////////////////////
 
-int TabbedPane::getCurrTabIndex(void) const {
+int TabbedPane::getCurrTab(void) const {
    return _currSelectedTab;
 }
 

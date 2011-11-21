@@ -7,7 +7,8 @@ Canvas::Canvas(const scv::Point &p1, const scv::Point &p2) : ComponentWithoutTex
    setType(Component::CANVAS);
 }
 
-Canvas::~Canvas(void) {}
+Canvas::~Canvas(void) {
+}
 
 void Canvas::onMouseClick(const scv::MouseEvent &evt) {
    ComponentWithoutTexture::onMouseClick(evt);   

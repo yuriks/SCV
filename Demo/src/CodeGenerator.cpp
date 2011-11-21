@@ -33,7 +33,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    } else if (type == "TextField") {
       object = new scv::TextField(scv::Point(0, 0), 200, "SCV TextField");
    } else if (type == "TextBox") {
-      object = new scv::TextBox(scv::Point(0, 0), scv::Point(0, 0), "SCV TextBox");
+      object = new scv::TextBox(scv::Point(0, 0), scv::Point(200, 200), "SCV TextBox");
    } else if (type == "Separator") {
       object = new scv::Separator(scv::Point(0, 0), scv::Separator::horizontal, 100);
    } else if (type == "InternalFrame") {
@@ -51,7 +51,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    } else if (type == "ComboBox") {
       object = new scv::ComboBox(scv::Point(0,0), 200);
    } else if (type == "Canvas") {
-      object = new scv::Canvas(scv::Point(0, 0), scv::Point(0, 0));
+      object = new scv::Canvas(scv::Point(0, 0), scv::Point(200, 200));
    } else if (type == "SystemTreeView") {
       object = new scv::SystemTreeView(scv::Point(0, 0), scv::Point(200, 200));
    } else if (type == "Label") {
@@ -164,6 +164,6 @@ void CodeGenerator::generateCode(void) {
    outputFile.close();
 }
 
-int CodeGenerator::getComponentCount(scv::Component::ObjectType type) {
+int CodeGenerator::getComponentCount(scv::Component::Type type) {
    return counter[type]++;
 }

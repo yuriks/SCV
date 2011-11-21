@@ -22,13 +22,13 @@ protected:
    virtual ~CodeGenerator(void);
    ///////////////////////////////////////////////////////////
 
-   int getComponentCount(scv::Component::ObjectType type);
+   int getComponentCount(scv::Component::Type type);
 
    typedef std::list<ManagedComponent *> ManagedList;
    ManagedList _managed;
 
 
-   std::map<scv::Component::ObjectType, int> counter;
+   std::map<scv::Component::Type, int> counter;
 };
 
 #endif //__CODE_GENERATOR_H__

@@ -88,10 +88,10 @@ void ColorPicker::createTexture(void) {
 
    createColors();
 
-   if ((_cpTexture = kernel->getWidgetTexture(Kernel::COLORPICKER)) != NULL) return;
+   if ((_cpTexture = kernel->getWidgetTexture(COLORPICKER)) != NULL) return;
 
    _cpTexture = new ComponentTexture(MatrixTemplate<ColorRGBA>::getWidth(), MatrixTemplate<ColorRGBA>::getHeight() + 1);
-   kernel->setWidgetTexture(Kernel::COLORPICKER, _cpTexture);
+   kernel->setWidgetTexture(COLORPICKER, _cpTexture);
 
    _cpTexture->setTextureEnvMode(GL_MODULATE);
    _cpTexture->addTexture(Point(0,0), *this);

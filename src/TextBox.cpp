@@ -120,11 +120,11 @@ void TextBox::display(void) {
 
 void TextBox::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::TEXTBOX)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(TEXTBOX)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(2, 2);
-   kernel->setWidgetTexture(Kernel::TEXTBOX, _cTexture);
+   kernel->setWidgetTexture(TEXTBOX, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

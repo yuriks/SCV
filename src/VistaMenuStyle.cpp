@@ -117,11 +117,11 @@ VistaMenuStyle::VistaMenuStyle()
 
 void VistaMenuStyle::createTexture() {
    static Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::CONTEXTMENU)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(Component::CONTEXTMENU)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(16, 8);
-   kernel->setWidgetTexture(Kernel::CONTEXTMENU, _cTexture);
+   kernel->setWidgetTexture(Component::CONTEXTMENU, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

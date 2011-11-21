@@ -19,13 +19,16 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   enum ObjectType {
-      NONE        , PANEL      , COLORPICKER , PROGRESSBAR,
-      SCROLL      , SLIDER     , SPINNER     , BUTTON     ,
-      CHECKBOX    , RADIOBUTTON, TOGGLEBUTTON, TEXTFIELD  ,
-      TEXTBOX     , SEPARATOR  , WINDOW      , MENUBAR    ,
-      TABBEDPANE  , SCROLLPANE , IMAGE       , TABLE      ,
-      COMBOBOX    , CANVAS     , TREEVIEW    , LABEL
+   enum Type {
+      NONE        , PANEL           , COLORPICKER , PROGRESSBAR,
+      SCROLL      , SLIDER          , SPINNER     , BUTTON     ,
+      CHECKBOX    , RADIOBUTTON     , TOGGLEBUTTON, TEXTFIELD  ,
+      TEXTBOX     , SEPARATOR       , WINDOW      , MENUBAR    ,
+      TABBEDPANE  , SCROLLCOMPONENT , IMAGE       , TABLE      ,
+      COMBOBOX    , CANVAS          , TREEVIEW    , LABEL      ,
+      CONTEXTMENU ,
+      /**/
+      NOFWIDGETS
    };
    ///////////////////////////////////////////////////////////
 
@@ -123,8 +126,8 @@ public:
    virtual void display(void) = 0;
 
    ///////////////////////////////////////////////////////////
-   ObjectType getType(void) const;
-   void setType(ObjectType type);
+   Type getType(void) const;
+   void setType(Type type);
    ///////////////////////////////////////////////////////////
 
    //memory management
@@ -150,7 +153,7 @@ protected:
    Component::List _children;
    ///////////////////////////////////////////////////////////
 
-   ObjectType _type;
+   Type _type;
    static const int s_mouseBacklash = 4;
 
    Point _p1, _p2, _clickDiff;

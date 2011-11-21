@@ -29,16 +29,6 @@ namespace scv {
 class Kernel : public Singleton<Kernel>, public SCVCallbacks {
 friend class Singleton<Kernel>;
 public:
-   ///////////////////////////////////////////////////////////
-   enum Widgets {
-      PANEL       , CONTEXTMENU, COLORPICKER , PROGRESSBAR,
-      SCROLL      , SLIDER     , SPINNER     , BUTTON     ,
-      CHECKBOX    , RADIOBOX   , TOGGLEBUTTON, TEXTFIELD  ,
-      TEXTBOX     , SEPARATOR  , WINDOW      , MENUBAR    ,
-      TABBEDPANE  , SCROLLPANE , COMBOBOX    , TREEVIEW   ,
-      NOFWIDGETS
-   };
-
    enum TextureFilter { LINEAR, NEAREST };
    ///////////////////////////////////////////////////////////
 
@@ -114,8 +104,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   inline void setWidgetTexture(Kernel::Widgets widget, ComponentTexture *texture);
-   inline ComponentTexture* getWidgetTexture(Kernel::Widgets widget);
+   inline void setWidgetTexture(scv::Component::Type widget, ComponentTexture *texture);
+   inline ComponentTexture* getWidgetTexture(scv::Component::Type widget);
    ///////////////////////////////////////////////////////////
 
 protected:
@@ -174,7 +164,7 @@ protected:
    } Mouse;
    ///////////////////////////////////////////////////////////
    
-   ComponentTexture *_loadedWidgets[NOFWIDGETS];
+   ComponentTexture *_loadedWidgets[Component::NOFWIDGETS];
 
    std::string _windowTitle;
 
@@ -201,11 +191,11 @@ inline float Kernel::getFramesPerSecond(void) const {
    return FrameRate.currFps;
 }
 
-inline void Kernel::setWidgetTexture(Kernel::Widgets widget, ComponentTexture *texture) {
+inline void Kernel::setWidgetTexture(scv::Component::Type widget, ComponentTexture *texture) {
    _loadedWidgets[widget] = texture;
 }
 
-inline ComponentTexture* Kernel::getWidgetTexture(Kernel::Widgets widget) {
+inline ComponentTexture* Kernel::getWidgetTexture(scv::Component::Type widget) {
    return _loadedWidgets[widget];
 }
 

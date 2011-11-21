@@ -209,10 +209,10 @@ bool InternalFrame::isOnCloseButton(const Point &p) {
 
 void InternalFrame::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::WINDOW)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(WINDOW)) != NULL) return;
 
    _cTexture = new ComponentTexture(46 * 3 + 10, 19);
-   kernel->setWidgetTexture(Kernel::WINDOW, _cTexture);
+   kernel->setWidgetTexture(WINDOW, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

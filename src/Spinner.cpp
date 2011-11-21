@@ -155,11 +155,11 @@ void Spinner::display(void) {
 
 void Spinner::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::SPINNER)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(SPINNER)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(16, 16);
-   kernel->setWidgetTexture(Kernel::SPINNER, _cTexture);
+   kernel->setWidgetTexture(SPINNER, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

@@ -311,11 +311,11 @@ bool Component::getCallbacksStatus(void) const {
    return _receivingCallbacks;
 }
 
-Component::ObjectType Component::getType(void) const {
+Component::Type Component::getType(void) const {
    return _type;
 }
 
-void Component::setType(ObjectType type) {
+void Component::setType(Type type) {
    _type = type;
 }
 

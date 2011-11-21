@@ -12,7 +12,7 @@ ScrollComponent::ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv
    _translateWidth = 0.0f;
    _translateHeight = 0.0f;
    _minimumSize = Point(60,60);
-   _type = SCROLLPANE;
+   _type = SCROLLCOMPONENT;
 
    setComponent(object);
 
@@ -45,7 +45,7 @@ void ScrollComponent::onPositionChange(void) {
 }
 
 void ScrollComponent::setComponent(scv::Component *object) {
-   if (object == NULL || object == this) return;
+   if (object == this) return;
 
    _registeredComponent = object;
 
@@ -380,11 +380,11 @@ float ScrollComponent::barPixelToFloat(int pix, bool horz) {
 
 void ScrollComponent::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::SCROLLPANE)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(SCROLLCOMPONENT)) != NULL) return;
 
    // create texture object
    _cTexture = new ComponentTexture(19, 39);
-   kernel->setWidgetTexture(Kernel::SCROLLPANE, _cTexture);
+   kernel->setWidgetTexture(SCROLLCOMPONENT, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

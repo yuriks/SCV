@@ -139,7 +139,7 @@ void GroupPanel::createTexture(void) {
    if ((_cTexture = s_customTexture) != NULL) return;
 
    _cTexture = new scv::ComponentTexture(2, 2);
-   kernel->setWidgetTexture(scv::Kernel::PANEL, _cTexture);
+   kernel->setWidgetTexture(scv::Component::PANEL, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 

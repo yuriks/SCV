@@ -24,7 +24,7 @@ const unsigned int Kernel::s_defaultHeight = 720;
 const unsigned int Kernel::s_defaultFramesPerSecond = 30;
 
 Kernel::Kernel(void) {
-   std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * NOFWIDGETS);
+   std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * Component::NOFWIDGETS);
 
    _filterType = NEAREST;
 

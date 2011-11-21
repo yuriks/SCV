@@ -8,18 +8,36 @@ namespace scv {
 RadioButton::RadioButton(const scv::Point &p1, bool state, const std::string &str) : StateButton(state), Label(p1, Point(p1.x + 13 + FontTahoma::getInstance()->getStringLength(str) + 3,p1.y + 13), str) {
    _isHResizable = _isVResizable = false;
    _type = RADIOBUTTON;
+
+   createTexture();
 }
 
-void RadioButton::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void RadioButton::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void RadioButton::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void RadioButton::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void RadioButton::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void RadioButton::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void RadioButton::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void RadioButton::onValueChange(void) {/**/}
-void RadioButton::onSizeChange(void) {/**/}
-void RadioButton::onPositionChange(void) {/**/}
+RadioButton::~RadioButton(void) {
+}
+
+void RadioButton::onMouseClick(const scv::MouseEvent &evt) {
+}
+void RadioButton::onMouseHold(const scv::MouseEvent &evt) {
+}
+void RadioButton::onMouseOver(const scv::MouseEvent &evt) {
+}
+void RadioButton::onMouseUp(const scv::MouseEvent &evt) {
+}
+void RadioButton::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void RadioButton::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void RadioButton::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void RadioButton::onSizeChange(void) {
+}
+void RadioButton::onPositionChange(void) {
+}
+
+void RadioButton::onValueChange(void) {
+}
 
 void RadioButton::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -56,7 +74,7 @@ void RadioButton::display(void) {
 
 void RadioButton::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::RADIOBOX)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(RADIOBUTTON)) != NULL) return;
 
    ColorRGBA colorOver(170,220,255,60);
    ColorRGBA colorClick(colorOver[0] - 100, colorOver[1] - 80, colorOver[2] - 40, colorOver[3]);
@@ -65,7 +83,7 @@ void RadioButton::createTexture(void) {
 
    // create texture object
    _cTexture = new ComponentTexture(64, 16);
-   kernel->setWidgetTexture(Kernel::RADIOBOX, _cTexture);
+   kernel->setWidgetTexture(RADIOBUTTON, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
@@ -407,6 +425,5 @@ void RadioButton::setString(const std::string& str) {
    Label::setString(str);
    setWidth(font->getStringLength(str) + 15);
 }
-
 
 } // namespace scv

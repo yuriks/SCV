@@ -59,10 +59,10 @@ void Panel::display(void) {
 void Panel::createTexture(void) {
    Kernel *kernel = Kernel::getInstance();
    
-   if ((_cTexture = kernel->getWidgetTexture(Kernel::PANEL)) != NULL) return;
+   if ((_cTexture = kernel->getWidgetTexture(PANEL)) != NULL) return;
 
    _cTexture = new ComponentTexture(2, 2);
-   kernel->setWidgetTexture(Kernel::PANEL, _cTexture);
+   kernel->setWidgetTexture(PANEL, _cTexture);
 
    _cTexture->setTextureEnvMode(GL_MODULATE);
 
