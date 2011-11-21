@@ -7,7 +7,7 @@ class CodeGenerator : public Singleton<CodeGenerator> {
 friend class Singleton<CodeGenerator>;
 public:
    ///////////////////////////////////////////////////////////
-   void addComponent(scv::Component *object);
+   scv::Component *addComponent(const std::string &type);
    ///////////////////////////////////////////////////////////
 
    bool hasComponent(scv::Component *object);

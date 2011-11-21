@@ -9,13 +9,57 @@ CodeGenerator::CodeGenerator(void) {
 CodeGenerator::~CodeGenerator(void) {
 }
 
-int CodeGenerator::getComponentCount(scv::Component::ObjectType type) {
-   return counter[type]++;
-}
+scv::Component *CodeGenerator::addComponent(const std::string &type) {
+   scv::Component *object = NULL;
 
-void CodeGenerator::addComponent(scv::Component *object) {
-   std::cout << getComponentCount(object->getType()) << std::endl;
+   if (type == "Panel") {
+      object = new scv::Panel(scv::Point(0, 0), scv::Point(200, 200));
+   } else if (type == "ColorPicker") {
+      object = new scv::ColorPicker(scv::Point(0, 0));
+   } else if (type == "ProgressBar") {
+      object = new scv::ProgressBar(scv::Point(0, 0),  0);
+   } else if (type == "Slider") {
+      object = new scv::Slider(scv::Point(0, 0), 0.f, 100.f, 50.f, 1.f);
+   } else if (type == "Spinner") {
+      object = new scv::Spinner(scv::Point(0, 0), 200, 0.f, 100.f, 50.f, 1.f);
+   } else if (type == "Button") {
+      object = new scv::Button(scv::Point(0, 0), "SCV Button");
+   } else if (type == "CheckBox") {
+      object = new scv::CheckBox(scv::Point(0, 0), false, "SCV CheckBox");
+   } else if (type == "RadioButton") {
+      object = new scv::RadioButton(scv::Point(0, 0), false, "SCV RadioButton");
+   } else if (type == "ToggleButton") {
+      object = new scv::ToggleButton(scv::Point(0, 0), false, "SCV ToogleButton");
+   } else if (type == "TextField") {
+      object = new scv::TextField(scv::Point(0, 0), 200, "SCV TextField");
+   } else if (type == "TextBox") {
+      object = new scv::TextBox(scv::Point(0, 0), scv::Point(0, 0), "SCV TextBox");
+   } else if (type == "Separator") {
+      object = new scv::Separator(scv::Point(0, 0), scv::Separator::horizontal, 100);
+   } else if (type == "InternalFrame") {
+      object = new scv::InternalFrame(200, 200, "SCV InternalFrame");
+   } else if (type == "MenuBar") {
+      object = new scv::MenuBar(200);
+   } else if (type == "TabbedPane") {
+      object = new scv::TabbedPane(scv::Point(0, 0), scv::Point(200, 200));
+   } else if (type == "ScrollComponent") {
+      object = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(200, 200));
+   } else if (type == "Image") {
+      object = new scv::Image(scv::Point(0, 0), "default_image.png");
+   } else if (type == "Table") {
+      object = new scv::Table(scv::Point(0, 0));
+   } else if (type == "ComboBox") {
+      object = new scv::ComboBox(scv::Point(0,0), 200);
+   } else if (type == "Canvas") {
+      object = new scv::Canvas(scv::Point(0, 0), scv::Point(0, 0));
+   } else if (type == "SystemTreeView") {
+      object = new scv::SystemTreeView(scv::Point(0, 0), scv::Point(200, 200));
+   } else if (type == "Label") {
+      object = new scv::Label(scv::Point(0, 0), "SCV Label");
+   }
 
+   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType()))));   
+   return object;
 }
 
 bool CodeGenerator::hasComponent(scv::Component *object) {
@@ -109,8 +153,6 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "void Application::onPositionChange(void) {\n";
    applicationDotCpp += "}\n";   
    
-
-
    std::ofstream outputFile;
 
    outputFile = std::ofstream("../Application.h");
@@ -120,4 +162,8 @@ void CodeGenerator::generateCode(void) {
    outputFile = std::ofstream("../Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
+}
+
+int CodeGenerator::getComponentCount(scv::Component::ObjectType type) {
+   return counter[type]++;
 }

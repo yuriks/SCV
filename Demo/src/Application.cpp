@@ -185,9 +185,8 @@ void Application::onDisplay(void) {
 }
 
 void Application::addComponentFromPalette(std::string component) {
+   ObjectEditor::getInstance()->setComponent(CodeGenerator::getInstance()->addComponent(component));
    _tabbedPreview->setCurrTab(2);
-
-   CodeGenerator::getInstance()->addComponent(new scv::Button(scv::Point(), "none"));
 }
 
 std::string Application::getLayoutCode(const std::string &panelName) const {
