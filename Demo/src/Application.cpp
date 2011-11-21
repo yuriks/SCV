@@ -105,12 +105,11 @@ void Application::init(void) {
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
    _designPreview = new scv::Panel(scv::Point(), scv::Point());
-   _objectEditor = new scv::Panel(scv::Point(), scv::Point());
 
    _tabbedPreview = new scv::TabbedPane(scv::Point(), scv::Point());
    _tabbedPreview->addChild(_designPreview, "Design Preview");
    _tabbedPreview->addChild(tabbedDesign, "Group Layout");
-   _tabbedPreview->addChild(_objectEditor, "Object Editor");
+   _tabbedPreview->addChild(ObjectEditor::getInstance(), "Object Editor");
 
    _mainPanel->addChild(_tabbedPreview);
    ///////////////////////////////////////////////////////////
@@ -179,6 +178,10 @@ void Application::onSizeChange(void) {
    _mainPanel->setSize(getWidth() - 20, getHeight() - 20);
 }
 void Application::onPositionChange(void) {
+}
+
+void Application::onDisplay(void) {
+   ObjectEditor::getInstance()->update();
 }
 
 void Application::addComponentFromPalette(std::string component) {

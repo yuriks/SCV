@@ -6,6 +6,8 @@ friend class Singleton<ObjectEditor>;
 public:
    void setComponent(scv::Component *object);
 
+   void update(void);
+
 protected:
    ///////////////////////////////////////////////////////////
    ObjectEditor(void);

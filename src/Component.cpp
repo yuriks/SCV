@@ -328,10 +328,12 @@ void Component::setParent(Component *parent) {
 }
 
 void Component::addChild(Component *object) {
-   object->setParent(NULL);
+   if (object != NULL) {
+      object->setParent(NULL);
 
-   object->_parent = this;
-   _children.push_back(object);
+      object->_parent = this;
+      _children.push_back(object);
+   }   
 }
 
 void Component::removeChild(Component *object) {

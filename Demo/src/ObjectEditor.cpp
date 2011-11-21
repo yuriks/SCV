@@ -15,5 +15,11 @@ void ObjectEditor::setComponent(scv::Component *object) {
    _currObject = object;
    addChild(_currObject);
 
-   _currObject->setRelativePosition((getSize() - _currObject->getSize()) / 2);
+   update();
+}
+
+void ObjectEditor::update(void) {
+   if (_currObject != NULL) {
+      _currObject->setRelativePosition((getSize() - _currObject->getSize()) / 2);
+   }
 }

@@ -6,48 +6,76 @@
 
 namespace scv {
 
+scv::TextFilter Spinner::s_filter;
+
 Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, double maxValue, double startValue, double stepValue) :
-      ComponentWithTexture(p, Point(p.x + s_spinnerSizeX, p.y + s_spinnerSizeY)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
-   _isHResizable = _isVResizable = false;
+      scv::Panel(p, Point(p.x + width, p.y + s_spinnerSizeY)), Counter(minValue, maxValue, startValue<minValue?minValue:startValue>maxValue?maxValue:startValue, stepValue) {
 
-   _filter.denyAll();
-   _filter.allowNumbers();
-   _filter.allowThese(std::string(".-"));
+   setWidth((width < s_minSize) ? s_minSize : width);
 
-   _textField = new TextFieldSpinner(this, ((width < s_minSize) ? s_minSize : width) - s_spinnerSizeX - 1, toString(startValue));
-   _textField ->setFilter(_filter);
+   _isHResizable = true;
+   _isVResizable = false;
+
+   s_filter.denyAll();
+   s_filter.allowNumbers();
+   s_filter.allowThese(std::string(".-"));
+
+   _layout = new GroupLayout(this);
+   setLayout(_layout);
+
+   _textField = new TextFieldSpinner(this, getWidth() - s_spinnerSizeX - 6, toString(startValue));
    addChild(_textField);
+
+   _layout->setHorizontalGroup(GroupLayout::createSequentialGroup()
+      ->addComponent(_textField)
+      ->addGap(s_spinnerSizeX)
+   );
+
+   _textField ->setFilter(s_filter);
+   _textField->setMinimumSize(Point(scv::FontTahoma::getInstance()->getStringLength(toString(maxValue)) + 4, getHeight()));
    
-   _UpPress   = false;
-   _DownPress = false;
-   _UpOver      = false;
-   _DownOver    = false;
+   _upPress   = false;
+   _downPress = false;
+   _upOver    = false;
+   _downOver  = false;
 
-   _whileUp   = new Timer();
-   _whileDown = new Timer();
-
-   _minimumSize.x = 200;
-   _minimumSize.y = getHeight();
-
+   setMinimumSize(Point(s_minSize, s_spinnerSizeY));
+   
    _lastTime = _incrementTime = 0;
    _type = SPINNER;
 
    createTexture();
 }
      
-Spinner::~Spinner(void) {}
+Spinner::~Spinner(void) {
+   if (_layout != NULL) {
+      delete _layout;
+   }
+}
 
-void Spinner::onMouseClick(const scv::MouseEvent &evt) {}
-void Spinner::onMouseHold(const scv::MouseEvent &evt) {}
-void Spinner::onMouseOver(const scv::MouseEvent &evt) {}
-void Spinner::onMouseUp(const scv::MouseEvent &evt) {}
-void Spinner::onMouseWheel(const scv::MouseEvent &evt) {}
-void Spinner::onKeyPressed(const scv::KeyEvent &evt) {}
-void Spinner::onKeyUp(const scv::KeyEvent &evt) {}
-void Spinner::onValueChange(void) {}
-void Spinner::onSizeChange(void) {}
-void Spinner::onPositionChange(void) {}
+void Spinner::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Spinner::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Spinner::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Spinner::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Spinner::onMouseWheel(const scv::MouseEvent &evt) {
+}
 
+void Spinner::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Spinner::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void Spinner::onSizeChange(void) {
+}
+void Spinner::onPositionChange(void) {
+}
+
+void Spinner::onValueChange(void) {
+}
 
 void Spinner::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -58,10 +86,7 @@ void Spinner::display(void) {
    Point relPosition = getRelativePosition();
    Point currPosition = getAbsolutePosition();
 
-   //REVIEW
-   //_textField->setPanelTranslate(currPosition - relPosition);
-
-   _textField->display();
+   Panel::display();
 
    _cTexture->enable();
       scheme->applyDefaultModulate();
@@ -74,20 +99,20 @@ void Spinner::display(void) {
       _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + getHeight() / 2 + 1, 2, s_spinnerSizeX - 2, getHeight() / 2 - 3);
 
       // middle 2
-      if (_UpPress) {
+      if (_upPress) {
          scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + 3, 6, s_spinnerSizeX - 4, getHeight() / 2 - 5);
 
          // spin control
-         if (_whileUp->isRunning() && _UpOver) {
-            _incrementTime = _whileUp->getMilliseconds() - _lastTime;
-            if ((_whileUp->getMilliseconds() > 600 && _incrementTime > 100) || (_whileUp->getMilliseconds() > 2000 && _incrementTime > 30) || (_whileUp->getMilliseconds() > 4000 && _incrementTime > 10)) {
+         if (_whileUp.isRunning() && _upOver) {
+            _incrementTime = _whileUp.getMilliseconds() - _lastTime;
+            if ((_whileUp.getMilliseconds() > 600 && _incrementTime > 100) || (_whileUp.getMilliseconds() > 2000 && _incrementTime > 30) || (_whileUp.getMilliseconds() > 4000 && _incrementTime > 10)) {
                IncrementStep();
-               _lastTime = _whileUp->getMilliseconds();
+               _lastTime = _whileUp.getMilliseconds();
                _incrementTime = 0;
             }
          }
-      } else if (_UpOver) {
+      } else if (_upOver) {
          scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + 2, 5, s_spinnerSizeX - 2, getHeight() / 2 - 3);
       } else {
@@ -95,20 +120,20 @@ void Spinner::display(void) {
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + 3, 1, s_spinnerSizeX - 4, getHeight() / 2 - 5);
       }
 
-      if (_DownPress) {
+      if (_downPress) {
          scheme->applyColor(ColorScheme::HOLDCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 3, currPosition.y + getHeight() / 2 + 2, 6, s_spinnerSizeX - 4, getHeight() / 2 - 5);
 
          // spin control
-         if (_whileDown->isRunning() && _DownOver) {
-            _incrementTime = _whileDown->getMilliseconds() - _lastTime;
-            if ((_whileDown->getMilliseconds() > 600 && _incrementTime > 100) || (_whileDown->getMilliseconds() > 2000 && _incrementTime > 30) || (_whileDown->getMilliseconds() > 4000 && _incrementTime > 10)) {
+         if (_whileDown.isRunning() && _downOver) {
+            _incrementTime = _whileDown.getMilliseconds() - _lastTime;
+            if ((_whileDown.getMilliseconds() > 600 && _incrementTime > 100) || (_whileDown.getMilliseconds() > 2000 && _incrementTime > 30) || (_whileDown.getMilliseconds() > 4000 && _incrementTime > 10)) {
                DecrementStep();
-               _lastTime = _whileDown->getMilliseconds();
+               _lastTime = _whileDown.getMilliseconds();
                _incrementTime = 0;
             }
          }
-      } else if (_DownOver) {
+      } else if (_downOver) {
          scheme->applyColor(ColorScheme::OVERCOMPONENTS);
          _cTexture->display(currPosition.x + _textField->getWidth() + 2, currPosition.y + getHeight() / 2 + 1, 5, s_spinnerSizeX - 2, getHeight() / 2 - 3);
       } else {
@@ -187,12 +212,12 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
    }
 
    if (isOnUpButton(evt.getPosition()) && kernel->requestMouseUse(this)) {
-      _UpOver = true;
+      _upOver = true;
       if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
-         _UpPress = true;
+         _upPress = true;
          if (getValue() == getMaxValue()) return;
-         _whileUp->start();
+         _whileUp.start();
          IncrementStep();
          onMouseClick(evt);
       }
@@ -202,16 +227,16 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
          menu->activeMenu(_contextMenu, evtPosition);
       }
    } else {
-      _UpOver = false;
+      _upOver = false;
    }
 
    if (isOnDownButton(evt.getPosition()) && kernel->requestMouseUse(this)) {
-      _DownOver = true;
+      _downOver = true;
       if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
-         _DownPress = true;
+         _downPress = true;
          if (getValue() == getMinValue()) return;
-         _whileDown->start();
+         _whileDown.start();
          DecrementStep();
          onMouseClick(evt);
       }
@@ -221,15 +246,15 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
          menu->activeMenu(_contextMenu, evtPosition);
       }
    } else {
-      _DownOver = false;
+      _downOver = false;
    }
 
    if (evt.getState() == MouseEvent::UP && evt.getButton() == MouseEvent::LEFT) {
-      _UpPress = false;
-      _DownPress = false;
-      _DownOver = _UpOver = false;
-      _whileDown->stop();
-      _whileUp->stop();
+      _upPress = false;
+      _downPress = false;
+      _downOver = _upOver = false;
+      _whileDown.stop();
+      _whileUp.stop();
       _lastTime = 0;
    }
 
@@ -276,24 +301,8 @@ void Spinner::setValue(double value) {
    _textField->setString(toString(getValue()));
 }
 
-int Spinner::getWidth(void) const {
-   return _textField->getWidth() + s_spinnerSizeX + 1;
-}
-
-int Spinner::getHeight(void) const {
-   return Component::getHeight();
-}
-
-void Spinner::setDraggable(bool state) {
-   Component::setDraggable(state);
-   _textField->setDraggable(state);
-}
-
-void Spinner::setResizable(bool state) {
-   Component::setResizable(state);
-   _textField->setResizable(state);
-}
-
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 Spinner::TextFieldSpinner::TextFieldSpinner(Spinner *spinner, unsigned int width, const std::string &str) :
       TextField(scv::Point(), width, str) {
@@ -328,14 +337,6 @@ void Spinner::TextFieldSpinner::onStringChange(void) {
          setString(toString(_spinner->getValue()));
       }
    }
-}
-
-void Spinner::TextFieldSpinner::onSizeChange(void) {
-   _spinner->setRelativePosition(getRelativePosition());
-}
-
-void Spinner::TextFieldSpinner::onPositionChange(void) {
-   _spinner->setRelativePosition(getRelativePosition());
 }
 
 } // namespace scv

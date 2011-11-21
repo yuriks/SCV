@@ -29,7 +29,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
       _pColors[TEXTFIELD]       = new Color4f(ColorRGBA( 90,  90,  90, 255));
       _pColors[CONTEXTMENU]     = new Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[CONTEXTMENUFONT] = new Color4f(ColorRGBA(  0,   0,   0, 255));
-      _pColors[PANEL]           = new Color4f(ColorRGBA( 80,  80,  80, 100));
+      _pColors[PANEL]           = new Color4f(ColorRGBA( 49, 100, 155, 100));
       _pColors[SCROLLPANEL]     = new Color4f(ColorRGBA(200, 200, 200, 255));
       _pColors[MAINCOMPONENTS]  = new Color4f(ColorRGBA( 51,  97, 136, 255));
       _pColors[OVERCOMPONENTS]  = new Color4f(ColorRGBA(  0, 220, 255, 70));

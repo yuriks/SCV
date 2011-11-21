@@ -55,6 +55,8 @@ public:
 
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
+
+   virtual void onDisplay(void);
    ///////////////////////////////////////////////////////////
    
    void run(void);

@@ -42,6 +42,9 @@ void TextField::onSizeChange(void) {
 void TextField::onPositionChange(void) {
 }
 
+void TextField::onStringChange(void) {
+}
+
 void TextField::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
@@ -171,7 +174,6 @@ void TextField::processMouse(const scv::MouseEvent &evt) {
    }
 }
 
-
 void TextField::processKey(const scv::KeyEvent &evt) {
 
    static Kernel *kernel = Kernel::getInstance();
@@ -212,7 +214,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          }
          _currChar++;
          refreshText();
-         //onStringChange();
+         onStringChange();
          return;
       }
 
@@ -223,7 +225,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
             removeSelectedText();
          _str.insert(_currChar + 1,kernel->getClipBoardString());
          _currChar += kernel->getClipBoardString().size();
-         //onStringChange();
+         onStringChange();
          break;
 
       case 3:
@@ -240,7 +242,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                std::swap(_selectStart,_selectEnd);
             kernel->setClipBoardString(_str.substr(_selectStart+1,_selectEnd-_selectStart));
             removeSelectedText();
-            //onStringChange();
+            onStringChange();
          }
          break;
 
@@ -352,11 +354,11 @@ void TextField::processKey(const scv::KeyEvent &evt) {
       case GLUT_KEY_BACK_SPACE:
          if (hasSelectedText()) {
             removeSelectedText();
-            //onStringChange();
+            onStringChange();
          } else if (_currChar > -1) {
             _str.erase(_currChar,1);
             _currChar--;
-            //onStringChange();
+            onStringChange();
          }
          break;
 
@@ -366,16 +368,16 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          }
          _str.insert(_currChar+1," ");
          _currChar++;
-         //onStringChange();
+         onStringChange();
          break;
 
       case GLUT_KEY_DEL:
          if (hasSelectedText()) {
             removeSelectedText();
-            //onStringChange();
+            onStringChange();
          } else if (_currChar < static_cast<int> (_str.size()-1)) {
             _str.erase(_currChar + 1,1);
-            //onStringChange();
+            onStringChange();
          }
          break;
       }
@@ -398,7 +400,6 @@ void TextField::setString(const std::string& str) {
 void TextField::setHeight(const int height) {
    /*none*/
 }
-
 
 } // namespace scv
 

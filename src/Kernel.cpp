@@ -76,17 +76,29 @@ Kernel::~Kernel(void) {
 
 }
 
-void Kernel::onMouseClick(const scv::MouseEvent &evt) {}
-void Kernel::onMouseHold(const scv::MouseEvent &evt) {}
-void Kernel::onMouseOver(const scv::MouseEvent &evt) {}
-void Kernel::onMouseUp(const scv::MouseEvent &evt) {}
-void Kernel::onMouseWheel(const scv::MouseEvent &evt) {}
+void Kernel::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Kernel::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Kernel::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Kernel::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Kernel::onMouseWheel(const scv::MouseEvent &evt) {
+}
 
-void Kernel::onKeyPressed(const scv::KeyEvent &evt) {}
-void Kernel::onKeyUp(const scv::KeyEvent &evt) {}
+void Kernel::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Kernel::onKeyUp(const scv::KeyEvent &evt) {
+}
 
-void Kernel::onSizeChange(void) {}
-void Kernel::onPositionChange(void) {}
+void Kernel::onSizeChange(void) {
+}
+void Kernel::onPositionChange(void) {
+}
+
+void Kernel::onDisplay(void) {
+}
 
 std::string Kernel::getClipBoardString(void) const {
    #ifdef _WIN32
@@ -489,6 +501,8 @@ void Kernel::cbDisplay(void) {
 
    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glEnable(GL_BLEND);
+
+   kernel->onDisplay();
 
    for (ComponentsList::iterator iter = kernel->_objects.begin(); iter != kernel->_objects.end(); ++iter) {
       if (kernel->willAppearOnScreen(*iter))

@@ -81,6 +81,9 @@ void TextBox::onSizeChange(void) {
 void TextBox::onPositionChange(void) {
 }
 
+void TextBox::onStringChange(void) {
+}
+
 void TextBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
@@ -404,7 +407,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
          }
          _currChar++;
          refreshText();
-         //onStringChange();
+         onStringChange();
          return;
       }
 
@@ -651,7 +654,7 @@ void TextBox::processKey(const scv::KeyEvent &evt) {
       }
       if (_refreshText) {
          refreshText();
-         //onStringChange();
+         onStringChange();
       } else if (_refreshCursor) {
          refreshCursor();
       }

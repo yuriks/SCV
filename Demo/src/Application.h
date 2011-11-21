@@ -7,6 +7,8 @@
 
 #include "CodeGenerator.h"
 
+#include "ObjectEditor.h"
+
 class Application : public scv::Kernel {
 public:
    ///////////////////////////////////////////////////////////
@@ -29,6 +31,8 @@ public:
 
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
+
+   virtual void onDisplay(void);
    ///////////////////////////////////////////////////////////
 
    void addComponentFromPalette(std::string component);
@@ -41,7 +45,7 @@ protected:
    static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
 
-   scv::Panel *_mainPanel, *_designPreview, *_objectEditor;
+   scv::Panel *_mainPanel, *_designPreview;
    Properties *_properties;
 
    scv::TabbedPane *_tabbedPreview;

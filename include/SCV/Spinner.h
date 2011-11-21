@@ -5,10 +5,12 @@
 #include "Counter.h"
 #include "Timer.h"
 #include "TextFilter.h"
+#include "Panel.h"
+#include "GroupLayout.h"
 
 namespace scv {
 
-class Spinner : public ComponentWithTexture, public Counter {
+class Spinner : public scv::Panel, public Counter {
 public:
    ///////////////////////////////////////////////////////////
    Spinner(const scv::Point &p, unsigned int width, double minValue, double maxValue, double startValue, double stepValue);
@@ -28,37 +30,40 @@ public:
 
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
-   ///////////////////////////////////////////////////////////
 
    virtual void onValueChange(void);
+   ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    void setValue(double value);
-
-   int getWidth(void) const;
-
-   int getHeight(void) const;
-
-   void setDraggable(bool state);
-
-   void setResizable(bool state);
+   ///////////////////////////////////////////////////////////
 
    virtual void display(void);
+
 protected:
+   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
+   ///////////////////////////////////////////////////////////
 
    void createTexture(void);
 
 private:
+   ///////////////////////////////////////////////////////////
    class TextFieldSpinner : public TextField {
    public:
+      ///////////////////////////////////////////////////////////
       TextFieldSpinner(Spinner *spinner, unsigned int width, const std::string &str);
+      ///////////////////////////////////////////////////////////
+
+      ///////////////////////////////////////////////////////////
       void onStringChange(void);
-      void onSizeChange(void);
-      void onPositionChange(void);
+      ///////////////////////////////////////////////////////////
+
    private:
       Spinner *_spinner;
    };
+   ///////////////////////////////////////////////////////////
 
    bool isOnUpButton(const Point &p);
    bool isOnDownButton(const Point &p);
@@ -66,10 +71,13 @@ private:
    static const int s_spinnerSizeX = 15;
    static const int s_spinnerSizeY = 20;
    static const int s_minSize      = 35;
-   bool _UpPress, _DownPress, _UpOver, _DownOver;
-   Timer *_whileUp, *_whileDown;
+
+   bool _upPress, _downPress, _upOver, _downOver;
+   scv::Timer _whileUp, _whileDown;
+
    int _lastTime, _incrementTime;
-   TextFilter _filter;
+
+   static TextFilter s_filter;
    TextFieldSpinner *_textField;
 };
 
