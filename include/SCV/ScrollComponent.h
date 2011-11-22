@@ -91,7 +91,6 @@ private:
    Point _minContainerPos;
 
    bool _holdButton;
-
    Component *_registeredComponent;
 };
 

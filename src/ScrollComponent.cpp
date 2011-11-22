@@ -47,7 +47,12 @@ void ScrollComponent::onPositionChange(void) {
 void ScrollComponent::setComponent(scv::Component *object) {
    if (object == this) return;
 
+   if (_registeredComponent != NULL) {
+      removeChild(_registeredComponent);
+   }
+   
    _registeredComponent = object;
+   addChild(_registeredComponent);
 
    refreshSCrollPaneSize();
    refreshContainerPosition();
@@ -96,16 +101,7 @@ void ScrollComponent::processMouse(const scv::MouseEvent &evt) {
    
    Component::processMouse(evt);
       
-   if (isDragging())
-      refreshContainerPosition();
-
    if  (isResizing()) {
-      /*
-      if (getWidth() >= _containerWidth + s_initDesloc)
-         setWidth(_containerWidth + s_initDesloc);
-      if (getHeight() >= _containerHeight + s_initDesloc)
-         setHeight(_containerHeight + s_initDesloc);
-      */
       refreshContainerPosition();
       refreshSCrollPaneSize();
    }
@@ -207,14 +203,22 @@ void ScrollComponent::processMouse(const scv::MouseEvent &evt) {
 void ScrollComponent::refreshContainerPosition(void) {
    if (getComponent() == NULL) return;
 
-   _minContainerPos.x = getAbsolutePosition().x + getWidth() - s_border - _containerWidth;
-   _minContainerPos.y = getAbsolutePosition().y + getHeight() - s_border - _containerHeight;
+   if (!getComponent()->isResizing()) {
+      _minContainerPos.x = getAbsolutePosition().x + getWidth() - s_border - _containerWidth;
+      _minContainerPos.y = getAbsolutePosition().y + getHeight() - s_border - _containerHeight;
 
-   getComponent()->setAbsolutePosition(Point(getAbsolutePosition().x - (int)(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x)), getAbsolutePosition().y - (int)(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y))));
+      int x = static_cast<int>(_translateWidth * (getAbsolutePosition().x - _minContainerPos.x));
+      int y = static_cast<int>(_translateHeight * (getAbsolutePosition().y - _minContainerPos.y));
+
+      if (x < 0) x = 0;
+      if (y < 0) y = 0;
+
+      getComponent()->setRelativePosition(Point(- x, - y));
+   }
 }
 
 void ScrollComponent::processKey(const scv::KeyEvent &evt) {
-   if(getComponent() != NULL)
+   if (getComponent() != NULL)
       getComponent()->processKey(evt);
 }
 
@@ -231,35 +235,37 @@ void ScrollComponent::display(void) {
    Point currPositionV = getAbsolutePosition() + Point(getWidth() - 15, 0);
    Point currPositionH = getAbsolutePosition() + Point(0, getHeight() - 15);
    const Point currPosition = getAbsolutePosition();
+
    _cTexture->enable();
 
-   /************************************************************************/
-   /* VERTICAL SCROLL                                                      */
-   /************************************************************************/
+   scissor->pushScissor(getScissor());
+
+   // VERTICAL
+   ///////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////
    scheme->applyDefaultModulate();
    _cTexture->display(currPositionV.x, currPositionV.y,   3, 15, getHeight() - 1);
+   
+   scheme->applyColor(ColorScheme::SCROLLPANEL);
+
+   // up button arrow
+   _cTexture->display(currPositionV.x, currPositionV.y,  0, 15, 16);
+   // down button arrow
+   _cTexture->display(currPositionV.x, currPositionV.y + getHeight() - s_initDesloc, 0, 15, -16);
+
    if (_containerHeight + s_initDesloc > getHeight()) {
-
-      scheme->applyColor(ColorScheme::SCROLLPANEL);
-
-      // up button arrow
-      _cTexture->display(currPositionV.x, currPositionV.y,  0, 15, 16);
-
       if (_overButton == BUT_UP) {
-         if (_holdButton)
+         if (_holdButton) {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + 1, 5, 13, s_initDesloc - 2);
-         else
+         } else {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + 1, 4, 13, s_initDesloc - 2);
-      }
-
-      // down button arrow
-      _cTexture->display(currPositionV.x, currPositionV.y + getHeight() - s_initDesloc, 0, 15, -16);
-
-      if (_overButton == BUT_DOWN) {
-         if (_holdButton)
+         }
+      } else if (_overButton == BUT_DOWN) {
+         if (_holdButton) {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + getHeight() - s_initDesloc * 2 + 1, 5, 13, s_initDesloc - 2);
-         else
+         } else {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + getHeight() - s_initDesloc * 2 + 1, 4, 13, s_initDesloc - 2);
+         }
       }
 
       // scroll
@@ -270,42 +276,40 @@ void ScrollComponent::display(void) {
       _cTexture->display(currPositionV.x, currPositionV.y + 3 + _scrollSizeVertical + (int)(_translateHeight * (float)_maxDeslocHeight), 1, 15, -2);
 
       if (_overButton == BUT_VERT) {
-         if (_holdButton)
+         if (_holdButton) {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + 1 + (int)(_translateHeight * (float)_maxDeslocHeight), 5, 13, _scrollSizeVertical + 1);
-         else
+         } else {
             _cTexture->display(currPositionV.x + 1, currPositionV.y + 1 + (int)(_translateHeight * (float)_maxDeslocHeight), 4, 13, _scrollSizeVertical + 1);
+         }
       }
-
    }
 
-   /************************************************************************/
-   /* HORIZONTAL SCROLL                                                    */
-   /************************************************************************/
-
+   // HORIZONTAL
+   ///////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////
    scheme->applyDefaultModulate();
    _cTexture->display(currPositionH.x, currPositionH.y, 3, getWidth() - 1, 15);
-   if (_containerWidth + s_initDesloc > getWidth() ) {
+   
+   scheme->applyColor(ColorScheme::SCROLLPANEL);
 
-      // left button arrow
-      scheme->applyColor(ColorScheme::SCROLLPANEL);
-      _cTexture->display(currPositionH.x, currPositionH.y,  6, 16, 15);
+   // left button arrow   
+   _cTexture->display(currPositionH.x, currPositionH.y,  6, 16, 15);
+   // right button arrow
+   _cTexture->display(currPositionH.x + getWidth() - s_initDesloc, currPositionH.y,  6, -16, 15);
 
-      if (_overButton == BUT_LEFT) {
-         if (_holdButton)
-            _cTexture->display(currPositionH.x + 1, currPositionH.y + 1, 5, s_initDesloc - 2, 13);
-         else
-            _cTexture->display(currPositionH.x + 1, currPositionH.y + 1, 4, s_initDesloc - 2, 13);
-      }
-
-      // right button arrow
-      scheme->applyColor(ColorScheme::SCROLLPANEL);
-      _cTexture->display(currPositionH.x + getWidth() - s_initDesloc, currPositionH.y,  6, -16, 15);
-
+   if (_containerWidth + s_initDesloc > getWidth()) {
       if (_overButton == BUT_RIGHT) {
-         if (_holdButton)
+         if (_holdButton) {
             _cTexture->display(currPositionH.x + getWidth() - s_initDesloc * 2 + 1, currPositionH.y + 1, 5, s_initDesloc - 2, 13);
-         else
+         } else {
             _cTexture->display(currPositionH.x + getWidth() - s_initDesloc * 2 + 1, currPositionH.y + 1, 4, s_initDesloc - 2, 13);
+         }
+      } else if (_overButton == BUT_LEFT) {
+         if (_holdButton) {
+            _cTexture->display(currPositionH.x + 1, currPositionH.y + 1, 5, s_initDesloc - 2, 13);
+         } else {
+            _cTexture->display(currPositionH.x + 1, currPositionH.y + 1, 4, s_initDesloc - 2, 13);
+         }
       }
 
       //scroll
@@ -316,10 +320,11 @@ void ScrollComponent::display(void) {
       _cTexture->display(currPositionH.x + 3 + _scrollSizeHorizontal + (int)(_translateWidth * (float)_maxDeslocWidth), currPositionH.y, 7, -2, 15);
 
       if (_overButton == BUT_HORZ) {
-         if (_holdButton)
+         if (_holdButton) {
             _cTexture->display(currPositionH.x + (int)(_translateWidth * (float)_maxDeslocWidth) + 1, currPositionH.y + 1, 5, _scrollSizeHorizontal + 2, 13);
-         else
+         } else {
             _cTexture->display(currPositionH.x + (int)(_translateWidth * (float)_maxDeslocWidth) + 1, currPositionH.y + 1, 4, _scrollSizeHorizontal + 2, 13);
+         }
       }
    }
 
@@ -329,11 +334,11 @@ void ScrollComponent::display(void) {
    /* PANEL                                                                */
    /************************************************************************/
    if(getComponent() != NULL) {
-      Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border), getWidth() - s_border, getHeight() - s_border);
-      scissor->pushScissor(scissorInfo);
+      scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y - s_border), getWidth() - s_border, getHeight() - s_border));
       getComponent()->display();
       scissor->popScissor();
    }
+   scissor->popScissor();
 }
 
 bool ScrollComponent::isOnLeftButton(Point p) {
