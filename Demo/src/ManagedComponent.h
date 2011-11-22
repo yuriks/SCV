@@ -34,7 +34,11 @@ public:
    ///////////////////////////////////////////////////////////
    std::string getDeclarationCode(void);
    std::string getImplementationCode(void);
+
    std::string getAllocationCode(void);
+
+   std::string getCustomDeclarationCode(void);
+   std::string getCustomImplementationCode(void);
 
    std::string getDefaultClassInitialization(void);
    ///////////////////////////////////////////////////////////

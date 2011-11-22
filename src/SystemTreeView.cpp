@@ -78,7 +78,7 @@ void SystemTreeView::onSizeChange(void) {
 void SystemTreeView::onPositionChange(void) {
 }
 
-void SystemTreeView::itemSelect(void) {
+void SystemTreeView::onItemSelect(void) {
 }
 
 void SystemTreeView::processMouse(const scv::MouseEvent &evt) {
@@ -151,7 +151,7 @@ void SystemTreeView::display(void) {
    
    /*Use Callback*/
    if(useCallback) {
-      itemSelect();
+      onItemSelect();
       useCallback = false;
    }
 

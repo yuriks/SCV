@@ -30,16 +30,32 @@ ProgressBar::ProgressBar(const scv::Point &p, double startValue) :
    createTexture();
 }
 
-void ProgressBar::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void ProgressBar::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void ProgressBar::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void ProgressBar::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void ProgressBar::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void ProgressBar::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void ProgressBar::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void ProgressBar::onValueChange(void) {/**/}
-void ProgressBar::onSizeChange(void) {/**/}
-void ProgressBar::onPositionChange(void) {/**/}
+ProgressBar::~ProgressBar(void) {
+}
+
+void ProgressBar::onMouseClick(const scv::MouseEvent &evt) {
+}
+void ProgressBar::onMouseHold(const scv::MouseEvent &evt) {
+}
+void ProgressBar::onMouseOver(const scv::MouseEvent &evt) {
+}
+void ProgressBar::onMouseUp(const scv::MouseEvent &evt) {
+}
+void ProgressBar::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void ProgressBar::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void ProgressBar::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void ProgressBar::onSizeChange(void) {
+}
+void ProgressBar::onPositionChange(void) {
+}
+
+void ProgressBar::onValueChange(void) {
+}
 
 void ProgressBar::display(void) {
    static FontTahoma *font = FontTahoma::getInstance();

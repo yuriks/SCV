@@ -30,7 +30,9 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
    _type = TABLE;
 
    createTexture();
+}
 
+Table::~Table(void) {
 }
 
 void Table::setString(int row, int column, std::string str) {
@@ -161,17 +163,26 @@ void Table::align(int column) {
    }
 }
 
+void Table::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Table::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Table::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Table::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Table::onMouseWheel(const scv::MouseEvent &evt) {
+}
 
+void Table::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Table::onKeyUp(const scv::KeyEvent &evt) {
+}
 
-void Table::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Table::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Table::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Table::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Table::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Table::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Table::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Table::onSizeChange(void) {/**/}
-void Table::onPositionChange(void) {/**/}
+void Table::onSizeChange(void) {
+}
+void Table::onPositionChange(void) {
+}
 
 // void Table::removeRow(int begin, int end) {
 //    for (int i = 0; i < (end - begin + 1) ; i++) {

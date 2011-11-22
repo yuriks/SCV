@@ -32,10 +32,10 @@ public:
 
    virtual void onSizeChange(void);
    virtual void onPositionChange(void);
+
+   virtual void onItemSelect(void);
    ///////////////////////////////////////////////////////////
-
-   virtual void itemSelect(void);
-
+   
    ///////////////////////////////////////////////////////////
    inline const std::string &getLastPath(void);
    inline TW_Content_Types getTypeLastPath(void);

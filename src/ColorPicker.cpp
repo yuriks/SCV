@@ -5,7 +5,18 @@
 
 namespace scv {
 
-ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 102, ColorRGBA(0,255,0,255)), Panel(p1, Point(p1.x + 360, p1.y + 155)) {
+ColorPicker::EyeDropper::EyeDropper(ColorPicker *picker) : ToggleButton(Point(285, 106), Point(285 + 69, 126), false, "EyeDropper") {
+   _picker = picker;
+}
+
+void ColorPicker::EyeDropper::onMouseUp(const scv::MouseEvent &evt) {
+   _picker->_pickerWaitingColor = true;
+}
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+ColorPicker::ColorPicker(const scv::Point &p1) : Panel(p1, Point(p1.x + 360, p1.y + 155)), MatrixTemplate<ColorRGBA>(360, 102, ColorRGBA(0,255,0,255)) {
    _isHResizable = _isVResizable = false;
 
    _currentColor = ColorRGBA(0,0,0,255);
@@ -18,7 +29,7 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    _rgbs[1] = new Spinner(Point(90 ,106),50,0,255,0,1);
    _rgbs[2] = new Spinner(Point(160,106),50,0,255,0,1);
    _rgbs[3] = new Spinner(Point(230,106),50,0,100,100,5);
-   _btPicker = new EyeDropper(this, Point(285,106), Point(285+69,126), "EyeDropper");
+   _btPicker = new EyeDropper(this);
 
    _saturation = 100;
    Panel::addChild(_rgbs[0]);
@@ -42,20 +53,32 @@ ColorPicker::ColorPicker(const scv::Point &p1) : MatrixTemplate<ColorRGBA>(360, 
    createTexture();
 }
 
-ColorPicker::~ColorPicker() {
-   delete _btPicker;
+ColorPicker::~ColorPicker(void) {
 }
 
-void ColorPicker::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void ColorPicker::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void ColorPicker::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void ColorPicker::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void ColorPicker::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void ColorPicker::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void ColorPicker::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void ColorPicker::onColorChange(void) {/**/}
-void ColorPicker::onSizeChange(void) {/**/}
-void ColorPicker::onPositionChange(void) {/**/}
+void ColorPicker::onMouseClick(const scv::MouseEvent &evt) {
+}
+void ColorPicker::onMouseHold(const scv::MouseEvent &evt) {
+}
+void ColorPicker::onMouseOver(const scv::MouseEvent &evt) {
+}
+void ColorPicker::onMouseUp(const scv::MouseEvent &evt) {
+}
+void ColorPicker::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void ColorPicker::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void ColorPicker::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void ColorPicker::onSizeChange(void) {
+}
+void ColorPicker::onPositionChange(void) {
+}
+
+void ColorPicker::onColorChange(void) {
+}
 
 void ColorPicker::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -214,29 +237,6 @@ void ColorPicker::setColor(const ColorRGBA &color) {
    refreshColor();
    onColorChange();
 
-}
-
-int ColorPicker::getWidth(void) const {
-   return Panel::getWidth();
-}
-int ColorPicker::getHeight(void) const {
-   return Panel::getHeight();
-}
-
-void ColorPicker::setDraggable(bool state) {
-   Component::setDraggable(state);
-   /*
-   for (int i = 0; i < 4; i++) _rgbs[i]->setDraggable(state);
-   _btPicker->setDraggable(state);
-   */
-}
-
-void ColorPicker::setResizable(bool state) {
-   Component::setResizable(state);
-   /*
-   for (int i = 0; i < 4; i++) _rgbs[i]->setResizable(state);
-   _btPicker->setResizable(state);
-   */
 }
 
 } // namespace scv

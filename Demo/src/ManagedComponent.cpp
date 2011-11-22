@@ -96,6 +96,7 @@ std::string ManagedComponent::getDeclarationCode(void) {
       output += "\n";
       output += "   virtual void onSizeChange(void);\n";
       output += "   virtual void onPositionChange(void);\n";
+      output += getCustomDeclarationCode();
       output += "   ///////////////////////////////////////////////////////////\n";
       output += "};\n";
    }
@@ -139,6 +140,7 @@ std::string ManagedComponent::getImplementationCode(void) {
       output += "}\n";
       output += "void " + getClassName() + "::onPositionChange(void) {\n";
       output += "}\n";
+      output += getCustomImplementationCode();
       output += "///////////////////////////////////////////////////////////\n";
       output += "\n";
    }
@@ -172,6 +174,103 @@ std::string ManagedComponent::getAllocationCode(void) {
 
    output += "\n";
    return output;
+}
+
+std::string ManagedComponent::getCustomDeclarationCode(void) {
+   std::string output;
+
+   if (getDerivedTypeName() == "ColorPicker") {
+      output += "   virtual void onColorChange(void);\n";
+   } else if (getDerivedTypeName() == "ProgressBar") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "Slider") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "Spinner") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "CheckBox") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "RadioButton") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "ToggleButton") {
+      output += "   virtual void onValueChange(void);\n";
+   } else if (getDerivedTypeName() == "TextField") {
+      output += "   virtual void onStringChange(void);\n";
+   } else if (getDerivedTypeName() == "TextBox") {
+      output += "   virtual void onStringChange(void);\n";
+   } else if (getDerivedTypeName() == "InternalFrame") {
+      output += "   virtual void onOpen(void);\n";
+      output += "   virtual void onClose(void);\n";
+   } else if (getDerivedTypeName() == "TabbedPane") {
+      output += "   virtual void onTabChange(void);\n";      
+   } else if (getDerivedTypeName() == "ComboBox") {
+      output += "   virtual void onSelectionChanged(std::string address, int id);\n";
+   } else if (getDerivedTypeName() == "Canvas") {
+      output += "   virtual void render(void);\n";
+      output += "   virtual void update(void);\n";
+   } else if (getDerivedTypeName() == "SystemTreeView") {
+      output += "   virtual void onItemSelect(void);\n";
+   } else if (getDerivedTypeName() == "Label") {
+      output += "   virtual void onStringChange(void);\n";
+   }
+
+   return (output.empty()) ? output : "\n" + output;
+}
+
+std::string ManagedComponent::getCustomImplementationCode(void) {
+   std::string output;
+
+   if (getDerivedTypeName() == "ColorPicker") {
+      output += "void " + getClassName() + "::onColorChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "ProgressBar") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "Slider") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "Spinner") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "CheckBox") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "RadioButton") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "ToggleButton") {
+      output += "void " + getClassName() + "::onValueChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "TextField") {
+      output += "void " + getClassName() + "::onStringChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "TextBox") {
+      output += "void " + getClassName() + "::onStringChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "InternalFrame") {
+      output += "void " + getClassName() + "::onOpen(void) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onClose(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "TabbedPane") {
+      output += "void " + getClassName() + "::onTabChange(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "ComboBox") {
+      output += "void " + getClassName() + "::onSelectionChanged(std::string address, int id) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "Canvas") {
+      output += "void " + getClassName() + "::render(void) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::update(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "SystemTreeView") {
+      output += "void " + getClassName() + "::onItemSelect(void) {\n";
+      output += "}\n";
+   } else if (getDerivedTypeName() == "Label") {
+      output += "void " + getClassName() + "::onStringChange(void) {\n";
+      output += "}\n";
+   }
+
+   return (output.empty()) ? output : "\n" + output;
 }
 
 std::string ManagedComponent::getDefaultClassInitialization(void) {
