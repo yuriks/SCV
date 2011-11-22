@@ -35,7 +35,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    } else if (type == "TextBox") {
       object = new scv::TextBox(scv::Point(0, 0), scv::Point(200, 200), "SCV TextBox");
    } else if (type == "Separator") {
-      object = new scv::Separator(scv::Point(0, 0), scv::Separator::horizontal, 100);
+      object = new scv::Separator(scv::Point(0, 0), scv::Separator::HORIZONTAL, 100);
    } else if (type == "InternalFrame") {
       object = new scv::InternalFrame(200, 200, "SCV InternalFrame");
    } else if (type == "MenuBar") {
@@ -62,15 +62,30 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    return object;
 }
 
-bool CodeGenerator::hasComponent(scv::Component *object) {
+bool CodeGenerator::hasComponent(scv::Component *object) const {
    return getManagedComponent(object) ? true : false;
 }
 
-ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) {
-   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+bool CodeGenerator::hasComponent(const std::string &name) const {
+   return getManagedComponent(name) ? true : false;
+}
+
+ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) const {
+   for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
       if ((*iter)->getComponent() == object) return(*iter);
    }
    return NULL;   
+}
+
+ManagedComponent *CodeGenerator::getManagedComponent(const std::string &name) const {
+   for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+      if ((*iter)->getName() == name) return(*iter);
+   }
+   return NULL;   
+}
+
+CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
+   return _managed;
 }
 
 void CodeGenerator::generateCode(void) {
@@ -165,5 +180,5 @@ void CodeGenerator::generateCode(void) {
 }
 
 int CodeGenerator::getComponentCount(scv::Component::Type type) {
-   return counter[type]++;
+   return _counter[type]++;
 }

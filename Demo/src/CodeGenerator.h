@@ -7,15 +7,29 @@ class CodeGenerator : public Singleton<CodeGenerator> {
 friend class Singleton<CodeGenerator>;
 public:
    ///////////////////////////////////////////////////////////
+   typedef std::list<ManagedComponent *> ManagedList;
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    scv::Component *addComponent(const std::string &type);
    ///////////////////////////////////////////////////////////
 
-   bool hasComponent(scv::Component *object);
+   ///////////////////////////////////////////////////////////
+   bool hasComponent(scv::Component *object) const;
+   bool hasComponent(const std::string &name) const;
+   ///////////////////////////////////////////////////////////
 
-   ManagedComponent *getManagedComponent(scv::Component *object);
+   ///////////////////////////////////////////////////////////
+   ManagedComponent *getManagedComponent(scv::Component *object) const;
+   ManagedComponent *getManagedComponent(const std::string &name) const;
 
+   ManagedList getManagedComponents(void) const;
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    void generateCode(void);
-
+   ///////////////////////////////////////////////////////////
+      
 protected:
    ///////////////////////////////////////////////////////////
    CodeGenerator(void);
@@ -23,12 +37,9 @@ protected:
    ///////////////////////////////////////////////////////////
 
    int getComponentCount(scv::Component::Type type);
-
-   typedef std::list<ManagedComponent *> ManagedList;
+      
    ManagedList _managed;
-
-
-   std::map<scv::Component::Type, int> counter;
+   std::map<scv::Component::Type, int> _counter;
 };
 
 #endif //__CODE_GENERATOR_H__

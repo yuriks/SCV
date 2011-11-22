@@ -64,8 +64,8 @@ void Application::init(void) {
    panelPalette->addChild(containers);
    containers->addComponent("Image");
    containers->addComponent("Panel");
-   containers->addComponent("ScrollComponent");
    containers->addComponent("TabbedPane");
+   containers->addComponent("ScrollComponent");      
    containers->adjustButtonsWidth();
 
    PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));

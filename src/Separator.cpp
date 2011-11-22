@@ -4,11 +4,11 @@
 
 namespace scv {
 
-Separator::Separator(const scv::Point &p1, Separator::orientation align, unsigned int size) :
-      ComponentWithTexture(p1, (align == Separator::horizontal) ? Point(p1.x + size, p1.y + 2) : Point(p1.x + 2, p1.y + size)) {
+Separator::Separator(const scv::Point &p1, Separator::Orientation align, unsigned int size) :
+      ComponentWithTexture(p1, (align == Separator::HORIZONTAL) ? Point(p1.x + size, p1.y + 2) : Point(p1.x + 2, p1.y + size)) {
    _align = align;
 
-   if (_align == Separator::horizontal) {
+   if (_align == Separator::HORIZONTAL) {
       _isVResizable = false;
    } else {
       _isHResizable = false;
@@ -18,15 +18,29 @@ Separator::Separator(const scv::Point &p1, Separator::orientation align, unsigne
    createTexture();
 }
 
-void Separator::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Separator::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Separator::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Separator::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Separator::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Separator::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Separator::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Separator::onSizeChange(void) {/**/}
-void Separator::onPositionChange(void) {/**/}
+Separator::~Separator(void) {
+}
+
+void Separator::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Separator::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Separator::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Separator::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Separator::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void Separator::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Separator::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void Separator::onSizeChange(void) {
+}
+void Separator::onPositionChange(void) {
+}
 
 void Separator::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -37,7 +51,7 @@ void Separator::display(void) {
 
    _cTexture->enable();
    scheme->applyColor(ColorScheme::SEPARATOR);
-      if (_align == Separator::horizontal) {
+      if (_align == Separator::HORIZONTAL) {
          _cTexture->display(currPosition.x, currPosition.y, 0, getWidth(), 2);
       } else /*Separator::vertical*/ {
          _cTexture->display(currPosition.x, currPosition.y, 1, 2, getHeight());
@@ -66,10 +80,6 @@ void Separator::createTexture(void) {
    _cTexture->addTexture(Point(2,2), vertical);
 
    _cTexture->createTexture();
-}
-
-Separator::orientation Separator::getAlign(void) {
-   return _align;
 }
 
 } // namespace scv
