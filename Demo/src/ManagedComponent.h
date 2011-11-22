@@ -3,6 +3,8 @@
 
 class ManagedComponent {
 public:
+   typedef std::list<ManagedComponent *> List;
+
    ///////////////////////////////////////////////////////////
    ManagedComponent(scv::Component *object, const std::string &name);
    virtual ~ManagedComponent(void);
@@ -11,12 +13,28 @@ public:
    ///////////////////////////////////////////////////////////
    inline std::string getName(void) const;
    inline scv::Component *getComponent(void) const;
+
+   void setParent(ManagedComponent *parent);
+   inline ManagedComponent *getParent(void) const;
+
+   void addChild(ManagedComponent *object);
+   void removeChild(ManagedComponent * object);
+
+   ManagedComponent *getChild(scv::Component *object);
+   ManagedComponent *getChild(const std::string &name);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   std::string getDeclarationCode(void);
+   std::string getImplementationCode(void);
    ///////////////////////////////////////////////////////////
 
 protected:
    std::string _name;
    scv::Component *_object;
-private:
+
+   ManagedComponent *_parent;
+   List _children;
 };
 
 ///////////////////////////////////////////////////////////
@@ -27,6 +45,10 @@ std::string ManagedComponent::getName(void) const {
 
 scv::Component * ManagedComponent::getComponent(void) const {
    return _object;
+}
+
+ManagedComponent *ManagedComponent::getParent(void) const {
+   return _parent;
 }
 
 ///////////////////////////////////////////////////////////

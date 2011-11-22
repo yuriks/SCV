@@ -62,6 +62,13 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    return object;
 }
 
+void CodeGenerator::deleteComponent(ManagedComponent *managed) {
+   if (std::find(_managed.begin(), _managed.end(), managed) != _managed.end()) {
+      _managed.remove(managed);
+   }
+   delete managed;
+}
+
 bool CodeGenerator::hasComponent(scv::Component *object) const {
    return getManagedComponent(object) ? true : false;
 }
@@ -72,16 +79,26 @@ bool CodeGenerator::hasComponent(const std::string &name) const {
 
 ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) const {
    for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getComponent() == object) return(*iter);
+      if ((*iter)->getComponent() == object) {
+         return(*iter);
+      } else {
+         ManagedComponent *managed = (*iter)->getChild(object);
+         if (managed != NULL) return managed;
+      }
    }
-   return NULL;   
+   return NULL;
 }
 
 ManagedComponent *CodeGenerator::getManagedComponent(const std::string &name) const {
    for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getName() == name) return(*iter);
+      if ((*iter)->getName() == name) {
+         return(*iter);
+      } else {
+         ManagedComponent *managed = (*iter)->getChild(name);
+         if (managed != NULL) return managed;
+      }
    }
-   return NULL;   
+   return NULL; 
 }
 
 CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
@@ -177,8 +194,38 @@ void CodeGenerator::generateCode(void) {
    outputFile = std::ofstream("../Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
+
+   std::string widgetDotH, widgetDotCpp;
+   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+      widgetDotH += (*iter)->getDeclarationCode();
+      widgetDotCpp += (*iter)->getImplementationCode();
+   }
+
+   /*
+   output += "class " + className + " : public scv::" + objectType + " {\n";
+   output += "public:\n";
+   output += "   " + className + "(void);\n";
+   output += "   virtual ~" + className + "(void);\n";
+   output += "};\n";
+
+   output += className + "::" + className + "(void) : scv::" + objectType + "{\n";
+   output += "}\n";
+   output += "\n";
+   output += className + "::~" + className + "(void) {\n";
+   output += "}\n";]
+   /**/
+   
+   outputFile = std::ofstream("../Widget.h");
+   outputFile << widgetDotH;
+   outputFile.close();
+   
+   outputFile = std::ofstream("../Widget.cpp");
+   outputFile << widgetDotCpp;
+   outputFile.close();
 }
+
 
 int CodeGenerator::getComponentCount(scv::Component::Type type) {
    return _counter[type]++;
 }
+
