@@ -57,6 +57,9 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
+
+const std::string GroupPanel::s_defaultTab = "   ";
+
 scv::ComponentTexture * GroupPanel::s_customTexture = NULL;
 
 GroupPanel::GroupPanel(GroupType type) : scv::Panel(scv::Point(), scv::Point()), _type(type) {

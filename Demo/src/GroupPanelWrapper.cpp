@@ -103,9 +103,11 @@ void GroupPanelWrapper::removeChild(Component *object) {
 }
 
 std::string GroupPanelWrapper::getGroupCode(void) const {
+   static const std::string s_defaultTab = "      ";
+
    if (_group != NULL) {
-      return "scv::GroupLayout::createParallelGroup()\n" + _group->getCode() + "\n";
+      return s_defaultTab + "scv::GroupLayout::createParallelGroup()\n" + _group->getCode(s_defaultTab);
    } else {
-      return "NULL";
+      return s_defaultTab + "NULL\n";
    }
 }

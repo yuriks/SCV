@@ -212,10 +212,10 @@ std::string Application::getLayoutCode(const std::string &panelName) const {
    output += "   " + panelName + "->setLayout(layout);\n";
    output += "\n";
    output += "   layout->setHorizontalGroup(\n";
-   output += "   " + _hPanelWrapper->getGroupCode();
+   output += _hPanelWrapper->getGroupCode();
    output += "   );\n";
    output += "   layout->setVerticalGroup(\n";
-   output += "   " + _vPanelWrapper->getGroupCode();
+   output += _vPanelWrapper->getGroupCode();
    output += "   );\n";
 
    return output;

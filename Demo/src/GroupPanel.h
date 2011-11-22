@@ -35,7 +35,7 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   virtual std::string getCode(void) = 0;
+   virtual std::string getCode(const std::string &tab) = 0;
    inline GroupType getType(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -44,6 +44,8 @@ public:
    ///////////////////////////////////////////////////////////
 
 protected:
+   static const std::string s_defaultTab;
+
    GroupType _type;
    scv::Group *_verticalGroup, *_horizontalGroup;
    virtual void createTexture(void);

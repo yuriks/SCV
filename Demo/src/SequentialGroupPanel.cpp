@@ -29,16 +29,17 @@ void SequetialGroupPanel::display(void) {
    scv::Scissor::getInstance()->popScissor();
 }
 
-std::string SequetialGroupPanel::getCode(void) {
-   std::string code = "->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)\n";
+std::string SequetialGroupPanel::getCode(const std::string &tab) {
+   std::string currTab = s_defaultTab + tab;
+   std::string code = currTab + "->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)\n";
 
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {
-         code += static_cast<GroupPanel*>(*iter)->getCode();
+         code += static_cast<GroupPanel*>(*iter)->getCode(currTab);
       } else {
-         code += "->addComponent(code)\n";
+         code += currTab + s_defaultTab + "->addComponent(code)\n";
       }
    }
-   code += ")";
+   code += currTab + ")\n";
    return code;
 }
