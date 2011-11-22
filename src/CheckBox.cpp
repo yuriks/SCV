@@ -14,16 +14,32 @@ CheckBox::CheckBox(const scv::Point &p1, bool state, const std::string &str) : S
    createTexture();
 }
 
-void CheckBox::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void CheckBox::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void CheckBox::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void CheckBox::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void CheckBox::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void CheckBox::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void CheckBox::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void CheckBox::onValueChange(void) {/**/}
-void CheckBox::onSizeChange(void) {/**/}
-void CheckBox::onPositionChange(void) {/**/}
+CheckBox::~CheckBox(void) {
+}
+
+void CheckBox::onMouseClick(const scv::MouseEvent &evt) {
+}
+void CheckBox::onMouseHold(const scv::MouseEvent &evt) {
+}
+void CheckBox::onMouseOver(const scv::MouseEvent &evt) {
+}
+void CheckBox::onMouseUp(const scv::MouseEvent &evt) {
+}
+void CheckBox::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void CheckBox::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void CheckBox::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void CheckBox::onSizeChange(void) {
+}
+void CheckBox::onPositionChange(void) {
+}
+
+void CheckBox::onValueChange(void) {
+}
 
 void CheckBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();

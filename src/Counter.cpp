@@ -4,59 +4,35 @@
 
 namespace scv {
 
-Counter::Counter(double minValue, double maxValue, double startValue, double stepValue ) {
-   _currValue = startValue;
-   _stepValue = stepValue;
+Counter::Counter(double minValue, double maxValue, double startValue, double stepValue) : _startValue(startValue) {
    _minValue = minValue;
    _maxValue = maxValue;
+   _currValue = startValue;
+   _stepValue = stepValue;
 }
 
-double Counter::getValue(void) const {
-   return _currValue;
+Counter::~Counter(void) {
 }
 
 void Counter::setValue(double value) {
    static Kernel *kenel = Kernel::getInstance();
 
-   if(value >= _maxValue)
+   if(value >= _maxValue) {
       _currValue = _maxValue;
-   else if (value <= _minValue)
+   } else if (value <= _minValue) {
       _currValue = _minValue;
-   else
+   } else {
       _currValue = value;
+   }
 
    onValueChange();
 }
 
-double Counter::getMaxValue(void) const {
-   return _maxValue;
-}
-
-void Counter::setMaxValue(double value) {
-   _maxValue = value;
-}
-
-double Counter::getMinValue(void) const {
-   return _minValue;
-}
-
-void Counter::setMinValue(double value) {
-   _minValue = value;
-}
-
-double Counter::getStep(void) const {
-   return _stepValue;
-}
-
-void Counter::setStep(double value) {
-   _stepValue = value;
-}
-
 void Counter::IncrementStep(void) {
-   setValue(getValue() + getStep());
+   setValue(getValue() + getStepValue());
 }
 void Counter::DecrementStep(void) {
-   setValue(getValue() - getStep());
+   setValue(getValue() - getStepValue());
 }
 
 } // namespace scv

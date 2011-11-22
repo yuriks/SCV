@@ -22,16 +22,32 @@ Slider::Slider( const scv::Point &p , double minValue, double maxValue, double s
    createTexture();
 }
 
-void Slider::onMouseClick(const scv::MouseEvent &evt) {/**/}
-void Slider::onMouseHold(const scv::MouseEvent &evt) {/**/}
-void Slider::onMouseOver(const scv::MouseEvent &evt) {/**/}
-void Slider::onMouseUp(const scv::MouseEvent &evt) {/**/}
-void Slider::onKeyPressed(const scv::KeyEvent &evt) {/**/}
-void Slider::onKeyUp(const scv::KeyEvent &evt) {/**/}
-void Slider::onMouseWheel(const scv::MouseEvent &evt) {/**/}
-void Slider::onValueChange(void) {/**/}
-void Slider::onSizeChange(void) {/**/}
-void Slider::onPositionChange(void) {/**/}
+Slider::~Slider(void) {
+}
+
+void Slider::onMouseClick(const scv::MouseEvent &evt) {
+}
+void Slider::onMouseHold(const scv::MouseEvent &evt) {
+}
+void Slider::onMouseOver(const scv::MouseEvent &evt) {
+}
+void Slider::onMouseUp(const scv::MouseEvent &evt) {
+}
+void Slider::onMouseWheel(const scv::MouseEvent &evt) {
+}
+
+void Slider::onKeyPressed(const scv::KeyEvent &evt) {
+}
+void Slider::onKeyUp(const scv::KeyEvent &evt) {
+}
+
+void Slider::onSizeChange(void) {
+}
+void Slider::onPositionChange(void) {
+}
+
+void Slider::onValueChange(void) {
+}
 
 void Slider::display(void) {
    static Kernel *kernel = Kernel::getInstance();
@@ -297,11 +313,11 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
       if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::CLICK) {
          _isDragging = false;
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));
-         setValue(math::nearestValue(value, getMinValue() + getStep() * (int)((value-getMinValue())/getStep()), getMinValue() + getStep() * (1+(int)((value-getMinValue())/getStep()))));
+         setValue(math::nearestValue(value, getMinValue() + getStepValue() * (int)((value-getMinValue())/getStepValue()), getMinValue() + getStepValue() * (1+(int)((value-getMinValue())/getStepValue()))));
       } else if (evt.getState() == MouseEvent::HOLD && isDragging() == false) {
          onMouseHold(evt);
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));
-         setValue(math::nearestValue(value, getMinValue() + getStep() * (int)((value-getMinValue())/getStep()), std::min(getMaxValue(), getMinValue() + getStep() * (1+(int)((value-getMinValue())/getStep())))));
+         setValue(math::nearestValue(value, getMinValue() + getStepValue() * (int)((value-getMinValue())/getStepValue()), std::min(getMaxValue(), getMinValue() + getStepValue() * (1+(int)((value-getMinValue())/getStepValue())))));
          cursor->requestDefaultCursor();
       }     
    }

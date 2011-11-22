@@ -58,7 +58,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Label(scv::Point(0, 0), "SCV Label");
    }
 
-   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType()))));   
+   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())), type));   
    return object;
 }
 
@@ -91,7 +91,7 @@ ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) con
 
 ManagedComponent *CodeGenerator::getManagedComponent(const std::string &name) const {
    for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getName() == name) {
+      if ((*iter)->getClassName() == name) {
          return(*iter);
       } else {
          ManagedComponent *managed = (*iter)->getChild(name);
@@ -106,6 +106,7 @@ CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
 }
 
 void CodeGenerator::generateCode(void) {
+   std::string mainDotCpp;
 
    std::string applicationDotH;   
    applicationDotH += "#ifndef __APPLICATION_H__\n";
@@ -199,28 +200,19 @@ void CodeGenerator::generateCode(void) {
    for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
       widgetDotH += (*iter)->getDeclarationCode();
       widgetDotCpp += (*iter)->getImplementationCode();
+      mainDotCpp += (*iter)->getAllocationCode();
    }
-
-   /*
-   output += "class " + className + " : public scv::" + objectType + " {\n";
-   output += "public:\n";
-   output += "   " + className + "(void);\n";
-   output += "   virtual ~" + className + "(void);\n";
-   output += "};\n";
-
-   output += className + "::" + className + "(void) : scv::" + objectType + "{\n";
-   output += "}\n";
-   output += "\n";
-   output += className + "::~" + className + "(void) {\n";
-   output += "}\n";]
-   /**/
-   
+  
    outputFile = std::ofstream("../Widget.h");
    outputFile << widgetDotH;
    outputFile.close();
    
    outputFile = std::ofstream("../Widget.cpp");
    outputFile << widgetDotCpp;
+   outputFile.close();
+
+   outputFile = std::ofstream("../Main.cpp");
+   outputFile << mainDotCpp;
    outputFile.close();
 }
 

@@ -6,14 +6,21 @@ public:
    typedef std::list<ManagedComponent *> List;
 
    ///////////////////////////////////////////////////////////
-   ManagedComponent(scv::Component *object, const std::string &name);
+   ManagedComponent(scv::Component *object, const std::string &name, const std::string &typeName);
    virtual ~ManagedComponent(void);
    ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
-   inline std::string getName(void) const;
-   inline scv::Component *getComponent(void) const;
+   inline void setCustomClass(bool custom);
+   inline bool getCustomClass(void) const;
 
+   ///////////////////////////////////////////////////////////
+   inline std::string getClassName(void) const;
+   inline std::string getDerivedTypeName(void) const;
+   inline std::string getPointerName(void) const;
+   inline scv::Component *getComponent(void) const;   
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    void setParent(ManagedComponent *parent);
    inline ManagedComponent *getParent(void) const;
 
@@ -27,11 +34,15 @@ public:
    ///////////////////////////////////////////////////////////
    std::string getDeclarationCode(void);
    std::string getImplementationCode(void);
-   ///////////////////////////////////////////////////////////
+   std::string getAllocationCode(void);
 
+   std::string getDefaultClassInitialization(void);
+   ///////////////////////////////////////////////////////////
+   
 protected:
-   std::string _name;
+   std::string _className, _typeName;
    scv::Component *_object;
+   bool _customClass;
 
    ManagedComponent *_parent;
    List _children;
@@ -39,8 +50,26 @@ protected:
 
 ///////////////////////////////////////////////////////////
 
-std::string ManagedComponent::getName(void) const {
-   return _name;
+void ManagedComponent::setCustomClass(bool custom) {
+   _customClass = custom;
+}
+
+bool ManagedComponent::getCustomClass(void) const {
+   return _customClass;
+}
+
+std::string ManagedComponent::getClassName(void) const {
+   return _className;
+}
+
+std::string ManagedComponent::getDerivedTypeName(void) const {
+   return _typeName;
+}
+
+std::string ManagedComponent::getPointerName(void) const {
+   std::string pointer(getClassName());
+   std::transform(getClassName().begin(), getClassName().end(), pointer.begin(), ::tolower);
+   return pointer;
 }
 
 scv::Component * ManagedComponent::getComponent(void) const {
