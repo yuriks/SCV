@@ -11,7 +11,7 @@ ManagedComponent::ManagedComponent(scv::Component *object, const std::string &na
    _className = name;
    _typeName = typeName;
 
-   _customClass = true;
+   _customClass = false;
 
    _parent = NULL;
 }

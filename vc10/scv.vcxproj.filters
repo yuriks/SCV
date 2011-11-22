@@ -513,4 +513,7 @@
       <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LOG.txt" />
+  </ItemGroup>
 </Project>
