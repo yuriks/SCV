@@ -29,7 +29,7 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   void setComponent(scv::Component *object);
+   virtual void setComponent(scv::Component *object);
    inline scv::Component *getComponent(void) const;
    ///////////////////////////////////////////////////////////
 
@@ -38,14 +38,16 @@ public:
    void processKey(const scv::KeyEvent &evt);
    ///////////////////////////////////////////////////////////
 
-   void refreshSCrollPaneSize(void);
-
    ///////////////////////////////////////////////////////////
    void setHeight(int height);
    void setWidth(int width);
    ///////////////////////////////////////////////////////////
 
    void display(void);
+
+protected:
+   virtual void refreshSCrollPaneSize(void);
+   virtual void refreshContainerPosition(void);
 
 private:
    ///////////////////////////////////////////////////////////
@@ -72,8 +74,6 @@ private:
    float barPixelToFloat(int pix, bool horz);
 
    void createTexture(void);
-
-   void refreshContainerPosition(void);
 
    ///////////////////////////////////////////////////////////
    static const int s_initDesloc = 16;

@@ -1,24 +1,16 @@
 #ifndef __OBJECT_EDITOR_H__
 #define __OBJECT_EDITOR_H__
 
-class ObjectEditor : public Singleton<ObjectEditor>, public scv::Panel {
+class ObjectEditor : public Singleton<ObjectEditor>, public scv::ScrollComponent {
 friend class Singleton<ObjectEditor>;
 public:
-   ///////////////////////////////////////////////////////////
-   void setComponent(scv::Component *object);
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
-   void update(void);
-   ///////////////////////////////////////////////////////////
+   virtual void refreshContainerPosition(void);
 
 protected:
    ///////////////////////////////////////////////////////////
    ObjectEditor(void);
    virtual ~ObjectEditor(void);
    ///////////////////////////////////////////////////////////
-
-   scv::Component *_currObject;
 private:
 };
 

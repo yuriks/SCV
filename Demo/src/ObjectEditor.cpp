@@ -1,25 +1,30 @@
 #include "stdafx.h"
 #include "ObjectEditor.h"
 
-ObjectEditor::ObjectEditor(void) : scv::Panel(scv::Point(), scv::Point()) {
-   _currObject = NULL;
+ObjectEditor::ObjectEditor(void) : scv::ScrollComponent(scv::Point(), scv::Point()) {
 }
 
 ObjectEditor::~ObjectEditor(void) {
 }
 
-void ObjectEditor::setComponent(scv::Component *object) {
-   if (_currObject != NULL) {
-      removeChild(_currObject);
-   }
-   _currObject = object;
-   addChild(_currObject);
+void ObjectEditor::refreshContainerPosition(void) {
+   scv::ScrollComponent::refreshContainerPosition();
+   if (getComponent() != NULL) {
+      int width = getComponent()->getWidth();
+      int height = getComponent()->getHeight();      
 
-   update();
-}
+      if (width < getWidth() && !getComponent()->isResizing()) {
+         width = (getSize().x - getComponent()->getSize().x) / 2;
+      } else {
+         width = getComponent()->getRelativePosition().x;
+      }
 
-void ObjectEditor::update(void) {
-   if (_currObject != NULL) {
-      _currObject->setRelativePosition((getSize() - _currObject->getSize()) / 2);
+      if (height < getHeight() && !getComponent()->isResizing()) {
+         height = (getSize().y - getComponent()->getSize().y) / 2;
+      } else {
+         height = getComponent()->getRelativePosition().y;
+      }
+
+      getComponent()->setRelativePosition(scv::Point(width, height));
    }
 }

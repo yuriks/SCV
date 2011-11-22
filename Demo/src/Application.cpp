@@ -197,7 +197,6 @@ void Application::onPositionChange(void) {
 }
 
 void Application::onDisplay(void) {
-   ObjectEditor::getInstance()->update();
 }
 
 void Application::addComponentFromPalette(std::string component) {
