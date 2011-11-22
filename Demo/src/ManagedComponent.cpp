@@ -11,7 +11,7 @@ ManagedComponent::ManagedComponent(scv::Component *object, const std::string &na
    _className = name;
    _typeName = typeName;
 
-   _customClass = false;
+   _customClass = true;
 
    _parent = NULL;
 }
@@ -83,7 +83,21 @@ std::string ManagedComponent::getDeclarationCode(void) {
       output += "public:\n";
       output += "   " + getClassName() + "(void);\n";
       output += "   virtual ~" + getClassName() + "(void);\n";
-      output += "};\n\n";
+      output += "\n";
+      output += "   ///////////////////////////////////////////////////////////\n";
+      output += "   virtual void onMouseClick(const scv::MouseEvent &evt);\n";
+      output += "   virtual void onMouseHold (const scv::MouseEvent &evt);\n";
+      output += "   virtual void onMouseOver (const scv::MouseEvent &evt);\n";
+      output += "   virtual void onMouseUp   (const scv::MouseEvent &evt);\n";
+      output += "   virtual void onMouseWheel(const scv::MouseEvent &evt);\n";
+      output += "\n";
+      output += "   virtual void onKeyPressed(const scv::KeyEvent &evt);\n";
+      output += "   virtual void onKeyUp     (const scv::KeyEvent &evt);\n";
+      output += "\n";
+      output += "   virtual void onSizeChange(void);\n";
+      output += "   virtual void onPositionChange(void);\n";
+      output += "   ///////////////////////////////////////////////////////////\n";
+      output += "};\n";
    }
 
    for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
@@ -99,10 +113,34 @@ std::string ManagedComponent::getImplementationCode(void) {
    std::string customCallbacks;
 
    if (getCustomClass()) {
-      output += getClassName() + "::" + getClassName() + "(void) : " + getDefaultClassInitialization() + "{\n";
+      output += "///////////////////////////////////////////////////////////\n";
+      output += getClassName() + "::" + getClassName() + "(void) : " + getDefaultClassInitialization() + " {\n";
       output += "}\n";
       output += getClassName() + "::~" + getClassName() + "(void) {\n";
-      output += "}\n\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onMouseClick(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseHold(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseOver(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseUp(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseWheel(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onKeyPressed(const scv::KeyEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onKeyUp(const scv::KeyEvent &evt) {\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onSizeChange(void) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onPositionChange(void) {\n";
+      output += "}\n";
+      output += "///////////////////////////////////////////////////////////\n";
+      output += "\n";
    }
    
    for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
@@ -113,19 +151,26 @@ std::string ManagedComponent::getImplementationCode(void) {
 }
 
 std::string ManagedComponent::getAllocationCode(void) {
+   static const std::string s_defaultTab("   ");
+
    std::string output;
 
    if (getCustomClass()) {
-      output += getClassName() + " *" + getPointerName() + " = new " + getClassName() + "();";
+      output += s_defaultTab + getClassName() + " *" + getPointerName() + " = new " + getClassName() + "();\n";
    } else {
-      output += "scv::" + getDerivedTypeName() + " *" + getPointerName() + " = new " + getDefaultClassInitialization() + ";";
+      output += s_defaultTab + "scv::" + getDerivedTypeName() + " *" + getPointerName() + " = new " + getDefaultClassInitialization() + ";\n";
+   }
+
+   if (getParent() == NULL) {
+      output += s_defaultTab + "kernel->addComponent(" + getPointerName() + ");\n";
    }
 
    for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       output += (*iter)->getImplementationCode();
-      output += getPointerName() + "->addChild(" + (*iter)->getPointerName() + ");";
+      output += s_defaultTab + getPointerName() + "->addChild(" + (*iter)->getPointerName() + ");\n";
    }
 
+   output += "\n";
    return output;
 }
 

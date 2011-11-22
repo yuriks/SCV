@@ -106,8 +106,6 @@ CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
 }
 
 void CodeGenerator::generateCode(void) {
-   std::string mainDotCpp;
-
    std::string applicationDotH;   
    applicationDotH += "#ifndef __APPLICATION_H__\n";
    applicationDotH += "#define __APPLICATION_H__\n";
@@ -186,6 +184,39 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "void Application::onPositionChange(void) {\n";
    applicationDotCpp += "}\n";   
    
+   std::string mainDotCpp;
+   mainDotCpp += "#include \"SCV.h\"\n";
+   mainDotCpp += "#include \"Application.h\"\n";
+   mainDotCpp += "#include \"Widget.h\"\n";
+   mainDotCpp += "\n";
+   mainDotCpp += "int main(int argc, char* argv[]) {\n";
+   mainDotCpp += "   scv::Kernel::setInstance(new Application());\n";
+   mainDotCpp += "   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());\n";
+   mainDotCpp += "\n";
+   mainDotCpp += "   kernel->init();\n";
+   mainDotCpp += "\n";
+
+   std::string widgetDotH, widgetDotCpp;
+   widgetDotH += "#ifndef __WIDGET_H__\n";
+   widgetDotH += "#define __WIDGET_H__\n";
+   widgetDotH += "\n";
+      
+   widgetDotCpp += "#include \"Widget.h\"\n";
+   widgetDotCpp += "\n";
+
+   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+      widgetDotH += (*iter)->getDeclarationCode();
+      widgetDotCpp += (*iter)->getImplementationCode();
+      mainDotCpp += (*iter)->getAllocationCode();
+   }
+  
+   widgetDotH += "\n";
+   widgetDotH += "#endif //__WIDGET_H__\n";
+
+   mainDotCpp += "   kernel->run();\n";
+   mainDotCpp += "   return 0;\n";
+   mainDotCpp += "}\n";
+
    std::ofstream outputFile;
 
    outputFile = std::ofstream("../Application.h");
@@ -196,13 +227,6 @@ void CodeGenerator::generateCode(void) {
    outputFile << applicationDotCpp;
    outputFile.close();
 
-   std::string widgetDotH, widgetDotCpp;
-   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      widgetDotH += (*iter)->getDeclarationCode();
-      widgetDotCpp += (*iter)->getImplementationCode();
-      mainDotCpp += (*iter)->getAllocationCode();
-   }
-  
    outputFile = std::ofstream("../Widget.h");
    outputFile << widgetDotH;
    outputFile.close();
@@ -211,7 +235,7 @@ void CodeGenerator::generateCode(void) {
    outputFile << widgetDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../Main.cpp");
+   outputFile = std::ofstream("../main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
 }

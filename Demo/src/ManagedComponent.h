@@ -68,7 +68,7 @@ std::string ManagedComponent::getDerivedTypeName(void) const {
 
 std::string ManagedComponent::getPointerName(void) const {
    std::string pointer(getClassName());
-   std::transform(getClassName().begin(), getClassName().end(), pointer.begin(), ::tolower);
+   std::transform(pointer.begin(), pointer.end(), pointer.begin(), ::tolower);
    return pointer;
 }
 
