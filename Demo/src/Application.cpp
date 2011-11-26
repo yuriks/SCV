@@ -5,6 +5,8 @@
 #include "Properties.h"
 #include "Pallete.h"
 
+#include "GroupObjectWrapper.h"
+
 
 MainTabbedPane::MainTabbedPane(void) : scv::TabbedPane(scv::Point(), scv::Point()) {
 }
@@ -13,8 +15,12 @@ MainTabbedPane::~MainTabbedPane(void) {
 }
 
 void MainTabbedPane::onTabChange(void) {
-   if (getCurrTab() != 2) {
+   if (getCurrTabIndex() != 2) {
       ObjectEditor::getInstance()->setComponent(NULL);
+   }
+
+   if (getCurrTabIndex() == 0) {
+      (static_cast<Application *>(Application::getInstance()))->createPreview(getCurrComponent());
    }
 }
 
@@ -203,7 +209,7 @@ void Application::addComponentFromPalette(std::string component) {
    scv::Component *object = CodeGenerator::getInstance()->addComponent(component);
    ObjectEditor::getInstance()->setComponent(object);
    _properties->setComponent(object);
-   _mainTabbedPane->setCurrTab(2);
+   _mainTabbedPane->setCurrTabIndex(2);
 }
 
 std::string Application::getLayoutCode(const std::string &panelName) const {
@@ -224,4 +230,20 @@ std::string Application::getLayoutCode(const std::string &panelName) const {
 
 void Application::openComponentSelector(GroupPanel *group) {
    _componentSelector->setVisible(true, group);
+}
+
+void Application::createPreview(scv::Component *object) {
+   scv::Panel *panel = static_cast<scv::Panel *>(object);
+
+   scv::GroupLayout *layout = new scv::GroupLayout(panel);
+   panel->setLayout(layout);
+
+   layout->setHorizontalGroup(_hPanelWrapper->createPreview());
+   layout->setVerticalGroup(_vPanelWrapper->createPreview());
+
+   CodeGenerator::ManagedList list = CodeGenerator::getInstance()->getManagedComponents();
+
+   for (CodeGenerator::ManagedList::iterator iter = list.begin(); iter != list.end(); ++iter) {
+      panel->addChild(new GroupObjectWrapper((*iter)->getComponent()));
+   }
 }

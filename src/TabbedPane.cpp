@@ -58,7 +58,7 @@ void TabbedPane::addChild(Component *object, const std::string &label, bool resi
    _labels.push_back(label);
    _resize.push_back(resize);
 
-   if (getCurrTab() == -1) setCurrTab(0);
+   if (getCurrTabIndex() == -1) setCurrTabIndex(0);
 }
 
 void TabbedPane::removeChild(Component *object) {
@@ -81,17 +81,17 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
 
    if (isDragging() || isResizing()) {
       Component::processMouse(evt);
-      if (getCurrTab() != -1 && isResizing()) {
+      if (getCurrTabIndex() != -1 && isResizing()) {
          configPanel();
       }
    } else {
 
-      if (getCurrTab() == -1 || !_receivingCallbacks) {
+      if (getCurrTabIndex() == -1 || !_receivingCallbacks) {
          Component::processMouse(evt);
          return;
-      } else if(getCurrTab() != -1) {
-         getChild(getCurrTab())->setDraggable(false);
-         getChild(getCurrTab())->processMouse(evt);
+      } else if(getCurrTabIndex() != -1) {
+         getChild(getCurrTabIndex())->setDraggable(false);
+         getChild(getCurrTabIndex())->processMouse(evt);
       }
 
       Component::processMouse(evt);
@@ -109,7 +109,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
             for (int i = 0; i < _children.size(); i++) {
                if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i + 1] + currPosition.x - 1
                   && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
-                     if (getCurrTab() != i) _currecOverTab = i;
+                     if (getCurrTabIndex() != i) _currecOverTab = i;
                      break;
                }
             }
@@ -118,7 +118,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
                   for (int i = 0; i < _children.size(); i++) {
                      if (relativeMouse.x > _index[i] + currPosition.x && relativeMouse.x < _index[i + 1] + currPosition.x - 1
                         && relativeMouse.y > currPosition.y && relativeMouse.y < currPosition.y + s_barHeight) {
-                           setCurrTab(i);
+                           setCurrTabIndex(i);
                            _currecOverTab   = -1;
                            configPanel();
                            break;
@@ -136,7 +136,7 @@ void TabbedPane::processMouse(const scv::MouseEvent &evt) {
 void TabbedPane::processKey(const scv::KeyEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
 
-   if (getCurrTab() == -1) return;
+   if (getCurrTabIndex() == -1) return;
    if(!_receivingCallbacks) return;
 
    if (isFocused() && evt.getState() == KeyEvent::DOWN) {
@@ -144,26 +144,26 @@ void TabbedPane::processKey(const scv::KeyEvent &evt) {
 
       if (evt.getKeyString() == "Left") {
          _currecOverTab = -1;
-         if (getCurrTab() == 0) {
-            setCurrTab(_children.size() - 1);
+         if (getCurrTabIndex() == 0) {
+            setCurrTabIndex(_children.size() - 1);
             configPanel();
          } else {
-            setCurrTab(getCurrTab() - 1);
+            setCurrTabIndex(getCurrTabIndex() - 1);
             configPanel();
          }
 
       } else if (evt.getKeyString() == "Right") {
          _currecOverTab = -1;
-         setCurrTab((getCurrTab() + 1) % _children.size());
+         setCurrTabIndex((getCurrTabIndex() + 1) % _children.size());
          configPanel();
       }
 
-   } else if (getCurrTab() != -1) {
-      getChild(getCurrTab())->processKey(evt);
+   } else if (getCurrTabIndex() != -1) {
+      getChild(getCurrTabIndex())->processKey(evt);
    }
 }
 
-void TabbedPane::setCurrTab(int index) {
+void TabbedPane::setCurrTabIndex(int index) {
    if (index >= 0 && index < _children.size()) {
       _currSelectedTab = index;
       onTabChange();
@@ -178,9 +178,9 @@ void TabbedPane::display(void) {
 
    if (_cTexture == NULL || _isVisible == false) return;
 
-   if (getCurrTab() != -1) {
+   if (getCurrTabIndex() != -1) {
       configPanel();
-      getChild(getCurrTab())->display();
+      getChild(getCurrTabIndex())->display();
    }
 
    Point currPosition = getAbsolutePosition();
@@ -204,21 +204,21 @@ void TabbedPane::display(void) {
    // line bottom
    _cTexture->display(currPosition.x, currPosition.y + s_barHeight, 4, getWidth(), 1);
 
-   if (getCurrTab() != -1) {
-      int size = _index[getCurrTab() + 1] - _index[getCurrTab()];
+   if (getCurrTabIndex() != -1) {
+      int size = _index[getCurrTabIndex() + 1] - _index[getCurrTabIndex()];
 
       scheme->applyColor(ColorScheme::PANEL);
-      _cTexture->display(currPosition.x + _index[getCurrTab()] + 1, currPosition.y + 2, 4, size - 2, 1);
-      _cTexture->display(currPosition.x + _index[getCurrTab()] + 0, currPosition.y + 3, 4, size, s_barHeight - 2);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex()] + 1, currPosition.y + 2, 4, size - 2, 1);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex()] + 0, currPosition.y + 3, 4, size, s_barHeight - 2);
 
       glColor3f(0.f,0.f,0.f);
-      _cTexture->display(currPosition.x + _index[getCurrTab()] + 2, currPosition.y + 1, 4, size - 4, 1);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex()] + 2, currPosition.y + 1, 4, size - 4, 1);
 
-      _cTexture->display(currPosition.x + _index[getCurrTab()] + 1, currPosition.y + 2, 4, 1, 1);
-      _cTexture->display(currPosition.x + _index[getCurrTab() + 1] - 2, currPosition.y + 2, 4, 1, 1);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex()] + 1, currPosition.y + 2, 4, 1, 1);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex() + 1] - 2, currPosition.y + 2, 4, 1, 1);
 
-      _cTexture->display(currPosition.x + _index[getCurrTab()], currPosition.y + 3, 4, 1, s_barHeight-3);
-      _cTexture->display(currPosition.x + _index[getCurrTab() + 1] - 1, currPosition.y + 3, 4, 1, s_barHeight-3);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex()], currPosition.y + 3, 4, 1, s_barHeight-3);
+      _cTexture->display(currPosition.x + _index[getCurrTabIndex() + 1] - 1, currPosition.y + 3, 4, 1, s_barHeight-3);
 
       scheme->applyDefaultModulate();
    }
@@ -250,7 +250,7 @@ void TabbedPane::display(void) {
    _cTexture->disable();
 
    for (int i = 0; i < _labels.size(); i++) {
-      if (i == getCurrTab()) {
+      if (i == getCurrTabIndex()) {
          StaticLabel::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i], scheme->getColor(ColorScheme::CONTEXTMENUFONT));
       } else {
          StaticLabel::display(currPosition.x + s_tabSpacing + _index[i], currPosition.y + 4, _labels[i]);
@@ -294,12 +294,12 @@ void TabbedPane::createTexture(void) {
 }
 
 void TabbedPane::configPanel(void) {
-   if (getCurrTab() == -1) return;
-   if (_resize[getCurrTab()]) {
-      getChild(getCurrTab())->setWidth(getWidth());
-      getChild(getCurrTab())->setHeight(getHeight() - s_barHeight);
+   if (getCurrTabIndex() == -1) return;
+   if (_resize[getCurrTabIndex()]) {
+      getChild(getCurrTabIndex())->setWidth(getWidth());
+      getChild(getCurrTabIndex())->setHeight(getHeight() - s_barHeight);
    }
-   getChild(getCurrTab())->setRelativePosition(Point(0, s_barHeight));
+   getChild(getCurrTabIndex())->setRelativePosition(Point(0, s_barHeight));
 }
 
 } // namespace scv

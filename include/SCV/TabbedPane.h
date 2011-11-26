@@ -43,8 +43,8 @@ public:
    ///////////////////////////////////////////////////////////
    
    ///////////////////////////////////////////////////////////
-   void setCurrTab(int index);
-   inline int getCurrTab(void) const;
+   void setCurrTabIndex(int index);
+   inline int getCurrTabIndex(void) const;
 
    inline scv::Component *getCurrComponent(void) const;
    ///////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ private:
 
 ///////////////////////////////////////////////////////////
 
-int TabbedPane::getCurrTab(void) const {
+int TabbedPane::getCurrTabIndex(void) const {
    return _currSelectedTab;
 }
 

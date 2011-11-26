@@ -56,6 +56,8 @@ public:
 
    void openComponentSelector(GroupPanel *group);
 
+   void createPreview(scv::Component *object);
+
 protected:
    static const int s_defaultWindowWidth = 1280;
    static const int s_defaultWindowHeight = 720;
@@ -67,8 +69,6 @@ protected:
    ComponentSelector *_componentSelector;
 
    GroupPanel *currGroup;
-
-   
 
    GroupPanelWrapper *_hPanelWrapper, *_vPanelWrapper;
 private:

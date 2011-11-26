@@ -111,3 +111,13 @@ std::string GroupPanelWrapper::getGroupCode(void) const {
       return s_defaultTab + "NULL\n";
    }
 }
+
+scv::Group * GroupPanelWrapper::createPreview(void) {
+   if (_group != NULL) {
+      scv::ParallelGroup *group = scv::GroupLayout::createParallelGroup();
+      _group->createPreview(*group);
+
+      return group;
+   }
+   return NULL;
+}
