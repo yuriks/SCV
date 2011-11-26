@@ -1,16 +1,50 @@
 #ifndef __GROUP_OBJECT_WRAPPER_H__
 #define __GROUP_OBJECT_WRAPPER_H__
 
-class GroupObjectWrapper : public scv::Panel {
+class GroupObjectWrapper;
+class GroupObjectWrapperMenu : public scv::ContextMenu {
 public:
-   GroupObjectWrapper(scv::Component *objet);
-   virtual ~GroupObjectWrapper(void);
+   ///////////////////////////////////////////////////////////
+   GroupObjectWrapperMenu(GroupObjectWrapper *host);
+   virtual ~GroupObjectWrapperMenu(void);
+   ///////////////////////////////////////////////////////////
 
-   void display(void);
-
+   virtual void onMenuAccessed(const std::deque<std::string> &address);
 protected:
-   
+   GroupObjectWrapper *_host;
 private:
 };
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+class GroupObjectWrapper : public scv::Panel {
+public:
+   ///////////////////////////////////////////////////////////
+   GroupObjectWrapper(scv::Component *objet);
+   virtual ~GroupObjectWrapper(void);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   inline scv::Component *getObject(void) const;
+   void setObject(scv::Component *object);
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
+   void display(void);
+   ///////////////////////////////////////////////////////////
+
+protected:
+   scv::Component *_object;
+private:
+};
+
+///////////////////////////////////////////////////////////
+
+scv::Component * GroupObjectWrapper::getObject(void) const {
+   return _object;
+}
+
+///////////////////////////////////////////////////////////
 
 #endif //__GROUP_OBJECT_WRAPPER_H__

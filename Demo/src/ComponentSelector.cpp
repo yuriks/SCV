@@ -2,6 +2,7 @@
 #include "ComponentSelector.h"
 
 #include "Application.h"
+#include "CodeGenerator.h"
 
 ComponentSelectorAccepted::ComponentSelectorAccepted(ComponentSelector *selector) : scv::Button(scv::Point(), "Ok") {
    _selector = selector;
@@ -77,13 +78,28 @@ ComponentSelector::~ComponentSelector(void) {
 void ComponentSelector::onOpen(void) {
    setHeight(getPanel()->getMinimumSize().y + s_borderTop + s_borderWidth + 15);
 
-   //_comboBox->setItems();
+   std::vector<std::string> vector;
+   CodeGenerator::ManagedList list = CodeGenerator::getInstance()->getManagedComponents();
+   for (CodeGenerator::ManagedList::iterator iter = list.begin(); iter != list.end(); ++iter) {
+      vector.push_back((*iter)->getClassName());
+   }
+
+   _comboBox->setItems(vector);
+}
+
+void ComponentSelector::setVisible(bool state, GroupPanel *group) {
+   _currGroup = group;
+   scv::InternalFrame::setVisible(state);
 }
 
 void ComponentSelector::accepted(void) {
-   setVisible(false);
+   if (_currGroup != NULL) {
+      ManagedComponent *managed = CodeGenerator::getInstance()->getManagedComponent(_comboBox->getValue());
+      _currGroup->addChild(managed->getComponent());
+   }
+   setVisible(false, NULL);   
 }
 
 void ComponentSelector::refused(void) {
-   setVisible(false);
+   setVisible(false, NULL);
 }

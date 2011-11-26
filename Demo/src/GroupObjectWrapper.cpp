@@ -1,48 +1,64 @@
 #include "stdafx.h"
 #include "GroupObjectWrapper.h"
 
-GroupObjectWrapper::GroupObjectWrapper(scv::Component *objet) : scv::Panel(scv::Point(0,0), scv::Point(objet->getWidth(), objet->getHeight())) {
-   setMinimumSize(objet->getMinimumSize());
-   setPreferredSize(objet->getPreferredSize());
-   setMaximumSize(objet->getMaximumSize());
+GroupObjectWrapperMenu::GroupObjectWrapperMenu(GroupObjectWrapper *host) : scv::ContextMenu("Group Object Wrapper Menu") {
+   _host = host;
+
+   addMenu(new scv::ContextMenu("Remove"));
+   addMenu(new scv::ContextMenu("Edit Object"));
+}
+
+GroupObjectWrapperMenu::~GroupObjectWrapperMenu(void) {
+   std::cout << "GroupObjectWrapperMenu::~GroupObjectWrapperMenu" << std::endl;
+}
+
+void GroupObjectWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {
+   if (address[1] == "Remove") {
+      _host->getParent()->removeChild(_host);
+   } else if (address[1] == "Edit Object") {
+   }
+}
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+GroupObjectWrapper::GroupObjectWrapper(scv::Component *object) : Panel(scv::Point(0,0), scv::Point(object->getWidth(), object->getHeight())) {
+   setObject(object);
+
+   registerContextMenu(new GroupObjectWrapperMenu(this));
 }
 
 GroupObjectWrapper::~GroupObjectWrapper(void) {
    std::cout << "GroupObjectWrapper::~GroupObjectWrapper" << std::endl;
 }
 
+void GroupObjectWrapper::setObject(scv::Component *object) {
+   _object = object;
+
+   setMinimumSize(getObject()->getMinimumSize());
+   setPreferredSize(getObject()->getPreferredSize());
+   setMaximumSize(getObject()->getMaximumSize());
+}
+
 void GroupObjectWrapper::display(void) {
    static scv::Kernel *kernel = scv::Kernel::getInstance();
-   static scv::Scissor *scissor = scv::Scissor::getInstance();
 
-   if (_cTexture == NULL || _isVisible == false) return;
+   setObject(getObject());
 
-   scv::Point currPosition = getAbsolutePosition();
+   scv::Scissor::getInstance()->pushScissor(getScissor());
 
-   scissor->pushScissor(getScissor());
+   // Wrapped Object
+   ///////////////////////////////////////////////////////////
+   getObject()->setAbsolutePosition(getAbsolutePosition());
 
-   _cTexture->enable();
-   scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.54f, 0.54f, 0.54f, 1.0f));
+   scv::Point originalSize = getObject()->getSize();
+   getObject()->setSize(getWidth(), getHeight());
+   getObject()->display();
 
-   // middle
-   _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
+   getObject()->setSize(originalSize.x, originalSize.y);
 
-   // corners
-   _cTexture->display(currPosition.x, currPosition.y + 1, 0, 1, getHeight() - 2);
-   _cTexture->display(currPosition.x + getWidth() - 1, currPosition.y + 1, 0, 1, getHeight() - 2);
-   _cTexture->display(currPosition.x + 1, currPosition.y, 0, getWidth() - 2, 1);
-   _cTexture->display(currPosition.x + 1, currPosition.y + getHeight() - 1, 0, getWidth() - 2, 1);
-
-   _cTexture->disable();
-
-   if (_layout != NULL) {
-      _layout->layoutContainer();
-   }
-   
-   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
-      if (kernel->willAppearOnScreen(*iter))
-         (*iter)->display();
-   }
-
-   scissor->popScissor();
+   scv::Scissor::getInstance()->popScissor();
+   ///////////////////////////////////////////////////////////
 }
+
+

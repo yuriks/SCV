@@ -1,6 +1,8 @@
 #ifndef __COMPONENT_SELECTOR_H__
 #define __COMPONENT_SELECTOR_H__
 
+#include "GroupPanel.h"
+
 class ComponentSelector;
 class ComponentSelectorAccepted : public scv::Button {
 public:
@@ -42,6 +44,8 @@ public:
    virtual ~ComponentSelector(void);
    ///////////////////////////////////////////////////////////
 
+   void setVisible(bool state, GroupPanel *group);
+
    ///////////////////////////////////////////////////////////
    virtual void onOpen(void);
    ///////////////////////////////////////////////////////////
@@ -53,6 +57,7 @@ public:
 
 protected:
    scv::ComboBox *_comboBox;
+   GroupPanel *_currGroup;
 };
 
 #endif //__COMPONENT_SELECTOR_H__

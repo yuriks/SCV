@@ -30,24 +30,14 @@ Properties::Properties(int width) : scv::Panel(scv::Point(0, 0), scv::Point(widt
    _layout->setHorizontalGroup(_hGroup);
    _layout->setVerticalGroup(_vGroup);
 
-   addChild(s_RelativePosition, PropertieOption::EDITABLE_TEXTFIELD);   
-   addChild(s_AbsolutePosition, PropertieOption::EDITABLE_TEXTFIELD);
-
-   addChild(s_Width, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_Height, PropertieOption::EDITABLE_TEXTFIELD);
-
    addChild(s_MinimumSize, PropertieOption::EDITABLE_TEXTFIELD);
    addChild(s_PreferredSize, PropertieOption::EDITABLE_TEXTFIELD);
    addChild(s_MaximumSize, PropertieOption::EDITABLE_TEXTFIELD);
 
-   addChild(s_Draggable, PropertieOption::EDITABLE_CHECKBOX);
    addChild(s_Resizable, PropertieOption::EDITABLE_CHECKBOX);
    addChild(s_Visible, PropertieOption::EDITABLE_CHECKBOX);
 
    addChild(s_CallbacksStatus, PropertieOption::EDITABLE_CHECKBOX);
-
-   addChild(s_ParentScissor, PropertieOption::TEXTFIELD);
-   addChild(s_Scissor, PropertieOption::TEXTFIELD);
 }
 
 Properties::~Properties(void) {
@@ -59,25 +49,21 @@ void Properties::setComponent(scv::Component *component) {
    if (component == NULL) return;
    
    _currComponent = component;
+   _currComponent->setResizable(true);
 
-   setValue(s_RelativePosition, scv::toString(_currComponent->getRelativePosition()));
-   setValue(s_AbsolutePosition, scv::toString(_currComponent->getAbsolutePosition()));
-
-   setValue(s_Width, scv::toString(_currComponent->getWidth()));
-   setValue(s_Height, scv::toString(_currComponent->getHeight()));
-
-   setValue(s_MinimumSize, scv::toString(_currComponent->getMinimumSize()));
-   setValue(s_PreferredSize, scv::toString(_currComponent->getPreferredSize()));
+   if (_currComponent->getSize() > _currComponent->getMinimumSize()) {
+      setValue(s_PreferredSize, scv::toString(_currComponent->getSize()));
+      setValue(s_MinimumSize, scv::toString(_currComponent->getSize()));      
+   } else {
+      setValue(s_MinimumSize, scv::toString(_currComponent->getMinimumSize()));
+      setValue(s_PreferredSize, scv::toString(_currComponent->getPreferredSize()));
+   }
    setValue(s_MaximumSize, scv::toString(_currComponent->getMaximumSize()));
 
-   setValue(s_Draggable, _currComponent->isDraggable());
    setValue(s_Resizable, _currComponent->isResizable());
    setValue(s_Visible, _currComponent->isVisible());
 
    setValue(s_CallbacksStatus, _currComponent->getCallbacksStatus());
-
-   setValue(s_ParentScissor, scv::toString(_currComponent->getParentScissor()));
-   setValue(s_Scissor, scv::toString(_currComponent->getScissor()));
 }
 
 void Properties::addChild(std::string title, PropertieOption::Type type) {
@@ -86,9 +72,11 @@ void Properties::addChild(std::string title, PropertieOption::Type type) {
 
    _hLeftGroup->addComponent(option->getLabel());
    _hRightGroup->addComponent(option->getTarget());
-
-   
-   _vGroup->addGroup(_layout->createParallelGroup(scv::Spring::LEADING, false)->addComponent(option->getLabel())->addComponent(option->getTarget()));
+      
+   _vGroup->addGroup(_layout->createParallelGroup(scv::Spring::LEADING, false)
+      ->addComponent(option->getLabel())
+      ->addComponent(option->getTarget())
+   );
 }
 
 void Properties::setValue(const std::string &title, const std::string &str) {

@@ -28,3 +28,7 @@ void ObjectEditor::refreshContainerPosition(void) {
       getComponent()->setRelativePosition(scv::Point(width, height));
    }
 }
+
+void ObjectEditor::setComponent(scv::Component *object) {
+   _registeredComponent = object;
+}

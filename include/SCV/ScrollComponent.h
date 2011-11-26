@@ -49,7 +49,7 @@ protected:
    virtual void refreshSCrollPaneSize(void);
    virtual void refreshContainerPosition(void);
 
-private:
+protected:
    ///////////////////////////////////////////////////////////
    enum Button {
       BUT_NONE,

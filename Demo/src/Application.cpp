@@ -39,7 +39,7 @@ void Application::init(void) {
    static const int s_defaultRightPanelWidth = 250;
    
    _componentSelector = new ComponentSelector();
-   _componentSelector->setVisible(false);
+   _componentSelector->setVisible(false, NULL);
    scv::InternalFrameHolder::getInstance()->registerFrame(_componentSelector);
 
    _mainPanel = new scv::Panel(scv::Point(0 + s_defaultGap, 0 + s_defaultGap), scv::Point(s_defaultWindowWidth - s_defaultGap, s_defaultWindowHeight - s_defaultGap));
@@ -200,7 +200,9 @@ void Application::onDisplay(void) {
 }
 
 void Application::addComponentFromPalette(std::string component) {
-   ObjectEditor::getInstance()->setComponent(CodeGenerator::getInstance()->addComponent(component));
+   scv::Component *object = CodeGenerator::getInstance()->addComponent(component);
+   ObjectEditor::getInstance()->setComponent(object);
+   _properties->setComponent(object);
    _mainTabbedPane->setCurrTab(2);
 }
 
@@ -221,5 +223,5 @@ std::string Application::getLayoutCode(const std::string &panelName) const {
 }
 
 void Application::openComponentSelector(GroupPanel *group) {
-   _componentSelector->setVisible(true);
+   _componentSelector->setVisible(true, group);
 }
