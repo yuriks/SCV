@@ -27,6 +27,14 @@ public:
 class Application : public scv::Kernel {
 public:
    ///////////////////////////////////////////////////////////
+   static const int s_defaultWindowWidth = 1280;
+   static const int s_defaultWindowHeight = 720;
+
+   static const int s_defaultGap = 10;
+   static const int s_defaultRightPanelWidth = 250;
+   ///////////////////////////////////////////////////////////
+
+   ///////////////////////////////////////////////////////////
    Application(void);
    virtual ~Application(void);
    ///////////////////////////////////////////////////////////
@@ -59,9 +67,6 @@ public:
    void createPreview(scv::Component *object);
 
 protected:
-   static const int s_defaultWindowWidth = 1280;
-   static const int s_defaultWindowHeight = 720;
-
    scv::Panel *_mainPanel, *_designPreview;
    Properties *_properties;
 

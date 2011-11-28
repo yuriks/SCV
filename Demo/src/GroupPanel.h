@@ -2,6 +2,7 @@
 #define __GROUP_PANEL_H__
 
 #include "Group.h"
+#include "GroupObjectWrapper.h"
 
 class GroupPanel;
 class GroupPanelMenu : public scv::ContextMenu {
@@ -39,7 +40,7 @@ public:
    inline GroupType getType(void) const;
    ///////////////////////////////////////////////////////////
 
-   void createPreview(scv::Group &group);
+   std::list<GroupObjectWrapper *> createPreview(scv::Group &group);
 
    ///////////////////////////////////////////////////////////
    virtual void display(void);   

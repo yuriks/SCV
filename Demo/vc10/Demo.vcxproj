@@ -208,6 +208,7 @@
     <ClCompile Include="..\src\MenuBar.cpp" />
     <ClCompile Include="..\src\ObjectEditor.cpp" />
     <ClCompile Include="..\src\Pallete.cpp" />
+    <ClCompile Include="..\src\PalleteComponents.cpp" />
     <ClCompile Include="..\src\ParallelGroupPanel.cpp" />
     <ClCompile Include="..\src\PropertieOption.cpp" />
     <ClCompile Include="..\src\Properties.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="..\src\MenuBar.h" />
     <ClInclude Include="..\src\ObjectEditor.h" />
     <ClInclude Include="..\src\Pallete.h" />
+    <ClInclude Include="..\src\PalleteComponents.h" />
     <ClInclude Include="..\src\ParallelGroupPanel.h" />
     <ClInclude Include="..\src\PropertieOption.h" />
     <ClInclude Include="..\src\Properties.h" />

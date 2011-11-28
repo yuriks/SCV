@@ -13,9 +13,6 @@
     <Filter Include="3.PanelProperties">
       <UniqueIdentifier>{b82f00ed-fd23-4e91-a82b-9a38bcf21991}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.Pallete">
-      <UniqueIdentifier>{8165ae81-d56e-4ccc-8613-8ae921222da0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="5.GroupLayout">
       <UniqueIdentifier>{8769f91d-1f30-4cee-84c5-dc1326b7bf8a}</UniqueIdentifier>
     </Filter>
@@ -24,6 +21,9 @@
     </Filter>
     <Filter Include="6.Code">
       <UniqueIdentifier>{bc363e5d-f5ae-4f11-97aa-b976fe8fc2a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.PanelPallete">
+      <UniqueIdentifier>{8165ae81-d56e-4ccc-8613-8ae921222da0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="..\src\PropertieOption.cpp">
       <Filter>3.PanelProperties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Pallete.cpp">
-      <Filter>4.Pallete</Filter>
     </ClCompile>
     <ClCompile Include="..\src\MenuBar.cpp">
       <Filter>2.App</Filter>
@@ -75,6 +72,12 @@
     <ClCompile Include="..\src\ObjectEditor.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PalleteComponents.cpp">
+      <Filter>4.PanelPallete</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pallete.cpp">
+      <Filter>4.PanelPallete</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -88,9 +91,6 @@
     </ClInclude>
     <ClInclude Include="..\src\PropertieOption.h">
       <Filter>3.PanelProperties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Pallete.h">
-      <Filter>4.Pallete</Filter>
     </ClInclude>
     <ClInclude Include="..\src\MenuBar.h">
       <Filter>2.App</Filter>
@@ -121,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="..\src\ObjectEditor.h">
       <Filter>2.App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PalleteComponents.h">
+      <Filter>4.PanelPallete</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pallete.h">
+      <Filter>4.PanelPallete</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

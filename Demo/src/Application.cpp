@@ -34,16 +34,13 @@ Application::Application(void) : Kernel() {
    lockWindowSize(true);
    setFramesPerSecond(60);
 
-   setWindowTitle("SCV Designer - Laboratório de Computação Aplicada (LaCA)");
+   setWindowTitle("SCV Designer");
 }
 
 Application::~Application(void) {
 }
 
-void Application::init(void) {
-   static const int s_defaultGap = 10;
-   static const int s_defaultRightPanelWidth = 250;
-   
+void Application::init(void) {   
    _componentSelector = new ComponentSelector();
    _componentSelector->setVisible(false, NULL);
    scv::InternalFrameHolder::getInstance()->registerFrame(_componentSelector);
@@ -55,63 +52,12 @@ void Application::init(void) {
    ///////////////////////////////////////////////////////////
    MenuBar *menuBar = new MenuBar(s_defaultWindowWidth);
    _mainPanel->addChild(menuBar);
-
    ///////////////////////////////////////////////////////////
    
    //Palette
    ///////////////////////////////////////////////////////////
-   scv::Panel *panelPalette = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultRightPanelWidth, 0));
+   Pallete *panelPalette = Pallete::getInstance();
    _mainPanel->addChild(panelPalette);
-   
-   scv::GroupLayout *paletteLayout = new scv::GroupLayout(panelPalette);
-   panelPalette->setLayout(paletteLayout);
-
-   PanelPalleteComponents *containers = new PanelPalleteComponents("SCV Containers", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));   
-   panelPalette->addChild(containers);
-   containers->addComponent("Image");
-   containers->addComponent("Panel");
-   containers->addComponent("TabbedPane");
-   containers->addComponent("ScrollComponent");      
-   containers->adjustButtonsWidth();
-
-   PanelPalleteComponents *controls = new PanelPalleteComponents("SCV Controls", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));
-   panelPalette->addChild(controls);
-   controls->addComponent("Button");
-   controls->addComponent("ToggleButton");
-   controls->addComponent("ProgressBar");
-   controls->addComponent("Slider");
-   controls->addComponent("Spinner");
-   controls->addComponent("ComboBox");
-   controls->addComponent("MenuBar");
-   controls->addComponent("CheckBox");
-   controls->addComponent("RadioButton");
-   controls->addComponent("Label");
-   controls->addComponent("TextBox");
-   controls->addComponent("TextField");
-   controls->addComponent("Canvas");
-   controls->addComponent("ColorPicker");
-   controls->addComponent("Separator");
-   controls->addComponent("Table");
-   controls->adjustButtonsWidth();
-
-   PanelPalleteComponents *windows = new PanelPalleteComponents("SCV Windows", scv::Point(), scv::Point(s_defaultRightPanelWidth, 0));
-   panelPalette->addChild(windows);
-   windows->addComponent("InternalFrame");
-   windows->adjustButtonsWidth();
-
-   paletteLayout->setHorizontalGroup(
-      paletteLayout->createParallelGroup()
-         ->addComponent(containers, containers->getWidth(), containers->getWidth(), -1)
-         ->addComponent(controls, controls->getWidth(), controls->getWidth(), -1)
-         ->addComponent(windows, windows->getWidth(), windows->getWidth(), -1)
-   );   
-
-   paletteLayout->setVerticalGroup(
-      paletteLayout->createSequentialGroup()->setAutoCreateGaps(true)
-         ->addComponent(containers, containers->getHeight(), containers->getHeight(), containers->getHeight())
-         ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())
-         ->addComponent(windows, windows->getHeight(), windows->getHeight(), windows->getHeight())
-   );   
    ///////////////////////////////////////////////////////////
 
    //Design
@@ -138,7 +84,7 @@ void Application::init(void) {
 
    //Properties
    ///////////////////////////////////////////////////////////
-   _properties = new Properties(s_defaultRightPanelWidth);
+   _properties = Properties::getInstance();
    _mainPanel->addChild(_properties);
    ///////////////////////////////////////////////////////////
 
@@ -176,6 +122,7 @@ void Application::init(void) {
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {   
 }
+
 void Application::onMouseHold(const scv::MouseEvent &evt) {
    if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
       _properties->setComponent(getFocusedComponent());
@@ -183,16 +130,19 @@ void Application::onMouseHold(const scv::MouseEvent &evt) {
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
+
 void Application::onMouseUp(const scv::MouseEvent &evt) {
    if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
       _properties->setComponent(getFocusedComponent());
    }
 }
+
 void Application::onMouseWheel(const scv::MouseEvent &evt) {
 }
 
 void Application::onKeyPressed(const scv::KeyEvent &evt) {
 }
+
 void Application::onKeyUp(const scv::KeyEvent &evt) {
 }
 
@@ -238,8 +188,20 @@ void Application::createPreview(scv::Component *object) {
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
-   layout->setHorizontalGroup(_hPanelWrapper->createPreview());
-   layout->setVerticalGroup(_vPanelWrapper->createPreview());
+   scv::ParallelGroup *horizontalGroup = scv::GroupLayout::createParallelGroup();
+   scv::ParallelGroup *verticalGroup = scv::GroupLayout::createParallelGroup();
+
+   std::list<GroupObjectWrapper *> components;
+   components.merge(_hPanelWrapper->createPreview(*horizontalGroup));
+   components.merge(_vPanelWrapper->createPreview(*verticalGroup));
+   std::cout << components.size() << std::endl;
+   
+   components.sort(same_integral_part);
+   components.unique();
+   std::cout << components.size() << std::endl;
+
+   layout->setHorizontalGroup(horizontalGroup);
+   layout->setVerticalGroup(verticalGroup);
 
    CodeGenerator::ManagedList list = CodeGenerator::getInstance()->getManagedComponents();
 

@@ -52,7 +52,7 @@ public:
    std::string getGroupCode(void) const;
    ///////////////////////////////////////////////////////////
 
-   scv::Group *createPreview(void);
+   std::list<GroupObjectWrapper *> createPreview(scv::Group &group);
 
    inline GroupPanel::GroupType getType(void) const;
 
@@ -61,7 +61,6 @@ protected:
    GroupPanel::GroupType _type;
    GroupPanel *_group;
    scv::Group *_hGroup, *_vGroup;
-
 };
 
 ///////////////////////////////////////////////////////////

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Properties.h"
 
+#include "Application.h"
+
 const std::string Properties::s_Scissor = "Scissor";
 const std::string Properties::s_ParentScissor = "Parent Scissor";
 const std::string Properties::s_CallbacksStatus = "Callbacks Status";
@@ -15,7 +17,7 @@ const std::string Properties::s_Width = "Width";
 const std::string Properties::s_AbsolutePosition = "Absolute Position";
 const std::string Properties::s_RelativePosition = "Relative Position";
 
-Properties::Properties(int width) : scv::Panel(scv::Point(0, 0), scv::Point(width, 0)) {
+Properties::Properties(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
    _currComponent = NULL;
 
    _layout = new scv::GroupLayout(this);
@@ -136,35 +138,3 @@ void Properties::onValueChange(const std::string &title, bool state) {
       _currComponent->setCallbacksStatus(state);
    }
 }
-
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
-PanelProperties::PanelProperties(void) : Properties(200) {
-}
-
-PanelProperties::~PanelProperties(void) {
-}
-
-void PanelProperties::setComponent(scv::Component *component) {
-   Properties::setComponent(component);
-}
-
-void PanelProperties::setValue(const std::string &title, const std::string &str) {
-   Properties::setValue(title, str);
-}
-
-void PanelProperties::setValue(const std::string &title, bool state) {
-   Properties::setValue(title, state);
-}
-
-void PanelProperties::onValueChange(const std::string &title, const std::string &str) {
-   Properties::onValueChange(title, str);
-}
-
-void PanelProperties::onValueChange(const std::string &title, bool state) {
-   Properties::onValueChange(title, state);
-}
-
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////

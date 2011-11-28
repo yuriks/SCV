@@ -92,7 +92,9 @@ void GroupPanel::addChild(scv::Component *object) {
    _horizontalGroup->addComponent(wrappedObject);
 }
 
-void GroupPanel::createPreview(scv::Group &group) {
+std::list<GroupObjectWrapper *> GroupPanel::createPreview(scv::Group &group) {
+   std::list<GroupObjectWrapper *> list;
+
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {
          scv::Group *currGroup = NULL;
@@ -102,16 +104,15 @@ void GroupPanel::createPreview(scv::Group &group) {
             currGroup = scv::GroupLayout::createSequentialGroup();
          }
          group.addGroup(currGroup);
-         (static_cast<GroupPanel *>(*iter))->createPreview(*currGroup);
+         list.merge((static_cast<GroupPanel *>(*iter))->createPreview(*currGroup));
       } else {
-         GroupObjectWrapper *objectWrapper = (static_cast<GroupObjectWrapper *>(*iter));
-         if (getType() == HORIZONTAL) {
-            group.addComponent(objectWrapper->getObject(), objectWrapper->getMinimumSize().x, objectWrapper->getPreferredSize().x, objectWrapper->getMaximumSize().x);
-         } else if (getType() == VERTICAL) {
-            group.addComponent(objectWrapper->getObject(), objectWrapper->getMinimumSize().y, objectWrapper->getPreferredSize().y, objectWrapper->getMaximumSize().y);
-         }         
+         GroupObjectWrapper *objectWrapper = new GroupObjectWrapper((*static_cast<GroupObjectWrapper *>(*iter)));
+         list.push_back(objectWrapper);
+         group.addComponent(objectWrapper);
       }
    }
+   
+   return list;
 }
 
 void GroupPanel::display(void) {

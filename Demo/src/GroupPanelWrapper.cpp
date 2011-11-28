@@ -112,12 +112,10 @@ std::string GroupPanelWrapper::getGroupCode(void) const {
    }
 }
 
-scv::Group * GroupPanelWrapper::createPreview(void) {
-   if (_group != NULL) {
-      scv::ParallelGroup *group = scv::GroupLayout::createParallelGroup();
-      _group->createPreview(*group);
-
-      return group;
+std::list<GroupObjectWrapper *> GroupPanelWrapper::createPreview(scv::Group &group) {
+   if (_group != NULL) {      
+      return _group->createPreview(group);
+   } else {
+      return std::list<GroupObjectWrapper *>();
    }
-   return NULL;
 }

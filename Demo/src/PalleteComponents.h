@@ -1,5 +1,5 @@
-#ifndef __PALLETE_H__
-#define __PALLETE_H__
+#ifndef __PALLETE_COMPONENTS_H__
+#define __PALLETE_COMPONENTS_H__
 
 class ButtonPallete :public scv::Button {
 public:
@@ -14,11 +14,11 @@ public:
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-class PanelPalleteComponents : public scv::Panel {
+class PalleteComponents : public scv::Panel {
 public:
    ///////////////////////////////////////////////////////////
-   PanelPalleteComponents(std::string title, const scv::Point &p1, const scv::Point &p2);
-   virtual ~PanelPalleteComponents(void);
+   PalleteComponents(std::string title, const scv::Point &p1, const scv::Point &p2);
+   virtual ~PalleteComponents(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -38,4 +38,4 @@ protected:
    bool _widthSet;
 };
 
-#endif //__PALLETE_H__
+#endif //__PALLETE_COMPONENTS_H__

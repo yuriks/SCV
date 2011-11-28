@@ -22,6 +22,8 @@ class GroupObjectWrapper : public scv::Panel {
 public:
    ///////////////////////////////////////////////////////////
    GroupObjectWrapper(scv::Component *objet);
+   GroupObjectWrapper(const GroupObjectWrapper &source);
+
    virtual ~GroupObjectWrapper(void);
    ///////////////////////////////////////////////////////////
 

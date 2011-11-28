@@ -9,7 +9,7 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
    _target = NULL;
 
    _label = new scv::Label(scv::Point(0,0), title);
-   static_cast<scv::Panel*>(host)->addChild(_label);   
+   static_cast<scv::Panel *>(host)->addChild(_label);   
 
    switch (_type) {
    case EDITABLE_TEXTFIELD:
@@ -26,22 +26,17 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
 }
 
 PropertieOption::~PropertieOption(void) {
-
-}
-
-const std::string & PropertieOption::getOption(void) const {
-   return _label->getString();
 }
 
 void PropertieOption::setValue(const std::string &str) {
    if (_type == EDITABLE_TEXTFIELD || _type == TEXTFIELD) {
-      static_cast<scv::TextField*>(_target)->setString(str);
+      static_cast<scv::TextField *>(_target)->setString(str);
    }
 }
 
 void PropertieOption::setValue(bool state) {
    if (_type == EDITABLE_CHECKBOX) {
-      static_cast<scv::CheckBox*>(_target)->setState(state);
+      static_cast<scv::CheckBox *>(_target)->setState(state);
    }
 }
 

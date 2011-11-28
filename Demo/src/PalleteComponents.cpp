@@ -1,9 +1,8 @@
 #include "stdafx.h"
-#include "Pallete.h"
+#include "PalleteComponents.h"
 #include "Application.h"
 
 ButtonPallete::ButtonPallete(const scv::Point &p, const std::string &str) : Button(p, str) {
-
 }
 
 ButtonPallete::~ButtonPallete(void) {
@@ -19,22 +18,22 @@ void ButtonPallete::onMouseClick(const scv::MouseEvent &evt) {
 ///////////////////////////////////////////////////////////
 
 
-PanelPalleteComponents::PanelPalleteComponents(std::string title, const scv::Point &p1, const scv::Point &p2) : Panel(p1, p2) {
+PalleteComponents::PalleteComponents(std::string title, const scv::Point &p1, const scv::Point &p2) : Panel(p1, p2) {
    _componentsPerLine = 0;
    _widthSet = false;
    addChild(new scv::Label(scv::Point(s_defaultGap, s_defaultGap), title));
 }
 
-PanelPalleteComponents::~PanelPalleteComponents(void) {
+PalleteComponents::~PalleteComponents(void) {
 }
 
-void PanelPalleteComponents::addComponent(std::string name) {
+void PalleteComponents::addComponent(std::string name) {
    if (!_widthSet) {
       addChild(new ButtonPallete(scv::Point(), name));
    }
 }
 
-void PanelPalleteComponents::adjustButtonsWidth(void) {
+void PalleteComponents::adjustButtonsWidth(void) {
    if (!_widthSet) {
       _widthSet = true;
       adjustButtons();
@@ -49,7 +48,7 @@ void PanelPalleteComponents::adjustButtonsWidth(void) {
    }
 }
 
-void PanelPalleteComponents::adjustButtons(void) {
+void PalleteComponents::adjustButtons(void) {
    _componentsPerLine = _children.size();
 
    while (!valid(_componentsPerLine)) {
@@ -83,7 +82,7 @@ void PanelPalleteComponents::adjustButtons(void) {
    setHeight(y + (*++_children.begin())->getHeight() + s_defaultGap);
 }
 
-bool PanelPalleteComponents::valid(int componentsPerLine) {
+bool PalleteComponents::valid(int componentsPerLine) {
    int width = 0, line = componentsPerLine;
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       width += (*iter)->getWidth() + s_defaultGap * 2;
