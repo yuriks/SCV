@@ -54,6 +54,9 @@ public:
 
    std::list<GroupObjectWrapper *> createPreview(scv::Group &group);
 
+   static GroupObjectWrapper *addDesignGroupObjectWrapper(scv::Component *object);
+   static GroupObjectWrapper *getDesignGroupObjectWrapper(scv::Component *object);
+
    inline GroupPanel::GroupType getType(void) const;
 
 protected:
@@ -61,6 +64,9 @@ protected:
    GroupPanel::GroupType _type;
    GroupPanel *_group;
    scv::Group *_hGroup, *_vGroup;
+
+private:
+   static std::list<GroupObjectWrapper *> s_designGroupObjectWrapper;
 };
 
 ///////////////////////////////////////////////////////////

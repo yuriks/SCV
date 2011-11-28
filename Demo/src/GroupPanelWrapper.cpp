@@ -119,3 +119,11 @@ std::list<GroupObjectWrapper *> GroupPanelWrapper::createPreview(scv::Group &gro
       return std::list<GroupObjectWrapper *>();
    }
 }
+
+GroupObjectWrapper *GroupPanelWrapper::addDesignGroupObjectWrapper(scv::Component *object) {
+
+}
+
+GroupObjectWrapper *GroupPanelWrapper::getDesignGroupObjectWrapper(scv::Component *object) {
+
+}
