@@ -4,6 +4,7 @@
 #include "GroupPanel.h"
 #include "ParallelGroupPanel.h"
 #include "SequentialGroupPanel.h"
+#include "GroupObjectWrapper.h"
 
 class GroupPanelWrapper;
 class GroupPanelWrapperMenu : public scv::ContextMenu {
@@ -24,6 +25,8 @@ private:
 
 class GroupPanelWrapper : public scv::Panel {
 public:
+   typedef std::list<GroupObjectWrapper *> DesignList;
+
    ///////////////////////////////////////////////////////////
    GroupPanelWrapper(GroupPanel::GroupType type);
    virtual ~GroupPanelWrapper(void);
@@ -46,16 +49,18 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   //void setGroup(GroupPanel *group);
    inline GroupPanel *getGroup(void) const;
 
    std::string getGroupCode(void) const;
    ///////////////////////////////////////////////////////////
 
-   std::list<GroupObjectWrapper *> createPreview(scv::Group &group);
+   ///////////////////////////////////////////////////////////
+   scv::Group *createPreview(void);
 
-   static GroupObjectWrapper *addDesignGroupObjectWrapper(scv::Component *object);
-   static GroupObjectWrapper *getDesignGroupObjectWrapper(scv::Component *object);
+   static void prepareDesignPreview(void);
+   static GroupObjectWrapper *getDesignObjectWrapper(scv::Component *object);
+   static DesignList getDesignObjectWrapperList(void);
+   ///////////////////////////////////////////////////////////
 
    inline GroupPanel::GroupType getType(void) const;
 
@@ -66,7 +71,7 @@ protected:
    scv::Group *_hGroup, *_vGroup;
 
 private:
-   static std::list<GroupObjectWrapper *> s_designGroupObjectWrapper;
+   static DesignList s_designList;
 };
 
 ///////////////////////////////////////////////////////////

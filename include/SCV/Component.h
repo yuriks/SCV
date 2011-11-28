@@ -139,6 +139,7 @@ public:
 
    virtual void addChild(Component *object);
    virtual void removeChild(Component *object);
+   virtual void removeAllChild(void);
 
    virtual Component *getChild(int index) const;
 

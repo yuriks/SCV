@@ -92,9 +92,7 @@ void GroupPanel::addChild(scv::Component *object) {
    _horizontalGroup->addComponent(wrappedObject);
 }
 
-std::list<GroupObjectWrapper *> GroupPanel::createPreview(scv::Group &group) {
-   std::list<GroupObjectWrapper *> list;
-
+void GroupPanel::createPreview(scv::Group *group) {
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {
          scv::Group *currGroup = NULL;
@@ -103,16 +101,12 @@ std::list<GroupObjectWrapper *> GroupPanel::createPreview(scv::Group &group) {
          } else if (dynamic_cast<SequetialGroupPanel *>(*iter)) {
             currGroup = scv::GroupLayout::createSequentialGroup();
          }
-         group.addGroup(currGroup);
-         list.merge((static_cast<GroupPanel *>(*iter))->createPreview(*currGroup));
+         group->addGroup(currGroup);
+         (static_cast<GroupPanel *>(*iter))->createPreview(currGroup);
       } else {
-         GroupObjectWrapper *objectWrapper = new GroupObjectWrapper((*static_cast<GroupObjectWrapper *>(*iter)));
-         list.push_back(objectWrapper);
-         group.addComponent(objectWrapper);
+         group->addComponent(GroupPanelWrapper::getDesignObjectWrapper(static_cast<GroupObjectWrapper *>(*iter)->getObject()));
       }
    }
-   
-   return list;
 }
 
 void GroupPanel::display(void) {

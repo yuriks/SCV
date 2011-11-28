@@ -184,27 +184,26 @@ void Application::openComponentSelector(GroupPanel *group) {
 
 void Application::createPreview(scv::Component *object) {
    scv::Panel *panel = static_cast<scv::Panel *>(object);
+   scv::Component::List list = panel->getChildren();
+   panel->removeAllChild();
+
+   scv::Component::List::iterator iter = list.begin();
+   while (iter != list.end()) {
+      scv::Component *pItem = (*iter);
+      iter = list.erase(iter);
+      delete pItem;
+   }
 
    scv::GroupLayout *layout = new scv::GroupLayout(panel);
    panel->setLayout(layout);
 
-   std::list<GroupObjectWrapper *> objects;
-   CodeGenerator::ManagedList list = CodeGenerator::getInstance()->getManagedComponents();
-   for (CodeGenerator::ManagedList::iterator iter = list.begin(); iter != list.end(); ++iter) {
-      objects.push_back(new GroupObjectWrapper((*iter)->getComponent()));
+   GroupPanelWrapper::prepareDesignPreview();
+
+   layout->setHorizontalGroup(_hPanelWrapper->createPreview());
+   layout->setVerticalGroup(_vPanelWrapper->createPreview());
+
+   GroupPanelWrapper::DesignList designList = GroupPanelWrapper::getDesignObjectWrapperList();
+   for (GroupPanelWrapper::DesignList::iterator iter = designList.begin(); iter != designList.end(); ++iter) {
+      panel->addChild(*iter);
    }
-
-   scv::ParallelGroup *horizontalGroup = scv::GroupLayout::createParallelGroup();
-   scv::ParallelGroup *verticalGroup = scv::GroupLayout::createParallelGroup();
-   
-   _hPanelWrapper->createPreview(*horizontalGroup, objects);
-   _vPanelWrapper->createPreview(*verticalGroup, objects);
-   
-   components.unique();
-   std::cout << components.size() << std::endl;
-
-   layout->setHorizontalGroup(horizontalGroup);
-   layout->setVerticalGroup(verticalGroup);
-
-   
 }

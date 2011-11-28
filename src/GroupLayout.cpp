@@ -141,8 +141,13 @@ Group * GroupLayout::getVerticalGroup(void) const {
 }
 
 void GroupLayout::removeComponent(scv::Component *object) {
-   getHorizontalGroup()->removeComponent(object);
-   getVerticalGroup()->removeComponent(object);
+   if (getHorizontalGroup()) {
+      getHorizontalGroup()->removeComponent(object);
+   }
+   
+   if (getVerticalGroup()) {
+      getVerticalGroup()->removeComponent(object);
+   }
 }
 
 } //namespace scv

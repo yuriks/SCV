@@ -21,7 +21,7 @@ private:
 class GroupObjectWrapper : public scv::Panel {
 public:
    ///////////////////////////////////////////////////////////
-   GroupObjectWrapper(scv::Component *objet);
+   GroupObjectWrapper(scv::Component *objet, bool createContextMenu = true);
    GroupObjectWrapper(const GroupObjectWrapper &source);
 
    virtual ~GroupObjectWrapper(void);

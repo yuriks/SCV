@@ -10,7 +10,7 @@ namespace scv {
 class Group : public Spring {
 public:
    ///////////////////////////////////////////////////////////
-   typedef std::deque<Spring*> SpringsList;
+   typedef std::list<Spring*> SpringsList;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -72,7 +72,11 @@ private:
 
 ///////////////////////////////////////////////////////////
 Spring * Group::getSpring(int index) {
-   return _springs[index];
+   for (SpringsList::iterator iter = _springs.begin(); iter != _springs.end(); ++iter) {
+      if (index == 0) return (*iter);
+      index--;
+   }
+   return NULL;
 }
 ///////////////////////////////////////////////////////////
 

@@ -22,10 +22,12 @@ void GroupObjectWrapperMenu::onMenuAccessed(const std::deque<std::string> &addre
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-GroupObjectWrapper::GroupObjectWrapper(scv::Component *object) : scv::Panel(scv::Point(0,0), scv::Point(object->getWidth(), object->getHeight())) {
+GroupObjectWrapper::GroupObjectWrapper(scv::Component *object, bool createContextMenu) : scv::Panel(scv::Point(0,0), scv::Point(object->getWidth(), object->getHeight())) {
    setObject(object);
 
-   registerContextMenu(new GroupObjectWrapperMenu(this));
+   if (createContextMenu) {
+      registerContextMenu(new GroupObjectWrapperMenu(this));
+   }
 }
 
 GroupObjectWrapper::GroupObjectWrapper(const GroupObjectWrapper &source) : scv::Panel(scv::Point(0,0), scv::Point(source.getObject()->getWidth(), source.getObject()->getHeight())) {

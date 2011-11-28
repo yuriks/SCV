@@ -34,6 +34,8 @@ void GroupPanelWrapperMenu::onMenuAccessed(const std::deque<std::string> &addres
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
+GroupPanelWrapper::DesignList GroupPanelWrapper::s_designList;
+
 GroupPanelWrapper::GroupPanelWrapper(GroupPanel::GroupType type) : scv::Panel(scv::Point(0, 0), scv::Point(940, 600)), _type(type) {
    setResizable(true);
 
@@ -112,18 +114,30 @@ std::string GroupPanelWrapper::getGroupCode(void) const {
    }
 }
 
-std::list<GroupObjectWrapper *> GroupPanelWrapper::createPreview(scv::Group &group) {
-   if (_group != NULL) {      
-      return _group->createPreview(group);
-   } else {
-      return std::list<GroupObjectWrapper *>();
+scv::Group *GroupPanelWrapper::createPreview(void) {
+   scv::Group *group = NULL;
+   if (_group != NULL) {
+      group = scv::GroupLayout::createParallelGroup();
+      _group->createPreview(group);
    }
+   return group;
 }
 
-GroupObjectWrapper *GroupPanelWrapper::addDesignGroupObjectWrapper(scv::Component *object) {
-
+void GroupPanelWrapper::prepareDesignPreview(void) {
+   s_designList.clear();
 }
 
-GroupObjectWrapper *GroupPanelWrapper::getDesignGroupObjectWrapper(scv::Component *object) {
-
+GroupObjectWrapper *GroupPanelWrapper::getDesignObjectWrapper(scv::Component *object) {
+   for (DesignList::iterator iter = s_designList.begin(); iter != s_designList.end(); ++iter) {
+      if ((*iter)->getObject() == object) {
+         return (*iter);
+      }
+   }
+   s_designList.push_back(new GroupObjectWrapper(object, false));
+   return s_designList.back();
 }
+
+GroupPanelWrapper::DesignList GroupPanelWrapper::getDesignObjectWrapperList(void) {
+   return s_designList;
+}
+

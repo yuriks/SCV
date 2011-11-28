@@ -34,9 +34,7 @@ void Group::removeComponent(scv::Component * object) {
    SpringsList::iterator iter = _springs.begin();
    while (iter != _springs.end()) {
       if (dynamic_cast<ComponentSpring *>(*iter) && static_cast<ComponentSpring *>(*iter)->getComponent() == object) {
-         ComponentSpring *pItem = static_cast<ComponentSpring *>(*iter);
          iter = _springs.erase(iter);
-         delete pItem;
       } else if (dynamic_cast<Group *>(*iter)) {
          static_cast<Group *>(*iter)->removeComponent(object);
          ++iter;

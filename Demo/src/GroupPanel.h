@@ -40,7 +40,7 @@ public:
    inline GroupType getType(void) const;
    ///////////////////////////////////////////////////////////
 
-   std::list<GroupObjectWrapper *> createPreview(scv::Group &group);
+   void createPreview(scv::Group *group);
 
    ///////////////////////////////////////////////////////////
    virtual void display(void);   

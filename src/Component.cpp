@@ -343,6 +343,14 @@ void Component::removeChild(Component *object) {
    }
 }
 
+void Component::removeAllChild(void) {
+   Component::List::iterator iter = _children.begin();
+   while(iter != _children.end()) {
+      (*iter)->_parent = NULL;
+      iter = _children.erase(iter);
+   }
+}
+
 Component *Component::getChild(int index) const {
    if (index < _children.size()) {
       Component::List::const_iterator iter = _children.begin();
