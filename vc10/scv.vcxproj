@@ -54,6 +54,7 @@
     <ClCompile Include="..\src\MouseEvent.cpp" />
     <ClCompile Include="..\src\ParallelGroup.cpp" />
     <ClCompile Include="..\src\Point.cpp" />
+    <ClCompile Include="..\src\PopupMenuStyle.cpp" />
     <ClCompile Include="..\src\ProgressBar.cpp" />
     <ClCompile Include="..\src\RadioButton.cpp" />
     <ClCompile Include="..\src\Scissor.cpp" />
@@ -111,7 +112,7 @@
     <ClInclude Include="..\include\SCV\GTree.h" />
     <ClInclude Include="..\include\SCV\Image.h" />
     <ClInclude Include="..\include\SCV\ParallelGroup.h" />
-    <ClInclude Include="..\include\SCV\PopupItemStyle.h" />
+    <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
     <ClInclude Include="..\include\SCV\ImgLoader.h" />
     <ClInclude Include="..\include\SCV\List.h" />
     <ClInclude Include="..\include\SCV\Panel.h" />

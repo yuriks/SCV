@@ -62,7 +62,7 @@
       <Filter>3.Kernel</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComboBoxMenuStyle.cpp">
-      <Filter>4.Widgets\Tree\PopupItemStyle\ComboBox</Filter>
+      <Filter>4.Widgets\Tree\PopupMenuStyle\ComboBox</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ComponentTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
@@ -209,10 +209,13 @@
       <Filter>4.Widgets\Tree\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\src\VistaMenuStyle.cpp">
-      <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
+      <Filter>4.Widgets\Tree\PopupMenuStyle\ContextMenu</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ScrollComponent.cpp">
       <Filter>4.Widgets\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PopupMenuStyle.cpp">
+      <Filter>4.Widgets\Tree\PopupMenuStyle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -292,7 +295,7 @@
       <Filter>2.Data</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h">
-      <Filter>4.Widgets\Tree\PopupItemStyle\ComboBox</Filter>
+      <Filter>4.Widgets\Tree\PopupMenuStyle\ComboBox</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h">
       <Filter>4.Widgets\Object</Filter>
@@ -433,13 +436,13 @@
       <Filter>4.Widgets\Tree\Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\VistaMenuStyle.h">
-      <Filter>4.Widgets\Tree\PopupItemStyle\ContextMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\PopupItemStyle.h">
-      <Filter>4.Widgets\Tree\PopupItemStyle</Filter>
+      <Filter>4.Widgets\Tree\PopupMenuStyle\ContextMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ScrollComponent.h">
       <Filter>4.Widgets\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\PopupMenuStyle.h">
+      <Filter>4.Widgets\Tree\PopupMenuStyle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -494,15 +497,6 @@
     <Filter Include="4.Widgets\Tree\Menu">
       <UniqueIdentifier>{1a35f4aa-e0b2-4304-a940-844d687085b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.Widgets\Tree\PopupItemStyle">
-      <UniqueIdentifier>{30b069a1-e53c-4ddb-ae33-1130417202a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\Tree\PopupItemStyle\ComboBox">
-      <UniqueIdentifier>{ab162e12-e0d4-4bdd-9a0c-4b0043cf158b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\Tree\PopupItemStyle\ContextMenu">
-      <UniqueIdentifier>{da161707-b850-4dce-aeaa-d1d666cc15c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="6.GroupLayout">
       <UniqueIdentifier>{cb729ae5-8eb7-4850-9d94-3b558dee9db2}</UniqueIdentifier>
     </Filter>
@@ -511,6 +505,15 @@
     </Filter>
     <Filter Include="6.GroupLayout\Spring\Group">
       <UniqueIdentifier>{bc14e31f-02c0-4e38-a65d-8336f8204721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupMenuStyle">
+      <UniqueIdentifier>{30b069a1-e53c-4ddb-ae33-1130417202a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupMenuStyle\ComboBox">
+      <UniqueIdentifier>{ab162e12-e0d4-4bdd-9a0c-4b0043cf158b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\Tree\PopupMenuStyle\ContextMenu">
+      <UniqueIdentifier>{da161707-b850-4dce-aeaa-d1d666cc15c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -1,41 +1,34 @@
 #ifndef __SCV_COMBOBOX_MENU_STYLE_H__
 #define __SCV_COMBOBOX_MENU_STYLE_H__
 
-#ifndef DOXYGEN_SKIP_THIS
-#include "PopupItemStyle.h"
+#include "PopupMenuStyle.h"
 #include "Singleton.h"
-#endif // DOXYGEN_SKIP_THIS
 
 namespace scv {
 
-class ComponentTexture;
-
-class ComboBoxMenuStyle : public PopupItemStyle, public Singleton<ComboBoxMenuStyle> {
+class ComboBoxMenuStyle : public PopupMenuStyle, public Singleton<ComboBoxMenuStyle> {
+friend class Singleton<ComboBoxMenuStyle>;
 public:
-   virtual void drawItem(const ContextMenu& menu, int selected_menu) const;
+   ///////////////////////////////////////////////////////////
+   virtual void drawItem(const scv::ContextMenu *menu, int index) const;
+   ///////////////////////////////////////////////////////////
 
-   virtual bool isInsideItem(const ContextMenu& menu, const Point& pos, int item) const;
-   virtual Point getSubItemPosition(const ContextMenu& menu, int menu_index) const;
+   ///////////////////////////////////////////////////////////
+   virtual int calculateWidth(const scv::ContextMenu *menu) const;
+   virtual int calculateHeight(const scv::ContextMenu *menu) const;
+   ///////////////////////////////////////////////////////////
 
-   virtual int calculateWidth(const ContextMenu& menu) const;
-   virtual int calculateHeight(const ContextMenu& menu) const;
+protected:
+   ///////////////////////////////////////////////////////////
+   ComboBoxMenuStyle(void);
+   virtual ~ComboBoxMenuStyle(void);
+   ///////////////////////////////////////////////////////////
 
-private:
-   static const int s_menuSpacing  = 0;
-   static const int s_borderHeight = 0;
-   static const int s_borderWidth  = 0;
-   static const int s_horzMargin   = 4;
-   static const int s_menuHeight   = 13;
+   virtual void createTexture(void);
 
-   ComboBoxMenuStyle();
-   void createTexture();
-
-   ComponentTexture* _cTexture;
-
-   friend class Singleton<ComboBoxMenuStyle>;
+   int _horzMargin;   
 };
 
 } // namespace scv
-
 
 #endif // __SCV_COMBOBOX_MENU_STYLE_H__

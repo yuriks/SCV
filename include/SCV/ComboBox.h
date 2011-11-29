@@ -12,7 +12,7 @@ public:
    ///////////////////////////////////////////////////////////
    ComboBox(const scv::Point &p1, const scv::Point &p2);
    ComboBox(const scv::Point &p, unsigned int width);
-   ComboBox(const scv::Point &p, unsigned int width, std::vector <std::string> items, unsigned int defaultIndex);
+   virtual ~ComboBox(void);
    ///////////////////////////////////////////////////////////
 
    //SCVCallbacks
@@ -53,27 +53,38 @@ public:
 
    virtual void display(void);
 
-private:
+protected:
    ///////////////////////////////////////////////////////////
    class ComboBoxMenu : public ContextMenu {
    public:
-      ComboBoxMenu(ComboBox& combo);
+      ComboBoxMenu(scv::ComboBox *host);
+      
+      ///////////////////////////////////////////////////////////
       void onMenuAccessed(const std::deque<std::string> &address);
+      void onStatusChange(void);
+      ///////////////////////////////////////////////////////////
+
+      ///////////////////////////////////////////////////////////
       void setItems(const std::vector<std::string>& items);
       void addItem(const std::string item);
-      ComboBox& combo;
+      ///////////////////////////////////////////////////////////
+
+      scv::ComboBox *_host;
    };
    ///////////////////////////////////////////////////////////
 
    void createTexture(void);
    void processMouse(const scv::MouseEvent &evt);
+
    void select(const std::string& value);
 
-   ComboBoxMenu* menu;
+   ///////////////////////////////////////////////////////////
+   ComboBoxMenu* _comboBoxMenu;
+      
    bool _active;
-   class ComboBoxContextMenu;
+   int _currentValue;
    std::vector<std::string> _values;
-   int _currentValue;   
+   ///////////////////////////////////////////////////////////
 };
 
 } // namespace scv

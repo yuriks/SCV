@@ -9,13 +9,20 @@
 
 namespace scv {
 
-ComboBox::ComboBoxMenu::ComboBoxMenu(ComboBox& combo) : ContextMenu(""), combo(combo) {
+ComboBox::ComboBoxMenu::ComboBoxMenu(scv::ComboBox *host) : ContextMenu("ComboBoxMenu") {
+   _host = host;
    setMenuStyle(ComboBoxMenuStyle::getInstance());
 }
 
 void ComboBox::ComboBoxMenu::onMenuAccessed(const std::deque<std::string> &address) {
-   combo.select(address[1]);
-   combo._active = false;
+   _host->select(address[1]);
+   _host->_active = false;
+}
+
+void ComboBox::ComboBoxMenu::onStatusChange(void) {
+   if (getStatus() == false) {
+      _host->_active = false;
+   }
 }
 
 void ComboBox::ComboBoxMenu::setItems(const std::vector<std::string>& items) {
@@ -32,49 +39,30 @@ void ComboBox::ComboBoxMenu::addItem(const std::string item) {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, ""), menu(0) {
-   menu = new ComboBoxMenu(*this);
-   MenuHolder::getInstance()->registerMenu(menu);
-   _isHResizable = true;
-   _isVResizable = false;
-   _type = COMBOBOX;
+ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, std::string()), _comboBoxMenu(0) {
+   _comboBoxMenu = new ComboBoxMenu(this);
+   MenuHolder::getInstance()->registerMenu(_comboBoxMenu);
 
-   _active = false;
+   _type = COMBOBOX;
 
    createTexture();
 }
 
-ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1, Point(p1.x + width, p1.y + 20), ""), menu(0) {
-   menu = new ComboBoxMenu(*this);
-   MenuHolder::getInstance()->registerMenu(menu);
-   _isHResizable = true;
-   _isVResizable = false;
-   _type = COMBOBOX;
+ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1, Point(p1.x + width, p1.y + 20), std::string()), _comboBoxMenu(0) {
+   _comboBoxMenu = new ComboBoxMenu(this);
+   MenuHolder::getInstance()->registerMenu(_comboBoxMenu);
 
-   _active = false;
+   _type = COMBOBOX;
 
    createTexture();
 }
 
-ComboBox::ComboBox(const scv::Point &p, unsigned int width, std::vector <std::string> items, unsigned int defaultIndex)
-   : Button(p, Point(p.x + width, p.y + 20), ""), menu(0) {
-
-   menu = new ComboBoxMenu(*this);
-   MenuHolder::getInstance()->registerMenu(menu);
-
-   _isHResizable = true;
-   _isVResizable = false;
-   _type = COMBOBOX;
-   setItems(items);
-   if (defaultIndex >= 0 && defaultIndex < items.size())
-      select(items[defaultIndex]);
-   _currentValue = defaultIndex;
-
-   _active = false;
-
-   createTexture();
+ComboBox::~ComboBox(void) {
+   if (_comboBoxMenu != NULL) {
+      MenuHolder::getInstance()->unregisterMenu(_comboBoxMenu);
+      delete _comboBoxMenu;
+   }
 }
-
 
 void ComboBox::onMouseClick(const scv::MouseEvent &evt) {
 }
@@ -102,62 +90,54 @@ void ComboBox::onSelectionChanged(std::string address, int id) {
 
 void ComboBox::display(void) {
    static Kernel *kernel = Kernel::getInstance();
-   static Scissor *scissor = Scissor::getInstance();
-   static ColorScheme *scheme = ColorScheme::getInstance();
-   static FontTahoma *font = FontTahoma::getInstance();
-
+   
    if (_cTexture == NULL || _isVisible == false) return;
 
    Point currPosition = getAbsolutePosition();
 
-   if (isDragging())
-      menu->setPosition(currPosition + Point(0, getHeight()));
+   if (isDragging()) _comboBoxMenu->setPosition(currPosition + Point(0, getHeight()));
 
    _cTexture->enable();
 
-      scheme->applyColor(ColorScheme::TEXTFIELD);
-      _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
-      _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
-      _cTexture->display(currPosition.x + getWidth() - 17, currPosition.y + getHeight() - 2, 2, 15, - 16);
+   ColorScheme::getInstance()->applyColor(ColorScheme::TEXTFIELD);
+   _cTexture->display(currPosition.x, currPosition.y, 1, getWidth(), getHeight());
+   _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
 
-      if (isHolded())
-         _cTexture->display(currPosition.x + 1, currPosition.y + 1, 4, getWidth() - 2, getHeight() - 2);
-      else if (isOvered())
-         _cTexture->display(currPosition.x + 1 , currPosition.y + 1, 3, getWidth() - 2, getHeight() - 2);
+   ColorScheme::getInstance()->applyColor(ColorScheme::MAINCOMPONENTS);
+   _cTexture->display(currPosition.x + getWidth() - 17, currPosition.y + getHeight() - 2, 2, 15, - 16);
+
+   ColorScheme::getInstance()->applyColor(ColorScheme::TEXTFIELD);
+   if (isHolded()) {
+      _cTexture->display(currPosition.x + 1, currPosition.y + 1, 4, getWidth() - 2, getHeight() - 2);
+   } else if (isOvered()) {
+      _cTexture->display(currPosition.x + 1 , currPosition.y + 1, 3, getWidth() - 2, getHeight() - 2);
+   }
 
    _cTexture->disable();
 
-   scissor->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 22, getHeight()));
+   Scissor::getInstance()->pushScissor(Scissor::Info(currPosition.x + 3, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - 22, getHeight()));
 
    StaticLabel::display(currPosition.x + 4, currPosition.y + getHeight() / 2 - 6, Label::getString());
 
-   scissor->popScissor();
+   Scissor::getInstance()->popScissor();
 }
 
 void ComboBox::setItems(const std::vector<std::string>& items) {
-   menu->setItems(items);
+   _comboBoxMenu->setItems(items);
    _values = items;
 }
 
 void ComboBox::popupMenu(void) {
    static MenuHolder* holder = MenuHolder::getInstance();
-   holder->activeMenu(menu, getAbsolutePosition() + Point(0, getHeight()));
+   holder->activeMenu(_comboBoxMenu, getAbsolutePosition() + Point(0, getHeight()));
 }
 
 void ComboBox::select(const std::string& value) {
-
    setString(value);
 
-   int i=0;
-   for (; i < _values.size(); i++) {
-      if (value==_values[i])
-         break;
-   }
-   if (i < _values.size())
-      _currentValue = i;
+   _currentValue = static_cast<int>(std::find(_values.begin(), _values.end(), value) - _values.begin());
 
-   onSelectionChanged(value, i);
-
+   onSelectionChanged(value, _currentValue);
 }
 
 void ComboBox::processMouse(const scv::MouseEvent &evt) {
@@ -176,8 +156,9 @@ void ComboBox::processMouse(const scv::MouseEvent &evt) {
             _active = true;
          }
       }
-      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::RIGHT)
+      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::RIGHT) {
          _active = false;
+      }
    }
 }
 
@@ -210,7 +191,7 @@ void ComboBox::createTexture(void) {
 }
 
 void ComboBox::addItem(const std::string& str) {
-   menu->addItem(str);
+   _comboBoxMenu->addItem(str);
    _values.push_back(str);
 }
 
