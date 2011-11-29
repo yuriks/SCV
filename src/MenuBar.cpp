@@ -53,7 +53,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
                         && relativeMouse.y > s_borderHeight/2-1 + currPosition.y && relativeMouse.y < currPosition.y + getHeight() - 2) {
                      menu->closeAllMenus();
                      _active = !_active;
-                     _menus[i]->_status = !_menus[i]->_status;
+                     _menus[i]->setStatus(!_menus[i]->getStatus());
                      if (_active) {
                         _currSelectedMenu = i;
                         return;
@@ -75,7 +75,7 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
                      && relativeMouse.y > s_borderHeight/2-1 + currPosition.y && relativeMouse.y < currPosition.y + getHeight() - 2) {
                   menu->closeAllMenus();
                   _currSelectedMenu = i;
-                  _menus[i]->_status = true;
+                  _menus[i]->setStatus(true);
                   break;
                }
             }
@@ -117,13 +117,13 @@ void MenuBar::processKey(const scv::KeyEvent &evt) {
       if (_currSelectedMenu == 0) _currSelectedMenu = _menus.size() - 1;
       else _currSelectedMenu--;
       menu->closeAllMenus();
-      _menus[_currSelectedMenu]->_status = true;
+      _menus[_currSelectedMenu]->setStatus(true);
       _menus[_currSelectedMenu]->_currSelectedMenu = 0;
    } else if (evt.getKeyString() == "Right" && ((cMenu->_currSelectedMenu != -1 && !cMenu->_list[cMenu->_currSelectedMenu]->hasSubMenus() && !cMenu->_recentlyChange) ||
          cMenu->_currSelectedMenu == -1)) {
       _currSelectedMenu = (_currSelectedMenu + 1) % _menus.size();
       menu->closeAllMenus();
-      _menus[_currSelectedMenu]->_status = true;
+      _menus[_currSelectedMenu]->setStatus(true);
       _menus[_currSelectedMenu]->_currSelectedMenu = 0;
    }
 }
