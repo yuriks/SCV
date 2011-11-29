@@ -19,11 +19,14 @@
     <Filter Include="5.GroupLayout\GroupPanel">
       <UniqueIdentifier>{957c731b-924d-4b4e-9255-3f0490cf6a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="6.Code">
-      <UniqueIdentifier>{bc363e5d-f5ae-4f11-97aa-b976fe8fc2a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.PanelPallete">
       <UniqueIdentifier>{8165ae81-d56e-4ccc-8613-8ae921222da0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="7.Code">
+      <UniqueIdentifier>{bc363e5d-f5ae-4f11-97aa-b976fe8fc2a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6.DesignPreview">
+      <UniqueIdentifier>{cc60f073-5fbd-417a-91cb-3c02f9b8aaf3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,10 +67,10 @@
       <Filter>2.App</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ManagedComponent.cpp">
-      <Filter>6.Code</Filter>
+      <Filter>7.Code</Filter>
     </ClCompile>
     <ClCompile Include="..\src\CodeGenerator.cpp">
-      <Filter>6.Code</Filter>
+      <Filter>7.Code</Filter>
     </ClCompile>
     <ClCompile Include="..\src\ObjectEditor.cpp">
       <Filter>2.App</Filter>
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Pallete.cpp">
       <Filter>4.PanelPallete</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DesignPreview.cpp">
+      <Filter>6.DesignPreview</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,10 +120,10 @@
       <Filter>2.App</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ManagedComponent.h">
-      <Filter>6.Code</Filter>
+      <Filter>7.Code</Filter>
     </ClInclude>
     <ClInclude Include="..\src\CodeGenerator.h">
-      <Filter>6.Code</Filter>
+      <Filter>7.Code</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ObjectEditor.h">
       <Filter>2.App</Filter>
@@ -127,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Pallete.h">
       <Filter>4.PanelPallete</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\DesignPreview.h">
+      <Filter>6.DesignPreview</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

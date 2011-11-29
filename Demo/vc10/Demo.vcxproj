@@ -200,6 +200,7 @@
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\CodeGenerator.cpp" />
     <ClCompile Include="..\src\ComponentSelector.cpp" />
+    <ClCompile Include="..\src\DesignPreview.cpp" />
     <ClCompile Include="..\src\GroupObjectWrapper.cpp" />
     <ClCompile Include="..\src\GroupPanel.cpp" />
     <ClCompile Include="..\src\GroupPanelWrapper.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\src\Application.h" />
     <ClInclude Include="..\src\CodeGenerator.h" />
     <ClInclude Include="..\src\ComponentSelector.h" />
+    <ClInclude Include="..\src\DesignPreview.h" />
     <ClInclude Include="..\src\GroupObjectWrapper.h" />
     <ClInclude Include="..\src\GroupPanel.h" />
     <ClInclude Include="..\src\GroupPanelWrapper.h" />

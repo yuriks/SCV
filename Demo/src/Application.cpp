@@ -7,6 +7,8 @@
 
 #include "GroupObjectWrapper.h"
 
+#include "DesignPreview.h"
+
 
 MainTabbedPane::MainTabbedPane(void) : scv::TabbedPane(scv::Point(), scv::Point()) {
 }
@@ -183,27 +185,6 @@ void Application::openComponentSelector(GroupPanel *group) {
 }
 
 void Application::createPreview(scv::Component *object) {
-   scv::Panel *panel = static_cast<scv::Panel *>(object);
-   scv::Component::List list = panel->getChildren();
-   panel->removeAllChild();
-
-   scv::Component::List::iterator iter = list.begin();
-   while (iter != list.end()) {
-      scv::Component *pItem = (*iter);
-      iter = list.erase(iter);
-      delete pItem;
-   }
-
-   scv::GroupLayout *layout = new scv::GroupLayout(panel);
-   panel->setLayout(layout);
-
-   GroupPanelWrapper::prepareDesignPreview();
-
-   layout->setHorizontalGroup(_hPanelWrapper->createPreview());
-   layout->setVerticalGroup(_vPanelWrapper->createPreview());
-
-   GroupPanelWrapper::DesignList designList = GroupPanelWrapper::getDesignObjectWrapperList();
-   for (GroupPanelWrapper::DesignList::iterator iter = designList.begin(); iter != designList.end(); ++iter) {
-      panel->addChild(*iter);
-   }
+   DesignPreview::getInstance()->createPreview(_hPanelWrapper, _vPanelWrapper);
+   
 }
