@@ -6,6 +6,9 @@
 #include "Application.h"
 
 Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
+   _title = new scv::Label(scv::Point(0, 0), "Palette");
+   addChild(_title);
+
    scv::GroupLayout *paletteLayout = new scv::GroupLayout(this);
    setLayout(paletteLayout);
 
@@ -44,18 +47,62 @@ Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<App
 
    paletteLayout->setHorizontalGroup(
       paletteLayout->createParallelGroup()
+         ->addGroup(scv::GroupLayout::createSequentialGroup()
+            ->addGap(15, 15, -1)
+            ->addComponent(_title)
+            ->addGap(15, 15, -1)
+         )
          ->addComponent(containers, containers->getWidth(), containers->getWidth(), -1)
          ->addComponent(controls, controls->getWidth(), controls->getWidth(), -1)
          ->addComponent(windows, windows->getWidth(), windows->getWidth(), -1)
    );
 
    paletteLayout->setVerticalGroup(
-      paletteLayout->createSequentialGroup()->setAutoCreateGaps(true)
-         ->addComponent(containers, containers->getHeight(), containers->getHeight(), containers->getHeight())
-         ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())
+      paletteLayout->createSequentialGroup()
+         ->addGap(5)
+         ->addComponent(_title)->addGap(8)
+         ->addComponent(containers, containers->getHeight(), containers->getHeight(), containers->getHeight())->addGap(10)
+         ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())->addGap(10)
          ->addComponent(windows, windows->getHeight(), windows->getHeight(), windows->getHeight())
    );
 }
 
 Pallete::~Pallete(void) {
+}
+
+void Pallete::display(void) {
+   static scv::Kernel *kernel = scv::Kernel::getInstance();
+   static scv::Scissor *scissor = scv::Scissor::getInstance();
+   static scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
+
+   if (_cTexture == NULL || _isVisible == false) return;
+
+   scv::Point currPosition = getAbsolutePosition();
+
+   scissor->pushScissor(getScissor());
+
+   _cTexture->enable();
+   scv::ColorScheme::getInstance()->applyColor(scv::ColorScheme::MENUBAR);
+
+   // middle
+   _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
+
+   // corners
+   _cTexture->display(currPosition.x, currPosition.y + 1, 0, 1, getHeight() - 2);
+   _cTexture->display(currPosition.x + getWidth() - 1, currPosition.y + 1, 0, 1, getHeight() - 2);
+   _cTexture->display(currPosition.x + 1, currPosition.y, 0, getWidth() - 2, 1);
+   _cTexture->display(currPosition.x + 1, currPosition.y + getHeight() - 1, 0, getWidth() - 2, 1);
+
+   _cTexture->disable();
+
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+   }
+
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      if (kernel->willAppearOnScreen(*iter))
+         (*iter)->display();
+   }
+
+   scissor->popScissor();
 }
