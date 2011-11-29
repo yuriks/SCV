@@ -18,6 +18,8 @@ const int InternalFrame::s_closeHeight = 19;
 
 InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &title) :
       ComponentWithTexture(Point(0, 0), Point(width + s_borderWidth * 2, height + s_borderWidth + s_borderTop)) {
+
+   _panel = NULL;
    setDraggable(true);
    setResizable(true);
 
@@ -27,8 +29,7 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
 
    _overClose = _clickClose = false;
 
-   _panel = new Panel(Point(s_borderWidth, s_borderTop), Point(s_borderWidth + width, s_borderTop + height));
-   addChild(_panel);
+   setPanel(new Panel(Point(s_borderWidth, s_borderTop), Point(s_borderWidth + width, s_borderTop + height)));
    
    _panel->setDraggable(false);
    _panel->setResizable(false);
@@ -73,11 +74,12 @@ void InternalFrame::onClose(void) {
 
 void InternalFrame::setVisible(bool state) {
    if (state && !isVisible()) {
+      ComponentWithTexture::setVisible(state);
       onOpen();
    } else if (!state && isVisible()) {
+      ComponentWithTexture::setVisible(state);
       onClose();
-   }
-   ComponentWithTexture::setVisible(state);
+   }   
 }
 
 void InternalFrame::processMouse(const scv::MouseEvent &evt) {
@@ -123,6 +125,7 @@ void InternalFrame::processMouse(const scv::MouseEvent &evt) {
    if (evt.getState() == MouseEvent::UP) {
       if (_clickClose && _overClose) {
          setVisible(false);
+         _clickClose = false;
       } else {
          _clickClose = false;
       }
@@ -137,19 +140,19 @@ void InternalFrame::processKey(const scv::KeyEvent &evt) {
 }
 
 void InternalFrame::display(void) {
-   static ColorScheme *scheme = ColorScheme::getInstance();
    static Kernel *kernel = Kernel::getInstance();
-   static Scissor *scissor = Scissor::getInstance();
-   static FontTahoma *font = FontTahoma::getInstance();
 
    if (isVisible() == false || _cTexture == NULL) return;
 
    Point currPosition = getAbsolutePosition();
    configPanel();
 
-   scissor->pushScissor(getScissor());
+   Scissor::getInstance()->pushScissor(getScissor());
 
    _cTexture->enable();
+
+   ColorScheme::getInstance()->applyColor(ColorScheme::MENUBAR);
+
    _cTexture->display(currPosition.x + 2,currPosition.y + 2, 7, getWidth() - 4, getHeight() - 4);
 
    // border top
@@ -161,7 +164,7 @@ void InternalFrame::display(void) {
    // border left
    _cTexture->display(currPosition.x + 1             , currPosition.y + 5, 7, 1, getHeight() - 10);
 
-   scheme->applyDefaultModulate();
+   ColorScheme::getInstance()->applyDefaultModulate();
    // border top
    _cTexture->display(currPosition.x + 5             , currPosition.y, 8 , getWidth() - 10, 1);
    // border down
@@ -177,7 +180,7 @@ void InternalFrame::display(void) {
    _cTexture->display(currPosition.x + getWidth() - 5, currPosition.y + getHeight() - 5, 5, 5, 5);
    _cTexture->display(currPosition.x                 , currPosition.y + getHeight() - 5, 6, 5, 5);
 
-   scheme->applyDefaultModulate();
+   ColorScheme::getInstance()->applyDefaultModulate();
    if (_clickClose && _overClose) {
       _cTexture->display(currPosition.x + getWidth() - s_closeWidth - 5, currPosition.y, 2, 46,19);
    } else if (_overClose) {
@@ -191,10 +194,10 @@ void InternalFrame::display(void) {
 
    _panel->display();
 
-   scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
-   StaticLabel::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - font->getHeight()) / 2 + 2, _title);
-   scissor->popScissor();
-   scissor->popScissor();
+   Scissor::getInstance()->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
+   StaticLabel::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - FontTahoma::getInstance()->getHeight()) / 2 + 2, _title);
+   Scissor::getInstance()->popScissor();
+   Scissor::getInstance()->popScissor();
 }
 
 bool InternalFrame::isOnTopBar(const Point &p) {

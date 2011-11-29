@@ -42,7 +42,10 @@ public:
    virtual void setVisible(bool state);
    ///////////////////////////////////////////////////////////
 
-   inline Panel *getPanel(void) const;
+   ///////////////////////////////////////////////////////////
+   inline void setPanel(scv::Panel *panel);
+   inline scv::Panel *getPanel(void) const;
+   ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
    inline void setTitle(const std::string &title);
@@ -72,10 +75,22 @@ protected:
 
    bool _overClose, _clickClose;
    bool _refreshPosition, _rolluped;
-   Panel *_panel;
+   scv::Panel *_panel;
 };
 
 ///////////////////////////////////////////////////////////
+
+void InternalFrame::setPanel(scv::Panel *panel) {
+   if (_panel != NULL) {
+      removeChild(getPanel());
+   }
+   
+   if (panel != NULL) {
+      _panel = panel;
+      addChild(_panel);
+   }
+}
+
 
 Panel *InternalFrame::getPanel(void) const {
    return _panel;
