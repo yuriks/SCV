@@ -37,30 +37,30 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   std::string getString(void);
-   void setString(const std::string &label);
+   inline std::string getString(void);
+   inline void setString(const std::string &label);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   void setPosition(const scv::Point &position);
-   Point getCurrPosition(void) const;
+   inline void setPosition(const scv::Point &position);
+   inline scv::Point getCurrPosition(void) const;
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   bool getStatus(void) const;
+   inline bool getStatus(void) const;
    void setStatus(bool status);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   int getWidth(void) const;
-   int getHeight(void) const;
+   inline int getWidth(void) const;
+   inline int getHeight(void) const;
    ///////////////////////////////////////////////////////////
 
-   bool hasSubMenus(void) const;
+   inline bool hasSubMenus(void) const;
 
    void setMenuStyle(const PopupMenuStyle* style);
 
-   const MenuList& getMenus() const;
+   inline const MenuList& getMenus() const;
 
    ///////////////////////////////////////////////////////////
    bool processMouse(const scv::MouseEvent &evt);
@@ -71,7 +71,7 @@ public:
 
 private:
    bool isInside(const Point &p);
-   bool isInsideThisMenu(const Point &p, int i) const;
+   inline bool isInsideItem(const Point &p, int i) const;
 
    bool hasSubMenuActive(void) const;
       
@@ -82,12 +82,11 @@ private:
 
    bool _recentlyChange;
    bool _status;
-   int _height, _witdh;
    int _currSelectedMenu;
 
    MenuList _list;
    ContextMenu *_parentMenu;
-   Point _currPosition;
+   scv::Point _currPosition;
    std::string _label;
    const PopupMenuStyle* _style;
 };
@@ -112,7 +111,7 @@ inline void ContextMenu::setPosition(const scv::Point &position) {
    _currPosition = position;
 }
 
-inline Point ContextMenu::getCurrPosition(void) const {
+inline scv::Point ContextMenu::getCurrPosition(void) const {
    return _currPosition;
 }
 
@@ -121,14 +120,14 @@ inline bool ContextMenu::getStatus(void) const {
 }
 
 inline int ContextMenu::getWidth(void) const {
-   return _witdh;
+   return _style->calculateWidth(this);
 }
 
 inline int ContextMenu::getHeight(void) const {
-   return _height;
+   return _style->calculateHeight(this);
 }
 
-inline bool ContextMenu::isInsideThisMenu(const Point &p, int i) const {
+inline bool ContextMenu::isInsideItem(const Point &p, int i) const {
    return _style->isInsideItem(this, p, i);
 }
 

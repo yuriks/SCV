@@ -36,7 +36,7 @@ void ComponentSelectorRefused::onMouseUp(const scv::MouseEvent &evt) {
 ComponentSelector::ComponentSelector(void) : scv::InternalFrame(400, 0, "Component Selector") {
    scv::Panel *panel = getPanel();
 
-   _comboBox = new scv::ComboBox(scv::Point(), 0);
+   _comboBox = new scv::ComboBox(scv::Point(), 200);
    panel->addChild(_comboBox);
 
    scv::Button *acceptButton = new ComponentSelectorAccepted(this);
@@ -75,7 +75,7 @@ ComponentSelector::ComponentSelector(void) : scv::InternalFrame(400, 0, "Compone
 ComponentSelector::~ComponentSelector(void) {   
 }
 
-void ComponentSelector::onOpen(void) {
+void ComponentSelector::onOpen(void) {   
    setHeight(getPanel()->getMinimumSize().y + s_borderTop + s_borderWidth + 15);
 
    std::vector<std::string> vector;
@@ -89,13 +89,21 @@ void ComponentSelector::onOpen(void) {
 
 void ComponentSelector::setVisible(bool state, GroupPanel *group) {
    _currGroup = group;
+
+   if (_currGroup != NULL) {
+      scv::Point groupPosition(group->getAbsolutePosition());
+      setAbsolutePosition(scv::Point(groupPosition.x + (_currGroup->getWidth() - getWidth()) / 2, groupPosition.y + (_currGroup->getHeight() - getHeight()) / 2));
+   }
+
    scv::InternalFrame::setVisible(state);
 }
 
 void ComponentSelector::accepted(void) {
    if (_currGroup != NULL) {
       ManagedComponent *managed = CodeGenerator::getInstance()->getManagedComponent(_comboBox->getValue());
-      _currGroup->addChild(managed->getComponent());
+      if (managed != NULL) {
+         _currGroup->addChild(managed->getComponent());
+      }
    }
    setVisible(false, NULL);   
 }

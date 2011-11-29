@@ -9,7 +9,6 @@
 namespace scv {
 
 ContextMenu::ContextMenu(const std::string& name) : _label(name) {
-   _height = _witdh = 0;
    _currSelectedMenu = -1;
    _parentMenu = NULL;
    _status = false;
@@ -33,9 +32,6 @@ void ContextMenu::removeMenu(ContextMenu *menu) {
    if (iter == _list.end()) return;
 
    _list.erase(iter);
-
-   _height = _style->calculateHeight(this);
-   _witdh = _style->calculateWidth(this);
 }
 
 void ContextMenu::removeAllMenus() {
@@ -45,9 +41,6 @@ void ContextMenu::removeAllMenus() {
       iter = _list.erase(iter);
       delete pItem;
    }
-   
-   _height = _style->calculateHeight(this);
-   _witdh = _style->calculateWidth(this);
 }
 
 void ContextMenu::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {
@@ -68,9 +61,6 @@ void ContextMenu::addMenu(ContextMenu *menu) {
 
    menu->registerParentMenu(this);
    _list.push_back(menu);
-
-   _height = _style->calculateHeight(this);
-   _witdh = _style->calculateWidth(this);
 }
 
 bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
@@ -84,7 +74,7 @@ bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
    } else {
       if (isInside(evt.getPosition())) {
          for (int i = 0; i < _list.size(); i++) {
-            if (isInsideThisMenu(evt.getPosition(), i)) {
+            if (isInsideItem(evt.getPosition(), i)) {
                   _currSelectedMenu = i;
                   _list[_currSelectedMenu]->setStatus(true);
 
@@ -159,11 +149,11 @@ void ContextMenu::display(void) {
 
    if (getStatus() == false || !hasSubMenus()) return;
 
-   if (_currPosition.x + _witdh > kernel->getWidth()) {
-      _currPosition.x = kernel->getWidth() - _witdh;
+   if (_currPosition.x + getWidth() > kernel->getWidth()) {
+      _currPosition.x = kernel->getWidth() - getWidth();
    }
-   if (_currPosition.y + _height > kernel->getHeight()) {
-      _currPosition.y = _currPosition.y - _height;
+   if (_currPosition.y + getHeight() > kernel->getHeight()) {
+      _currPosition.y = _currPosition.y - getHeight();
    }
 
    _style->drawItem(this, _currSelectedMenu);
@@ -176,8 +166,8 @@ void ContextMenu::display(void) {
 }
 
 bool ContextMenu::isInside(const Point &p) {
-   if (p.x >= _currPosition.x && p.x <= _currPosition.x + _witdh &&
-         p.y >= _currPosition.y && p.y <= _currPosition.y + _height) {
+   if (p.x >= _currPosition.x && p.x <= _currPosition.x + getWidth() &&
+         p.y >= _currPosition.y && p.y <= _currPosition.y + getHeight()) {
       return true;
    }
    return false;
