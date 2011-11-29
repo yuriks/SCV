@@ -106,7 +106,8 @@ std::string GroupPanel::getCode(const std::string &tab) {
       if (dynamic_cast<GroupPanel*>(*iter)) {
          code += static_cast<GroupPanel*>(*iter)->getCode(currTab);
       } else {
-         code += currTab + s_defaultTab + "->addComponent(" + CodeGenerator::getInstance()->getManagedComponent(*iter)->getPointerName() + ")\n";
+         GroupObjectWrapper *object = static_cast<GroupObjectWrapper *>(*iter);
+         code += currTab + s_defaultTab + "->addComponent(" + CodeGenerator::getInstance()->getManagedComponent(object->getObject())->getPointerName() + ")\n";         
       }
    }
    code += currTab + ")\n";

@@ -53,6 +53,9 @@ void Image::loadImage(const std::string &fileName) {
    if (_data != NULL) {
       delete _cTexture;
       _cTexture = NULL;
+
+      delete[] _data;
+      _data = NULL;
    }
 
    _path = fileName;
