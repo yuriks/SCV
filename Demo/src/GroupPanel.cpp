@@ -9,6 +9,8 @@
 
 #include "Application.h"
 
+#include "CodeGenerator.h"
+
 GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("Group Panel Menu") {
    _host = host;
 
@@ -17,7 +19,8 @@ GroupPanelMenu::GroupPanelMenu(GroupPanel *host) : scv::ContextMenu("Group Panel
    level1->addMenu(new scv::ContextMenu("Sequential Group"));
    addMenu(level1);
    
-   addMenu(new scv::ContextMenu("Add SCV Object"));
+   _addableObjects = new scv::ContextMenu("Add SCV Object");
+   addMenu(_addableObjects);
    addMenu(new scv::ContextMenu("Remove"));
 }
 
@@ -30,27 +33,45 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
 
    if (address.size() == 2) {
       if (address[1] == "Add SCV Object") {
-         app->openComponentSelector(_host);         
+         app->openComponentSelector(_host);
+         setStatus(false);
       } else if (address[1] == "Remove") {
          _host->getParent()->removeChild(_host);
       }
    } else if (address.size() == 3) {
-      switch (_host->getType()) {
-      case GroupPanel::HORIZONTAL:
-         if (address[2] == "Parallel Group") {
-            _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
-         } else if (address[2] == "Sequential Group") {
-            _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+      if (address[1] == "Add SCV Object") {
+         ManagedComponent *managed = CodeGenerator::getInstance()->getManagedComponent(address[2]);
+         if (managed != NULL) {
+            _host->addChild(managed->getComponent());
          }
-         break;
-      case GroupPanel::VERTICAL:
-         if (address[2] == "Parallel Group") {
-            _host->addChild(GroupPanelWrapper::createVerticalParallelGroupPanel());
-         } else if (address[2] == "Sequential Group") {
-            _host->addChild(GroupPanelWrapper::createVerticalSequentialGroupPanel());
+      } else if (address[1] == "Add Group Panel") {
+         switch (_host->getType()) {
+         case GroupPanel::HORIZONTAL:
+            if (address[2] == "Parallel Group") {
+               _host->addChild(GroupPanelWrapper::createHorizontalParallelGroupPanel());
+            } else if (address[2] == "Sequential Group") {
+               _host->addChild(GroupPanelWrapper::createHorizontalSequentialGroupPanel());
+            }
+            break;
+         case GroupPanel::VERTICAL:
+            if (address[2] == "Parallel Group") {
+               _host->addChild(GroupPanelWrapper::createVerticalParallelGroupPanel());
+            } else if (address[2] == "Sequential Group") {
+               _host->addChild(GroupPanelWrapper::createVerticalSequentialGroupPanel());
+            }
+            break;
          }
-         break;
-      }      
+      }
+   }
+}
+
+void GroupPanelMenu::onStatusChange(void) {
+   if (getStatus()) {
+      _addableObjects->removeAllMenus();
+      CodeGenerator::ManagedList list = CodeGenerator::getInstance()->getManagedComponents();
+      for (CodeGenerator::ManagedList::iterator iter = list.begin(); iter != list.end(); ++iter) {
+         _addableObjects->addMenu(new scv::ContextMenu((*iter)->getClassName()));
+      }
    }
 }
 

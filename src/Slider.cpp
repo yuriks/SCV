@@ -6,8 +6,9 @@
 namespace scv {
 
 Slider::Slider( const scv::Point &p, unsigned int width, double minValue, double maxValue, double startValue, double stepValue ) :
-      ComponentWithTexture(p,Point(p.x+width,p.y+24)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
+      ComponentWithTexture(p, Point(p.x + width, p.y + 24)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
    _isVResizable = false;
+
    _type = SLIDER;
 
    createTexture();

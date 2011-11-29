@@ -78,8 +78,7 @@ bool ContextMenu::processMouse(const scv::MouseEvent &evt) {
                   _currSelectedMenu = i;
                   _list[_currSelectedMenu]->setStatus(true);
 
-                  if (_list[_currSelectedMenu]->hasSubMenus() == false)
-                     processMouseCallback(evt, std::deque<std::string>(1, _list[i]->_label));
+                  processMouseCallback(evt, std::deque<std::string>(1, _list[i]->_label));
 
             } else if (i != _currSelectedMenu || ((_currSelectedMenu != -1)? !_list[_currSelectedMenu]->isInside(evt.getPosition()) : true)) {
                _list[i]->setStatus(false);

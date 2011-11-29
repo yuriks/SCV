@@ -40,6 +40,8 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
    _downOver  = false;
 
    setMinimumSize(Point(s_minSize, s_spinnerSizeY));
+   setPreferredSize(Point(_preferredSize.x, s_spinnerSizeY));
+   setMaximumSize(Point(_maximumSize.x, s_spinnerSizeY));
    
    _lastTime = _incrementTime = 0;
    _type = SPINNER;

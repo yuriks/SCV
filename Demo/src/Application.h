@@ -64,7 +64,9 @@ public:
 
    void openComponentSelector(GroupPanel *group);
 
-   void createPreview();
+   void createPreview(void);
+
+   inline void setMainTabbedPaneIndex(int index);
 
 protected:
    scv::Panel *_mainPanel;
@@ -75,7 +77,14 @@ protected:
    GroupPanel *currGroup;
 
    GroupPanelWrapper *_hPanelWrapper, *_vPanelWrapper;
-private:
 };
+
+///////////////////////////////////////////////////////////
+
+void Application::setMainTabbedPaneIndex(int index) {
+   _mainTabbedPane->setCurrTabIndex(index);
+}
+
+///////////////////////////////////////////////////////////
 
 #endif //__APPLICATION_H__

@@ -12,9 +12,14 @@ public:
    virtual ~GroupPanelMenu(void);
    ///////////////////////////////////////////////////////////
 
+   ///////////////////////////////////////////////////////////
    virtual void onMenuAccessed(const std::deque<std::string> &address);
+   virtual void onStatusChange(void);
+   ///////////////////////////////////////////////////////////
+   
 protected:
    GroupPanel *_host;
+   scv::ContextMenu *_addableObjects;
 private:
 };
 

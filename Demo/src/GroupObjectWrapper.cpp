@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "GroupObjectWrapper.h"
 
+#include "CodeGenerator.h"
+#include "ObjectEditor.h"
+
 GroupObjectWrapperMenu::GroupObjectWrapperMenu(GroupObjectWrapper *host) : scv::ContextMenu("Group Object Wrapper Menu") {
    _host = host;
 
@@ -16,6 +19,9 @@ void GroupObjectWrapperMenu::onMenuAccessed(const std::deque<std::string> &addre
    if (address[1] == "Remove") {
       _host->getParent()->removeChild(_host);
    } else if (address[1] == "Edit Object") {
+      if (CodeGenerator::getInstance()->hasComponent(_host->getObject())) {
+         ObjectEditor::getInstance()->setComponent(_host->getObject());
+      }
    }
 }
 

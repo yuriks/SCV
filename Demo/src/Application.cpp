@@ -17,10 +17,6 @@ MainTabbedPane::~MainTabbedPane(void) {
 }
 
 void MainTabbedPane::onTabChange(void) {
-   if (getCurrTabIndex() != 2) {
-      ObjectEditor::getInstance()->setComponent(NULL);
-   }
-
    if (getCurrTabIndex() == 0) {
       (static_cast<Application *>(Application::getInstance()))->createPreview();
    }
@@ -123,17 +119,11 @@ void Application::onMouseClick(const scv::MouseEvent &evt) {
 }
 
 void Application::onMouseHold(const scv::MouseEvent &evt) {
-   if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
-      Properties::getInstance()->setComponent(getFocusedComponent());
-   }
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
 }
 
 void Application::onMouseUp(const scv::MouseEvent &evt) {
-   if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
-      Properties::getInstance()->setComponent(getFocusedComponent());
-   }
 }
 
 void Application::onMouseWheel(const scv::MouseEvent &evt) {
@@ -157,8 +147,6 @@ void Application::onDisplay(void) {
 void Application::addComponentFromPalette(std::string component) {
    scv::Component *object = CodeGenerator::getInstance()->addComponent(component);
    ObjectEditor::getInstance()->setComponent(object);
-   Properties::getInstance()->setComponent(object);
-   _mainTabbedPane->setCurrTabIndex(2);
 }
 
 std::string Application::getLayoutCode(const std::string &panelName) const {
@@ -182,6 +170,5 @@ void Application::openComponentSelector(GroupPanel *group) {
 }
 
 void Application::createPreview() {
-   DesignPreview::getInstance()->createPreview(_hPanelWrapper, _vPanelWrapper);
-   
+   DesignPreview::getInstance()->createPreview(_hPanelWrapper, _vPanelWrapper);   
 }
