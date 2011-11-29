@@ -14,13 +14,13 @@ void ObjectEditor::refreshContainerPosition(void) {
       int height = getComponent()->getHeight();      
 
       if (width < getWidth() && !getComponent()->isResizing()) {
-         width = (getSize().x - getComponent()->getSize().x) / 2;
+         width = getAbsolutePosition().x + (getSize().x - getComponent()->getSize().x - s_border) / 2;
       } else {
          width = getComponent()->getRelativePosition().x;
       }
 
       if (height < getHeight() && !getComponent()->isResizing()) {
-         height = (getSize().y - getComponent()->getSize().y) / 2;
+         height = getAbsolutePosition().y + (getSize().y - getComponent()->getSize().y - s_border) / 2;
       } else {
          height = getComponent()->getRelativePosition().y;
       }
