@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "SequentialGroupPanel.h"
 
+#include "CodeGenerator.h"
+
 SequetialGroupPanel::SequetialGroupPanel(GroupType type) : GroupPanel(type) {
    switch (type) {
    case HORIZONTAL:
@@ -27,19 +29,4 @@ void SequetialGroupPanel::display(void) {
    scv::Scissor::getInstance()->pushScissor(getScissor());
    scv::StaticLabel::display(getAbsolutePosition() + 2, "SequetialGroupPanel");
    scv::Scissor::getInstance()->popScissor();
-}
-
-std::string SequetialGroupPanel::getCode(const std::string &tab) {
-   std::string currTab = s_defaultTab + tab;
-   std::string code = currTab + "->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)\n";
-
-   for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      if (dynamic_cast<GroupPanel*>(*iter)) {
-         code += static_cast<GroupPanel*>(*iter)->getCode(currTab);
-      } else {
-         code += currTab + s_defaultTab + "->addComponent(code)\n";
-      }
-   }
-   code += currTab + ")\n";
-   return code;
 }

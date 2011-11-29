@@ -22,7 +22,7 @@ void MainTabbedPane::onTabChange(void) {
    }
 
    if (getCurrTabIndex() == 0) {
-      (static_cast<Application *>(Application::getInstance()))->createPreview(getCurrComponent());
+      (static_cast<Application *>(Application::getInstance()))->createPreview();
    }
 }
 
@@ -74,10 +74,8 @@ void Application::init(void) {
    tabbedDesign->addChild(hScrollDesign, "Group Layout: Horizontal");
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
-   _designPreview = new scv::Panel(scv::Point(), scv::Point());
-
    _mainTabbedPane = new MainTabbedPane();   
-   _mainTabbedPane->addChild(_designPreview, "Design Preview");
+   _mainTabbedPane->addChild(DesignPreview::getInstance(), "Design Preview");
    _mainTabbedPane->addChild(tabbedDesign, "Group Layout");
    _mainTabbedPane->addChild(ObjectEditor::getInstance(), "Object Editor");
 
@@ -86,8 +84,7 @@ void Application::init(void) {
 
    //Properties
    ///////////////////////////////////////////////////////////
-   _properties = Properties::getInstance();
-   _mainPanel->addChild(_properties);
+   _mainPanel->addChild(Properties::getInstance());
    ///////////////////////////////////////////////////////////
 
    //GroupLayout
@@ -100,7 +97,7 @@ void Application::init(void) {
          ->addComponent(_mainTabbedPane)
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
-            ->addComponent(_properties)
+            ->addComponent(Properties::getInstance())
          )
       )
    );
@@ -113,7 +110,7 @@ void Application::init(void) {
             ->addComponent(_mainTabbedPane)
             ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
                ->addComponent(panelPalette)
-               ->addComponent(_properties)
+               ->addComponent(Properties::getInstance())
             )
       )
    );
@@ -127,7 +124,7 @@ void Application::onMouseClick(const scv::MouseEvent &evt) {
 
 void Application::onMouseHold(const scv::MouseEvent &evt) {
    if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
-      _properties->setComponent(getFocusedComponent());
+      Properties::getInstance()->setComponent(getFocusedComponent());
    }
 }
 void Application::onMouseOver(const scv::MouseEvent &evt) {
@@ -135,7 +132,7 @@ void Application::onMouseOver(const scv::MouseEvent &evt) {
 
 void Application::onMouseUp(const scv::MouseEvent &evt) {
    if (CodeGenerator::getInstance()->hasComponent(getFocusedComponent())) {
-      _properties->setComponent(getFocusedComponent());
+      Properties::getInstance()->setComponent(getFocusedComponent());
    }
 }
 
@@ -160,7 +157,7 @@ void Application::onDisplay(void) {
 void Application::addComponentFromPalette(std::string component) {
    scv::Component *object = CodeGenerator::getInstance()->addComponent(component);
    ObjectEditor::getInstance()->setComponent(object);
-   _properties->setComponent(object);
+   Properties::getInstance()->setComponent(object);
    _mainTabbedPane->setCurrTabIndex(2);
 }
 
@@ -184,7 +181,7 @@ void Application::openComponentSelector(GroupPanel *group) {
    _componentSelector->setVisible(true, group);
 }
 
-void Application::createPreview(scv::Component *object) {
+void Application::createPreview() {
    DesignPreview::getInstance()->createPreview(_hPanelWrapper, _vPanelWrapper);
    
 }

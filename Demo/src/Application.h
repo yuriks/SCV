@@ -64,11 +64,10 @@ public:
 
    void openComponentSelector(GroupPanel *group);
 
-   void createPreview(scv::Component *object);
+   void createPreview();
 
 protected:
-   scv::Panel *_mainPanel, *_designPreview;
-   Properties *_properties;
+   scv::Panel *_mainPanel;
 
    MainTabbedPane *_mainTabbedPane;
    ComponentSelector *_componentSelector;

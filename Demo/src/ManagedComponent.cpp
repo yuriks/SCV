@@ -164,15 +164,14 @@ std::string ManagedComponent::getAllocationCode(void) {
    }
 
    if (getParent() == NULL) {
-      output += s_defaultTab + "kernel->addComponent(" + getPointerName() + ");\n";
+      output += s_defaultTab + "_mainPanel->addComponent(" + getPointerName() + ");\n";
    }
 
    for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      output += (*iter)->getImplementationCode();
+      output += (*iter)->getAllocationCode();
       output += s_defaultTab + getPointerName() + "->addChild(" + (*iter)->getPointerName() + ");\n";
    }
 
-   output += "\n";
    return output;
 }
 

@@ -92,6 +92,27 @@ void GroupPanel::addChild(scv::Component *object) {
    _horizontalGroup->addComponent(wrappedObject);
 }
 
+std::string GroupPanel::getCode(const std::string &tab) {
+   std::string currTab = s_defaultTab + tab;
+   std::string code = currTab;;
+
+   if (dynamic_cast<ParallelGroupPanel *>(this)) {
+      code += "->addGroup(scv::GroupLayout::createParallelGroup()\n";
+   } else if (dynamic_cast<SequetialGroupPanel *>(this)) {
+      code += "->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)\n";
+   }
+
+   for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
+      if (dynamic_cast<GroupPanel*>(*iter)) {
+         code += static_cast<GroupPanel*>(*iter)->getCode(currTab);
+      } else {
+         code += currTab + s_defaultTab + "->addComponent(" + CodeGenerator::getInstance()->getManagedComponent(*iter)->getPointerName() + ")\n";
+      }
+   }
+   code += currTab + ")\n";
+   return code;
+}
+
 void GroupPanel::createPreview(scv::Group *group) {
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {

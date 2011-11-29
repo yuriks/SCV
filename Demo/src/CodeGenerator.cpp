@@ -106,6 +106,44 @@ CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
 }
 
 void CodeGenerator::generateCode(void) {
+   // main.cpp, Widget.cpp, Widget.h
+   ///////////////////////////////////////////////////////////
+   std::string mainDotCpp, allocationCode;
+   mainDotCpp += "#include \"SCV.h\"\n";
+   mainDotCpp += "#include \"Application.h\"\n";
+   mainDotCpp += "#include \"Widget.h\"\n";
+   mainDotCpp += "\n";
+   mainDotCpp += "int main(int argc, char* argv[]) {\n";
+   mainDotCpp += "   scv::Kernel::setInstance(new Application());\n";
+   mainDotCpp += "   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());\n";
+   mainDotCpp += "\n";
+   mainDotCpp += "   kernel->init();\n";
+   mainDotCpp += "\n";
+
+   std::string widgetDotH, widgetDotCpp;
+   widgetDotH += "#ifndef __WIDGET_H__\n";
+   widgetDotH += "#define __WIDGET_H__\n";
+   widgetDotH += "\n";
+
+   widgetDotCpp += "#include \"Widget.h\"\n";
+   widgetDotCpp += "\n";
+
+   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+      widgetDotH += (*iter)->getDeclarationCode();
+      widgetDotCpp += (*iter)->getImplementationCode();
+      allocationCode += (*iter)->getAllocationCode();
+   }
+
+   widgetDotH += "\n";
+   widgetDotH += "#endif //__WIDGET_H__\n";
+
+   mainDotCpp += "   kernel->run();\n";
+   mainDotCpp += "   return 0;\n";
+   mainDotCpp += "}\n";
+   ///////////////////////////////////////////////////////////
+
+   // Application.h
+   ///////////////////////////////////////////////////////////
    std::string applicationDotH;   
    applicationDotH += "#ifndef __APPLICATION_H__\n";
    applicationDotH += "#define __APPLICATION_H__\n";
@@ -142,7 +180,10 @@ void CodeGenerator::generateCode(void) {
    applicationDotH += "};\n";
    applicationDotH += "\n";
    applicationDotH += "#endif //__APPLICATION_H__\n";
+   ///////////////////////////////////////////////////////////
 
+   // Application.cpp
+   ///////////////////////////////////////////////////////////
    std::string applicationDotCpp;
    applicationDotCpp += "#include \"Application.h\"\n";
    applicationDotCpp += "\n";
@@ -151,7 +192,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV Designer - Laboratório de Computação Aplicada (LaCA)\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -159,7 +200,8 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::init(void) {\n";
    applicationDotCpp += "   _mainPanel = new scv::Panel(scv::Point(10, 10), scv::Point(0, 0));\n";
-   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel");
+   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";
+   applicationDotCpp += allocationCode;
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::onMouseClick(const scv::MouseEvent &evt) {\n";
@@ -183,40 +225,10 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "}\n";
    applicationDotCpp += "void Application::onPositionChange(void) {\n";
    applicationDotCpp += "}\n";   
-   
-   std::string mainDotCpp;
-   mainDotCpp += "#include \"SCV.h\"\n";
-   mainDotCpp += "#include \"Application.h\"\n";
-   mainDotCpp += "#include \"Widget.h\"\n";
-   mainDotCpp += "\n";
-   mainDotCpp += "int main(int argc, char* argv[]) {\n";
-   mainDotCpp += "   scv::Kernel::setInstance(new Application());\n";
-   mainDotCpp += "   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());\n";
-   mainDotCpp += "\n";
-   mainDotCpp += "   kernel->init();\n";
-   mainDotCpp += "\n";
+   ///////////////////////////////////////////////////////////
 
-   std::string widgetDotH, widgetDotCpp;
-   widgetDotH += "#ifndef __WIDGET_H__\n";
-   widgetDotH += "#define __WIDGET_H__\n";
-   widgetDotH += "\n";
-      
-   widgetDotCpp += "#include \"Widget.h\"\n";
-   widgetDotCpp += "\n";
 
-   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      widgetDotH += (*iter)->getDeclarationCode();
-      widgetDotCpp += (*iter)->getImplementationCode();
-      mainDotCpp += (*iter)->getAllocationCode();
-   }
-  
-   widgetDotH += "\n";
-   widgetDotH += "#endif //__WIDGET_H__\n";
-
-   mainDotCpp += "   kernel->run();\n";
-   mainDotCpp += "   return 0;\n";
-   mainDotCpp += "}\n";
-
+   ///////////////////////////////////////////////////////////
    std::ofstream outputFile;
 
    outputFile = std::ofstream("../Application.h");
@@ -238,6 +250,7 @@ void CodeGenerator::generateCode(void) {
    outputFile = std::ofstream("../main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
+   ///////////////////////////////////////////////////////////
 }
 
 

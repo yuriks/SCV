@@ -28,18 +28,3 @@ void ParallelGroupPanel::display(void) {
    scv::StaticLabel::display(getAbsolutePosition() + 2, "ParallelGroupPanel");
    scv::Scissor::getInstance()->popScissor();
 }
-
-std::string ParallelGroupPanel::getCode(const std::string &tab) {
-   std::string currTab = s_defaultTab + tab;
-   std::string code = currTab + "->addGroup(scv::GroupLayout::createParallelGroup()\n";
-
-   for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      if (dynamic_cast<GroupPanel*>(*iter)) {
-         code += static_cast<GroupPanel*>(*iter)->getCode(currTab);
-      } else {
-         code += currTab + s_defaultTab + "->addComponent(code)\n";
-      }
-   }
-   code += currTab + ")\n";
-   return code;
-}

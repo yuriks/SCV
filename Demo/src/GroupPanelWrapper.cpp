@@ -117,7 +117,11 @@ std::string GroupPanelWrapper::getGroupCode(void) const {
 scv::Group *GroupPanelWrapper::createPreview(void) {
    scv::Group *group = NULL;
    if (_group != NULL) {
-      group = scv::GroupLayout::createParallelGroup();
+      if (dynamic_cast<ParallelGroupPanel *>(_group)) {
+         group = scv::GroupLayout::createParallelGroup();
+      } else if (dynamic_cast<SequetialGroupPanel *>(_group)) {
+         group = scv::GroupLayout::createSequentialGroup();
+      }
       _group->createPreview(group);
    }
    return group;
