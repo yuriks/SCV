@@ -2,7 +2,10 @@
 #include "Application.h"
 
 #include "MenuBar.h"
+
 #include "Properties.h"
+#include "SpecializedProperties.h"
+
 #include "Pallete.h"
 
 #include "GroupObjectWrapper.h"
@@ -20,11 +23,13 @@ void MainTabbedPane::onTabChange(void) {
    if (getCurrTabIndex() == 0) {
       (static_cast<Application *>(Application::getInstance()))->createPreview();
    }
+   /*
    if (getCurrTabIndex() != 2) {
       Properties::getInstance()->setVisible(false);
    } else {
       Properties::getInstance()->setVisible(true);
    }
+   */
 }
 
 ///////////////////////////////////////////////////////////
@@ -86,6 +91,11 @@ void Application::init(void) {
    //Properties
    ///////////////////////////////////////////////////////////
    _mainPanel->addChild(Properties::getInstance());
+   _mainPanel->addChild(CountersProperties::Singleton<CountersProperties>::getInstance());
+   _mainPanel->addChild(StringsProperties::Singleton<StringsProperties>::getInstance());
+   _mainPanel->addChild(StatesProperties::Singleton<StatesProperties>::getInstance());
+   _mainPanel->addChild(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance());
+   _mainPanel->addChild(ImageProperties::Singleton<ImageProperties>::getInstance());
    ///////////////////////////////////////////////////////////
 
    //GroupLayout
@@ -99,6 +109,11 @@ void Application::init(void) {
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(Properties::getInstance())
+            ->addComponent(CountersProperties::Singleton<CountersProperties>::getInstance())
+            ->addComponent(StringsProperties::Singleton<StringsProperties>::getInstance())
+            ->addComponent(StatesProperties::Singleton<StatesProperties>::getInstance())
+            ->addComponent(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance())
+            ->addComponent(ImageProperties::Singleton<ImageProperties>::getInstance())
          )
       )
    );
@@ -112,6 +127,11 @@ void Application::init(void) {
             ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
                ->addComponent(panelPalette)
                ->addComponent(Properties::getInstance())
+               ->addComponent(CountersProperties::Singleton<CountersProperties>::getInstance())
+               ->addComponent(StringsProperties::Singleton<StringsProperties>::getInstance())
+               ->addComponent(StatesProperties::Singleton<StatesProperties>::getInstance())
+               ->addComponent(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance())
+               ->addComponent(ImageProperties::Singleton<ImageProperties>::getInstance())
             )
       )
    );
