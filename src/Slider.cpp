@@ -307,10 +307,9 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
 
    Component::processMouse(evt);
 
-   if(!_receivingCallbacks) return;
+   if(!getCallbacksStatus() || isResizing()) return;
 
-   if (isFocused()) {
-      
+   if (isFocused()) {      
       if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::CLICK) {
          _isDragging = false;
          double value = (static_cast<double>(evt.getPosition().x-(getAbsolutePosition().x+4))/(getWidth()-8)) * (static_cast<double>(getMaxValue()-getMinValue()));

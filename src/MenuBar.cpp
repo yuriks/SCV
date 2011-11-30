@@ -32,13 +32,9 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
 
-   if (!_receivingCallbacks) {
-      Component::processMouse(evt);
-   } else {
-      Panel::processMouse(evt);
-   }
+   Panel::processMouse(evt);
 
-   if(!_receivingCallbacks) return;
+   if(!getCallbacksStatus() || isResizing()) return;
 
    Point currPosition = getAbsolutePosition();
    Point relativeMouse = evt.getPosition();
@@ -104,9 +100,12 @@ void MenuBar::processMouse(const scv::MouseEvent &evt) {
 
 void MenuBar::processKey(const scv::KeyEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
+   
+   Panel::processKey(evt);
+
+   if(!getCallbacksStatus() || isResizing()) return;
 
    if (evt.getState() == KeyEvent::UP || _currSelectedMenu == -1) return;
-   if(!_receivingCallbacks) return;
 
    ContextMenu * cMenu = _menus[_currSelectedMenu];
 

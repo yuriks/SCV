@@ -12,7 +12,7 @@ GroupObjectWrapperMenu::GroupObjectWrapperMenu(GroupObjectWrapper *host) : scv::
 }
 
 GroupObjectWrapperMenu::~GroupObjectWrapperMenu(void) {
-   std::cout << "GroupObjectWrapperMenu::~GroupObjectWrapperMenu" << std::endl;
+   //std::cout << "GroupObjectWrapperMenu::~GroupObjectWrapperMenu" << std::endl;
 }
 
 void GroupObjectWrapperMenu::onMenuAccessed(const std::deque<std::string> &address) {

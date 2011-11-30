@@ -30,19 +30,11 @@ protected:
    virtual ~Properties(void);
    ///////////////////////////////////////////////////////////
 
-   static const std::string s_RelativePosition;
-   static const std::string s_AbsolutePosition;
-   static const std::string s_Width;
-   static const std::string s_Height;
+   ///////////////////////////////////////////////////////////
    static const std::string s_MinimumSize;
    static const std::string s_PreferredSize;
    static const std::string s_MaximumSize;
-   static const std::string s_Draggable;
-   static const std::string s_Resizable;
-   static const std::string s_Visible;
-   static const std::string s_CallbacksStatus;
-   static const std::string s_ParentScissor;
-   static const std::string s_Scissor;
+   ///////////////////////////////////////////////////////////
 
    typedef std::list<PropertieOption*> PropertieList;
    PropertieList _propertieList;
