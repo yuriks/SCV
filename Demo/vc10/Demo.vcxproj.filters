@@ -138,4 +138,9 @@
       <Filter>6.DesignPreview</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="default_image.png">
+      <Filter>0.Resources</Filter>
+    </None>
+  </ItemGroup>
 </Project>

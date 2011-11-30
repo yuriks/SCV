@@ -20,6 +20,11 @@ void MainTabbedPane::onTabChange(void) {
    if (getCurrTabIndex() == 0) {
       (static_cast<Application *>(Application::getInstance()))->createPreview();
    }
+   if (getCurrTabIndex() != 2) {
+      Properties::getInstance()->setVisible(false);
+   } else {
+      Properties::getInstance()->setVisible(true);
+   }
 }
 
 ///////////////////////////////////////////////////////////

@@ -32,7 +32,7 @@ Properties::~Properties(void) {
 }
 
 
-void Properties::setComponent(scv::Component *component) {   
+void Properties::setComponent(scv::Component *component) {
    if (component == NULL) return;
    
    _currComponent = component;

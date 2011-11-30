@@ -15,10 +15,6 @@ int main(int argc, char* argv[]) {
       
    kernel->init();
 
-   scv::ColorScheme *scheme = scv::ColorScheme::getInstance();
-   //scheme->loadScheme(scv::ColorScheme::OSX);
-   //scheme->setColor(scv::ColorScheme::FONT, scv::Color4f(1,1,1));
-
    kernel->run();
    return 0;
 }
