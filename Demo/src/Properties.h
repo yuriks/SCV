@@ -3,7 +3,7 @@
 
 #include "PropertieOption.h"
 
-class Properties : public Singleton<Properties>, public scv::Panel {
+class Properties : public scv::Panel, public Singleton<Properties> {
 friend class Singleton<Properties>;
 public:
    ///////////////////////////////////////////////////////////
@@ -15,8 +15,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   virtual void setValue(const std::string &title, const std::string &str);
-   virtual void setValue(const std::string &title, bool state);
+   void setValue(const std::string &title, const std::string &str);
+   void setValue(const std::string &title, bool state);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -34,6 +34,7 @@ protected:
    static const std::string s_MinimumSize;
    static const std::string s_PreferredSize;
    static const std::string s_MaximumSize;
+   static const std::string s_CustomClass;
    ///////////////////////////////////////////////////////////
 
    typedef std::list<PropertieOption*> PropertieList;

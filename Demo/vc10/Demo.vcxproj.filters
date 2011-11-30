@@ -28,6 +28,9 @@
     <Filter Include="6.DesignPreview">
       <UniqueIdentifier>{cc60f073-5fbd-417a-91cb-3c02f9b8aaf3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3.PanelProperties\Properties">
+      <UniqueIdentifier>{754cff95-b7bb-4b4b-9916-2f521e65dad7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\stdafx.cpp">
@@ -38,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="..\src\Application.cpp">
       <Filter>2.App</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Properties.cpp">
-      <Filter>3.PanelProperties</Filter>
     </ClCompile>
     <ClCompile Include="..\src\PropertieOption.cpp">
       <Filter>3.PanelProperties</Filter>
@@ -84,6 +84,12 @@
     <ClCompile Include="..\src\DesignPreview.cpp">
       <Filter>6.DesignPreview</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Properties.cpp">
+      <Filter>3.PanelProperties\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SpecializedProperties.cpp">
+      <Filter>3.PanelProperties\Properties</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -91,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Application.h">
       <Filter>2.App</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Properties.h">
-      <Filter>3.PanelProperties</Filter>
     </ClInclude>
     <ClInclude Include="..\src\PropertieOption.h">
       <Filter>3.PanelProperties</Filter>
@@ -136,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="..\src\DesignPreview.h">
       <Filter>6.DesignPreview</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Properties.h">
+      <Filter>3.PanelProperties\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SpecializedProperties.h">
+      <Filter>3.PanelProperties\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PropertiesManager.h">
+      <Filter>3.PanelProperties\Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

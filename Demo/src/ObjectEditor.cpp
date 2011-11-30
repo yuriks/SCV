@@ -2,7 +2,7 @@
 #include "ObjectEditor.h"
 
 #include "Application.h"
-#include "Properties.h"
+#include "PropertiesManager.h"
 
 ObjectEditor::ObjectEditor(void) : scv::ScrollComponent(scv::Point(), scv::Point()) {
 }
@@ -34,7 +34,7 @@ void ObjectEditor::refreshContainerPosition(void) {
 
 void ObjectEditor::setComponent(scv::Component *object) {
    _registeredComponent = object;
-   Properties::getInstance()->setComponent(_registeredComponent);
+   PropertiesManager::getProperties(object)->setComponent(object);
    if (object != NULL) {
       static_cast<Application *>(scv::Kernel::getInstance())->setMainTabbedPaneIndex(2);
    }
