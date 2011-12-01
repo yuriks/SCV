@@ -8,10 +8,10 @@ const std::string CountersProperties::s_minValue   = "Minimum Value";
 
 // scv::Slider, scv::Spinner
 CountersProperties::CountersProperties(void) : Properties () {
-   addChild(s_minValue, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_maxVlaue, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_startValue, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_stepValue, PropertieOption::EDITABLE_TEXTFIELD);
+   addChild(s_minValue, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_maxVlaue, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_startValue, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_stepValue, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
 }
 
 CountersProperties::~CountersProperties(void) {
@@ -33,11 +33,10 @@ void CountersProperties::setComponent(scv::Component *component) {
       setValue(s_maxVlaue, scv::toString(object->getMaxValue()));
       setValue(s_startValue, scv::toString(object->getStartValue()));
       setValue(s_stepValue, scv::toString(object->getStepValue()));
-   }
+   }   
 }
 
 void CountersProperties::onValueChange(const std::string &title, const std::string &str) {
-   Properties::onValueChange(title, str);
    if (_currComponent == NULL) return;
 
    if (dynamic_cast<scv::Slider *>(_currComponent)) {
@@ -63,6 +62,7 @@ void CountersProperties::onValueChange(const std::string &title, const std::stri
          object->setStepValue(scv::fromString<double>(str));
       }
    }
+   Properties::onValueChange(title, str);
 }
 
 ///////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ const std::string StringsProperties::s_string = "Label";
 
 // scv::Button, scv::Label, scv::TextField, scv::TextBox
 StringsProperties::StringsProperties(void) : Properties () {
-   addChild(s_string, PropertieOption::EDITABLE_TEXTFIELD);
+   addChild(s_string, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
 }
 
 StringsProperties::~StringsProperties(void) {
@@ -95,13 +95,12 @@ void StringsProperties::setComponent(scv::Component *component) {
    } else if (dynamic_cast<scv::TextBox *>(_currComponent)) {
       scv::TextBox *object = static_cast<scv::TextBox *>(_currComponent);
       setValue(s_string, object->getString());
-   }
+   }   
 }
 
 void StringsProperties::onValueChange(const std::string &title, const std::string &str) {
-   Properties::onValueChange(title, str);
    if (_currComponent == NULL) return;
-
+   
    if (title == s_string) {
       if (dynamic_cast<scv::Button *>(_currComponent)) {
          scv::Button *object = static_cast<scv::Button *>(_currComponent);
@@ -116,7 +115,8 @@ void StringsProperties::onValueChange(const std::string &title, const std::strin
          scv::TextBox *object = static_cast<scv::TextBox *>(_currComponent);
          object->setString(str);
       }
-   }   
+   }
+   Properties::onValueChange(title, str);
 }
 
 ///////////////////////////////////////////////////////////
@@ -150,7 +150,7 @@ void StatesProperties::setComponent(scv::Component *component) {
       scv::ToggleButton *object = static_cast<scv::ToggleButton *>(_currComponent);
       setValue(s_state, object->getState());
       setValue(s_string, object->getString());
-   }
+   }   
 }
 
 void StatesProperties::onValueChange(const std::string &title, const std::string &str) {
@@ -172,7 +172,6 @@ void StatesProperties::onValueChange(const std::string &title, const std::string
 }
 
 void StatesProperties::onValueChange(const std::string &title, bool state) {
-   Properties::onValueChange(title, state);
    if (_currComponent == NULL) return;
 
    if (title == s_state) {
@@ -187,6 +186,7 @@ void StatesProperties::onValueChange(const std::string &title, bool state) {
          object->setState(state);
       }
    }
+   Properties::onValueChange(title, state);
 }
 
 ///////////////////////////////////////////////////////////
@@ -197,8 +197,8 @@ const std::string InternalFrameProperties::s_height = "Height";
 const std::string InternalFrameProperties::s_width  = "Width";
 
 InternalFrameProperties::InternalFrameProperties(void) : Properties () {
-   addChild(s_width, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_height, PropertieOption::EDITABLE_TEXTFIELD);
+   addChild(s_width, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_height, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
    addChild(s_title, PropertieOption::EDITABLE_TEXTFIELD);
 }
 
@@ -216,7 +216,6 @@ void InternalFrameProperties::setComponent(scv::Component *component) {
 }
 
 void InternalFrameProperties::onValueChange(const std::string &title, const std::string &str) {
-   Properties::onValueChange(title, str);
    if (_currComponent == NULL) return;
 
    scv::InternalFrame *object = static_cast<scv::InternalFrame *>(_currComponent);
@@ -227,6 +226,8 @@ void InternalFrameProperties::onValueChange(const std::string &title, const std:
    } else if (title == s_width) {
       object->setWidth(scv::fromString<int>(str));
    }
+
+   Properties::onValueChange(title, str);
 }
 
 ///////////////////////////////////////////////////////////
@@ -250,9 +251,10 @@ void ImageProperties::setComponent(scv::Component *component) {
 }
 
 void ImageProperties::onValueChange(const std::string &title, const std::string &str) {
-   Properties::onValueChange(title, str);
    if (_currComponent == NULL) return;
 
    scv::Image *object = static_cast<scv::Image *>(_currComponent);
    object->loadImage(str);
+
+   Properties::onValueChange(title, str);
 }

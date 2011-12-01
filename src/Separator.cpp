@@ -10,8 +10,10 @@ Separator::Separator(const scv::Point &p1, Separator::Orientation align, unsigne
 
    if (_align == Separator::HORIZONTAL) {
       _isVResizable = false;
+      setMaximumSize(Point(-1, 2));
    } else {
       _isHResizable = false;
+      setMaximumSize(Point(2, -1));
    }
    _type = SEPARATOR;
 

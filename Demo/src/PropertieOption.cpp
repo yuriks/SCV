@@ -12,12 +12,18 @@ PropertieOption::PropertieOption(Properties *host, std::string title, Type type)
    static_cast<scv::Panel *>(host)->addChild(_label);   
 
    switch (_type) {
+   case EDITABLE_NUMERAL_TEXTFIELD:
+      _target = new PropertieTextField(this, true, true);
+      break;
    case EDITABLE_TEXTFIELD:
-      _target = new PropertieTextField(this, true);
+      _target = new PropertieTextField(this, true, false);
+      break;
+   case NUMERAL_TEXTFIELD:
+      _target = new PropertieTextField(this, false, true);
       break;
    case TEXTFIELD:
-      _target = new PropertieTextField(this, false);
-      break;      
+      _target = new PropertieTextField(this, false, false);
+      break;
    case EDITABLE_CHECKBOX:
       _target = new PropertieCheckBox(this);
       break;
@@ -29,7 +35,7 @@ PropertieOption::~PropertieOption(void) {
 }
 
 void PropertieOption::setValue(const std::string &str) {
-   if (_type == EDITABLE_TEXTFIELD || _type == TEXTFIELD) {
+   if (_type == EDITABLE_NUMERAL_TEXTFIELD || _type == NUMERAL_TEXTFIELD) {
       static_cast<scv::TextField *>(_target)->setString(str);
    }
 }
@@ -65,13 +71,15 @@ void PropertieOption::PropertieCheckBox::onValueChange(void) {
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host, bool editable) : scv::TextField(scv::Point(0,0), 100, "") {
+PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host, bool editable, bool allowOnlyNumbers) : scv::TextField(scv::Point(0,0), 100, "") {
    _host = host;
 
    scv::TextFilter filter;
-   filter.denyAll();
-   filter.allowNumbers();
-   filter.allowThese(",");
+   if (allowOnlyNumbers) {
+      filter.allowNumbers();
+      filter.allowThese(",");
+   }
+   
 
    setFilter(filter);
 

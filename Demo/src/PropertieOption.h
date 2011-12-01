@@ -6,7 +6,11 @@ class Properties;
 class PropertieOption {
 public:
    ///////////////////////////////////////////////////////////
-   enum Type { EDITABLE_TEXTFIELD, TEXTFIELD, EDITABLE_CHECKBOX };
+   enum Type { 
+      EDITABLE_NUMERAL_TEXTFIELD, EDITABLE_TEXTFIELD,
+      NUMERAL_TEXTFIELD, TEXTFIELD,
+      EDITABLE_CHECKBOX
+   };
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
@@ -47,7 +51,7 @@ protected:
    ///////////////////////////////////////////////////////////
    class PropertieTextField : public scv::TextField {
    public:
-      PropertieTextField(PropertieOption *host, bool editable);
+      PropertieTextField(PropertieOption *host, bool editable, bool allowOnlyNumbers);
       virtual ~PropertieTextField(void);
 
       void onKeyPressed(const scv::KeyEvent &evt);

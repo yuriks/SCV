@@ -5,6 +5,7 @@
 
 #include "Properties.h"
 #include "SpecializedProperties.h"
+#include "PropertiesManager.h"
 
 #include "Pallete.h"
 
@@ -23,13 +24,12 @@ void MainTabbedPane::onTabChange(void) {
    if (getCurrTabIndex() == 0) {
       (static_cast<Application *>(Application::getInstance()))->createPreview();
    }
-   /*
+   
    if (getCurrTabIndex() != 2) {
-      Properties::getInstance()->setVisible(false);
+      PropertiesManager::getCurr()->setVisible(false);
    } else {
-      Properties::getInstance()->setVisible(true);
+      PropertiesManager::getCurr()->setVisible(true);
    }
-   */
 }
 
 ///////////////////////////////////////////////////////////
@@ -124,8 +124,8 @@ void Application::init(void) {
       ->addGroup(
          layout->createParallelGroup()
             ->addComponent(_mainTabbedPane)
-            ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
-               ->addComponent(panelPalette)
+            ->addGroup(layout->createSequentialGroup()
+               ->addComponent(panelPalette)->addGap(15)
                ->addComponent(Properties::getInstance())
                ->addComponent(CountersProperties::Singleton<CountersProperties>::getInstance())
                ->addComponent(StringsProperties::Singleton<StringsProperties>::getInstance())

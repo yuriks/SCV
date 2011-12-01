@@ -10,10 +10,14 @@ const std::string Properties::s_CustomClass   = "Generate Custom Class";
 
 
 Properties::Properties(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
+   setVisible(false);
+
    _currComponent = NULL;
 
    _layout = new scv::GroupLayout(this);
    setLayout(_layout);
+
+   scv::Separator *separator = new scv::Separator(scv::Point(), scv::Separator::HORIZONTAL, getWidth());
 
    _hLeftGroup = _layout->createParallelGroup();
    _hRightGroup = _layout->createParallelGroup();
@@ -24,11 +28,14 @@ Properties::Properties(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_ca
    _layout->setHorizontalGroup(_hGroup);
    _layout->setVerticalGroup(_vGroup);
 
-   addChild(s_MinimumSize, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_PreferredSize, PropertieOption::EDITABLE_TEXTFIELD);
-   addChild(s_MaximumSize, PropertieOption::EDITABLE_TEXTFIELD);
-   /**/
    addChild(s_CustomClass, PropertieOption::EDITABLE_CHECKBOX);
+   /**/
+   Panel::addChild(separator);
+   _vGroup->addComponent(separator);   
+   /**/
+   addChild(s_MinimumSize, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_PreferredSize, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_MaximumSize, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
 }
 
 Properties::~Properties(void) {
