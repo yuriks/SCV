@@ -17,6 +17,8 @@ TextField::TextField(const scv::Point &p1, unsigned int width, const std::string
 
    _type = TEXTFIELD;
 
+   setMaximumSize(Point(-1, getPreferredSize().y));
+
    createTexture();
 }
 

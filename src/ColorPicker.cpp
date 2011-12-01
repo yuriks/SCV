@@ -51,6 +51,9 @@ ColorPicker::ColorPicker(const scv::Point &p1) : Panel(p1, Point(p1.x + 360, p1.
    refreshColor();
 
    createTexture();
+
+   setMaximumSize(getPreferredSize());
+   setMinimumSize(getPreferredSize());
 }
 
 ColorPicker::~ColorPicker(void) {

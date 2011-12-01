@@ -69,6 +69,27 @@ void GroupObjectWrapper::display(void) {
 
    getObject()->setSize(originalSize.x, originalSize.y);
 
+   
+   
+   ManagedComponent *managed = CodeGenerator::getInstance()->getManagedComponent(getObject());
+   if (managed != NULL) {
+      _cTexture->enable();
+      int width = scv::FontTahoma::getInstance()->getStringLength(managed->getClassName()) + 1;
+      int height = scv::FontTahoma::getInstance()->getHeight();
+
+      scv::ColorScheme::getInstance()->applyColor(scv::Color4f(0.5f, 0.5f, 0.5f, 1.f));
+
+      _cTexture->display(getAbsolutePosition().x, getAbsolutePosition().y, 0, width, height);
+
+      _cTexture->display(getAbsolutePosition().x, getAbsolutePosition().y + 1, 0, 1, height - 2);
+      _cTexture->display(getAbsolutePosition().x + width - 1, getAbsolutePosition().y + 1, 0, 1, height - 2);
+      _cTexture->display(getAbsolutePosition().x + 1, getAbsolutePosition().y, 0, width - 2, 1);
+      _cTexture->display(getAbsolutePosition().x + 1, getAbsolutePosition().y + height - 1, 0, width - 2, 1);
+
+      _cTexture->disable();
+
+      scv::StaticLabel::display(scv::Point(getAbsolutePosition().x + 1, getAbsolutePosition().y), managed->getClassName());      
+   }   
    scv::Scissor::getInstance()->popScissor();
    ///////////////////////////////////////////////////////////
 }

@@ -192,7 +192,9 @@ void InternalFrame::display(void) {
    }
    _cTexture->disable();
 
+   Scissor::getInstance()->pushScissor(Scissor::Info(currPosition.x + s_borderWidth, kernel->getHeight() - (getHeight() + currPosition.y), getWidth() - s_borderWidth, getHeight() - s_borderTop));
    _panel->display();
+   Scissor::getInstance()->popScissor();
 
    Scissor::getInstance()->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (currPosition.y) - s_borderTop, getWidth() - s_closeWidth - 10, s_borderTop));
    StaticLabel::display(currPosition.x + s_borderWidth, currPosition.y + (s_borderTop - FontTahoma::getInstance()->getHeight()) / 2 + 2, _title);

@@ -12,6 +12,8 @@ public:
 
    void setFrameSize(int width, int height);
 
+   void display(void);
+
 protected:
    ///////////////////////////////////////////////////////////
    class FramePreview : public scv::InternalFrame {
@@ -30,6 +32,7 @@ protected:
    ///////////////////////////////////////////////////////////
 
    scv::InternalFrame *_frame;
+   GroupObjectWrapper *_wrappedFrame;
    scv::Group *hGroupLayout, *vGroupLayout;
 };
 

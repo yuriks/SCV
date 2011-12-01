@@ -58,8 +58,12 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Label(scv::Point(0, 0), "SCV Label");
    }
 
-   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())), type));   
+   addManagedComponent(object, type);
    return object;
+}
+
+void CodeGenerator::addManagedComponent(scv::Component *object, const std::string &type) {
+   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())), type));
 }
 
 void CodeGenerator::deleteComponent(ManagedComponent *managed) {
@@ -129,6 +133,8 @@ void CodeGenerator::generateCode(void) {
    widgetDotCpp += "\n";
 
    for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
+      if ((*iter)->getComponent() == _scvFrame) continue;
+
       widgetDotH += (*iter)->getDeclarationCode();
       widgetDotCpp += (*iter)->getImplementationCode();
       allocationCode += (*iter)->getAllocationCode();
@@ -188,11 +194,11 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "#include \"Application.h\"\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::Application(void) : Kernel() {\n";
-   applicationDotCpp += "   setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);\n";
+   applicationDotCpp += "   setWindowSize(" + scv::toString(_scvFrame->getWidth()) + ", " + scv::toString(_scvFrame->getHeight()) + ");\n";
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV Designer\");\n";
+   applicationDotCpp += "   setWindowTitle(\"" + _scvFrame->getTitle() + "\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -256,5 +262,12 @@ void CodeGenerator::generateCode(void) {
 
 int CodeGenerator::getComponentCount(scv::Component::Type type) {
    return _counter[type]++;
+}
+
+void CodeGenerator::setSCVFrame(scv::InternalFrame *frame) {
+   if (_scvFrame == NULL) {
+      _scvFrame = frame;
+      addManagedComponent(frame, "InternalFrame");
+   }
 }
 

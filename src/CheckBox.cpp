@@ -12,6 +12,8 @@ CheckBox::CheckBox(const scv::Point &p1, bool state, const std::string &str) : S
    _type = CHECKBOX;
 
    createTexture();
+
+   setMaximumSize(getPreferredSize());
 }
 
 CheckBox::~CheckBox(void) {

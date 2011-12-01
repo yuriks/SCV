@@ -35,7 +35,7 @@ PropertieOption::~PropertieOption(void) {
 }
 
 void PropertieOption::setValue(const std::string &str) {
-   if (_type == EDITABLE_NUMERAL_TEXTFIELD || _type == NUMERAL_TEXTFIELD) {
+   if (_type == EDITABLE_NUMERAL_TEXTFIELD || _type == EDITABLE_TEXTFIELD) {
       static_cast<scv::TextField *>(_target)->setString(str);
    }
 }
@@ -78,9 +78,9 @@ PropertieOption::PropertieTextField::PropertieTextField(PropertieOption *host, b
    if (allowOnlyNumbers) {
       filter.allowNumbers();
       filter.allowThese(",");
+   } else {
+      filter.allowAll();
    }
-   
-
    setFilter(filter);
 
    setEditable(editable);

@@ -12,6 +12,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    scv::Component *addComponent(const std::string &type);
+   void addManagedComponent(scv::Component *object, const std::string &type);
 
    void deleteComponent(ManagedComponent *managed);   
    ///////////////////////////////////////////////////////////
@@ -31,17 +32,20 @@ public:
    ///////////////////////////////////////////////////////////
    void generateCode(void);
    ///////////////////////////////////////////////////////////
-      
+   
+   void setSCVFrame( scv::InternalFrame *frame );
+
 protected:
    ///////////////////////////////////////////////////////////
    CodeGenerator(void);
    virtual ~CodeGenerator(void);
    ///////////////////////////////////////////////////////////
 
-   int getComponentCount(scv::Component::Type type);
-      
+   int getComponentCount(scv::Component::Type type);   
+
    ManagedList _managed;
    std::map<scv::Component::Type, int> _counter;
+   scv::InternalFrame *_scvFrame;
 };
 
 #endif //__CODE_GENERATOR_H__

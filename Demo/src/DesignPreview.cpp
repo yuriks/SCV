@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "DesignPreview.h"
+#include "CodeGenerator.h"
 
-DesignPreview::FramePreview::FramePreview(void) : scv::InternalFrame(0, 0, "SCV Preview") {
+DesignPreview::FramePreview::FramePreview(void) : scv::InternalFrame(0, 0, "SCV Application") {
    setDraggable(false);
    setResizable(false);
 }
@@ -18,7 +19,10 @@ void DesignPreview::FramePreview::onClose(void) {
 
 DesignPreview::DesignPreview(void) : scv::Panel(scv::Point(), scv::Point()) {
    _frame = new FramePreview();
-   addChild(_frame);
+   _wrappedFrame = new GroupObjectWrapper(_frame, false);
+   addChild(_wrappedFrame);
+
+   CodeGenerator::getInstance()->setSCVFrame(_frame);
 
    scv::GroupLayout *layout = new scv::GroupLayout(this);
    setLayout(layout);
@@ -29,7 +33,7 @@ DesignPreview::DesignPreview(void) : scv::Panel(scv::Point(), scv::Point()) {
    layout->setHorizontalGroup(scv::GroupLayout::createSequentialGroup()->addGap(15, 15, -1)->addGroup(hGroupLayout)->addGap(15, 15, -1));
    layout->setVerticalGroup(scv::GroupLayout::createSequentialGroup()->addGap(15, 15, -1)->addGroup(vGroupLayout)->addGap(15, 15, -1));
 
-   setFrameSize(-1, -1);
+   setFrameSize(800, 600);
 }
 
 DesignPreview::~DesignPreview(void) {
@@ -57,10 +61,18 @@ void DesignPreview::createPreview(GroupPanelWrapper *hPanelWrapper, GroupPanelWr
 }
 
 void DesignPreview::setFrameSize(int width, int height) {
-   hGroupLayout->removeComponent(_frame);
-   vGroupLayout->removeComponent(_frame);
+   hGroupLayout->removeComponent(_wrappedFrame);
+   vGroupLayout->removeComponent(_wrappedFrame);
 
-   hGroupLayout->addComponent(_frame, width);
-   vGroupLayout->addComponent(_frame, height);
+   hGroupLayout->addComponent(_wrappedFrame, width);
+   vGroupLayout->addComponent(_wrappedFrame, height);
+
+   _wrappedFrame->setSize(width, height);
+   _frame->setSize(_wrappedFrame->getWidth(), _wrappedFrame->getHeight());
+}
+
+void DesignPreview::display(void) {
+   setFrameSize(_frame->getWidth(), _frame->getHeight());
+   scv::Panel::display();
 }
 
