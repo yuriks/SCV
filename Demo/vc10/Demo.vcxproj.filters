@@ -154,5 +154,6 @@
     <None Include="default_image.png">
       <Filter>0.Resources</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

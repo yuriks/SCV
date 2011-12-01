@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MainTabbedPane" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\Application.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAyQAiJJCCAAAAgAAAAAAAAABCAgYAsBAQAAAEABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\Application.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentSelectorAccepted" Collapsed="true">
+    <Position X="13" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ComponentSelector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentSelectorRefused" Collapsed="true">
+    <Position X="13" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ComponentSelector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentSelector" Collapsed="true">
+    <Position X="13" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAgAEAABgAAAQAAAAAAAAAgAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ComponentSelector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeMenu" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAACAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\MenuBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManagedObjectsMenu" Collapsed="true">
+    <Position X="10.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAIAAAAAAAAAEAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\MenuBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuBar" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\MenuBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectEditor" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ObjectEditor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PropertieOption" Collapsed="true">
+    <Position X="8" Y="1.25" Width="1.75" />
+    <NestedTypes>
+      <Enum Name="PropertieOption::Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PropertieOption.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="PropertieOption::PropertieCheckBox" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PropertieOption.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="PropertieOption::PropertieTextField" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PropertieOption.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAAACAAAAAAAAQAABIAgAAQQAAAEAAAAAAABAAIAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PropertieOption.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Properties" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="Properties::PropertieList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\Properties.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EQAQAAAAAAAAAAhAABIAEAAIAAAEAAAAQAAABAASEEA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\Properties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PropertiesManager" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PropertiesManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CountersProperties" Collapsed="true">
+    <Position X="0.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EQEIAAAAAAAAIAAAAAAAAAAAAAAAQAAAQAAAAAAACAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SpecializedProperties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StringsProperties" Collapsed="true">
+    <Position X="1" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAASAAAAAAAAAAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SpecializedProperties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatesProperties" Collapsed="true">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EACAAABCAAAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SpecializedProperties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InternalFrameProperties" Collapsed="true">
+    <Position X="4.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAEAAAAAAAAAAEAAABAAAAAQCIAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SpecializedProperties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageProperties" Collapsed="true">
+    <Position X="5.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAgQAAAQAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SpecializedProperties.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupObjectWrapperMenu" Collapsed="true">
+    <Position X="5.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAABBAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupObjectWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupObjectWrapper" Collapsed="true">
+    <Position X="5.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAIAAAEAgAAAAAAAACCAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupObjectWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupPanelWrapperMenu" Collapsed="true">
+    <Position X="8" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAAAAQAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupPanelWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupPanelWrapper" Collapsed="true">
+    <Position X="8" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIBACBAAYAABBAMAAQAQEAAAKBgACABgAAAEI=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupPanelWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupPanelMenu" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAIAAAAAAIAAAABAAAAACAAAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupPanel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GroupPanel" Collapsed="true">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAQABAAAAAQAABAAAAgAAYEAAAgAgAAAAgCAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\GroupPanel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParallelGroupPanel" Collapsed="true">
+    <Position X="2.75" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAIAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ParallelGroupPanel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SequetialGroupPanel" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\SequentialGroupPanel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pallete" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAgAAAAAEAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\Pallete.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonPallete" Collapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PalleteComponents.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PalleteComponents" Collapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAAAAQAAAACAAAAAAAAAAAIAAAAAAAgBAEAAQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\PalleteComponents.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeGenerator" Collapsed="true">
+    <Position X="15.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BBAAAAAgECAAAAEACAAACAAgBAAAAAAABAAAAAAEFAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\CodeGenerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManagedComponent" Collapsed="true">
+    <Position X="10.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>JABQAAQAAAAAAAANCJAAAAAyAAABAAgAABAAAADgBhI=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\ManagedComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DesignPreview" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAQBAAAACEAAAAAAAAAAAEAAAAgAAAAgAAABAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\Demo\src\DesignPreview.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

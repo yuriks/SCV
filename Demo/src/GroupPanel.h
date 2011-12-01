@@ -42,7 +42,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    virtual std::string getCode(const std::string &tab);
-   inline GroupType getType(void) const;
+   GroupType getType(void) const;
    ///////////////////////////////////////////////////////////
 
    void createPreview(scv::Group *group);
@@ -63,10 +63,5 @@ private:
 };
 
 ///////////////////////////////////////////////////////////
-
-GroupPanel::GroupType GroupPanel::getType(void) const {
-   return _type;
-}
-
 
 #endif //__GROUP_PANEL_H__

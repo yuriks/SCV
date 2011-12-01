@@ -135,6 +135,10 @@ std::string GroupPanel::getCode(const std::string &tab) {
    return code;
 }
 
+GroupPanel::GroupType GroupPanel::getType(void) const {
+   return _type;
+}
+
 void GroupPanel::createPreview(scv::Group *group) {
    for (scv::Component::List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
       if (dynamic_cast<GroupPanel*>(*iter)) {
