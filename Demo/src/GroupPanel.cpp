@@ -146,7 +146,7 @@ void GroupPanel::createPreview(scv::Group *group) {
          if (dynamic_cast<ParallelGroupPanel *>(*iter)) {
             currGroup = scv::GroupLayout::createParallelGroup();                        
          } else if (dynamic_cast<SequetialGroupPanel *>(*iter)) {
-            currGroup = scv::GroupLayout::createSequentialGroup();
+            currGroup = scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true);
          }
          group->addGroup(currGroup);
          (static_cast<GroupPanel *>(*iter))->createPreview(currGroup);

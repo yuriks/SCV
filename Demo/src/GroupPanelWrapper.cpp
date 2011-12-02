@@ -120,7 +120,7 @@ scv::Group *GroupPanelWrapper::createPreview(void) {
       if (dynamic_cast<ParallelGroupPanel *>(_group)) {
          group = scv::GroupLayout::createParallelGroup();
       } else if (dynamic_cast<SequetialGroupPanel *>(_group)) {
-         group = scv::GroupLayout::createSequentialGroup();
+         group = scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true);
       }
       _group->createPreview(group);
    }
