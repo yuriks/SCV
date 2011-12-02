@@ -4,6 +4,7 @@
 #include "Application.h"
 
 CodeGenerator::CodeGenerator(void) {
+   _scvFrame = NULL;
 }
 
 CodeGenerator::~CodeGenerator(void) {
@@ -85,7 +86,7 @@ ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) con
    for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
       if ((*iter)->getComponent() == object) {
          return(*iter);
-      } else {
+      } else {         
          ManagedComponent *managed = (*iter)->getChild(object);
          if (managed != NULL) return managed;
       }

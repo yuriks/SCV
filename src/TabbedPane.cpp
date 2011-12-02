@@ -178,10 +178,12 @@ void TabbedPane::display(void) {
 
    if (_cTexture == NULL || _isVisible == false) return;
 
+   Scissor::getInstance()->pushScissor(Scissor::Info(getAbsolutePosition().x, Kernel::getInstance()->getHeight() - (getHeight() + getAbsolutePosition().y), getWidth(), getHeight() - s_barHeight));
    if (getCurrTabIndex() != -1) {
       configPanel();
       getChild(getCurrTabIndex())->display();
    }
+   Scissor::getInstance()->popScissor();
 
    Point currPosition = getAbsolutePosition();
  
