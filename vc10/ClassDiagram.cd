@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="scv::Canvas" Collapsed="true">
+    <Position X="20" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAIAAAAAAgAYAAAAAAAACAAAAgBAAAAAUABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Canvas.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ColorPicker" Collapsed="true">
+    <Position X="42.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAIAAARAAgECACQBAAIECAAgAgBAQoAgIABw=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ColorPicker.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Separator" Collapsed="true">
+    <Position X="26.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQQAAIAAAAAAgAAAAAAAAIECABAAgFAAAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Separator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Table" Collapsed="true">
+    <Position X="42.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIIAYQAAMAAAgAAggEAQABgEAyjBAAAgBAQBBAAAD4=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Table.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Component" Collapsed="true">
+    <Position X="31.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XEIxBRgAAaEAAh9G0TYCAgBWORGDUAAEiHhUYABCZFY=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::InternalFrameHolder" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAQAAAAAAGAEAAAAAAQAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\InternalFrameHolder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::InternalFrame" Collapsed="true">
+    <Position X="38" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIIgTgAAIERBEAIgQCACBAAAIGSAAAAiDAQAAACABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\InternalFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::StateButton" Collapsed="true">
+    <Position X="14" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UBAAAAAAAAAAAAAAAAAACAAAAAAAAABAgAAAAAAAAAQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\StateButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ButtonGroup" Collapsed="true">
+    <Position X="54" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAECAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ButtonGroup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::CheckBox" Collapsed="true">
+    <Position X="29" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQIAAQAAAIAAAAAAgAAAAABAAIECAAQAgBAQAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\CheckBox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::RadioButton" Collapsed="true">
+    <Position X="29" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAQAAAIAAAAAAgAAAAABAAIECAAAAgBAQAgAAADQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\RadioButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Label" Collapsed="true">
+    <Position X="29" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgoABQAAEIAABAAAgAAAAABAAIUCAAAEgBAAAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Label.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::StaticLabel" Collapsed="true">
+    <Position X="61" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAEAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\StaticLabel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TextBox" Collapsed="true">
+    <Position X="31.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkIBJQAAQoIABCBAgQIAAAFWEKWCAIBkgDxQKAAACBY=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TextBox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TextField" Collapsed="true">
+    <Position X="31.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IkIAAQAAAIAAQAAAgAAAAABCEAGCAAQEgDAQAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TextField.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TextFilter" Collapsed="true">
+    <Position X="54" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAISACAAQAIAAAMCAAAAIAAAAAAAgQAAIA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TextFilter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Button" Collapsed="true">
+    <Position X="35.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAQAAAIAAAAAAgAAAAAAAAIECAAAAgBAAAAEAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComboBox" Collapsed="true">
+    <Position X="38" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAIAAICAAgACAEAABAMECACBAgBAwAAAAgDQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComboBox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComboBoxMenuStyle" Collapsed="true">
+    <Position X="14" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAABAAIAAAMgAAAAAACAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComboBoxMenuStyle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ToggleButton" Collapsed="true">
+    <Position X="35.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAQAAAIAAEAAggAAAAAAAAAECAAAAgBAQAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ToggleButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Counter" Collapsed="true">
+    <Position X="17" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAEAAACAAAATAYAAIAIAAAAQCAgAEAAIAIACEAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Counter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ProgressBar" Collapsed="true">
+    <Position X="26" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAQAAAIAAEAAAgAIAAAAACIECAAAAgBAAAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ProgressBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Slider" Collapsed="true">
+    <Position X="32.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAQAAAIAAAAAAgAAAAAAAAIGCAAAEgBAQAAAABBQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Slider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Spinner" Collapsed="true">
+    <Position X="45.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FEICAQIAAIAAABIAgAIBABAgCoGSQAAAgBAUACIAgBQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spinner.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Image" Collapsed="true">
+    <Position X="47" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAQAABIACAAAAgACAAAIAAIEDABIAgBAAAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Image.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GroupLayout" Collapsed="true">
+    <Position X="61" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGAAhAQAAAAAAAAAACIAAABAIAIAACgAAAAABACAAAQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GroupLayout.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Panel" Collapsed="true">
+    <Position X="42.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAQACAIAAAAAAgDIAAIAAIIGCACABgBAQAAAAABY=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Panel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ScrollComponent" Collapsed="true">
+    <Position X="22.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIICrUEACIAAgAAEigAAAECgEYGGCAEExBSQAAwSABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ScrollComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TabbedPane" Collapsed="true">
+    <Position X="24.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIAAWAAAIABAAAApBBgIAAAAIOGAAAAgBAQAAAACBY=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TabbedPane.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ContextMenu" Collapsed="true">
+    <Position X="61" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QECAAAAIACAKAABASBABBADCASWCTWEAQBEQAyAEAAg=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ContextMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Kernel" Collapsed="true">
+    <Position X="17" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIQF0wIgYAAAEIAzoBmBwAQAAhqwGQw5DBUEwRAEFQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Kernel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComponentTexture" Collapsed="true">
+    <Position X="59.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAEAQESCAAAAIAAAAGAAAAIUAQAAiAAgAAAAEIAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComponentTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComponentWithoutTexture" Collapsed="true">
+    <Position X="20" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAIAAAAAAwAAAAAAAAAECAgAAgBAAAAAUABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComponentWithoutTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComponentWithTexture" Collapsed="true">
+    <Position X="32.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEIABQgAAIAAAgAAgDIAAAAAMIGCQAAEwBAQAAAAABY=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComponentWithTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::SCVCallbacks" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAIAAAAAAgAAAAAAAAAACACAAgBAAAAAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SCVCallbacks.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GInfoNode" Collapsed="true">
+    <Position X="55.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAgIAAIAACAAAAAAAAARAFAABAAAAEACAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GTree.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GNode" Collapsed="true">
+    <Position X="59.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAIAQCAAAABGIAAAAARAFAAAAQAgAAAIABAI=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GTree.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GTree" Collapsed="true">
+    <Position X="54" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAIAAAAAAAAABIAQAQAAgAAIAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GTree.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TreeModel" Collapsed="true">
+    <Position X="57.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAAAAAAAIAAAAAAAAAgACAASAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TreeModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::SystemTreeView" Collapsed="true">
+    <Position X="35.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQYAAQIAQIAAAAgBiAJAAAACNMGCACEAgDAQADAAABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SystemTreeView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::MenuHolder" Collapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAACAAACAAAAAAAGAAAAAQAAQBAIIAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\MenuHolder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::MenuBar" Collapsed="true">
+    <Position X="49.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAwAAAIAEAACAgAAhAAAAFIGCAACAgDAQASAIABQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\MenuBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::PopupMenuStyle" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYIAIEAAgAAAAAAAAAIBACMAAAAgAQAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\PopupMenuStyle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::VistaMenuStyle" Collapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAAgAAAAAAAAAABAAIAAAAgAAAIAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\VistaMenuStyle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::FileOpen" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAAAAQAAACAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\FileOpen.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ImgLoader" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ImgLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GlslShader" Collapsed="true">
+    <Position X="57.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEgCAACAACAAAAKAAAACgAAgIAAIIBCQAAAAAAAg=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GlslShader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::MatrixTemplate&lt;T&gt;" Collapsed="true">
+    <Position X="51.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQAAAABACACAAAECQAQQCAABAAQAAAAQAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\MatrixTemplate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Point" Collapsed="true">
+    <Position X="59.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggACAADAAQAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Point.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Timer" Collapsed="true">
+    <Position X="55.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAgAAAAIAAAAABwAAAAAAAAAAAgAAAAAAQAAEAEIQA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Timer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Cursor" Collapsed="true">
+    <Position X="29.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAEQAhAgAACABGCAAAAAECAEAAEAQAQAAAAgI=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Cursor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Font" Collapsed="true">
+    <Position X="54" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAIAAAAAAEACAAAAAAAAAIAABAAAACAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Font.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::FontTahoma" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAEAgAAAAAFAAAAAAAAQAAAQCBIAAAAAAQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\FontTahoma.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Keyboard" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAJAAAAQAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Keyboard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::KeyEvent" Collapsed="true">
+    <Position X="55.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAABAAAAAAAAAACCCQEAAAgCAAAAAAAAAACEAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\KeyEvent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::MouseEvent" Collapsed="true">
+    <Position X="57.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABgIABAAAAAAAAAAAAACQAAAKAAAAAAAAAggAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\MouseEvent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Scissor" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAABAAAAIAAAAAAAAAAAAIAAAAAAAACCAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Scissor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Texture2D" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Texture2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::TextureInterface" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAQAAAAAAIAAAAAGAAAAAEAQAAAAAgAgAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TextureInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ColorRGBA" Collapsed="true">
+    <Position X="57.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAABAAAAAQABAQAAAAEAAAAAAAIgAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ColorRGBA.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Color4f" Collapsed="true">
+    <Position X="55.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAEAAAQAAAAEAAAAAAAAwAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Color4f.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ColorScheme" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIQCAAAAAEAAQAAAAAAAAAKAAAAAQgAAIAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ColorScheme.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Group" Collapsed="true">
+    <Position X="5.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgABEBAAAACAEwCiAAAKAAAAAAAAAQAYAAAABAIAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Group.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ComponentSpring" Collapsed="true">
+    <Position X="3.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAABAAABCAEgEABAAAAAABAAAABAAQAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComponentSpring.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::GapSpring" Collapsed="true">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAABAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GapSpring.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::Spring" Collapsed="true">
+    <Position X="5.75" Y="7" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="scv::Spring::Alignment" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="scv::Spring::Size" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="scv::Spring::Axis" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAAAADAAYCAAEgAECIAAEAAIAAAAQAAGABAQAIAgAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::ParallelGroup" Collapsed="true">
+    <Position X="4.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIBAAAAABEAAGAAAKAAAQEAAAAAAIAAAABAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ParallelGroup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scv::SequentialGroup" Collapsed="true">
+    <Position X="6.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAQAAAAAAAAAAAACgIAKAAAIABAEEAAIAAgABAEAAE=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SequentialGroup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAABAIAAAAACAAAAAAAAAAAUAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Singleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="scv::TW_Content_Types" Collapsed="true">
+    <Position X="54" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GTree.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="scv::TW_types" Collapsed="true">
+    <Position X="55.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\TreeModel.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

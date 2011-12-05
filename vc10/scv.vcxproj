@@ -172,6 +172,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="LOG.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
