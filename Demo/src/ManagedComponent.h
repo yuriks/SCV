@@ -33,13 +33,12 @@ public:
 
    ///////////////////////////////////////////////////////////
    std::string getDeclarationCode(void);
-   std::string getImplementationCode(void);
-
-   std::string getAllocationCode(void);
-
    std::string getCustomDeclarationCode(void);
+
+   std::string getImplementationCode(void);
    std::string getCustomImplementationCode(void);
 
+   std::string getAllocationCode(void);   
    std::string getDefaultClassInitialization(void);
    ///////////////////////////////////////////////////////////
    
@@ -76,7 +75,7 @@ std::string ManagedComponent::getPointerName(void) const {
    return pointer;
 }
 
-scv::Component * ManagedComponent::getComponent(void) const {
+scv::Component *ManagedComponent::getComponent(void) const {
    return _object;
 }
 

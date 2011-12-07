@@ -108,73 +108,6 @@ std::string ManagedComponent::getDeclarationCode(void) {
    return output;
 }
 
-std::string ManagedComponent::getImplementationCode(void) {
-   std::string output;
-
-   std::string customCallbacks;
-
-   if (getCustomClass()) {
-      output += "///////////////////////////////////////////////////////////\n";
-      output += getClassName() + "::" + getClassName() + "(void) : " + getDefaultClassInitialization() + " {\n";
-      output += "}\n";
-      output += getClassName() + "::~" + getClassName() + "(void) {\n";
-      output += "}\n";
-      output += "\n";
-      output += "void " + getClassName() + "::onMouseClick(const scv::MouseEvent &evt) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onMouseHold(const scv::MouseEvent &evt) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onMouseOver(const scv::MouseEvent &evt) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onMouseUp(const scv::MouseEvent &evt) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onMouseWheel(const scv::MouseEvent &evt) {\n";
-      output += "}\n";
-      output += "\n";
-      output += "void " + getClassName() + "::onKeyPressed(const scv::KeyEvent &evt) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onKeyUp(const scv::KeyEvent &evt) {\n";
-      output += "}\n";
-      output += "\n";
-      output += "void " + getClassName() + "::onSizeChange(void) {\n";
-      output += "}\n";
-      output += "void " + getClassName() + "::onPositionChange(void) {\n";
-      output += "}\n";
-      output += getCustomImplementationCode();
-      output += "///////////////////////////////////////////////////////////\n";
-      output += "\n";
-   }
-   
-   for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      output += (*iter)->getImplementationCode();
-   }
-
-   return output;
-}
-
-std::string ManagedComponent::getAllocationCode(void) {
-   static const std::string s_defaultTab("   ");
-
-   std::string output;
-
-   if (getCustomClass()) {
-      output += s_defaultTab + getClassName() + " *" + getPointerName() + " = new " + getClassName() + "();\n";
-   } else {
-      output += s_defaultTab + "scv::" + getDerivedTypeName() + " *" + getPointerName() + " = new " + getDefaultClassInitialization() + ";\n";
-   }
-
-   if (getParent() == NULL) {
-      output += s_defaultTab + "_mainPanel->addComponent(" + getPointerName() + ");\n";
-   }
-
-   for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
-      output += (*iter)->getAllocationCode();
-      output += s_defaultTab + getPointerName() + "->addChild(" + (*iter)->getPointerName() + ");\n";
-   }
-
-   return output;
-}
-
 std::string ManagedComponent::getCustomDeclarationCode(void) {
    std::string output;
 
@@ -213,6 +146,48 @@ std::string ManagedComponent::getCustomDeclarationCode(void) {
    }
 
    return (output.empty()) ? output : "\n" + output;
+}
+
+std::string ManagedComponent::getImplementationCode(void) {
+   std::string output;
+
+   if (getCustomClass()) {
+      output += "///////////////////////////////////////////////////////////\n";
+      output += getClassName() + "::" + getClassName() + "(void) : " + getDefaultClassInitialization() + " {\n";
+      output += "}\n";
+      output += getClassName() + "::~" + getClassName() + "(void) {\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onMouseClick(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseHold(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseOver(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseUp(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onMouseWheel(const scv::MouseEvent &evt) {\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onKeyPressed(const scv::KeyEvent &evt) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onKeyUp(const scv::KeyEvent &evt) {\n";
+      output += "}\n";
+      output += "\n";
+      output += "void " + getClassName() + "::onSizeChange(void) {\n";
+      output += "}\n";
+      output += "void " + getClassName() + "::onPositionChange(void) {\n";
+      output += "}\n";
+      output += getCustomImplementationCode();
+      output += "///////////////////////////////////////////////////////////\n";
+      output += "\n";
+   }
+   
+   for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
+      output += (*iter)->getImplementationCode();
+   }
+
+   return output;
 }
 
 std::string ManagedComponent::getCustomImplementationCode(void) {
@@ -270,6 +245,29 @@ std::string ManagedComponent::getCustomImplementationCode(void) {
    }
 
    return (output.empty()) ? output : "\n" + output;
+}
+
+std::string ManagedComponent::getAllocationCode(void) {
+   static const std::string s_defaultTab("   ");
+
+   std::string output;
+
+   if (getCustomClass()) {
+      output += s_defaultTab + getClassName() + " *" + getPointerName() + " = new " + getClassName() + "();\n";
+   } else { // DefaultClassInitialization
+      output += s_defaultTab + "scv::" + getDerivedTypeName() + " *" + getPointerName() + " = new " + getDefaultClassInitialization() + ";\n";
+   }
+
+   if (getParent() == NULL) {
+      output += s_defaultTab + "_mainPanel->addComponent(" + getPointerName() + ");\n";
+   }
+
+   for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {
+      output += (*iter)->getAllocationCode();
+      output += s_defaultTab + getPointerName() + "->addChild(" + (*iter)->getPointerName() + ");\n";
+   }
+
+   return output;
 }
 
 std::string ManagedComponent::getDefaultClassInitialization(void) {
