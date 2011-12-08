@@ -169,7 +169,7 @@ protected:
 
    void setResizingCursor(void);
 
-   enum Side { left, right, top, bottom };
+   enum Side { LEFT, RIGHT, TOP, BOTTOM };
    std::vector<bool> _resizing;
    bool isInsideSide(Component::Side side, const Point &evtPosition);   
 

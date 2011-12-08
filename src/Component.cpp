@@ -151,20 +151,20 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
    } else if (_isResizable && _isResizing && evt.getState() == MouseEvent::HOLD && evt.getButton() == MouseEvent::LEFT) {
       if (_isHResizable) {
-         if (_resizing[left]) {
+         if (_resizing[LEFT]) {
             int width = getWidth();
             setWidth(getWidth() + getAbsolutePosition().x - evtPosition.x);            
             setAbsolutePosition(Point(getAbsolutePosition().x + width - getWidth(), getAbsolutePosition().y));
-         } else if (_resizing[right]) {            
+         } else if (_resizing[RIGHT]) {            
             setWidth(evtPosition.x - currPosition.x);
          }
       }
       if (_isVResizable) {
-         if (_resizing[top]) {
+         if (_resizing[TOP]) {
             int height = getHeight();
             setHeight(getHeight() + getAbsolutePosition().y - evtPosition.y);
             setAbsolutePosition(Point(getAbsolutePosition().x, getAbsolutePosition().y + height - getHeight()));         
-         } else if (_resizing[bottom]) {
+         } else if (_resizing[BOTTOM]) {
             setHeight(evtPosition.y - currPosition.y);
          }
       }
@@ -172,19 +172,19 @@ void Component::processMouse(const scv::MouseEvent &evt) {
    }
    
    if (getParentScissor().isInside(evtInversePosition) && !isDragging() && _isResizable) {
-      if (_isHResizable && !_resizing[left] && !_resizing[right]) {
-         if (isInsideSide(left, evtPosition) && kernel->requestMouseUse(this)) {
-            _resizing[left] = true;
-         } else if (isInsideSide(right, evtPosition) && kernel->requestMouseUse(this)) {
-            _resizing[right] = true;
+      if (_isHResizable && !_resizing[LEFT] && !_resizing[RIGHT]) {
+         if (isInsideSide(LEFT, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[LEFT] = true;
+         } else if (isInsideSide(RIGHT, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[RIGHT] = true;
          }
       }      
 
-      if (_isVResizable && !_resizing[top] && !_resizing[bottom]) {
-         if (isInsideSide(top, evtPosition) && kernel->requestMouseUse(this)) {
-            _resizing[top] = true;
-         } else if (isInsideSide(bottom, evtPosition) && kernel->requestMouseUse(this)) {
-            _resizing[bottom] = true;            
+      if (_isVResizable && !_resizing[TOP] && !_resizing[BOTTOM]) {
+         if (isInsideSide(TOP, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[TOP] = true;
+         } else if (isInsideSide(BOTTOM, evtPosition) && kernel->requestMouseUse(this)) {
+            _resizing[BOTTOM] = true;            
          }
       }      
 
@@ -275,25 +275,25 @@ void Component::processKey(const scv::KeyEvent &evt) {
 bool Component::isInsideSide(Component::Side side, const Point &evtPosition) {
    Point currPosition = getAbsolutePosition();
    switch (side) {
-   case left:
+   case LEFT:
       if (evtPosition.x >= currPosition.x - s_mouseBacklash && evtPosition.x <= currPosition.x + s_mouseBacklash
          && evtPosition.y >= currPosition.y - s_mouseBacklash && evtPosition.y <= currPosition.y + s_mouseBacklash + getHeight()) {
             return true;
          }
       break;
-   case right:
+   case RIGHT:
       if (evtPosition.x >= currPosition.x - s_mouseBacklash + getWidth() && evtPosition.x <= currPosition.x + s_mouseBacklash + getWidth()
          && evtPosition.y >= currPosition.y - s_mouseBacklash && evtPosition.y <= currPosition.y + s_mouseBacklash + getHeight()) {
             return true;
          }
       break;
-   case top:
+   case TOP:
       if (evtPosition.x >= currPosition.x - s_mouseBacklash && evtPosition.x <= currPosition.x + s_mouseBacklash + getWidth()
          && evtPosition.y >= currPosition.y - s_mouseBacklash && evtPosition.y <= currPosition.y + s_mouseBacklash) {
             return true;
          }
       break;
-   case bottom:
+   case BOTTOM:
       if (evtPosition.x >= currPosition.x - s_mouseBacklash && evtPosition.x <= currPosition.x + s_mouseBacklash + getWidth()
          && evtPosition.y >= currPosition.y - s_mouseBacklash + getHeight() && evtPosition.y <= currPosition.y + s_mouseBacklash + getHeight()) {
             return true;
@@ -390,22 +390,22 @@ Scissor::Info Component::getParentScissor(void) const {
 void Component::setResizingCursor(void) {
    static Cursor *cursor = Cursor::getInstance();
 
-   if (_resizing[left] && _resizing[top]) {
+   if (_resizing[LEFT] && _resizing[TOP]) {
       cursor->setGlutCursor(GLUT_CURSOR_TOP_LEFT_CORNER);
 
-   } else if (_resizing[right] && _resizing[top]) {
+   } else if (_resizing[RIGHT] && _resizing[TOP]) {
       cursor->setGlutCursor(GLUT_CURSOR_TOP_RIGHT_CORNER);
 
-   } else if (_resizing[left] && _resizing[bottom]) {
+   } else if (_resizing[LEFT] && _resizing[BOTTOM]) {
       cursor->setGlutCursor(GLUT_CURSOR_BOTTOM_LEFT_CORNER);
 
-   } else if (_resizing[right] && _resizing[bottom]) {
+   } else if (_resizing[RIGHT] && _resizing[BOTTOM]) {
       cursor->setGlutCursor(GLUT_CURSOR_BOTTOM_RIGHT_CORNER);
 
-   } else if (_resizing[left] || _resizing[right]) {
+   } else if (_resizing[LEFT] || _resizing[RIGHT]) {
       cursor->setGlutCursor(GLUT_CURSOR_LEFT_RIGHT);
 
-   } else if (_resizing[top] || _resizing[bottom]) {
+   } else if (_resizing[TOP] || _resizing[BOTTOM]) {
       cursor->setGlutCursor(GLUT_CURSOR_UP_DOWN);
    }
 }
