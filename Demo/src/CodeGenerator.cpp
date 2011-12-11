@@ -207,8 +207,8 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::init(void) {\n";
    applicationDotCpp += "   _mainPanel = new scv::Panel(scv::Point(10, 10), scv::Point(0, 0));\n";
-   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";
    applicationDotCpp += allocationCode;
+   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";   
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::onMouseClick(const scv::MouseEvent &evt) {\n";
