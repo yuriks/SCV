@@ -442,14 +442,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="scv::ComponentSpring" Collapsed="true">
-    <Position X="3.75" Y="8" Width="1.5" />
+    <Position X="3.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAABAAABCAEgEABAAAAAABAAAABAAQAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ComponentSpring.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="scv::GapSpring" Collapsed="true">
-    <Position X="7.75" Y="8" Width="1.5" />
+    <Position X="8" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAABAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\GapSpring.h</FileName>
@@ -457,37 +457,32 @@
   </Class>
   <Class Name="scv::Spring" Collapsed="true">
     <Position X="5.75" Y="7" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="scv::Spring::Alignment" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="scv::Spring::Size" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="scv::Spring::Axis" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABAAAADAAYCAAEgAECIAAEAAIAAAAQAAGABAQAIAgAA=</HashCode>
       <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\Spring.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="scv::ParallelGroup" Collapsed="true">
-    <Position X="4.75" Y="9.25" Width="1.5" />
+    <Position X="3.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAIBAAAAABEAAGAAAKAAAQEAAAAAAIAAAABAAAAA=</HashCode>
       <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\ParallelGroup.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="scv::SequentialGroup" Collapsed="true">
-    <Position X="6.75" Y="9.25" Width="1.5" />
+    <Position X="8" Y="8" Width="1.5" />
+    <NestedTypes>
+      <Class Name="scv::SequentialGroup::SpringDelta" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SequentialGroup.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Typedef Name="scv::SequentialGroup::SpringDeltaDeque" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SequentialGroup.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>IAAQAAAAAAAAAAAACgIAKAAAIABAEEAAIAAgABAEAAE=</HashCode>
       <FileName>C:\Users\cicerolp\Desktop\nightly\include\SCV\SequentialGroup.h</FileName>
