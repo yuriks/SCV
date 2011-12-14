@@ -40,9 +40,11 @@ public:
 
    virtual void display(void);
 
+   ///////////////////////////////////////////////////////////
    inline bool getRefreshOnKeyStatus(void) const;
    inline std::string getRefreshOnKey(void) const;
    inline void setRefreshOnKey(const std::string &keyString);
+   ///////////////////////////////////////////////////////////
 
 protected:
    ///////////////////////////////////////////////////////////
