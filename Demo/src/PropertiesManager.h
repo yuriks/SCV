@@ -12,7 +12,9 @@ public:
       StatesProperties::Singleton<StatesProperties>::getInstance()->setVisible(false);
       InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance()->setVisible(false);
       ImageProperties::Singleton<ImageProperties>::getInstance()->setVisible(false);
+      FrameProperties::Singleton<FrameProperties>::getInstance()->setVisible(false);
       Properties::getInstance()->setVisible(false);
+
       
       if (dynamic_cast<scv::Slider*>(object) || dynamic_cast<scv::Spinner*>(object)) {
          _curr = CountersProperties::Singleton<CountersProperties>::getInstance();
@@ -21,7 +23,11 @@ public:
       }  else if (dynamic_cast<scv::CheckBox*>(object) || dynamic_cast<scv::RadioButton*>(object) || dynamic_cast<scv::ToggleButton*>(object)) {
          _curr = StatesProperties::Singleton<StatesProperties>::getInstance();
       }  else if (dynamic_cast<scv::InternalFrame*>(object)) {
-         _curr = InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance();
+         if (static_cast<scv::InternalFrame*>(object) == CodeGenerator::getInstance()->getSCVFrame()) {
+            _curr = FrameProperties::Singleton<FrameProperties>::getInstance();
+         } else {            
+            _curr = InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance();
+         }
       } else if (dynamic_cast<scv::Image*>(object)) {
          _curr = ImageProperties::Singleton<ImageProperties>::getInstance();
       }  else {

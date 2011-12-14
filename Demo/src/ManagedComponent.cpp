@@ -259,7 +259,7 @@ std::string ManagedComponent::getAllocationCode(void) {
    }
 
    if (getParent() == NULL) {
-      output += s_defaultTab + "_mainPanel->addComponent(" + getPointerName() + ");\n";
+      output += s_defaultTab + "_mainPanel->addChild(" + getPointerName() + ");\n";
    }
 
    for (List::iterator iter = _children.begin(); iter != _children.end(); ++iter) {

@@ -258,3 +258,64 @@ void ImageProperties::onValueChange(const std::string &title, const std::string 
 
    Properties::onValueChange(title, str);
 }
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+const std::string FrameProperties::s_title  = "Title";
+const std::string FrameProperties::s_height = "Height";
+const std::string FrameProperties::s_width  = "Width";
+
+FrameProperties::FrameProperties(void) : Properties() {
+   removeAllChild();
+   delete _layout;
+
+   setVisible(false);
+
+   _currComponent = NULL;
+
+   _layout = new scv::GroupLayout(this);
+   setLayout(_layout);
+
+   _hLeftGroup = _layout->createParallelGroup();
+   _hRightGroup = _layout->createParallelGroup();
+   _hGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)
+      ->addGap(0)->addGroup(_hLeftGroup)->addGroup(_hRightGroup)->addGap(0);
+   _vGroup = _layout->createSequentialGroup()->setAutoCreateGaps(true)->addGap(0)->setAutoGapsSize(5);
+
+   _layout->setHorizontalGroup(_hGroup);
+   _layout->setVerticalGroup(_vGroup);
+
+   addChild(s_width, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_height, PropertieOption::EDITABLE_NUMERAL_TEXTFIELD);
+   addChild(s_title, PropertieOption::EDITABLE_TEXTFIELD);
+}
+
+FrameProperties::~FrameProperties(void) {
+}
+
+void FrameProperties::setComponent(scv::Component *component) {
+   if (component == NULL) return;
+
+   _currComponent = component;
+   _currComponent->setResizable(false);
+   _currComponent->setCallbacksStatus(false);
+
+   scv::InternalFrame *object = static_cast<scv::InternalFrame *>(_currComponent);
+   /*setValue(s_title, object->getTitle());
+   setValue(s_height, scv::toString(object->getHeight()));
+   setValue(s_width, scv::toString(object->getWidth()));*/
+}
+
+void FrameProperties::onValueChange(const std::string &title, const std::string &str) {
+   if (_currComponent == NULL) return;
+
+   scv::InternalFrame *object = static_cast<scv::InternalFrame *>(_currComponent);
+   if (title == s_title) {
+      object->setTitle(str);
+   } else if (title == s_height) {
+      object->setHeight(scv::fromString<int>(str));
+   } else if (title == s_width) {
+      object->setWidth(scv::fromString<int>(str));
+   }
+}

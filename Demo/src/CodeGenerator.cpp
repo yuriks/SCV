@@ -129,6 +129,8 @@ void CodeGenerator::generateCode(void) {
    widgetDotH += "#ifndef __WIDGET_H__\n";
    widgetDotH += "#define __WIDGET_H__\n";
    widgetDotH += "\n";
+   widgetDotH += "#include \"SCV.h\"\n";
+   widgetDotH += "\n";
 
    widgetDotCpp += "#include \"Widget.h\"\n";
    widgetDotCpp += "\n";
@@ -154,6 +156,9 @@ void CodeGenerator::generateCode(void) {
    std::string applicationDotH;   
    applicationDotH += "#ifndef __APPLICATION_H__\n";
    applicationDotH += "#define __APPLICATION_H__\n";
+   applicationDotH += "\n";
+   applicationDotH += "#include \"SCV.h\"\n";
+   applicationDotH += "#include \"Widget.h\"\n";
    applicationDotH += "\n";
    applicationDotH += "class Application : public scv::Kernel {\n";
    applicationDotH += "public:\n";
@@ -195,7 +200,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "#include \"Application.h\"\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::Application(void) : Kernel() {\n";
-   applicationDotCpp += "   setWindowSize(" + scv::toString(_scvFrame->getWidth()) + ", " + scv::toString(_scvFrame->getHeight()) + ");\n";
+   applicationDotCpp += "   setWindowSize(" + scv::toString(_scvFrame->getWidth()) + " - 20, " + scv::toString(_scvFrame->getHeight()) + " - 40);\n";
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
@@ -206,9 +211,11 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::init(void) {\n";
-   applicationDotCpp += "   _mainPanel = new scv::Panel(scv::Point(10, 10), scv::Point(0, 0));\n";
+   applicationDotCpp += "   _mainPanel = new scv::Panel(scv::Point(2, 2), scv::Point(2, 2));\n";
    applicationDotCpp += allocationCode;
-   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";   
+   applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";
+   applicationDotCpp += "\n";
+   applicationDotCpp += "   addComponent(_mainPanel);\n";   
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::onMouseClick(const scv::MouseEvent &evt) {\n";
@@ -228,7 +235,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "void Application::onSizeChange(void) {\n";
-   applicationDotCpp += "   _mainPanel->setSize(getWidth() - 20, getHeight() - 20);\n";
+   applicationDotCpp += "   _mainPanel->setSize(getWidth() - 4, getHeight() - 4);\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "void Application::onPositionChange(void) {\n";
    applicationDotCpp += "}\n";   

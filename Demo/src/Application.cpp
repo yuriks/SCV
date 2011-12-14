@@ -96,6 +96,7 @@ void Application::init(void) {
    _mainPanel->addChild(StatesProperties::Singleton<StatesProperties>::getInstance());
    _mainPanel->addChild(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance());
    _mainPanel->addChild(ImageProperties::Singleton<ImageProperties>::getInstance());
+   _mainPanel->addChild(FrameProperties::Singleton<FrameProperties>::getInstance());
    ///////////////////////////////////////////////////////////
 
    //GroupLayout
@@ -114,6 +115,7 @@ void Application::init(void) {
             ->addComponent(StatesProperties::Singleton<StatesProperties>::getInstance())
             ->addComponent(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance())
             ->addComponent(ImageProperties::Singleton<ImageProperties>::getInstance())
+            ->addComponent(FrameProperties::Singleton<FrameProperties>::getInstance())
          )
       )
    );
@@ -132,6 +134,7 @@ void Application::init(void) {
                ->addComponent(StatesProperties::Singleton<StatesProperties>::getInstance())
                ->addComponent(InternalFrameProperties::Singleton<InternalFrameProperties>::getInstance())
                ->addComponent(ImageProperties::Singleton<ImageProperties>::getInstance())
+               ->addComponent(FrameProperties::Singleton<FrameProperties>::getInstance())
             )
       )
    );

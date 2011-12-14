@@ -284,7 +284,10 @@ void Spinner::processKey(const scv::KeyEvent &evt) {
    } 
    if (isFocused() || kernel->getFocusedComponent() == _textField) {
       kernel->requestComponentFocus(_textField);
-      _textField->processKey(evt);
+      if (getRefreshOnKeyStatus() && evt.getKeyString() == getRefreshOnKey()) {
+      } else {
+         _textField->processKey(evt);
+      }
    }
 }
 

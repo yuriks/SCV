@@ -9,6 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceDesign", "Demo\vc1
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exported", "Exported\Exported.vcxproj", "{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

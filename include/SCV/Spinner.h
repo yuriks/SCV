@@ -40,6 +40,10 @@ public:
 
    virtual void display(void);
 
+   inline bool getRefreshOnKeyStatus(void) const;
+   inline std::string getRefreshOnKey(void) const;
+   inline void setRefreshOnKey(const std::string &keyString);
+
 protected:
    ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
@@ -79,7 +83,26 @@ private:
 
    static TextFilter s_filter;
    TextFieldSpinner *_textField;
+
+   std::string _keyString;
 };
+
+///////////////////////////////////////////////////////////
+
+bool Spinner::getRefreshOnKeyStatus(void) const {
+   return !_keyString.empty();
+}
+
+
+std::string Spinner::getRefreshOnKey(void) const {
+   return _keyString;
+}
+
+void Spinner::setRefreshOnKey(const std::string &keyString) {
+   _keyString = keyString;
+}
+
+///////////////////////////////////////////////////////////
 
 } // namespace scv
 

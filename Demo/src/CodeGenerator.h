@@ -33,7 +33,8 @@ public:
    void generateCode(void);
    ///////////////////////////////////////////////////////////
    
-   void setSCVFrame( scv::InternalFrame *frame );
+   void setSCVFrame( scv::InternalFrame *frame);
+   inline scv::InternalFrame *getSCVFrame(void) const;
 
 protected:
    ///////////////////////////////////////////////////////////
@@ -47,5 +48,13 @@ protected:
    std::map<scv::Component::Type, int> _counter;
    scv::InternalFrame *_scvFrame;
 };
+
+///////////////////////////////////////////////////////////
+
+scv::InternalFrame * CodeGenerator::getSCVFrame(void) const {
+   return _scvFrame;
+}
+
+///////////////////////////////////////////////////////////
 
 #endif //__CODE_GENERATOR_H__
