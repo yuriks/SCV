@@ -27,8 +27,8 @@ public:
 class Application : public scv::Kernel {
 public:
    ///////////////////////////////////////////////////////////
-   static const int s_defaultWindowWidth = 1280;
-   static const int s_defaultWindowHeight = 720;
+   static const int s_defaultWindowWidth = 800;
+   static const int s_defaultWindowHeight = 600;
 
    static const int s_defaultGap = 10;
    static const int s_defaultRightPanelWidth = 250;

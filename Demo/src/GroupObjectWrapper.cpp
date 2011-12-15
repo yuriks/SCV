@@ -41,7 +41,7 @@ GroupObjectWrapper::GroupObjectWrapper(const GroupObjectWrapper &source) : scv::
 }
 
 GroupObjectWrapper::~GroupObjectWrapper(void) {
-   std::cout << "GroupObjectWrapper::~GroupObjectWrapper" << std::endl;
+   //std::cout << "GroupObjectWrapper::~GroupObjectWrapper" << std::endl;
 }
 
 void GroupObjectWrapper::setObject(scv::Component *object) {

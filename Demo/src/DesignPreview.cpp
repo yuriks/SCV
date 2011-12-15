@@ -33,7 +33,7 @@ DesignPreview::DesignPreview(void) : scv::Panel(scv::Point(), scv::Point()) {
    layout->setHorizontalGroup(scv::GroupLayout::createSequentialGroup()->addGap(15, 15, -1)->addGroup(hGroupLayout)->addGap(15, 15, -1));
    layout->setVerticalGroup(scv::GroupLayout::createSequentialGroup()->addGap(15, 15, -1)->addGroup(vGroupLayout)->addGap(15, 15, -1));
 
-   setFrameSize(800, 600);
+   setFrameSize(400, 300);
 }
 
 DesignPreview::~DesignPreview(void) {

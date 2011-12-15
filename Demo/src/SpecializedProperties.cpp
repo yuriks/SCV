@@ -302,9 +302,9 @@ void FrameProperties::setComponent(scv::Component *component) {
    _currComponent->setCallbacksStatus(false);
 
    scv::InternalFrame *object = static_cast<scv::InternalFrame *>(_currComponent);
-   /*setValue(s_title, object->getTitle());
+   setValue(s_title, object->getTitle());
    setValue(s_height, scv::toString(object->getHeight()));
-   setValue(s_width, scv::toString(object->getWidth()));*/
+   setValue(s_width, scv::toString(object->getWidth()));
 }
 
 void FrameProperties::onValueChange(const std::string &title, const std::string &str) {

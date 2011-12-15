@@ -14,10 +14,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exported", "Exported\Export
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		DebugWindow|Win32 = DebugWindow|Win32
@@ -47,10 +43,14 @@ Global
 		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.DebugWindow|Win32.Build.0 = Debug|Win32
 		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Release|Win32.ActiveCfg = Release|Win32
 		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Release|Win32.Build.0 = Release|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.Build.0 = Release|Win32
+		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.ActiveCfg = ReleaseWindow|Win32
+		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.Build.0 = ReleaseWindow|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
