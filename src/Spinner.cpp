@@ -88,6 +88,10 @@ void Spinner::display(void) {
    Point relPosition = getRelativePosition();
    Point currPosition = getAbsolutePosition();
 
+   if (!isFocused() && kernel->getFocusedComponent() != _textField) {
+      _textField->setString(toString(getValue()));
+   }
+
    Panel::display();
 
    _cTexture->enable();
@@ -284,10 +288,7 @@ void Spinner::processKey(const scv::KeyEvent &evt) {
    } 
    if (isFocused() || kernel->getFocusedComponent() == _textField) {
       kernel->requestComponentFocus(_textField);
-      if (getRefreshOnKeyStatus() && evt.getKeyString() == getRefreshOnKey()) {
-      } else {
-         _textField->processKey(evt);
-      }
+      _textField->processKey(evt);      
    }
 }
 
@@ -338,8 +339,10 @@ void Spinner::TextFieldSpinner::onStringChange(void) {
          t = fromString<double>(getString());
       }
       if (_spinner->getValue() != t && _str.length() > 0) {
-         _spinner->setValue(t);
-         setString(toString(_spinner->getValue()));
+         if (t >= _spinner->getMinValue() && t <= _spinner->getMaxValue()) {
+            _spinner->setValue(t);
+            setString(toString(_spinner->getValue()));
+         }         
       }
    }
 }

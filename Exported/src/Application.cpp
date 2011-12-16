@@ -78,7 +78,8 @@ void Application::init(void) {
    );
 
 
-   addComponent(_mainPanel);
+   //addComponent(_mainPanel);
+   addComponent(new scv::Spinner(scv::Point(), 200, 50, 500, 60, 1));
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {
