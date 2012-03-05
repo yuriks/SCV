@@ -5,6 +5,7 @@
 #include "Panel.h"
 #include "TextBox.h"
 #include "Button.h"
+#include "GroupLayout.h"
 
 namespace scv {
 
@@ -13,6 +14,7 @@ public:
    ///////////////////////////////////////////////////////////
    Table(const scv::Point &p, int nRows = 4, int nColumns = 4, int nCellLines = 1, int CellWidth = 100);
    virtual ~Table(void);
+   virtual void display(void);
    ///////////////////////////////////////////////////////////
 
    //SCVCallbacks
@@ -39,6 +41,8 @@ public:
    ///////////////////////////////////////////////////////////
 
    void align(int column);
+
+   void remakeLayout(void);
    
    ///////////////////////////////////////////////////////////
    void setString(int row, int column, std::string str);
@@ -91,6 +95,10 @@ private:
    int character;
    bool _align;
    std::deque<Button *> _buttons;
+
+   GroupLayout *_layout;
+   scv::Group *hGroupLayout, *vGroupLayout; 
+   bool isTableModified;
 
 protected:
    std::deque<std::deque< TextBox *> > _table;

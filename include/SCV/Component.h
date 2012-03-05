@@ -26,7 +26,7 @@ public:
       TEXTBOX     , SEPARATOR       , WINDOW      , MENUBAR    ,
       TABBEDPANE  , SCROLLCOMPONENT , IMAGE       , TABLE      ,
       COMBOBOX    , CANVAS          , TREEVIEW    , LABEL      ,
-      CONTEXTMENU ,
+      CONTEXTMENU , GENERICTREE     ,
       /**/
       NOFWIDGETS
    };

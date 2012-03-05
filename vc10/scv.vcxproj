@@ -32,6 +32,8 @@
     <ClCompile Include="..\src\data\TreeViewData.cpp" />
     <ClCompile Include="..\src\FileOpen.cpp" />
     <ClCompile Include="..\src\GapSpring.cpp" />
+    <ClCompile Include="..\src\GenericNode.cpp" />
+    <ClCompile Include="..\src\GenericTree.cpp" />
     <ClCompile Include="..\src\Group.cpp" />
     <ClCompile Include="..\src\GroupLayout.cpp" />
     <ClCompile Include="..\src\GTree.cpp" />
@@ -107,6 +109,8 @@
     <ClInclude Include="..\include\SCV\Data.h" />
     <ClInclude Include="..\include\SCV\FileOpen.h" />
     <ClInclude Include="..\include\SCV\GapSpring.h" />
+    <ClInclude Include="..\include\SCV\GenericNode.h" />
+    <ClInclude Include="..\include\SCV\GenericTree.h" />
     <ClInclude Include="..\include\SCV\Group.h" />
     <ClInclude Include="..\include\SCV\GroupLayout.h" />
     <ClInclude Include="..\include\SCV\GTree.h" />

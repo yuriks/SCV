@@ -111,6 +111,9 @@ void GroupPanel::addChild(scv::Component *object) {
    Panel::addChild(wrappedObject);
    _verticalGroup->addComponent(wrappedObject);
    _horizontalGroup->addComponent(wrappedObject);
+
+   //Refresh no DesignPreview
+   (static_cast<Application *>(Application::getInstance()))->createPreview();
 }
 
 std::string GroupPanel::getCode(const std::string &tab) {

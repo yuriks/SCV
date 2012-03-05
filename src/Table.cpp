@@ -2,15 +2,15 @@
 #include "Table.h"
 #include "Kernel.h"
 #include "util.h"
+#include "GroupLayout.h"
 
 namespace scv {
 
 Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int nCellLines /*= 1*/, int CellWidth /*= 100*/ ) :
-   Panel(p, Point(p.x + nColumns * (CellWidth - 1) + 1,20 + p.y + (TextBox::s_lineSpacing * nCellLines + TextBox::s_borderHeight) * nRows + 1)), _nColumns(nColumns), _nRows(nRows), _nCellLines(nCellLines), _cellWidth(CellWidth) {
+   Panel(p, Point(p.x + nColumns * (CellWidth - 1) + 10/*1*/ /**/ , /**/20 + p.y + (TextBox::s_lineSpacing * nCellLines + TextBox::s_borderHeight) * nRows + 20/*1*/)), _nColumns(nColumns), _nRows(nRows), _nCellLines(nCellLines), _cellWidth(CellWidth) {
    _align = _isHResizable = _isVResizable = false;
-
    std::deque<TextBox *> tmp;
-
+   isTableModified = false;
    character = 65;
    for (int i = 0 ; i < _nColumns ; i++ ) {
       _buttons.push_back(new TableButton(this, Point(i * (CellWidth - 1),0),CellWidth,toString(char(character)), i));
@@ -27,7 +27,48 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
       _table.push_back(tmp);
    }
 
+   /////////////////////////////////////////////////////////////////////////////
+   scv::GroupLayout *layout = NULL;
+   layout = new scv::GroupLayout(this);
+   scv::Group *groupLayout = NULL;
+   hGroupLayout = scv::GroupLayout::createParallelGroup();
+   for(int i = 0 ; i < _nRows+1 ; i++)
+   {
+       groupLayout = scv::GroupLayout::createSequentialGroup();
+       for(int j = 0; j < _nColumns;j++)
+       {
+           if(i == 0)
+           {
+               groupLayout->addComponent(_buttons[j]);
+           }else{
+               groupLayout->addComponent(_table[i-1][j]);
+           }
+       }
+       hGroupLayout->addGroup(groupLayout);
+   }
+
+   vGroupLayout = scv::GroupLayout::createSequentialGroup();
+   for(int i = 0 ; i < _nRows+1 ; i++)
+   {
+      groupLayout = scv::GroupLayout::createParallelGroup();
+      for(int j = 0; j < _nColumns;j++)
+      {
+           if(i == 0)
+           {
+               groupLayout->addComponent(_buttons[j]);
+           }else{
+               groupLayout->addComponent(_table[i-1][j]);
+           }
+      }
+      vGroupLayout->addGroup(groupLayout);
+   }
+
+   layout->setHorizontalGroup(hGroupLayout);
+   layout->setVerticalGroup(vGroupLayout);
+   //////////////////////////////////////////////////
    _type = TABLE;
+
+   _layout = layout;
 
    createTexture();
 }
@@ -83,6 +124,7 @@ void Table::addRow(int number) {
    for (int i = 0; i < number; i++) {
       addRow();
    }
+   isTableModified = true;
 }
 
 void Table::addColumn(void) {
@@ -103,6 +145,7 @@ void Table::addColumn(int number) {
    for (int i = 0; i < number; i++) {
       addColumn();
    }
+   isTableModified = true;
 }
 
 bool Table::alphabetical(std::string str1, std::string str2) {
@@ -118,6 +161,93 @@ bool Table::alphabetical(std::string str1, std::string str2) {
       return true;
    return false;
 }
+
+void Table::remakeLayout(void)
+{
+   scv::GroupLayout *layout = NULL;
+   layout = new scv::GroupLayout(this);
+   scv::Group *groupLayout = NULL;
+   hGroupLayout = scv::GroupLayout::createParallelGroup();
+   for(int i = 0 ; i < _nRows+1 ; i++)
+   {
+       groupLayout = scv::GroupLayout::createSequentialGroup();
+       for(int j = 0; j < _nColumns;j++)
+       {
+           if(i == 0)
+           {
+               groupLayout->addComponent(_buttons[j]);
+           }else{
+               groupLayout->addComponent(_table[i-1][j]);
+           }
+       }
+       hGroupLayout->addGroup(groupLayout);
+   }
+
+   vGroupLayout = scv::GroupLayout::createSequentialGroup();
+   for(int i = 0 ; i < _nRows+1 ; i++)
+   {
+      groupLayout = scv::GroupLayout::createParallelGroup();
+      for(int j = 0; j < _nColumns;j++)
+      {
+           if(i == 0)
+           {
+               groupLayout->addComponent(_buttons[j]);
+           }else{
+               groupLayout->addComponent(_table[i-1][j]);
+           }
+      }
+      vGroupLayout->addGroup(groupLayout);
+   }
+
+   layout->setHorizontalGroup(hGroupLayout);
+   layout->setVerticalGroup(vGroupLayout);
+   _layout = layout;
+}
+
+
+void Table::display(void) {
+   static Kernel *kernel = Kernel::getInstance();
+   static Scissor *scissor = Scissor::getInstance();
+   static ColorScheme *scheme = ColorScheme::getInstance();
+
+   if (_cTexture == NULL || _isVisible == false) return;
+
+   if(isTableModified)
+   {
+       remakeLayout();
+       isTableModified = false;
+   }
+
+   Point currPosition = getAbsolutePosition();
+
+   scissor->pushScissor(getScissor());
+
+   _cTexture->enable();
+   scheme->applyColor(ColorScheme::PANEL);
+
+   // middle
+   _cTexture->display(currPosition.x + 1, currPosition.y + 1, 0, getWidth() - 2, getHeight() - 2);
+
+   // corners
+   _cTexture->display(currPosition.x, currPosition.y + 1, 0, 1, getHeight() - 2);
+   _cTexture->display(currPosition.x + getWidth() - 1, currPosition.y + 1, 0, 1, getHeight() - 2);
+   _cTexture->display(currPosition.x + 1, currPosition.y, 0, getWidth() - 2, 1);
+   _cTexture->display(currPosition.x + 1, currPosition.y + getHeight() - 1, 0, getWidth() - 2, 1);
+
+   _cTexture->disable();
+   
+   if (_layout != NULL) {
+      _layout->layoutContainer();
+   }
+   
+   for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
+      if (kernel->willAppearOnScreen(*iter))
+         (*iter)->display();
+   }
+   
+   scissor->popScissor();
+}
+
 
 void Table::align(int column) {
    if (column >= 0 && column < _nColumns) {
@@ -181,6 +311,7 @@ void Table::onKeyUp(const scv::KeyEvent &evt) {
 
 void Table::onSizeChange(void) {
 }
+
 void Table::onPositionChange(void) {
 }
 

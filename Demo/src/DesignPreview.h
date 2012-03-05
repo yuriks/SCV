@@ -33,6 +33,7 @@ protected:
 
    scv::InternalFrame *_frame;
    GroupObjectWrapper *_wrappedFrame;
+   //scv::ScrollComponent *_wrappedFrame;
    scv::Group *hGroupLayout, *vGroupLayout;
 };
 

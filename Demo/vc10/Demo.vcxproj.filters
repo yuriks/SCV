@@ -93,6 +93,9 @@
     <ClCompile Include="..\src\ObjectEditor.cpp">
       <Filter>5.Object Editor</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\CodeViewer.cpp">
+      <Filter>6.Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\stdafx.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="..\src\ObjectEditor.h">
       <Filter>5.Object Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CodeViewer.h">
+      <Filter>6.Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

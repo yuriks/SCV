@@ -217,6 +217,12 @@
     <ClCompile Include="..\src\PopupMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupMenuStyle</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GenericNode.cpp">
+      <Filter>4.Widgets\GenericTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GenericTree.cpp">
+      <Filter>4.Widgets\GenericTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -444,6 +450,12 @@
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h">
       <Filter>4.Widgets\Tree\PopupMenuStyle</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\GenericNode.h">
+      <Filter>4.Widgets\GenericTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\GenericTree.h">
+      <Filter>4.Widgets\GenericTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="0._!TODO!_">
@@ -514,6 +526,9 @@
     </Filter>
     <Filter Include="4.Widgets\Tree\PopupMenuStyle\ContextMenu">
       <UniqueIdentifier>{da161707-b850-4dce-aeaa-d1d666cc15c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.Widgets\GenericTree">
+      <UniqueIdentifier>{bf4ac5bb-6bbd-4929-99f0-f2fd7814be34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

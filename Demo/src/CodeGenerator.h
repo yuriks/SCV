@@ -31,6 +31,11 @@ public:
 
    ///////////////////////////////////////////////////////////
    void generateCode(void);
+   std::string generateCodeMain(void);
+   std::string generateCodeAppH(void);
+   std::string generateCodeAppCpp(void);
+   std::string generateCodeWdgH(void);
+   std::string generateCodeWdgCpp(void);
    ///////////////////////////////////////////////////////////
    
    void setSCVFrame( scv::InternalFrame *frame);

@@ -8,20 +8,38 @@
 #include "CodeGenerator.h"
 
 #include "ObjectEditor.h"
+#include "CodeViewer.h"
+#include <vector>
 
+class CodeViewerTabbedPane : public scv::TabbedPane {
+public:
+    ///////////////////////////////////////////////////////////
+    CodeViewerTabbedPane(std::vector<CodeViewer*>);
+    virtual ~CodeViewerTabbedPane(void);
+    ///////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////
+    void onTabChange(void);
+    ///////////////////////////////////////////////////////////
+private:
+    std::vector<CodeViewer*> _vCodeViewer;
+};
+///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
 class MainTabbedPane : public scv::TabbedPane {
 public:
    ///////////////////////////////////////////////////////////
-   MainTabbedPane(void);
+   MainTabbedPane(CodeViewerTabbedPane*);
    virtual ~MainTabbedPane(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
    void onTabChange(void);
    ///////////////////////////////////////////////////////////
+private:
+    CodeViewerTabbedPane* _cvt;
 };
-
-///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
 class Application : public scv::Kernel {
@@ -67,16 +85,20 @@ public:
    void createPreview(void);
 
    inline void setMainTabbedPaneIndex(int index);
-
+   ///////////////////////////////////////////////////////////
+   
 protected:
    scv::Panel *_mainPanel;
 
    MainTabbedPane *_mainTabbedPane;
+   scv::TabbedPane *_designPreviewTabbedPane;
+   CodeViewerTabbedPane *_codeViewerTabbedPane;
    ComponentSelector *_componentSelector;
 
    GroupPanel *currGroup;
 
    GroupPanelWrapper *_hPanelWrapper, *_vPanelWrapper;
+   CodeViewer *_mainCodeViewer, *_AppHCodeViewer, *_AppCppCodeViewer, *_WdgHCodeViewer, *_WdgCppCodeViewer;
 };
 
 ///////////////////////////////////////////////////////////

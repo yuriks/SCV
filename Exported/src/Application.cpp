@@ -17,6 +17,19 @@ void Application::init(void) {
    _mainPanel->addChild(label0);
    scv::TextField *textfield0 = new scv::TextField(scv::Point(0, 0), 200, "SCV TextField");
    _mainPanel->addChild(textfield0);
+   /*scv::GenericNode* gnodeC = new scv::GenericNode("child7");
+   gnodeC->addChildNodeOnBack(scv::GenericNode("Cchild1"));
+   scv::GenericNode* gnode = new scv::GenericNode("inicial");
+   gnode->addChildNodeOnBack(scv::GenericNode("child1"));
+   gnode->addChildNodeOnBack(scv::GenericNode("child2"));
+   gnode->addChildNodeOnBack(scv::GenericNode("child3"));
+   gnode->addChildNodeOnBack(scv::GenericNode("child4"));
+   gnode->addChildNodeOnBack(scv::GenericNode("child5"));
+   gnode->addChildNodeOnBack(scv::GenericNode("child6"));
+   gnode->addChildNodeOnBack(*gnodeC);
+   gnode->addChildNodeOnBack(scv::GenericNode("child8"));
+   scv::GenericTree *stv = new scv::GenericTree(scv::Point(0,0), scv::Point(0,0),gnode);
+   _mainPanel->addChild(stv);*/
    scv::Button *button0 = new scv::Button(scv::Point(0, 0), "Find");
    _mainPanel->addChild(button0);
    scv::Button *button1 = new scv::Button(scv::Point(0, 0), "Cancel");
@@ -38,6 +51,7 @@ void Application::init(void) {
             ->addComponent(label0)
             ->addGroup(scv::GroupLayout::createParallelGroup()
                ->addComponent(textfield0)
+               //->addComponent(stv)
                ->addGroup(scv::GroupLayout::createSequentialGroup()->setAutoCreateGaps(true)
                   ->addGroup(scv::GroupLayout::createParallelGroup()
                      ->addComponent(checkbox0)
@@ -61,6 +75,7 @@ void Application::init(void) {
             ->addGroup(scv::GroupLayout::createParallelGroup()
                ->addComponent(label0)
                ->addComponent(textfield0)
+               //->addComponent(stv)
                ->addComponent(button0)
             )
             ->addGroup(scv::GroupLayout::createParallelGroup()

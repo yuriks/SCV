@@ -13,8 +13,35 @@
 
 #include "DesignPreview.h"
 
+#include "CodeViewer.h"
 
-MainTabbedPane::MainTabbedPane(void) : scv::TabbedPane(scv::Point(), scv::Point()) {
+///////////////////////////////////////////////////////////
+
+CodeViewerTabbedPane::CodeViewerTabbedPane(std::vector<CodeViewer*> cv)
+    : scv::TabbedPane(scv::Point(), scv::Point()) {
+    _vCodeViewer = cv;
+    _vCodeViewer[0]->setText(CodeGenerator::getInstance()->generateCodeMain());
+    _vCodeViewer[1]->setText(CodeGenerator::getInstance()->generateCodeAppH());
+}
+
+CodeViewerTabbedPane::~CodeViewerTabbedPane(void) {
+}
+
+void CodeViewerTabbedPane::onTabChange(void) {
+   if (getCurrTabIndex() == 2) {
+       _vCodeViewer[2]->setText(CodeGenerator::getInstance()->generateCodeAppCpp());
+   } else if (getCurrTabIndex() == 3) {
+       _vCodeViewer[3]->setText(CodeGenerator::getInstance()->generateCodeWdgH());
+   } else if (getCurrTabIndex() == 4) {
+       _vCodeViewer[4]->setText(CodeGenerator::getInstance()->generateCodeWdgCpp());
+   }
+}
+
+///////////////////////////////////////////////////////////
+
+MainTabbedPane::MainTabbedPane(CodeViewerTabbedPane* cvt)
+    : scv::TabbedPane(scv::Point(), scv::Point()) {
+    _cvt = cvt;
 }
 
 MainTabbedPane::~MainTabbedPane(void) {
@@ -22,9 +49,15 @@ MainTabbedPane::~MainTabbedPane(void) {
 
 void MainTabbedPane::onTabChange(void) {
    if (getCurrTabIndex() == 0) {
-      (static_cast<Application *>(Application::getInstance()))->createPreview();
+      //Refresh on DesignPreview used on GroupPanel::addChild()
    }
+
+   if (getCurrTabIndex() != 1) {
+       _cvt->setCurrTabIndex(0);
+   } else {
    
+   }
+
    if (getCurrTabIndex() != 2) {
       PropertiesManager::getCurr()->setVisible(false);
    } else {
@@ -32,8 +65,7 @@ void MainTabbedPane::onTabChange(void) {
    }
 }
 
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 Application::Application(void) : Kernel() {
    currGroup = NULL;
@@ -80,13 +112,37 @@ void Application::init(void) {
    tabbedDesign->addChild(hScrollDesign, "Group Layout: Horizontal");
    tabbedDesign->addChild(vScrollDesign, "Group Layout: Vertical");
 
-   _mainTabbedPane = new MainTabbedPane();   
-   _mainTabbedPane->addChild(DesignPreview::getInstance(), "Design Preview");
+   _mainCodeViewer = new CodeViewer();
+   _AppHCodeViewer = new CodeViewer();
+   _AppCppCodeViewer = new CodeViewer();
+   _WdgHCodeViewer = new CodeViewer();
+   _WdgCppCodeViewer = new CodeViewer();
+   std::vector<CodeViewer*> cv;
+   cv.push_back(_mainCodeViewer);
+   cv.push_back(_AppHCodeViewer);
+   cv.push_back(_AppCppCodeViewer);
+   cv.push_back(_WdgHCodeViewer);
+   cv.push_back(_WdgCppCodeViewer);
+   _codeViewerTabbedPane = new CodeViewerTabbedPane(cv);
+   _codeViewerTabbedPane->addChild(_mainCodeViewer, "main.cpp");
+   _codeViewerTabbedPane->addChild(_AppHCodeViewer, "Aplication.h");
+   _codeViewerTabbedPane->addChild(_AppCppCodeViewer, "Aplication.cpp");
+   _codeViewerTabbedPane->addChild(_WdgHCodeViewer, "Widget.h");
+   _codeViewerTabbedPane->addChild(_WdgCppCodeViewer, "Widget.cpp");
+
+
+   _mainTabbedPane = new MainTabbedPane(_codeViewerTabbedPane);   
    _mainTabbedPane->addChild(tabbedDesign, "Group Layout");
+   _mainTabbedPane->addChild(_codeViewerTabbedPane, "Code Viewer");
    _mainTabbedPane->addChild(ObjectEditor::getInstance(), "Object Editor");
 
    _mainPanel->addChild(_mainTabbedPane);
-   ///////////////////////////////////////////////////////////
+
+   _designPreviewTabbedPane = new scv::TabbedPane(scv::Point(), scv::Point());
+   _designPreviewTabbedPane->addChild(DesignPreview::getInstance(), "Design Preview");
+
+   _mainPanel->addChild(_designPreviewTabbedPane);
+   //////////////////////////////////////////////////////////
 
    //Properties
    ///////////////////////////////////////////////////////////
@@ -106,7 +162,10 @@ void Application::init(void) {
    layout->setHorizontalGroup(layout->createParallelGroup()
       ->addComponent(menuBar)
       ->addGroup(layout->createSequentialGroup()->setAutoCreateGaps(true)
+      ->addGroup(layout->createParallelGroup()
          ->addComponent(_mainTabbedPane)
+         ->addComponent(_designPreviewTabbedPane)
+         )
          ->addGroup(layout->createParallelGroup(scv::Spring::LEADING, false)
             ->addComponent(panelPalette)
             ->addComponent(Properties::getInstance())
@@ -125,7 +184,10 @@ void Application::init(void) {
       ->addComponent(menuBar)
       ->addGroup(
          layout->createParallelGroup()
+         ->addGroup(layout->createSequentialGroup()
             ->addComponent(_mainTabbedPane)
+            ->addComponent(_designPreviewTabbedPane)
+            )
             ->addGroup(layout->createSequentialGroup()
                ->addComponent(panelPalette)->addGap(15)
                ->addComponent(Properties::getInstance())

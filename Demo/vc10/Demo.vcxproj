@@ -203,6 +203,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\CodeGenerator.cpp" />
+    <ClCompile Include="..\src\CodeViewer.cpp" />
     <ClCompile Include="..\src\ComponentSelector.cpp" />
     <ClCompile Include="..\src\DesignPreview.cpp" />
     <ClCompile Include="..\src\GroupObjectWrapper.cpp" />
@@ -229,6 +230,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Application.h" />
     <ClInclude Include="..\src\CodeGenerator.h" />
+    <ClInclude Include="..\src\CodeViewer.h" />
     <ClInclude Include="..\src\ComponentSelector.h" />
     <ClInclude Include="..\src\DesignPreview.h" />
     <ClInclude Include="..\src\GroupObjectWrapper.h" />
