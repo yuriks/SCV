@@ -37,6 +37,7 @@ void GroupPanelMenu::onMenuAccessed(const std::deque<std::string> &address) {
          setStatus(false);
       } else if (address[1] == "Remove") {
          _host->getParent()->removeChild(_host);
+         (static_cast<Application *>(Application::getInstance()))->createPreview();
       }
    } else if (address.size() == 3) {
       if (address[1] == "Add SCV Object") {
@@ -113,7 +114,7 @@ void GroupPanel::addChild(scv::Component *object) {
    _horizontalGroup->addComponent(wrappedObject);
 
    //Refresh no DesignPreview
-   (static_cast<Application *>(Application::getInstance()))->createPreview();
+   //(static_cast<Application *>(Application::getInstance()))->createPreview();
 }
 
 std::string GroupPanel::getCode(const std::string &tab) {
@@ -199,6 +200,7 @@ void GroupPanel::display(void) {
       if (kernel->willAppearOnScreen(*iter))
          (*iter)->display();
    }
+   (static_cast<Application *>(Application::getInstance()))->createPreview();
 
    scissor->popScissor();
 }
