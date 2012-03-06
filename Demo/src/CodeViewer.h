@@ -21,7 +21,6 @@ protected:
    scv::TextBox *_textbox;
    scv::MenuBar *_menuBar;
    GroupObjectWrapper *_wrappedFrame;
-   //scv::InternalFrame *_frame;
    scv::Group *hGroupLayout, *vGroupLayout;
 };
 
