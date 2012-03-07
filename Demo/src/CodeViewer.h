@@ -10,8 +10,6 @@ public:
    virtual ~CodeViewer(void);
    ///////////////////////////////////////////////////////////
 
-   void setFrameSize(int width, int height);
-
    void display(void);
 
    void setText(std::string text);

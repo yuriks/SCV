@@ -20,9 +20,7 @@ void DesignPreview::FramePreview::onClose(void) {
 DesignPreview::DesignPreview(void) : scv::Panel(scv::Point(), scv::Point()) {
    _frame = new FramePreview();
    _wrappedFrame = new GroupObjectWrapper(_frame, false);
-   //_wrappedFrame = new scv::ScrollComponent(scv::Point(), scv::Point());
-   //_wrappedFrame->addChild(_frame);
-   //addChild(_frame );
+
    addChild(_wrappedFrame );
 
    CodeGenerator::getInstance()->setSCVFrame(_frame);
@@ -33,10 +31,19 @@ DesignPreview::DesignPreview(void) : scv::Panel(scv::Point(), scv::Point()) {
    hGroupLayout = scv::GroupLayout::createParallelGroup();
    vGroupLayout = scv::GroupLayout::createParallelGroup();
    
-   layout->setHorizontalGroup(scv::GroupLayout::createSequentialGroup()->addGap(1, 1, -1)->addGroup(hGroupLayout)->addGap(1, 1, -1));
+   /*layout->setHorizontalGroup(scv::GroupLayout::createSequentialGroup()->addGap(1, 1, -1)->addGroup(hGroupLayout)->addGap(1, 1, -1));
    layout->setVerticalGroup(scv::GroupLayout::createSequentialGroup()->addGap(1, 1, -1)->addGroup(vGroupLayout)->addGap(1, 1, -1));
+   */
 
-   setFrameSize(400, 300);
+   /////////////Adicionado para Resize///////////////
+   hGroupLayout->addComponent(_wrappedFrame);
+   vGroupLayout->addComponent(_wrappedFrame);
+
+   layout->setHorizontalGroup(hGroupLayout);
+   layout->setVerticalGroup(vGroupLayout);
+   //////////////////////////////////////////////////
+
+   //setFrameSize(400, 300);
 }
 
 DesignPreview::~DesignPreview(void) {
@@ -75,7 +82,7 @@ void DesignPreview::setFrameSize(int width, int height) {
 }
 
 void DesignPreview::display(void) {
-   setFrameSize(_frame->getWidth(), _frame->getHeight());
+   //setFrameSize(_frame->getWidth(), _frame->getHeight());
    scv::Panel::display();
 }
 
