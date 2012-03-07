@@ -6,7 +6,7 @@
 
 namespace scv {
 
-Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int nCellLines /*= 1*/, int CellWidth /*= 100*/ ) :
+Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int nCellLines /*= 1*/, int CellWidth /*= 1*/ ) :
    Panel(p, Point(p.x + nColumns * (CellWidth - 1) + 10/*1*/ /**/ , /**/20 + p.y + (TextBox::s_lineSpacing * nCellLines + TextBox::s_borderHeight) * nRows + 20/*1*/)), _nColumns(nColumns), _nRows(nRows), _nCellLines(nCellLines), _cellWidth(CellWidth) {
    _align = _isHResizable = _isVResizable = false;
    std::deque<TextBox *> tmp;

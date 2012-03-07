@@ -12,7 +12,7 @@ namespace scv {
 class Table : public Panel {
 public:
    ///////////////////////////////////////////////////////////
-   Table(const scv::Point &p, int nRows = 4, int nColumns = 4, int nCellLines = 1, int CellWidth = 100);
+   Table(const scv::Point &p, int nRows = 4, int nColumns = 4, int nCellLines = 1, int CellWidth = 1);
    virtual ~Table(void);
    virtual void display(void);
    ///////////////////////////////////////////////////////////

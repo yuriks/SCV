@@ -1,3 +1,9 @@
+/*!
+\file       GenericTree.h
+\brief      Implementation of a GenericTree.
+\author     SCV Team
+*/
+
 #ifndef _SCV_GENERIC_TREE_H_
 #define _SCV_GENERIC_TREE_H_
 
@@ -5,6 +11,10 @@
 #include "ComponentWithTexture.h"
 
 namespace scv {
+
+/*! class used to create a generic tree which can link each
+ * node to an id (function, integer...)
+ */
 
 class GenericTree : public ComponentWithTexture
 {

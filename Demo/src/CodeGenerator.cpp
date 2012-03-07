@@ -48,7 +48,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
    } else if (type == "Image") {
       object = new scv::Image(scv::Point(0, 0), "default_image.png");
    } else if (type == "Table") {
-      object = new scv::Table(scv::Point(0, 0));
+      object = new scv::Table(scv::Point(0, 0),4,4,1,15);
    } else if (type == "ComboBox") {
       object = new scv::ComboBox(scv::Point(0,0), 200);
    } else if (type == "Canvas") {

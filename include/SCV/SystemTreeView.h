@@ -1,3 +1,9 @@
+/*!
+\file       SystemTreeView.h
+\brief      Implementation of a SystemTreeView.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TREE_VIEW_H__
 #define __SCV_TREE_VIEW_H__
 

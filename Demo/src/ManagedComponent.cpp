@@ -323,7 +323,7 @@ std::string ManagedComponent::getDefaultClassInitialization(void) {
       scv::Image *object = static_cast<scv::Image *>(getComponent());
       initialization += "scv::Image(scv::Point(0, 0), \"" + object->getPath() + "\")";
    } else if (getDerivedTypeName() == "Table") {
-      initialization += "scv::Table(scv::Point(0, 0))";
+      initialization += "scv::Table(scv::Point(0, 0), 4, 4, 1, 15)";
    } else if (getDerivedTypeName() == "ComboBox") {
       initialization += "scv::ComboBox(scv::Point(0,0), 200)";
    } else if (getDerivedTypeName() == "Canvas") {
