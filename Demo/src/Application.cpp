@@ -100,7 +100,7 @@ void Application::init(void) {
    _mainPanel->addChild(panelPalette);
    ///////////////////////////////////////////////////////////
 
-   //Design
+   //Design 
    ///////////////////////////////////////////////////////////
    _hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
    _vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);

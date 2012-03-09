@@ -45,6 +45,11 @@ Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<App
    windows->addComponent("InternalFrame");
    windows->adjustButtonsWidth();
 
+   PalleteComponents *deleteAllPanel = new PalleteComponents("SCV Delete", scv::Point(), scv::Point(getWidth(), 0));
+   addChild(deleteAllPanel);
+   deleteAllPanel->addComponent("Delete All Components");
+   deleteAllPanel->adjustButtonsWidth();
+
    paletteLayout->setHorizontalGroup(
       paletteLayout->createParallelGroup()
          ->addGroup(scv::GroupLayout::createSequentialGroup()
@@ -55,12 +60,14 @@ Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<App
          ->addComponent(containers, containers->getWidth(), containers->getWidth(), -1)
          ->addComponent(controls, controls->getWidth(), controls->getWidth(), -1)
          ->addComponent(windows, windows->getWidth(), windows->getWidth(), -1)
+         ->addComponent(deleteAllPanel, deleteAllPanel->getWidth(), deleteAllPanel->getWidth(), -1)
    );
 
    paletteLayout->setVerticalGroup(
       paletteLayout->createSequentialGroup()
          ->addGap(5)
          ->addComponent(_title)->addGap(8)
+         ->addComponent(deleteAllPanel, deleteAllPanel->getHeight(), deleteAllPanel->getHeight(), deleteAllPanel->getHeight())->addGap(10)
          ->addComponent(containers, containers->getHeight(), containers->getHeight(), containers->getHeight())->addGap(10)
          ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())->addGap(10)
          ->addComponent(windows, windows->getHeight(), windows->getHeight(), windows->getHeight())

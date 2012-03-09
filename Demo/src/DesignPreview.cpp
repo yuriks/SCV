@@ -82,7 +82,6 @@ void DesignPreview::setFrameSize(int width, int height) {
 }
 
 void DesignPreview::display(void) {
-   //setFrameSize(_frame->getWidth(), _frame->getHeight());
    scv::Panel::display();
 }
 

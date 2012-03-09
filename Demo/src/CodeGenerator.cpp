@@ -74,6 +74,23 @@ void CodeGenerator::deleteComponent(ManagedComponent *managed) {
    delete managed;
 }
 
+/**/
+void CodeGenerator::deleteComponents()
+{
+    ManagedComponent* a;
+    while(_managed.size() > 1)
+    {
+        //std::cout << _managed.size()  << std::endl;
+        a = _managed.back();
+        if(a->getParent() != NULL){
+            a->getParent()->removeChild(a);
+        }else
+        {
+            _managed.pop_back();
+        }
+    }
+}
+
 bool CodeGenerator::hasComponent(scv::Component *object) const {
    return getManagedComponent(object) ? true : false;
 }

@@ -15,6 +15,7 @@ public:
    void addManagedComponent(scv::Component *object, const std::string &type);
 
    void deleteComponent(ManagedComponent *managed);   
+   void deleteComponents();
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////

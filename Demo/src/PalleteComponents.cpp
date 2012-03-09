@@ -10,8 +10,13 @@ ButtonPallete::~ButtonPallete(void) {
 }
 
 void ButtonPallete::onMouseClick(const scv::MouseEvent &evt) {
-   Application *app = static_cast<Application*>(scv::Kernel::getInstance());
-   app->addComponentFromPalette(getString());
+   if(getString() == "Delete All Components")
+   {
+        CodeGenerator::getInstance()->deleteComponents();
+   }else{
+       Application *app = static_cast<Application*>(scv::Kernel::getInstance());
+       app->addComponentFromPalette(getString());
+   }
 }
 
 ///////////////////////////////////////////////////////////
