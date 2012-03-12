@@ -18,7 +18,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
       _pColors[TEXTSELECTION]   = Color4f(ColorRGBA( 96, 176, 255, 200));
       _pColors[TEXTSELECTED]    = Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[BACKGROUND]      = Color4f(ColorRGBA( 50,  50,  50, 255));
-      _pColors[MENUBAR    ]     = Color4f(ColorRGBA(214, 214, 214, 255));
+      _pColors[MENUBAR]         = Color4f(ColorRGBA(214, 214, 214, 255));
       _pColors[PROGRESSBAR]     = Color4f(ColorRGBA(  0,   0, 255, 200));
       _pColors[SEPARATOR]       = Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[TEXTFIELD]       = Color4f(ColorRGBA( 90,  90,  90, 255));
@@ -39,7 +39,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
 	   _pColors[TEXTSELECTION]   = Color4f(ColorRGBA( 50, 104, 166, 200));
 	   _pColors[TEXTSELECTED]    = Color4f(ColorRGBA(255, 255, 255, 255));
 	   _pColors[BACKGROUND]      = Color4f(ColorRGBA( 33,  59, 116, 255));
-	   _pColors[MENUBAR    ]     = Color4f(ColorRGBA(240, 240, 240, 255));
+	   _pColors[MENUBAR]         = Color4f(ColorRGBA(240, 240, 240, 255));
 	   _pColors[PROGRESSBAR]     = Color4f(ColorRGBA(106, 168, 229, 200));
 	   _pColors[SEPARATOR]       = Color4f(ColorRGBA(115, 115, 115, 255));
 	   _pColors[TEXTFIELD]       = Color4f(ColorRGBA(255, 255, 255, 255));
@@ -58,7 +58,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
       _pColors[TEXTSELECTION]   = Color4f(ColorRGBA( 70, 164,  76, 200));
       _pColors[TEXTSELECTED]    = Color4f(ColorRGBA(  0,   0,   0, 255));
       _pColors[BACKGROUND]      = Color4f(ColorRGBA( 50,  50,  50, 255));
-      _pColors[MENUBAR    ]     = Color4f(ColorRGBA(223,  47,   8, 255));
+      _pColors[MENUBAR]         = Color4f(ColorRGBA(223,  47,   8, 255));
       _pColors[PROGRESSBAR]     = Color4f(ColorRGBA(  0,  55,   0, 200));
       _pColors[SEPARATOR]       = Color4f(ColorRGBA(  5,  70,   0, 255));
       _pColors[TEXTFIELD]       = Color4f(ColorRGBA( 63, 101,  61, 255));
@@ -77,7 +77,7 @@ void ColorScheme::loadScheme(ColorScheme::SchemeStyle style) {
       _pColors[TEXTSELECTION]   = Color4f(ColorRGBA( 96, 176, 255, 200));
       _pColors[TEXTSELECTED]    = Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[BACKGROUND]      = Color4f(ColorRGBA(255, 255, 255, 255));
-      _pColors[MENUBAR    ]     = Color4f(ColorRGBA(189, 199, 216, 255));
+      _pColors[MENUBAR]         = Color4f(ColorRGBA(189, 199, 216, 255));
       _pColors[PROGRESSBAR]     = Color4f(ColorRGBA(100, 100, 255, 200));
       _pColors[SEPARATOR]       = Color4f(ColorRGBA(255, 255, 255, 255));
       _pColors[TEXTFIELD]       = Color4f(ColorRGBA(200, 200, 200, 255));
