@@ -15,7 +15,10 @@ namespace scv {
 /*! Functionality to customize SCV component color themes.
 
 Since it's a Singleton class, must be acessed via getInstance().
-\example scv::ColorScheme::getInstance()->loadScheme(scv::ColorScheme::scvDefault);
+
+%Example: \code
+   scv::ColorScheme::getInstance()->loadScheme(scv::ColorScheme::scvDefault);
+\endcode
 */
 class ColorScheme : public Singleton<ColorScheme> {
 friend class Singleton<ColorScheme>;

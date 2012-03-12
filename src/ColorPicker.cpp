@@ -131,7 +131,7 @@ Point ColorPicker::foundHSL(void) {
    _currentPickerColor = ColorRGBA((unsigned char)_rgbs[0]->getValue(), (unsigned char)_rgbs[1]->getValue(), (unsigned char)_rgbs[2]->getValue());
    float hls[3];
    ColorRGBA colorHLS = _currentPickerColor;
-   colorHLS.toHSL(hls);
+   colorHLS.toHLS(hls);
    _saturation = hls[2] * 100.f;
    _rgbs[3]->setValue(_saturation);
    return Point((int)(hls[0]*360),(int)(100.f-hls[1]*99.f-1.f));

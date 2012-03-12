@@ -3,26 +3,21 @@
 
 namespace scv {
 
-ColorRGBA::ColorRGBA(void) {
-   std::fill(&rgba[0], &rgba[3], 0);
+//! Constructs a ColorRGBA initialized to fully transparent black.
+ColorRGBA::ColorRGBA() {
+   std::fill_n(&rgba[0], 4, 0);
 }
 
-ColorRGBA::ColorRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a /*=255*/) {
+ColorRGBA::ColorRGBA(
+   unsigned char r, //!< Red channel
+   unsigned char g, //!< Green channel
+   unsigned char b, //!< Blue channel
+   unsigned char a  //!< Alpha (opacity) channel
+) {
    rgba[0] = r;
    rgba[1] = g;
    rgba[2] = b;
    rgba[3] = a;
-}
-
-ColorRGBA::ColorRGBA(const ColorRGBA& rhs) {
-   std::memcpy(rgba, rhs.rgba, sizeof(rgba));
-}
-
-ColorRGBA& ColorRGBA::operator=(const ColorRGBA& rhs) {
-   if (this != &rhs) {
-      std::memcpy(rgba, rhs.rgba, sizeof(rgba));
-   }
-   return *this;
 }
 
 ColorRGBA ColorRGBA::operator-(unsigned char w) const {
@@ -51,14 +46,33 @@ std::ostream& operator<<(std::ostream& stream, const ColorRGBA& rhs) {
 }
 
 bool ColorRGBA::operator != (const ColorRGBA& rhs) {
-   return ((rgba[0] == rhs[0] && rgba[1] == rhs[1] && rgba[2] == rhs[2] && rgba[3] == rhs[3])? false : true);
+   return rgba[0] == rhs[0] &&
+          rgba[1] == rhs[1] &&
+          rgba[2] == rhs[2] &&
+          rgba[3] == rhs[3];
 }
 
 bool ColorRGBA::operator == (const ColorRGBA& rhs) {
-   return ((rgba[0] == rhs[0] && rgba[1] == rhs[1] && rgba[2] == rhs[2] && rgba[3] == rhs[3])? true : false);
+   return rgba[0] == rhs[0] &&
+          rgba[1] == rhs[1] &&
+          rgba[2] == rhs[2] &&
+          rgba[3] == rhs[3];
 }
 
-void ColorRGBA::toHSL(float hls[]) {
+/*! Converts the RGB color to HLS (Hue-Lightness-Saturation) format.
+\param hls The output color vector. Indices 0 through 2 will have the hue, saturation and lightness, respectively.
+
+%Example: \code
+   ColorRGBA color;
+   float hls_col[3];
+   color.toHLS(hls_col);
+   std::cout <<
+      "Hue: "         << hls_col[0] <<
+      " Lightness: "  << hls_col[1] <<
+      " Saturation: " << hls_col[2] << std::endl;
+\endcode
+*/
+void ColorRGBA::toHLS(float hls[]) {
    float max, min,dif;
    float r_dist, g_dist, b_dist;
 
@@ -71,7 +85,7 @@ void ColorRGBA::toHSL(float hls[]) {
    dif = max-min;
    hls[1] = (max + min) / 2.f;
 
-   if(std::abs(dif) < 0.00000001) {
+   if(std::abs(dif) < 0.00000001f) {
       hls[2] = 0.f;
       hls[0] = 0.f;
    } else {
@@ -96,6 +110,11 @@ void ColorRGBA::toHSL(float hls[]) {
    }
 }
 
+/*! Converts a HLS color value to a ColorRGBA.
+\param h Hue [0.0 -> 360.0]
+\param l Lightness [0.0 -> 1.0]
+\param s Saturation [0.0 -> 1.0]
+*/
 ColorRGBA ColorRGBA::toRGB(double h, double l, double s) {
    if (s == 0) {
       return ColorRGBA((int)(l * 255.0), (int)(l * 255.0), (int)(l * 255.0));
