@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "GroupPanelWrapper.h"
 #include "Pallete.h"
 
 #include "PalleteComponents.h"
@@ -6,7 +7,14 @@
 #include "Application.h"
 
 Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
-   _title = new scv::Label(scv::Point(0, 0), "Palette");
+}
+
+Pallete::~Pallete(void) {
+}
+
+void Pallete::setGroupPanelsWraper(GroupPanelWrapper* h, GroupPanelWrapper* v)
+{
+       _title = new scv::Label(scv::Point(0, 0), "Palette");
    addChild(_title);
 
    scv::GroupLayout *paletteLayout = new scv::GroupLayout(this);
@@ -45,9 +53,12 @@ Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<App
    windows->addComponent("InternalFrame");
    windows->adjustButtonsWidth();
 
-   PalleteComponents *deleteAllPanel = new PalleteComponents("SCV Delete", scv::Point(), scv::Point(getWidth(), 0));
+    _hGP = h;
+    _vGP = v;
+
+   PalleteDeleteComponents *deleteAllPanel = new PalleteDeleteComponents("SCV Delete", scv::Point(), scv::Point(getWidth(), 0));
    addChild(deleteAllPanel);
-   deleteAllPanel->addComponent("Delete All Components");
+   deleteAllPanel->addComponent("Clean All Interface", _hGP, _vGP);
    deleteAllPanel->adjustButtonsWidth();
 
    paletteLayout->setHorizontalGroup(
@@ -72,9 +83,6 @@ Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<App
          ->addComponent(controls, controls->getHeight(), controls->getHeight(), controls->getHeight())->addGap(10)
          ->addComponent(windows, windows->getHeight(), windows->getHeight(), windows->getHeight())
    );
-}
-
-Pallete::~Pallete(void) {
 }
 
 void Pallete::display(void) {

@@ -94,17 +94,18 @@ void Application::init(void) {
    _mainPanel->addChild(menuBar);
    ///////////////////////////////////////////////////////////
    
+   _hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
+   _vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
+
    //Palette
    ///////////////////////////////////////////////////////////
    Pallete *panelPalette = Pallete::getInstance();
+   panelPalette->setGroupPanelsWraper(_hPanelWrapper, _vPanelWrapper);
    _mainPanel->addChild(panelPalette);
    ///////////////////////////////////////////////////////////
 
    //Design 
    ///////////////////////////////////////////////////////////
-   _hPanelWrapper = new GroupPanelWrapper(GroupPanel::HORIZONTAL);
-   _vPanelWrapper = new GroupPanelWrapper(GroupPanel::VERTICAL);
-
    scv::ScrollComponent *hScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), _hPanelWrapper);
    scv::ScrollComponent *vScrollDesign = new scv::ScrollComponent(scv::Point(0, 0), scv::Point(0, 0), _vPanelWrapper);
 

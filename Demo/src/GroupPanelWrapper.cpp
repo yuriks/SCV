@@ -104,6 +104,19 @@ void GroupPanelWrapper::removeChild(Component *object) {
    }
 }
 
+void GroupPanelWrapper::removeAllChild(void) {
+    Component::List::iterator iter = _children.begin();
+    while(iter != _children.end()) {
+        GroupPanel *group = dynamic_cast<GroupPanel *>(*iter);
+        if (group != NULL && _group != NULL) {
+            //Panel::removeChild(group);
+            registerContextMenu(_contextMenu);
+            _group = NULL;
+        }
+        iter = _children.erase(iter);
+    }
+}
+
 std::string GroupPanelWrapper::getGroupCode(void) const {
    static const std::string s_defaultTab = "      ";
 

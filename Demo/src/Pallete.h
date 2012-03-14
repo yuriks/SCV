@@ -3,6 +3,8 @@
 
 class Pallete : public Singleton<Pallete>, public scv::Panel {
 friend class Singleton<Pallete>;
+public:
+    void setGroupPanelsWraper(GroupPanelWrapper*, GroupPanelWrapper*);
 protected:
    ///////////////////////////////////////////////////////////
    Pallete(void);
@@ -12,6 +14,9 @@ protected:
    void display(void);
 
    scv::Label *_title;
+private:
+   GroupPanelWrapper* _hGP;
+   GroupPanelWrapper* _vGP;
 };
 
 #endif //__PALLETE_H__
