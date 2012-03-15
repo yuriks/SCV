@@ -15,6 +15,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    inline std::string getClassName(void) const;
+   inline void setClassName(std::string);
    inline std::string getDerivedTypeName(void) const;
    inline std::string getPointerName(void) const;
    inline scv::Component *getComponent(void) const;   
@@ -63,6 +64,10 @@ bool ManagedComponent::getCustomClass(void) const {
 
 std::string ManagedComponent::getClassName(void) const {
    return _className;
+}
+
+void ManagedComponent::setClassName(std::string s){
+    _className = s;
 }
 
 std::string ManagedComponent::getDerivedTypeName(void) const {

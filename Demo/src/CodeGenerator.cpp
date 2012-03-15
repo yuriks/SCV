@@ -10,8 +10,10 @@ CodeGenerator::CodeGenerator(void) {
 CodeGenerator::~CodeGenerator(void) {
 }
 
+/*Adicionar novo componente através do Pallete*/
 scv::Component *CodeGenerator::addComponent(const std::string &type) {
    scv::Component *object = NULL;
+   std::string aditionalString = "";
 
    if (type == "Panel") {
       object = new scv::Panel(scv::Point(0, 0), scv::Point(200, 200));
@@ -25,6 +27,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Spinner(scv::Point(0, 0), 200, 0.f, 100.f, 50.f, 1.f);
    } else if (type == "Button") {
       object = new scv::Button(scv::Point(0, 0), "SCV Button");
+      aditionalString = "_SCV Button";
    } else if (type == "CheckBox") {
       object = new scv::CheckBox(scv::Point(0, 0), false, "SCV CheckBox");
    } else if (type == "RadioButton") {
@@ -59,12 +62,13 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Label(scv::Point(0, 0), "SCV Label");
    }
 
-   addManagedComponent(object, type);
+   addManagedComponent(object, type, aditionalString);
    return object;
 }
 
-void CodeGenerator::addManagedComponent(scv::Component *object, const std::string &type) {
-   _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())), type));
+/*Adiciona novo componente criado no Pallete (A string adicional é para componentes especiais)*/
+void CodeGenerator::addManagedComponent(scv::Component *object, const std::string &type, const std::string &aString) {
+    _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())) + aString , type));
 }
 
 void CodeGenerator::deleteComponent(ManagedComponent *managed) {
@@ -80,7 +84,6 @@ void CodeGenerator::deleteComponents()
     ManagedComponent* a;
     while(_managed.size() > 1)
     {
-        //std::cout << _managed.size()  << std::endl;
         a = _managed.back();
         if(a->getParent() != NULL){
             a->getParent()->removeChild(a);
@@ -453,6 +456,24 @@ std::string CodeGenerator::generateCodeWdgCpp(void)
 
 int CodeGenerator::getComponentCount(scv::Component::Type type) {
    return _counter[type]++;
+}
+
+std::string SpacesToUnderlines(std::string s)
+{
+    for(int i = 0 ; i < s.length() ; i++)
+    {
+        if(s[i] == ' ')
+        {
+            s[i] = '_';
+        }
+    }
+    return s;
+}
+
+void CodeGenerator::modifyNameManagedComponent(scv::Component *obj, std::string newName)
+{
+    ManagedComponent *a = getManagedComponent(obj);
+    a->setClassName(a->getClassName().substr(0,a->getClassName().find('_')+1) + SpacesToUnderlines(newName));
 }
 
 void CodeGenerator::setSCVFrame(scv::InternalFrame *frame) {

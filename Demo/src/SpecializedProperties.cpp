@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SpecializedProperties.h"
+#include "CodeGenerator.h"
 
 const std::string CountersProperties::s_stepValue  = "Step Value";
 const std::string CountersProperties::s_startValue = "Start Value";
@@ -98,19 +99,25 @@ void StringsProperties::setComponent(scv::Component *component) {
    }   
 }
 
+/*Switch the value of initial string of a component */
 void StringsProperties::onValueChange(const std::string &title, const std::string &str) {
    if (_currComponent == NULL) return;
    
    if (title == s_string) {
+      /*Switch Label of Button*/
       if (dynamic_cast<scv::Button *>(_currComponent)) {
          scv::Button *object = static_cast<scv::Button *>(_currComponent);
          object->setString(str);
+         CodeGenerator::getInstance()->modifyNameManagedComponent(object, str);
+      /*Switch Label*/
       } else if (dynamic_cast<scv::Label *>(_currComponent)) {
          scv::Label *object = static_cast<scv::Label *>(_currComponent);
          object->setString(str);
+      /*Switch Text*/
       } else if (dynamic_cast<scv::TextField *>(_currComponent)) {
          scv::TextField *object = static_cast<scv::TextField *>(_currComponent);
          object->setString(str);
+      /*Switch Text*/
       } else if (dynamic_cast<scv::TextBox *>(_currComponent)) {
          scv::TextBox *object = static_cast<scv::TextBox *>(_currComponent);
          object->setString(str);

@@ -12,7 +12,7 @@ public:
 
    ///////////////////////////////////////////////////////////
    scv::Component *addComponent(const std::string &type);
-   void addManagedComponent(scv::Component *object, const std::string &type);
+   void addManagedComponent(scv::Component *object, const std::string &type, const std::string &aString = "");
 
    void deleteComponent(ManagedComponent *managed);   
    void deleteComponents();
@@ -28,6 +28,8 @@ public:
    ManagedComponent *getManagedComponent(const std::string &name) const;
 
    ManagedList getManagedComponents(void) const;
+
+   void modifyNameManagedComponent(scv::Component * obj, std::string newName);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
