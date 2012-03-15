@@ -12,8 +12,6 @@
 
 namespace {
 
-
-
 class MyRadioButton : public scv::RadioButton {
 public:
    MyRadioButton(scv::Point p1 , std::string name) : scv::RadioButton(p1, false, name) {
@@ -29,22 +27,19 @@ private:
 
 void example5_main() {
 	scv::Kernel* kernel = scv::Kernel::getInstance();
-	scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
-
-	scheme->loadScheme(scv::ColorScheme::clean);
-	kernel->setWindowSize(500, 500);
+	kernel->setWindowSize(300, 300);
 
    scv::ButtonGroup * bgroup = new scv::ButtonGroup();
    
-   MyRadioButton * b1 = new MyRadioButton(scv::Point(20,20),"Botao 1");
-   MyRadioButton * b2 = new MyRadioButton(scv::Point(20,20+30),"Botao 2");
-   MyRadioButton * b3 = new MyRadioButton(scv::Point(20,20+30*2),"Botao 3");
-   MyRadioButton * b4 = new MyRadioButton(scv::Point(20,20+30*3),"Botao 4");
+   MyRadioButton * b1 = new MyRadioButton(scv::Point(20, 20),      "Botao 1");
+   MyRadioButton * b2 = new MyRadioButton(scv::Point(20, 20+30),   "Botao 2");
+   MyRadioButton * b3 = new MyRadioButton(scv::Point(20, 20+30*2), "Botao 3");
+   MyRadioButton * b4 = new MyRadioButton(scv::Point(20, 20+30*3), "Botao 4");
 
-  b1->registerButtonGroup(bgroup);
-  b2->registerButtonGroup(bgroup);
-  b3->registerButtonGroup(bgroup);
-  b4->registerButtonGroup(bgroup);
+   b1->registerButtonGroup(bgroup);
+   b2->registerButtonGroup(bgroup);
+   b3->registerButtonGroup(bgroup);
+   b4->registerButtonGroup(bgroup);
 
 	kernel->setFramesPerSecond(60);
 	kernel->run();

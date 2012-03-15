@@ -1,6 +1,8 @@
 #ifndef __SCV_POINT_H__
 #define __SCV_POINT_H__
 
+#include "stdafx.h"
+
 namespace scv {
 
 class Point {

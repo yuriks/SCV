@@ -13,18 +13,10 @@
 namespace {
 class MyButton : public scv::Button {
 public:
-   MyButton(scv::Point p1, std::string t) : scv::Button(scv::Point(p1.x,p1.y + 200),scv::Point(p1.x + 100,p1.y + 220), t) {
-      //Criar um novo Textfield para ser usado junto da classe
-      tf = new scv::TextField(scv::Point(p1.x + 100,p1.y + 200),100,"");
-      scv::Kernel::getInstance()->addComponent(tf);
-
-      //Criar um novo Textbox para ser usado junto da classe
-      tb = new scv::TextBox(p1,scv::Point(p1.x + 200,p1.y + 200),"");
-      scv::Kernel::getInstance()->addComponent(tb);
-
-      //Adicionar o componente
-      scv::Kernel::getInstance()->addComponent(this);
-
+   MyButton(scv::Point p1, scv::Point p2, scv::TextField* tf, scv::TextBox* tb)
+      : scv::Button(p1, p2, "Add Text"),
+      tf(tf), tb(tb)
+   {
    }
 
    //Implementacao da callback do botao
@@ -35,6 +27,7 @@ public:
       //Limpa a Textfield
       tf->setString("");
    }
+
 private:
    scv::TextField *tf;
    scv::TextBox *tb;
@@ -44,12 +37,18 @@ private:
 
 void example3_main() {
 	scv::Kernel* kernel = scv::Kernel::getInstance();
-	scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
-
-	scheme->loadScheme(scv::ColorScheme::clean);
 	kernel->setWindowSize(500, 500);
 
-   MyButton *t = new MyButton(scv::Point(0,0),"Add Text");
+   //Criar um novo Textfield para ser usado junto da classe
+   scv::TextField* tf = new scv::TextField(scv::Point(100, 200), 100, "Digite um Texto");
+   scv::Kernel::getInstance()->addComponent(tf);
+
+   //Criar um novo Textbox para ser usado junto da classe
+   scv::TextBox* tb = new scv::TextBox(scv::Point(0, 0), scv::Point(200, 180), "");
+   scv::Kernel::getInstance()->addComponent(tb);
+
+   MyButton *but = new MyButton(scv::Point(0, 200), scv::Point(100, 220), tf, tb);
+   scv::Kernel::getInstance()->addComponent(but);
 
 	kernel->setFramesPerSecond(60);
 	kernel->run();

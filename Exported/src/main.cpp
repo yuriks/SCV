@@ -3,8 +3,8 @@
 #include "Widget.h"
 
 int main(int argc, char* argv[]) {
-   scv::Kernel::setInstance(new Application());
-   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
+   Application *kernel = new Application();
+   scv::Kernel::setInstance(kernel);
 
    kernel->init();
 

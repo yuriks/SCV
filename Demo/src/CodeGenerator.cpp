@@ -139,8 +139,8 @@ void CodeGenerator::generateCode(void) {
    mainDotCpp += "#include \"Widget.h\"\n";
    mainDotCpp += "\n";
    mainDotCpp += "int main(int argc, char* argv[]) {\n";
-   mainDotCpp += "   scv::Kernel::setInstance(new Application());\n";
-   mainDotCpp += "   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());\n";
+   mainDotCpp += "   Application *kernel = new Application();\n";
+   mainDotCpp += "   scv::Kernel::setInstance(kernel);\n";
    mainDotCpp += "\n";
    mainDotCpp += "   kernel->init();\n";
    mainDotCpp += "\n";

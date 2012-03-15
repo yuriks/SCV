@@ -7,6 +7,8 @@
 #ifndef __SCV_COLOR_RGBA_H__
 #define __SCV_COLOR_RGBA_H__
 
+#include "stdafx.h"
+
 namespace scv {
 
 /*! Color class that represents colors as a quadruple of bytes: RGB with alpha.

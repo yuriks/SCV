@@ -9,29 +9,16 @@
 
 namespace scv {
 
-class GenericNode
+struct GenericNode
 {
-public:
-    GenericNode(std::string data, int nodeFunction, std::vector<GenericNode> childs);
-    GenericNode(std::string data, int nodeFunction);
-    GenericNode(std::string data);
+    GenericNode(const std::string& label);
+    GenericNode(const std::string& label, int userData);
     ~GenericNode();
 
-    std::string getName();
-    int getNodeFunction();
-    std::vector<GenericNode> getAllChilds();
-    GenericNode* getChild(int pos);
-    bool isOpened();
-    void changeOpened();
-    void setOpened(bool b);
-    void addChildNodeOnBack(GenericNode);
-    void addChildNodeOnBegin(GenericNode);
-
-private:
-   std::string _data;
-   int _nodeFunction;
-   std::vector<GenericNode> _childs;
-   bool _opened;
+   std::string label;
+   int userData;
+   std::vector<GenericNode*> children;
+   bool open;
 };
 
 }

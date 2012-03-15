@@ -16,7 +16,7 @@ namespace {
 
 class MyCanvas : public scv::Canvas {
 public:
-   MyCanvas(const scv::Point& canvas_pos) : scv::Canvas(canvas_pos, WINDOW_WIDTH, WINDOW_HEIGHT),
+   MyCanvas(const scv::Point& canvas_pos) : scv::Canvas(canvas_pos, canvas_pos + scv::Point(WINDOW_WIDTH, WINDOW_HEIGHT)),
       pos(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), cur_speed(2, 2), bg_color(.5f, .2f, .2f)
    {
    }
@@ -160,7 +160,7 @@ void example6_main() {
    scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
 
    // Carrega o equema de cores e seta o tamanho da janela.
-   scheme->loadScheme(scv::ColorScheme::clean);
+   //scheme->loadScheme(scv::ColorScheme::clean);
    kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT + 22);
 
    // Cria e adiciona nosso canvas a janela principal.

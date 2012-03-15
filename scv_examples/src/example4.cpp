@@ -30,12 +30,9 @@ private:
 
 void example4_main() {
 	scv::Kernel* kernel = scv::Kernel::getInstance();
-	scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
-
-	scheme->loadScheme(scv::ColorScheme::clean);
 	kernel->setWindowSize(500, 500);
 
-   scv::ProgressBar* progress_bar = new scv::ProgressBar(scv::Point(5,150),scv::Point(495,200), 50.0);
+   scv::ProgressBar* progress_bar = new scv::ProgressBar(scv::Point(5, 150), scv::Point(495, 200), 50.0);
    MySlider* slider = new MySlider(progress_bar);
 
    // Adiciona os componentes ao Kernel

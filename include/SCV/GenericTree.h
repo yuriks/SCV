@@ -21,34 +21,16 @@ class GenericTree : public ComponentWithTexture
 public:
 
    ///////////////////////////////////////////////////////////
-   GenericTree(scv::Point p1,scv::Point p2);
-   GenericTree(scv::Point p1, scv::Point p2, std::string rootNodeName);
    GenericTree(scv::Point p1, scv::Point p2, GenericNode* root);
    virtual ~GenericTree(void);
    ///////////////////////////////////////////////////////////
 
    ///////////////////////////////////////////////////////////
-   inline std::string getNameNodeSelected(void);
-   inline int getIDNodeSelected(void);
-   inline GenericNode* getNodeSelected(void);
+   GenericNode* getSelectedNode(void);
+   GenericNode* getRootNode();
    ///////////////////////////////////////////////////////////
 
-    //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
-
-   virtual void onItemSelect(void);
-   ///////////////////////////////////////////////////////////
+   virtual void onItemSelected(void);
 
    ///////////////////////////////////////////////////////////
    virtual void processMouse(const scv::MouseEvent &evt);
@@ -75,21 +57,15 @@ private:
    GenericNode* _nodeRoot;
    int _jumpOnFindSelected;
    std::vector<std::string> _nodesDisplay;
-   
-   bool useCallback;
 };
 
 ///////////////////////////////////////////////////////////
-std::string GenericTree::getNameNodeSelected(void) {
-   return _nodeSelected->getName();
-}
-
-int GenericTree::getIDNodeSelected(void) {
-   return _nodeSelected->getNodeFunction();
-}
-
-GenericNode* GenericTree::getNodeSelected(void) {
+inline GenericNode* GenericTree::getSelectedNode(void) {
    return _nodeSelected;
+}
+
+inline GenericNode* GenericTree::getRootNode() {
+   return _nodeRoot;
 }
 ///////////////////////////////////////////////////////////
 } //namespace scv
