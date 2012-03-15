@@ -27,7 +27,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Spinner(scv::Point(0, 0), 200, 0.f, 100.f, 50.f, 1.f);
    } else if (type == "Button") {
       object = new scv::Button(scv::Point(0, 0), "SCV Button");
-      aditionalString = "_SCV Button";
+      aditionalString = "_SCV_Button";
    } else if (type == "CheckBox") {
       object = new scv::CheckBox(scv::Point(0, 0), false, "SCV CheckBox");
    } else if (type == "RadioButton") {
