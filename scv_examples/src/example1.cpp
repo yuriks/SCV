@@ -1,4 +1,4 @@
-#include "SCV.h"
+#include "scv/SCV.h"
 
 void example1_main() {
    scv::Kernel *kernel = scv::Kernel::getInstance();
