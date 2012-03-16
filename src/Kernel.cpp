@@ -633,9 +633,4 @@ void Kernel::OpenFile(void) {
    fileOp->getItem();
 }
 
-void Kernel::setContextMenu(scv::ContextMenu *contMenu)
-{
-   _contextMenu = contMenu;
-}
-
 } // namespace scv

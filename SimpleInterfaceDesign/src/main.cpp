@@ -16,8 +16,8 @@ int main(int argc, char* argv[]) {
    scv::Panel *mainPanel = new scv::Panel(scv::Point(0,0), scv::Point(screenWidth,screenHeight));
    kernel->addComponent(mainPanel);
    mainPanel->registerContextMenu(new InterfaceDesign(NULL));
-   /*kernel->setContextMenu(new InterfaceDesign(NULL));
-   kernel->getPanel()->registerContextMenu(new InterfaceDesign(kernel->getPanel()));*/
+   
+   
    kernel->setWindowSize(screenWidth, screenHeight);
    kernel->lockWindowSize(false);
    //////////////////////////
