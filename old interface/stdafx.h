@@ -6,7 +6,7 @@
 #ifndef __SCV_DEMO_H__
 #define __SCV_DEMO_H__
 
-#include "SCV.h"
+#include "SCV/SCV.h"
 
 #ifdef _WIN32
 #ifdef _MSC_VER

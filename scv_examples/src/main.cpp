@@ -21,7 +21,7 @@ Example examples_list[] = {
    {"Slider & ProgressBar", example4_main},
    {"Button Group",example5_main},
    {"Canvas", example6_main},
-   {"TreeView", example7_main}
+   {"GenericTree", example7_main}
 };
 static const unsigned int NUM_EXAMPLES = 7;
 int main()

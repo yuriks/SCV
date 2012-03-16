@@ -456,6 +456,9 @@
     <ClInclude Include="..\include\SCV\GenericTree.h">
       <Filter>4.Widgets\GenericTree</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\GenericNodeDisplay.h">
+      <Filter>4.Widgets\GenericTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="0._!TODO!_">

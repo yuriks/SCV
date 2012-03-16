@@ -1,8 +1,9 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include "InterfaceDesign.h"
 #include "MenuDesign.h"
-#include "ComboBox.h"
+#include "SCV/ComboBox.h"
+#include "SCV/SCV.h"
 
 static const int screenWidth  = 1050;
 static const int screenHeight = 860;

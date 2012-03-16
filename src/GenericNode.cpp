@@ -14,7 +14,10 @@ GenericNode::GenericNode(const std::string& label, int userData)
 
 GenericNode::~GenericNode()
 {
-   /* TODO MEMORY LEAKS */
+   while(children.size() > 0)
+   {
+      delete children[children.size()-1];
+   }
 }
 
 }

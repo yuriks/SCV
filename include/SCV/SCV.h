@@ -37,7 +37,6 @@
 #include "util.h"
 #include "SystemTreeView.h"
 #include "GenericTree.h"
-
 #include "GenericNode.h"
 
 #include "GroupLayout.h"

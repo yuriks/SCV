@@ -21,7 +21,7 @@ namespace scv {
 
       _nodesDisplay.clear();
       _nodeRoot = root;
-      _nodesDisplay.push_back("+ " + _nodeRoot->label);
+      _nodesDisplay.push_back(_nodeRoot->label);
 
       _nodeSelected = 0;
 
@@ -46,18 +46,18 @@ namespace scv {
          {
             resultNode = focusNode->children[i];
             resultNode->open = !resultNode->open;
+            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, true));
+         }else{
+            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open));
          }
          _jumpOnFindSelected++;
          if(focusNode->children[i]->open)
          { 
-            _nodesDisplay.push_back(spaces + "- " + focusNode->children[i]->label);
-            rNode = findSelected(focusNode->children[i], y, spaces + " ");
+            rNode = findSelected(focusNode->children[i], y, spaces + "  ");
             if(rNode != NULL)
             {
                resultNode = rNode;
             }                
-         } else {
-            _nodesDisplay.push_back(spaces + "+ " + focusNode->children[i]->label);
          }
       }
       return resultNode;
@@ -85,18 +85,18 @@ namespace scv {
          {
             _nodeSelected = _nodeRoot;
             _nodeRoot->open = !_nodeRoot->open;
+            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, true));
+         }else{
+            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open));
          }
          if(_nodeRoot->open)
          {
-            _nodesDisplay.push_back("- " + _nodeRoot->label);
             _jumpOnFindSelected = 1;
-            GenericNode* resultNode = findSelected(_nodeRoot, y, " ");
+            GenericNode* resultNode = findSelected(_nodeRoot, y, "  ");
             if(y>0)
             {
                _nodeSelected = resultNode;
             }
-         } else {
-            _nodesDisplay.push_back("+ " + _nodeRoot->label);
          } 
 
          if (_nodeSelected != 0)
@@ -139,10 +139,24 @@ namespace scv {
       int i;
       int breakPrint = getHeight()/s_lineSpacing;
       for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
-
-         StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2), (currPosition.y+1) + ((i) * s_lineSpacing)),
-            _nodesDisplay[i + m_firstLine], scheme->getColor(ColorScheme::TEXT));
-
+         if(_nodesDisplay[i + m_firstLine].selected)
+         {
+            if(_nodesDisplay[i + m_firstLine].open){
+               //Desenhar os riscos de um nodo aberto em azul
+            }else{
+               //Desenhar soh o risco em azul
+            }
+            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2), (currPosition.y+1) + ((i) * s_lineSpacing)),
+               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
+         }else{
+            if(_nodesDisplay[i + m_firstLine].open){
+               //Desenhar os riscos de um nodo aberto em branco
+            }else{
+               //Desenhar soh o risco em branco
+            }
+            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2), (currPosition.y+1) + ((i) * s_lineSpacing)),
+               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXT));
+         }
          breakPrint--;
       }
       spaceBack = (getHeight()-(i * s_lineSpacing));

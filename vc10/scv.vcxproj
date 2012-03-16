@@ -110,6 +110,7 @@
     <ClInclude Include="..\include\SCV\FileOpen.h" />
     <ClInclude Include="..\include\SCV\GapSpring.h" />
     <ClInclude Include="..\include\SCV\GenericNode.h" />
+    <ClInclude Include="..\include\SCV\GenericNodeDisplay.h" />
     <ClInclude Include="..\include\SCV\GenericTree.h" />
     <ClInclude Include="..\include\SCV\Group.h" />
     <ClInclude Include="..\include\SCV\GroupLayout.h" />

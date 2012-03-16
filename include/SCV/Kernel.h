@@ -108,6 +108,8 @@ public:
    inline ComponentTexture* getWidgetTexture(scv::Component::Type widget);
    ///////////////////////////////////////////////////////////
 
+   void setContextMenu(scv::ContextMenu *contMenu);
+
 protected:
    Kernel(void);
    ~Kernel(void);

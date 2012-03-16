@@ -9,6 +9,7 @@
 
 #include "GenericNode.h"
 #include "ComponentWithTexture.h"
+#include "GenericNodeDisplay.h"
 
 namespace scv {
 
@@ -56,7 +57,7 @@ private:
    GenericNode* _nodeSelected;
    GenericNode* _nodeRoot;
    int _jumpOnFindSelected;
-   std::vector<std::string> _nodesDisplay;
+   std::vector<GenericNodeDisplay> _nodesDisplay;
 };
 
 ///////////////////////////////////////////////////////////

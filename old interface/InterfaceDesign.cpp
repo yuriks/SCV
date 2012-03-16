@@ -64,7 +64,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       if (address[1] == "Remove Component") {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
       } else if (address[1] == "Generate Code...") {
-         scv::Kernel::getInstance()->generateCode();
+         //scv::Kernel::getInstance()->generateCode();
       }
 
    } else  if (address.size() == 3) {
@@ -375,19 +375,19 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       } else if (address[2] == "Scroll Pane") {
 
          scv::Panel * panel = new scv::Panel(scv::Point(),500,500);
-         scv::ScrollPane * newscrollpane;
-         if (m_panel != NULL) newscrollpane = new scv::ScrollPane(getCurrPosition() - m_panel->getRelativePosition(), 300, 300);
-         else                 newscrollpane = new scv::ScrollPane(getCurrPosition(), 300, 300);
-         newscrollpane->registerPanel(panel);
-         newscrollpane->setDraggable(true);
-         newscrollpane->setResizable(true);
+         scv::ScrollComponent * newscrollComponent;
+         if (m_panel != NULL) newscrollComponent = new scv::ScrollComponent(getCurrPosition() - m_panel->getRelativePosition(), 300, 300);
+         else                 newscrollComponent = new scv::ScrollComponent(getCurrPosition(), 300, 300);
+         newscrollComponent->registerPanel(panel);
+         newscrollComponent->setDraggable(true);
+         newscrollComponent->setResizable(true);
 
-         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(newscrollpane);
-         else m_panel->addComponent(newscrollpane);
+         if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(newscrollComponent);
+         else m_panel->addComponent(newscrollComponent);
 
          panel->registerContextMenu(new InterfaceDesign(panel));
 
-         newscrollpane->registerContextMenu(new RemoveComponent(newscrollpane));
+         newscrollComponent->registerContextMenu(new RemoveComponent(newscrollComponent));
 
       } else if (address[2] == "Internal Frame") {
 

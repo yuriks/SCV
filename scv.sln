@@ -18,7 +18,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv_examples", "scv_example
 		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "old interface", "old interface\old interface.vcxproj", "{B7229A86-1447-45C1-975A-25806C8612F4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OldInterfaceDesign", "old interface\old interface.vcxproj", "{B7229A86-1447-45C1-975A-25806C8612F4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleInterfaceDesign", "SimpleInterfaceDesign\SimpleInterfaceDesign.vcxproj", "{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,14 @@ Global
 		{B7229A86-1447-45C1-975A-25806C8612F4}.Release|Win32.Build.0 = Release|Win32
 		{B7229A86-1447-45C1-975A-25806C8612F4}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
 		{B7229A86-1447-45C1-975A-25806C8612F4}.ReleaseWindow|Win32.Build.0 = Release|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.Debug|Win32.ActiveCfg = Debug|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.Debug|Win32.Build.0 = Debug|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.DebugWindow|Win32.ActiveCfg = Debug|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.DebugWindow|Win32.Build.0 = Debug|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.Release|Win32.ActiveCfg = Release|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.Release|Win32.Build.0 = Release|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
+		{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}.ReleaseWindow|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
