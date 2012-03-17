@@ -49,7 +49,7 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
    component->addMenu(new ContextMenu("TextBox"));
    component->addMenu(new ContextMenu("TextField"));
    component->addMenu(new ContextMenu("Toggle Button"));
-   component->addMenu(new ContextMenu("Tree View"));
+   component->addMenu(new ContextMenu("Generic Tree"));
 
 }
 
@@ -64,6 +64,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       if (address[1] == "Remove Component") {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
       } else if (address[1] == "Generate Code...") {
+         //TODO
          //scv::Kernel::getInstance()->generateCode();
       }
 
@@ -316,10 +317,11 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textfield);
          else m_panel->addChild(textfield);
 
-/*         AbstractWindow *win = new AbstractWindow(textfield);
-         win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         scv::Kernel::getInstance()->addWindow(win);
-         */
+         //TODO
+         //AbstractWindow *win = new AbstractWindow(textfield);
+         //win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
+         //scv::Kernel::getInstance()->addWindow(win);
+         
          textfield->registerContextMenu(new RemoveComponent(textfield));
 
       } else if (address[2] == "Toggle Button") {
@@ -403,26 +405,25 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          //iframe->registerContextMenu(new RemoveComponent(iframe));
 
-      } /*else if (address[2] == "Tree View") {
+      } else if (address[2] == "Generic Tree") {
 
-         scv::TreeView *tbTV;
+         scv::GenericTree *tbTV;
 
-         if (m_panel != NULL) tbTV = new scv::TreeView(getCurrPosition() - m_panel->getRelativePosition(), (getCurrPosition() - m_panel->getRelativePosition()) + 200, scv::TW_ONLY_FOLDERS );
-         else                 tbTV = new scv::TreeView(getCurrPosition(), getCurrPosition() + 200, scv::TW_ONLY_FOLDERS );
+         if (m_panel != NULL) tbTV = new scv::GenericTree(getCurrPosition() - m_panel->getRelativePosition(), (getCurrPosition() - m_panel->getRelativePosition()) + 200, new scv::GenericNode("root") );
+         else                 tbTV = new scv::GenericTree(getCurrPosition(), getCurrPosition() + 200, new scv::GenericNode("root"));
 
          tbTV->setDraggable(true);
          tbTV->setResizable(true);
 
-         if (m_panel == NULL)  scv::Kernel::getInstance()->addChild(tbTV);
+         if (m_panel == NULL)  scv::Kernel::getInstance()->addComponent(tbTV);
          else m_panel->addChild(tbTV);
 
          tbTV->registerContextMenu(new RemoveComponent(tbTV));
 
       }  else if (address[2] == "text") {
          scv::Kernel::getInstance()->OpenFile();
-         
       } 
-      */
+      
    } else if (address.size() == 4) {
 
       scv::Separator * separator;

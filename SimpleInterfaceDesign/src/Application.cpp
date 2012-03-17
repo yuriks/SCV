@@ -8,7 +8,7 @@ Application::Application(void) : Kernel() {
    lockWindowSize(false);
    setFramesPerSecond(60);
 
-   setWindowTitle("SCV Interface Designer v1.0");
+   setWindowTitle("SCV Interface Designer v1.1");
 }
 
 Application::~Application(void) {
