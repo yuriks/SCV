@@ -215,11 +215,11 @@ void ColorPicker::processMouse(const scv::MouseEvent &evt) {
 }
 
 void ColorPicker::createColors(void) {
-   double S = _rgbs[3]->getValue() / 100.f;
+   float S = (float)_rgbs[3]->getValue() / 100.f;
 
    for (int L = 100; L > 0 ; L--) {
       for (int H = 0; H < 360 ; H++) {
-         set((100 - L) + 1, H, ColorRGBA::toRGB((double)H, L / 100.0, S));
+         set((100 - L) + 1, H, ColorRGBA::toRGB((float)H, L / 100.0f, S));
       }
    }
 

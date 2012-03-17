@@ -13,7 +13,6 @@ namespace scv {
 
 /*! Color class that represents colors as a quadruple of bytes: RGB with alpha.
  */
-
 class ColorRGBA {
 public:
    ColorRGBA();
@@ -29,10 +28,10 @@ public:
 
    void toHLS(float hls[]);
 
-   static ColorRGBA toRGB(double h, double l, double s);
+   static ColorRGBA toRGB(float h, float l, float s);
 
 private:
-   static double cRGB(double q1, double q2, double hue);
+   static float cRGB(float q1, float q2, float hue);
    unsigned char rgba[4];
 };
 

@@ -34,8 +34,6 @@ Color4f& Color4f::operator=(const Color4f& rhs) {
    return *this;
 }
 
-Color4f::~Color4f(void) {/**/}
-
 scv::Color4f Color4f::operator+(float w) const {
    return Color4f(data[0] + w, data[1] + w,
       data[2] + w, data[3] + w);

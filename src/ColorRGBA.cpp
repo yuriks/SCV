@@ -115,11 +115,11 @@ void ColorRGBA::toHLS(float hls[]) {
 \param l Lightness [0.0 -> 1.0]
 \param s Saturation [0.0 -> 1.0]
 */
-ColorRGBA ColorRGBA::toRGB(double h, double l, double s) {
+ColorRGBA ColorRGBA::toRGB(float h, float l, float s) {
    if (s == 0) {
-      return ColorRGBA((int)(l * 255.0), (int)(l * 255.0), (int)(l * 255.0));
+      return ColorRGBA((int)(l * 255.f), (int)(l * 255.f), (int)(l * 255.f));
    } else {
-      double p1, p2;
+      float p1, p2;
 
       if (l <= .5f) {
          p2 = l * (1 + s);
@@ -137,7 +137,7 @@ ColorRGBA ColorRGBA::toRGB(double h, double l, double s) {
    }
 }
 
-double ColorRGBA::cRGB(double q1, double q2, double hue) {
+float ColorRGBA::cRGB(float q1, float q2, float hue) {
    if(hue > 360.f) {
       hue -= 360.f;
    } else if(hue < 0.f) {
@@ -149,7 +149,7 @@ double ColorRGBA::cRGB(double q1, double q2, double hue) {
    } else if (hue < 180.f) {
       return q2;
    } else if (hue < 240.f) {
-      return (q1 + (q2 - q1) * (240 - hue) / 60.f);
+      return (q1 + (q2 - q1) * (240.f - hue) / 60.f);
    } else return q1;
 }
 
