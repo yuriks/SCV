@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv", "vc10\scv.vcxproj", "{891D71B4-D675-460D-8A69-4107DF65F07F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceDesign", "Demo\vc10\Demo.vcxproj", "{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}"
@@ -19,6 +19,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv_examples", "scv_example
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleInterfaceDesign", "SimpleInterfaceDesign\SimpleInterfaceDesign.vcxproj", "{146F28B6-2F65-4CE9-8422-D5D61DCBBB64}"
+	ProjectSection(ProjectDependencies) = postProject
+		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
