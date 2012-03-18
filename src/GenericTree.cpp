@@ -187,11 +187,11 @@ namespace scv {
 
    void GenericTree::createTexture(void) {
       Kernel *kernel = Kernel::getInstance();
-      if ((_cTexture = kernel->getWidgetTexture(TEXTBOX)) != NULL) return;
+      if ((_cTexture = kernel->getWidgetTexture(TREEVIEW)) != NULL) return;
 
       // create texture object
       _cTexture = new ComponentTexture(32, 32);
-      kernel->setWidgetTexture(TEXTBOX, _cTexture);
+      kernel->setWidgetTexture(TREEVIEW, _cTexture);
 
       _cTexture->setTextureEnvMode(GL_MODULATE);
       _cTexture->addTexture(Point(0,0), 32, 32, data::TreeView);
