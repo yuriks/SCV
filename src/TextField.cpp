@@ -190,10 +190,10 @@ void TextField::processKey(const scv::KeyEvent &evt) {
 
       if(!_receivingCallbacks) return;
 
-      if (!_filter.checkFilter(evt.getKeyCode()) && !evt.isSpecial())
+      if (!_filter.checkFilter(evt.keycode) && !evt.special)
          return;
 
-      if (evt.getState() == KeyEvent::UP) {
+      if (evt.state == KeyEvent::UP) {
          onKeyUp(evt);
          return;
       }
@@ -201,18 +201,18 @@ void TextField::processKey(const scv::KeyEvent &evt) {
       onKeyPressed(evt);
       cursor->cursorInMovement();
 
-      if (evt.getKeyCode() >= 33 && evt.getKeyCode() <= 126 && !(evt.isSpecial())) {
+      if (evt.keycode >= 33 && evt.keycode <= 126 && !evt.special) {
          if (hasSelectedText()) {
             removeSelectedText();
          }
          if (cursor->isInsertActive()) {
             if ( (_currChar + 1) > static_cast<int> (_str.size()-1)) {
-               _str.insert(_currChar+1,1,static_cast<char>(evt.getKeyCode()));
+               _str.insert(_currChar+1,1,static_cast<char>(evt.keycode));
             } else {
-               _str[_currChar + 1] = static_cast<char>(evt.getKeyCode());
+               _str[_currChar + 1] = static_cast<char>(evt.keycode);
             }
          } else {
-            _str.insert(_currChar + 1,1,static_cast<char>(evt.getKeyCode()));
+            _str.insert(_currChar + 1,1,static_cast<char>(evt.keycode));
          }
          _currChar++;
          refreshText();
@@ -220,7 +220,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          return;
       }
 
-      switch (evt.getKeyCode()) {
+      switch (evt.keycode) {
 
       case 22:
          if (hasSelectedText())
@@ -255,7 +255,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          break;
 
       case GLUT_KEY_LEFT:
-         if (evt.getModifier() == (GLUT_ACTIVE_SHIFT)) {
+         if (evt.modifiers == GLUT_ACTIVE_SHIFT) {
             if (_currChar>=0) {
                if (!hasSelectedText()) {
                   _selectStart = _currChar;
@@ -266,7 +266,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                   _selectEnd = _currChar;
                }
             }
-         } else if (evt.getModifier() == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
+         } else if (evt.modifiers == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
 
          } else {
             if (_currChar > (-1))
@@ -276,7 +276,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          break;
 
       case GLUT_KEY_RIGHT:
-         if (evt.getModifier() == GLUT_ACTIVE_SHIFT) {
+         if (evt.modifiers == GLUT_ACTIVE_SHIFT) {
             if (_currChar < static_cast<int> (_str.size()-1)) {
                if (!hasSelectedText()) {
                   _selectStart = _currChar;
@@ -287,7 +287,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                   _selectEnd = _currChar;
                }
             }
-         } else if (evt.getModifier() == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
+         } else if (evt.modifiers == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
 
          } else {
             if (_currChar < static_cast<int> (_str.size()-1))
@@ -297,7 +297,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          break;
 
       case GLUT_KEY_HOME:
-         if (evt.getModifier() == GLUT_ACTIVE_SHIFT) {
+         if (evt.modifiers == GLUT_ACTIVE_SHIFT) {
             if (!hasSelectedText()) {
                _selectStart = _currChar;
                _currChar = -1;
@@ -306,10 +306,10 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                _currChar = -1;
                _selectEnd = _currChar;
             }
-         } else if (evt.getModifier() == GLUT_ACTIVE_CTRL) {
+         } else if (evt.modifiers == GLUT_ACTIVE_CTRL) {
             _currChar = -1;
             removeSelection();
-         } else if (evt.getModifier() == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
+         } else if (evt.modifiers == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
             if (!hasSelectedText()) {
                _selectStart = _currChar;
                _currChar = -1;
@@ -325,7 +325,7 @@ void TextField::processKey(const scv::KeyEvent &evt) {
          break;
 
       case GLUT_KEY_END:
-         if (evt.getModifier() == GLUT_ACTIVE_SHIFT) {
+         if (evt.modifiers == GLUT_ACTIVE_SHIFT) {
             if (!hasSelectedText()) {
                _selectStart = _currChar;
                _currChar = _str.size()-1;
@@ -334,10 +334,10 @@ void TextField::processKey(const scv::KeyEvent &evt) {
                _currChar = _str.size()-1;
                _selectEnd = _currChar;
             }
-         } else if (evt.getModifier() == GLUT_ACTIVE_CTRL) {
+         } else if (evt.modifiers == GLUT_ACTIVE_CTRL) {
             removeSelection();
             _currChar = _str.size()-1;
-         } else if (evt.getModifier() == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
+         } else if (evt.modifiers == (GLUT_ACTIVE_SHIFT | GLUT_ACTIVE_CTRL)) {
             if (!hasSelectedText()) {
                _selectStart = _currChar;
                _currChar = _str.size()-1;

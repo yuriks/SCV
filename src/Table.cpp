@@ -361,7 +361,7 @@ void Table::processKey(const scv::KeyEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
-   if (evt.getKeyString() == "Tab" && evt.getState() == KeyEvent::DOWN) {
+   if (!evt.special && evt.keycode == '\t' && evt.state == KeyEvent::DOWN) {
       for (int i = 0; i < _nRows ; i++ ) {
          for (int j = 0; j <  _nColumns; j++ ) {
             if (kernel->getFocusedComponent() == _table[i][j]) {

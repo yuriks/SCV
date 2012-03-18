@@ -279,12 +279,12 @@ void Spinner::processKey(const scv::KeyEvent &evt) {
 
    Component::processKey(evt);
 
-   if(!_receivingCallbacks || evt.getState() == KeyEvent::UP) return;
+   if(!_receivingCallbacks || evt.state == KeyEvent::UP) return;
 
    if (evt.getKeyString() == "Up" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
-      if (evt.getState() == KeyEvent::DOWN) IncrementStep();
+      if (evt.state == KeyEvent::DOWN) IncrementStep();
    } else if (evt.getKeyString() == "Down" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
-      if (evt.getState() == KeyEvent::DOWN) DecrementStep();
+      if (evt.state == KeyEvent::DOWN) DecrementStep();
    } 
    if (isFocused() || kernel->getFocusedComponent() == _textField) {
       kernel->requestComponentFocus(_textField);

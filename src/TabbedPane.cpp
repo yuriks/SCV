@@ -139,7 +139,7 @@ void TabbedPane::processKey(const scv::KeyEvent &evt) {
    if (getCurrTabIndex() == -1) return;
    if(!_receivingCallbacks) return;
 
-   if (isFocused() && evt.getState() == KeyEvent::DOWN) {
+   if (isFocused() && evt.state == KeyEvent::DOWN) {
       Point currPosition = getAbsolutePosition();
 
       if (evt.getKeyString() == "Left") {

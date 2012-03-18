@@ -264,9 +264,9 @@ void Component::processMouse(const scv::MouseEvent &evt) {
 
 void Component::processKey(const scv::KeyEvent &evt) {
    if (isFocused()) {
-      if (evt.getState() == KeyEvent::DOWN) {
+      if (evt.state == KeyEvent::DOWN) {
          onKeyPressed(evt);
-      } else if (evt.getState() == KeyEvent::UP) {
+      } else if (evt.state == KeyEvent::UP) {
          onKeyUp(evt);
       }
    }

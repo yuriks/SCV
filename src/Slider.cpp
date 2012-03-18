@@ -331,7 +331,7 @@ void Slider::processKey(const scv::KeyEvent &evt) {
 
    if(!_receivingCallbacks) return;
 
-   if (isFocused() && evt.getState() == KeyEvent::DOWN) {
+   if (isFocused() && evt.state == KeyEvent::DOWN) {
       if (evt.getKeyString() == "Left") DecrementStep();
       else if (evt.getKeyString() == "Right") IncrementStep();
    }

@@ -105,7 +105,7 @@ void MenuBar::processKey(const scv::KeyEvent &evt) {
 
    if(!getCallbacksStatus() || isResizing()) return;
 
-   if (evt.getState() == KeyEvent::UP || _currSelectedMenu == -1) return;
+   if (evt.state == KeyEvent::UP || _currSelectedMenu == -1) return;
 
    ContextMenu * cMenu = _menus[_currSelectedMenu];
 

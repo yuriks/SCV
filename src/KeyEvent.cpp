@@ -5,17 +5,14 @@
 
 namespace scv {
 
-KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::State state) :
-      _key(key), _modifiers(mod), _special(special), _state(state) {
+KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::State state)
+   : keycode(key), modifiers(mod), special(special), state(state)
+{
 }
 
-
-KeyEvent::~KeyEvent(void) {
-}
-
-std::string KeyEvent::getKeyString(void) const {
-   if (isSpecial()) {
-      switch(_key) {
+std::string KeyEvent::getKeyString() const {
+   if (special) {
+      switch(keycode) {
          case GLUT_KEY_F1:        return std::string("F1");            break;
          case GLUT_KEY_F2:        return std::string("F2");            break;
          case GLUT_KEY_F3:        return std::string("F3");            break;
@@ -42,36 +39,22 @@ std::string KeyEvent::getKeyString(void) const {
          case GLUT_KEY_BEGIN:     return std::string("Begin");         break;
          case GLUT_KEY_DELETE:    return std::string("Delete");        break;
          // default
-         default:                 return std::string("ERROR");         break;
+         default:                 return std::string("Unknown");       break;
       }
-   } else if (_key == 8) { return "Backspace";
-   } else if (_key == 9) { return "Tab";
-   } else if (_key == 13) { return "Enter";
-   } else if (_key == 27) { return "Esc";
-   } else if (_key == 32) { return "Space Bar";
-   } else { return toString(_key);
+   } else if (keycode == 8) { return "Backspace";
+   } else if (keycode == 9) { return "Tab";
+   } else if (keycode == 13) { return "Enter";
+   } else if (keycode == 27) { return "Esc";
+   } else if (keycode == 32) { return "Space Bar";
+   } else { return toString(keycode);
    }
 }
 
-int KeyEvent::getKeyCode(void) const {
-   return _key;
-}
-
-int KeyEvent::getModifier(void) const {
-   return _modifiers;
-}
-
-KeyEvent::State KeyEvent::getState(void) const {
-   return _state;
-}
-
-bool KeyEvent::isSpecial(void) const {
-   return _special;
-}
-
 bool KeyEvent::operator==(const KeyEvent& rhs) {
-   return (_key == rhs._key && _special == rhs._special &&
-      _modifiers == rhs._modifiers && _state == rhs._state)? true : false;
+   return keycode   == rhs.keycode   &&
+          special   == rhs.special   &&
+          modifiers == rhs.modifiers &&
+          state     == rhs.state;
 }
 
 } // namespace scv

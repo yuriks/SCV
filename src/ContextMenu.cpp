@@ -98,7 +98,7 @@ bool ContextMenu::processKey(const scv::KeyEvent &evt) {
    static MenuHolder *menu = MenuHolder::getInstance();
 
    if (getStatus() == false || !hasSubMenus()) return false;
-   else if (evt.getState() == KeyEvent::UP) return true;
+   else if (evt.state == KeyEvent::UP) return true;
 
    _recentlyChange = false;
 
