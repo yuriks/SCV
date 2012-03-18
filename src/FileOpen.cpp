@@ -6,21 +6,14 @@
 
 namespace scv {
 
-FileOpen::FileOpen()
-{
-
-}
-
-
 FileOpen::~FileOpen()
 {
    delete[] path;
 }
 
-void FileOpen::getItem(){
-
+void FileOpen::showDialog()
+{
 #ifdef _WIN32
-
    path = NULL;
 
    HRESULT hResult = CoInitializeEx(NULL,
@@ -67,16 +60,13 @@ void FileOpen::getItem(){
       }
       CoUninitialize();
    }
-
 #else
    std::cout << "Sorry, this is not implemented on linux yet =(" << std::endl;
    return;
-
 #endif
-
 }
 
-std::string FileOpen::getSpath()
+std::string FileOpen::getFilePath()
 {
    if(path != NULL) {
       std::string ret;

@@ -151,11 +151,14 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          scv::Image *opImage;
 
-         scv::Kernel::getInstance()->OpenFile();
+         scv::FileOpen::getInstance()->showDialog();
 
-         if(!scv::FileOpen::getInstance()->getSpath().empty()) {
-            if (m_panel != NULL) opImage = new scv::Image(getCurrPosition() - m_panel->getRelativePosition(), scv::FileOpen::getInstance()->getSpath());
-            else                 opImage = new scv::Image(getCurrPosition(), scv::FileOpen::getInstance()->getSpath());
+         std::string file_path = scv::FileOpen::getInstance()->getFilePath();
+         if(!file_path.empty()) {
+            if (m_panel != NULL)
+               opImage = new scv::Image(getCurrPosition() - m_panel->getRelativePosition(), file_path);
+            else
+               opImage = new scv::Image(getCurrPosition(), file_path);
 
             if(opImage != NULL) {
                opImage->setDraggable(true);
@@ -420,7 +423,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          tbTV->registerContextMenu(new RemoveComponent(tbTV));
 
       }  else if (address[2] == "text") {
-         scv::Kernel::getInstance()->OpenFile();
+         scv::FileOpen::getInstance()->showDialog();
       } 
       
    } else if (address.size() == 4) {

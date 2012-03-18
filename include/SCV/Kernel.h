@@ -1,7 +1,6 @@
 #ifndef __SCV_KERNEL_H__
 #define __SCV_KERNEL_H__
 
-///////////////////////////////////////////////////////////
 #include "Singleton.h"
 #include "FontTahoma.h"
 
@@ -22,10 +21,16 @@
 #include "ColorScheme.h"
 
 #include "FreeImage.h"
-///////////////////////////////////////////////////////////
 
 namespace scv {
 
+/*! \defgroup util Util */
+/*! \defgroup widgets Widgets */
+/*! \defgroup internal Internal Classes */
+
+/*! The main event loop handler.
+ *  This class controls all components, interactions and OpenGL interfacing.
+ */
 class Kernel : public Singleton<Kernel>, public SCVCallbacks {
 friend class Singleton<Kernel>;
 public:
@@ -34,26 +39,12 @@ public:
 
    //SCVCallbacks
    ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
-
-   virtual void onDisplay(void);
+   virtual void onDisplay(void) {}
    ///////////////////////////////////////////////////////////
    
    void run(void);
 
    void showCopyrights(void);
-
-   void OpenFile(void);
 
    ///////////////////////////////////////////////////////////
    inline void setFramesPerSecond(float fps);
@@ -110,7 +101,7 @@ public:
 
 protected:
    Kernel(void);
-   ~Kernel(void);
+   virtual ~Kernel(void) {}
 
    void initOpenGL(int argc, char* argv[]);
 
@@ -182,11 +173,12 @@ protected:
    ContextMenu *_contextMenu;
 };
 
-///////////////////////////////////////////////////////////
+//! Sets the FPS the main loop runs at. Increase if you need smoother animation or higher responsiveness.
 void Kernel::setFramesPerSecond(float fps) {
    FrameRate.fps = fps;
 }
 
+//! Returns the current FPS the interface is running at.
 inline float Kernel::getFramesPerSecond(void) const {
    return FrameRate.currFps;
 }
@@ -207,10 +199,12 @@ void Kernel::setFilterType(TextureFilter tex) {
    _filterType = tex;
 }
 
+//! Returns the current window width.
 int Kernel::getWidth(void) const {
    return Display.currSize[0];
 }
 
+//! Returns the current window height.
 int Kernel::getHeight(void) const {
    return Display.currSize[1];
 }

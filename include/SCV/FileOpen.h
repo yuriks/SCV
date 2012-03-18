@@ -22,19 +22,15 @@ class FileOpen : public Singleton<FileOpen> {
    friend class Singleton<FileOpen>;
 
 public:
-   /*! Constructor of FileOpen.*/
-   FileOpen(void);
-   /*! Destructor of FileOpen just
-    delete the path.*/
    ~FileOpen(void);
 
    /*! Create a open file dialog
     for user choose the file.*/
-   void getItem();
+   void showDialog();
 
    /*! Return the path of the
     last file selected.*/
-   std::string getSpath();
+   std::string getFilePath();
 
 private:
    char* path;

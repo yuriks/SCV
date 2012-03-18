@@ -72,34 +72,7 @@ Kernel::Kernel(void) {
    srand((int)time(NULL));
 }
 
-Kernel::~Kernel(void) {
-
-}
-
-void Kernel::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Kernel::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Kernel::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Kernel::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Kernel::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Kernel::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Kernel::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Kernel::onSizeChange(void) {
-}
-void Kernel::onPositionChange(void) {
-}
-
-void Kernel::onDisplay(void) {
-}
-
+//! Returns the current contents of the clipboard.
 std::string Kernel::getClipBoardString(void) const {
    #ifdef _WIN32
       if (OpenClipboard(NULL)) {
@@ -123,6 +96,7 @@ std::string Kernel::getClipBoardString(void) const {
    #endif // _WIN32
 }
 
+//! Replaces the clipboard's contents with the string \c strData.
 void Kernel::setClipBoardString(const std::string strData) {
    #ifdef _WIN32
       if (OpenClipboard(NULL)) {
@@ -166,17 +140,20 @@ void Kernel::initOpenGL(int argc, char* argv[]) {
    Cursor::getInstance();
 }
 
+//! Start the SCV event loop. Call this after setting up your form layout to run the GUI.
 void Kernel::run(void) {
    glutInitWindowSize(Display.currSize[0], Display.currSize[1]);
    glutMainLoop();
 }
 
+//! Resizes the window.
 void Kernel::setWindowSize(unsigned int width, unsigned int height) {
    Display.userSize[0] = width;
    Display.userSize[1] = height;   
    glutReshapeWindow(width, height);
 }
 
+//! Enters or exits fullscreen mode.
 void Kernel::setFullScreen(bool full) {
    if (full == true && Display.isFullScreen == false) {
       Display.userSize[0] = Display.currSize[0];
@@ -516,6 +493,7 @@ void Kernel::cbDisplay(void) {
    glutSwapBuffers();
 }
 
+//! Adds component \c object to the window. If \c object already belongs to a panel, does nothing.
 void Kernel::addComponent(Component *object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) == Kernel::getInstance()->_objects.end()
          && object->getParent() == NULL) {
@@ -523,6 +501,7 @@ void Kernel::addComponent(Component *object) {
    }
 }
 
+//! Removes \c object from any container it is in.
 void Kernel::removeComponent(Component *object) {
    if (std::find(Kernel::getInstance()->_objects.begin(), Kernel::getInstance()->_objects.end(), object) != Kernel::getInstance()->_objects.end()) {
       Kernel::getInstance()->_objects.remove(object);      
@@ -565,6 +544,7 @@ void Kernel::showCopyrights(void) {
    std::cout << FreeImage_GetCopyrightMessage() << std::endl;
 }
 
+//! Changes the window title.
 void Kernel::setWindowTitle(const std::string &title) {
    glutSetWindowTitle(title.c_str());
 }
@@ -624,13 +604,9 @@ bool Kernel::willAppearOnScreen(Component* component) {
    }
 }
 
+//! Locks or unlocks the window size, so that the user can not resize it by dragging.
 void Kernel::lockWindowSize(bool lock) {
    _isActiveReshape = !lock;
-}
-
-void Kernel::OpenFile(void) {
-   static FileOpen *fileOp = FileOpen::getInstance();
-   fileOp->getItem();
 }
 
 } // namespace scv

@@ -39,10 +39,9 @@ ColorRGBA ColorRGBA::operator+(unsigned char w) const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const ColorRGBA& rhs) {
-   stream << " R: " << (int)rhs[0] << " G: " << (int)rhs[1]
-          << " B: " << (int)rhs[2] << " A: " << (int)rhs[3]
-   << std::endl;
-   return stream;
+   return stream << " R: " << (int)rhs[0] << " G: " << (int)rhs[1]
+                 << " B: " << (int)rhs[2] << " A: " << (int)rhs[3]
+                 << std::endl;
 }
 
 bool ColorRGBA::operator != (const ColorRGBA& rhs) {
