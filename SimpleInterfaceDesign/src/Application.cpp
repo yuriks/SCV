@@ -48,3 +48,8 @@ void Application::onPositionChange(void) {
 
 void Application::onDisplay(void) {
 }
+
+void Application::generateCode(void)
+{
+    std::cout << "FAZER O GERADOR DE CÓDIGO" << std::endl;
+}

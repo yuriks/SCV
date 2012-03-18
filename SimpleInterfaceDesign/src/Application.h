@@ -33,6 +33,8 @@ public:
 
    virtual void onDisplay(void);
 
+   void generateCode(void);
+
 protected:
    scv::Panel *_mainPanel;
 };

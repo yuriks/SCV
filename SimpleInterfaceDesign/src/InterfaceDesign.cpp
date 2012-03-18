@@ -2,6 +2,7 @@
 #include "InterfaceDesign.h"
 #include "MenuDesign.h"
 #include "AbstractWindow.h"
+#include "Application.h"
 
 InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu("InterfaceDesign") {
 
@@ -27,9 +28,6 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
    panel->addMenu(new ContextMenu("Scroll Pane"));
    panel->addMenu(new ContextMenu("Tabbed Pane"));
    
-   
-   
-
    component->addMenu(new ContextMenu("Button"));
    component->addMenu(new ContextMenu("Canvas"));
    component->addMenu(new ContextMenu("CheckBox"));
@@ -64,8 +62,8 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       if (address[1] == "Remove Component") {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
       } else if (address[1] == "Generate Code...") {
-         //TODO
-         //scv::Kernel::getInstance()->generateCode();
+            Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
+            kernel->generateCode();
       }
 
    } else  if (address.size() == 3) {
