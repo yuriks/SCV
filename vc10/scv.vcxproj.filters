@@ -133,9 +133,6 @@
     <ClCompile Include="..\src\data\ScrollPaneData.cpp">
       <Filter>2.Data</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\data\TreeViewData.cpp">
-      <Filter>2.Data</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Point.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
@@ -222,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="..\src\GenericTree.cpp">
       <Filter>4.Widgets\GenericTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\data\TreeViewData.cpp">
+      <Filter>2.Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -43,11 +43,11 @@ public:
    ///////////////////////////////////////////////////////////
 
 private:
-   GenericNode* GenericTree::findSelected(GenericNode*, int, std::string);
+   GenericNode* GenericTree::findSelected(GenericNode*, int, std::string, int espacos);
    virtual void createTexture(void);   
 
-   static const int s_lineSpacing  = 16;
-   static const int s_borderWidth  = 8;
+   static const int s_lineSpacing  = 12;
+   static const int s_borderWidth  = 4;
    static const int s_borderHeight = 3;
    static const int s_imageSpace   = 26;
       

@@ -35,7 +35,7 @@ namespace scv {
    void GenericTree::onItemSelected() {
    }
 
-   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, std::string spaces)
+   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, std::string spaces, int iSpaces)
    {
       GenericNode* resultNode = NULL;
       GenericNode* rNode = NULL;
@@ -46,14 +46,14 @@ namespace scv {
          {
             resultNode = focusNode->children[i];
             resultNode->open = !resultNode->open;
-            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, true));
+            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, iSpaces, true));
          }else{
-            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open));
+            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, iSpaces));
          }
          _jumpOnFindSelected++;
          if(focusNode->children[i]->open)
          { 
-            rNode = findSelected(focusNode->children[i], y, spaces + "  ");
+            rNode = findSelected(focusNode->children[i], y, spaces + "  ", iSpaces+1);
             if(rNode != NULL)
             {
                resultNode = rNode;
@@ -62,7 +62,7 @@ namespace scv {
       }
       return resultNode;
    }
-
+    
    void GenericTree::processMouse(const scv::MouseEvent &evt) {
       static Kernel *kernel = Kernel::getInstance();
       static Scissor *scissor = Scissor::getInstance();
@@ -78,21 +78,22 @@ namespace scv {
 
       scv::Point p = getAbsolutePosition();
       if(evt.getState() == MouseEvent::UP && isFocused()) {
-         int y = (int)(((evt.getPosition().y - (p.y))/s_lineSpacing) + m_firstLine);
-
+          std::cout << (p.y) << std::endl;
+         int y = (int)(((evt.getPosition().y - (p.y) )/s_lineSpacing) + m_firstLine);
+         int iSpaces = 0;
          _nodesDisplay.clear();
          if(y == 0)
          {
             _nodeSelected = _nodeRoot;
             _nodeRoot->open = !_nodeRoot->open;
-            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, true));
+            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, iSpaces, true));
          }else{
-            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open));
+            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, iSpaces));
          }
          if(_nodeRoot->open)
          {
             _jumpOnFindSelected = 1;
-            GenericNode* resultNode = findSelected(_nodeRoot, y, "  ");
+            GenericNode* resultNode = findSelected(_nodeRoot, y, "  ", iSpaces+1);
             if(y>0)
             {
                _nodeSelected = resultNode;
@@ -134,29 +135,43 @@ namespace scv {
       _cTexture->disable();
 
       scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y) + 1, getWidth(), getHeight() - 4));
-
-      /*draw the tree*/
+      
       int i;
       int breakPrint = getHeight()/s_lineSpacing;
       for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
+        if(_nodesDisplay[i + m_firstLine].spaces > 0){
+            glBegin(GL_LINE_STRIP);
+            if(_nodesDisplay[i + m_firstLine].selected){
+                //Desenhar em azul]
+                scheme->applyColor(scheme->getColor(ColorScheme::TEXTSELECTION));
+                glColor3f(0.f,0.f,0.f);
+
+            
+            }else{
+                //Desenhar em branco
+                scheme->applyColor(scheme->getColor(ColorScheme::TEXT));
+                glColor3f(0.f,0.f,0.f);
+            }
+                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6 , (currPosition.y + (i*12)) );
+                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) + 7 );
+                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) + 2, (currPosition.y + (i*12)) + 7);
+            glEnd();
+        }
+        breakPrint--;
+      }
+
+      /*draw the tree*/
+      breakPrint = getHeight()/s_lineSpacing;
+      for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
          if(_nodesDisplay[i + m_firstLine].selected)
          {
-            if(_nodesDisplay[i + m_firstLine].open){
-               //Desenhar os riscos de um nodo aberto em azul
-            }else{
-               //Desenhar soh o risco em azul
-            }
-            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2), (currPosition.y+1) + ((i) * s_lineSpacing)),
-               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
+
+            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
+                _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
          }else{
-            if(_nodesDisplay[i + m_firstLine].open){
-               //Desenhar os riscos de um nodo aberto em branco
-            }else{
-               //Desenhar soh o risco em branco
-            }
-            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth / 2), (currPosition.y+1) + ((i) * s_lineSpacing)),
+            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
                _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXT));
-         }
+         }      
          breakPrint--;
       }
       spaceBack = (getHeight()-(i * s_lineSpacing));
@@ -172,11 +187,11 @@ namespace scv {
 
    void GenericTree::createTexture(void) {
       Kernel *kernel = Kernel::getInstance();
-      if ((_cTexture = kernel->getWidgetTexture(TREEVIEW)) != NULL) return;
+      if ((_cTexture = kernel->getWidgetTexture(TEXTBOX)) != NULL) return;
 
       // create texture object
       _cTexture = new ComponentTexture(32, 32);
-      kernel->setWidgetTexture(TREEVIEW, _cTexture);
+      kernel->setWidgetTexture(TEXTBOX, _cTexture);
 
       _cTexture->setTextureEnvMode(GL_MODULATE);
       _cTexture->addTexture(Point(0,0), 32, 32, data::TreeView);
