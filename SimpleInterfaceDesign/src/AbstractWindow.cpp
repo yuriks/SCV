@@ -4,13 +4,27 @@
 AbstractWindow::AbstractWindow(scv::Label *component) : InternalFrame(300, 100, "Component Name") {
    m_component = component;
    m_input = new InputText(this);
-   addChild(m_input);
+   getPanel()->addChild(m_input);
    m_ok = new AcceptButton(this);
-   addChild(m_ok);
+   getPanel()->addChild(m_ok);
    m_cancel = new CancelButton(this);
-   addChild(m_cancel);
+   getPanel()->addChild(m_cancel);
    scv::Kernel::getInstance()->requestComponentFocus(m_input);
+   isLabel = true;
 }
+
+AbstractWindow::AbstractWindow(scv::TextBox *component) : InternalFrame(300, 100, "Component Content") {
+   t_component = component;
+   m_input = new InputText(this);
+   getPanel()->addChild(m_input);
+   m_ok = new AcceptButton(this);
+   getPanel()->addChild(m_ok);
+   m_cancel = new CancelButton(this);
+   getPanel()->addChild(m_cancel);
+   scv::Kernel::getInstance()->requestComponentFocus(m_input);
+   isLabel = false;
+}
+
 
 AcceptButton::AcceptButton(AbstractWindow * window) : Button(scv::Point(70,65), 75, "Ok") {
    m_window = window;
@@ -29,7 +43,12 @@ void AcceptButton::onMouseUp(const scv::MouseEvent &evt) {
 }
 
 void AcceptButton::accept(void) {
-   m_window->m_component->setString(m_window->m_input->getString());
+    if(m_window->isLabel)
+    {
+        m_window->m_component->setString(m_window->m_input->getString());
+    }else{
+        m_window->t_component->setString(m_window->m_input->getString());
+    }
    m_window->setVisible(false);
 }
 

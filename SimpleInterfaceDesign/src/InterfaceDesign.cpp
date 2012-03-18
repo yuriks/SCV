@@ -297,10 +297,9 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textbox);
          else m_panel->addChild(textbox);
 
-         //TODO
-         //AbstractWindow *win = new AbstractWindow(textbox);
-         //win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         //scv::Kernel::getInstance()->addWindow(win);
+         AbstractWindow *win = new AbstractWindow(textbox);
+         win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
+         scv::Kernel::getInstance()->addComponent(win);
 
          textbox->registerContextMenu(new RemoveComponent(textbox));
 
@@ -317,10 +316,10 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textfield);
          else m_panel->addChild(textfield);
 
-         //TODO
-         //AbstractWindow *win = new AbstractWindow(textfield);
-         //win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         //scv::Kernel::getInstance()->addWindow(win);
+
+         AbstractWindow *win = new AbstractWindow(textfield);
+         win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
+         scv::Kernel::getInstance()->addWindow(win);
          
          textfield->registerContextMenu(new RemoveComponent(textfield));
 
@@ -403,7 +402,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          iframe->getPanel()->registerContextMenu(new InterfaceDesign(iframe->getPanel()));
 
-         //iframe->registerContextMenu(new RemoveComponent(iframe));
+         iframe->registerContextMenu(new RemoveComponent(iframe));
 
       } else if (address[2] == "Generic Tree") {
 

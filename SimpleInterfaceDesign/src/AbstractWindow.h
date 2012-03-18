@@ -41,12 +41,15 @@ private:
 class AbstractWindow : public scv::InternalFrame {
 public:
    AbstractWindow(scv::Label * component);
+   AbstractWindow(scv::TextBox * component);
    ~AbstractWindow(void) {/**/}
 
    scv::Label *m_component;
+   scv::TextBox *t_component;
    AcceptButton *m_ok;
    CancelButton *m_cancel;
    InputText *m_input;
+   bool isLabel;
 };
 
 #endif // __SCV_ABSTRACT_WINDOW_H__
