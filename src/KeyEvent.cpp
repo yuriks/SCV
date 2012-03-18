@@ -10,6 +10,7 @@ KeyEvent::KeyEvent(int key, int mod, bool special, KeyEvent::State state)
 {
 }
 
+//! Returns a (usually) human-readable name for the key.
 std::string KeyEvent::getKeyString() const {
    if (special) {
       switch(keycode) {
