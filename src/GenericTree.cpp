@@ -135,40 +135,37 @@ namespace scv {
       _cTexture->disable();
 
       scissor->pushScissor(Scissor::Info(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y) + 1, getWidth(), getHeight() - 4));
-      
-      int i;
-      int breakPrint = getHeight()/s_lineSpacing;
-      for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
-        if(_nodesDisplay[i + m_firstLine].spaces > 0){
-            glBegin(GL_LINE_STRIP);
-            if(_nodesDisplay[i + m_firstLine].selected){
-                //Desenhar em azul]
-                scheme->applyColor(scheme->getColor(ColorScheme::TEXTSELECTION));
-                glColor3f(0.f,0.f,0.f);
 
-            
-            }else{
-                //Desenhar em branco
-                scheme->applyColor(scheme->getColor(ColorScheme::TEXT));
-                glColor3f(0.f,0.f,0.f);
+      glDisable(GL_TEXTURE_2D);
+
+      int i;
+      int breakPrint = getHeight() / s_lineSpacing;
+      for (i = 0; i + m_firstLine < _nodesDisplay.size() && breakPrint > -2; i++) {
+         if (_nodesDisplay[i + m_firstLine].spaces > 0) {
+            if (_nodesDisplay[i + m_firstLine].selected) {
+               scheme->applyColor(scheme->getColor(ColorScheme::TEXTSELECTION));
+            } else {
+               scheme->applyColor(scheme->getColor(ColorScheme::TEXT));
             }
-                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6 , (currPosition.y + (i*12)) );
-                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) + 7 );
-                glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) + 2, (currPosition.y + (i*12)) + 7);
+
+            glBegin(GL_LINE_STRIP);
+               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) );
+               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) + 7 );
+               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) + 2, (currPosition.y + (i*12)) + 7);
             glEnd();
-        }
-        breakPrint--;
+         }
+         breakPrint--;
       }
+
+      glEnable(GL_TEXTURE_2D);
 
       /*draw the tree*/
       breakPrint = getHeight()/s_lineSpacing;
       for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
-         if(_nodesDisplay[i + m_firstLine].selected)
-         {
-
+         if (_nodesDisplay[i + m_firstLine].selected) {
             StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
-                _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
-         }else{
+               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
+         } else {
             StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
                _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXT));
          }      
@@ -177,7 +174,7 @@ namespace scv {
       spaceBack = (getHeight()-(i * s_lineSpacing));
       int spBack = spaceBack/s_lineSpacing;
 
-      while(spBack > 0 && m_firstLine > 0) {
+      while (spBack > 0 && m_firstLine > 0) {
          m_firstLine--;
          spBack--;
       }
