@@ -53,15 +53,15 @@ private:
 
 void example8_main() {
    scv::Kernel* kernel = scv::Kernel::getInstance();
-	scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
+   scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
 
-    //scheme->loadScheme(scv::ColorScheme::WARCRAFT);
-	kernel->setWindowSize(400, 600);
+   //scheme->loadScheme(scv::ColorScheme::WARCRAFT);
+   kernel->setWindowSize(400, 600);
 
-	MyTree *t = new MyTree(scv::Point(-1, -1), scv::Point(250, 400));
+   MyTree *t = new MyTree(scv::Point(-1, -1), scv::Point(250, 400));
    t->buildTree();
    scv::Kernel::getInstance()->addComponent(t);
 
-	kernel->setFramesPerSecond(60);
-	kernel->run();
+   kernel->setFramesPerSecond(60);
+   kernel->run();
 }
