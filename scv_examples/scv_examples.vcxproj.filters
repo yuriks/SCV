@@ -39,5 +39,11 @@
     <ClCompile Include="src\example7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\example8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\example9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
