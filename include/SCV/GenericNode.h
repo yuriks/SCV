@@ -11,9 +11,8 @@ namespace scv {
 
 struct GenericNode
 {
-    GenericNode(const std::string& label);
-    GenericNode(const std::string& label, int userData);
-    ~GenericNode();
+   GenericNode(const std::string& label, int userData = 0);
+   ~GenericNode();
 
    std::string label;
    int userData;

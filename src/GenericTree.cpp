@@ -11,6 +11,19 @@
 
 namespace scv {
 
+   struct GenericNodeDisplay
+   {
+      GenericNodeDisplay(const GenericNode& node, int indent)
+         : label(node.label), selected(false), open(node.open), has_children(!node.children.empty()), indent(indent)
+      {}
+
+      std::string label;
+      bool selected;
+      bool open;
+      bool has_children;
+      int indent;
+   };
+
    GenericTree::GenericTree(scv::Point p1, scv::Point p2, GenericNode* root)
       : ComponentWithTexture(p1, p2)
    {
@@ -21,7 +34,7 @@ namespace scv {
 
       _nodesDisplay.clear();
       _nodeRoot = root;
-      _nodesDisplay.push_back(_nodeRoot->label);
+      _nodesDisplay.push_back(GenericNodeDisplay(*_nodeRoot, 1));
 
       _nodeSelected = 0;
 
@@ -32,29 +45,39 @@ namespace scv {
       delete _nodeRoot;
    }
 
+   //! Must be called after the tree is changed to refresh the display. Weird things may happen if you don't.
+   void GenericTree::refreshDisplay() {
+      _nodesDisplay.clear();
+      if (_nodeRoot != 0)
+         _nodesDisplay.push_back(GenericNodeDisplay(*_nodeRoot, 1));
+   }
+
    void GenericTree::onItemSelected() {
    }
 
-   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, std::string spaces, int iSpaces)
+   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, int iSpaces)
    {
       GenericNode* resultNode = NULL;
       GenericNode* rNode = NULL;
       for(int i = 0 ; i < focusNode->children.size(); i++)
       {
-
-         if(y-_jumpOnFindSelected == 0)
+         if (y - _jumpOnFindSelected == 0)
          {
             resultNode = focusNode->children[i];
             resultNode->open = !resultNode->open;
-            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, iSpaces, true));
-         }else{
-            _nodesDisplay.push_back(GenericNodeDisplay(spaces + focusNode->children[i]->label, focusNode->children[i]->open, iSpaces));
+
+            GenericNodeDisplay display_node(*focusNode->children[i], iSpaces);
+            display_node.selected = true;
+            _nodesDisplay.push_back(display_node);
+         } else {
+            _nodesDisplay.push_back(GenericNodeDisplay(*focusNode->children[i], iSpaces));
          }
+
          _jumpOnFindSelected++;
-         if(focusNode->children[i]->open)
+         if (focusNode->children[i]->open)
          { 
-            rNode = findSelected(focusNode->children[i], y, spaces + "  ", iSpaces+1);
-            if(rNode != NULL)
+            rNode = findSelected(focusNode->children[i], y, iSpaces+1);
+            if (rNode != NULL)
             {
                resultNode = rNode;
             }                
@@ -62,7 +85,7 @@ namespace scv {
       }
       return resultNode;
    }
-    
+
    void GenericTree::processMouse(const scv::MouseEvent &evt) {
       static Kernel *kernel = Kernel::getInstance();
       static Scissor *scissor = Scissor::getInstance();
@@ -78,27 +101,29 @@ namespace scv {
 
       scv::Point p = getAbsolutePosition();
       if(evt.getState() == MouseEvent::UP && isFocused()) {
-          std::cout << (p.y) << std::endl;
          int y = (int)(((evt.getPosition().y - (p.y) )/s_lineSpacing) + m_firstLine);
-         int iSpaces = 0;
+         int iSpaces = 1;
          _nodesDisplay.clear();
          if(y == 0)
          {
             _nodeSelected = _nodeRoot;
             _nodeRoot->open = !_nodeRoot->open;
-            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, iSpaces, true));
+
+            GenericNodeDisplay display_node(*_nodeRoot, iSpaces);
+            display_node.selected = true;
+            _nodesDisplay.push_back(display_node);
          }else{
-            _nodesDisplay.push_back(GenericNodeDisplay(_nodeRoot->label, _nodeRoot->open, iSpaces));
+            _nodesDisplay.push_back(GenericNodeDisplay(*_nodeRoot, iSpaces));
          }
          if(_nodeRoot->open)
          {
             _jumpOnFindSelected = 1;
-            GenericNode* resultNode = findSelected(_nodeRoot, y, "  ", iSpaces+1);
+            GenericNode* resultNode = findSelected(_nodeRoot, y, iSpaces+1);
             if(y>0)
             {
                _nodeSelected = resultNode;
             }
-         } 
+         }
 
          if (_nodeSelected != 0)
             onItemSelected();
@@ -141,17 +166,25 @@ namespace scv {
       int i;
       int breakPrint = getHeight() / s_lineSpacing;
       for (i = 0; i + m_firstLine < _nodesDisplay.size() && breakPrint > -2; i++) {
-         if (_nodesDisplay[i + m_firstLine].spaces > 0) {
-            if (_nodesDisplay[i + m_firstLine].selected) {
-               scheme->applyColor(scheme->getColor(ColorScheme::TEXTSELECTION));
-            } else {
-               scheme->applyColor(scheme->getColor(ColorScheme::TEXT));
-            }
+         const GenericNodeDisplay& node = _nodesDisplay[i + m_firstLine];
 
-            glBegin(GL_LINE_STRIP);
-               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) );
-               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) - 6, (currPosition.y + (i*12)) + 7 );
-               glVertex2i((currPosition.x + (_nodesDisplay[i + m_firstLine].spaces*10)) + 2, (currPosition.y + (i*12)) + 7);
+         if (node.selected) {
+            scheme->applyColor(scheme->getColor(ColorScheme::TEXTSELECTION));
+         } else {
+            scheme->applyColor(scheme->getColor(ColorScheme::TEXT));
+         }
+
+         if (node.has_children) {
+            int x_pos = currPosition.x + node.indent * 10;
+            int y_pos = currPosition.y + i * 12;
+
+            glBegin(GL_LINES);
+               glVertex2f(x_pos - 3.5f, y_pos + 7.5f);
+               glVertex2f(x_pos + 1.0f, y_pos + 7.5f);
+               if (!node.open) {
+                  glVertex2f(x_pos + -1.5f, y_pos + 5.5f);
+                  glVertex2f(x_pos + -1.5f, y_pos + 11.0f);
+               }
             glEnd();
          }
          breakPrint--;
@@ -162,13 +195,20 @@ namespace scv {
       /*draw the tree*/
       breakPrint = getHeight()/s_lineSpacing;
       for (i = 0; (i+m_firstLine) < _nodesDisplay.size() && breakPrint > -2; i++) {
+         Color4f text_color;
          if (_nodesDisplay[i + m_firstLine].selected) {
-            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
-               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXTSELECTION));
+            text_color = scheme->getColor(ColorScheme::TEXTSELECTION);
          } else {
-            StaticLabel::display(scv::Point((currPosition.x  + s_borderWidth), (currPosition.y) + ((i) * s_lineSpacing)),
-               _nodesDisplay[i + m_firstLine].label, scheme->getColor(ColorScheme::TEXT));
-         }      
+            text_color = scheme->getColor(ColorScheme::TEXT);
+         }
+
+
+         StaticLabel::display(
+            scv::Point(
+               currPosition.x + s_borderWidth + _nodesDisplay[i + m_firstLine].indent * 10,
+               currPosition.y + (i) * s_lineSpacing),
+            _nodesDisplay[i + m_firstLine].label, text_color);
+
          breakPrint--;
       }
       spaceBack = (getHeight()-(i * s_lineSpacing));

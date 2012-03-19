@@ -34,6 +34,8 @@ public:
          node_abc->children.push_back(node);
       }
       getRootNode()->children.push_back(node_abc);
+
+      refreshDisplay();
    }
 
    // Implementacao da callback da TreeView
