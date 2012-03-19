@@ -51,7 +51,7 @@ private:
 
 }
 
-void example7_main() {
+void example8_main() {
    scv::Kernel* kernel = scv::Kernel::getInstance();
 	scv::ColorScheme* scheme = scv::ColorScheme::getInstance();
 
