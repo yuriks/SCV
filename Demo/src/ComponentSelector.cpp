@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "ComponentSelector.h"
 
 #include "Application.h"

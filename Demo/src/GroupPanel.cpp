@@ -1,11 +1,11 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "GroupPanel.h"
 
 #include "GroupPanelWrapper.h"
 
 #include "GroupObjectWrapper.h"
-#include "ParallelGroup.h"
-#include "SequentialGroup.h"
+#include <SCV/ParallelGroup.h>
+#include <SCV/SequentialGroup.h>
 
 #include "Application.h"
 

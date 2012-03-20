@@ -207,13 +207,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\lib\win32\scv\</OutDir>
-    <IncludePath>$(SolutionDir)\include\SCV;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)lib\win32\scv\</OutDir>
+    <IncludePath>$(SolutionDir)include\SCV;$(SolutionDir)include;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)-debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\lib\win32\scv\</OutDir>
-    <IncludePath>$(SolutionDir)\include\SCV;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)lib\win32\scv\</OutDir>
+    <IncludePath>$(SolutionDir)include\SCV;$(SolutionDir)include;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)-release</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -222,7 +222,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;..\include\GL;..\include\SCV\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>..\include\SCV\StdAfx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>..\include\SCV\stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -242,7 +241,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\include;..\include\GL;..\include\SCV\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>..\include\SCV\StdAfx.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>..\include\SCV\stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <WholeProgramOptimization>false</WholeProgramOptimization>

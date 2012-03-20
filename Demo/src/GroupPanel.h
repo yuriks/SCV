@@ -1,7 +1,7 @@
 #ifndef __GROUP_PANEL_H__
 #define __GROUP_PANEL_H__
 
-#include "Group.h"
+#include "SCV/Group.h"
 #include "GroupObjectWrapper.h"
 
 class GroupPanel;

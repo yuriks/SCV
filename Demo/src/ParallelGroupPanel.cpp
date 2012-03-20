@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "ParallelGroupPanel.h"
 
 ParallelGroupPanel::ParallelGroupPanel(GroupType type) : GroupPanel(type) {

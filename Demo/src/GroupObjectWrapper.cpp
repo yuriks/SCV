@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "GroupObjectWrapper.h"
 
 #include "CodeGenerator.h"

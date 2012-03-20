@@ -1,4 +1,4 @@
-#include "SCV.h"
+#include <SCV/SCV.h>
 #include "Application.h"
 #include "Widget.h"
 

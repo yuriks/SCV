@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "CodeViewer.h"
 #include "CodeGenerator.h"
 

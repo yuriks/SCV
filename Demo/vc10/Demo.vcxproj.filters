@@ -4,9 +4,6 @@
     <Filter Include="0.Resources">
       <UniqueIdentifier>{e7157daf-a3f0-4eb6-ac6d-81b0a53bcd53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1.Pre-Compiled Header">
-      <UniqueIdentifier>{59ea91bd-d87a-42ce-b5da-a5a519142e81}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2.App">
       <UniqueIdentifier>{80a1ead6-9cf7-4740-b3f5-32647e9fc80f}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\stdafx.cpp">
-      <Filter>1.Pre-Compiled Header</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\main.cpp">
       <Filter>2.App</Filter>
     </ClCompile>
@@ -98,9 +92,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\stdafx.h">
-      <Filter>1.Pre-Compiled Header</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Application.h">
       <Filter>2.App</Filter>
     </ClInclude>

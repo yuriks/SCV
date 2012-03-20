@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 #include "PropertieOption.h"
 
 #include "Properties.h"

@@ -1,8 +1,8 @@
-#include "stdafx.h"
+#include <SCV/SCV.h>
 
 #include "Application.h"
 #include "Properties.h"
-#include "GapSpring.h"
+#include <SCV/GapSpring.h>
 
 
 #include "GroupPanelWrapper.h"
