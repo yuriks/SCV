@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv", "vc10\scv.vcxproj", "{891D71B4-D675-460D-8A69-4107DF65F07F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exported", "Exported\Exported.vcxproj", "{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv_examples", "scv_examples\scv_examples.vcxproj", "{6DB76FD5-7D53-4E96-B1A1-0ABCF9555090}"
 	ProjectSection(ProjectDependencies) = postProject
 		{891D71B4-D675-460D-8A69-4107DF65F07F} = {891D71B4-D675-460D-8A69-4107DF65F07F}
@@ -39,14 +34,6 @@ Global
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.Release|Win32.Build.0 = Release|Win32
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.Build.0 = Release|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Debug|Win32.Build.0 = Debug|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.DebugWindow|Win32.ActiveCfg = Debug|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.DebugWindow|Win32.Build.0 = Debug|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Release|Win32.ActiveCfg = Release|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.Release|Win32.Build.0 = Release|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.ActiveCfg = ReleaseWindow|Win32
-		{7260D06F-3C3C-4EBF-90F5-EC148B6E97F6}.ReleaseWindow|Win32.Build.0 = ReleaseWindow|Win32
 		{6DB76FD5-7D53-4E96-B1A1-0ABCF9555090}.Debug|Win32.ActiveCfg = Debug|Win32
 		{6DB76FD5-7D53-4E96-B1A1-0ABCF9555090}.Debug|Win32.Build.0 = Debug|Win32
 		{6DB76FD5-7D53-4E96-B1A1-0ABCF9555090}.DebugWindow|Win32.ActiveCfg = Debug|Win32
