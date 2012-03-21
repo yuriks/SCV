@@ -124,12 +124,6 @@
     <ClCompile Include="src\GlslShader.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="src\GTree.cpp">
-      <Filter>4.Widgets\SystemTree</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TreeModel.cpp">
-      <Filter>4.Widgets\SystemTree</Filter>
-    </ClCompile>
     <ClCompile Include="src\TabbedPane.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
@@ -168,9 +162,6 @@
     </ClCompile>
     <ClCompile Include="src\util.cpp">
       <Filter>5.Util</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SystemTreeView.cpp">
-      <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
     <ClCompile Include="src\ComboBox.cpp">
       <Filter>4.Widgets\Button</Filter>
@@ -360,12 +351,6 @@
     <ClInclude Include="..\include\SCV\GlslShader.h">
       <Filter>5.Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\SCV\GTree.h">
-      <Filter>4.Widgets\SystemTree</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\TreeModel.h">
-      <Filter>4.Widgets\SystemTree</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\SCV\TabbedPane.h">
       <Filter>4.Widgets\Panel</Filter>
     </ClInclude>
@@ -404,9 +389,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\StaticLabel.h">
       <Filter>4.Widgets\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\SystemTreeView.h">
-      <Filter>4.Widgets\SystemTree</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComboBox.h">
       <Filter>4.Widgets\Button</Filter>
@@ -478,9 +460,6 @@
     </Filter>
     <Filter Include="4.Widgets\Object">
       <UniqueIdentifier>{1b3e6407-b1dd-4fe6-ad3c-32fd106b291e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.Widgets\SystemTree">
-      <UniqueIdentifier>{4b8072ef-4cb3-4ec6-98e9-a5867b66fb78}</UniqueIdentifier>
     </Filter>
     <Filter Include="4.Widgets\Tree">
       <UniqueIdentifier>{fbe24b43-7f12-4491-a92b-ff26bd9bb37b}</UniqueIdentifier>

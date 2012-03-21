@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include "GTree.h"
-#include "TreeModel.h"
 #include "ComponentWithTexture.h"
 #include "GenericTree.h"
 #include "data.h"

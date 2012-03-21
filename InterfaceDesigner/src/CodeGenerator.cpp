@@ -56,8 +56,6 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::ComboBox(scv::Point(0,0), 200);
    } else if (type == "Canvas") {
       object = new scv::Canvas(scv::Point(0, 0), scv::Point(200, 200));
-   } else if (type == "SystemTreeView") {
-      object = new scv::SystemTreeView(scv::Point(0, 0), scv::Point(200, 200));
    } else if (type == "Label") {
       object = new scv::Label(scv::Point(0, 0), "SCV Label");
    }

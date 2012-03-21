@@ -35,7 +35,6 @@
 #include "TabbedPane.h"
 #include "Table.h"
 #include "util.h"
-#include "SystemTreeView.h"
 #include "GenericTree.h"
 #include "GenericNode.h"
 

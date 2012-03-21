@@ -36,7 +36,6 @@
     <ClCompile Include="src\GenericTree.cpp" />
     <ClCompile Include="src\Group.cpp" />
     <ClCompile Include="src\GroupLayout.cpp" />
-    <ClCompile Include="src\GTree.cpp" />
     <ClCompile Include="src\Image.cpp" />
     <ClCompile Include="src\ImgLoader.cpp" />
     <ClCompile Include="src\Panel.cpp" />
@@ -81,8 +80,6 @@
     <ClCompile Include="src\ToggleButton.cpp" />
     <ClCompile Include="src\InternalFrame.cpp" />
     <ClCompile Include="src\InternalFrameHolder.cpp" />
-    <ClCompile Include="src\TreeModel.cpp" />
-    <ClCompile Include="src\SystemTreeView.cpp" />
     <ClCompile Include="src\util.cpp" />
     <ClCompile Include="src\VistaMenuStyle.cpp" />
   </ItemGroup>
@@ -110,7 +107,6 @@
     <ClInclude Include="..\include\SCV\GenericTree.h" />
     <ClInclude Include="..\include\SCV\Group.h" />
     <ClInclude Include="..\include\SCV\GroupLayout.h" />
-    <ClInclude Include="..\include\SCV\GTree.h" />
     <ClInclude Include="..\include\SCV\Image.h" />
     <ClInclude Include="..\include\SCV\ParallelGroup.h" />
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
@@ -155,8 +151,6 @@
     <ClInclude Include="..\include\SCV\TextureInterface.h" />
     <ClInclude Include="..\include\SCV\Timer.h" />
     <ClInclude Include="..\include\SCV\ToggleButton.h" />
-    <ClInclude Include="..\include\SCV\TreeModel.h" />
-    <ClInclude Include="..\include\SCV\SystemTreeView.h" />
     <ClInclude Include="..\include\SCV\util.h" />
     <ClInclude Include="..\include\SCV\InternalFrame.h" />
     <ClInclude Include="..\include\SCV\InternalFrameHolder.h" />
