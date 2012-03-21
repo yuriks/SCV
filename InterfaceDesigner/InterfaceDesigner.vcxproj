@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2210BBF1-1A66-4DED-A2C3-4E1DF307B05B}</ProjectGuid>
+    <ProjectGuid>{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Demo</RootNamespace>
-    <ProjectName>InterfaceDesign</ProjectName>
+    <ProjectName>InterfaceDesigner</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -198,46 +198,46 @@
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Application.cpp" />
-    <ClCompile Include="..\src\CodeGenerator.cpp" />
-    <ClCompile Include="..\src\CodeViewer.cpp" />
-    <ClCompile Include="..\src\ComponentSelector.cpp" />
-    <ClCompile Include="..\src\DesignPreview.cpp" />
-    <ClCompile Include="..\src\GroupObjectWrapper.cpp" />
-    <ClCompile Include="..\src\GroupPanel.cpp" />
-    <ClCompile Include="..\src\GroupPanelWrapper.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\ManagedComponent.cpp" />
-    <ClCompile Include="..\src\MenuBar.cpp" />
-    <ClCompile Include="..\src\ObjectEditor.cpp" />
-    <ClCompile Include="..\src\Pallete.cpp" />
-    <ClCompile Include="..\src\PalleteComponents.cpp" />
-    <ClCompile Include="..\src\ParallelGroupPanel.cpp" />
-    <ClCompile Include="..\src\PropertieOption.cpp" />
-    <ClCompile Include="..\src\Properties.cpp" />
-    <ClCompile Include="..\src\SequentialGroupPanel.cpp" />
-    <ClCompile Include="..\src\SpecializedProperties.cpp" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\CodeGenerator.cpp" />
+    <ClCompile Include="src\CodeViewer.cpp" />
+    <ClCompile Include="src\ComponentSelector.cpp" />
+    <ClCompile Include="src\DesignPreview.cpp" />
+    <ClCompile Include="src\GroupObjectWrapper.cpp" />
+    <ClCompile Include="src\GroupPanel.cpp" />
+    <ClCompile Include="src\GroupPanelWrapper.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ManagedComponent.cpp" />
+    <ClCompile Include="src\MenuBar.cpp" />
+    <ClCompile Include="src\ObjectEditor.cpp" />
+    <ClCompile Include="src\Pallete.cpp" />
+    <ClCompile Include="src\PalleteComponents.cpp" />
+    <ClCompile Include="src\ParallelGroupPanel.cpp" />
+    <ClCompile Include="src\PropertieOption.cpp" />
+    <ClCompile Include="src\Properties.cpp" />
+    <ClCompile Include="src\SequentialGroupPanel.cpp" />
+    <ClCompile Include="src\SpecializedProperties.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\Application.h" />
-    <ClInclude Include="..\src\CodeGenerator.h" />
-    <ClInclude Include="..\src\CodeViewer.h" />
-    <ClInclude Include="..\src\ComponentSelector.h" />
-    <ClInclude Include="..\src\DesignPreview.h" />
-    <ClInclude Include="..\src\GroupObjectWrapper.h" />
-    <ClInclude Include="..\src\GroupPanel.h" />
-    <ClInclude Include="..\src\GroupPanelWrapper.h" />
-    <ClInclude Include="..\src\ManagedComponent.h" />
-    <ClInclude Include="..\src\MenuBar.h" />
-    <ClInclude Include="..\src\ObjectEditor.h" />
-    <ClInclude Include="..\src\Pallete.h" />
-    <ClInclude Include="..\src\PalleteComponents.h" />
-    <ClInclude Include="..\src\ParallelGroupPanel.h" />
-    <ClInclude Include="..\src\PropertieOption.h" />
-    <ClInclude Include="..\src\Properties.h" />
-    <ClInclude Include="..\src\PropertiesManager.h" />
-    <ClInclude Include="..\src\SequentialGroupPanel.h" />
-    <ClInclude Include="..\src\SpecializedProperties.h" />
+    <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\CodeGenerator.h" />
+    <ClInclude Include="src\CodeViewer.h" />
+    <ClInclude Include="src\ComponentSelector.h" />
+    <ClInclude Include="src\DesignPreview.h" />
+    <ClInclude Include="src\GroupObjectWrapper.h" />
+    <ClInclude Include="src\GroupPanel.h" />
+    <ClInclude Include="src\GroupPanelWrapper.h" />
+    <ClInclude Include="src\ManagedComponent.h" />
+    <ClInclude Include="src\MenuBar.h" />
+    <ClInclude Include="src\ObjectEditor.h" />
+    <ClInclude Include="src\Pallete.h" />
+    <ClInclude Include="src\PalleteComponents.h" />
+    <ClInclude Include="src\ParallelGroupPanel.h" />
+    <ClInclude Include="src\PropertieOption.h" />
+    <ClInclude Include="src\Properties.h" />
+    <ClInclude Include="src\PropertiesManager.h" />
+    <ClInclude Include="src\SequentialGroupPanel.h" />
+    <ClInclude Include="src\SpecializedProperties.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceDesign", "Demo\vc1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeFormInterfaceDesigner", "FreeFormInterfaceDesigner\FreeFormInterfaceDesigner.vcxproj", "{7581EA6A-353F-49C4-9A76-896D30CF608F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceDesigner", "InterfaceDesigner\InterfaceDesigner.vcxproj", "{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -55,6 +57,14 @@ Global
 		{7581EA6A-353F-49C4-9A76-896D30CF608F}.Release|Win32.Build.0 = Release|Win32
 		{7581EA6A-353F-49C4-9A76-896D30CF608F}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
 		{7581EA6A-353F-49C4-9A76-896D30CF608F}.ReleaseWindow|Win32.Build.0 = Release|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.Debug|Win32.Build.0 = Debug|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.DebugWindow|Win32.ActiveCfg = DebugWindow|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.DebugWindow|Win32.Build.0 = DebugWindow|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.Release|Win32.ActiveCfg = Release|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.Release|Win32.Build.0 = Release|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.ReleaseWindow|Win32.ActiveCfg = ReleaseWindow|Win32
+		{DA89F2F1-E4CB-417D-9C0A-FE9AC4AB0D6F}.ReleaseWindow|Win32.Build.0 = ReleaseWindow|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
