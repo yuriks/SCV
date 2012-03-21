@@ -74,10 +74,11 @@ void onKeyPressed(const scv::KeyEvent &evt)
 
 void MyCanvas::onMouseHold(const scv::MouseEvent& evt)
 {
-   // redimensiona o quadrado e resolucao do circulo
+   // redimensiona o quadrado, resolucao do circulo e velocidade do pointeiro
    pos = evt.getPosition();
 }
-}
+
+}//namespace
 
 void example7_main() {
    // Inicializa o SCV.
