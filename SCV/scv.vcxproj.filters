@@ -1,226 +1,217 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\src\Color4f.cpp">
+    <ClCompile Include="src\Color4f.cpp">
       <Filter>3.Kernel\Color</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ColorRGBA.cpp">
+    <ClCompile Include="src\ColorRGBA.cpp">
       <Filter>3.Kernel\Color</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\stdafx.cpp">
-      <Filter>1.Pre-Compiled Header</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\ToolTip.cpp">
-      <Filter>0._!TODO!_</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\SoundLoader.cpp">
-      <Filter>0._!TODO!_</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Timer.cpp">
+    <ClCompile Include="src\Timer.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Texture2D.cpp">
+    <ClCompile Include="src\Texture2D.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Scissor.cpp">
+    <ClCompile Include="src\Scissor.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\MouseEvent.cpp">
+    <ClCompile Include="src\MouseEvent.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Keyboard.cpp">
+    <ClCompile Include="src\Keyboard.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Kernel.cpp">
+    <ClCompile Include="src\Kernel.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Canvas.cpp">
+    <ClCompile Include="src\Canvas.cpp">
       <Filter>4.Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ColorPicker.cpp">
+    <ClCompile Include="src\ColorPicker.cpp">
       <Filter>4.Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Separator.cpp">
+    <ClCompile Include="src\Separator.cpp">
       <Filter>4.Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Table.cpp">
+    <ClCompile Include="src\Table.cpp">
       <Filter>4.Widgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Font.cpp">
+    <ClCompile Include="src\Font.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\FontTahoma.cpp">
+    <ClCompile Include="src\FontTahoma.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\KeyEvent.cpp">
+    <ClCompile Include="src\KeyEvent.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\List.cpp">
-      <Filter>0._!TODO!_</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Cursor.cpp">
+    <ClCompile Include="src\Cursor.cpp">
       <Filter>3.Kernel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComboBoxMenuStyle.cpp">
+    <ClCompile Include="src\ComboBoxMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupMenuStyle\ComboBox</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComponentTexture.cpp">
+    <ClCompile Include="src\ComponentTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComponentWithoutTexture.cpp">
+    <ClCompile Include="src\ComponentWithoutTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComponentWithTexture.cpp">
+    <ClCompile Include="src\ComponentWithTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\InternalFrame.cpp">
+    <ClCompile Include="src\InternalFrame.cpp">
       <Filter>4.Widgets\InternalFrame</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\InternalFrameHolder.cpp">
+    <ClCompile Include="src\InternalFrameHolder.cpp">
       <Filter>4.Widgets\InternalFrame</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\CheckBox.cpp">
+    <ClCompile Include="src\CheckBox.cpp">
       <Filter>4.Widgets\StateButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\RadioButton.cpp">
+    <ClCompile Include="src\RadioButton.cpp">
       <Filter>4.Widgets\StateButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ButtonGroup.cpp">
+    <ClCompile Include="src\ButtonGroup.cpp">
       <Filter>4.Widgets\StateButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\StateButton.cpp">
+    <ClCompile Include="src\StateButton.cpp">
       <Filter>4.Widgets\StateButton</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TextBox.cpp">
+    <ClCompile Include="src\TextBox.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TextField.cpp">
+    <ClCompile Include="src\TextField.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TextFilter.cpp">
+    <ClCompile Include="src\TextFilter.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Label.cpp">
+    <ClCompile Include="src\Label.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ToggleButton.cpp">
+    <ClCompile Include="src\ToggleButton.cpp">
       <Filter>4.Widgets\Button</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Button.cpp">
+    <ClCompile Include="src\Button.cpp">
       <Filter>4.Widgets\Button</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ProgressBar.cpp">
+    <ClCompile Include="src\ProgressBar.cpp">
       <Filter>4.Widgets\Counter</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Slider.cpp">
+    <ClCompile Include="src\Slider.cpp">
       <Filter>4.Widgets\Counter</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Counter.cpp">
+    <ClCompile Include="src\Counter.cpp">
       <Filter>4.Widgets\Counter</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Panel.cpp">
+    <ClCompile Include="src\Panel.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Spinner.cpp">
+    <ClCompile Include="src\Spinner.cpp">
       <Filter>4.Widgets\Counter</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\data\InternalFrameData.cpp">
-      <Filter>2.Data</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\data\CheckBoxData.cpp">
-      <Filter>2.Data</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\data\ScrollPaneData.cpp">
-      <Filter>2.Data</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Point.cpp">
+    <ClCompile Include="src\Point.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\FileOpen.cpp">
+    <ClCompile Include="src\FileOpen.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ColorScheme.cpp">
+    <ClCompile Include="src\ColorScheme.cpp">
       <Filter>3.Kernel\Color</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GlslShader.cpp">
+    <ClCompile Include="src\GlslShader.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GTree.cpp">
+    <ClCompile Include="src\GTree.cpp">
       <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TreeModel.cpp">
+    <ClCompile Include="src\TreeModel.cpp">
       <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TabbedPane.cpp">
+    <ClCompile Include="src\TabbedPane.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ImgLoader.cpp">
+    <ClCompile Include="src\ImgLoader.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Image.cpp">
+    <ClCompile Include="src\Image.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Component.cpp">
+    <ClCompile Include="src\Component.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GroupLayout.cpp">
+    <ClCompile Include="src\GroupLayout.cpp">
       <Filter>6.GroupLayout</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Group.cpp">
+    <ClCompile Include="src\Group.cpp">
       <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ParallelGroup.cpp">
+    <ClCompile Include="src\ParallelGroup.cpp">
       <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SequentialGroup.cpp">
+    <ClCompile Include="src\SequentialGroup.cpp">
       <Filter>6.GroupLayout\Spring\Group</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Spring.cpp">
+    <ClCompile Include="src\Spring.cpp">
       <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComponentSpring.cpp">
+    <ClCompile Include="src\ComponentSpring.cpp">
       <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GapSpring.cpp">
+    <ClCompile Include="src\GapSpring.cpp">
       <Filter>6.GroupLayout\Spring</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\StaticLabel.cpp">
+    <ClCompile Include="src\StaticLabel.cpp">
       <Filter>4.Widgets\Text</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\util.cpp">
+    <ClCompile Include="src\util.cpp">
       <Filter>5.Util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SystemTreeView.cpp">
+    <ClCompile Include="src\SystemTreeView.cpp">
       <Filter>4.Widgets\SystemTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ComboBox.cpp">
+    <ClCompile Include="src\ComboBox.cpp">
       <Filter>4.Widgets\Button</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ContextMenu.cpp">
+    <ClCompile Include="src\ContextMenu.cpp">
       <Filter>4.Widgets\Tree\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\MenuBar.cpp">
+    <ClCompile Include="src\MenuBar.cpp">
       <Filter>4.Widgets\Tree\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\MenuHolder.cpp">
+    <ClCompile Include="src\MenuHolder.cpp">
       <Filter>4.Widgets\Tree\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\VistaMenuStyle.cpp">
+    <ClCompile Include="src\VistaMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupMenuStyle\ContextMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ScrollComponent.cpp">
+    <ClCompile Include="src\ScrollComponent.cpp">
       <Filter>4.Widgets\Panel</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\PopupMenuStyle.cpp">
+    <ClCompile Include="src\PopupMenuStyle.cpp">
       <Filter>4.Widgets\Tree\PopupMenuStyle</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GenericNode.cpp">
+    <ClCompile Include="src\GenericNode.cpp">
       <Filter>4.Widgets\GenericTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GenericTree.cpp">
+    <ClCompile Include="src\GenericTree.cpp">
       <Filter>4.Widgets\GenericTree</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\data\TreeViewData.cpp">
+    <ClCompile Include="src\stdafx.cpp">
+      <Filter>1.Pre-Compiled Header</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\CheckBoxData.cpp">
+      <Filter>2.Data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\InternalFrameData.cpp">
+      <Filter>2.Data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\ScrollPaneData.cpp">
+      <Filter>2.Data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\TreeViewData.cpp">
       <Filter>2.Data</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,15 +221,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\ColorRGBA.h">
       <Filter>3.Kernel\Color</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\stdafx.h">
-      <Filter>1.Pre-Compiled Header</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ToolTip.h">
-      <Filter>0._!TODO!_</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\SoundLoader.h">
-      <Filter>0._!TODO!_</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\util.h">
       <Filter>5.Util</Filter>
@@ -287,9 +269,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\FontTahoma.h">
       <Filter>3.Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\List.h">
-      <Filter>0._!TODO!_</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\Cursor.h">
       <Filter>3.Kernel</Filter>
@@ -456,11 +435,11 @@
     <ClInclude Include="..\include\SCV\GenericTree.h">
       <Filter>4.Widgets\GenericTree</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\stdafx.h">
+      <Filter>1.Pre-Compiled Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="0._!TODO!_">
-      <UniqueIdentifier>{763644b7-de58-4970-ab30-95f32d921926}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1.Pre-Compiled Header">
       <UniqueIdentifier>{66341a5f-5bdb-4c30-bf76-048c5fec3f9c}</UniqueIdentifier>
     </Filter>

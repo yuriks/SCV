@@ -2,7 +2,6 @@ REVIEW: Width scv::Spinner
 
 TODO: scv::ComboBox::clear()
 
-REDO: scv::Table (use scv::GroupLayout)
 REDO: scv::ColorPicker (use scv::GroupLayout)
 
 Spinner atualiza o value a cada tecla digitada.
