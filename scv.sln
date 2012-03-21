@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceDesigner", "Interf
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scv", "SCV\scv.vcxproj", "{891D71B4-D675-460D-8A69-4107DF65F07F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExportedSource", "ExportedSource\ExportedSource.vcxproj", "{E0540573-8D8B-40E3-8794-0E168A9AF426}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -52,6 +54,14 @@ Global
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.Release|Win32.Build.0 = Release|Win32
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
 		{891D71B4-D675-460D-8A69-4107DF65F07F}.ReleaseWindow|Win32.Build.0 = Release|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.Debug|Win32.Build.0 = Debug|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.DebugWindow|Win32.ActiveCfg = Debug|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.DebugWindow|Win32.Build.0 = Debug|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.Release|Win32.ActiveCfg = Release|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.Release|Win32.Build.0 = Release|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.ReleaseWindow|Win32.ActiveCfg = Release|Win32
+		{E0540573-8D8B-40E3-8794-0E168A9AF426}.ReleaseWindow|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
