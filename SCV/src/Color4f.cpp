@@ -16,22 +16,11 @@ Color4f::Color4f(float r, float g, float b, float a /*= 1.f*/) {
    data[3] = a;
 }
 
-Color4f::Color4f(const Color4f &rhs) {
-   std::memcpy(data, rhs.data, sizeof(float) * 4);
-}
-
 Color4f::Color4f(const ColorRGBA &rhs) {
    data[0] = rhs[0] / 255.f;
    data[1] = rhs[1] / 255.f;
    data[2] = rhs[2] / 255.f;
    data[3] = rhs[3] / 255.f;
-}
-
-Color4f& Color4f::operator=(const Color4f& rhs) {
-   if (this != &rhs) {
-      std::memcpy(data, rhs.data, sizeof(float) * 4);
-   }
-   return *this;
 }
 
 scv::Color4f Color4f::operator+(float w) const {
