@@ -1,11 +1,9 @@
 #ifndef __SCV_COMPONENT__H__
 #define __SCV_COMPONENT__H__
 
-///////////////////////////////////////////////////////////
 #include "SCVCallbacks.h"
 #include "Point.h"
 #include "Scissor.h"
-///////////////////////////////////////////////////////////
 
 namespace scv {
 
@@ -14,11 +12,8 @@ class Kernel;
 
 class Component : public SCVCallbacks {
 public:
-   ///////////////////////////////////////////////////////////
    typedef std::list<Component*> List;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    enum Type {
       NONE        , PANEL           , COLORPICKER , PROGRESSBAR,
       SCROLL      , SLIDER          , SPINNER     , BUTTON     ,
@@ -30,24 +25,18 @@ public:
       /**/
       NOFWIDGETS
    };
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    Component(const scv::Point &p1, const scv::Point &p2);
    virtual ~Component(void);
-   ///////////////////////////////////////////////////////////
 
    //position
-   ///////////////////////////////////////////////////////////
    virtual Point getRelativePosition(void) const;
    virtual void setRelativePosition(const Point &position);
    
    virtual Point getAbsolutePosition(void) const;
    virtual void setAbsolutePosition(const Point &position);
-   ///////////////////////////////////////////////////////////
 
    //size
-   ///////////////////////////////////////////////////////////
    virtual inline int getWidth(void) const;
    virtual void setWidth(int width);
 
@@ -65,18 +54,14 @@ public:
 
    virtual void setMaximumSize(const scv::Point &size);
    virtual Point getMaximumSize(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual inline bool isOvered(void) const;
    virtual inline bool isHolded(void) const;
    virtual inline bool isDragging(void) const;
    virtual inline bool isResizing(void) const;   
-   ///////////////////////////////////////////////////////////
 
    virtual bool isFocused(void) const;
 
-   ///////////////////////////////////////////////////////////
    virtual inline void setDraggable(bool state);
    virtual inline bool isDraggable(void) const;
 
@@ -85,7 +70,6 @@ public:
 
    virtual inline void setVisible(bool state);
    virtual inline bool isVisible(void) const;
-   ///////////////////////////////////////////////////////////
 
    inline ContextMenu *getContextMenu(void) const;
    virtual void registerContextMenu(ContextMenu *contextMenu);
@@ -93,30 +77,21 @@ public:
 
    virtual bool isInside(const Point &evtPosition) const;
 
-   ///////////////////////////////////////////////////////////
    virtual bool getCallbacksStatus(void) const;
    virtual void setCallbacksStatus(bool state);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual Scissor::Info getParentScissor(void) const;
    virtual Scissor::Info getScissor(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual void processMouse(const scv::MouseEvent &evt);
    virtual void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
    virtual void display(void) = 0;
 
-   ///////////////////////////////////////////////////////////
    Type getType(void) const;
    void setType(Type type);
-   ///////////////////////////////////////////////////////////
 
    //memory management
-   ///////////////////////////////////////////////////////////
    void setParent(Component *parent);   
    inline Component *getParent(void) const;
 
@@ -131,13 +106,10 @@ public:
    void pullChildToTop(Component *child);
 
    bool hasChild(Component *child) const;
-   ///////////////////////////////////////////////////////////
 
 protected:  
-   ///////////////////////////////////////////////////////////
    Component *_parent;
    Component::List _children;
-   ///////////////////////////////////////////////////////////
 
    Type _type;
    static const int s_mouseBacklash = 4;
@@ -156,7 +128,7 @@ protected:
 
    enum Side { LEFT, RIGHT, TOP, BOTTOM };
    std::vector<bool> _resizing;
-   bool isInsideSide(Component::Side side, const Point &evtPosition);   
+   bool isInsideSide(Component::Side side, const Point &evtPosition);
 
    ContextMenu *_contextMenu;
 };
@@ -179,7 +151,6 @@ void Component::setSize(int width, int height) {
 Point Component::getSize(void) const {
    return Point(getWidth(), getHeight());
 }
-///////////////////////////////////////////////////////////
 
 bool Component::isOvered(void) const {
    return _isOvered;
@@ -196,8 +167,6 @@ bool Component::isDragging(void) const {
 bool Component::isResizing(void) const {
    return _isResizing;
 }
-
-///////////////////////////////////////////////////////////
 
 void Component::setDraggable(bool state) {
    _isDraggable = state;
@@ -223,13 +192,9 @@ bool Component::isVisible(void) const {
    return _isVisible;
 }
 
-///////////////////////////////////////////////////////////
-
 ContextMenu *Component::getContextMenu(void) const {
    return _contextMenu;
 }
-
-///////////////////////////////////////////////////////////
 
 Component *Component::getParent(void) const {
    return _parent;
@@ -238,8 +203,6 @@ Component *Component::getParent(void) const {
 const Component::List &Component::getChildren(void) const {
    return _children;
 }
-
-///////////////////////////////////////////////////////////
 
 } // namespace scv
 

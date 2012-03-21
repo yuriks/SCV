@@ -24,7 +24,6 @@
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\ComponentSpring.cpp" />
     <ClCompile Include="src\ComponentTexture.cpp" />
-    <ClCompile Include="src\ComponentWithoutTexture.cpp" />
     <ClCompile Include="src\ComponentWithTexture.cpp" />
     <ClCompile Include="src\data\InternalFrameData.cpp" />
     <ClCompile Include="src\data\CheckBoxData.cpp" />
@@ -98,7 +97,6 @@
     <ClInclude Include="..\include\SCV\Component.h" />
     <ClInclude Include="..\include\SCV\ComponentSpring.h" />
     <ClInclude Include="..\include\SCV\ComponentTexture.h" />
-    <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h" />
     <ClInclude Include="..\include\SCV\ComponentWithTexture.h" />
     <ClInclude Include="..\include\SCV\Data.h" />
     <ClInclude Include="..\include\SCV\FileOpen.h" />

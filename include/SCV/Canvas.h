@@ -5,9 +5,11 @@
 
 namespace scv {
 
-class Canvas : public ComponentWithoutTexture {
+class Canvas : public Component {
 public:
    Canvas(const scv::Point &p1, const scv::Point &p2);
+
+   virtual void display();
 
    virtual void render(void) {}
    virtual void update(void) {}

@@ -55,9 +55,6 @@
     <ClCompile Include="src\ComponentTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\ComponentWithoutTexture.cpp">
-      <Filter>4.Widgets\Object</Filter>
-    </ClCompile>
     <ClCompile Include="src\ComponentWithTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
@@ -277,9 +274,6 @@
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentTexture.h">
-      <Filter>4.Widgets\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ComponentWithoutTexture.h">
       <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\InternalFrameHolder.h">
