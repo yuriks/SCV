@@ -134,7 +134,7 @@ void CodeGenerator::generateCode(void) {
    // main.cpp, Widget.cpp, Widget.h
    ///////////////////////////////////////////////////////////
    std::string mainDotCpp, allocationCode;
-   mainDotCpp += "#include \"SCV.h\"\n";
+   mainDotCpp += "#include <SCV/SCV.h>\n";
    mainDotCpp += "#include \"Application.h\"\n";
    mainDotCpp += "#include \"Widget.h\"\n";
    mainDotCpp += "\n";
@@ -149,7 +149,7 @@ void CodeGenerator::generateCode(void) {
    widgetDotH += "#ifndef __WIDGET_H__\n";
    widgetDotH += "#define __WIDGET_H__\n";
    widgetDotH += "\n";
-   widgetDotH += "#include \"SCV.h\"\n";
+   widgetDotH += "#include <SCV/SCV.h>\n";
    widgetDotH += "\n";
 
    widgetDotCpp += "#include \"Widget.h\"\n";
@@ -177,7 +177,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotH += "#ifndef __APPLICATION_H__\n";
    applicationDotH += "#define __APPLICATION_H__\n";
    applicationDotH += "\n";
-   applicationDotH += "#include \"SCV.h\"\n";
+   applicationDotH += "#include <SCV/SCV.h>\n";
    applicationDotH += "#include \"Widget.h\"\n";
    applicationDotH += "\n";
    applicationDotH += "class Application : public scv::Kernel {\n";
@@ -291,7 +291,7 @@ std::string CodeGenerator::generateCodeMain(void)
 {
     ///////////////////////////////////////////////////////////
    std::string mainDotCpp;
-   mainDotCpp += "#include \"SCV.h\"\n";
+   mainDotCpp += "#include <SCV/SCV.h>\n";
    mainDotCpp += "#include \"Application.h\"\n";
    mainDotCpp += "#include \"Widget.h\"\n";
    mainDotCpp += "\n";
@@ -423,7 +423,7 @@ std::string CodeGenerator::generateCodeWdgH(void)
    widgetDotH += "#ifndef __WIDGET_H__\n";
    widgetDotH += "#define __WIDGET_H__\n";
    widgetDotH += "\n";
-   widgetDotH += "#include \"SCV.h\"\n";
+   widgetDotH += "#include <SVC/SCV.h>\n";
    widgetDotH += "\n";
 
 

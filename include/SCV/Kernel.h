@@ -99,6 +99,9 @@ public:
    inline ComponentTexture* getWidgetTexture(scv::Component::Type widget);
    ///////////////////////////////////////////////////////////
 
+   typedef std::list<Component*> ComponentsList;
+   ComponentsList _objects;
+
 protected:
    Kernel(void);
    virtual ~Kernel(void) {}
@@ -160,9 +163,6 @@ protected:
    std::string _windowTitle;
 
    TextureFilter _filterType;
-
-   typedef std::list<Component*> ComponentsList;
-   ComponentsList _objects;
    
    Component *_focusedComponent;
 
@@ -212,6 +212,7 @@ int Kernel::getHeight(void) const {
 Component* Kernel::getFocusedComponent(void) const {
    return _focusedComponent;
 }
+
 ///////////////////////////////////////////////////////////
 
 } // namespace scv

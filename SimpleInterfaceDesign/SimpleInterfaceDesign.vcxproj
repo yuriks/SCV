@@ -81,15 +81,19 @@
   <ItemGroup>
     <ClInclude Include="src\AbstractWindow.h" />
     <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\CodeGenerator.h" />
     <ClInclude Include="src\InterfaceDesign.h" />
+    <ClInclude Include="src\ManagedComponent.h" />
     <ClInclude Include="src\MenuDesign.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AbstractWindow.cpp" />
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\CodeGenerator.cpp" />
     <ClCompile Include="src\InterfaceDesign.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ManagedComponent.cpp" />
     <ClCompile Include="src\MenuDesign.cpp" />
     <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>

@@ -32,8 +32,12 @@ public:
 
    virtual void display(void);
 
+   std::string getString();
+
 protected:
    void createTexture(void);
+
+   std::string text;
 
 };
 
