@@ -20,33 +20,6 @@ namespace scv {
 namespace math {
 
 /*!
-Product of all positive integers less than or equal to n.
-\return Result. If n is negative returns -1.
-*/
-
-inline int factorial(int n) {
-   if (n < 0) return -1;
-   int f = 1;
-   for (int i = 2; i <= n; i++) f *= i;
-   return f;
-}
-
-/*!
-Combination is a way of selecting several things out of a larger group,
-where (unlike permutations) order does not matter.
-\param n Set 'S' of n elements.
-\param k Number of k-combinations.
-*/
-inline int combination(int n, int k) {
-   return factorial(n) / (factorial(k) * factorial(n - k));
-}
-
-//! Number of k-permutations of n
-inline int permutation(int n, int k) {
-   return factorial(n) / factorial(n - k);
-}
-
-/*!
 \verbatim
       P11__________
       |            |
