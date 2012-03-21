@@ -21,6 +21,7 @@ public:
 	   bg_color = scv::Color4f(.5f, .2f, .2f);
 
 	   time = 0.0;
+	   pos.x = 100;
    }
 
    //// Callbacks do SCV
@@ -62,7 +63,7 @@ void MyCanvas::render()
 
 void MyCanvas::update() 
 {
-	time += (pos.x/100);
+	time += (pos.x/1000.0);
 }
 
 void onKeyPressed(const scv::KeyEvent &evt)
