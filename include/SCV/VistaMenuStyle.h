@@ -9,20 +9,13 @@ namespace scv {
 class VistaMenuStyle : public PopupMenuStyle, public Singleton<VistaMenuStyle> {
 friend class Singleton<VistaMenuStyle>;
 public:
-   ///////////////////////////////////////////////////////////
    virtual void drawItem(const scv::ContextMenu *menu, int index) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual int calculateWidth(const scv::ContextMenu *menu) const;
    virtual int calculateHeight(const scv::ContextMenu *menu) const;
-   ///////////////////////////////////////////////////////////
 
 protected:
-   ///////////////////////////////////////////////////////////
    VistaMenuStyle(void);
-   virtual ~VistaMenuStyle(void);
-   ///////////////////////////////////////////////////////////
 
    virtual void createTexture(void);
 

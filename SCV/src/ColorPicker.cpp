@@ -13,9 +13,6 @@ void ColorPicker::EyeDropper::onMouseUp(const scv::MouseEvent &evt) {
    _picker->_pickerWaitingColor = true;
 }
 
-///////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////
-
 ColorPicker::ColorPicker(const scv::Point &p1) : Panel(p1, Point(p1.x + 360, p1.y + 155)), MatrixTemplate<ColorRGBA>(360, 102, ColorRGBA(0,255,0,255)) {
    _isHResizable = _isVResizable = false;
 
@@ -54,33 +51,6 @@ ColorPicker::ColorPicker(const scv::Point &p1) : Panel(p1, Point(p1.x + 360, p1.
 
    setMaximumSize(getPreferredSize());
    setMinimumSize(getPreferredSize());
-}
-
-ColorPicker::~ColorPicker(void) {
-}
-
-void ColorPicker::onMouseClick(const scv::MouseEvent &evt) {
-}
-void ColorPicker::onMouseHold(const scv::MouseEvent &evt) {
-}
-void ColorPicker::onMouseOver(const scv::MouseEvent &evt) {
-}
-void ColorPicker::onMouseUp(const scv::MouseEvent &evt) {
-}
-void ColorPicker::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void ColorPicker::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void ColorPicker::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void ColorPicker::onSizeChange(void) {
-}
-void ColorPicker::onPositionChange(void) {
-}
-
-void ColorPicker::onColorChange(void) {
 }
 
 void ColorPicker::display(void) {

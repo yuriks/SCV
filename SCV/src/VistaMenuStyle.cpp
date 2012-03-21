@@ -18,9 +18,6 @@ VistaMenuStyle::VistaMenuStyle(void) {
    createTexture();
 }
 
-VistaMenuStyle::~VistaMenuStyle(void) {
-}
-
 void VistaMenuStyle::drawItem(const scv::ContextMenu *menu, int index) const {
    const ContextMenu::MenuList& menus = menu->getMenus();
    const Point& pos = menu->getCurrPosition();

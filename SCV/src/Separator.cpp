@@ -20,30 +20,6 @@ Separator::Separator(const scv::Point &p1, Separator::Orientation align, unsigne
    createTexture();
 }
 
-Separator::~Separator(void) {
-}
-
-void Separator::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Separator::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Separator::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Separator::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Separator::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Separator::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Separator::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Separator::onSizeChange(void) {
-}
-void Separator::onPositionChange(void) {
-}
-
 void Separator::display(void) {
    static ColorScheme *scheme = ColorScheme::getInstance();
 

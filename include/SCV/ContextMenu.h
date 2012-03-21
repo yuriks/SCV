@@ -13,65 +13,46 @@ class ContextMenu {
 friend class MenuHolder;
 friend class MenuBar;
 public:
-   ///////////////////////////////////////////////////////////
    typedef std::deque<ContextMenu*> MenuList;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    ContextMenu(const std::string& name);
    virtual ~ContextMenu(void);
-   ///////////////////////////////////////////////////////////
 
-   //SCV Callbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMenuAccessed(const std::deque<std::string> &address);
-   virtual void onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address);
-   virtual void onMouseOver(const scv::MouseEvent &evt, const std::deque<std::string> &address);
-   virtual void onStatusChange(void);
-   ///////////////////////////////////////////////////////////
+   virtual void onMenuAccessed(const std::deque<std::string> &address) {}
+   virtual void onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {}
+   virtual void onMouseOver(const scv::MouseEvent &evt, const std::deque<std::string> &address) {}
+   virtual void onStatusChange(void) {}
 
-   ///////////////////////////////////////////////////////////
    void addMenu(ContextMenu *menu);
    void removeMenu(ContextMenu *menu);
    void removeAllMenus();
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
-   inline std::string getString(void);
-   inline void setString(const std::string &label);
-   ///////////////////////////////////////////////////////////
+   std::string getString(void);
+   void setString(const std::string &label);
 
-   ///////////////////////////////////////////////////////////
-   inline void setPosition(const scv::Point &position);
-   inline scv::Point getCurrPosition(void) const;
-   ///////////////////////////////////////////////////////////
+   void setPosition(const scv::Point &position);
+   scv::Point getCurrPosition(void) const;
 
-   ///////////////////////////////////////////////////////////
-   inline bool getStatus(void) const;
+   bool getStatus(void) const;
    void setStatus(bool status);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
-   inline int getWidth(void) const;
-   inline int getHeight(void) const;
-   ///////////////////////////////////////////////////////////
+   int getWidth(void) const;
+   int getHeight(void) const;
 
-   inline bool hasSubMenus(void) const;
+   bool hasSubMenus(void) const;
 
    void setMenuStyle(const PopupMenuStyle* style);
 
-   inline const MenuList& getMenus() const;
+   const MenuList& getMenus() const;
 
-   ///////////////////////////////////////////////////////////
    bool processMouse(const scv::MouseEvent &evt);
    bool processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
    void display(void);
 
 private:
    bool isInside(const Point &p);
-   inline bool isInsideItem(const Point &p, int i) const;
+   bool isInsideItem(const Point &p, int i) const;
 
    bool hasSubMenuActive(void) const;
       

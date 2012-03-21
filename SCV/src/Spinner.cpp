@@ -55,27 +55,6 @@ Spinner::~Spinner(void) {
    }
 }
 
-void Spinner::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Spinner::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Spinner::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Spinner::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Spinner::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Spinner::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Spinner::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Spinner::onSizeChange(void) {
-}
-void Spinner::onPositionChange(void) {
-}
-
 void Spinner::onValueChange(void) {
 }
 

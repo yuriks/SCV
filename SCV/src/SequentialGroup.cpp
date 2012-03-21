@@ -9,10 +9,6 @@ SequentialGroup::SequentialGroup(void) : Group() {
    _autoGapSize = s_defaultGap;
 }
 
-SequentialGroup::~SequentialGroup(void) {
-
-}
-
 SequentialGroup *SequentialGroup::addGroup(Group *group) {
    autoCreatePadding();
    return (SequentialGroup*)Group::addGroup(group);

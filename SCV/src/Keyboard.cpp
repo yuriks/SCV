@@ -3,10 +3,6 @@
 
 namespace scv {
 
-Keyboard::Keyboard(void) {
-   //none
-}
-
 bool Keyboard::isEmpty(void) {
    return _keyPressed.empty();
 }

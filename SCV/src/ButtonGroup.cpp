@@ -4,10 +4,6 @@
 
 namespace scv {
 
-ButtonGroup::ButtonGroup(void) {
-   // none
-}
-
 void ButtonGroup::update(StateButton *ptr) {
    for (int i = 0; i < _componentsArray.size(); i++)
       _componentsArray[i]->_state = false;

@@ -13,15 +13,6 @@ class StateButton;
 class ButtonGroup {
 friend class StateButton;
 public:
-
-   /************************************************************************/
-   /* Constructors                                                         */
-   /************************************************************************/
-   ButtonGroup(void);
-
-   /************************************************************************/
-   /* User Functions                                                       */
-   /************************************************************************/
    /*! Returns the index of the currently active widget in the group. Widgets
     * are numbered from 0 in the order they have been added to the button
     * group. A value of -1 indicates that no widget is currently selected.

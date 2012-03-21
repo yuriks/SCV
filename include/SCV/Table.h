@@ -11,73 +11,41 @@ namespace scv {
 
 class Table : public Panel {
 public:
-   ///////////////////////////////////////////////////////////
    Table(const scv::Point &p, int nRows = 4, int nColumns = 4, int nCellLines = 1, int CellWidth = 1);
-   virtual ~Table(void);
    virtual void display(void);
-   ///////////////////////////////////////////////////////////
 
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
    void addRow(void);
    void addRow(int number);
 
    void addColumn(void);
    void addColumn(int number);
-   ///////////////////////////////////////////////////////////
 
    void align(int column);
 
    void remakeLayout(void);
    
-   ///////////////////////////////////////////////////////////
    void setString(int row, int column, std::string str);
    std::string getString(int row, int column);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    std::vector<std::string> getRow(int row);
    std::vector<std::string> getColumn(int column);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void clear(void);
    //void removeRow(int begin, int end); not implemented
    //void removeColumn(int begin, int end); not implemented
-   ///////////////////////////////////////////////////////////
    
-   ///////////////////////////////////////////////////////////
    int getNumberOfRows(void);   
    int getNumberOfColumns(void);
    
    int getNumberOfLinesPerCell(void);
    
    int getCellWidth(void);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual void setDraggable(bool state);
    virtual void setResizable(bool state);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
 private:
    class TableButton : public Button {

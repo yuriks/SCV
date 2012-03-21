@@ -41,31 +41,6 @@ InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &t
    createTexture();
 }
 
-InternalFrame::~InternalFrame(void) {   
-}
-
-
-void InternalFrame::onMouseClick(const scv::MouseEvent &evt) {
-}
-void InternalFrame::onMouseHold(const scv::MouseEvent &evt) {
-}
-void InternalFrame::onMouseOver(const scv::MouseEvent &evt) {
-}
-void InternalFrame::onMouseUp(const scv::MouseEvent &evt) {
-}
-void InternalFrame::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void InternalFrame::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void InternalFrame::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void InternalFrame::onSizeChange(void) {
-}
-void InternalFrame::onPositionChange(void) {
-}
-
 void InternalFrame::onOpen(void) {
 }
 

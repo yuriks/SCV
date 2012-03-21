@@ -64,27 +64,6 @@ ComboBox::~ComboBox(void) {
    }
 }
 
-void ComboBox::onMouseClick(const scv::MouseEvent &evt) {
-}
-void ComboBox::onMouseHold(const scv::MouseEvent &evt) {
-}
-void ComboBox::onMouseOver(const scv::MouseEvent &evt) {
-}
-void ComboBox::onMouseUp(const scv::MouseEvent &evt) {
-}
-void ComboBox::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void ComboBox::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void ComboBox::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void ComboBox::onSizeChange(void) {
-}
-void ComboBox::onPositionChange(void) {
-}
-
 void ComboBox::onSelectionChanged(std::string address, int id) {
 }
 

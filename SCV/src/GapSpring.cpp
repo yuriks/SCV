@@ -15,10 +15,6 @@ GapSpring::GapSpring(int min, int pref, int max) : Spring() {
    _max = max;
 }
 
-GapSpring::~GapSpring(void) {
-
-}
-
 int GapSpring::calculateMinimumSize(Spring::Axis axis) {
    if (_min == PREFERRED_SIZE) {
       return getPreferredSize(axis);

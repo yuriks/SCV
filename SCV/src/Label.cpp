@@ -34,9 +34,6 @@ Label::Label(const scv::Point &p, unsigned int width, const std::string& str) : 
    createTexture();
 }
 
-Label::~Label(void) {
-}
-
 void Label::setString(const std::string& str) {
    static Kernel *kernel = Kernel::getInstance();
    if (_str != str) {
@@ -61,32 +58,5 @@ void Label::display(void) {
    }
    cTexture->disable();
 }
-
-void Label::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Label::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Label::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Label::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Label::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Label::onKeyUp(const scv::KeyEvent &evt) {
-}
-void Label::onMouseWheel(const scv::MouseEvent &evt) {
-}
-void Label::onSizeChange(void) {
-}
-void Label::onPositionChange(void) {
-}
-
-void Label::onStringChange(void) {
-}
-
-void Label::createTexture(void) {
-}
-
-
 
 } // namespace scv

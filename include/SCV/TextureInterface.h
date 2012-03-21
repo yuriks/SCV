@@ -14,9 +14,7 @@
 
 namespace scv {
 
-/*! This class encapsulates OpenGL texture.
-*/
-
+//! This class encapsulates OpenGL texture.
 class TextureInterface {
 public:
    TextureInterface(void) {

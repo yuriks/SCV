@@ -15,22 +15,16 @@
 
 namespace scv {
 
-/*! This class implements the functions to draw in the component textures.
-*/
-
+//! This class implements the functions to draw in the component textures.
 class Texture2D : public TextureInterface {
 public:
-
-   /************************************************************************/
-   /* Draw functions                                                       */
-   /************************************************************************/
+   // Draw functions
    static void drawPoint(MatrixTemplate<ColorRGBA>& matrix, const scv::Point &p, const ColorRGBA& color);
    static void rect(MatrixTemplate<ColorRGBA>& matrix, const scv::Point &p1, const scv::Point &p2, const ColorRGBA& color);
    static void rect(MatrixTemplate<ColorRGBA>& matrix, const scv::Point &p1, const scv::Point &p2, const ColorRGBA& color, int thickness);
    static void rectFill(MatrixTemplate<ColorRGBA>& matrix, const scv::Point &p1, const scv::Point &p2, const ColorRGBA& color);
    static void rectFill(MatrixTemplate<ColorRGBA>& matrix, const scv::Point &p1, const scv::Point &p2, const ColorRGBA& colorBorder, const ColorRGBA& colorFill);
    static void line(MatrixTemplate<ColorRGBA>& matrix, Point p1, Point p2, const ColorRGBA& color);
-
 };
 
 } // namespace scv

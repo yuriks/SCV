@@ -10,10 +10,6 @@ GroupLayout::GroupLayout(Panel *host) {
    _host = host;
 }
 
-GroupLayout::~GroupLayout(void) {
-
-}
-
 ParallelGroup *GroupLayout::createParallelGroup(void) {
    return createParallelGroup(Spring::LEADING);
 }

@@ -3,17 +3,13 @@
 
 namespace scv {
 
-StaticLabel::StaticLabel(void) {
-}
+namespace StaticLabel {
 
-StaticLabel::~StaticLabel(void) {
-}
-
-void StaticLabel::display(int x, int y, const std::string &label, const Color4f &color) {
+void display(int x, int y, const std::string &label, const Color4f &color) {
    display(Point(x, y), label, color);
 }
 
-void StaticLabel::display(const Point &translate, const std::string &label, const Color4f &color) {
+void display(const Point &translate, const std::string &label, const Color4f &color) {
    static FontTahoma *font = FontTahoma::getInstance();
    static ComponentTexture *cTexture = font->getTexture();
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -29,11 +25,11 @@ void StaticLabel::display(const Point &translate, const std::string &label, cons
    cTexture->disable();
 }
 
-void StaticLabel::display(int x, int y, const std::string &label, int selectStart, int selectEnd, const Color4f &textColor, const Color4f &selectedTextColor, const Color4f &selectionColor) {
+void display(int x, int y, const std::string &label, int selectStart, int selectEnd, const Color4f &textColor, const Color4f &selectedTextColor, const Color4f &selectionColor) {
    display(Point(x, y), label, selectStart, selectEnd, textColor, selectedTextColor, selectionColor);
 }
 
-void StaticLabel::display(const Point &translate, const std::string &label, int selectStart, int selectEnd, const Color4f &textColor, const Color4f &selectedTextColor, const Color4f &selectionColor) {
+void display(const Point &translate, const std::string &label, int selectStart, int selectEnd, const Color4f &textColor, const Color4f &selectedTextColor, const Color4f &selectionColor) {
    static FontTahoma *font = FontTahoma::getInstance();
    static ComponentTexture *cTexture = font->getTexture();
    static ColorScheme *scheme = ColorScheme::getInstance();
@@ -62,5 +58,6 @@ void StaticLabel::display(const Point &translate, const std::string &label, int 
    cTexture->disable();
 }
 
+} // namespace StaticLabel
 
 } //namespace scv

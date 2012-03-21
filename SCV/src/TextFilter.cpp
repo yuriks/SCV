@@ -7,8 +7,6 @@ TextFilter::TextFilter(void) {
    memset(_filter, true, s_printableCharacters + 1);
 }
 
-TextFilter::~TextFilter(void) {/**/}
-
 void TextFilter::denyAll(void) {
    memset(_filter, false, s_printableCharacters + 1);
 }

@@ -43,18 +43,6 @@ void ContextMenu::removeAllMenus() {
    }
 }
 
-void ContextMenu::onMouseClick(const scv::MouseEvent &evt, const std::deque<std::string> &address) {
-}
-
-void ContextMenu::onMouseOver(const scv::MouseEvent &evt, const std::deque<std::string> &address) {
-}
-
-void ContextMenu::onMenuAccessed(const std::deque<std::string> &address) {
-}
-
-void ContextMenu::onStatusChange(void) {
-}
-
 void ContextMenu::addMenu(ContextMenu *menu) {
    static FontTahoma *font = FontTahoma::getInstance();
    if (menu == NULL) return;

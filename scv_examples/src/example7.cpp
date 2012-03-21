@@ -16,12 +16,13 @@ namespace {
 
 class MyCanvas : public scv::Canvas {
 public:
-   MyCanvas(const scv::Point& canvas_pos) : scv::Canvas(canvas_pos, canvas_pos + scv::Point(WINDOW_WIDTH, WINDOW_HEIGHT))
+   MyCanvas(const scv::Point& canvas_pos)
+      : scv::Canvas(canvas_pos, canvas_pos + scv::Point(WINDOW_WIDTH, WINDOW_HEIGHT))
    {
 	   bg_color = scv::Color4f(.5f, .2f, .2f);
 
 	   time = 0.0;
-	   pos.x = 100;
+	   pos = scv::Point(100, 100);
    }
 
    //// Callbacks do SCV

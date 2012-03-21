@@ -23,30 +23,6 @@ Slider::Slider( const scv::Point &p , double minValue, double maxValue, double s
    createTexture();
 }
 
-Slider::~Slider(void) {
-}
-
-void Slider::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Slider::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Slider::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Slider::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Slider::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Slider::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Slider::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Slider::onSizeChange(void) {
-}
-void Slider::onPositionChange(void) {
-}
-
 void Slider::onValueChange(void) {
 }
 

@@ -73,9 +73,6 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
    createTexture();
 }
 
-Table::~Table(void) {
-}
-
 void Table::setString(int row, int column, std::string str) {
    if (row >= 0 && row < _nRows && column >= 0 && column < _nColumns) {
       _table[row][column]->setString(str);
@@ -291,28 +288,6 @@ void Table::align(int column) {
 
       tmp_vstr.clear();
    }
-}
-
-void Table::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Table::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Table::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Table::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Table::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Table::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Table::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Table::onSizeChange(void) {
-}
-
-void Table::onPositionChange(void) {
 }
 
 // void Table::removeRow(int begin, int end) {

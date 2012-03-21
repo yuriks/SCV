@@ -8,10 +8,6 @@ Spring::Spring(void) {
    _alignment = NALIGNMENT;
 }
 
-Spring::~Spring(void) {
-
-}
-
 int Spring::getMinimumSize(Axis axis) {
    if (_min <= 0) {
       return constrain(calculateMinimumSize(axis));

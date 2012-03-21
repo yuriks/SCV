@@ -7,10 +7,6 @@
 
 namespace scv {
 
-Scissor::Scissor(void) {/**/}
-
-Scissor::~Scissor(void) {/**/}
-
 Scissor::Info::Info(void) {
    x = y = 0;
    width = -1;

@@ -42,27 +42,6 @@ std::string Button::getString() {
    return text;
 }
 
-void Button::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Button::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Button::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Button::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Button::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Button::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Button::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Button::onSizeChange(void) {
-}
-void Button::onPositionChange(void) {
-}
-
 void Button::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();

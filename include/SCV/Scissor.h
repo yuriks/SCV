@@ -44,8 +44,7 @@ public:
    const Info& currentScissor(void) const;
 
 private:
-   Scissor(void);
-   ~Scissor(void);
+   Scissor(void) {}
 
    std::deque<Info> _scissorStack;
 };

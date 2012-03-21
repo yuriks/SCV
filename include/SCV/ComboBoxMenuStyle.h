@@ -9,20 +9,13 @@ namespace scv {
 class ComboBoxMenuStyle : public PopupMenuStyle, public Singleton<ComboBoxMenuStyle> {
 friend class Singleton<ComboBoxMenuStyle>;
 public:
-   ///////////////////////////////////////////////////////////
    virtual void drawItem(const scv::ContextMenu *menu, int index) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual int calculateWidth(const scv::ContextMenu *menu) const;
    virtual int calculateHeight(const scv::ContextMenu *menu) const;
-   ///////////////////////////////////////////////////////////
 
 protected:
-   ///////////////////////////////////////////////////////////
    ComboBoxMenuStyle(void);
-   virtual ~ComboBoxMenuStyle(void);
-   ///////////////////////////////////////////////////////////
 
    virtual void createTexture(void);
 

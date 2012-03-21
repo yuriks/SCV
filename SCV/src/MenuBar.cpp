@@ -25,9 +25,6 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0), Point(width, s_menuHeight)) {
    createTexture();
 }
 
-MenuBar::~MenuBar(void) {
-}
-
 void MenuBar::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
@@ -230,27 +227,6 @@ void MenuBar::createTexture(void) {
    _cTexture->addTexture(Point(4,0), selected); // 4
 
    _cTexture->createTexture();
-}
-
-void MenuBar::onMouseClick(const scv::MouseEvent &evt) {
-}
-void MenuBar::onMouseHold(const scv::MouseEvent &evt) {
-}
-void MenuBar::onMouseOver(const scv::MouseEvent &evt) {
-}
-void MenuBar::onMouseUp(const scv::MouseEvent &evt) {
-}
-void MenuBar::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void MenuBar::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void MenuBar::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void MenuBar::onSizeChange(void) {
-}
-void MenuBar::onPositionChange(void) {
 }
 
 void MenuBar::addMenu(ContextMenu *menu) {

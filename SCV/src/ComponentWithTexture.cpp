@@ -10,24 +10,6 @@ ComponentWithTexture::ComponentWithTexture(const scv::Point &p1, const scv::Poin
 }
 ComponentWithTexture::~ComponentWithTexture(void) {}
 
-void ComponentWithTexture::onMouseClick(const scv::MouseEvent &evt) {}
-
-void ComponentWithTexture::onMouseHold(const scv::MouseEvent &evt) {}
-
-void ComponentWithTexture::onMouseOver(const scv::MouseEvent &evt) {}
-
-void ComponentWithTexture::onMouseUp(const scv::MouseEvent &evt) {}
-
-void ComponentWithTexture::onMouseWheel(const scv::MouseEvent &evt) {}
-
-void ComponentWithTexture::onKeyPressed(const scv::KeyEvent &evt) {}
-
-void ComponentWithTexture::onKeyUp(const scv::KeyEvent &evt) {}
-
-void ComponentWithTexture::onSizeChange(void) {}
-
-void ComponentWithTexture::onPositionChange(void) {}
-
 void ComponentWithTexture::processMouse(const scv::MouseEvent &evt) {
    Component::processMouse(evt);
 }

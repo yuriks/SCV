@@ -15,58 +15,30 @@ class InternalFrameHolder;
 class InternalFrame : public ComponentWithTexture {
 friend class WindowHolder;
 public:
-   ///////////////////////////////////////////////////////////
    InternalFrame(GLsizei width, GLsizei height, const std::string &title);
-   virtual ~InternalFrame(void);
-   ///////////////////////////////////////////////////////////
-
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
 
    virtual void onOpen(void);
    virtual void onClose(void);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual void setVisible(bool state);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    inline void setPanel(scv::Panel *panel);
    inline scv::Panel *getPanel(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    inline void setTitle(const std::string &title);
    inline std::string getTitle(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
    void display(void);
 
 protected:
    void createTexture(void);
 
-   ///////////////////////////////////////////////////////////
    bool isOnTopBar(const scv::Point &p);
    bool isOnCloseButton(const scv::Point &p);
    void configPanel(void);
-   ///////////////////////////////////////////////////////////
 
    static const int s_borderTop, s_borderWidth;
    static const int s_closeWidth, s_closeHeight;
@@ -103,8 +75,6 @@ void InternalFrame::setTitle(const std::string &title) {
 std::string InternalFrame::getTitle(void) const {
    return _title;
 }
-
-///////////////////////////////////////////////////////////
 
 } // namespace scv
 

@@ -17,8 +17,6 @@ Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(
    createTexture();
 }
 
-Panel::~Panel(void) {}
-
 void Panel::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();
@@ -71,27 +69,6 @@ void Panel::createTexture(void) {
    _cTexture->addTexture(Point(0,0), middle);
 
    _cTexture->createTexture();
-}
-
-void Panel::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Panel::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Panel::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Panel::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Panel::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Panel::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Panel::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Panel::onSizeChange(void) {
-}
-void Panel::onPositionChange(void) {
 }
 
 void Panel::processMouse(const scv::MouseEvent &evt) {

@@ -22,31 +22,6 @@ TextField::TextField(const scv::Point &p1, unsigned int width, const std::string
    createTexture();
 }
 
-TextField::~TextField(void) {
-}
-
-void TextField::onMouseClick(const scv::MouseEvent &evt) {
-}
-void TextField::onMouseHold(const scv::MouseEvent &evt) {
-}
-void TextField::onMouseOver(const scv::MouseEvent &evt) {
-}
-void TextField::onMouseUp(const scv::MouseEvent &evt) {
-}
-void TextField::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void TextField::onKeyUp(const scv::KeyEvent &evt) {
-}
-void TextField::onMouseWheel(const scv::MouseEvent &evt) {
-}
-void TextField::onSizeChange(void) {
-}
-void TextField::onPositionChange(void) {
-}
-
-void TextField::onStringChange(void) {
-}
-
 void TextField::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();

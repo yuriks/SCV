@@ -8,24 +8,6 @@ ComponentWithoutTexture::ComponentWithoutTexture(const scv::Point &p1, const scv
 
 ComponentWithoutTexture::~ComponentWithoutTexture(void) {}
 
-void ComponentWithoutTexture::onMouseClick(const scv::MouseEvent &evt) {}
-
-void ComponentWithoutTexture::onMouseHold(const scv::MouseEvent &evt) {}
-
-void ComponentWithoutTexture::onMouseOver(const scv::MouseEvent &evt) {}
-
-void ComponentWithoutTexture::onMouseUp(const scv::MouseEvent &evt) {}
-
-void ComponentWithoutTexture::onMouseWheel(const scv::MouseEvent &evt) {}
-
-void ComponentWithoutTexture::onKeyPressed(const scv::KeyEvent &evt) {}
-
-void ComponentWithoutTexture::onKeyUp(const scv::KeyEvent &evt) {}
-
-void ComponentWithoutTexture::onSizeChange(void) {}
-
-void ComponentWithoutTexture::onPositionChange(void) {}
-
 void ComponentWithoutTexture::render(void) {}
 
 void ComponentWithoutTexture::update(void) {}

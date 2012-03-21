@@ -8,46 +8,23 @@ namespace scv {
 
 class TabbedPane : public ComponentWithTexture {
 public:
-   ///////////////////////////////////////////////////////////
    TabbedPane(const scv::Point &p1, const scv::Point &p2);
-   ///////////////////////////////////////////////////////////
    
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
-
    virtual void onTabChange(void);
-   ///////////////////////////////////////////////////////////
    
    //Memory Management
-   ///////////////////////////////////////////////////////////
    virtual void addChild(Component *object);
    virtual void addChild(Component *object, const std::string &label, bool resize = true);
 
    virtual void removeChild(Component *object);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
    
-   ///////////////////////////////////////////////////////////
    void setCurrTabIndex(int index);
    inline int getCurrTabIndex(void) const;
 
    inline scv::Component *getCurrComponent(void) const;
-   ///////////////////////////////////////////////////////////
 
    void display(void);
 
@@ -77,8 +54,6 @@ scv::Component *TabbedPane::getCurrComponent(void) const {
       return NULL;
    }
 }
-
-///////////////////////////////////////////////////////////
 
 } // namespace scv
 

@@ -7,8 +7,6 @@ Timer::Timer(void) {
    _running = false;
 }
 
-Timer::~Timer(void) {/**/}
-
 void Timer::start(void) {
    _running = true;
    _startTime = _currTime = glutGet(GLUT_ELAPSED_TIME);

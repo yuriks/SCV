@@ -8,10 +8,6 @@ scv::PopupMenuStyle::PopupMenuStyle(void) {
    _cTexture = NULL;
 }
 
-scv::PopupMenuStyle::~PopupMenuStyle(void) {
-
-}
-
 bool scv::PopupMenuStyle::isInsideItem(const scv::ContextMenu *menu, const scv::Point &pos, int index) const {
    return (
       pos.x >= menu->getCurrPosition().x + 2 &&

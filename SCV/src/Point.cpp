@@ -22,9 +22,6 @@ Point::Point(const std::string &str) {
    y = fromString<int>(trim(word));
 }
 
-Point::~Point(void) {
-}
-
 std::ostream& operator<<(std::ostream& lhs, const Point& rhs) {
    return (lhs << rhs.x << "," << rhs.y);
 }

@@ -46,7 +46,7 @@ public:
    void push(int key, bool special);
 
 protected:
-   Keyboard(void);
+   Keyboard(void) {}
 
 private:
    std::deque<KeyboardControl> _keyPressed;

@@ -17,27 +17,6 @@ TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWi
    createTexture();
 }
 
-void TabbedPane::onMouseClick(const scv::MouseEvent &evt) {
-}
-void TabbedPane::onMouseHold(const scv::MouseEvent &evt) {
-}
-void TabbedPane::onMouseOver(const scv::MouseEvent &evt) {
-}
-void TabbedPane::onMouseUp(const scv::MouseEvent &evt) {
-}
-void TabbedPane::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void TabbedPane::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void TabbedPane::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void TabbedPane::onSizeChange(void) {
-}
-void TabbedPane::onPositionChange(void) {
-}
-
 void TabbedPane::onTabChange(void) {
 }
 

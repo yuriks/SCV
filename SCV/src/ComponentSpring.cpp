@@ -11,10 +11,6 @@ ComponentSpring::ComponentSpring(Component *component, int min, int pref, int ma
    _max = max;
 }
 
-ComponentSpring::~ComponentSpring(void) {
-
-}
-
 int ComponentSpring::calculateMinimumSize(Axis axis) {
    if (!isVisible()) {
       return 0;

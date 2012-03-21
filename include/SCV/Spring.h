@@ -5,7 +5,6 @@ namespace scv {
 
 class Spring {
 public:
-   ///////////////////////////////////////////////////////////
    enum Alignment {
       CENTER, LEADING, TRAILING, NALIGNMENT = -1
    };
@@ -19,35 +18,24 @@ public:
    enum Axis {
       HORIZONTAL, VERTICAL
    };
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    Spring(void);
-   virtual ~Spring(void);
-   ///////////////////////////////////////////////////////////
+   virtual ~Spring(void) {}
 
-   ///////////////////////////////////////////////////////////
    virtual int calculateMinimumSize(Axis axis) = 0;
    virtual int calculatePreferredSize(Axis axis) = 0;
    virtual int calculateMaximumSize(Axis axis) = 0;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    int getMinimumSize(Axis axis);
    int getPreferredSize(Axis axis);
    int getMaximumSize(Axis axis);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual inline void setAlignment(Alignment alignment);
    virtual inline Alignment getAlignment(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual inline void setSize(Axis axis, int origin, int size);
    virtual inline void unset(void);
    virtual inline int getSize(void) const;
-   ///////////////////////////////////////////////////////////
 
 protected:
    inline int constrain(int value);
@@ -59,6 +47,7 @@ private:
 };
 
 ///////////////////////////////////////////////////////////
+
 void Spring::setAlignment(Spring::Alignment alignment) {
    _alignment = alignment;
 }
@@ -85,7 +74,6 @@ int Spring::getSize(void) const {
 int Spring::constrain(int value) {
    return std::min(value, INT_MAX);   
 }
-///////////////////////////////////////////////////////////
 
 } //namespace scv
 

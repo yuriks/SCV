@@ -24,31 +24,6 @@ Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &file
    _type = IMAGE;
 }
 
-Image::~Image(void) {
-}
-
-void Image::onMouseClick(const scv::MouseEvent &evt) {
-}
-void Image::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Image::onMouseOver(const scv::MouseEvent &evt) {
-}
-void Image::onMouseUp(const scv::MouseEvent &evt) {
-}
-void Image::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Image::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void Image::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-
-void Image::onSizeChange(void) {
-}
-void Image::onPositionChange(void) {
-}
-
 void Image::loadImage(const std::string &fileName) {
    if (_data != NULL) {
       delete _cTexture;

@@ -6,14 +6,6 @@
 
 namespace scv {
 
-Group::Group(void) {
-
-}
-
-Group::~Group(void) {
-
-}
-
 Group *Group::addGroup(Group *group) {
    return addSpring(group);
 }

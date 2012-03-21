@@ -16,12 +16,8 @@ namespace scv {
 class TextFilter {
 public:
 
-   /*! Default Constructor
-   */
    TextFilter(void);
-   /*! Default Destructor
-   */
-   virtual ~TextFilter(void);
+
    /*! Causes the filter does not filter anything.
    */
    void allowAll(void);

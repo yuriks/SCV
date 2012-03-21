@@ -19,9 +19,6 @@ ComboBoxMenuStyle::ComboBoxMenuStyle(void) {
    createTexture();
 }
 
-ComboBoxMenuStyle::~ComboBoxMenuStyle(void) {
-}
-
 void ComboBoxMenuStyle::drawItem(const scv::ContextMenu *menu, int index) const {
    const ContextMenu::MenuList& menus = menu->getMenus();
    const Point& pos = menu->getCurrPosition();

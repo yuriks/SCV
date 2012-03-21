@@ -7,40 +7,16 @@ namespace scv {
 
 class TextField : public TextBox {
 public:
-   ///////////////////////////////////////////////////////////
    TextField(const scv::Point &p, unsigned int width, const std::string &str);
-   virtual ~TextField(void);
-   ///////////////////////////////////////////////////////////
 
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
+   virtual void onStringChange(void) {}
 
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
-
-   virtual void onStringChange(void);
-   ///////////////////////////////////////////////////////////
-
-   ///////////////////////////////////////////////////////////
    virtual void setString(const std::string& str);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    virtual void setHeight(int height);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
    virtual void display(void);
 

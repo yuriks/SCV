@@ -19,31 +19,6 @@ ScrollComponent::ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv
    createTexture();
 }
 
-ScrollComponent::~ScrollComponent(void) {
-
-}
-
-void ScrollComponent::onMouseClick(const scv::MouseEvent &evt) {
-}
-void ScrollComponent::onMouseHold(const scv::MouseEvent &evt) {
-}
-void ScrollComponent::onMouseOver(const scv::MouseEvent &evt) {
-}
-void ScrollComponent::onMouseUp(const scv::MouseEvent &evt) {
-}
-void ScrollComponent::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void ScrollComponent::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void ScrollComponent::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void ScrollComponent::onSizeChange(void) {
-}
-void ScrollComponent::onPositionChange(void) {
-}
-
 void ScrollComponent::setComponent(scv::Component *object) {
    if (object == this) return;
 

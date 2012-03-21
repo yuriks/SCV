@@ -8,11 +8,6 @@ scv::ParallelGroup::ParallelGroup(Spring::Alignment alignment, bool resizable) :
    _resizable = resizable;
 }
 
-scv::ParallelGroup::~ParallelGroup(void) {
-
-}
-
-
 ParallelGroup * ParallelGroup::addGroup(Group *group) {
    return (ParallelGroup*)Group::addGroup(group);
 }

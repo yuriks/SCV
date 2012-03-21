@@ -7,7 +7,7 @@
 
 namespace scv {
 
-    TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, const std::string &str) :
+TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, const std::string &str) :
 ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borderHeight + 1)) {
     _str = str;
     _isHResizable = _isVResizable = true;
@@ -57,31 +57,6 @@ ComponentWithTexture(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1))
     _editable = true;
 
     createTexture();
-}
-
-TextBox::~TextBox(void) {
-}
-
-void TextBox::onMouseClick(const scv::MouseEvent &evt) {
-}
-void TextBox::onMouseHold(const scv::MouseEvent &evt) {
-}
-void TextBox::onMouseOver(const scv::MouseEvent &evt) {
-}
-void TextBox::onMouseUp(const scv::MouseEvent &evt) {
-}
-void TextBox::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void TextBox::onKeyUp(const scv::KeyEvent &evt) {
-}
-void TextBox::onMouseWheel(const scv::MouseEvent &evt) {
-}
-void TextBox::onSizeChange(void) {
-}
-void TextBox::onPositionChange(void) {
-}
-
-void TextBox::onStringChange(void) {
 }
 
 void TextBox::display(void) {

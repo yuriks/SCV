@@ -45,8 +45,6 @@ public:
       return _cTexture;
    }
 
-
-
 private:
    FontTahoma(void);
    void genTexture(void);

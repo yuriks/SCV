@@ -12,33 +12,6 @@ RadioButton::RadioButton(const scv::Point &p1, bool state, const std::string &st
    createTexture();
 }
 
-RadioButton::~RadioButton(void) {
-}
-
-void RadioButton::onMouseClick(const scv::MouseEvent &evt) {
-}
-void RadioButton::onMouseHold(const scv::MouseEvent &evt) {
-}
-void RadioButton::onMouseOver(const scv::MouseEvent &evt) {
-}
-void RadioButton::onMouseUp(const scv::MouseEvent &evt) {
-}
-void RadioButton::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void RadioButton::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void RadioButton::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void RadioButton::onSizeChange(void) {
-}
-void RadioButton::onPositionChange(void) {
-}
-
-void RadioButton::onValueChange(void) {
-}
-
 void RadioButton::display(void) {
    static Kernel *kernel = Kernel::getInstance();
    static Scissor *scissor = Scissor::getInstance();

@@ -26,27 +26,6 @@ ToggleButton::ToggleButton( const scv::Point &p1 , bool state, const std::string
 ToggleButton::~ToggleButton(void) {
 }
 
-void ToggleButton::onMouseClick(const scv::MouseEvent &evt) {
-}
-void ToggleButton::onMouseHold(const scv::MouseEvent &evt) {
-}
-void ToggleButton::onMouseOver(const scv::MouseEvent &evt) {
-}
-void ToggleButton::onMouseUp(const scv::MouseEvent &evt) {
-}
-void ToggleButton::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void ToggleButton::onKeyPressed(const scv::KeyEvent &evt) {
-}
-void ToggleButton::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void ToggleButton::onSizeChange(void) {
-}
-void ToggleButton::onPositionChange(void) {
-}
-
 void ToggleButton::onValueChange(void) {
 }
 

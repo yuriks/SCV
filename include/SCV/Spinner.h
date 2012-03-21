@@ -12,58 +12,31 @@ namespace scv {
 
 class Spinner : public scv::Panel, public Counter {
 public:
-   ///////////////////////////////////////////////////////////
    Spinner(const scv::Point &p, unsigned int width, double minValue, double maxValue, double startValue, double stepValue);
-   virtual ~Spinner(void);
-   ///////////////////////////////////////////////////////////
-
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
-   virtual void onMouseClick(const scv::MouseEvent &evt);
-   virtual void onMouseHold (const scv::MouseEvent &evt);
-   virtual void onMouseOver (const scv::MouseEvent &evt);
-   virtual void onMouseUp   (const scv::MouseEvent &evt);
-   virtual void onMouseWheel(const scv::MouseEvent &evt);
-
-   virtual void onKeyPressed(const scv::KeyEvent &evt);
-   virtual void onKeyUp     (const scv::KeyEvent &evt);
-
-   virtual void onSizeChange(void);
-   virtual void onPositionChange(void);
+   virtual ~Spinner();
 
    virtual void onValueChange(void);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void setValue(double value);
-   ///////////////////////////////////////////////////////////
 
    virtual void display(void);
 
 protected:
-   ///////////////////////////////////////////////////////////
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
-   ///////////////////////////////////////////////////////////
 
    void createTexture(void);
 
 private:
-   ///////////////////////////////////////////////////////////
    class TextFieldSpinner : public TextField {
    public:
-      ///////////////////////////////////////////////////////////
       TextFieldSpinner(Spinner *spinner, unsigned int width, const std::string &str);
-      ///////////////////////////////////////////////////////////
 
-      ///////////////////////////////////////////////////////////
       void onStringChange(void);
-      ///////////////////////////////////////////////////////////
 
    private:
       Spinner *_spinner;
    };
-   ///////////////////////////////////////////////////////////
 
    bool isOnUpButton(const Point &p);
    bool isOnDownButton(const Point &p);

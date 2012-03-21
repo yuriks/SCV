@@ -35,23 +35,16 @@ class Kernel : public Singleton<Kernel>, public SCVCallbacks {
 friend class Singleton<Kernel>;
 public:
    enum TextureFilter { LINEAR, NEAREST };
-   ///////////////////////////////////////////////////////////
 
-   //SCVCallbacks
-   ///////////////////////////////////////////////////////////
    virtual void onDisplay(void) {}
-   ///////////////////////////////////////////////////////////
    
    void run(void);
 
    void showCopyrights(void);
 
-   ///////////////////////////////////////////////////////////
    inline void setFramesPerSecond(float fps);
    inline float getFramesPerSecond(void) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void setWindowSize(unsigned int width, unsigned int height);
    void setWindowTitle(const std::string &title);
 
@@ -60,44 +53,31 @@ public:
 
    void setFullScreen(bool full);
    void lockWindowSize(bool lock);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    inline TextureFilter getFilterType(void);
    inline void setFilterType(TextureFilter tex);
-   ///////////////////////////////////////////////////////////
       
-   ///////////////////////////////////////////////////////////
    bool lockMouseUse(Component* component);
    bool unlockMouseUse(Component* component);
 
    bool requestMouseUse(Component* component);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    bool requestComponentFocus(Component *component);
    inline Component *getFocusedComponent(void) const;
-   ///////////////////////////////////////////////////////////
 
    bool willAppearOnScreen(Component* component);
 
    void applyDefaultTransformMatrix(void);
 
-   ///////////////////////////////////////////////////////////
    std::string getClipBoardString(void) const;
    void setClipBoardString(const std::string str);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void addWindow(InternalFrame *window);
    void addComponent(Component *object);
    void removeComponent(Component *object);   
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    inline void setWidgetTexture(scv::Component::Type widget, ComponentTexture *texture);
    inline ComponentTexture* getWidgetTexture(scv::Component::Type widget);
-   ///////////////////////////////////////////////////////////
 
    typedef std::list<Component*> ComponentsList;
    ComponentsList _objects;
@@ -111,31 +91,24 @@ protected:
    void updateFramesPerSecond(void);
 
    //Mouse Callbacks
-   ///////////////////////////////////////////////////////////
    static void cbMouseMotion(int x, int y);
    static void cbMouseClick(int button, int state, int x, int y);
    static void cbMouseWheel(int button, int dir, int x, int y);
-   ///////////////////////////////////////////////////////////
 
    //Keyboard Callbacks
-   ///////////////////////////////////////////////////////////
    static void cbKeySpecial(int key, int x, int y);
    static void cbKeySpecialUp(int key, int x, int y);
    static void cbKey(unsigned char key, int x, int y);
    static void cbKeyUp(unsigned char key, int x, int y);
-   ///////////////////////////////////////////////////////////
       
    //Display
-   ///////////////////////////////////////////////////////////
    static void cbReshape(int w, int h);
    static void cbDisplay(void);
-   ///////////////////////////////////////////////////////////
 
    static const std::string s_defaultTitle;
    static const unsigned int s_defaultWidth, s_defaultHeight;
    static const unsigned int s_defaultFramesPerSecond;
 
-   ///////////////////////////////////////////////////////////
    struct {
       bool isFullScreen;
       int currSize[2], userSize[2];
@@ -156,7 +129,6 @@ protected:
       bool clicked, locked;      
       Component *componentRequestUse;
    } Mouse;
-   ///////////////////////////////////////////////////////////
    
    ComponentTexture *_loadedWidgets[Component::NOFWIDGETS];
 
@@ -212,8 +184,6 @@ int Kernel::getHeight(void) const {
 Component* Kernel::getFocusedComponent(void) const {
    return _focusedComponent;
 }
-
-///////////////////////////////////////////////////////////
 
 } // namespace scv
 
