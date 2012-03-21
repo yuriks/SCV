@@ -49,7 +49,7 @@ void MyCanvas::render()
    color(1,0,0);
    rect(pos.x + 10, pos.y+ 10, 200, 200);
    circleFill(150, 150, 40, 3 + (int)(pos.x/100.0));
-   text(100,100,"canvas");
+   text(100,100,"Pressione e mova o mouse");
 
    //desenha um relogio
    int x = (int)(cos(time) * 150);
@@ -62,7 +62,7 @@ void MyCanvas::render()
 
 void MyCanvas::update() 
 {
-	time += 0.1;
+	time += (pos.x/100);
 }
 
 void onKeyPressed(const scv::KeyEvent &evt)
