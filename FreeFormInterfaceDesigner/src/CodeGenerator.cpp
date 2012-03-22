@@ -177,114 +177,139 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
    int type = comp->getType();
 
    if(type == 1) { // Panel
-      code += "   scv::Panel *panel = new scv::Panel(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
+      if(comp == static_cast<Application*>(scv::Kernel::getInstance())->_mainPanel)
+         return "";
+      code += "   scv::Panel *panel" + scv::toString(count[comp->getType()]) + " = new scv::Panel(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(panel);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 2) { // ColorPicker
-      code += "   scv::ColorPicker *colorPicker = new scv::ColorPicker(" + scv::toString(comp->getRelativePosition()) + ");\n";
+      code += "   scv::ColorPicker *colorPicker" + scv::toString(count[comp->getType()]) + " = new scv::ColorPicker(" + scv::toString(comp->getRelativePosition()) + ");\n";
       code += "   addComponent(colorPicker);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 3) { // ProgressBar
-      code += "   scv::ProgressBar *progressBar = new scv::ProgressBar(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + "0);\n";
+      code += "   scv::ProgressBar *progressBar" + scv::toString(count[comp->getType()]) + " = new scv::ProgressBar(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + "0);\n";
       code += "   addComponent(progressBar);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 4) { // Scroll
-      code += "   scv::ScrollComponent *scroll = new scv::ScrollComponent(" + scv::toString(comp->getRelativePosition()) +  ", " + scv::toString(comp->getSize()) + ");\n";
+      code += "   scv::ScrollComponent *scroll" + scv::toString(count[comp->getType()]) + " = new scv::ScrollComponent(" + scv::toString(comp->getRelativePosition()) +  ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(scroll);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 5) { // Slider
-      code += "   scv::Slider *slider = new scv::Slider(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
+      code += "   scv::Slider *slider" + scv::toString(count[comp->getType()]) + " = new scv::Slider(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
       code += "   addComponent(slider);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 6) { // Spinner
-      code += "   scv::Spinner *spinner = new scv::Spinner(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
+      code += "   scv::Spinner *spinner" + scv::toString(count[comp->getType()]) + " = new scv::Spinner(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
       code += "   addComponent(spineer);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 7) { // Button
       scv::Button *button = (scv::Button*)(comp);
-      code += "   scv::Button *button = new scv::Button(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(button->getString()) + "\");\n";
+      code += "   scv::Button *button" + scv::toString(count[comp->getType()]) + " = new scv::Button(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(button->getString()) + "\");\n";
       code += "   addComponent(button);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 8) { // CheckBox
       scv::CheckBox *checkBox = (scv::CheckBox*)(comp);
-      code += "   scv::CheckBox *checkBox = new scv::CheckBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(checkBox->getState()) + ", \"" + scv::toString(checkBox->getString()) + "\");\n";
+      code += "   scv::CheckBox *checkBox" + scv::toString(count[comp->getType()]) + " = new scv::CheckBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(checkBox->getState()) + ", \"" + scv::toString(checkBox->getString()) + "\");\n";
       code += "   addComponent(checkBox);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 9) { // RadioButton
       scv::RadioButton *radioButton = (scv::RadioButton*)(comp);
-      code += "   scv::RadioButton *radioButton = new scv::RadioButton((" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(radioButton->getState()) + ", \"" + scv::toString(radioButton->getString()) + "\");\n";
+      code += "   scv::RadioButton *radioButton" + scv::toString(count[comp->getType()]) + " = new scv::RadioButton((" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(radioButton->getState()) + ", \"" + scv::toString(radioButton->getString()) + "\");\n";
       code += "   addComponent(radioButton);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 10) {// ToggleButton
       scv::ToggleButton *toggleButton = (scv::ToggleButton*)(comp);
-      code += "   scv::ToggleButton *toggleButton = new scv::ToggleButton((" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + scv::toString(toggleButton->getState()) + ", \"" + scv::toString(toggleButton->getString()) + "\");\n";
+      code += "   scv::ToggleButton *toggleButton" + scv::toString(count[comp->getType()]) + " = new scv::ToggleButton((" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + scv::toString(toggleButton->getState()) + ", \"" + scv::toString(toggleButton->getString()) + "\");\n";
       code += "   addComponent(radioButton);\n";
       code += "\n";
    } else if(type == 11) {// TextField
       scv::TextField *textField = (scv::TextField*)(comp);
-      code += "   scv::TextField *textField = new scv::TextField(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", \"" + textField->getString() + "\");\n";
+      code += "   scv::TextField *textField" + scv::toString(count[comp->getType()]) + " = new scv::TextField(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getWidth()) + ", \"" + textField->getString() + "\");\n";
       code += "   addComponent(textField);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 12) {// TextBox
       scv::TextBox *textBox = (scv::TextBox*)(comp);
-      code += "   scv::TextBox *textBox = new scv::TextBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + textBox->getString() + "\");\n";
+      code += "   scv::TextBox *textBox" + scv::toString(count[comp->getType()]) + " = new scv::TextBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + textBox->getString() + "\");\n";
       code += "   addComponent(textBox);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 13) {// Separator
       scv::Separator *separator = (scv::Separator*)(comp);
       if(separator->getAlign() == 0)
-         code += "   scv::Separator *separator = new scv::Separator(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(separator->getAlign()) + ", " + scv::toString(separator->getWidth()) + ");\n";
+         code += "   scv::Separator *separator" + scv::toString(count[comp->getType()]) + " = new scv::Separator(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(separator->getAlign()) + ", " + scv::toString(separator->getWidth()) + ");\n";
       if(separator->getAlign() == 1)
-         code += "   scv::Separator *separator = new scv::Separator(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(separator->getAlign()) + ", " + scv::toString(separator->getHeight()) + ");\n";
+         code += "   scv::Separator *separator" + scv::toString(count[comp->getType()]) + " = new scv::Separator(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(separator->getAlign()) + ", " + scv::toString(separator->getHeight()) + ");\n";
       code += "   addComponent(separator);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 14) {// Window
 
    } else if(type == 15) {// MenuBar
-      code += "   scv::MenuBar *menuBar = new scv::MenuBar(" + scv::toString(comp->getWidth()) + ");\n";
+      code += "   scv::MenuBar *menuBar" + scv::toString(count[comp->getType()]) + " = new scv::MenuBar(" + scv::toString(comp->getWidth()) + ");\n";
       code += "   addComponent(menuBar);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 16) {// TabbedPane
-      code += "   scv::TabbedPane *tabbedPane = new scv::TabbedPane(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
+      code += "   scv::TabbedPane *tabbedPane" + scv::toString(count[comp->getType()]) + " = new scv::TabbedPane(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(tabbedPane);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 17) {// ScrollComponent
-      code += "   scv::ScrollComponent *scrollComponent = new scv::ScrollComponent(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
+      code += "   scv::ScrollComponent *scrollComponent" + scv::toString(count[comp->getType()]) + " = new scv::ScrollComponent(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(scrollComponent);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 18) {// Image
       scv::Image *image = (scv::Image*)(comp);
-      code += "   scv::Image *image = new scv::Image(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(image->getPath()) + "\");\n";
+      code += "   scv::Image *image" + scv::toString(count[comp->getType()]) + " = new scv::Image(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(image->getPath()) + "\");\n";
       code += "   addComponent(image);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 19) {//Table
       scv::Table *table = (scv::Table*)(comp);
-      code += "   scv::Table *table = new scv::Table(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(table->getNumberOfRows()) + ", " + scv::toString(table->getNumberOfColumns()) + ", " + scv::toString(table->getNumberOfLinesPerCell()) + ", " + scv::toString(table->getCellWidth()) + ");\n";
+      code += "   scv::Table *table" + scv::toString(count[comp->getType()]) + " = new scv::Table(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(table->getNumberOfRows()) + ", " + scv::toString(table->getNumberOfColumns()) + ", " + scv::toString(table->getNumberOfLinesPerCell()) + ", " + scv::toString(table->getCellWidth()) + ");\n";
       code += "   addComponent(table);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 20) {//ComboBox
-      code += "   scv::ComboBox *comboBox = new scv::ComboBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
+      code += "   scv::ComboBox *comboBox" + scv::toString(count[comp->getType()]) + " = new scv::ComboBox(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(comboBox);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 21) {//Canvas
-      code += "   scv::Canvas *canvas = new scv::Canvas(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
+      code += "   scv::Canvas *canvas" + scv::toString(count[comp->getType()]) + " = new scv::Canvas(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ");\n";
       code += "   addComponent(canvas);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 22) {//TreeView
       scv::GenericTree *genericTree = (scv::GenericTree*)(comp);
-      code += "   scv::GenericTree *genericTree = new scv::GenericTree(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + scv::toString(genericTree->getRootNode()) + ");\n";
+      code += "   scv::GenericTree *genericTree" + scv::toString(count[comp->getType()]) + " = new scv::GenericTree(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", " + scv::toString(genericTree->getRootNode()) + ");\n";
       code += "   addComponent(genericTree);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 23) {//Label
       scv::Label *label = (scv::Label*)(comp);
-      code += "   scv::Label *label = new scv::Label(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(label->getString()) + "\");\n";
+      code += "   scv::Label *label" + scv::toString(count[comp->getType()]) + " = new scv::Label(" + scv::toString(comp->getRelativePosition()) + ", " + scv::toString(comp->getSize()) + ", \"" + scv::toString(label->getString()) + "\");\n";
       code += "   addComponent(label);\n";
+      count[comp->getType()] += 1;
       code += "\n";
    }
    return code;
 }
 
 void CodeGenerator::generateCode(void) {
+
+   memset(count, 0, sizeof(int)*23);
    // main.cpp
    ///////////////////////////////////////////////////////////
    std::string mainDotCpp, allocationCode;
@@ -293,6 +318,7 @@ void CodeGenerator::generateCode(void) {
    mainDotCpp += "\n";
    mainDotCpp += "int main(int argc, char* argv[]) {\n";
    mainDotCpp += "   Application *kernel = new Application();\n";
+   mainDotCpp += "   scv::Kernel::setInstance(kernel);\n";
    mainDotCpp += "\n";
    mainDotCpp += "   kernel->init();\n";
    mainDotCpp += "\n";
@@ -423,6 +449,7 @@ std::string CodeGenerator::generateCodeMain(void)
    mainDotCpp += "\n";
    mainDotCpp += "int main(int argc, char* argv[]) {\n";
    mainDotCpp += "   scv::Kernel *kernel = scv::Kernel::getInstance();\n";
+   mainDotCpp += "   scv::Kernel::setInstance(kernel);\n";
    mainDotCpp += "\n";
    mainDotCpp += "   kernel->init();\n";
    mainDotCpp += "\n";

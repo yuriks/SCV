@@ -35,7 +35,6 @@ public:
 
    void generateCode(void);
 
-protected:
    scv::Panel *_mainPanel;
 };
 

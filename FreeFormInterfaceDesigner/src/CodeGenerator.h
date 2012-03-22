@@ -23,6 +23,8 @@ public:
    bool hasComponent(const std::string &name) const;
    ///////////////////////////////////////////////////////////
 
+   int count[23];
+
    ///////////////////////////////////////////////////////////
    ManagedComponent *getManagedComponent(scv::Component *object) const;
    ManagedComponent *getManagedComponent(const std::string &name) const;
