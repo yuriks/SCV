@@ -6,7 +6,7 @@
 
 #include "ComponentTexture.h"
 #include "ComponentWithTexture.h"
-#include "ComponentWithoutTexture.h"
+//#include "ComponentWithoutTexture.h"
 
 #include "Panel.h"
 #include "ScrollComponent.h"

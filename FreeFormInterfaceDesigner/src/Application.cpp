@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Application.h"
 #include "InterfaceDesign.h"
-//#include "CodeGenerator.h"
+#include "CodeGenerator.h"
 
 Application::Application(void) : Kernel() {
 
@@ -52,5 +52,5 @@ void Application::onDisplay(void) {
 
 void Application::generateCode(void)
 {
-    //CodeGenerator::getInstance()->generateCode();
+    CodeGenerator::getInstance()->generateCode();
 }

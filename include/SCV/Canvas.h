@@ -1,7 +1,8 @@
 #ifndef __SCV_CANVAS_H__
 #define __SCV_CANVAS_H__
 
-#include "ComponentWithoutTexture.h"
+//#include "ComponentWithoutTexture.h"
+#include <SCV/SCV.h>
 
 namespace scv {
 
