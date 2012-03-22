@@ -111,7 +111,7 @@ protected:
    Component *_parent;
    Component::List _children;
 
-   Type _type;
+   Type _type;    
    static const int s_mouseBacklash = 4;
 
    Point _p1, _p2, _clickDiff;

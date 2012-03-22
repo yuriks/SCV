@@ -4,9 +4,8 @@
 #include "Singleton.h"
 #include "FontTahoma.h"
 
+#include "Component.h"
 #include "ComponentTexture.h"
-#include "ComponentWithTexture.h"
-//#include "ComponentWithoutTexture.h"
 
 #include "Panel.h"
 #include "ScrollComponent.h"

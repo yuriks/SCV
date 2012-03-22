@@ -1,13 +1,14 @@
 #ifndef __SCV_PANEL_INTERFACE_H__
 #define __SCV_PANEL_INTERFACE_H__
 
-#include "ComponentWithTexture.h"
+#include "ComponentTexture.h"
+#include "Component.h"
 
 namespace scv {
 
 class GroupLayout;
 
-class Panel : public ComponentWithTexture {
+class Panel : public Component {
 public:
    Panel(const scv::Point &p1, const scv::Point &p2);
 
@@ -29,6 +30,7 @@ public:
 
 protected:
    virtual void createTexture(void);
+   ComponentTexture *_cTexture;
 
    GroupLayout *_layout;
    bool _leftToRight;   

@@ -8,7 +8,8 @@
 #define _SCV_GENERIC_TREE_H_
 
 #include "GenericNode.h"
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 
 namespace scv {
 
@@ -18,7 +19,7 @@ namespace scv {
 
 struct GenericNodeDisplay;
 
-class GenericTree : public ComponentWithTexture
+class GenericTree : public Component
 {
 public:
    GenericTree(scv::Point p1, scv::Point p2, GenericNode* root);
@@ -38,6 +39,7 @@ public:
 private:
    GenericNode* GenericTree::findSelected(GenericNode*, int, int espacos);
    virtual void createTexture(void);
+   ComponentTexture* _cTexture;
 
    static const int s_lineSpacing  = 12;
    static const int s_borderWidth  = 4;

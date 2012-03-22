@@ -1,14 +1,15 @@
 #ifndef __SCV_WIDGET_LABEL_H__
 #define __SCV_WIDGET_LABEL_H__
 
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 #include "FontTahoma.h"
 #include "Color4f.h"
 #include "ColorScheme.h"
 
 namespace scv {
 
-class Label : public ComponentWithTexture {
+class Label : public Component {
 public:
    Label(const scv::Point &p1, const scv::Point &p2, const std::string& str);
    Label(const scv::Point &p, unsigned int width, const std::string& str);
@@ -25,7 +26,8 @@ public:
    virtual void display(void);
 
 protected:
-   virtual void createTexture(void) {}
+   void createTexture(void) {}
+   ComponentTexture *_cTexture;
    std::string _str;
 };
 

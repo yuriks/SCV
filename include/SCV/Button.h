@@ -3,17 +3,16 @@
 
 #include "Label.h"
 #include "StaticLabel.h"
+#include "ComponentTexture.h"
 
 namespace scv {
 
 class Button : public Label {
 public:
-   ///////////////////////////////////////////////////////////
    Button(const scv::Point &p1, const scv::Point &p2, const std::string &str);
    Button(const scv::Point &p, unsigned int width, const std::string &str);
    Button(const scv::Point &p, const std::string &str);
-   virtual ~Button(void);
-   ///////////////////////////////////////////////////////////
+   virtual ~Button(void) {}
 
    virtual void display(void);
 
@@ -21,9 +20,7 @@ public:
 
 protected:
    void createTexture(void);
-
    std::string text;
-
 };
 
 } // namespace scv

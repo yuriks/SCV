@@ -1,12 +1,13 @@
 #ifndef __SCV_TEXTBOX_H__
 #define __SCV_TEXTBOX_H__
 
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 #include "TextFilter.h"
 
 namespace scv {
 
-class TextBox : public ComponentWithTexture {
+class TextBox : public Component {
 friend class Table;
 public:
    TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &str);
@@ -42,6 +43,7 @@ public:
 
 protected:
    virtual void createTexture(void);
+   ComponentTexture* _cTexture;
    virtual void refreshText(void);
    virtual void refreshCursor(void);
 

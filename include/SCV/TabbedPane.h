@@ -2,11 +2,12 @@
 #define __SCV_TABEED_PANE_H__
 
 #include "Panel.h"
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 
 namespace scv {
 
-class TabbedPane : public ComponentWithTexture {
+class TabbedPane : public Component {
 public:
    TabbedPane(const scv::Point &p1, const scv::Point &p2);
    
@@ -30,6 +31,7 @@ public:
 
 private:
    void createTexture(void);
+   ComponentTexture* _cTexture;
    void configPanel(void);
 
    static const int s_tabSpacing, s_barHeight;

@@ -2,11 +2,12 @@
 #define __SCV_SEPARATOR_H__
 
 #include "MatrixTemplate.h"
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 
 namespace scv {
 
-class Separator : public ComponentWithTexture {
+class Separator : public Component {
 public:
    enum Orientation { HORIZONTAL, VERTICAL };
       
@@ -18,6 +19,7 @@ public:
 
 protected:
    void createTexture(void);
+   ComponentTexture* _cTexture;
 
    Separator::Orientation _align;   
 };

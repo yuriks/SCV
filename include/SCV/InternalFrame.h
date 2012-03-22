@@ -3,7 +3,8 @@
 
 #include "Label.h"
 
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 #include "Panel.h"
 
 #include "Timer.h"
@@ -12,7 +13,7 @@ namespace scv {
 
 class InternalFrameHolder;
 
-class InternalFrame : public ComponentWithTexture {
+class InternalFrame : public Component {
 friend class WindowHolder;
 public:
    InternalFrame(GLsizei width, GLsizei height, const std::string &title);
@@ -35,6 +36,7 @@ public:
 
 protected:
    void createTexture(void);
+   ComponentTexture* _cTexture;
 
    bool isOnTopBar(const scv::Point &p);
    bool isOnCloseButton(const scv::Point &p);

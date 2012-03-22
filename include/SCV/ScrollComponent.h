@@ -2,11 +2,12 @@
 #define __SCV_SCROLL_COMPONENT_H__
 
 #include "Panel.h"
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 
 namespace scv {
 
-class ScrollComponent : public ComponentWithTexture {
+class ScrollComponent : public Component {
 public:
    ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv::Component *object = NULL);
 
@@ -48,6 +49,7 @@ protected:
    float barPixelToFloat(int pix, bool horz);
 
    void createTexture(void);
+   ComponentTexture* _cTexture;
 
    static const int s_initDesloc = 16;
    static const int s_border = 15;
