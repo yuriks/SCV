@@ -4,7 +4,7 @@
 
 namespace scv {
 
-Label::Label(const scv::Point &p1, const scv::Point &p2, const std::string& str) : ComponentWithTexture(p1, p2) {
+Label::Label(const scv::Point &p1, const scv::Point &p2, const std::string& str) : Component(p1, p2) {
    _isHResizable = _isVResizable = false;
    _str = str;
    _type = LABEL;
@@ -14,7 +14,7 @@ Label::Label(const scv::Point &p1, const scv::Point &p2, const std::string& str)
    createTexture();
 }
 
-Label::Label(const scv::Point &p, const std::string& str) : ComponentWithTexture(p, Point(p.x + FontTahoma::getInstance()->getStringLength(str), p.y + 13)) {
+Label::Label(const scv::Point &p, const std::string& str) : Component(p, Point(p.x + FontTahoma::getInstance()->getStringLength(str), p.y + 13)) {
    _isHResizable = _isVResizable = false;
    _str = str;
    _type = LABEL;
@@ -24,7 +24,7 @@ Label::Label(const scv::Point &p, const std::string& str) : ComponentWithTexture
    createTexture();
 }
 
-Label::Label(const scv::Point &p, unsigned int width, const std::string& str) : ComponentWithTexture(p, Point(p.x + width, p.y + 13)) {
+Label::Label(const scv::Point &p, unsigned int width, const std::string& str) : Component(p, Point(p.x + width, p.y + 13)) {
    _isHResizable = _isVResizable = false;
    _str = str;
    _type = LABEL;

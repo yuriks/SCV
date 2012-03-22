@@ -35,9 +35,6 @@ Button::Button(const scv::Point &p1, const std::string &str) : Label(p1, Point(p
    createTexture();
 }
 
-Button::~Button(void) {
-}
-
 std::string Button::getString() {
    return text;
 }

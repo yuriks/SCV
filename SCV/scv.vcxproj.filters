@@ -55,9 +55,6 @@
     <ClCompile Include="src\ComponentTexture.cpp">
       <Filter>4.Widgets\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\ComponentWithTexture.cpp">
-      <Filter>4.Widgets\Object</Filter>
-    </ClCompile>
     <ClCompile Include="src\InternalFrame.cpp">
       <Filter>4.Widgets\InternalFrame</Filter>
     </ClCompile>
@@ -269,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComboBoxMenuStyle.h">
       <Filter>4.Widgets\Tree\PopupMenuStyle\ComboBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\SCV\ComponentWithTexture.h">
-      <Filter>4.Widgets\Object</Filter>
     </ClInclude>
     <ClInclude Include="..\include\SCV\ComponentTexture.h">
       <Filter>4.Widgets\Object</Filter>

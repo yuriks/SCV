@@ -9,7 +9,7 @@ namespace scv {
 const int TabbedPane::s_tabSpacing  = 10;
 const int TabbedPane::s_barHeight   = 22;
 
-TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
+TabbedPane::TabbedPane(const scv::Point &p1, const scv::Point &p2) : Component(p1, p2) {
    _currecOverTab = _currSelectedTab = -1;
    _index.push_back(s_tabSpacing);
    _type = TABBEDPANE;
@@ -25,7 +25,7 @@ void TabbedPane::addChild(Component *object) {
 }
 
 void TabbedPane::addChild(Component *object, const std::string &label, bool resize) {
-   ComponentWithTexture::addChild(object);
+   Component::addChild(object);
 
    if (resize) {
       object->setWidth(getWidth());
@@ -52,7 +52,7 @@ void TabbedPane::removeChild(Component *object) {
       _labels.erase(_labels.begin() + index);
       _resize.erase(_resize.begin() + index);
    }
-   ComponentWithTexture::removeChild(object);
+   Component::removeChild(object);
 }
 
 void TabbedPane::processMouse(const scv::MouseEvent &evt) {

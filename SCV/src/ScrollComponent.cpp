@@ -5,7 +5,7 @@
 
 namespace scv {
 
-ScrollComponent::ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv::Component *object) : ComponentWithTexture(p1, p2),
+ScrollComponent::ScrollComponent(const scv::Point &p1, const scv::Point &p2, scv::Component *object) : Component(p1, p2),
       _holdButton(BUT_NONE), _draggingBar(BUT_NONE) {
 
    _isHResizable = _isVResizable = true;

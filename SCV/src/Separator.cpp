@@ -5,7 +5,7 @@
 namespace scv {
 
 Separator::Separator(const scv::Point &p1, Separator::Orientation align, unsigned int size) :
-      ComponentWithTexture(p1, (align == Separator::HORIZONTAL) ? Point(p1.x + size, p1.y + 2) : Point(p1.x + 2, p1.y + size)) {
+      Component(p1, (align == Separator::HORIZONTAL) ? Point(p1.x + size, p1.y + 2) : Point(p1.x + 2, p1.y + size)) {
    _align = align;
 
    if (_align == Separator::HORIZONTAL) {

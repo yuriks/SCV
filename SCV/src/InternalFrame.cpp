@@ -17,7 +17,7 @@ const int InternalFrame::s_closeWidth  = 46;
 const int InternalFrame::s_closeHeight = 19;
 
 InternalFrame::InternalFrame(GLsizei width, GLsizei height, const std::string &title) :
-      ComponentWithTexture(Point(0, 0), Point(width + s_borderWidth * 2, height + s_borderWidth + s_borderTop)) {
+      Component(Point(0, 0), Point(width + s_borderWidth * 2, height + s_borderWidth + s_borderTop)) {
 
    _panel = NULL;
    setDraggable(true);
@@ -49,10 +49,10 @@ void InternalFrame::onClose(void) {
 
 void InternalFrame::setVisible(bool state) {
    if (state && !isVisible()) {
-      ComponentWithTexture::setVisible(state);
+      Component::setVisible(state);
       onOpen();
    } else if (!state && isVisible()) {
-      ComponentWithTexture::setVisible(state);
+      Component::setVisible(state);
       onClose();
    }   
 }

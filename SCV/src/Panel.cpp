@@ -6,7 +6,7 @@
 
 namespace scv {
 
-Panel::Panel(const scv::Point &p1, const scv::Point &p2) : ComponentWithTexture(p1, p2) {
+Panel::Panel(const scv::Point &p1, const scv::Point &p2) : Component (p1, p2) {
    _type = PANEL;
 
    _layout = NULL;
@@ -141,11 +141,11 @@ Point Panel::getMaximumSize(void) const {
 }
 
 void Panel::addChild(Component *object) {
-   ComponentWithTexture::addChild(object);
+   Component::addChild(object);
 }
 
 void Panel::removeChild(Component *object) {
-   ComponentWithTexture::removeChild(object);
+   Component::removeChild(object);
    if (_layout) {
       _layout->removeComponent(object);
    }

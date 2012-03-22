@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "ComponentWithTexture.h"
+#include "Component.h"
+#include "ComponentTexture.h"
 #include "GenericTree.h"
 #include "data.h"
 #include "Image.h"
@@ -23,7 +24,7 @@ namespace scv {
    };
 
    GenericTree::GenericTree(scv::Point p1, scv::Point p2, GenericNode* root)
-      : ComponentWithTexture(p1, p2)
+      : Component(p1, p2)
    {
       _type = GENERICTREE;
       spaceBack = 0;
@@ -94,7 +95,7 @@ namespace scv {
          Component::processMouse(evt);
          return;
       } else {
-         ComponentWithTexture::processMouse(evt);
+         Component::processMouse(evt);
       }
 
       scv::Point p = getAbsolutePosition();

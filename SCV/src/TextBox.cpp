@@ -8,7 +8,7 @@
 namespace scv {
 
 TextBox::TextBox(const scv::Point &p, unsigned int width, unsigned int lines, const std::string &str) :
-ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borderHeight + 1)) {
+Component(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borderHeight + 1)) {
     _str = str;
     _isHResizable = _isVResizable = true;
     _firstLine = 0;
@@ -25,7 +25,7 @@ ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing * lines + s_borde
 }
 
 TextBox::TextBox(const scv::Point &p, unsigned int width, const std::string &str) :
-ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing + s_borderHeight + 1)) {
+Component(p, Point(p.x + width, p.y + s_lineSpacing + s_borderHeight + 1)) {
     _str = str;
     _isHResizable = _isVResizable = true;
     _firstLine = 0;
@@ -42,7 +42,7 @@ ComponentWithTexture(p, Point(p.x + width, p.y + s_lineSpacing + s_borderHeight 
 }
 
 TextBox::TextBox(const scv::Point &p1, const scv::Point &p2, const std::string &str) :
-ComponentWithTexture(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1)) {
+Component(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1)) {
     _str = str;
     _isHResizable = _isVResizable = true;
     _firstLine = 0;
