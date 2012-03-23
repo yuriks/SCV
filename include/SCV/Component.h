@@ -107,9 +107,10 @@ public:
 
    bool hasChild(Component *child) const;
 
+   Component::List _children;
 protected:  
    Component *_parent;
-   Component::List _children;
+   
 
    Type _type;    
    static const int s_mouseBacklash = 4;

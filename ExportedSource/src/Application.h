@@ -2,7 +2,6 @@
 #define __APPLICATION_H__
 
 #include <SCV/SCV.h>
-#include "Widget.h"
 
 class Application : public scv::Kernel {
 public:

@@ -35,6 +35,7 @@ public:
    ///////////////////////////////////////////////////////////
 
    std::string createAllocationCode(scv::Component *comp);
+   std::string addChildren(scv::Component *child, std::string dad);
 
    ///////////////////////////////////////////////////////////
    void generateCode(void);
