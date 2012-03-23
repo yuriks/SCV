@@ -1,3 +1,14 @@
+/*
+
+SCV - Simple Components for Visual
+Developed at Federal University of Santa Maria - UFSM
+LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
+2007-2012
+
+*/
+
+
+
 #ifndef __SCV_KERNEL_H__
 #define __SCV_KERNEL_H__
 

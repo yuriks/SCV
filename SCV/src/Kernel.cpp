@@ -1,3 +1,15 @@
+/*
+
+SCV - Simple Components for Visual
+Developed at Federal University of Santa Maria - UFSM
+LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
+www.inf.ufsm.br/~pozzer/scv/
+2007-2012 
+
+*/
+
+ 
+
 #include "stdafx.h"
 #include "Kernel.h"
 
@@ -546,16 +558,18 @@ void Kernel::showCopyrights(void) {
    // scv credits
    std::cout
       << std::endl <<               
-      " Cesar Tadeu Pozzer              Project Creator"  << std::endl <<
-      " Cicero Augusto de Lara Pahins   Developer  Documentation"  << std::endl <<
-      " Frederico Artur Limberger       Developer  Documentation"  << std::endl <<
-      " Yuri Schlesner                  Developer  Documentation  Support"  << std::endl <<
+      " Cesar Tadeu Pozzer              Project Creator"                   << std::endl <<
+      " Cicero Augusto de Lara Pahins   Developer  Documentation"          << std::endl <<
+      " Frederico Artur Limberger       Developer  Documentation"          << std::endl <<
+      " Yuri Schlesner                  Developer  Documentation  Support" << std::endl <<
       " Leonardo Quatrin Campagnolo     Developer  Documentation  Support" << std::endl <<
-      " Tiago Boelter Mizdal            Developer  Documentation  Support"  << std::endl <<
-      " Bernardo Henz                   Developer  (SCV 2.0)                 " << std::endl <<
-      " Eduardo Speroni                 Developer  (SCV 2.0)                 " << std::endl <<
-      " Celito Much Felipetto           Developer  (SCV 1.0)                 " << std::endl <<
-      " Vinicius Gottin                 Developer  (SCV 1.0)                 " << std::endl;
+      " Tiago Boelter Mizdal            Developer  Documentation  Support" << std::endl <<
+      " Bernardo Henz                   Developer  (SCV 2.0)             " << std::endl <<
+      " Eduardo Speroni                 Developer  (SCV 2.0)             " << std::endl <<
+      " Celito Much Felipetto           Developer  (SCV 1.0)             " << std::endl <<
+      " Vinicius Gottin                 Developer  (SCV 1.0)             " << std::endl <<
+      " Vitor Conrado Gomes                                              " << std::endl <<
+      " Francisco Avelar                                                 " << std::endl;
 
 
    // scv logo and verison
