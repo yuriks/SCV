@@ -218,11 +218,11 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "#include \"Application.h\"\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::Application(void) : Kernel() {\n";
-   applicationDotCpp += "   setWindowSize(" + scv::toString(_scvFrame->getWidth()) + " - 20, " + scv::toString(_scvFrame->getHeight()) + " - 40);\n";
+   applicationDotCpp += "   setWindowSize(500, 500);\n";
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"" + _scvFrame->getTitle() + "\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -263,23 +263,25 @@ void CodeGenerator::generateCode(void) {
    ///////////////////////////////////////////////////////////
    std::ofstream outputFile;
 
-   outputFile = std::ofstream("../Application.h");
+
+
+   outputFile = std::ofstream("../ExportedSource/src/Application.h");
    outputFile << applicationDotH;
    outputFile.close();
 
-   outputFile = std::ofstream("../Application.cpp");
+   outputFile = std::ofstream("../ExportedSource/src/Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../Widget.h");
+   outputFile = std::ofstream("../ExportedSource/src/Widget.h");
    outputFile << widgetDotH;
    outputFile.close();
    
-   outputFile = std::ofstream("../Widget.cpp");
+   outputFile = std::ofstream("../ExportedSource/src/Widget.cpp");
    outputFile << widgetDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../main.cpp");
+   outputFile = std::ofstream("../ExportedSource/src/main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
    ///////////////////////////////////////////////////////////
@@ -375,7 +377,7 @@ std::string CodeGenerator::generateCodeAppCpp(void)
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"" + _scvFrame->getTitle() + "\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";

@@ -7,6 +7,8 @@
    #endif // _WIN32
 #endif // _MSC_VER
 
+#define SCV_VERSION 4.0
+
 #include "stdafx.h"
 
 #include "Kernel.h"

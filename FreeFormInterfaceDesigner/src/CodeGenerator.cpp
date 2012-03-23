@@ -9,169 +9,6 @@ CodeGenerator::CodeGenerator(void) {
 CodeGenerator::~CodeGenerator(void) {
 }
 
-/*recebe os componentes do kernel e insere na managedList, FALTA O SCROLL */
-void CodeGenerator::addComponent(scv::Component *comp) {
-   scv::Component *object = NULL;
-   std::string aditionalString = "";
-
-   deleteComponents();
-
-   if (comp->getType() == 1) { //Panel
-      object = new scv::Panel(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "Panel", aditionalString);
-      return ;
-   } else if (comp->getType() == 2) { //ColorPicker
-      object = new scv::ColorPicker(comp->getRelativePosition());
-      addManagedComponent(object, "ColorPicker", aditionalString);
-      return ;
-   } else if (comp->getType() == 3) { //ProgressBar
-      object = new scv::ProgressBar(comp->getRelativePosition(),  0);
-      addManagedComponent(object, "ProgressBar", aditionalString);
-      return ;
-   } else if (comp->getType() == 5) {  //Slider
-      object = new scv::Slider(comp->getRelativePosition(), comp->getWidth(), 0.f, 100.f, 50.f, 1.f);
-      addManagedComponent(object, "Slider", aditionalString);
-      return ;
-   } else if (comp->getType() == 6) { //Spinner
-      object = new scv::Spinner(comp->getRelativePosition(), comp->getWidth(), 0.f, 100.f, 50.f, 1.f);
-      addManagedComponent(object, "Spinner", aditionalString);
-      return ;
-   } else if (comp->getType() == 7) {  //Button
-      object = new scv::Button(comp->getRelativePosition(), comp->getSize(), "SCV Button");
-      addManagedComponent(object, "Button", aditionalString);
-      return ;
-      //aditionalString = "_SCV_Button";
-   } else if (comp->getType() == 8) {  //CheckBox
-      object = new scv::CheckBox(comp->getRelativePosition(), false, "SCV CheckBox");
-      addManagedComponent(object, "CheckBox", aditionalString);
-      return ;
-   } else if (comp->getType() == 9) {  //RadioButton
-      object = new scv::RadioButton(comp->getRelativePosition(), false, "SCV RadioButton");
-      addManagedComponent(object, "RadioButton", aditionalString);
-      return ;
-   } else if (comp->getType() == 10) {  //ToggleButton
-      object = new scv::ToggleButton(comp->getRelativePosition(), false, "SCV ToogleButton");
-      addManagedComponent(object, "ToggleButton", aditionalString);
-      return ;
-   } else if (comp->getType() == 11) {  //TextField
-      object = new scv::TextField(comp->getRelativePosition(), comp->getWidth(), "SCV TextField");
-      addManagedComponent(object, "TextField", aditionalString);
-      return ;
-   } else if (comp->getType() == 12) {  //TextBox
-      object = new scv::TextBox(comp->getRelativePosition(), comp->getSize(), "SCV TextBox");
-      addManagedComponent(object, "TextBox", aditionalString);
-      return ;
-   } else if (comp->getType() == 13) {  //Separator
-      object = new scv::Separator(comp->getRelativePosition(), scv::Separator::HORIZONTAL, 100);
-      addManagedComponent(object, "Separator", aditionalString);
-      return ;
-   } else if (comp->getType() == 14) {  //InternalFrame
-      object = new scv::InternalFrame(200, 200, "SCV InternalFrame");
-      addManagedComponent(object, "InternalFrame", aditionalString);
-      return ;
-   } else if (comp->getType() == 15) {  //MenuBar
-      object = new scv::MenuBar(comp->getWidth());
-      addManagedComponent(object, "MenuBar", aditionalString);
-      return ;
-   } else if (comp->getType() == 16) {  //TabbedPane
-      object = new scv::TabbedPane(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "TabbedPane", aditionalString);
-      return ;
-   } else if (comp->getType() == 17) {  //ScrollComponent
-      object = new scv::ScrollComponent(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "ScrollComponent", aditionalString);
-      return ;
-   } else if (comp->getType() == 18) {  //Image
-      object = new scv::Image(comp->getRelativePosition(), "default_image.png");
-      addManagedComponent(object, "Image", aditionalString);
-      return ;
-   } else if (comp->getType() == 19) {  //Table
-      object = new scv::Table(comp->getRelativePosition(),4,4,1,15);
-      addManagedComponent(object, "Table", aditionalString);
-      return ;
-   } else if (comp->getType() == 20) {  //ComboBox
-      object = new scv::ComboBox(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "ComboBox", aditionalString);
-      return ;
-   } else if (comp->getType() == 21) {  //Canvas
-      object = new scv::Canvas(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "Canvas", aditionalString);
-      return ;
-   /*} else if (comp->getType() == 22) {  //SystemTreeView
-      object = new scv::SystemTreeView(comp->getRelativePosition(), comp->getSize());
-      addManagedComponent(object, "SystemTreeView", aditionalString);
-      return ;*/
-   } else if (comp->getType() == 23) {  //Label
-      object = new scv::Label(comp->getRelativePosition(), "SCV Label");
-      addManagedComponent(object, "Label", aditionalString);
-      return ;
-   }
-}
-
-/*Adiciona novo componente criado no Pallete (A string adicional é para componentes especiais)*/
-void CodeGenerator::addManagedComponent(scv::Component *object, const std::string &type, const std::string &aString) {
-    _managed.push_back(new ManagedComponent(object, type + scv::toString(getComponentCount(object->getType())) + aString , type));
-}
-
-void CodeGenerator::deleteComponent(ManagedComponent *managed) {
-   if (std::find(_managed.begin(), _managed.end(), managed) != _managed.end()) {
-      _managed.remove(managed);
-   }
-   delete managed;
-}
-
-/**/
-void CodeGenerator::deleteComponents()
-{
-    ManagedComponent* a;
-    while(_managed.size() > 1)
-    {
-        a = _managed.back();
-        if(a->getParent() != NULL){
-            a->getParent()->removeChild(a);
-        }else
-        {
-            _managed.pop_back();
-        }
-    }
-}
-
-bool CodeGenerator::hasComponent(scv::Component *object) const {
-   return getManagedComponent(object) ? true : false;
-}
-
-bool CodeGenerator::hasComponent(const std::string &name) const {
-   return getManagedComponent(name) ? true : false;
-}
-
-ManagedComponent *CodeGenerator::getManagedComponent(scv::Component *object) const {
-   for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getComponent() == object) {
-         return(*iter);
-      } else {         
-         ManagedComponent *managed = (*iter)->getChild(object);
-         if (managed != NULL) return managed;
-      }
-   }
-   return NULL;
-}
-
-ManagedComponent *CodeGenerator::getManagedComponent(const std::string &name) const {
-   for (ManagedList::const_iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getClassName() == name) {
-         return(*iter);
-      } else {
-         ManagedComponent *managed = (*iter)->getChild(name);
-         if (managed != NULL) return managed;
-      }
-   }
-   return NULL; 
-}
-
-CodeGenerator::ManagedList CodeGenerator::getManagedComponents(void) const {
-   return _managed;
-}
-
 std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
    std::string code;
    int x, y;
@@ -195,7 +32,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       code += "\n";
    } else if(type == 2) { // ColorPicker
       code += "      scv::ColorPicker *colorPicker" + scv::toString(count[child->getType()]) + " = new scv::ColorPicker(scv::Point(" + scv::toString(child->getRelativePosition()) + "));\n";
-      code += "      colorPicker" + scv::toString(count[child->getType()]) + "->" + dad + ");\n";
+      code += "      colorPicker" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       code += "\n";
    } else if(type == 3) { // ProgressBar
@@ -268,7 +105,23 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       count[child->getType()] += 1;
       code += "\n";
    } else if(type == 14) {// Window
-
+      scv::InternalFrame *internalFrame = (scv::InternalFrame*)(child);
+      int count_n = count[child->getType()];
+      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[child->getType()]) + " = new scv::InternalFrame(" + scv::toString(child->getWidth()) + ", " + scv::toString(child->getHeight()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
+      code += "   addComponent(internalFrame" + scv::toString(count[child->getType()]) + ");\n";
+      count[child->getType()] += 1;
+       if(!child->_children.empty()) {
+         auto c = child->_children.begin();
+         scv::Component *a = *c;
+         count[a->getType()] += 1;
+         if(!a->_children.empty()) {
+            for(auto f = a->_children.begin(); f != a->_children.end();f++) {
+               scv::Component *x = *f;
+               code += addChildren(x, "internalFrame"+scv::toString(count_n)+"->getPanel()");
+            }
+         }
+      }
+      code += "\n";
    } else if(type == 15) {// MenuBar
       code += "      scv::MenuBar *menuBar" + scv::toString(count[child->getType()]) + " = new scv::MenuBar(" + scv::toString(child->getWidth()) + ");\n";
       code += "      menuBar" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
@@ -296,9 +149,17 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       code += "      scrollComponent" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       if(!child->_children.empty()) {
-         for(auto c = child->_children.begin(); c != child->_children.end(); c++) {
-            scv::Component *a = *c;
-            code += addChildren(a, "scrollComponent" + scv::toString(count_n));
+         auto c = child->_children.begin();
+         scv::Component *a = *c;
+         int panelNumber = count[a->getType()];
+         code += "   scv::Panel *panel" + scv::toString(panelNumber) + " = new scv::Panel(scv::Point(" + scv::toString(a->getRelativePosition().x) + ", " + scv::toString(a->getRelativePosition().y) + "),  scv::Point(" + scv::toString(a->getWidth()) + ", " + scv::toString(a->getHeight()) + "));\n";
+         code += "   scrollComponent" + scv::toString(count_n) + "->setComponent(panel" + scv::toString(panelNumber) + ");\n";
+         count[a->getType()] += 1;
+         if(!a->_children.empty()) {
+            for(auto f = a->_children.begin(); f != a->_children.end();f++) {
+               scv::Component *x = *f;
+               code += addChildren(x, "panel" + scv::toString(panelNumber));
+            }
          }
       }
       code += "\n";
@@ -453,7 +314,23 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 14) {// Window
-
+      scv::InternalFrame *internalFrame = (scv::InternalFrame*)(comp);
+      int count_n = count[comp->getType()];
+      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[comp->getType()]) + " = new scv::InternalFrame(" + scv::toString(comp->getWidth()) + ", " + scv::toString(comp->getHeight()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
+      code += "   addComponent(internalFrame" + scv::toString(count[comp->getType()]) + ");\n";
+      count[comp->getType()] += 1;
+       if(!comp->_children.empty()) {
+         auto c = comp->_children.begin();
+         scv::Component *a = *c;
+         count[a->getType()] += 1;
+         if(!a->_children.empty()) {
+            for(auto f = a->_children.begin(); f != a->_children.end();f++) {
+               scv::Component *x = *f;
+               code += addChildren(x, "internalFrame"+scv::toString(count_n)+"->getPanel()");
+            }
+         }
+      }
+      code += "\n";
    } else if(type == 15) {// MenuBar
       code += "   scv::MenuBar *menuBar" + scv::toString(count[comp->getType()]) + " = new scv::MenuBar(" + scv::toString(comp->getWidth()) + ");\n";
       code += "   addComponent(menuBar" + scv::toString(count[comp->getType()]) + ");\n";
@@ -481,9 +358,17 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       code += "   addComponent(scrollComponent" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;
       if(!comp->_children.empty()) {
-         for(auto c = comp->_children.begin(); c != comp->_children.end(); c++) {
-            scv::Component *a = *c;
-            code += addChildren(a, "scrollComponent" + scv::toString(count_n));
+         auto c = comp->_children.begin();
+         scv::Component *a = *c;
+         int panelNumber = count[a->getType()];
+         code += "   scv::Panel *panel" + scv::toString(panelNumber) + " = new scv::Panel(scv::Point(" + scv::toString(a->getRelativePosition().x) + ", " + scv::toString(a->getRelativePosition().y) + "),  scv::Point(" + scv::toString(a->getWidth()) + ", " + scv::toString(a->getHeight()) + "));\n";
+         code += "   scrollComponent" + scv::toString(count_n) + "->setComponent(panel" + scv::toString(panelNumber) + ");\n";
+         count[a->getType()] += 1;
+         if(!a->_children.empty()) {
+            for(auto f = a->_children.begin(); f != a->_children.end();f++) {
+               scv::Component *x = *f;
+               code += addChildren(x, "panel" + scv::toString(panelNumber));
+            }
          }
       }
       code += "\n";
@@ -619,7 +504,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "   lockWindowSize(false);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV Interface Designer v1.1\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - FreeForm Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -746,11 +631,7 @@ std::string CodeGenerator::generateCodeAppH(void)
 std::string CodeGenerator::generateCodeAppCpp(void)
 {
    ///////////////////////////////////////////////////////////
-   std::string allocationCode;
-   for (ManagedList::iterator iter = _managed.begin(); iter != _managed.end(); ++iter) {
-      if ((*iter)->getComponent() == _scvFrame) continue;
-      allocationCode += (*iter)->getAllocationCode();
-   }
+   std::string allocationCode = "";
    ///////////////////////////////////////////////////////////
 
    // Application.cpp
@@ -763,7 +644,7 @@ std::string CodeGenerator::generateCodeAppCpp(void)
    applicationDotCpp += "   lockWindowSize(false);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV Interface Designer v1.1\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - FreeForm Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -772,7 +653,6 @@ std::string CodeGenerator::generateCodeAppCpp(void)
    applicationDotCpp += "void Application::init(void) {\n";
    applicationDotCpp += "   _mainPanel = new scv::Panel(scv::Point(0, 0), scv::Point(s_defaultWindowWidth, s_defaultWindowHeight));\n";
    applicationDotCpp += allocationCode;
-   //applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "   addComponent(_mainPanel);\n";
    applicationDotCpp += "}\n";
@@ -819,16 +699,4 @@ std::string SpacesToUnderlines(std::string s)
     return s;
 }
 
-void CodeGenerator::modifyNameManagedComponent(scv::Component *obj, std::string newName)
-{
-    ManagedComponent *a = getManagedComponent(obj);
-    a->setClassName(a->getClassName().substr(0,a->getClassName().find('_')+1) + SpacesToUnderlines(newName));
-}
-
-void CodeGenerator::setSCVFrame(scv::InternalFrame *frame) {
-   if (_scvFrame == NULL) {
-      _scvFrame = frame;
-      addManagedComponent(frame, "InternalFrame");
-   }
-}
 

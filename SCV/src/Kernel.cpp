@@ -542,6 +542,48 @@ void Kernel::applyDefaultTransformMatrix(void) {
 void Kernel::showCopyrights(void) {
    // free image credits
    std::cout << FreeImage_GetCopyrightMessage() << std::endl;
+
+   // scv credits
+   std::cout
+      << std::endl <<               
+      " Cesar Tadeu Pozzer              Project Creator"  << std::endl <<
+      " Cicero Augusto de Lara Pahins   Developer  Documentation"  << std::endl <<
+      " Frederico Artur Limberger       Developer  Documentation"  << std::endl <<
+      " Yuri Schlesner                  Developer  Documentation  Support"  << std::endl <<
+      " Leonardo Quatrin Campagnolo     Developer  Documentation  Support" << std::endl <<
+      " Tiago Boelter Mizdal            Developer  Documentation  Support"  << std::endl <<
+      " Bernardo Henz                   Developer  (SCV 2.0)                 " << std::endl <<
+      " Eduardo Speroni                 Developer  (SCV 2.0)                 " << std::endl <<
+      " Celito Much Felipetto           Developer  (SCV 1.0)                 " << std::endl <<
+      " Vinicius Gottin                 Developer  (SCV 1.0)                 " << std::endl;
+
+
+   // scv logo and verison
+   std::cout << std::endl <<
+      " ##############################################################################" << std::endl <<
+      " ############################  ################################################" << std::endl <<
+      " ###########################  ##############  #################################" << std::endl <<
+      " ##############              ##############  ##################################" << std::endl <<
+      " #############    ########  #####           ##################  ###############" << std::endl <<
+      " ##############   #######  ####    ######  ####################  ##############" << std::endl <<
+      " ###############   ##########    #######  ######################  #############" << std::endl <<
+      " ################   ########    #######  ###  ##################   ############" << std::endl <<
+      " #################   #######   ############  ##################     ###########" << std::endl <<
+      " ##################   ######   ###########   #################   ##  ##########" << std::endl <<
+      " ###################   #####   ##########     ###############   ####  #########" << std::endl <<
+      " ####################   ####   #########  ##   #############   ################" << std::endl <<
+      " #####################   ###   ########  ####   ###########   #################" << std::endl <<
+      " ######################   ###   ##############   #########   ##################" << std::endl <<
+      " #######################   ###   #########  ###   #######   ###################" << std::endl <<
+      " #############  #########   ###    ########  ###   #####   ####################" << std::endl <<
+      " ############  ##########    ###              ###   ###   #####################" << std::endl <<
+      " ###########                  #####            ###   #   ######################" << std::endl <<
+      " ##########                  #################  ###     #######################" << std::endl <<
+      " #########  ###################################  ###   #######              ###" << std::endl <<
+      " ########  ################################################### Version 4.0  ###" << std::endl <<
+      " #############################################################              ###" << std::endl <<
+      " ##############################################################################"
+      << std::endl;
 }
 
 //! Changes the window title.

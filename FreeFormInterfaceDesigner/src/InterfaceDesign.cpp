@@ -18,6 +18,9 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
       addMenu(new ContextMenu("Remove Component"));
    addMenu(new ContextMenu("Generate Code..."));
 
+   addMenu(new ContextMenu("Clear Interface"));
+
+
    ContextMenu * open = new ContextMenu("Open");
    addMenu(open);
    open->addMenu(new ContextMenu("text"));
@@ -64,6 +67,10 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       } else if (address[1] == "Generate Code...") {
             Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
             kernel->generateCode();
+      }else if (address[1] == "Clear Interface")
+      {
+         Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
+         kernel->clearInterface();
       }
 
    } else  if (address.size() == 3) {
@@ -153,10 +160,11 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          std::string file_path = scv::FileOpen::getInstance()->getFilePath();
          if(!file_path.empty()) {
-            if (m_panel != NULL)
-               opImage = new scv::Image(getCurrPosition() - m_panel->getRelativePosition(), file_path);
-            else
+            if (m_panel != NULL){
+               opImage = new scv::Image(getCurrPosition() - m_panel->getAbsolutePosition(), file_path);
+            }else{
                opImage = new scv::Image(getCurrPosition(), file_path);
+            }
 
             if(opImage != NULL) {
                opImage->setDraggable(true);
@@ -346,8 +354,11 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       } else if (address[2] == "Panel") {
 
          scv::Panel * newpanel;
-         if (m_panel != NULL) newpanel = new scv::Panel(scv::Point(getCurrPosition() - m_panel->getAbsolutePosition()),scv::Point((getCurrPosition() - m_panel->getAbsolutePosition()) +200) );
-         else                 newpanel = new scv::Panel(scv::Point(getCurrPosition()), scv::Point(getCurrPosition()+200));
+         if (m_panel != NULL){
+            newpanel = new scv::Panel(scv::Point(getCurrPosition() - m_panel->getAbsolutePosition()),scv::Point((getCurrPosition() - m_panel->getAbsolutePosition()) +200) );
+         }else{
+            newpanel = new scv::Panel(scv::Point(getCurrPosition()), scv::Point(getCurrPosition()+200));
+         }
 
          newpanel->registerContextMenu(new InterfaceDesign(newpanel, true));
          newpanel->setDraggable(true);
@@ -379,8 +390,13 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          scv::Panel * panel = new scv::Panel(scv::Point(),scv::Point()+500);
          scv::ScrollComponent * newscrollComponent;
-         if (m_panel != NULL) newscrollComponent = new scv::ScrollComponent(scv::Point(getCurrPosition() - m_panel->getRelativePosition()), scv::Point((getCurrPosition() - m_panel->getRelativePosition())) +300);
-         else                 newscrollComponent = new scv::ScrollComponent(scv::Point(getCurrPosition()), scv::Point(getCurrPosition()+300));
+         
+         if (m_panel != NULL){
+            newscrollComponent = new scv::ScrollComponent(scv::Point(getCurrPosition() - m_panel->getAbsolutePosition()), scv::Point((getCurrPosition() - m_panel->getAbsolutePosition())) +300);
+         }else{
+            newscrollComponent = new scv::ScrollComponent(scv::Point(getCurrPosition()), scv::Point(getCurrPosition()+300));
+         }
+
          newscrollComponent->setComponent(panel);
          newscrollComponent->setDraggable(true);
          newscrollComponent->setResizable(true);
@@ -399,7 +415,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          contFrame++;
          iframe->setDraggable(true);
          iframe->setResizable(true);
-         scv::Kernel::getInstance()->addWindow(iframe);
+         scv::Kernel::getInstance()->addComponent(iframe);
 
          iframe->getPanel()->registerContextMenu(new InterfaceDesign(iframe->getPanel()));
 

@@ -6,49 +6,37 @@
 class CodeGenerator : public Singleton<CodeGenerator> {
 friend class Singleton<CodeGenerator>;
 public:
-   ///////////////////////////////////////////////////////////
    typedef std::list<ManagedComponent *> ManagedList;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    scv::Component *addComponent(const std::string &type);
    void addManagedComponent(scv::Component *object, const std::string &type, const std::string &aString = "");
 
    void deleteComponent(ManagedComponent *managed);   
    void deleteComponents();
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    bool hasComponent(scv::Component *object) const;
    bool hasComponent(const std::string &name) const;
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    ManagedComponent *getManagedComponent(scv::Component *object) const;
    ManagedComponent *getManagedComponent(const std::string &name) const;
 
    ManagedList getManagedComponents(void) const;
 
    void modifyNameManagedComponent(scv::Component * obj, std::string newName);
-   ///////////////////////////////////////////////////////////
 
-   ///////////////////////////////////////////////////////////
    void generateCode(void);
    std::string generateCodeMain(void);
    std::string generateCodeAppH(void);
    std::string generateCodeAppCpp(void);
    std::string generateCodeWdgH(void);
    std::string generateCodeWdgCpp(void);
-   ///////////////////////////////////////////////////////////
    
    void setSCVFrame( scv::InternalFrame *frame);
    inline scv::InternalFrame *getSCVFrame(void) const;
 
 protected:
-   ///////////////////////////////////////////////////////////
    CodeGenerator(void);
    virtual ~CodeGenerator(void);
-   ///////////////////////////////////////////////////////////
 
    int getComponentCount(scv::Component::Type type);   
 
@@ -62,7 +50,5 @@ protected:
 scv::InternalFrame * CodeGenerator::getSCVFrame(void) const {
    return _scvFrame;
 }
-
-///////////////////////////////////////////////////////////
 
 #endif //__CODE_GENERATOR_H__

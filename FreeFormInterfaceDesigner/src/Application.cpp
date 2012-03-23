@@ -9,7 +9,7 @@ Application::Application(void) : Kernel() {
    lockWindowSize(false);
    setFramesPerSecond(60);
 
-   setWindowTitle("SCV Interface Designer v1.1");
+   setWindowTitle("SCV v4.0 - FreeForm Interface Designer");
 }
 
 Application::~Application(void) {
@@ -21,36 +21,34 @@ void Application::init(void) {
    _mainPanel->registerContextMenu(new InterfaceDesign(NULL));
 }
 
-void Application::onMouseClick(const scv::MouseEvent &evt) {   
-}
-
-void Application::onMouseHold(const scv::MouseEvent &evt) {
-}
-void Application::onMouseOver(const scv::MouseEvent &evt) {
-}
-
-void Application::onMouseUp(const scv::MouseEvent &evt) {
-}
-
-void Application::onMouseWheel(const scv::MouseEvent &evt) {
-}
-
-void Application::onKeyPressed(const scv::KeyEvent &evt) {
-}
-
-void Application::onKeyUp(const scv::KeyEvent &evt) {
-}
-
-void Application::onSizeChange(void) {
+void Application::onSizeChange() {
    _mainPanel->setSize(getWidth(), getHeight());
 }
-void Application::onPositionChange(void) {
+
+void Application::onDisplay() {
 }
 
-void Application::onDisplay(void) {
-}
-
-void Application::generateCode(void)
+void Application::generateCode()
 {
-    CodeGenerator::getInstance()->generateCode();
+   CodeGenerator::getInstance()->generateCode();
+}
+
+void Application::clearRecursive(scv::Component* comp)
+{
+   while(comp->_children.size() > 0)
+   {
+      scv::Component* obj = comp->_children.back();
+      clearRecursive(obj);
+      removeComponent(obj);
+   }
+}
+
+void Application::clearInterface()
+{
+   while(_objects.size() > 1)
+   {
+      scv::Component* obj = _objects.back();
+      clearRecursive(obj);
+      removeComponent(obj);
+   }
 }
