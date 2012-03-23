@@ -16,9 +16,6 @@ void Application::init(void) {
 
    addComponent(_mainPanel);
 
-   scv::Button *button0 = new scv::Button(scv::Point(68,106), scv::Point(376, 220), "Button");
-   addComponent(button0);
-
 }
 
 void Application::onMouseClick(const scv::MouseEvent &evt) {
