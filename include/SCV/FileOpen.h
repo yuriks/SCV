@@ -1,6 +1,6 @@
 /*!
 \file       FileOpen.h
-\brief      Implementation of a File Open.
+\brief     
 \author     SCV Team
 */
 
