@@ -1,6 +1,6 @@
 /*!
 \file       GenericTree.h
-\brief      Implementation of a GenericTree.
+\brief      
 \author     SCV Team
 */
 

@@ -3,11 +3,14 @@
 
 /*!
 \file       GenericNode.h
-\brief      Implementation of GenericNode.
+\brief      
 \author     SCV Team
 */
 
 namespace scv {
+
+ /*! class used to create each node of the genericTree.
+ */
 
 struct GenericNode
 {

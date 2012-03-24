@@ -1,6 +1,13 @@
 #ifndef __SCV_COMPONENT__H__
 #define __SCV_COMPONENT__H__
 
+/*!
+\file       Component.h
+\brief      
+\author     SCV Team
+*/
+
+
 #include "SCVCallbacks.h"
 #include "Point.h"
 #include "Scissor.h"

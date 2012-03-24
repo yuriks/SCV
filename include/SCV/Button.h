@@ -1,6 +1,13 @@
 #ifndef __SCV_BUTTON_H__
 #define __SCV_BUTTON_H__
 
+/*!
+\file       Button.h
+\brief      
+\author     SCV Team
+*/
+
+
 #include "Label.h"
 #include "StaticLabel.h"
 #include "ComponentTexture.h"
