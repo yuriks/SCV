@@ -7,8 +7,6 @@ LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
 
 */
 
-
-
 #ifndef __SCV_KERNEL_H__
 #define __SCV_KERNEL_H__
 
@@ -48,6 +46,7 @@ public:
 
    virtual void onDisplay(void) {}
    
+   //used to init the loop handler
    void run(void);
 
    void showCopyrights(void);
@@ -91,7 +90,6 @@ public:
 
    typedef std::list<Component*> ComponentsList;
    ComponentsList _objects;
-
 protected:
    Kernel(void);
    virtual ~Kernel(void) {}
