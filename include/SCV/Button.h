@@ -1,12 +1,11 @@
-#ifndef __SCV_BUTTON_H__
-#define __SCV_BUTTON_H__
-
 /*!
 \file       Button.h
-\brief      
+\brief      Implementation of a Button.
 \author     SCV Team
 */
 
+#ifndef __SCV_BUTTON_H__
+#define __SCV_BUTTON_H__
 
 #include "Label.h"
 #include "StaticLabel.h"

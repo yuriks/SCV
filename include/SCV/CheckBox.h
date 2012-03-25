@@ -1,3 +1,9 @@
+/*!
+\file       CheckBox.h
+\brief      Implementation of a CheckBox.
+\author     SCV Team
+*/
+
 #ifndef __SCV_CHECKBOX_H__
 #define __SCV_CHECKBOX_H__
 

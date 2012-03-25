@@ -1,3 +1,9 @@
+/*!
+\file       StaticLabel.h
+\brief      Implementation of a StaticLabel.
+\author     SCV Team
+*/
+
 #ifndef __SCV_STATIC_LABEL_H__
 #define __SCV_STATIC_LABEL_H__
 

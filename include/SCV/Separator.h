@@ -1,3 +1,9 @@
+/*!
+\file       Separator.h
+\brief      Implementation of a Separator.
+\author     SCV Team
+*/
+
 #ifndef __SCV_SEPARATOR_H__
 #define __SCV_SEPARATOR_H__
 

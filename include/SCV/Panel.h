@@ -1,3 +1,9 @@
+/*!
+\file       Panel.h
+\brief      Implementation of a Panel.
+\author     SCV Team
+*/
+
 #ifndef __SCV_PANEL_INTERFACE_H__
 #define __SCV_PANEL_INTERFACE_H__
 

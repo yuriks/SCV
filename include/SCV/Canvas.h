@@ -1,3 +1,9 @@
+/*!
+\file       Canvas.h
+\brief      Implementation of Canvas.
+\author     SCV Team
+*/
+
 #ifndef __SCV_CANVAS_H__
 #define __SCV_CANVAS_H__
 

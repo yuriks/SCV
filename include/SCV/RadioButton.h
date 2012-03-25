@@ -1,3 +1,9 @@
+/*!
+\file       RadioButton.h
+\brief      Implementation of a RadioButton.
+\author     SCV Team
+*/
+
 #ifndef __SCV_RADIO_BUTTON_H__
 #define __SCV_RADIO_BUTTON_H__
 

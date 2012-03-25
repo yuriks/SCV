@@ -1,3 +1,10 @@
+/*!
+\file       InternalFrameHolder.h
+\brief      Implementation of a InternalFrameHolder.
+\author     SCV Team
+*/
+
+
 #ifndef __SCV_WINDOW_HOLDER_H__
 #define __SCV_WINDOW_HOLDER_H__
 

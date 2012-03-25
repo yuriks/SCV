@@ -1,3 +1,9 @@
+/*!
+\file       Slider.h
+\brief      Implementation of a Slider.
+\author     SCV Team
+*/
+
 #ifndef __SCV_SLIDER_H__
 #define __SCV_SLIDER_H__
 

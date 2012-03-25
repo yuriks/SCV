@@ -1,3 +1,9 @@
+/*!
+\file       Label.h
+\brief      Implementation of a Label.
+\author     SCV Team
+*/
+
 #ifndef __SCV_WIDGET_LABEL_H__
 #define __SCV_WIDGET_LABEL_H__
 

@@ -1,3 +1,9 @@
+/*!
+\file       InternalFrame.h
+\brief      Implementation of a InternalFrame.
+\author     SCV Team
+*/
+
 #ifndef __SCV_WINDOW_H__
 #define __SCV_WINDOW_H__
 

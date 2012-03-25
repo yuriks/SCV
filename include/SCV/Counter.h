@@ -1,3 +1,9 @@
+/*!
+\file       Counter.h
+\brief      Implementation of a Counter.
+\author     SCV Team
+*/
+
 #ifndef __SCV_COUNTER_H__
 #define __SCV_COUNTER_H__
 

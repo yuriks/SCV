@@ -11,12 +11,10 @@ friend class Singleton<Scissor>;
 public:
    class  Info {
    public:
-      ///////////////////////////////////////////////////////////
       Info(void);
       Info(GLint x, GLint y, GLsizei width, GLsizei height);
       //[<number>,<number>,<number>,<number>]
       Info(const std::string &str);
-      ///////////////////////////////////////////////////////////
 
       bool isInside(const Point &p) const;
       inline bool isValid(void) const {

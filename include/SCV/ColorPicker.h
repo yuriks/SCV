@@ -1,3 +1,9 @@
+/*!
+\file       ColorPicker.h
+\brief      Implementation of a ColorPicker.
+\author     SCV Team
+*/
+
 #ifndef __SCV_COLORPICKER_H__
 #define __SCV_COLORPICKER_H__
 
@@ -12,6 +18,7 @@ class ColorPicker : public scv::Panel, public scv::MatrixTemplate<ColorRGBA> {
 public:
    ColorPicker(const scv::Point &p);
 
+   /*callback*/
    virtual void onColorChange(void) {}
    
    ColorRGBA getColor(void) const;   

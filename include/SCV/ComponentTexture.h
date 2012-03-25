@@ -1,3 +1,9 @@
+/*!
+\file       ComponentTexture.h
+\brief      Implementation of a ComponentTexture.
+\author     SCV Team
+*/
+
 #ifndef __SCV_COMPONENT_TEXTURE_H__
 #define __SCV_COMPONENT_TEXTURE_H__
 

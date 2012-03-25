@@ -1,3 +1,9 @@
+/*!
+\file       ScrollComponent.h
+\brief      Implementation of a ScrollComponent.
+\author     SCV Team
+*/
+
 #ifndef __SCV_SCROLL_COMPONENT_H__
 #define __SCV_SCROLL_COMPONENT_H__
 

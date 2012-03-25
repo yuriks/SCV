@@ -1,3 +1,9 @@
+/*!
+\file       ProgressBar.h
+\brief      Implementation of a ProgressBar.
+\author     SCV Team
+*/
+
 #ifndef __SCV_PROGRESSBAR_H__
 #define __SCV_PROGRESSBAR_H__
 

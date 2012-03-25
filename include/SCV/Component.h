@@ -1,12 +1,11 @@
-#ifndef __SCV_COMPONENT__H__
-#define __SCV_COMPONENT__H__
-
 /*!
 \file       Component.h
-\brief      
+\brief      Implementation of a Component.
 \author     SCV Team
 */
 
+#ifndef __SCV_COMPONENT__H__
+#define __SCV_COMPONENT__H__
 
 #include "SCVCallbacks.h"
 #include "Point.h"
@@ -17,6 +16,7 @@ namespace scv {
 class ContextMenu;
 class Kernel;
 
+//This is the basic component of the SCV. Most widgets inherit this class.
 class Component : public SCVCallbacks {
 public:
    typedef std::list<Component*> List;
@@ -103,21 +103,16 @@ public:
    inline Component *getParent(void) const;
 
    inline const Component::List &getChildren(void) const;
-
    virtual void addChild(Component *object);
    virtual void removeChild(Component *object);
    virtual void removeAllChild(void);
-
    virtual Component *getChild(int index) const;
-
    void pullChildToTop(Component *child);
-
    bool hasChild(Component *child) const;
-
    Component::List _children;
+
 protected:  
    Component *_parent;
-   
 
    Type _type;    
    static const int s_mouseBacklash = 4;

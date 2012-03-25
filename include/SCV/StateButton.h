@@ -1,3 +1,9 @@
+/*!
+\file       StateButton.h
+\brief      Implementation of a StateButton.
+\author     SCV Team
+*/
+
 #ifndef __SCV_STATEBUTTON_H__
 #define __SCV_STATEBUTTON_H__
 

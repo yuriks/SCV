@@ -1,3 +1,9 @@
+/*!
+\file       ToggleButton.h
+\brief      Implementation of a ToggleButton.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TOGGLE_BUTTON_H__
 #define __SCV_TOGGLE_BUTTON_H__
 

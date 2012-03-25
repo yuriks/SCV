@@ -1,3 +1,9 @@
+/*!
+\file       GroupLayout.h
+\brief      Implementation of the SCV GroupLayout.
+\author     SCV Team
+*/
+
 #ifndef __SCV_GROUP_LAYOUT_H__
 #define __SCV_GROUP_LAYOUT_H__
 

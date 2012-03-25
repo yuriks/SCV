@@ -1,3 +1,9 @@
+/*!
+\file       Image.h
+\brief      Implementation of a Image.
+\author     SCV Team
+*/
+
 #ifndef __SCV_IMAGE_INTERFACE_H__
 #define __SCV_IMAGE_INTERFACE_H__
 
@@ -10,7 +16,9 @@ public:
    Image(const scv::Point &p1, const std::string &fileName);
    Image(const scv::Point &p1, const scv::Point &p2, const std::string &fileName);
 
+   //return array with RGBA colors
    inline const unsigned char *getData(void) const;
+
    inline const std::string &getPath(void) const;
    
    void loadImage(const std::string &fileName);
@@ -22,6 +30,7 @@ protected:
    virtual void createTexture(void);
 
 private:
+   //Array with RGBA colors
    unsigned char * _data;
 
    std::string _path;

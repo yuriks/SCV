@@ -1,3 +1,9 @@
+/*!
+\file       TabbedPane.h
+\brief      Implementation of a TabbedPane.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TABEED_PANE_H__
 #define __SCV_TABEED_PANE_H__
 

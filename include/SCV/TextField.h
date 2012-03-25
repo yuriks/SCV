@@ -1,3 +1,9 @@
+/*!
+\file       TextField.h
+\brief      Implementation of a TextField.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TEXTFIELD_H__
 #define __SCV_TEXTFIELD_H__
 

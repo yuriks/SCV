@@ -1,3 +1,9 @@
+/*!
+\file       ComboBox.h
+\brief      Implementation of a ComboBox.
+\author     SCV Team
+*/
+
 #ifndef __SCV_COMBOBOX_H__
 #define __SCV_COMBOBOX_H__
 

@@ -1,3 +1,9 @@
+/*!
+\file       ButtonGroup.h
+\brief      Implementation of a ButtonGroup.
+\author     SCV Team
+*/
+
 #ifndef __SCV_BUTTON_GROUP_H__
 #define __SCV_BUTTON_GROUP_H__
 

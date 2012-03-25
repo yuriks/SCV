@@ -1,3 +1,9 @@
+/*!
+\file       Textbox.h
+\brief      Implementation of a Textbox.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TEXTBOX_H__
 #define __SCV_TEXTBOX_H__
 

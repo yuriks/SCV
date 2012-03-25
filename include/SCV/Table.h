@@ -1,3 +1,9 @@
+/*!
+\file       Table.h
+\brief      Implementation of a Table.
+\author     SCV Team
+*/
+
 #ifndef __SCV_TABLE_H__
 #define __SCV_TABLE_H__
 

@@ -1,3 +1,9 @@
+/*!
+\file       Spinner.h
+\brief      Implementation of a Spinner.
+\author     SCV Team
+*/
+
 #ifndef __SCV_SPINNER_H__
 #define __SCV_SPINNER_H__
 
