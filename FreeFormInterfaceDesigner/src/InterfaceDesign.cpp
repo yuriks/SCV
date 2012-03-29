@@ -16,9 +16,10 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
    addMenu(component);
    if(remove)
       addMenu(new ContextMenu("Remove Component"));
-   addMenu(new ContextMenu("Generate Code..."));
 
    addMenu(new ContextMenu("Clear Interface"));
+   addMenu(new ContextMenu("Generate Code..."));
+
 
 
    ContextMenu * open = new ContextMenu("Open");
