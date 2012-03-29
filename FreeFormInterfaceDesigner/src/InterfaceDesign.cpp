@@ -19,12 +19,6 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
 
    addMenu(new ContextMenu("Clear Interface"));
    addMenu(new ContextMenu("Generate Code..."));
-
-
-
-   ContextMenu * open = new ContextMenu("Open");
-   addMenu(open);
-   open->addMenu(new ContextMenu("text"));
    
    panel->addMenu(new ContextMenu("Image"));
    panel->addMenu(new ContextMenu("Internal Frame"));
@@ -437,10 +431,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          tbTV->registerContextMenu(new RemoveComponent(tbTV));
 
-      }  else if (address[2] == "text") {
-         scv::FileOpen::getInstance()->showDialog();
-      } 
-      
+      }
    } else if (address.size() == 4) {
 
       scv::Separator * separator;
