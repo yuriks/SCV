@@ -199,6 +199,9 @@
     <ClCompile Include="src\data\TreeViewData.cpp">
       <Filter>2.Data</Filter>
     </ClCompile>
+    <ClCompile Include="src\documentation\mainDocumentation.cpp">
+      <Filter>0.Documentation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -408,6 +411,9 @@
     <ClInclude Include="..\include\SCV\stdafx.h">
       <Filter>1.Pre-Compiled Header</Filter>
     </ClInclude>
+    <ClInclude Include="src\documentation\mainDocumentation.h">
+      <Filter>0.Documentation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1.Pre-Compiled Header">
@@ -475,6 +481,9 @@
     </Filter>
     <Filter Include="4.Widgets\GenericTree">
       <UniqueIdentifier>{bf4ac5bb-6bbd-4929-99f0-f2fd7814be34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Documentation">
+      <UniqueIdentifier>{3fe0abe4-c5a2-4c88-ac8d-34b0da9ea573}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
