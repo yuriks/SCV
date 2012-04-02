@@ -9,7 +9,6 @@ $($(MODULE)_JUNK_DIR)/%.o : $($(MODULE)_PATH)/src/%.cpp
 
 ifeq ($(suffix $($(MODULE)_TARGET)), .a)
 
-$(info $($(MODULE)_OBJS))
 $($(MODULE)_TARGET) : $($(MODULE)_OBJS)
 	@mkdir -p "$(dir $@)"
 	$(AR) rcs $@ $^
