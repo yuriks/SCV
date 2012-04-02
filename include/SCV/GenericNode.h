@@ -1,6 +1,9 @@
 #ifndef _SCV_GENERIC_NODE_H_
 #define _SCV_GENERIC_NODE_H_
 
+#include <string>
+#include <vector>
+
 /*!
 \file       GenericNode.h
 \brief      

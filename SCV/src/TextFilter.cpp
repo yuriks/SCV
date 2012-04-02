@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "TextFilter.h"
 
+#include <cstring>
+
 namespace scv {
 
 TextFilter::TextFilter(void) {

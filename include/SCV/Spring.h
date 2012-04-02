@@ -1,6 +1,8 @@
 #ifndef __SCV_SPRING_H__
 #define __SCV_SPRING_H__
 
+#include <climits>
+
 namespace scv {
 
 class Spring {

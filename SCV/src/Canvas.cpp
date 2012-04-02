@@ -3,6 +3,8 @@
 
 #include "Kernel.h"
 
+#include <cstring>
+
 namespace scv {
 
 #define PI_2 6.28318530717958
@@ -113,7 +115,7 @@ void Canvas::polygonFill(float vx[], float vy[], int elems)
 
 void Canvas::text(int x, int y, char *t)
 {
-    int tam = (int)strlen(t);
+    int tam = strlen(t);
     int c;
 
     for(c=0; c<tam; c++)

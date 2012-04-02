@@ -2,6 +2,8 @@
 #include "ImgLoader.h"
 #include "FreeImage.h"
 
+#include <cstring>
+
 namespace scv {
 
 ImgLoader::ImgLoader() {

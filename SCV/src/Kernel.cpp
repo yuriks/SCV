@@ -28,6 +28,9 @@ www.inf.ufsm.br/~pozzer/scv/
 
 #include "Mathematic.h"
 
+#include <algorithm>
+#include <cstring>
+
 namespace scv {
 
 const std::string Kernel::s_defaultTitle = "SCV - Simple Components for Visual - http://www-usr.inf.ufsm.br/~pozzer/scv/";
@@ -36,7 +39,8 @@ const unsigned int Kernel::s_defaultHeight = 720;
 const unsigned int Kernel::s_defaultFramesPerSecond = 30;
 
 Kernel::Kernel(void) {
-   std::memset(_loadedWidgets, NULL, sizeof(ComponentTexture*) * Component::NOFWIDGETS);
+   for (int i = 0; i < Component::NOFWIDGETS; ++i)
+      _loadedWidgets[i] = 0;
 
    _filterType = NEAREST;
 
@@ -65,7 +69,7 @@ Kernel::Kernel(void) {
    #ifdef _WIN32
       Mouse.doubleClickTime = GetDoubleClickTime();
    #else
-      doubleClickTime = 500;
+      Mouse.doubleClickTime = 500;
    #endif // _WIN32
 
    Keyboard::getInstance();
@@ -198,7 +202,7 @@ void Kernel::updateFramesPerSecond(void) {
       #ifdef _WIN32
          Sleep((DWORD)(1000.f / FrameRate.fps) - timeInterval);
       #else // UNIX
-         usleep(((1000.f / fps) - timeInterval) * 1000.f);
+         usleep(((1000.f / FrameRate.fps) - timeInterval) * 1000.f);
       #endif // _WIN32
       FrameRate.baseTime = glutGet(GLUT_ELAPSED_TIME);
    } else {

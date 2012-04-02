@@ -9,8 +9,9 @@
 
 #ifndef DOXYGEN_SKIP_THIS
 #include "Singleton.h"
-
 #endif // DOXYGEN_SKIP_THIS
+
+#include <string>
 
 namespace scv {
 

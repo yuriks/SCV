@@ -37,7 +37,7 @@ public:
    virtual void display(void);
 
 private:
-   GenericNode* GenericTree::findSelected(GenericNode*, int, int espacos);
+   GenericNode* findSelected(GenericNode*, int, int espacos);
    virtual void createTexture(void);
    ComponentTexture* _cTexture;
 

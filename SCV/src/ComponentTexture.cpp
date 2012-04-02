@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ComponentTexture.h"
 
+#include <cstring>
+
 namespace scv {
 
 namespace {
