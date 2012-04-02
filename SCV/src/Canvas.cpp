@@ -113,7 +113,7 @@ void Canvas::polygonFill(float vx[], float vy[], int elems)
 
 }
 
-void Canvas::text(int x, int y, char *t)
+void Canvas::text(int x, int y, const char *t)
 {
     int tam = strlen(t);
     int c;

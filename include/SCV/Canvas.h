@@ -40,7 +40,7 @@ public:
    void clear(float r, float g, float b);
 
    //draw a text
-   void text(int x, int y, char *t);
+   void text(int x, int y, const char *t);
 
 };
 
