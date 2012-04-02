@@ -167,9 +167,6 @@
     <ClInclude Include="..\include\SCV\InternalFrame.h" />
     <ClInclude Include="..\include\SCV\InternalFrameHolder.h" />
     <ClInclude Include="..\include\SCV\VistaMenuStyle.h" />
-    <ClInclude Include="src\documentation\mainDocumentation.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -54,8 +54,7 @@ namespace scv {
    void GenericTree::onItemSelected() {
    }
 
-   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, int iSpaces)
-   {
+   GenericNode* GenericTree::findSelected(GenericNode* focusNode, int y, int iSpaces) {
       GenericNode* resultNode = NULL;
       GenericNode* rNode = NULL;
       for(int i = 0 ; i < focusNode->children.size(); i++)

@@ -8,6 +8,10 @@ namespace scv {
 
 class ContextMenu;
 
+/*!
+   \ingroup internal
+ */
+
 class PopupMenuStyle {
 public:
    virtual bool isInsideItem(const scv::ContextMenu *menu, const scv::Point &pos, int index) const;

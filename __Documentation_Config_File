@@ -686,11 +686,11 @@ EXCLUDE                = ./include/GL \
                          ./include/SCV/DynamicCastIterator.h \
                          ./include/SCV/CodeGenerator.h \
                          ./src/CodeGenerator.cpp \
-                         ./include/SCV/VistaMenuStyle.h \
-                         ./src/VistaMenuStyle.cpp \
-                         ./include/SCV/PopupMenuStyle.h \
-                         ./include/SCV/ComboBoxMenuStyle.h \
-                         ./src/ComboBoxMenuStyle.cpp
+                         ./InterfaceDesigner/src \
+                         ./FreeFormInterfaceDesigner/src \
+                         ./ExportedSource/src \
+                         ./userProject/src \
+                         ./scv_examples/src
 
 # The EXCLUDE_SYMLINKS tag can be used select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 

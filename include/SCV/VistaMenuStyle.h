@@ -6,6 +6,10 @@
 
 namespace scv {
 
+/*!
+\ingroup internal
+*/
+
 class VistaMenuStyle : public PopupMenuStyle, public Singleton<VistaMenuStyle> {
 friend class Singleton<VistaMenuStyle>;
 public:

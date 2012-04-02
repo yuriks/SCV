@@ -5,6 +5,10 @@
 #include "Singleton.h"
 
 namespace scv {
+ 
+/*! 
+\ingroup internal
+*/
 
 class ComboBoxMenuStyle : public PopupMenuStyle, public Singleton<ComboBoxMenuStyle> {
 friend class Singleton<ComboBoxMenuStyle>;

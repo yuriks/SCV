@@ -411,9 +411,6 @@
     <ClInclude Include="..\include\SCV\stdafx.h">
       <Filter>1.Pre-Compiled Header</Filter>
     </ClInclude>
-    <ClInclude Include="src\documentation\mainDocumentation.h">
-      <Filter>0.Documentation</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1.Pre-Compiled Header">
