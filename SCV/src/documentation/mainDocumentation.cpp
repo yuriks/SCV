@@ -61,6 +61,11 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 - ExportedSource: projeto para compilação dos códigos-fonte gerados pelas aplicações InterfaceDesigner e FreeFormInterfaceDesigner.
 - SCVExamples: Contém vários exemplos de aplicativos desenvolvidos com a API SCV, destacando o uso de widgets. 
 
+\section linux Linux - Makefile
+
+
+
+\section windows Windows - Microsoft Visual Studio
 
 O projeto scv.sln engloba 5 projetos Microsoft Visual Studio 10, que são descritos na sequencia. 
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual
@@ -74,6 +79,7 @@ O projeto scv.sln engloba 5 projetos Microsoft Visual Studio 10, que são descrit
  Para compilar uma aplicação com o SCV deve-se adicionar 4 bibliotecas: Freeglut.lib, Freeimage.lib, Glew32.lib e scv-debug.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
 
  \image html images/include.png
+ 
  \image html images/lib.png
 
 Para rodar os demos ou programas desenvolvidos no VS2010 em máquinas que não tenham o VS, deve-se instalar também o Microsoft Visual C++ 2010 Redistributable. Sem ele, vem um aviso que faltam dlls para execução, mais especificamente as MSVCP100.dll e MSVCR100.dll.
@@ -166,7 +172,9 @@ Em cada Group Layout pode-se adicionar GroupsPanels, que podem ser sequenciais o
 - Exemplo 1: Apresenta uma interface que possui dois botões ( a) Vertical e Horizontal Group Layouts  b) Somente Horizontal Group Layout). Esses botões devem ser configurados para sempre ocuparem toda a área da janela, ou seja, todos os espaços vertical e horizontal. Para isso, deve-se usar os Vertical e Horizontal Group Layouts. 
 
 \image html images/exemplo1b.png 
-\image html images/exemplo1a.png 
+
+\image html images/exemplo1a.png
+ 
 \image html images/exemplo1c.png
 
 Como a interface possui apenas dois botões, dispostos um ao lado do outro, pode-se criar apenas três GroupPanels: um sequencial no Horizontal Group Layout e dois paralelos no Vertical Group Layout.
@@ -178,7 +186,9 @@ O grupo sequencial faz com que um botão fique ao lado do outro (horizontalmente)
 - Exemplo 2: Apresenta uma interface com 4 botões, dispostos em linhas e colunas. 
 
 \image html images/exemplo2a.png 
+
 \image html images/exemplo2b.png 
+
 \image html images/exemplo2c.png 
 
 Para o Horizontal Group Layout, deve-se inicialmente definir um grupo paralelo que vai englobar dois grupos sequenciais, de modo a formar duas fileiras sequenciais e paralelas de botões. Para o Vertical Group Layout, deve-se ter um grupo paralelo que possui dois grupos sequencias. Caso não fosse usado o Vertical Group Layout, as duas fileiras de botões horizontais ficariam sobrepostas, sendo exibido apenas a segunda fileira. Além disso, por não haver redimensionamento vertical, os botões ocupariam a altura mínima estipulada. 
@@ -187,7 +197,9 @@ Para o Horizontal Group Layout, deve-se inicialmente definir um grupo paralelo q
 - Exemplo 3: Este exemplo é semelhante ao caso anterior, porém possui apenas 1 botão na esquerda e dois a direita. 
 
 \image html images/exemplo3a.png 
+
 \image html images/exemplo3b.png 
+
 \image html images/exemplo3c.png 
 
 Como o botão da esquerda deve ocupar todo o lado da janela, deve-se mudar a organização dos Layouts. Para este exemplo foi criado um Grupo sequencial no Horizontal Group Layout, adicionado de dois grupos paralelos. O Layout Vertical é igual ao exemplo anterior. Para se obter o resultado da segunda figura, deve-se manter o mesmo layout, porém o "Button 0" deve ser adicionado somente ao Horizontal Group Layout. Isso faz com que ele  não tenha redimensionamento no eixo Vertical. 
@@ -202,8 +214,8 @@ O scv designer gera código a partir da especificação. São gerados sempre 5 arqui
 - application.h: protótipos das callbacks e definição da classe application, 
 - application.cpp: Definição e inicialização dos componentes, definição dos layouts
 - main.cpp: inicialização do scv e execução. 
-- widgets.h – protótipos das callbacks dos componentes. Deve-se habilitar a opção "Generate Custom Class" para criar classes derivadas de cada widget.
-- widgets.cpp– implementação das callbacks dos componentes.
+- widgets.h: protótipos das callbacks dos componentes. Deve-se habilitar a opção "Generate Custom Class" para criar classes derivadas de cada widget.
+- widgets.cpp: implementação das callbacks dos componentes.
 
 \image html images/custonclass.png
 
@@ -261,8 +273,8 @@ O SCV Free Form designer gera código a partir dos componentes incluídos na inter
 - application.h: protótipos das callbacks e definição da classe application.
 - application.cpp: Definição e inicialização dos componentes.
 - main.cpp: inicialização do scv e execução. 
-- widgets.h – protótipos das callbacks dos componentes. 
-- widgets.cpp– implementação das callbacks dos componentes.
+- widgets.h: protótipos das callbacks dos componentes. 
+- widgets.cpp: implementação das callbacks dos componentes.
 
 Os arquivos são criados dentro da pasta Exported Source, presente dentro da pasta raiz do SCV.
 
