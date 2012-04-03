@@ -190,7 +190,7 @@ Para o Horizontal Group Layout, deve-se inicialmente definir um grupo paralelo q
 \image html images/exemplo3b.png 
 \image html images/exemplo3c.png 
 
-Como o botão da esquerda deve ocupar todo o lado da janela, deve-se mudar a organização dos Layouts. Para este exemplo foi criado um Grupo sequencial no Horizontal Group Layout, adicionado de dois grupos paralelos. O Layout Vertical é igual ao exemplo anterior. Para se obter o resultado da segunda figura, deve-se manter o mesmo layout, porém o “Button 0” deve ser adicionado somente ao Horizontal Group Layout. Isso faz com que ele  não tenha redimensionamento no eixo Vertical. 
+Como o botão da esquerda deve ocupar todo o lado da janela, deve-se mudar a organização dos Layouts. Para este exemplo foi criado um Grupo sequencial no Horizontal Group Layout, adicionado de dois grupos paralelos. O Layout Vertical é igual ao exemplo anterior. Para se obter o resultado da segunda figura, deve-se manter o mesmo layout, porém o "Button 0" deve ser adicionado somente ao Horizontal Group Layout. Isso faz com que ele  não tenha redimensionamento no eixo Vertical. 
 
 
 \section geracao Geração de Código
@@ -202,7 +202,7 @@ O scv designer gera código a partir da especificação. São gerados sempre 5 arqui
 - application.h: protótipos das callbacks e definição da classe application, 
 - application.cpp: Definição e inicialização dos componentes, definição dos layouts
 - main.cpp: inicialização do scv e execução. 
-- widgets.h – protótipos das callbacks dos componentes. Deve-se habilitar a opção “Generate Custom Class” para criar classes derivadas de cada widget.
+- widgets.h – protótipos das callbacks dos componentes. Deve-se habilitar a opção "Generate Custom Class" para criar classes derivadas de cada widget.
 - widgets.cpp– implementação das callbacks dos componentes.
 
 \image html images/custonclass.png
@@ -229,11 +229,11 @@ O SCV Free Form Designer apresenta uma estrutura simples, que possibilita a cons
 
 \section criacao Criação de Interfaces
 
-Para criar uma interface no SCV Free Form Designer deve-se utilizar o menu, clicando com o botão direito na tela. O menu possui cinco opções que estão relacionados com a criação da interface: “Add Panel”, “Add Component”, “Clear Interface”, “Generate Code” e “Open”.
+Para criar uma interface no SCV Free Form Designer deve-se utilizar o menu, clicando com o botão direito na tela. O menu possui cinco opções que estão relacionados com a criação da interface: "Add Panel", "Add Component", "Clear Interface", "Generate Code" e "Open".
 
 \image html images/menu.png
 
-A opção “Add Panel” é usado para adicionar painéis na interface, os painéis são utilizados para agrupar componentes (widgets). Existem cinco tipos de painéis, como uma imagem ou um simples painel. 
+A opção "Add Panel" é usado para adicionar painéis na interface, os painéis são utilizados para agrupar componentes (widgets). Existem cinco tipos de painéis, como uma imagem ou um simples painel. 
 
 \image html images/menu.png
 
@@ -245,7 +245,7 @@ Ao mover o painel, todos os componentes que estão em seu interior irão segui-lo.
 
 
 
-Ao clicar na opção “Add Component” irá aparecer um sub-menu com uma lista de todos os componentes.
+Ao clicar na opção "Add Component" irá aparecer um sub-menu com uma lista de todos os componentes.
 
 \image html images/submenu.png
 
@@ -253,11 +253,11 @@ Ao clicar em algum componente ele será adicionado à tela na posição onde o mouse
 
 \image html images/caixa.png
 
-A opção “Clear Interface” irá remover todos os componentes e painéis da tela, restando apenas o painel inicial.
+A opção "Clear Interface" irá remover todos os componentes e painéis da tela, restando apenas o painel inicial.
 
 \section geracao Geração de Código
 
-O SCV Free Form designer gera código a partir dos componentes incluídos na interface. Para gerar o código é necessário clicar na opção “Generate Code...”. São gerados sempre cinco arquivos em linguagem C++, que são os seguintes:
+O SCV Free Form designer gera código a partir dos componentes incluídos na interface. Para gerar o código é necessário clicar na opção "Generate Code...". São gerados sempre cinco arquivos em linguagem C++, que são os seguintes:
 - application.h: protótipos das callbacks e definição da classe application.
 - application.cpp: Definição e inicialização dos componentes.
 - main.cpp: inicialização do scv e execução. 
