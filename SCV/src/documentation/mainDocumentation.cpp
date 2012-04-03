@@ -54,7 +54,7 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 - Documentation: contém páginas HTML geradas pelo Doxygen com a documentação da API, e também manuais de uso da API e das ferramentas
 - Lib: contém as libs usadas para compilar o SCV e as libs geradas a partir da compilação do SCV.
 - Include: os arquivos de cabeçalho para compilar o SCV. 
-- SCV: contém todo o código fonte do SCV. Quando compilado, gera as libs (scv-debub e scv-release) que são necessárias para compilação dos demais projetos (os designers de interface e os exemplos)
+- SCV: contém todo o código fonte do SCV. Quando compilado, gera as libs (scv-debug e scv-release) que são necessárias para compilação dos demais projetos (os designers de interface e os exemplos)
 - UserProject: Pasta que contém um projeto para compilação de aplicativos desenvolvidos com a API
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
@@ -71,7 +71,7 @@ O projeto scv.sln engloba 5 projetos Microsoft Visual Studio 10, que são descrit
 
  \image html images/sln.png
 
- Para compilar uma aplicação com o SCV deve-se adicionar 4 bibliotecas: Freeglut.lib, Freeimage.lib, Glew32.lib e Scv-debub.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
+ Para compilar uma aplicação com o SCV deve-se adicionar 4 bibliotecas: Freeglut.lib, Freeimage.lib, Glew32.lib e scv-debug.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
 
  \image html images/include.png
  \image html images/lib.png

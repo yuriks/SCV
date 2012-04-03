@@ -3,8 +3,8 @@ var NAVTREE =
   [ "SCV", "index.html", [
     [ "SCV Documentation", "index.html", [
       [ "SCV", "scv_manual.html", null ],
-      [ "\"SCV Designer\"", "designer.html", null ],
-      [ "\"SCV Free Form Designer\"", "freeform.html", null ]
+      [ "SCV Designer", "designer.html", null ],
+      [ "SCV Free Form Designer", "freeform.html", null ]
     ] ],
     [ "Related Pages", "pages.html", [
       [ "Bug List", "bug.html", null ]
