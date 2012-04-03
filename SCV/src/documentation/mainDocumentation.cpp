@@ -7,9 +7,9 @@ O SCV está implementado sobre a API gráfica OpenGL. Existe uma estrutura hierárq
 
 Aqui você irá encontrar a documentação de todos componentes e funcionalidades oferecidas. São disponibilizados três manuais para o usuário:
 
-- \subpage scv "SCV"
-- \subpage desinger "SCV Desinger"
-- \subpage freefrom "SCV Free Form Designer"
+- \subpage scvManual "SCV"
+- \subpage designer "SCV Desinger"
+- \subpage freeform "SCV Free Form Designer"
 
 
 \section ide IDEs Suportadas
@@ -44,22 +44,21 @@ A última versão da biblioteca poderá sempre ser encontrada em: http://www-usr.in
 /*************************************************************************************
 /*************************************************************************************
 /*************************************************************************************
-/*************************************************************************************
+/**************************************************************************************/
 
-/*! \page scv SCV
+/*! \page scvManual SCV
 A estrutura de arquivos do SCV é apresentada na seguinte figura.  
 
- \image html images/diretorio.png
+ \image html images/diretorios.png
 
 - Documentation: contém páginas HTML gerados pelo Doxygem com a documentação da API, e também manuais de uso da API e das ferramentas
 - Lib: contém as libs usadas para compilar o SCV e as libs geradas a partir da compilação do SCV
 - Include: os arquivos de cabeçalho para compilar o SCV. 
 - SCV: contém todo o código fonte do SCV. Quando compilado, geras as libs (scv-debub e scv-release) que são necessárias na compilação dos demais projetos (os designers de interface e os exemplos)
-- ExportedSource: armazena os arquivos gerados pelos designers de Interface
 - UserProject: Pasta que contém um projeto para compilação de aplicativos desenvolvidos com a API
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
-- ExportedSource: projeto para compilação dos códigos-fonte gerados pelas aplicações InterfaceDesigner e FreeFormInterfaceDesigner. 
+- ExportedSource: projeto para compilação dos códigos-fonte gerados pelas aplicações InterfaceDesigner e FreeFormInterfaceDesigner.
 - SCVExamples: Contém vários exemplos de aplicativos desenvolvidos com a API SCV, destacando o uso de widgets. 
 
 
@@ -109,10 +108,10 @@ AVELAR, F. T.; GOMES, V. C. F.; POZZER, C. T. Estudo Comparativo de Bibliotecas 
 /*************************************************************************************
 /*************************************************************************************
 /*************************************************************************************
-/*************************************************************************************
+/**************************************************************************************/
 
  
-/*! \page designder SCV Designer 
+/*! \page designer SCV Designer
 
 O InterfaceDesigner é uma aplicação que foi desenvolvida sobre a API SCV para agilizar a construção de interfaces gráficas usando a API SCV. Ela deve proporcionar ao usuário a possibilidade de arranjar os componentes gráficos da API SCV de maneira visual, oferecendo recursos para adição ou remoção de objetos, exportação do código resultante e alinhamento automático de componentes relacionados por diferentes esquemas de organização. Ele também pode ser usado como ferramenta para estudo das funcionalidades e sintaxe de código do SCV, ou como ferramenta para construção da base da aplicação para posterior expansão manual com demais componentes.
 
@@ -135,7 +134,7 @@ O SCV Designer apresenta uma estrutura modularizada, que possibilita a construçã
 - Code Viewer: responsável pela exportação do resultado produzido pelo ambiente de acordo com parâmetros do usuário. São sempre exibidos 5 arquivos de código fonte em Linguagem C++ que representam os componentes e regras de arranjo de componentes.
 
 
-\section Criação de Interfaces
+\section criacaoInterface Criação de Interfaces
 
 Para se criar uma interface gráfica no SCV Designer deve-se realizar 4 tarefas:
 - Criação dos componentes (widgets) que farão parte da interface, como Botões e Textfields. Os componentes criados podem ser visualizados de duas maneiras, como mostrado na figura;
@@ -162,7 +161,7 @@ O SCV permite a definição de layouts nos eixos horizontal e vertical. Cabe a usu
 
 Em cada Group Layout pode-se adicionar GroupsPanels, que podem ser sequenciais ou paralelos (ParallelGroupPanel e SequentialGroupPanel). Um grupo sequencial permite que componentes sejam adicionados um ao lado do outro (no Horizontal Group Layout) ou um abaixo no outro (no Vertical Group Layout). Grupos paralelos permitem criar linhas (no Horizontal Group Layout), ou colunas (no Vertical Group Layout) que dividem a tela, para facilitar a distribuição de widgets. Pode-se fazer agrupamentos hierárquicos destes componentes.  
 
-\section Exemplos de Interfaces
+\section exemploInteface Exemplos de Interfaces
 
 - Exemplo 1: Apresenta uma interface que possui dois botões ( a) Vertical e Horizontal Group Layouts  b) Somente Horizontal Group Layout). Esses botões devem ser configurados para sempre ocuparem toda a área da janela, ou seja, todos os espaços vertical e horizontal. Para isso, deve-se usar os Vertical e Horizontal Group Layouts. 
 
@@ -194,7 +193,7 @@ Para o Horizontal Group Layout, deve-se inicialmente definir um grupo paralelo q
 Como o botão da esquerda deve ocupar todo o lado da janela, deve-se mudar a organização dos Layouts. Para este exemplo foi criado um Grupo sequencial no Horizontal Group Layout, adicionado de dois grupos paralelos. O Layout Vertical é igual ao exemplo anterior. Para se obter o resultado da segunda figura, deve-se manter o mesmo layout, porém o “Button 0” deve ser adicionado somente ao Horizontal Group Layout. Isso faz com que ele  não tenha redimensionamento no eixo Vertical. 
 
 
-\section Geração de Código
+\section geracao Geração de Código
 
 O scv designer gera código a partir da especificação. São gerados sempre 5 arquivos em linguagem C++. Esse código pode ser visualizado na própria interface do SCV Designer ou exportado para arquivos fonte (Menu Code):
 
@@ -215,7 +214,7 @@ O scv designer gera código a partir da especificação. São gerados sempre 5 arqui
 /*************************************************************************************
 /*************************************************************************************
 /*************************************************************************************
-/*************************************************************************************
+/**************************************************************************************/
 
 /*! \page freeform SCV Free Form Designer 
 
@@ -228,7 +227,7 @@ O SCV Free Form Designer apresenta uma estrutura simples, que possibilita a cons
 \image html images/freeform.png
 
 
-\section Criação de Interfaces
+\section criacao Criação de Interfaces
 
 Para criar uma interface no SCV Free Form Designer deve-se utilizar o menu, clicando com o botão direito na tela. O menu possui cinco opções que estão relacionados com a criação da interface: “Add Panel”, “Add Component”, “Clear Interface”, “Generate Code” e “Open”.
 
