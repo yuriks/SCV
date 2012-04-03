@@ -51,10 +51,10 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 
  \image html images/diretorios.png
 
-- Documentation: contém páginas HTML gerados pelo Doxygem com a documentação da API, e também manuais de uso da API e das ferramentas
-- Lib: contém as libs usadas para compilar o SCV e as libs geradas a partir da compilação do SCV
+- Documentation: contém páginas HTML geradas pelo Doxygen com a documentação da API, e também manuais de uso da API e das ferramentas
+- Lib: contém as libs usadas para compilar o SCV e as libs geradas a partir da compilação do SCV.
 - Include: os arquivos de cabeçalho para compilar o SCV. 
-- SCV: contém todo o código fonte do SCV. Quando compilado, geras as libs (scv-debub e scv-release) que são necessárias na compilação dos demais projetos (os designers de interface e os exemplos)
+- SCV: contém todo o código fonte do SCV. Quando compilado, gera as libs (scv-debub e scv-release) que são necessárias para compilação dos demais projetos (os designers de interface e os exemplos)
 - UserProject: Pasta que contém um projeto para compilação de aplicativos desenvolvidos com a API
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
@@ -119,7 +119,7 @@ Para maiores detalhes sobre a implementação do SCV e do SCV Designer, consulte (
 
 \section designinterface Interface
 
-O SCV Designer apresenta uma estrutura modularizada, que possibilita a construção iterativa da interface do software. Ela apresenta 4 elementos básicos, como podem ser visualizados na seguinte Figura.
+O SCV Designer apresenta uma estrutura modularizada, que possibilita a construção iterativa da interface do software. Ela apresenta 4 elementos básicos, como podem ser visualizados na seguinte figura.
 
  \image html images/designer.png 
 
@@ -255,7 +255,7 @@ Ao clicar em algum componente ele será adicionado à tela na posição onde o mouse
 
 A opção “Clear Interface” irá remover todos os componentes e painéis da tela, restando apenas o painel inicial.
 
-\section Geração de Código
+\section geracao Geração de Código
 
 O SCV Free Form designer gera código a partir dos componentes incluídos na interface. Para gerar o código é necessário clicar na opção “Generate Code...”. São gerados sempre cinco arquivos em linguagem C++, que são os seguintes:
 - application.h: protótipos das callbacks e definição da classe application.
