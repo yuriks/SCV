@@ -10,7 +10,7 @@ JUNK_DIR := bin/$(CONFIG)
 CXXFLAGS += -std=c++03 -MMD -Iinclude
 
 
-MODULES := scv examples
+MODULES := scv examples designer freeform_designer
 
 scv_PATH := SCV
 examples_PATH := scv_examples
