@@ -4,11 +4,11 @@ SCV - Simple Components for Visual
 Developed at Federal University of Santa Maria - UFSM
 LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
 www.inf.ufsm.br/~pozzer/scv/
-2007-2012 
+2007-2012
 
 */
 
-#include "scv/SCV.h"
+#include "SCV/SCV.h"
 
 void example1_main() {
    scv::Kernel *kernel = scv::Kernel::getInstance();
