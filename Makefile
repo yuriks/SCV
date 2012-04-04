@@ -7,7 +7,7 @@ else
 endif
 
 JUNK_DIR := bin/$(CONFIG)
-CXXFLAGS += -std=c++03 -MMD -Iinclude
+CXXFLAGS += -std=c++0x -MMD -Iinclude
 
 
 MODULES := scv examples designer freeform_designer
