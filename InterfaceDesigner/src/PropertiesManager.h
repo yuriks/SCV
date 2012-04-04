@@ -3,6 +3,7 @@
 
 #include "Properties.h"
 #include "SpecializedProperties.h"
+#include "CodeGenerator.h"
 
 class PropertiesManager {
 public:
@@ -46,7 +47,5 @@ public:
 protected:
    static Properties *_curr;
 };
-
-__declspec(selectany) Properties *PropertiesManager::_curr = NULL;
 
 #endif //__PROPERTIES_MANAGER_H__

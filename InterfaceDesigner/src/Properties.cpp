@@ -9,7 +9,7 @@ const std::string Properties::s_MinimumSize   = "Minimum Size";
 const std::string Properties::s_CustomClass   = "Generate Custom Class";
 
 
-Properties::Properties(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
+Properties::Properties(void) : scv::Panel(scv::Point(0, 0), scv::Point(Application::s_defaultRightPanelWidth, 0)) {
    setVisible(false);
 
    _currComponent = NULL;

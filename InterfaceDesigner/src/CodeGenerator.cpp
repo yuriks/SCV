@@ -263,25 +263,23 @@ void CodeGenerator::generateCode(void) {
    ///////////////////////////////////////////////////////////
    std::ofstream outputFile;
 
-
-
-   outputFile = std::ofstream("../ExportedSource/src/Application.h");
+   outputFile.open("../ExportedSource/src/Application.h");
    outputFile << applicationDotH;
    outputFile.close();
 
-   outputFile = std::ofstream("../ExportedSource/src/Application.cpp");
+   outputFile.open("../ExportedSource/src/Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../ExportedSource/src/Widget.h");
+   outputFile.open("../ExportedSource/src/Widget.h");
    outputFile << widgetDotH;
    outputFile.close();
    
-   outputFile = std::ofstream("../ExportedSource/src/Widget.cpp");
+   outputFile.open("../ExportedSource/src/Widget.cpp");
    outputFile << widgetDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../ExportedSource/src/main.cpp");
+   outputFile.open("../ExportedSource/src/main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
    ///////////////////////////////////////////////////////////

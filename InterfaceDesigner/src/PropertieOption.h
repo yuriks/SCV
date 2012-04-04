@@ -1,6 +1,9 @@
 #ifndef __PROPERTIE_OPTION_H__
 #define __PROPERTIE_OPTION_H__
 
+#include <string>
+#include <SCV/SCV.h>
+
 class Properties;
 
 class PropertieOption {

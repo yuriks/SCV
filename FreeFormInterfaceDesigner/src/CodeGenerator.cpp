@@ -2,6 +2,8 @@
 #include "CodeGenerator.h"
 #include "Application.h"
 
+#include <cstring>
+
 CodeGenerator::CodeGenerator(void) {
    _scvFrame = NULL;
 }
@@ -429,7 +431,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
 
 void CodeGenerator::generateCode(void) {
 
-   memset(count, 0, sizeof(int)*23);
+   std::memset(count, 0, sizeof(int)*23);
    // main.cpp
    ///////////////////////////////////////////////////////////
    std::string mainDotCpp, allocationCode;
@@ -546,15 +548,15 @@ void CodeGenerator::generateCode(void) {
    ///////////////////////////////////////////////////////////
    std::ofstream outputFile;
 
-   outputFile = std::ofstream("../ExportedSource/src/Application.h");
+   outputFile.open("../ExportedSource/src/Application.h");
    outputFile << applicationDotH;
    outputFile.close();
 
-   outputFile = std::ofstream("../ExportedSource/src/Application.cpp");
+   outputFile.open("../ExportedSource/src/Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
 
-   outputFile = std::ofstream("../ExportedSource/src/main.cpp");
+   outputFile.open("../ExportedSource/src/main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
    ///////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@
 
 #include "Application.h"
 
-Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(static_cast<Application *>(scv::Kernel::getInstance())->s_defaultRightPanelWidth, 0)) {
+Pallete::Pallete(void) : scv::Panel(scv::Point(0, 0), scv::Point(Application::s_defaultRightPanelWidth, 0)) {
 }
 
 Pallete::~Pallete(void) {
