@@ -1,40 +1,36 @@
 /*!
 \mainpage SCV Documentation
 
-O SCV é uma API (Application Programming Interface) de facilitação na construção de interfaces de usuário (GUI - Graphic User Interface), orientada ao uso de um programador com experiência na linguagem de programação C++. 
+O SCV é uma API (Application Programming Interface) de facilitação na construção de interfaces de usuário (GUI - Graphic User Interface), orientada ao uso de um programador com experiência na linguagem de programação C++. O SCV está implementado sobre a API gráfica OpenGL. Existe uma estrutura hierárquica de componentes, onde cada componente é responsável por desenhar os componentes contidos nele. O componentes utilizam a fucionalidade de scissors do OpenGL para fazer a limitação da área de desenho para apenas o retângulo que engloba o componente, além de fazer o desenho dele mesmo, utilizando mapas de textura, compartilhados por todas as instâncias do mesmo tipo de componente, e fontes, representadas com uma textura contendo todos os caracteres, compartilhada em nível global. Esquemas de cor são implementados modulando-se a cor das texturas dos componentes. A interação entre componentes e o código do usuário da biblioteca faz-se utilizando callbacks, presentes como funções virtuais nos componentes, que devem ser herdados.
 
-O SCV está implementado sobre a API gráfica OpenGL. Existe uma estrutura hierárquica de componentes, onde cada componente é responsável por desenhar os componentes contidos nele. O componentes utilizam a fucionalidade de scissors do OpenGL para fazer a limitação da área de desenho para apenas o retângulo que engloba o componente, além de fazer o desenho dele mesmo, utilizando mapas de textura, compartilhados por todas as instâncias do mesmo tipo de componente, e fontes, representadas com uma textura contendo todos os caracteres, compartilhada em nível global. Esquemas de cor são implementados modulando-se a cor das texturas dos componentes. A interação entre componentes e o código do usuário da biblioteca faz-se utilizando callbacks, presentes como funções virtuais nos componentes, que devem ser herdados.
-
-Aqui você irá encontrar a documentação de todos componentes e funcionalidades oferecidas. São disponibilizados três manuais para o usuário:
+São disponibilizados três manuais para o usuário:
 
 - \subpage scvManual "SCV"
-- \subpage designer "SCV Desinger"
+- \subpage designer "SCV Designer"
 - \subpage freeform "SCV Free Form Designer"
 
 
-\section ide IDEs Suportadas
-- Microsoft Visual Studio 2010
-- g++ / makefile
+\section ide Compiladores suportados
+- g++
+- VisualC++ 2010
 
-A documentação atualizada poderá ser acessada através do endereço: http://www-usr.inf.ufsm.br/~pozzer/scv <br/>
-A última versão da biblioteca poderá sempre ser encontrada em: http://www-usr.inf.ufsm.br/~pozzer/scv/scv_4.0.rar
-
-\section home Get Started!
-
-- Para acessar a documentação do SCV presente na pasta "documentation" execute o arquivo "Documentation.bat".
-- Para visualizar vários exemplos utilizando o SCV e demonstrando suas funcionalidades execute o arquivo "SCV_Examples.bat".
-- Para acessar o InterfaceDesginer execute o "InterfaceDesigner.bat", nele o usuário pode graficamente criar sua Interface, através de DragAndDrop, e gerar o código SCV correspondente para o arquivo "interface.cpp".
-
+A última versão do SCV está disponível em: 
+- http://www-usr.inf.ufsm.br/~pozzer/scv/download
+- github
 
 \section credits Créditos
 
+Este projeto foi desenvolvido na Universidade Federal de Santa Maria (UFSM), entre 2008 e 2012, pelos seguintes membros:
+ 
 - Prof. Cesar Tadeu Pozzer: Coordenador e Idealizador do Projeto
 - Cicero Augusto de Lara Pahins: Desenvolvimento, Documentação
 - Frederico Artur Limberger: Desenvolvimento, Documentação
 - Leonardo Quatrin Campagnolo: Desenvolvimento, Documentação, Suporte
 - Yuri Kunde Schlesner: Desenvolvimento, Documentação, Suporte
 - Tiago Boelter Mizdal: Desenvolvimento, Documentação
-- Eduardo Speroni  (versões anteriores do scv)
+
+Desenvolvedores das versões anteriores do SCV:
+- Eduardo Speroni
 - Bernardo Henz
 - Celito Much Felipetto 
 - Vinicius Gottin
@@ -79,6 +75,8 @@ O projeto scv.sln engloba 5 projetos Microsoft Visual Studio 10, que são descrit
  Para compilar uma aplicação com o SCV deve-se adicionar 4 bibliotecas: Freeglut.lib, Freeimage.lib, Glew32.lib e scv-debug.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
 
  \image html images/include.png
+ 
+ <BR>
  
  \image html images/lib.png
 
@@ -173,8 +171,10 @@ Em cada Group Layout pode-se adicionar GroupsPanels, que podem ser sequenciais o
 
 \image html images/exemplo1b.png 
 
+<BR>
+
 \image html images/exemplo1a.png
- 
+
 \image html images/exemplo1c.png
 
 Como a interface possui apenas dois botões, dispostos um ao lado do outro, pode-se criar apenas três GroupPanels: um sequencial no Horizontal Group Layout e dois paralelos no Vertical Group Layout.
@@ -187,6 +187,8 @@ O grupo sequencial faz com que um botão fique ao lado do outro (horizontalmente)
 
 \image html images/exemplo2a.png 
 
+<BR>
+
 \image html images/exemplo2b.png 
 
 \image html images/exemplo2c.png 
@@ -197,6 +199,8 @@ Para o Horizontal Group Layout, deve-se inicialmente definir um grupo paralelo q
 - Exemplo 3: Este exemplo é semelhante ao caso anterior, porém possui apenas 1 botão na esquerda e dois a direita. 
 
 \image html images/exemplo3a.png 
+
+<BR>
 
 \image html images/exemplo3b.png 
 
