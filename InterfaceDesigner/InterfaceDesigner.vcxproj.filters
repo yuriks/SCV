@@ -90,6 +90,9 @@
     <ClCompile Include="src\ManagedComponent.cpp">
       <Filter>6.Code</Filter>
     </ClCompile>
+    <ClCompile Include="src\PropertiesManager.cpp">
+      <Filter>5.Object Editor\PanelProperties\Properties</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pallete.h">

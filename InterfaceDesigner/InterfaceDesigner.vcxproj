@@ -215,6 +215,7 @@
     <ClCompile Include="src\ParallelGroupPanel.cpp" />
     <ClCompile Include="src\PropertieOption.cpp" />
     <ClCompile Include="src\Properties.cpp" />
+    <ClCompile Include="src\PropertiesManager.cpp" />
     <ClCompile Include="src\SequentialGroupPanel.cpp" />
     <ClCompile Include="src\SpecializedProperties.cpp" />
   </ItemGroup>
