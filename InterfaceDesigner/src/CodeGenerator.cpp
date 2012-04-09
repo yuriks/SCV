@@ -260,29 +260,29 @@ void CodeGenerator::generateCode(void) {
    ///////////////////////////////////////////////////////////
 
 
-   ///////////////////////////////////////////////////////////
+   /*Geração dos arquivos*/
    std::ofstream outputFile;
-
-   outputFile.open("../ExportedSource/src/Application.h");
+   outputFile.open("Application.h");
    outputFile << applicationDotH;
    outputFile.close();
 
-   outputFile.open("../ExportedSource/src/Application.cpp");
+   outputFile.open("Application.cpp");
    outputFile << applicationDotCpp;
    outputFile.close();
 
-   outputFile.open("../ExportedSource/src/Widget.h");
+   outputFile.open("Widget.h");
    outputFile << widgetDotH;
    outputFile.close();
    
-   outputFile.open("../ExportedSource/src/Widget.cpp");
+   outputFile.open("Widget.cpp");
    outputFile << widgetDotCpp;
    outputFile.close();
 
-   outputFile.open("../ExportedSource/src/main.cpp");
+   outputFile.open("main.cpp");
    outputFile << mainDotCpp;
    outputFile.close();
-   ///////////////////////////////////////////////////////////
+
+   std::cout << "Arquivos gerados na pasta corrente do gerador" << std::endl;
 }
 
 std::string CodeGenerator::generateCodeMain(void)
