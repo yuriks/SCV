@@ -252,7 +252,7 @@ O scv designer gera código a partir da especificação dos componentes e do layout
 
 O SCV Free Form Designer é uma aplicação opensource que foi desenvolvida sobre a API SCV para agilizar a construção de interfaces gráficas usando a API SCV. Ela deve proporcionar ao usuário a possibilidade de arranjar os componentes gráficos da API SCV de maneira visual, oferecendo recursos para adição e remoção de objetos e geração do código resultante. Ele também pode ser usado como ferramenta para estudo das funcionalidades e sintaxe de código do SCV, ou como ferramenta para construção da base da aplicação para posterior expansão manual com demais componentes.
 
-\section Interface
+\section Interface Interface
 
 O SCV Free Form Designer apresenta uma estrutura simples, que possibilita a construção interativa da interface do software. Ela possui apenas uma janela com um painel, onde é possível incluir componentes. A janela do SCV não possui um tamanho fixo, é possível modificar o tamanho da janela arrastando suas bordas, para melhor se adequar a interface.
 
