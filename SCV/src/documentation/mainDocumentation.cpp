@@ -20,14 +20,14 @@ A última versão do SCV está disponível em:
 
 \section credits Créditos
 
-Este projeto foi desenvolvido na Universidade Federal de Santa Maria (UFSM), entre 2008 e 2012, pelos seguintes membros:
+Este projeto foi desenvolvido na Universidade Federal de Santa Maria (UFSM), entre 2007 e 2012, pelos seguintes membros:
  
 - Prof. Cesar Tadeu Pozzer: Coordenador e Idealizador do Projeto
-- Cicero Augusto de Lara Pahins: Desenvolvimento, Documentação
-- Frederico Artur Limberger: Desenvolvimento, Documentação
 - Leonardo Quatrin Campagnolo: Desenvolvimento, Documentação, Suporte
 - Yuri Kunde Schlesner: Desenvolvimento, Documentação, Suporte
+- Cicero Augusto de Lara Pahins: Desenvolvimento, Documentação
 - Tiago Boelter Mizdal: Desenvolvimento, Documentação
+- Frederico Artur Limberger: Desenvolvimento, Documentação
 
 Desenvolvedores das versões anteriores do SCV:
 - Eduardo Speroni
@@ -35,6 +35,9 @@ Desenvolvedores das versões anteriores do SCV:
 - Celito Much Felipetto 
 - Vinicius Gottin
 
+Pesquisas Iniciais sobre APIs Gráficas
+- Vitor Conrado Faria Gomes
+- Franciso Tiago Avelar
 */
 
 /*************************************************************************************
