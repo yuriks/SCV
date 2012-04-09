@@ -50,23 +50,23 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 - SCV: contém todo o código fonte do SCV. Quando compilado, gera as libs (scv-debug e scv-release) que são necessárias para compilação dos demais projetos (os designers de interface e os exemplos).
 - Include: contém os arquivos de cabeçalho do SCV. 
 - Lib: contém as libs usadas para compilar o SCV (glew, freeglut, freeimage e openGL) e as libs geradas a partir da compilação do SCV.
-- FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis. Para maiores detalhes da aplicação, consultar o manual.
+- FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
 - Documentation: contém páginas HTML geradas pelo Doxygen com a documentação da API, e também manuais de uso da API e das ferramentas de geração de interfaces.
 - UserProject: pasta que contém um projeto para compilação de aplicativos desenvolvidos com a API
-- SCV_Examples: contém vários exemplos de aplicativos desenvolvidos com a API SCV que fazem o uso de widgets. 
+- SCVExamples: contém vários exemplos de aplicativos desenvolvidos com a API SCV que fazem o uso de widgets. 
 
 \section linux Linux - Makefile
 
+Para compilar a biblioeca no Linux, é necessário instalar os pacotes de desenvolvimento da FreeImage, Freeglut e GLEW, além das bibliotecas do OpenGL (do Projeto Mesa ou de alguma implementação de proprietária). Após, basta executar o make no diretório raiz do projeto. Para realizar uma build otimizada use 'make release'. Os binários serão colocados no diretório bin/.
 
+Os 4 módulos principais estão divididos em diretórios separados. O makefile do diretório raiz automaticamente faz build de todos os módulos. Regras específicas de cada módulo estão no arquivo rules.mk presente em cada diretório, e os arquivos Makefile e common-rules.mk contém o framework geral de compilação.
+
+O diretório userProject tem makefile próprio e é compilado independentemente do resto do código. Ele pode ser usado como modelo para seus projetos que usam o SCV.
 
 \section windows Windows - Microsoft Visual Studio
 
-O projeto scv.sln engloba 4 projetos Microsoft Visual Studio 10, que são descritos na sequencia.
-- InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual.
-- FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
-- SCV: projeto que contém todo o código da API SCV. Quando executado, gera as libs do SCV. 
-- SCVExamples: Contém vários exemplos de aplicativos desenvolvidos com a API SCV, destacando o uso de widgets. 
+A solution scv.sln engloba 4 projetos Microsoft Visual Studio 10, que compilam os 4 componentes executáveis do projeto.
 
  \image html images/sln.png
   
@@ -88,7 +88,7 @@ O instalador da runtime pode ser baixado da Microsoft através deste link: http:/
 
 Outra opção é simplesmente copiar essas duas DLLs do seu computador com VS para a pasta do exe. (Ficam em C:\\Windows\\System32\\msvcp100.dll e C:\\Windows\\System32\\msvcr100.dll)
 
-Também existe um projeto standalone para compilação de projetos desenvolvidos pelo usuario, com o uso das ferramentas de geração automática de código (InterfaceDesigner e FreeFormInterfaceDesigner) 
+Também existe um projeto standalone "userProject" para compilação de projetos desenvolvidos pelo usuario, com o uso das ferramentas de geração automática de código (InterfaceDesigner e FreeFormInterfaceDesigner) 
  
  \image html images/sln2.png
 
