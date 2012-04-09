@@ -37,7 +37,7 @@ Desenvolvedores das versões anteriores do SCV:
 
 Pesquisas Iniciais sobre APIs Gráficas
 - Vitor Conrado Faria Gomes
-- Franciso Tiago Avelar
+- Francisco Tiago Avelar
 */
 
 /*************************************************************************************
