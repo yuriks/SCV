@@ -542,12 +542,10 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "}\n";
    applicationDotCpp += "void Application::onPositionChange(void) {\n";
    applicationDotCpp += "}\n";   
-   ///////////////////////////////////////////////////////////
+   
 
-
-   ///////////////////////////////////////////////////////////
    std::ofstream outputFile;
-
+   
    outputFile.open("Application.h");
    outputFile << applicationDotH;
    outputFile.close();
@@ -560,12 +558,11 @@ void CodeGenerator::generateCode(void) {
    outputFile << mainDotCpp;
    outputFile.close();
    
-   std::cout << "Arquivos gerados na pasta corrente do gerador" << std::endl;
+   std::cout << "Arquivos gerados na pasta corrente" << std::endl;
 }
 
 std::string CodeGenerator::generateCodeMain(void)
 {
-    ///////////////////////////////////////////////////////////
    std::string mainDotCpp;
    mainDotCpp += "#include <SCV/SCV.h>\n";
    mainDotCpp += "#include \"Application.h\"\n";
@@ -579,14 +576,12 @@ std::string CodeGenerator::generateCodeMain(void)
    mainDotCpp += "   kernel->run();\n";
    mainDotCpp += "   return 0;\n";
    mainDotCpp += "}\n";
-   ///////////////////////////////////////////////////////////
 
    return mainDotCpp;
 }
 std::string CodeGenerator::generateCodeAppH(void)
 {
    // Application.h
-   ///////////////////////////////////////////////////////////
    std::string applicationDotH;   
    applicationDotH += "#ifndef __APPLICATION_H__\n";
    applicationDotH += "#define __APPLICATION_H__\n";

@@ -282,7 +282,7 @@ void CodeGenerator::generateCode(void) {
    outputFile << mainDotCpp;
    outputFile.close();
 
-   std::cout << "Arquivos gerados na pasta corrente do gerador" << std::endl;
+   std::cout << "Arquivos gerados na pasta corrente" << std::endl;
 }
 
 std::string CodeGenerator::generateCodeMain(void)
