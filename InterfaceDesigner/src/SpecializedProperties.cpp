@@ -113,6 +113,7 @@ void StringsProperties::onValueChange(const std::string &title, const std::strin
       } else if (dynamic_cast<scv::Label *>(_currComponent)) {
          scv::Label *object = static_cast<scv::Label *>(_currComponent);
          object->setString(str);
+         CodeGenerator::getInstance()->modifyNameManagedComponent(object, str);
       /*Switch Text*/
       } else if (dynamic_cast<scv::TextField *>(_currComponent)) {
          scv::TextField *object = static_cast<scv::TextField *>(_currComponent);

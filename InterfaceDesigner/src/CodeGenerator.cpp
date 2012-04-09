@@ -34,6 +34,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::RadioButton(scv::Point(0, 0), false, "SCV RadioButton");
    } else if (type == "ToggleButton") {
       object = new scv::ToggleButton(scv::Point(0, 0), false, "SCV ToogleButton");
+      aditionalString = "_SCV_Toggle";
    } else if (type == "TextField") {
       object = new scv::TextField(scv::Point(0, 0), 200, "SCV TextField");
    } else if (type == "TextBox") {
@@ -58,6 +59,7 @@ scv::Component *CodeGenerator::addComponent(const std::string &type) {
       object = new scv::Canvas(scv::Point(0, 0), scv::Point(200, 200));
    } else if (type == "Label") {
       object = new scv::Label(scv::Point(0, 0), "SCV Label");
+      aditionalString = "_SCV_Label";
    }
 
    addManagedComponent(object, type, aditionalString);
