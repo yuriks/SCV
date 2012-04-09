@@ -52,7 +52,6 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 - Lib: contém as libs usadas para compilar o SCV (glew, freeglut, freeimage e openGL) e as libs geradas a partir da compilação do SCV.
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis. Para maiores detalhes da aplicação, consultar o manual.
-- ExportedSource: contém o projeto para compilação dos códigos-fonte gerados pelas aplicações InterfaceDesigner e FreeFormInterfaceDesigner.
 - Documentation: contém páginas HTML geradas pelo Doxygen com a documentação da API, e também manuais de uso da API e das ferramentas de geração de interfaces.
 - UserProject: pasta que contém um projeto para compilação de aplicativos desenvolvidos com a API
 - SCV_Examples: contém vários exemplos de aplicativos desenvolvidos com a API SCV que fazem o uso de widgets. 
@@ -63,15 +62,14 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 
 \section windows Windows - Microsoft Visual Studio
 
-O projeto scv.sln engloba 5 projetos Microsoft Visual Studio 10, que são descritos na sequencia.
+O projeto scv.sln engloba 4 projetos Microsoft Visual Studio 10, que são descritos na sequencia.
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis . Para maiores detalhes da aplicação, consultar o manual.
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
-- ExportedSource: projeto para compilação dos códigos-fonte gerados pelas aplicações InterfaceDesigner e FreeFormInterfaceDesigner. 
 - SCV: projeto que contém todo o código da API SCV. Quando executado, gera as libs do SCV. 
 - SCVExamples: Contém vários exemplos de aplicativos desenvolvidos com a API SCV, destacando o uso de widgets. 
 
  \image html images/sln.png
-
+  
  Para compilar cada projeto deve-se definí-lo como projeto de inicialização ("Startup project").
  
   \image html images/startupproject.png
@@ -89,6 +87,12 @@ Para rodar os demos ou programas desenvolvidos no VS2010 em máquinas que não ten
 O instalador da runtime pode ser baixado da Microsoft através deste link: http://www.microsoft.com/downloads/en/confirmation.aspx?familyid=A7B7A05E-6DE6-4D3A-A423-37BF0912DB84&displaylang=en
 
 Outra opção é simplesmente copiar essas duas DLLs do seu computador com VS para a pasta do exe. (Ficam em C:\\Windows\\System32\\msvcp100.dll e C:\\Windows\\System32\\msvcr100.dll)
+
+Também existe um projeto standalone para compilação de projetos desenvolvidos pelo usuario, com o uso das ferramentas de geração automática de código (InterfaceDesigner e FreeFormInterfaceDesigner) 
+ 
+ \image html images/sln2.png
+
+
 
 \section references Trabalhos Publicados
 
@@ -282,12 +286,12 @@ A opção "Clear Interface" irá remover todos os componentes e painéis da tela, re
 
 \section geracao Geração de Código
 
-O SCV Free Form designer gera código a partir dos componentes incluídos na interface. Para gerar o código é necessário clicar na opção "Generate Code...". São gerados sempre cinco arquivos em linguagem C++, que são os seguintes:
+O SCV Free Form designer gera código a partir dos componentes incluídos na interface. Para gerar o código é necessário clicar na opção "Generate Code...". São gerados sempre três arquivos em linguagem C++, que são os seguintes:
 - application.h: protótipos das callbacks e definição da classe application.
 - application.cpp: Definição e inicialização dos componentes.
 - main.cpp: inicialização do scv e execução. 
 
-Os arquivos são criados dentro da pasta Exported Source, presente dentro da pasta raiz do SCV.
+Os arquivos são criados no mesmo local onde a aplicação foi executada. 
 
 
 
