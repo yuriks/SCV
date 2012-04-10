@@ -318,7 +318,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
    } else if(type == 14) {// Window
       scv::InternalFrame *internalFrame = (scv::InternalFrame*)(comp);
       int count_n = count[comp->getType()];
-      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[comp->getType()]) + " = new scv::InternalFrame(" + scv::toString(comp->getWidth()) + ", " + scv::toString(comp->getHeight()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
+      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[comp->getType()]) + " = new scv::InternalFrame(" + scv::toString(internalFrame->getInternalSize()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
       code += "   internalFrame" + scv::toString(count[comp->getType()]) + "->setRelativePosition(scv::Point(" + scv::toString(comp->getRelativePosition()) + "));\n";
       code += "   addComponent(internalFrame" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;

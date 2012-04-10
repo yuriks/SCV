@@ -32,6 +32,9 @@ public:
    inline void setPanel(scv::Panel *panel);
    inline scv::Panel *getPanel(void) const;
 
+   Point getInternalSize() const;
+   void setInternalSize(GLsizei width, GLsizei height);
+
    inline void setTitle(const std::string &title);
    inline std::string getTitle(void) const;
 

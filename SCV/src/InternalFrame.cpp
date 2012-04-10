@@ -47,6 +47,18 @@ void InternalFrame::onOpen(void) {
 void InternalFrame::onClose(void) {
 }
 
+Point InternalFrame::getInternalSize() const{
+   Point p;
+   p.x = getWidth() - 2*s_borderWidth;
+   p.y = getHeight() - s_borderWidth - s_borderTop;
+
+   return p;
+}
+
+void InternalFrame::setInternalSize(GLsizei width, GLsizei height) {
+   setSize(width + 2*s_borderWidth, height + s_borderWidth + s_borderTop);
+}
+
 void InternalFrame::setVisible(bool state) {
    if (state && !isVisible()) {
       Component::setVisible(state);
