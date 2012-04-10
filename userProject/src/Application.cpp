@@ -1,7 +1,7 @@
 #include "Application.h"
 
 Application::Application(void) : Kernel() {
-   setWindowSize(1050, 800);
+   setWindowSize(708, 481);
    lockWindowSize(false);
    setFramesPerSecond(60);
 
@@ -12,21 +12,17 @@ Application::~Application(void) {
 }
 
 void Application::init(void) {
-   _mainPanel = new scv::Panel(scv::Point(0, 0), scv::Point(1050, 800));
+   _mainPanel = new scv::Panel(scv::Point(0, 0), scv::Point(708, 481));
 
    addComponent(_mainPanel);
 
-   scv::Button *button0 = new scv::Button(scv::Point(131,110), scv::Point(222, 167), "dfgdfg");
-   addComponent(button0);
+   scv::InternalFrame *internalFrame0 = new scv::InternalFrame(425, 408, "internal frame 0");
+   internalFrame0->setRelativePosition(scv::Point(0,0));
+   addComponent(internalFrame0);
 
-   scv::Panel *panel0 = new scv::Panel(scv::Point(351,81), scv::Point(551, 281));
-   addComponent(panel0);
-
-   scv::Panel *panel1 = new scv::Panel(scv::Point(606,97), scv::Point(806, 297));
-   addComponent(panel1);
-
-   scv::Button *button1 = new scv::Button(scv::Point(368,412), scv::Point(419, 436), "ghfghfh");
-   addComponent(button1);
+   scv::InternalFrame *internalFrame1 = new scv::InternalFrame(245, 447, "internal frame 1");
+   internalFrame1->setRelativePosition(scv::Point(424,1));
+   addComponent(internalFrame1);
 
 }
 
