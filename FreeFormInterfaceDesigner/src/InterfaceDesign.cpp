@@ -249,6 +249,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel != NULL) slider = new scv::Slider(getCurrPosition() - m_panel->getAbsolutePosition(), 0.f, 100.f, 50.f, 1.f);
          else                 slider = new scv::Slider(getCurrPosition(), 0.f, 100.f, 50.f, 1.f);
 
+         slider->setEditable(false);
          slider->setDraggable(true);
          slider->setResizable(true);
          
@@ -283,6 +284,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(table);
          else m_panel->addChild(table);
 
+         //table->setEditable(false);
          table->setDraggable(true);
          table->setResizable(true);
 
@@ -304,8 +306,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          /*AbstractWindow *win = new AbstractWindow(textbox);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         scv::Kernel::getInstance()->addComponent(win);
-         */
+         scv::Kernel::getInstance()->addComponent(win);*/
 
          textbox->registerContextMenu(new RemoveComponent(textbox));
 
@@ -326,8 +327,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 
          /*AbstractWindow *win = new AbstractWindow(textfield);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
-         scv::Kernel::getInstance()->addWindow(win);
-         */
+         scv::Kernel::getInstance()->addWindow(win);*/
 
          textfield->registerContextMenu(new RemoveComponent(textfield));
 

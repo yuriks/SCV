@@ -11,6 +11,8 @@ Slider::Slider( const scv::Point &p, unsigned int width, double minValue, double
 
    _type = SLIDER;
 
+   _editable = true;
+   
    createTexture();
 }
 
@@ -19,6 +21,8 @@ Slider::Slider( const scv::Point &p , double minValue, double maxValue, double s
       Component(p,Point(p.x+100,p.y+24)), Counter(minValue,maxValue,startValue<minValue?minValue:startValue>maxValue?maxValue:startValue,stepValue) {
    _isVResizable = false;
    _type = SLIDER;
+
+   _editable = true;
 
    createTexture();
 }
@@ -284,6 +288,8 @@ void Slider::processMouse(const scv::MouseEvent &evt) {
    Component::processMouse(evt);
 
    if(!getCallbacksStatus() || isResizing()) return;
+
+   if (!isEditable()) return;
 
    if (isFocused()) {      
       if (isInside(evt.getPosition()) && evt.getState() == MouseEvent::CLICK) {

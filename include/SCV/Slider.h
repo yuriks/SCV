@@ -20,6 +20,10 @@ public:
    virtual ~Slider() {}
 
    virtual void onValueChange(void);
+   
+   inline virtual void setEditable(bool edit);
+   inline virtual bool isEditable();
+
 
    virtual void display(void);
 
@@ -27,9 +31,24 @@ protected:
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
 
+   bool _editable;
+
    void createTexture(void);
    ComponentTexture* _cTexture;
 };
+
+void Slider::setEditable(bool edit)
+{
+   _editable = edit;
+}
+
+
+bool Slider::isEditable()
+{
+   return _editable;
+}
+
+
 
 } // namespace scv
 
