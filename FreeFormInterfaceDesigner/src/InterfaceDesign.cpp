@@ -291,9 +291,10 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
       } else if (address[2] == "TextBox") {
 
          scv::TextBox * textbox;
-         if (m_panel != NULL) textbox = new scv::TextBox(getCurrPosition() - m_panel->getAbsolutePosition(), 100, 4, "textbox " + scv::toString(contTextBox));
-         else                 textbox = new scv::TextBox(getCurrPosition(), 100, 4, "textbox " + scv::toString(contTextBox));
+         if (m_panel != NULL) textbox = new scv::TextBox(getCurrPosition() - m_panel->getAbsolutePosition(), 100, 4, "TextBox " + scv::toString(contTextBox));
+         else                 textbox = new scv::TextBox(getCurrPosition(), 100, 4, "TextBox " + scv::toString(contTextBox));
 
+         textbox->setEditable(false);
          contTextBox++;
          textbox->setDraggable(true);
          textbox->setResizable(true);
@@ -301,18 +302,20 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(textbox);
          else m_panel->addChild(textbox);
 
-         AbstractWindow *win = new AbstractWindow(textbox);
+         /*AbstractWindow *win = new AbstractWindow(textbox);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
          scv::Kernel::getInstance()->addComponent(win);
+         */
 
          textbox->registerContextMenu(new RemoveComponent(textbox));
 
       } else if (address[2] == "TextField") {
 
          scv::TextField * textfield;
-         if (m_panel != NULL) textfield = new scv::TextField(getCurrPosition() - m_panel->getAbsolutePosition(), 100, "textfield " + scv::toString(contTextField));
-         else                 textfield = new scv::TextField(getCurrPosition(), 100, "textfield " + scv::toString(contTextField));
+         if (m_panel != NULL) textfield = new scv::TextField(getCurrPosition() - m_panel->getAbsolutePosition(), 100, "TextField " + scv::toString(contTextField));
+         else                 textfield = new scv::TextField(getCurrPosition(), 100, "TextField " + scv::toString(contTextField));
 
+         textfield->setEditable(false);
          contTextField++;
          textfield->setDraggable(true);
          textfield->setResizable(true);
@@ -321,10 +324,11 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          else m_panel->addChild(textfield);
 
 
-         AbstractWindow *win = new AbstractWindow(textfield);
+         /*AbstractWindow *win = new AbstractWindow(textfield);
          win->setRelativePosition(scv::Point((scv::Kernel::getInstance()->getWidth() - win->getWidth())/2,(scv::Kernel::getInstance()->getHeight() - win->getHeight())/2));
          scv::Kernel::getInstance()->addWindow(win);
-         
+         */
+
          textfield->registerContextMenu(new RemoveComponent(textfield));
 
       } else if (address[2] == "Toggle Button") {

@@ -1,0 +1,12 @@
+- resize dos componentes no linux nao funciona no SCV Desinger. Deve
+ser problema de callback da glut.
+- quando eu coloco uma textbox ou textfield, o free form tambem
+exporta a janela usada para digitar o texto da textbox.
+- nao esta gerando codigo para generic tree. Nunca foi testado na vida.
+- tambem nao posso mover slider
+- o progress bar esta com um erro de renderizacao. Fica uma linha em branco.
+- tambem nao posso mover spinner. Mas esse nao eh tao grave como o textfield
+- erro no spinner. ele gera variavel spinner0 e tenta adicionar
+variavel spineer0. Isso nunca tinha sido testado na vida.
+
+- mover textfield e textbox - TESTAR
