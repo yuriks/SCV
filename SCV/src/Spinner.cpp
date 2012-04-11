@@ -13,6 +13,7 @@ Spinner::Spinner(const scv::Point &p, unsigned int width, double minValue, doubl
 
    setWidth((width < s_minSize) ? s_minSize : width);
 
+   _editable = true;
    _isHResizable = true;
    _isVResizable = false;
 
@@ -188,6 +189,13 @@ void Spinner::createTexture(void) {
 void Spinner::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static Cursor *cursor = Cursor::getInstance();
+
+
+   if(!_editable)
+   {
+      Component::processMouse(evt);
+      return;
+   }
 
    if(!_receivingCallbacks) {
       Component::processMouse(evt);

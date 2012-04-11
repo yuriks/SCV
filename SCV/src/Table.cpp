@@ -12,6 +12,7 @@ Table::Table( const scv::Point &p, int nRows /*= 4*/, int nColumns /*= 4*/, int 
    std::deque<TextBox *> tmp;
    isTableModified = false;
    character = 65;
+   _editable = true;
    for (int i = 0 ; i < _nColumns ; i++ ) {
       _buttons.push_back(new TableButton(this, Point(i * (CellWidth - 1),0),CellWidth,toString(char(character)), i));
       Panel::addChild(_buttons.back());
@@ -379,6 +380,13 @@ void Table::setResizable(bool state) {
 }
 
 void Table::processMouse(const scv::MouseEvent &evt) {
+
+   if(!_editable)
+   {
+      Component::processMouse(evt);
+      return;
+   }
+
    if (!_receivingCallbacks) {
       Component::processMouse(evt);
    } else {

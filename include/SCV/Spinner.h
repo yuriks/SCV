@@ -25,11 +25,16 @@ public:
 
    void setValue(double value);
 
+   inline void setEditable(bool edit);
+   inline bool isEditable();
+
    virtual void display(void);
 
 protected:
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
+
+   bool _editable;
 
    void createTexture(void);
 
@@ -59,6 +64,16 @@ private:
    static TextFilter s_filter;
    TextFieldSpinner *_textField;
 };
+
+void Spinner::setEditable(bool edit)
+{
+   _editable = edit;
+}
+
+bool Spinner::isEditable()
+{
+   return _editable;
+}
 
 } // namespace scv
 

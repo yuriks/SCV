@@ -265,6 +265,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel != NULL) spinner = new scv::Spinner(getCurrPosition() - m_panel->getAbsolutePosition(), 20, 0.f, 100.f, 50.f, 1.f);
          else                 spinner = new scv::Spinner(getCurrPosition(), 20, 0.f, 100.f, 50.f, 1.f);
 
+         spinner->setEditable(false);
          spinner->setDraggable(true);
          spinner->setResizable(true);
          
@@ -284,7 +285,7 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
          if (m_panel == NULL) scv::Kernel::getInstance()->addComponent(table);
          else m_panel->addChild(table);
 
-         //table->setEditable(false);
+         table->setEditable(false);
          table->setDraggable(true);
          table->setResizable(true);
 

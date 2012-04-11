@@ -1,16 +1,15 @@
 - mover textfield e textbox - TESTAR
 
-- Geração da janela do TextBox - TESTAR
+- geração da janela do TextBox - TESTAR
 
 - mover slider - TESTAR
 
+- renderização da progressBar - TESTAR
+
+- mover spinner - TESTAR
+
+- mover table - TESTAR
+
 - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
 
-- nao esta gerando codigo para generic tree.
-
-- o progress bar esta com um erro de renderizacao. Fica uma linha em branco.
-
-- tambem nao posso mover spinner. Mas esse nao eh tao grave como o textfield
-
-- erro no spinner. ele gera variavel spinner0 e tenta adicionar
-variavel spineer0. Isso nunca tinha sido testado na vida.
+- não esta gerando codigo para generic tree.

@@ -16,16 +16,23 @@ void Application::init(void) {
 
    addComponent(_mainPanel);
 
-   scv::Button *button0 = new scv::Button(scv::Point(211,184), scv::Point(264, 208), "");
-   addComponent(button0);
+   scv::TextBox *textBox0 = new scv::TextBox(scv::Point(642,0), scv::Point(1035, 256), "TextBox 0");
+   addComponent(textBox0);
 
-   scv::InternalFrame *internalFrame0 = new scv::InternalFrame(200,195, "internal frame 0");
-   internalFrame0->setRelativePosition(scv::Point(483,183));
-   addComponent(internalFrame0);
+   scv::TextField *textField0 = new scv::TextField(scv::Point(643,260), 167, "TextField 0");
+   addComponent(textField0);
 
-   scv::InternalFrame *internalFrame1 = new scv::InternalFrame(200,200, "internal frame 1");
-   internalFrame1->setRelativePosition(scv::Point(263,183));
-   addComponent(internalFrame1);
+   scv::Slider *slider0 = new scv::Slider(scv::Point(459,24), 100, 0.f, 100.f, 50.f, 1.f);
+   addComponent(slider0);
+
+   scv::Spinner *spinner0 = new scv::Spinner(scv::Point(34,9), 76, 0.f, 100.f, 50.f, 1.f);
+   addComponent(spinner0);
+
+   scv::Table *table0 = new scv::Table(scv::Point(30,540), 4, 4, 1, 50);
+   addComponent(table0);
+
+   scv::ProgressBar *progressBar0 = new scv::ProgressBar(scv::Point(298,183), scv::Point(398, 207), 0);
+   addComponent(progressBar0);
 
 }
 

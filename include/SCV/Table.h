@@ -50,6 +50,9 @@ public:
    virtual void setDraggable(bool state);
    virtual void setResizable(bool state);
 
+   inline void setEditable(bool edit);
+   inline bool isEditable();
+
    void processMouse(const scv::MouseEvent &evt);
    void processKey(const scv::KeyEvent &evt);
 
@@ -75,8 +78,19 @@ private:
    bool isTableModified;
 
 protected:
+   bool _editable;
    std::deque<std::deque< TextBox *> > _table;
 };
+
+void Table::setEditable(bool edit)
+{
+   _editable = edit;
+}
+
+bool Table::isEditable()
+{
+   return _editable;
+}
 
 } // namespace scv
 
