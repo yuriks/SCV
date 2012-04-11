@@ -57,7 +57,7 @@ void ProgressBar::display(void) {
 
       // vertical lines
       _cTexture->display(currPosition.x, currPosition.y + 2, 7, 2, getHeight() - 4);
-      _cTexture->display(currPosition.x + getWidth() - 1, currPosition.y + 2, 7, 2, getHeight() - 4);
+      _cTexture->display(currPosition.x + getWidth() - 2, currPosition.y + 2, 8, 2, getHeight() - 4);
 
       // corners
       _cTexture->display(currPosition, 0);

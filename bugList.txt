@@ -4,10 +4,9 @@
 
 - mover slider - TESTAR
 
-- resize dos componentes no linux nao funciona no SCV Desinger. Deve
-ser problema de callback da glut.
+- resize dos componentes no linux (SCV Desinger), problema de callback da glut.
 
-- nao esta gerando codigo para generic tree. Nunca foi testado na vida.
+- nao esta gerando codigo para generic tree.
 
 - o progress bar esta com um erro de renderizacao. Fica uma linha em branco.
 
