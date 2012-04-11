@@ -200,7 +200,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       code += "      canvas" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       code += "\n";
-   } else if(type == 22) {//TreeView
+   } else if(type == 25) {//TreeView
       scv::GenericTree *genericTree = (scv::GenericTree*)(child);
       x = child->getRelativePosition().x + child->getWidth();
       y = child->getRelativePosition().y + child->getHeight();
@@ -410,7 +410,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       code += "   addComponent(canvas" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;
       code += "\n";
-   } else if(type == 22) {//TreeView
+   } else if(type == 25) {//TreeView
       scv::GenericTree *genericTree = (scv::GenericTree*)(comp);
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();

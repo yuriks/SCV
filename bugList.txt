@@ -10,6 +10,9 @@
 
 - mover table - TESTAR
 
+- não esta gerando codigo para generic tree - TESTAR
+
+- Geração dos pontos da TextBox.
+
 - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
 
-- não esta gerando codigo para generic tree.
