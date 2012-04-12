@@ -91,9 +91,9 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       code += "\n";
    } else if(type == 12) {// TextBox
       scv::TextBox *textBox = (scv::TextBox*)(child);
-      x = child->getRelativePosition().x + child->getWidth();
-      y = child->getRelativePosition().y + child->getHeight();
-      code += "      scv::TextBox *textBox" + scv::toString(count[child->getType()]) + " = new scv::TextBox(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), \"" + textBox->getString() + "\");\n";
+      x = child->getRelativePosition().x + child->getHeight();
+      y = child->getRelativePosition().y + child->getWidth();
+      code += "      scv::TextBox *textBox" + scv::toString(count[child->getType()]) + " = new scv::TextBox(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(textBox->getInternalSize()) + "), \"" + textBox->getString() + "\");\n";
       code += "      textBox" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       code += "\n";
@@ -302,7 +302,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       scv::TextBox *textBox = (scv::TextBox*)(comp);
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();
-      code += "   scv::TextBox *textBox" + scv::toString(count[comp->getType()]) + " = new scv::TextBox(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), \"" + textBox->getString() + "\");\n";
+      code += "   scv::TextBox *textBox" + scv::toString(count[comp->getType()]) + " = new scv::TextBox(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(textBox->getInternalSize()) + "), \"" + textBox->getString() + "\");\n";
       code += "   addComponent(textBox" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;
       code += "\n";

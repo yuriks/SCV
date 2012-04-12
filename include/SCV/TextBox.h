@@ -47,6 +47,8 @@ public:
 
    virtual void display(void);
 
+   Point getInternalSize();
+
 protected:
    virtual void createTexture(void);
    ComponentTexture* _cTexture;

@@ -59,6 +59,14 @@ Component(p1, Point(p2.x, p2.y + s_lineSpacing + s_borderHeight + 1)) {
     createTexture();
 }
 
+Point TextBox::getInternalSize() {
+   Point p;
+   p.y = getRelativePosition().y + getHeight() - s_lineSpacing - s_borderHeight;
+   p.x = getRelativePosition().x + getWidth();
+
+   return p;
+}
+
 void TextBox::display(void) {
     static Kernel *kernel = Kernel::getInstance();
     static Cursor *cursor = Cursor::getInstance();
