@@ -1,1 +1,18 @@
 - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
+
+Mais erros novos no free form - codigo gerado
+//codigo muluco
+scv::GenericTree *genericTree89099152 = new
+scv::GenericTree(scv::Point(39,308), scv::Point(239, 508), 054C6EC8);
+
+
+//spinner e spineer
+scv::Spinner *spinner0 = new scv::Spinner(scv::Point(466,396), 183,
+0.f, 100.f, 50.f, 1.f);
+  addComponent(spineer0);
+
+//definido duas vezes com o mesmo nome.
+scv::ToggleButton *toggleButton0 = new
+scv::ToggleButton(scv::Point(715,248), scv::Point(801, 272), 1,
+"adfafafa sfasf sa");
+  addComponent(toggleButton0);
