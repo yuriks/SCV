@@ -25,10 +25,12 @@ Group *Group::addComponent(Component *component, int min, int pref, int max) {
 void Group::removeComponent(scv::Component * object) {
    SpringsList::iterator iter = _springs.begin();
    while (iter != _springs.end()) {
-      if (dynamic_cast<ComponentSpring *>(*iter) && static_cast<ComponentSpring *>(*iter)->getComponent() == object) {
+      ComponentSpring* spring;
+      Group* group;
+      if ((spring = dynamic_cast<ComponentSpring *>(*iter)) && spring->getComponent() == object) {
          iter = _springs.erase(iter);
-      } else if (dynamic_cast<Group *>(*iter)) {
-         static_cast<Group *>(*iter)->removeComponent(object);
+      } else if (group = dynamic_cast<Group *>(*iter)) {
+         group->removeComponent(object);
          ++iter;
       } else {
          ++iter;

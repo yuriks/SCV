@@ -259,19 +259,19 @@ void Kernel::cbMouseClick(int button, int state, int x, int y) {
    MouseEvent evt;
    if (kernel->Mouse.lastClickPosition == Point(x, y) && kernel->Mouse.lastTimeClicked.isRunning() &&
          kernel->Mouse.lastTimeClicked.getMilliseconds() <= kernel->Mouse.doubleClickTime && kernel->Mouse.lastButton == button &&
-         static_cast<MouseEvent::State>(state) == MouseEvent::CLICK) {
+         MouseEvent::State(state) == MouseEvent::CLICK) {
 
       kernel->Mouse.lastTimeClicked.stop();
-      kernel->Mouse.lastButton = static_cast<MouseEvent::Button>(button);
+      kernel->Mouse.lastButton = MouseEvent::Button(button);
       evt = MouseEvent (kernel->Mouse.lastButton, MouseEvent::CLICK, Point(x, y), true);
 
    } else {
-      if (static_cast<MouseEvent::State>(state) == MouseEvent::CLICK) {
+      if (MouseEvent::State(state) == MouseEvent::CLICK) {
          kernel->Mouse.lastTimeClicked.start();
          kernel->Mouse.lastClickPosition = Point(x, y);
       }
-      kernel->Mouse.lastButton = static_cast<MouseEvent::Button>(button);
-      evt = MouseEvent(kernel->Mouse.lastButton, static_cast<MouseEvent::State>(state), Point(x, y));
+      kernel->Mouse.lastButton = MouseEvent::Button(button);
+      evt = MouseEvent(kernel->Mouse.lastButton, MouseEvent::State(state), Point(x, y));
    }
 
    if (evt.getState() == MouseEvent::UP) {

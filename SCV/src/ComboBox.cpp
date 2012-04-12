@@ -114,7 +114,7 @@ void ComboBox::popupMenu(void) {
 void ComboBox::select(const std::string& value) {
    setString(value);
 
-   _currentValue = static_cast<int>(std::find(_values.begin(), _values.end(), value) - _values.begin());
+   _currentValue = std::find(_values.begin(), _values.end(), value) - _values.begin();
 
    onSelectionChanged(value, _currentValue);
 }

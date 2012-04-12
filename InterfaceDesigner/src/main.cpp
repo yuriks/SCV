@@ -20,11 +20,11 @@ www.inf.ufsm.br/~pozzer/scv/
 #include "ParallelGroupPanel.h"
 
 int main(int argc, char* argv[]) {
-   scv::Kernel::setInstance(new Application());
-   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
-      
-   kernel->init();
+   Application *app = new Application();
+   scv::Kernel::setInstance(app);   
 
-   kernel->run();
+   app->init();
+
+   app->run();
    return 0;
 }
