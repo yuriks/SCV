@@ -1,16 +1,4 @@
-- mover textfield e textbox - TESTAR
-
 - geração da janela do TextBox - TESTAR
-
-- mover slider - TESTAR
-
-- renderização da progressBar - TESTAR
-
-- mover spinner - TESTAR
-
-- mover table - TESTAR
-
-- não esta gerando codigo para generic tree - TESTAR
 
 - Geração dos pontos da TextBox.
 
