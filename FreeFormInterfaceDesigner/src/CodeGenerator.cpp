@@ -109,7 +109,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
    } else if(type == 14) {// Window
       scv::InternalFrame *internalFrame = (scv::InternalFrame*)(child);
       int count_n = count[child->getType()];
-      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[child->getType()]) + " = new scv::InternalFrame(" + scv::toString(child->getWidth()) + ", " + scv::toString(child->getHeight()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
+      code += "   scv::InternalFrame *internalFrame" + scv::toString(count[child->getType()]) + " = new scv::InternalFrame(" + scv::toString(internalFrame->getInternalSize()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
       code += "   addComponent(internalFrame" + scv::toString(count[child->getType()]) + ");\n";
       count[child->getType()] += 1;
        if(!child->_children.empty()) {
