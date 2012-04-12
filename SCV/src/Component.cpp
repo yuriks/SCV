@@ -311,7 +311,7 @@ bool Component::getCallbacksStatus(void) const {
    return _receivingCallbacks;
 }
 
-Component::Type Component::getType(void) const {
+Component::Type Component::getType(void) {
    return _type;
 }
 

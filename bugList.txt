@@ -1,1 +1,5 @@
 - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
+
+- Geração do código do painel. Dentro do painel foi criado um radiobutton e um label.
+O painel foi criado corretamente porém os outros dois componentes criados dentro do 
+painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)

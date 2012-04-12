@@ -19,9 +19,7 @@ class Kernel;
 //This is the basic component of the SCV. Most widgets inherit this class.
 class Component : public SCVCallbacks {
 public:
-   typedef std::list<Component*> List;
-
-   enum Type {
+    enum Type {
       NONE        , PANEL           , COLORPICKER , PROGRESSBAR,
       SCROLL      , SLIDER          , SPINNER     , BUTTON     ,
       CHECKBOX    , RADIOBUTTON     , TOGGLEBUTTON, TEXTFIELD  ,
@@ -32,6 +30,7 @@ public:
       /**/
       NOFWIDGETS
    };
+   typedef std::list<Component*> List;
 
    Component(const scv::Point &p1, const scv::Point &p2);
    virtual ~Component(void);
@@ -95,7 +94,7 @@ public:
 
    virtual void display(void) = 0;
 
-   Type getType(void) const;
+   Type getType(void);
    void setType(Type type);
 
    //memory management
