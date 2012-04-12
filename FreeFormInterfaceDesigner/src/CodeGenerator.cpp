@@ -53,7 +53,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       code += "\n";
    } else if(type == 6) { // Spinner
       code += "      scv::Spinner *spinner" + scv::toString(count[child->getType()]) + " = new scv::Spinner(scv::Point(" + scv::toString(child->getRelativePosition()) + "), " + scv::toString(child->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
-      code += "      spineer" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
+      code += "      spinner" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       code += "\n";
    } else if(type == 7) { // Button
@@ -82,6 +82,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       scv::ToggleButton *toggleButton = (scv::ToggleButton*)(child);
       code += "      scv::ToggleButton *toggleButton" + scv::toString(count[child->getType()]) + " = new scv::ToggleButton(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), " + scv::toString(toggleButton->getState()) + ", \"" + scv::toString(toggleButton->getString()) + "\");\n";
       code += "      toggleButton" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
+      count[child->getType()] += 1;
       code += "\n";
    } else if(type == 11) {// TextField
       scv::TextField *textField = (scv::TextField*)(child);
@@ -204,7 +205,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       scv::GenericTree *genericTree = (scv::GenericTree*)(child);
       x = child->getRelativePosition().x + child->getWidth();
       y = child->getRelativePosition().y + child->getHeight();
-      code += "      scv::GenericTree *genericTree" + scv::toString(count[child->getType()]) + " = new scv::GenericTree(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), " + scv::toString(genericTree->getRootNode()) + ");\n";
+      code += "      scv::GenericTree *genericTree" + scv::toString(count[child->getType()]) + " = new scv::GenericTree(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), new scv::GenericNode(\"Root\") );\n";
       code += "      genericTree" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
       count[child->getType()] += 1;
       code += "\n";
@@ -262,7 +263,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       code += "\n";
    } else if(type == 6) { // Spinner
       code += "   scv::Spinner *spinner" + scv::toString(count[comp->getType()]) + " = new scv::Spinner(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), " + scv::toString(comp->getWidth()) + ", 0.f, 100.f, 50.f, 1.f);\n";
-      code += "   addComponent(spineer" + scv::toString(count[comp->getType()]) + ");\n";
+      code += "   addComponent(spinner" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 7) { // Button
@@ -291,6 +292,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       scv::ToggleButton *toggleButton = (scv::ToggleButton*)(comp);
       code += "   scv::ToggleButton *toggleButton" + scv::toString(count[comp->getType()]) + " = new scv::ToggleButton(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), " + scv::toString(toggleButton->getState()) + ", \"" + scv::toString(toggleButton->getString()) + "\");\n";
       code += "   addComponent(toggleButton" + scv::toString(count[comp->getType()]) + ");\n";
+      count[comp->getType()] += 1;
       code += "\n";
    } else if(type == 11) {// TextField
       scv::TextField *textField = (scv::TextField*)(comp);
@@ -414,7 +416,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
       scv::GenericTree *genericTree = (scv::GenericTree*)(comp);
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();
-      code += "   scv::GenericTree *genericTree" + scv::toString(count[comp->getType()]) + " = new scv::GenericTree(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), " + scv::toString(genericTree->getRootNode()) + ");\n";
+      code += "   scv::GenericTree *genericTree" + scv::toString(count[comp->getType()]) + " = new scv::GenericTree(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), new scv::GenericNode(\"Root\") );\n";
       code += "   addComponent(genericTree" + scv::toString(count[comp->getType()]) + ");\n";
       count[comp->getType()] += 1;
       code += "\n";
@@ -432,7 +434,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
 
 void CodeGenerator::generateCode(void) {
 
-   std::memset(count, 0, sizeof(int)*23);
+   std::memset(count, 0, sizeof(int)*NTYPES);
    // main.cpp
    ///////////////////////////////////////////////////////////
    std::string mainDotCpp, allocationCode;

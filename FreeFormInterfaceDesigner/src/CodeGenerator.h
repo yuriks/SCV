@@ -1,12 +1,16 @@
 #ifndef __CODE_GENERATOR_H__
 #define __CODE_GENERATOR_H__
 
+/*Specify the size of vector
+to count components*/
+#define NTYPES 30
+
 #include "ManagedComponent.h"
 
 class CodeGenerator : public Singleton<CodeGenerator> {
 friend class Singleton<CodeGenerator>;
 public:
-   int count[23];
+   int count[NTYPES];
 
    std::string createAllocationCode(scv::Component *comp);
    std::string addChildren(scv::Component *child, std::string dad);

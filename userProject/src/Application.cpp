@@ -16,8 +16,17 @@ void Application::init(void) {
 
    addComponent(_mainPanel);
 
-   scv::TextBox *textBox0 = new scv::TextBox(scv::Point(533,1), scv::Point(1048, 322), "TextBox 0");
-   addComponent(textBox0);
+   scv::ToggleButton *toggleButton0 = new scv::ToggleButton(scv::Point(93,79), scv::Point(181, 103), 0, "");
+   addComponent(toggleButton0);
+
+   scv::ToggleButton *toggleButton1 = new scv::ToggleButton(scv::Point(194,76), scv::Point(280, 100), 0, "asd");
+   addComponent(toggleButton1);
+
+   scv::Spinner *spinner0 = new scv::Spinner(scv::Point(327,112), 35, 0.f, 100.f, 50.f, 1.f);
+   addComponent(spinner0);
+
+   scv::GenericTree *genericTree0 = new scv::GenericTree(scv::Point(515,90), scv::Point(715, 290), new scv::GenericNode("Root") );
+   addComponent(genericTree0);
 
 }
 
