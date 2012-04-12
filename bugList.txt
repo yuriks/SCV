@@ -16,3 +16,4 @@
 
 - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
 
+- procurar em todo codigo por <static cast> e trocar 
