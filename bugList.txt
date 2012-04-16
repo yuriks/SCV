@@ -3,3 +3,7 @@
 - Geração do código do painel. Dentro do painel foi criado um radiobutton e um label.
 O painel foi criado corretamente porém os outros dois componentes criados dentro do 
 painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)
+
+- RadioButtonGroup pode ser comportado como componente
+
+- Combobox, dois cliques para abrir o menu
