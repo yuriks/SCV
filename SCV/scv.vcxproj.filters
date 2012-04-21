@@ -414,6 +414,9 @@
     <ClInclude Include="..\include\SCV\stb_image.h">
       <Filter>5.Util</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\SCV\Mathematic.h">
+      <Filter>5.Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1.Pre-Compiled Header">

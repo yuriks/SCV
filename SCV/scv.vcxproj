@@ -120,6 +120,7 @@
     <ClInclude Include="..\include\SCV\Group.h" />
     <ClInclude Include="..\include\SCV\GroupLayout.h" />
     <ClInclude Include="..\include\SCV\Image.h" />
+    <ClInclude Include="..\include\SCV\Mathematic.h" />
     <ClInclude Include="..\include\SCV\ParallelGroup.h" />
     <ClInclude Include="..\include\SCV\PopupMenuStyle.h" />
     <ClInclude Include="..\include\SCV\ImgLoader.h" />
