@@ -98,7 +98,6 @@
     <ClCompile Include="src\VistaMenuStyle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Mathematic.h" />
     <ClInclude Include="..\include\SCV\Button.h" />
     <ClInclude Include="..\include\SCV\ButtonGroup.h" />
     <ClInclude Include="..\include\SCV\Canvas.h" />

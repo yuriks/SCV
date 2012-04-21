@@ -261,9 +261,6 @@
     <ClInclude Include="..\include\SCV\Cursor.h">
       <Filter>3.Kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Mathematic.h">
-      <Filter>5.Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\SCV\Data.h">
       <Filter>2.Data</Filter>
     </ClInclude>
