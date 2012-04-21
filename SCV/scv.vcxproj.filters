@@ -202,6 +202,9 @@
     <ClCompile Include="src\documentation\mainDocumentation.cpp">
       <Filter>0.Documentation</Filter>
     </ClCompile>
+    <ClCompile Include="src\stb_image.cpp">
+      <Filter>5.Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\SCV\Color4f.h">
@@ -407,6 +410,9 @@
     </ClInclude>
     <ClInclude Include="..\include\SCV\stdafx.h">
       <Filter>1.Pre-Compiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SCV\stb_image.h">
+      <Filter>5.Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -28,8 +28,6 @@ LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
 
 #include "ColorScheme.h"
 
-#include "FreeImage.h"
-
 namespace scv {
 
 /*! \defgroup util Util */

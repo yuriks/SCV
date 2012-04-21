@@ -24,17 +24,23 @@ Image::Image(const scv::Point &p1, const scv::Point &p2, const std::string &file
    _type = IMAGE;
 }
 
+Image::~Image() {
+   if (_data != NULL) {
+      freeImageData(_data);
+   }
+}
+
 void Image::loadImage(const std::string &fileName) {
    if (_data != NULL) {
       delete _cTexture;
       _cTexture = NULL;
 
-      delete[] _data;
+      freeImageData(_data);
       _data = NULL;
    }
 
    _path = fileName;
-   _data = ImgLoader::getInstance()->loadImageToArray(fileName, &_realSize.x, &_realSize.y);
+   _data = loadImageToArray(fileName, &_realSize.x, &_realSize.y);
    
    createTexture();
 }

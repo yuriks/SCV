@@ -556,9 +556,6 @@ void Kernel::applyDefaultTransformMatrix(void) {
 }
 
 void Kernel::showCopyrights(void) {
-   // free image credits
-   std::cout << FreeImage_GetCopyrightMessage() << std::endl;
-
    // scv credits
    std::cout
       << std::endl <<               
