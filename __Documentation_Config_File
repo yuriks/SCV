@@ -735,7 +735,7 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = ./include/GL \
-                         ./include/FreeImage.h \
+                         ./include/stb_image.h \
                          ./Demo \
                          ./include/SCV/DynamicCastIterator.h \
                          ./include/SCV/CodeGenerator.h \
@@ -744,7 +744,8 @@ EXCLUDE                = ./include/GL \
                          ./FreeFormInterfaceDesigner/src \
                          ./ExportedSource/src \
                          ./userProject/src \
-                         ./scv_examples/src
+                         ./scv_examples/src \
+                         ./SCV/src/stb_image.cpp
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 
