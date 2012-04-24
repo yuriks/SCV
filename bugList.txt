@@ -7,3 +7,5 @@ painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no pan
 - RadioButtonGroup pode ser comportado como componente
 
 - Combobox, dois cliques para abrir o menu
+
+- por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
