@@ -15,7 +15,7 @@ EXTRA_CXXFLAGS += -pedantic -Werror -Wall -Wextra -Wno-unused
 
 ALL_CXXFLAGS += -std=c++0x -MMD -I./src -I../include $(EXTRA_CXXFLAGS) $(CXXFLAGS)
 ALL_LDFLAGS += -L../bin $(LDFLAGS)
-LDLIBS += -lglut -lfreeimage -lGLEW -lGL -lGLU -lscv
+LDLIBS += -lglut -lGLEW -lGL -lGLU -lscv
 
 ifeq ($(UNAME), Darwin)
 	CXX := clang++
