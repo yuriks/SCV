@@ -38,6 +38,10 @@ void Canvas::display()
    glClearColor(1.f, 1.f, 1.f, 1.f);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+   //removido - Pozzer
+   //para permitir desenhar linhas e outros objetos sem textura. 
+   //o unico elemento que usa textura eh a classe Image, que agora habilita a textura a cada render()
+   //e retorna ao estado inicial apos a execucao. glPushAttrib ()
    glDisable(GL_TEXTURE_2D);
 
    render();
