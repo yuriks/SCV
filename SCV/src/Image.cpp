@@ -57,6 +57,13 @@ void Image::display(void) {
    Scissor::Info scissorInfo(currPosition.x, kernel->getHeight() - (getHeight() + currPosition.y), getWidth(), getHeight());
    scissor->pushScissor(scissorInfo);
 
+   //Pozzer - 2012
+   //mantem o estado atual da textura: para dois casos: 
+   //1) render dentro de uma canvas - a textura esta desabilitada
+   //2) render de componentes do scv - a textura ja deve estar habilitada
+   glPushAttrib(GL_ALL_ATTRIB_BITS); 
+   glEnable(GL_TEXTURE_2D); //
+   
    _cTexture->enable();
    scheme->applyDefaultModulate();
 
@@ -64,6 +71,10 @@ void Image::display(void) {
    _cTexture->display(currPosition.x, currPosition.y, 0, getWidth(), getHeight());
 
    _cTexture->disable();
+
+   //Pozzer - 2012
+   glPopAttrib();
+
 
    // components
    for (List::const_iterator iter = getChildren().begin(); iter != getChildren().end(); ++iter) {
