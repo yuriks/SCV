@@ -19,6 +19,7 @@ public:
    MyCanvas(const scv::Point& canvas_pos) : scv::Canvas(canvas_pos, canvas_pos + scv::Point(WINDOW_WIDTH, WINDOW_HEIGHT)),
       pos(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), cur_speed(2, 2), bg_color(.5f, .2f, .2f)
    {
+
    }
 
    // Muda a cor de fundo do canvas. (Esta funcao eh chamada pelo menu.)

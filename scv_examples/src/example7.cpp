@@ -23,6 +23,9 @@ public:
 
 	   time = 0.0;
 	   pos = scv::Point(100, 100);
+
+   	   //img = new scv::Image( scv::Point(100,100), "C:/tmp/SCV/nightly/scv_examples/src/img.png");
+   	   img = new scv::Image( scv::Point(50,50), scv::Point(200,200), "C:/tmp/img.png");
    }
 
    //// Callbacks do SCV
@@ -42,16 +45,23 @@ private:
    // Cor do fundo
    scv::Color4f bg_color;
 
+   scv::Image *img;
+
    double time;
 };
 
 void MyCanvas::render() 
 {
-   clear(bg_color[0], bg_color[1], bg_color[2]);
    color(1,0,0);
    rect(pos.x + 10, pos.y+ 10, 200, 200);
+   color(0,1,0);
+
+	//desenha uma imagem
+   img->setRelativePosition(scv::Point(12,12));
+   img->display();
+
    circleFill(150, 150, 40, 3 + (int)(pos.x/100.0));
-   text(100,100,"Pressione e mova o mouse");
+   text(100,100,"Pressione e mova o mouse para redimensionar");
 
    //desenha um relogio
    int x = (int)(cos(time) * 150);
@@ -59,12 +69,24 @@ void MyCanvas::render()
    clear(0, 1, 0);
    color(0,0,0);
    circle(300, 300, 110, 30);
+   color(1,0,1);
    line(300, 300, x + 300, y + 300);
+   
+
+   //color(1,0,1);
+   circleFill(250, 150, 40, 3 + (int)(pos.x/100.0));
+
+   //desenha uma imagem
+   img->setWidth(pos.x);
+   img->setRelativePosition(scv::Point(150+x,150+y));
+   img->display();
+
+
 }
 
 void MyCanvas::update() 
 {
-	time += (pos.x/1000.0);
+	time += (pos.x/2000.0);
 }
 
 void onKeyPressed(const scv::KeyEvent &evt)
