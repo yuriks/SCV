@@ -25,7 +25,7 @@ public:
 	   pos = scv::Point(100, 100);
 
    	   //img = new scv::Image( scv::Point(100,100), "C:/tmp/SCV/nightly/scv_examples/src/img.png");
-   	   img = new scv::Image( scv::Point(50,50), scv::Point(200,200), "C:/tmp/img.png");
+   	   img = new scv::Image( scv::Point(50,50), scv::Point(200,200), "resources/img.png");
    }
 
    //// Callbacks do SCV
