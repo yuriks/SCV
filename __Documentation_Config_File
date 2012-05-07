@@ -740,10 +740,9 @@ EXCLUDE                = ./include/GL \
                          ./include/SCV/DynamicCastIterator.h \
                          ./include/SCV/CodeGenerator.h \
                          ./src/CodeGenerator.cpp \
-                         ./InterfaceDesigner/src \
-                         ./FreeFormInterfaceDesigner/src \
-                         ./ExportedSource/src \
-                         ./userProject/src \
+                         ./InterfaceDesigner \
+                         ./FreeFormInterfaceDesigner \
+                         ./userProject \
                          ./scv_examples/src \
                          ./SCV/src/stb_image.cpp
 
