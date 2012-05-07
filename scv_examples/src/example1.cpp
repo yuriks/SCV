@@ -3,7 +3,8 @@
 SCV - Simple Components for Visual
 Developed at Federal University of Santa Maria - UFSM
 LaCA - Computer Applied Laboratory - Laboratório de Computação Aplicada
-www.inf.ufsm.br/~pozzer/scv/
+webpage: www.inf.ufsm.br/~pozzer/scv
+email: pozzer@inf.ufsm.br
 2007-2012
 
 */
