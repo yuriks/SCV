@@ -14,21 +14,21 @@ namespace {
 
 class MyTree : public scv::GenericTree {
 public: 
-   MyTree(scv::Point p1, scv::Point p2) : scv::GenericTree(p1, p2, new scv::GenericNode("Coisas")) {
+   MyTree(scv::Point p1, scv::Point p2) : scv::GenericTree(p1, p2, new scv::GenericNode("Things")) {
       // Criar um novo Textfield para ser usado junto da classe
       tf = new scv::TextField(scv::Point(-1,399), 251, "");
       scv::Kernel::getInstance()->addComponent(tf);
    }
 
    void buildTree() {
-      scv::GenericNode* node_num = new scv::GenericNode("Numeros");
+      scv::GenericNode* node_num = new scv::GenericNode("Numbers");
       for (char c = '0'; c < '9'; ++c) {
          scv::GenericNode* node = new scv::GenericNode(std::string(1, c));
          node_num->children.push_back(node);
       }
       getRootNode()->children.push_back(node_num);
 
-      scv::GenericNode* node_abc = new scv::GenericNode("Letras");
+      scv::GenericNode* node_abc = new scv::GenericNode("Characters");
       for (char c = 'A'; c < 'Z'; ++c) {
          scv::GenericNode* node = new scv::GenericNode(std::string(1, c));
          node_abc->children.push_back(node);

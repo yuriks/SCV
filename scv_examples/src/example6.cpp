@@ -106,16 +106,16 @@ void MyCanvas::onMouseHold(const scv::MouseEvent& evt)
 // Menu de troca de cores de background.
 class ColorsMenu : public scv::ContextMenu {
 public:
-   ColorsMenu(MyCanvas* canvas) : scv::ContextMenu("Cores"),
+   ColorsMenu(MyCanvas* canvas) : scv::ContextMenu("Colors"),
       canvas(canvas)
    {
       // Adiciona os itens ao menu.
-      addMenu(new scv::ContextMenu("Vermelho"));
-      addMenu(new scv::ContextMenu("Verde"));
-      addMenu(new scv::ContextMenu("Azul"));
-      addMenu(new scv::ContextMenu("Preto"));
-      addMenu(new scv::ContextMenu("Branco"));
-      addMenu(new scv::ContextMenu("Cinza"));
+      addMenu(new scv::ContextMenu("Red"));
+      addMenu(new scv::ContextMenu("Green"));
+      addMenu(new scv::ContextMenu("Blue"));
+      addMenu(new scv::ContextMenu("Black"));
+      addMenu(new scv::ContextMenu("White"));
+      addMenu(new scv::ContextMenu("Gray"));
    }
 
    // Callback chamada quando algum menu for acessado.
@@ -133,17 +133,17 @@ void ColorsMenu::onMenuAccessed(const std::deque<std::string>& address) {
    scv::Color4f color;
 
    // Decide a cor a atribuir baseado no item de menu selecionado.
-   if (str == "Vermelho")
+   if (str == "Red")
       color = scv::Color4f(.5f, .2f, .2f);
-   else if (str == "Verde")
+   else if (str == "Green")
       color = scv::Color4f(.2f, .5f, .2f);
-   else if (str == "Azul")
+   else if (str == "Blue")
       color = scv::Color4f(.2f, .2f, .5f);
-   else if (str == "Preto")
+   else if (str == "Black")
       color = scv::Color4f(0.f, 0.f, 0.f);
-   else if (str == "Branco")
+   else if (str == "White")
       color = scv::Color4f(1.f, 1.f, 1.f);
-   else if (str == "Cinza")
+   else if (str == "Gray")
       color = scv::Color4f(.5f, .5f, .5f);
    else
       // Nunca deve acontecer

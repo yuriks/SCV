@@ -61,7 +61,7 @@ void MyCanvas::render()
    img->display();
 
    circleFill(150, 150, 40, 3 + (int)(pos.x/100.0));
-   text(100,100,"Pressione e mova o mouse para redimensionar");
+   text(100,100,"Press and drag to resize");
 
    //desenha um relogio
    int x = (int)(cos(time) * 150);

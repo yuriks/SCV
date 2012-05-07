@@ -31,10 +31,10 @@ void example5_main() {
 
    scv::ButtonGroup * bgroup = new scv::ButtonGroup();
    
-   MyRadioButton * b1 = new MyRadioButton(scv::Point(20, 20),      "Botao 1");
-   MyRadioButton * b2 = new MyRadioButton(scv::Point(20, 20+30),   "Botao 2");
-   MyRadioButton * b3 = new MyRadioButton(scv::Point(20, 20+30*2), "Botao 3");
-   MyRadioButton * b4 = new MyRadioButton(scv::Point(20, 20+30*3), "Botao 4");
+   MyRadioButton * b1 = new MyRadioButton(scv::Point(20, 20),      "Button 1");
+   MyRadioButton * b2 = new MyRadioButton(scv::Point(20, 20+30),   "Button 2");
+   MyRadioButton * b3 = new MyRadioButton(scv::Point(20, 20+30*2), "Button 3");
+   MyRadioButton * b4 = new MyRadioButton(scv::Point(20, 20+30*3), "Button 4");
 
    b1->registerButtonGroup(bgroup);
    b2->registerButtonGroup(bgroup);

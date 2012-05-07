@@ -40,7 +40,7 @@ void example3_main() {
 	kernel->setWindowSize(500, 500);
 
    //Criar um novo Textfield para ser usado junto da classe
-   scv::TextField* tf = new scv::TextField(scv::Point(100, 200), 100, "Digite um Texto");
+   scv::TextField* tf = new scv::TextField(scv::Point(100, 200), 100, "Type a text");
    scv::Kernel::getInstance()->addComponent(tf);
 
    //Criar um novo Textbox para ser usado junto da classe
