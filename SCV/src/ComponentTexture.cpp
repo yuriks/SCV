@@ -55,6 +55,7 @@ ComponentTexture::~ComponentTexture(void) {
 }
 
 void ComponentTexture::display(void) {
+   glBegin(GL_QUADS);
    // 0,0
    glTexCoord2i(0, 0);
    glVertex2i(0, 0);
@@ -70,11 +71,16 @@ void ComponentTexture::display(void) {
    // 1,0
    glTexCoord2i(1, 0);
    glVertex2i(_textureSize[0], 0);
+
+   glEnd();
+
 }
 
 void ComponentTexture::display(const int translateX, const int translateY, GLuint clipX, GLuint clipY, GLsizei clipWidth, GLsizei clipHeight) {
    const GLsizei w = _textureSize[0];
    const GLsizei h = _textureSize[1];
+
+   glBegin(GL_QUADS);
 
    // 0,0
    tex_coord_pix(clipX, clipY, w, h);
@@ -91,6 +97,9 @@ void ComponentTexture::display(const int translateX, const int translateY, GLuin
    // 1,0
    tex_coord_pix(clipX + clipWidth, clipY, w, h);
    glVertex2i(translateX + clipWidth, translateY);
+
+   glEnd();
+
 }
 
 
@@ -98,6 +107,7 @@ void ComponentTexture::display(const Point &translate, int id) {
    const GLsizei w = _textureSize[0];
    const GLsizei h = _textureSize[1];
 
+   glBegin(GL_QUADS);
    // 0,0
    tex_coord_pix(_textCoords[id].x, _textCoords[id].y, w, h);
    glVertex2i(translate.x, translate.y);
@@ -113,12 +123,16 @@ void ComponentTexture::display(const Point &translate, int id) {
    // 1,0
    tex_coord_pix(_textCoords[id].x + _textSize[id].x, _textCoords[id].y, w, h);
    glVertex2i(translate.x + _textSize[id].x, translate.y);
+
+   glEnd();
+
 }
 
 void ComponentTexture::display(const Point &translate, int id, const Point &textSize) {
    const GLsizei w = _textureSize[0];
    const GLsizei h = _textureSize[1];
 
+   glBegin(GL_QUADS);
    // 0,0
    tex_coord_pix(_textCoords[id].x, _textCoords[id].y, w, h);
    glVertex2i(translate.x, translate.y);
@@ -134,6 +148,9 @@ void ComponentTexture::display(const Point &translate, int id, const Point &text
    // 1,0
    tex_coord_pix(_textCoords[id].x + _textSize[id].x, _textCoords[id].y, w, h);
    glVertex2i(translate.x + textSize.x, translate.y);
+
+   glEnd();
+
 }
 
 int ComponentTexture::addTexture(const Point &textCoords, MatrixTemplate<ColorRGBA> clip) {
