@@ -4,10 +4,10 @@
 O painel foi criado corretamente porém os outros dois componentes criados dentro do 
 painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)
 
-- RadioButtonGroup pode ser comportado como componente
-
 - Combobox, dois cliques para abrir o menu
 
 - por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
 
 - por que no arquivo http://www-usr.inf.ufsm.br/~pozzer/scv/class_application.html ta tudo 3x repetido?
+
+- excluir pastas de codigo gerado pelas tools no doxygem
