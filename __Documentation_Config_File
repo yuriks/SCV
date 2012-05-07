@@ -744,7 +744,8 @@ EXCLUDE                = ./include/GL \
                          ./FreeFormInterfaceDesigner \
                          ./userProject \
                          ./scv_examples/src \
-                         ./SCV/src/stb_image.cpp
+                         ./SCV/src/stb_image.cpp \
+						 ./debug
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 
