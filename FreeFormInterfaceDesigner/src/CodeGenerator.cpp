@@ -510,7 +510,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "   lockWindowSize(false);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - FreeForm Interface Designer\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.1 - FreeForm Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -646,7 +646,7 @@ std::string CodeGenerator::generateCodeAppCpp(void)
    applicationDotCpp += "   lockWindowSize(false);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - FreeForm Interface Designer\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.1 - FreeForm Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";

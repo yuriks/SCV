@@ -17,7 +17,7 @@ www.inf.ufsm.br/~pozzer/scv/
    #endif // _WIN32
 #endif // _MSC_VER
 
-#define SCV_VERSION 4.0
+#define SCV_VERSION 4.1
 
 #include "stdafx.h"
 

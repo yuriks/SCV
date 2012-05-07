@@ -9,7 +9,7 @@ Application::Application(void) : Kernel() {
    lockWindowSize(false);
    setFramesPerSecond(60);
 
-   setWindowTitle("SCV v4.0 - FreeForm Interface Designer");
+   setWindowTitle("SCV v4.1 - FreeForm Interface Designer");
 }
 
 Application::~Application(void) {

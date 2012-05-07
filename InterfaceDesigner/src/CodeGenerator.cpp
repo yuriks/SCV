@@ -224,7 +224,7 @@ void CodeGenerator::generateCode(void) {
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - Interface Designer\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.1 - Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";
@@ -377,7 +377,7 @@ std::string CodeGenerator::generateCodeAppCpp(void)
    applicationDotCpp += "   lockWindowSize(true);\n";
    applicationDotCpp += "   setFramesPerSecond(60);\n";
    applicationDotCpp += "\n";
-   applicationDotCpp += "   setWindowTitle(\"SCV v4.0 - Interface Designer\");\n";
+   applicationDotCpp += "   setWindowTitle(\"SCV v4.1 - Interface Designer\");\n";
    applicationDotCpp += "}\n";
    applicationDotCpp += "\n";
    applicationDotCpp += "Application::~Application(void) {\n";

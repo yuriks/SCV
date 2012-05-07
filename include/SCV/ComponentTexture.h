@@ -33,13 +33,11 @@ public:
    inline void enable(void) {
       glBindTexture(GL_TEXTURE_2D, _textureId);
       glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, _textureEnvMode);
-      //glBegin(GL_QUADS);
    }
 
    inline void disable(void) {
 	  //disables de current texture
 	  glBindTexture(GL_TEXTURE_2D, 0);
-      //glEnd();
    }
 
    inline GLsizei getWidth(void) const {
