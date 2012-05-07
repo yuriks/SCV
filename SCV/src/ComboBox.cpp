@@ -21,7 +21,7 @@ void ComboBox::ComboBoxMenu::onMenuAccessed(const std::deque<std::string> &addre
 
 void ComboBox::ComboBoxMenu::onStatusChange(void) {
    if (getStatus() == false) {
-      _host->_active = false;
+      _host->_active = true;
    }
 }
 
@@ -42,7 +42,7 @@ void ComboBox::ComboBoxMenu::addItem(const std::string item) {
 ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, std::string()), _comboBoxMenu(0) {
    _comboBoxMenu = new ComboBoxMenu(this);
    MenuHolder::getInstance()->registerMenu(_comboBoxMenu);
-
+   _active = false;
    _type = COMBOBOX;
 
    createTexture();
@@ -51,7 +51,7 @@ ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, 
 ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1, Point(p1.x + width, p1.y + 20), std::string()), _comboBoxMenu(0) {
    _comboBoxMenu = new ComboBoxMenu(this);
    MenuHolder::getInstance()->registerMenu(_comboBoxMenu);
-
+   _active = false;
    _type = COMBOBOX;
 
    createTexture();
@@ -111,6 +111,10 @@ void ComboBox::popupMenu(void) {
    holder->activeMenu(_comboBoxMenu, getAbsolutePosition() + Point(0, getHeight()));
 }
 
+void ComboBox::popMenu(void) {
+   _comboBoxMenu->setStatus(false);
+}
+
 void ComboBox::select(const std::string& value) {
    setString(value);
 
@@ -134,10 +138,11 @@ void ComboBox::processMouse(const scv::MouseEvent &evt) {
             popupMenu();
             _active = true;
          }
-      }
-      if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::RIGHT) {
+      }else if (evt.getState() == MouseEvent::CLICK && evt.getButton() == MouseEvent::RIGHT) {
          _active = false;
       }
+   }else if (evt.getState() == MouseEvent::CLICK){
+      _active = false;
    }
 }
 

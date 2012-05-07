@@ -30,6 +30,7 @@ public:
    void addItem(const std::string& str);
 
    void popupMenu(void);
+   void popMenu(void);
 
    virtual void display(void);
 
