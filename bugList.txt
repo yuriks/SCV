@@ -4,10 +4,7 @@ painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no pan
 
 - por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
 
------------------------------------------------------
-
-- TESTAR - LEONARDO - resize dos componentes no linux (SCV Desinger), problema de callback da glut.
-
+- resize dos componentes no linux (SCV Desinger), problema de callback da glut.
 -----------------------------------------------------
 
 - OK - POZZER - por que no arquivo http://www-usr.inf.ufsm.br/~pozzer/scv/class_application.html ta tudo 3x repetido?

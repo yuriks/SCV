@@ -202,8 +202,7 @@ void Kernel::updateFramesPerSecond(void) {
       #ifdef _WIN32
          Sleep((DWORD)(1000.f / FrameRate.fps) - timeInterval);
       #else // UNIX
-         //usleep(((1000.f / FrameRate.fps) - timeInterval) * 1000.f);
-         usleep(((1000.f / FrameRate.fps) - timeInterval));
+         usleep(((1000.f / FrameRate.fps) - timeInterval) * 1000.f);
       #endif // _WIN32
       FrameRate.baseTime = glutGet(GLUT_ELAPSED_TIME);
    } else {
