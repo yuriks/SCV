@@ -71,7 +71,7 @@ Application::Application(void) : Kernel() {
    currGroup = NULL;
 
    setWindowSize(s_defaultWindowWidth, s_defaultWindowHeight);
-   lockWindowSize(true);
+   lockWindowSize(false);
    setFramesPerSecond(60);
 
    setWindowTitle("SCV v4.1 - Interface Designer");
