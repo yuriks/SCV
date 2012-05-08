@@ -48,6 +48,7 @@ Kernel::Kernel(void) {
    Mouse.locked = false;
 
    _allowResizing = true;
+   _reshapeOnNextFrame = false;
    _windowTitle = s_defaultTitle;
    FrameRate.fps = s_defaultFramesPerSecond;
    FrameRate.currFps = s_defaultFramesPerSecond;
@@ -471,12 +472,18 @@ void Kernel::cbDisplay(void) {
       kernel->Display.currSize[1] = new_height;
 
       if (!kernel->_allowResizing) {
-         glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
+         kernel->_reshapeOnNextFrame = true;
       } else {
          kernel->Display.userSize[0] = new_width;
          kernel->Display.userSize[1] = new_height;
       }
       kernel->onSizeChange();
+   }
+
+   // GLUT "forgets" to reshape window sometimes
+   if (kernel->_reshapeOnNextFrame) {
+      glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
+      kernel->_reshapeOnNextFrame = true;
    }
 
    kernel->updateFramesPerSecond();

@@ -48,7 +48,7 @@ private:
 
 Application::Application(void) : Kernel() {
    setWindowSize(400 - 20, 120 - 40);
-   lockWindowSize(false);
+   lockWindowSize(true);
    setFramesPerSecond(60);
 
    setWindowTitle("SCV Example");

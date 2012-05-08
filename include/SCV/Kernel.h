@@ -146,6 +146,7 @@ protected:
    Component *_focusedComponent;
 
    bool _allowResizing;
+   bool _reshapeOnNextFrame;
       
    bool _componentRequestFocus;   
    ContextMenu *_contextMenu;
