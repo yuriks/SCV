@@ -132,7 +132,7 @@ void Kernel::setClipBoardString(const std::string strData) {
 void Kernel::initOpenGL(int argc, char* argv[]) {
    glutInit(&argc, argv);
 
-   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGBA);
+   glutInitDisplayMode (GLUT_RGB);
    glutInitWindowPosition (0, 0);
    glutCreateWindow (_windowTitle.c_str());
 
