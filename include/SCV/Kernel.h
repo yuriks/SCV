@@ -147,7 +147,7 @@ protected:
    Component *_focusedComponent;
 
    bool _needReshapeWindow;
-   bool _isActiveReshape;
+   bool _allowResizing;
       
    bool _componentRequestFocus;   
    ContextMenu *_contextMenu;

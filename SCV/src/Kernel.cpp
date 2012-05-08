@@ -48,15 +48,13 @@ Kernel::Kernel(void) {
    Mouse.locked = false;
 
    _needReshapeWindow = true;
-   _isActiveReshape = true;
+   _allowResizing = true;
    _windowTitle = s_defaultTitle;
    FrameRate.fps = s_defaultFramesPerSecond;
    FrameRate.currFps = s_defaultFramesPerSecond;
 
-   Display.currSize[0] = s_defaultWidth;
-   Display.currSize[1] = s_defaultHeight;
-
-   memcpy(Display.userSize, Display.currSize, sizeof(unsigned int) * 2);
+   Display.currSize[0] = Display.userSize[0] = s_defaultWidth;
+   Display.currSize[1] = Display.userSize[1] = s_defaultHeight;
 
    Display.isFullScreen = false;
 
@@ -86,7 +84,7 @@ Kernel::Kernel(void) {
    _componentRequestFocus = false;
    Mouse.componentRequestUse = NULL;
 
-   srand((int)time(NULL));
+   srand((unsigned int)time(NULL));
 }
 
 //! Returns the current contents of the clipboard.
@@ -459,15 +457,19 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
 void Kernel::cbReshape(int w, int h) {
    static Kernel* kernel = Kernel::getInstance();
 
-   if (!kernel->_isActiveReshape && (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]))
-      kernel->_needReshapeWindow = true;
+   if (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]) {
+      kernel->Display.currSize[0] = w;
+      kernel->Display.currSize[1] = h;
 
-   kernel->Display.currSize[0] = w;
-   kernel->Display.currSize[1] = h;
-   kernel->Display.userSize[0] = w;
-   kernel->Display.userSize[1] = h;
+      if (kernel->_allowResizing) {
+         kernel->Display.userSize[0] = w;
+         kernel->Display.userSize[1] = h;
 
-   kernel->onSizeChange();
+         kernel->onSizeChange();
+      } else {
+         kernel->_needReshapeWindow = true;
+      }
+   }
 }
 
 void Kernel::cbDisplay(void) {
@@ -479,8 +481,9 @@ void Kernel::cbDisplay(void) {
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
    if (kernel->_needReshapeWindow) {
-      glutReshapeWindow(kernel->Display.userSize[0],kernel->Display.userSize[1]);
+      glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
       kernel->_needReshapeWindow = false;
+      kernel->onSizeChange();
    }
 
    kernel->updateFramesPerSecond();
@@ -664,7 +667,7 @@ bool Kernel::willAppearOnScreen(Component* component) {
 
 //! Locks or unlocks the window size, so that the user can not resize it by dragging.
 void Kernel::lockWindowSize(bool lock) {
-   _isActiveReshape = !lock;
+	_allowResizing = !lock;
 }
 
 } // namespace scv
