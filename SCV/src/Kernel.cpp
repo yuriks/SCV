@@ -145,7 +145,6 @@ void Kernel::initOpenGL(int argc, char* argv[]) {
    glutKeyboardFunc(cbKey);
    glutKeyboardUpFunc(cbKeyUp);
 
-   glutReshapeFunc(cbReshape);
    glutDisplayFunc(cbDisplay);
 
    glutIdleFunc(cbDisplay);
@@ -453,21 +452,6 @@ void Kernel::cbKeyUp(unsigned char key, int x, int y) {
    }
 }
 
-void Kernel::cbReshape(int w, int h) {
-   static Kernel* kernel = Kernel::getInstance();
-
-   if (w != kernel->Display.currSize[0] || h != kernel->Display.currSize[1]) {
-      kernel->Display.currSize[0] = w;
-      kernel->Display.currSize[1] = h;
-
-      if (kernel->_allowResizing) {
-         kernel->Display.userSize[0] = w;
-         kernel->Display.userSize[1] = h;
-      }
-      kernel->onSizeChange();
-   }
-}
-
 void Kernel::cbDisplay(void) {
    static Kernel* kernel = Kernel::getInstance();
    static Cursor* cursor = Cursor::getInstance();
@@ -489,8 +473,10 @@ void Kernel::cbDisplay(void) {
       if (!kernel->_allowResizing) {
          glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
       } else {
-         cbReshape(new_width, new_height);
+         kernel->Display.userSize[0] = new_width;
+         kernel->Display.userSize[1] = new_height;
       }
+      kernel->onSizeChange();
    }
 
    kernel->updateFramesPerSecond();

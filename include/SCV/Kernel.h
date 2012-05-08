@@ -110,7 +110,6 @@ protected:
    static void cbKeyUp(unsigned char key, int x, int y);
       
    //Display
-   static void cbReshape(int w, int h);
    static void cbDisplay(void);
 
    static const std::string s_defaultTitle;
