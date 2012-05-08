@@ -47,7 +47,6 @@ Kernel::Kernel(void) {
 
    Mouse.locked = false;
 
-   _needReshapeWindow = true;
    _allowResizing = true;
    _windowTitle = s_defaultTitle;
    FrameRate.fps = s_defaultFramesPerSecond;
@@ -464,11 +463,8 @@ void Kernel::cbReshape(int w, int h) {
       if (kernel->_allowResizing) {
          kernel->Display.userSize[0] = w;
          kernel->Display.userSize[1] = h;
-
-         kernel->onSizeChange();
-      } else {
-         kernel->_needReshapeWindow = true;
       }
+      kernel->onSizeChange();
    }
 }
 
@@ -480,10 +476,21 @@ void Kernel::cbDisplay(void) {
    static MenuHolder *menu = MenuHolder::getInstance();
    static InternalFrameHolder *window = InternalFrameHolder::getInstance();
 
-   if (kernel->_needReshapeWindow) {
-      glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
-      kernel->_needReshapeWindow = false;
-      kernel->onSizeChange();
+   // GLUT reshape callback sometime misses events
+   int new_width = glutGet(GLUT_WINDOW_WIDTH);
+   int new_height = glutGet(GLUT_WINDOW_HEIGHT);
+
+   if (new_width  != kernel->Display.currSize[0] ||
+       new_height != kernel->Display.currSize[1])
+   {
+      kernel->Display.currSize[0] = new_width;
+      kernel->Display.currSize[1] = new_height;
+
+      if (!kernel->_allowResizing) {
+         glutReshapeWindow(kernel->Display.userSize[0], kernel->Display.userSize[1]);
+      } else {
+         cbReshape(new_width, new_height);
+      }
    }
 
    kernel->updateFramesPerSecond();

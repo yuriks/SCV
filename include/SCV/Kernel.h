@@ -146,7 +146,6 @@ protected:
    
    Component *_focusedComponent;
 
-   bool _needReshapeWindow;
    bool _allowResizing;
       
    bool _componentRequestFocus;   
