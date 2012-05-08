@@ -520,7 +520,7 @@ void CodeGenerator::generateCode(void) {
       "   _mainPanel = new scv::Panel(scv::Point(0, 0), scv::Point(" + scv::toString(Application::getInstance()->getWidth()) + ", " + scv::toString(Application::getInstance()->getHeight()) + "));\n"
       "\n"
    //applicationDotCpp += static_cast<Application *>(Application::getInstance())->getLayoutCode("_mainPanel") + "\n";
-      "   addComponent(_mainPanel);\n";
+      "   addComponent(_mainPanel);\n"
       "\n" +
       allocationCode +
       "}\n"
