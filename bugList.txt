@@ -2,8 +2,6 @@
 O painel foi criado corretamente porém os outros dois componentes criados dentro do 
 painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)
 
-- por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
-
 -----------------------------------------------------
 
 - OK - POZZER - por que no arquivo http://www-usr.inf.ufsm.br/~pozzer/scv/class_application.html ta tudo 3x repetido?
@@ -11,3 +9,4 @@ painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no pan
 - OK - LEONARDO - Combobox, dois cliques para abrir o menu
 - OK - Pozzer - erro para exibicao de texturas/imagens - glEnable(GL_TEXTURE_2D)
 - OK - yuriks - resize dos componentes no linux (SCV Desinger)
+- OK - yuriks - por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0

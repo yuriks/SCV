@@ -37,7 +37,7 @@ public:
    /* Restrict Functions                                                   */
    /************************************************************************/
    /*! Callback called when the widget's state changes.
-    * \bug Called even when setState(bool) sets the state to the same value as before.
+    * \note Called even when setState(bool) sets the state to the same value as before.
     */
    virtual void onValueChange(void) = 0;
 
