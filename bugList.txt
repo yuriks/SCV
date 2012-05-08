@@ -1,4 +1,16 @@
 
+REVIEW: Width scv::Spinner
+
+TODO: scv::ComboBox::clear()
+
+REDO: scv::ColorPicker (use scv::GroupLayout)
+
+Spinner atualiza o value a cada tecla digitada.
+Ex: se eu tenho minValue=5, não consegue digitar 17.
+Acho q se atualizar o valor qnd tecla o enter ou quando perde o foco o componente fica melhor.
+
+Verificar por que tem duas classes de cor.
+
 
 -----------------------------------------------------
 
