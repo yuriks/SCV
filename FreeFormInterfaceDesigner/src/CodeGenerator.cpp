@@ -24,13 +24,13 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad) {
       y = child->getRelativePosition().y + child->getHeight();
       code += "      scv::Panel *panel" + scv::toString(count_n) + " = new scv::Panel(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";
       code += "      panel" + scv::toString(count_n) + "->setParent(" + dad + ");\n";
-      count[child->getType()] += 1;
       if(!child->_children.empty()) {
          for(auto c = child->_children.begin(); c != child->_children.end(); c++) {
             scv::Component *a = *c;
             code += addChildren(a, "panel" + scv::toString(count_n));
          }
       }
+      count[child->getType()] += 1;
       code += "\n";
      
    }else if(type == scv::Component::COLORPICKER) { // ColorPicker
@@ -230,7 +230,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp) {
    if(type == scv::Component::PANEL) { // Panel
       if(comp == static_cast<Application*>(scv::Kernel::getInstance())->_mainPanel)
          return "";
-      int count_n = 0;
+      int count_n = count[comp->getType()];
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();
       code += "   scv::Panel *panel" + scv::toString(count[comp->getType()]) + " = new scv::Panel(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";
