@@ -11,6 +11,8 @@ Acho q se atualizar o valor qnd tecla o enter ou quando perde o foco o component
 
 Verificar por que tem duas classes de cor.
 
+- Adicionar separador no ContextMenu do freeformgenerator
+
 
 -----------------------------------------------------
 
@@ -20,6 +22,6 @@ Verificar por que tem duas classes de cor.
 - OK - Pozzer - erro para exibicao de texturas/imagens - glEnable(GL_TEXTURE_2D)
 - OK - yuriks - resize dos componentes no linux (SCV Desinger)
 - OK - yuriks - por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
-- OK - tiagob - - Geração do código do painel. Dentro do painel foi criado um radiobutton e um label.
-O painel foi criado corretamente porém os outros dois componentes criados dentro do 
+- OK - tiagob - Geração do código do painel. Dentro do painel foi criado um radiobutton e um label.
+- OK - tiagob - O painel foi criado corretamente porém os outros dois componentes criados dentro do 
 painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)
