@@ -13,6 +13,7 @@ Verificar por que tem duas classes de cor.
 
 - Adicionar separador no ContextMenu do freeformgenerator
 
+- Dois cliques em slider e outros componentes (revisar os outros)
 
 -----------------------------------------------------
 
