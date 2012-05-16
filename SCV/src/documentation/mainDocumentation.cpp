@@ -15,8 +15,8 @@ São disponibilizados três manuais para o usuário:
 - VisualC++ 2010
 
 A última versão do SCV está disponível em: 
-- http://www-usr.inf.ufsm.br/~pozzer/scv/download
-- github
+- http://www.inf.ufsm.br/~pozzer/scv/download (inclusive versões antigas)
+- https://www.github.com/yuriks/SCV
 
 \section credits Créditos
 
@@ -52,7 +52,7 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 
 - SCV: contém todo o código fonte do SCV. Quando compilado, gera as libs (scv-debug e scv-release) que são necessárias para compilação dos demais projetos (os designers de interface e os exemplos).
 - Include: contém os arquivos de cabeçalho do SCV. 
-- Lib: contém as libs usadas para compilar o SCV (glew, freeglut, freeimage e openGL) e as libs geradas a partir da compilação do SCV.
+- Lib: contém as libs usadas para compilar o SCV (glew, freeglut e openGL) e as libs geradas a partir da compilação do SCV.
 - InterfaceDesigner: contém o código do SCVDesigner, uma aplicação desenvolvida para criação de interfaces com componentes redimensionáveis. Para maiores detalhes da aplicação, consultar o manual.
 - FreeFormInterfaceDesigner: semelhante ao InterfaceDesigner, é um aplicação que permite a construção de interfaces gráficas do SVC que não tem o recurso de redimensionamento de componentes. 
 - Documentation: contém páginas HTML geradas pelo Doxygen com a documentação da API, e também manuais de uso da API e das ferramentas de geração de interfaces.
@@ -61,7 +61,7 @@ A estrutura de arquivos do SCV é apresentada na seguinte figura.
 
 \section linux Linux - Makefile
 
-Para compilar a biblioeca no Linux, é necessário instalar os pacotes de desenvolvimento da FreeImage, Freeglut e GLEW, além das bibliotecas do OpenGL (do Projeto Mesa ou de alguma implementação de proprietária). Após, basta executar o make no diretório raiz do projeto. Para realizar uma build otimizada use 'make release'. Os binários serão colocados no diretório bin/.
+Para compilar a biblioeca no Linux, é necessário instalar os pacotes de desenvolvimento da Freeglut e GLEW, além das bibliotecas do OpenGL (do Projeto Mesa ou de alguma implementação de proprietária). Após, basta executar o make no diretório raiz do projeto. Para realizar uma build otimizada use 'make release'. Os binários serão colocados no diretório bin/.
 
 Os 4 módulos principais estão divididos em diretórios separados. O makefile do diretório raiz automaticamente faz build de todos os módulos. Regras específicas de cada módulo estão no arquivo rules.mk presente em cada diretório, e os arquivos Makefile e common-rules.mk contém o framework geral de compilação.
 
@@ -77,7 +77,7 @@ A solution scv.sln engloba 4 projetos Microsoft Visual Studio 10, que compilam o
  
   \image html images/startupproject.png
  
- Para compilar uma aplicação com o SCV deve-se adicionar 5 bibliotecas: Freeglut.lib, Freeimage.lib, Glew32.lib, openGL.lib e scv-debug.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
+ Para compilar uma aplicação com o SCV deve-se adicionar 5 bibliotecas: Freeglut.lib, Glew32.lib, openGL.lib e scv-debug.lib (ou scv-release.lib). Na interface do Visual Studio 2010, isso pode ser feito nos campos properties/VC++ Directories e  properties/Linker/Input, como mostrado nas seguintes figuras. Esta configuração leva em consideração a organização de pastas do SCV. Isso pode ser modificado livremente pelo programador. 
 
  \image html images/include.png
  
