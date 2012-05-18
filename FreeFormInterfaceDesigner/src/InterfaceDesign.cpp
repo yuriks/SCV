@@ -19,6 +19,7 @@ InterfaceDesign::InterfaceDesign(scv::Panel *_panel, bool remove) : ContextMenu(
 
    addMenu(new ContextMenu("Clear Interface"));
    addMenu(new ContextMenu("Generate Code..."));
+   addMenu(new ContextMenu("Generate Code with Custom Classes"));
    
    panel->addMenu(new ContextMenu("Image"));
    panel->addMenu(new ContextMenu("Internal Frame"));
@@ -61,8 +62,11 @@ void InterfaceDesign::onMenuAccessed(const std::deque<std::string> &address) {
 		  scv::Kernel::getInstance()->removeComponent(m_panel);
       } else if (address[1] == "Generate Code...") {
             Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
-            kernel->generateCode();
-      }else if (address[1] == "Clear Interface")
+            kernel->generateCode(false);
+	  }else if (address[1] == "Generate Code with Custom Classes") {
+		   Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
+		   kernel->generateCode(true);
+	  }else if (address[1] == "Clear Interface")
       {
          Application *kernel = static_cast<Application*>(scv::Kernel::getInstance());
          kernel->clearInterface();

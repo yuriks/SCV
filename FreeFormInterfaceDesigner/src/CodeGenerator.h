@@ -12,10 +12,13 @@ friend class Singleton<CodeGenerator>;
 public:
    int count[NTYPES];
 
-   std::string createAllocationCode(scv::Component *comp);
-   std::string addChildren(scv::Component *child, std::string dad);
+   std::string createAllocationCode(scv::Component *comp, bool CustomClass);
+   std::string addChildren(scv::Component *child, std::string dad, bool CustomClass);
+   std::string createCustomClassCodeH(scv::Component *comp);
+   std::string createCustomClassCodeCpp(scv::Component *comp);
+   std::string CallbacksCode(int type);
    
-   void generateCode(void);
+   void generateCode(bool CustomClass);
    std::string generateCodeMain(void);
    std::string generateCodeAppH(void);
    std::string generateCodeAppCpp(void);

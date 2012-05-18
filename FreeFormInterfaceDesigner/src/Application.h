@@ -17,7 +17,7 @@ public:
    virtual void onSizeChange();
    virtual void onDisplay();
 
-   void generateCode();
+   void generateCode(bool CustomClass);
    void clearRecursive(scv::Component*);
    void clearInterface();
 

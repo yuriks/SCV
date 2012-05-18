@@ -28,9 +28,9 @@ void Application::onSizeChange() {
 void Application::onDisplay() {
 }
 
-void Application::generateCode()
+void Application::generateCode(bool CustomClass)
 {
-   CodeGenerator::getInstance()->generateCode();
+   CodeGenerator::getInstance()->generateCode(CustomClass);
 }
 
 void Application::clearRecursive(scv::Component* comp)
