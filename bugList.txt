@@ -1,3 +1,5 @@
+REDO: scv::Spinner (value update)
+
 REDO: scv::ColorPicker (use scv::GroupLayout)
 
 Spinner atualiza o value a cada tecla digitada.
