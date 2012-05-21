@@ -209,7 +209,12 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
       if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
          _upPress = true;
-         if (getValue() == getMaxValue()) return;
+         if (getValue() >= getMaxValue()) 
+         {
+            setValue(getMaxValue());
+            onMouseClick(evt);
+            return;
+         }
          _whileUp.start();
          IncrementStep();
          onMouseClick(evt);
@@ -228,7 +233,12 @@ void Spinner::processMouse(const scv::MouseEvent &evt) {
       if (evt.getButton() == MouseEvent::LEFT && evt.getState() == MouseEvent::CLICK) {
          kernel->requestComponentFocus(this);
          _downPress = true;
-         if (getValue() == getMinValue()) return;
+         if (getValue() <= getMinValue()) 
+         {
+            setValue(getMinValue());
+            onMouseClick(evt);
+            return;
+         }
          _whileDown.start();
          DecrementStep();
          onMouseClick(evt);
@@ -272,7 +282,9 @@ void Spinner::processKey(const scv::KeyEvent &evt) {
       if (evt.state == KeyEvent::DOWN) IncrementStep();
    } else if (evt.getKeyString() == "Down" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
       if (evt.state == KeyEvent::DOWN) DecrementStep();
-   } 
+   } else if (evt.getKeyString() == "Enter" && (isFocused() || kernel->getFocusedComponent() == _textField)) {
+      _textField->setString(toString(getValue()));
+   }
    if (isFocused() || kernel->getFocusedComponent() == _textField) {
       kernel->requestComponentFocus(_textField);
       _textField->processKey(evt);      
