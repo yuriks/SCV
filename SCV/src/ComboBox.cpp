@@ -36,17 +36,24 @@ void ComboBox::ComboBoxMenu::addItem(const std::string item) {
    addMenu(new ContextMenu(item));
 }
 
+void ComboBox::clear()
+{
+   _comboBoxMenu->removeAllMenus();
+   _active = false;
+   setString("");
+}
+
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 
-ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, std::string()), _comboBoxMenu(0) {
+/*ComboBox::ComboBox(const scv::Point &p1, const scv::Point &p2) : Button(p1, p2, std::string()), _comboBoxMenu(0) {
    _comboBoxMenu = new ComboBoxMenu(this);
    MenuHolder::getInstance()->registerMenu(_comboBoxMenu);
    _active = false;
    _type = COMBOBOX;
 
    createTexture();
-}
+}*/
 
 ComboBox::ComboBox(const scv::Point &p1, unsigned int width) : Button(p1, Point(p1.x + width, p1.y + 20), std::string()), _comboBoxMenu(0) {
    _comboBoxMenu = new ComboBoxMenu(this);

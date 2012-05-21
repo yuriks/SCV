@@ -15,7 +15,7 @@ namespace scv {
 class ComboBox : public Button {
 friend class ComboBoxMenuStyle;
 public:
-   ComboBox(const scv::Point &p1, const scv::Point &p2);
+   //ComboBox(const scv::Point &p1, const scv::Point &p2);
    ComboBox(const scv::Point &p, unsigned int width);
    virtual ~ComboBox(void);
 
@@ -31,6 +31,8 @@ public:
 
    void popupMenu(void);
    void popMenu(void);
+   
+   void clear();
 
    virtual void display(void);
 
