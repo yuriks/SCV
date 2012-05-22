@@ -1,19 +1,15 @@
-REDO: scv::ColorPicker (use scv::GroupLayout)
-
-Verificar por que tem duas classes de cor.
-
-- Adicionar separador no ContextMenu do freeformgenerator
-
------------------------------------------------------
-
+- OK - POZZER - Adicionar separador no ContextMenu do freeformgenerator
 - OK - POZZER - por que no arquivo http://www-usr.inf.ufsm.br/~pozzer/scv/class_application.html ta tudo 3x repetido?
 - OK - POZZER - excluir pastas de codigo gerado pelas tools no doxygem
 - OK - LEONARDO - Combobox, dois cliques para abrir o menu
 - OK - Pozzer - erro para exibicao de texturas/imagens - glEnable(GL_TEXTURE_2D)
 - OK - yuriks - resize dos componentes no linux (SCV Desinger)
 - OK - yuriks - por que bug list na documentacao do doxygen? La tem a funcao scv::StateButton::onValueChange (void)=0
+- OK - yuriks - Verificar por que tem duas classes de cor.
 - OK - tiagob - Geração do código do painel. Dentro do painel foi criado um radiobutton e um label.
 - OK - tiagob - O painel foi criado corretamente porém os outros dois componentes criados dentro do 
 painel foram gerados com o pai errado. (era pra ser panel1 foi adicionado no panel0)
 - OK - Dois cliques em slider
 - OK - atualização da variável value (tecla "Enter")
+
+REDO: scv::ColorPicker (use scv::GroupLayout) - WONTFIX
