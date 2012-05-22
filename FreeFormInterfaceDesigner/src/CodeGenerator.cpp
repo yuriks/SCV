@@ -27,6 +27,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
       else
         code += "   Panel" + scv::toString(count_n) + " *panel" + scv::toString(count_n) + " = new Panel" + scv::toString(count_n) + "(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";
       code += "   panel" + scv::toString(count_n) + "->setParent(" + dad + ");\n";
+      code += "\n";
       count[child->getType()] += 1;
       if(!child->_children.empty()) {
          for(auto c = child->_children.begin(); c != child->_children.end(); c++) {
@@ -34,7 +35,6 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
             code += addChildren(a, "panel" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    }else if(type == scv::Component::COLORPICKER) { // ColorPicker
       if(customClass == false)
         code += "   scv::ColorPicker *colorPicker" + scv::toString(count[child->getType()]) + " = new scv::ColorPicker(scv::Point(" + scv::toString(child->getRelativePosition()) + "));\n";
@@ -151,6 +151,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
       else
          code += "   InternalFrame" + scv::toString(count[child->getType()]) + " *internalFrame" + scv::toString(count[child->getType()]) + " = new InternalFrame" + scv::toString(count[child->getType()]) + "(" + scv::toString(internalFrame->getInternalSize()) + ", \"" + scv::toString(internalFrame->getTitle()) + "\");\n";
       code += "   addComponent(internalFrame" + scv::toString(count[child->getType()]) + ");\n";
+      code += "\n";
       count[child->getType()] += 1;
        if(!child->_children.empty()) {
          auto c = child->_children.begin();
@@ -163,7 +164,6 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
             }
          }
       }
-      code += "\n";
    } else if(type == scv::Component::MENUBAR) {// MenuBar
       if(customClass == false)
          code += "   scv::MenuBar *menuBar" + scv::toString(count[child->getType()]) + " = new scv::MenuBar(" + scv::toString(child->getWidth()) + ");\n";
@@ -181,6 +181,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
       else
          code += "   TabbedPane" + scv::toString(count[child->getType()]) + " *tabbedPane" + scv::toString(count[child->getType()]) + " = new TabbedPane" + scv::toString(count[child->getType()]) + "(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";
       code += "   tabbedPane" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
+      code += "\n";
       count[child->getType()] += 1;
       if(!child->_children.empty()) {
          for(auto c = child->_children.begin(); c != child->_children.end(); c++) {
@@ -188,7 +189,6 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
             code += addChildren(a, "tabbedPane" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    } else if(type == scv::Component::SCROLLCOMPONENT) {// ScrollComponent
       x = child->getRelativePosition().x + child->getWidth();
       y = child->getRelativePosition().y + child->getHeight();
@@ -208,6 +208,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
          else
             code += "   Panel" + scv::toString(panelNumber) + " *panel" + scv::toString(panelNumber) + " = new Panel" + scv::toString(panelNumber) + "(scv::Point(" + scv::toString(a->getRelativePosition().x) + ", " + scv::toString(a->getRelativePosition().y) + "),  scv::Point(" + scv::toString(a->getWidth()) + ", " + scv::toString(a->getHeight()) + "));\n";
          code += "   scrollComponent" + scv::toString(count_n) + "->setComponent(panel" + scv::toString(panelNumber) + ");\n";
+         code += "\n";
          count[a->getType()] += 1;
          if(!a->_children.empty()) {
             for(auto f = a->_children.begin(); f != a->_children.end();f++) {
@@ -216,7 +217,6 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
             }
          }
       }
-      code += "\n";
    } else if(type == scv::Component::IMAGE) {// Image
       scv::Image *image = (scv::Image*)(child);
       int count_n = count[child->getType()];
@@ -227,6 +227,7 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
       else
          code += "   Image" + scv::toString(count[child->getType()]) + " *image" + scv::toString(count[child->getType()]) + " = new Image" + scv::toString(count[child->getType()]) + "(scv::Point(" + scv::toString(child->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), \"" + scv::toString(image->getPath()) + "\");\n";
       code += "   image" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
+      code += "\n";
       count[child->getType()] += 1;
       if(!child->_children.empty()) {
          for(auto c = child->_children.begin(); c != child->_children.end(); c++) {
@@ -234,7 +235,6 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
             code += addChildren(a, "image" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    } else if(type == scv::Component::TABLE) {//Table
       scv::Table *table = (scv::Table*)(child);
       if(customClass == false)
@@ -306,6 +306,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
       else
         code += "   Panel" + scv::toString(count[comp->getType()]) + " *panel" + scv::toString(count[comp->getType()]) + " = new Panel" + scv::toString(count[comp->getType()]) + "(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";        
       code += "   addComponent(panel" + scv::toString(count[comp->getType()]) + ");\n";
+      code += "\n";
       count[comp->getType()] += 1;
       if(!comp->_children.empty()) {
          for(auto c = comp->_children.begin(); c != comp->_children.end(); c++) {
@@ -313,7 +314,6 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
             code += addChildren(a, "panel" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    } else if(type == scv::Component::COLORPICKER) { // ColorPicker
       if(customClass == false)
         code += "   scv::ColorPicker *colorPicker" + scv::toString(count[comp->getType()]) + " = new scv::ColorPicker(scv::Point(" + scv::toString(comp->getRelativePosition()) + "));\n";
@@ -461,6 +461,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
       else
          code += "   TabbedPane" + scv::toString(count[comp->getType()]) + " *tabbedPane" + scv::toString(count[comp->getType()]) + " = new TabbedPane" + scv::toString(count[comp->getType()]) + "(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "));\n";
       code += "   addComponent(tabbedPane" + scv::toString(count[comp->getType()]) + ");\n";
+      code += "\n";
       count[comp->getType()] += 1;
       if(!comp->_children.empty()) {
          for(auto c = comp->_children.begin(); c != comp->_children.end(); c++) {
@@ -468,7 +469,6 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
             code += addChildren(a, "tabbedPane" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    } else if(type == scv::Component::SCROLLCOMPONENT) {// ScrollComponent
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();
@@ -487,6 +487,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
          else
             code += "   Panel" + scv::toString(panelNumber) + " *panel" + scv::toString(panelNumber) + " = new Panel" + scv::toString(panelNumber) + "(scv::Point(" + scv::toString(a->getRelativePosition().x) + ", " + scv::toString(a->getRelativePosition().y) + "),  scv::Point(" + scv::toString(a->getWidth()) + ", " + scv::toString(a->getHeight()) + "));\n";
          code += "   scrollComponent" + scv::toString(count_n) + "->setComponent(panel" + scv::toString(panelNumber) + ");\n";
+         code += "\n";
          count[a->getType()] += 1;
          if(!a->_children.empty()) {
             for(auto f = a->_children.begin(); f != a->_children.end();f++) {
@@ -495,7 +496,6 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
             }
          }
       }
-      code += "\n";
    } else if(type == scv::Component::IMAGE) {// Image
       scv::Image *image = (scv::Image*)(comp);
       int count_n = count[comp->getType()];
@@ -506,6 +506,7 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
       else
          code += "   Image" + scv::toString(count[comp->getType()]) + " *image" + scv::toString(count[comp->getType()]) + " = new Image" + scv::toString(count[comp->getType()]) + "(scv::Point(" + scv::toString(comp->getRelativePosition()) + "), scv::Point(" + scv::toString(x) + ", " + scv::toString(y) + "), \"" + scv::toString(image->getPath()) + "\");\n";
       code += "   addComponent(image" + scv::toString(count[comp->getType()]) + ");\n";
+      code += "\n";
       count[comp->getType()] += 1;
       if(!comp->_children.empty()) {
          for(auto c = comp->_children.begin(); c != comp->_children.end(); c++) {
@@ -513,7 +514,6 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
             code += addChildren(a, "image" + scv::toString(count_n), customClass);
          }
       }
-      code += "\n";
    } else if(type == scv::Component::TABLE) {//Table
       scv::Table *table = (scv::Table*)(comp);
       if(customClass == false)

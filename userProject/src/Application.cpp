@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Widget.h"
 
 Application::Application(void) : Kernel() {
    setWindowSize(1050, 800);
@@ -16,20 +17,23 @@ void Application::init(void) {
 
    addComponent(_mainPanel);
 
-   scv::MenuBar *menuBar0 = new scv::MenuBar(1050);
-   addComponent(menuBar0);
+   Panel0 *panel0 = new Panel0(scv::Point(377,173), scv::Point(897, 597));
+   addComponent(panel0);
 
-   scv::ProgressBar *progressBar0 = new scv::ProgressBar(scv::Point(4,43), scv::Point(297, 116), 0);
-   addComponent(progressBar0);
+   Panel1 *panel1 = new Panel1(scv::Point(91,38), scv::Point(461, 388));
+   panel1->setParent(panel0);
 
-   scv::CheckBox *checkBox0 = new scv::CheckBox(scv::Point(43,181), 1, "do nothing");
-   addComponent(checkBox0);
+   Button0 *button0 = new Button0(scv::Point(36,40), scv::Point(89, 64), "");
+   button0->setParent(panel1);
 
-   scv::ToggleButton *toggleButton0 = new scv::ToggleButton(scv::Point(180,138), scv::Point(386, 228), 1, "toggle button");
-   addComponent(toggleButton0);
+   Label0 *label0 = new Label0(scv::Point(113,114), scv::Point(189, 127), "");
+   label0->setParent(panel1);
 
-   scv::ColorPicker *colorPicker0 = new scv::ColorPicker(scv::Point(7,250));
-   addComponent(colorPicker0);
+   Canvas0 *canvas0 = new Canvas0(scv::Point(12,95), scv::Point(212, 295));
+   canvas0->setParent(panel1);
+
+   MenuBar0 *menuBar0 = new MenuBar0(370);
+   menuBar0->setParent(panel1);
 
 }
 
