@@ -170,6 +170,9 @@ std::string CodeGenerator::addChildren(scv::Component *child, std::string dad, b
       else
          code += "   MenuBar" + scv::toString(count[child->getType()]) + " *menuBar" + scv::toString(count[child->getType()]) + " = new MenuBar" + scv::toString(count[child->getType()]) + "(" + scv::toString(child->getWidth()) + ");\n";
       code += "   menuBar" + scv::toString(count[child->getType()]) + "->setParent(" + dad + ");\n";
+      scv::MenuBar *menu = (scv::MenuBar*)(child);
+      for(int i=0; i<menu->getNumberOfMenus(); i++)
+         code += "   menuBar" + scv::toString(count[child->getType()]) + "->addMenu(new scv::ContextMenu(\"menu" + scv::toString(i) + "\"));\n";
       count[child->getType()] += 1;
       code += "\n";
    } else if(type == scv::Component::TABBEDPANE) {// TabbedPane
@@ -450,8 +453,11 @@ std::string CodeGenerator::createAllocationCode(scv::Component *comp, bool custo
       else
          code += "   MenuBar" + scv::toString(count[comp->getType()]) + " *menuBar" + scv::toString(count[comp->getType()]) + " = new MenuBar" + scv::toString(count[comp->getType()]) + "(" + scv::toString(comp->getWidth()) + ");\n";
       code += "   addComponent(menuBar" + scv::toString(count[comp->getType()]) + ");\n";
-      count[comp->getType()] += 1;
+      scv::MenuBar *menu = (scv::MenuBar*)(comp);
+      for(int i=0; i<menu->getNumberOfMenus(); i++)
+         code += "   menuBar" + scv::toString(count[comp->getType()]) + "->addMenu(new scv::ContextMenu(\"menu" + scv::toString(i) + "\"));\n";
       code += "\n";
+      count[comp->getType()] += 1;
    } else if(type == scv::Component::TABBEDPANE) {// TabbedPane
       x = comp->getRelativePosition().x + comp->getWidth();
       y = comp->getRelativePosition().y + comp->getHeight();

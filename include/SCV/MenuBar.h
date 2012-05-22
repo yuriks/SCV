@@ -15,6 +15,8 @@ public:
    void activeMenu(int id);
 
    void closeAllMenus(void);
+
+   int getNumberOfMenus();
    
 protected:   
    virtual void processMouse(const scv::MouseEvent &evt);

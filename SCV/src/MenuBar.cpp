@@ -25,6 +25,10 @@ MenuBar::MenuBar(int width) : Panel(Point(0, 0), Point(width, s_menuHeight)) {
    createTexture();
 }
 
+int MenuBar::getNumberOfMenus() {
+   return _menus.size();
+}
+
 void MenuBar::processMouse(const scv::MouseEvent &evt) {
    static Kernel *kernel = Kernel::getInstance();
    static MenuHolder *menu = MenuHolder::getInstance();
